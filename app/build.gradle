@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'//greendao
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.example.myappsecond"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //跟导入第三方jar库有关
+        multiDexEnabled true
+    }
+    dexOptions {
+        preDexLibraries = false
+        javaMaxHeapSize "4g"   //这个改大
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            minifyEnabled false
+        }
+    }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+    //greendao
+    greendao{
+        schemaVersion 1
+        daoPackage 'com.example.myappsecond.GreenDaos.Base'
+        targetGenDir 'src/main/java'
+    }
+}
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url 'https://jitpack.io' }//Toasty
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/universal-image-loader-1.9.3.jar')
+    compile files('libs/universal-image-loader-1.9.3-sources.jar')
+    compile files('libs/AMap_Location_V4.1.0_20180619.jar')
+    compile files('libs/commons-io-2.2.jar')
+    //    compile project(':RxTools-library')
+    //greendao之相关jar包
+    //    compile files('libs/freemarker-2.3.20.jar')
+    //    compile files('libs/greendao-3.2.2.jar')
+    //    compile files('libs/greendao-generator-3.2.2.jar')
+    //greendao之在线引用
+    compile 'org.greenrobot:greendao:3.2.0'
+    //OkHttp
+    compile 'com.squareup.okhttp3:okhttp:3.10.0'
+    //仿微信下拉刷新
+    compile files('libs/android-support-v7-recyclerview.jar')
+    compile 'com.github.GrenderG:Toasty:1.2.5'
+    //相应的project 的build.gradle中也有相关配置
+    compile project(':pulltorefresh')
+}

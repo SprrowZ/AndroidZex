@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renny.simplebrowser.view.widget.pullextend.PullExtendLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pull_extend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <com.renny.simplebrowser.view.widget.pullextend.ExtendListHeader
+        android:id="@+id/extend_header"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clickable="true"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
+
+        <ImageView
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_above="@+id/url_lay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/animation_a"/>
+
+        <LinearLayout
+            android:id="@+id/url_lay"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/animation_a"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/url_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:background="@null"/>
+
+            <ImageView
+                android:id="@+id/scan"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="13dp"
+                android:src="@drawable/animation_c"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <com.renny.simplebrowser.view.widget.pullextend.ExtendListFooter
+        android:id="@+id/extend_footer"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"/>
+
+</com.renny.simplebrowser.view.widget.pullextend.PullExtendLayout>

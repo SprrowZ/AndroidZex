@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<com.example.myappsecond.CustomViews.Topbar
+    android:id="@+id/topbar"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    custom:leftBackground="#3e3"
+    custom:leftText="Back"
+    custom:leftTextColor="#FFFFFF"
+    custom:rightBackground="#3e3"
+    custom:rightText="More"
+    custom:rightTextColor="#FFFFFF"
+    custom:title="自定义标题"
+    custom:titleTextColor="#123412"
+    custom:titleTextsize="10sp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true">
+
+
+</com.example.myappsecond.CustomViews.Topbar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

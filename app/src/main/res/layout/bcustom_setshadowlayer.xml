@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<com.example.myappsecond.CustomViews.Shadows
+    android:id="@+id/shadow"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+<!--<com.example.myappsecond.Custom_View.CustomView_Telescope-->
+    <!--android:id="@+id/telescope"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
+<com.example.myappsecond.CustomViews.Mypractice.RotateFirst
+    android:id="@+id/rotatefirst"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    />
+</LinearLayout>

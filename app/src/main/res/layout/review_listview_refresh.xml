@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/pull"
+            android:layout_marginLeft="100dp"
+            android:background="@drawable/listrefresh"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:id="@+id/linear"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="正在刷新"
+                android:id="@+id/tip"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_gravity="center"
+                android:text="距离上次刷新"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--<ImageView
+            android:id="@+id/loading"
+            android:layout_marginLeft="100dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/loading_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            />-->
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="100dp"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/onelinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                >
+                <Button
+                    android:id="@+id/btn1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Call SomeOne"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
+                    />
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Add View"
+                    android:textAllCaps="false"
+                    android:layout_toRightOf="@+id/btn1"
+                    android:singleLine="true"
+                    />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                >
+                <Button
+                    android:id="@+id/btn3"
+                    android:text="Remove View"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
+                    />
+                <Button
+                    android:id="@+id/btn6"
+                    android:text="Handler"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="30dp"
+                >
+
+                <Button
+                    android:id="@+id/btn4"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Timer Loop"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
+                    />
+
+                <Button
+                    android:id="@+id/btn5"
+                    android:text="Timer Cancel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linear"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
+            android:background="@color/clear_bule"
+            android:layout_toRightOf="@+id/onelinear"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            />
+    </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/second"
+    android:layout_width="220dp"
+    android:layout_height="200dp"
+    android:layout_below="@+id/top"
+    android:layout_centerInParent="true"
+    android:layout_marginTop="100dp"
+    >
+      <Button
+          android:id="@+id/aa"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:text="File IO"
+          android:textAllCaps="false"
+          android:singleLine="true"
+          />
+      <Button
+          android:id="@+id/bb"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:text="WebView"
+          android:textAllCaps="false"
+          android:singleLine="true"
+          android:layout_toRightOf="@+id/aa"
+          />
+      <Button
+          android:id="@+id/cc"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:text="GreenDaoExample"
+          android:textAllCaps="false"
+          android:singleLine="true"
+          android:layout_below="@+id/aa"
+          />
+      <Button
+          android:id="@+id/dd"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:text="GActivity"
+          android:textAllCaps="false"
+          android:singleLine="true"
+          android:layout_below="@+id/aa"
+          android:layout_toRightOf="@+id/cc"
+          />
+      <Button
+          android:id="@+id/ee"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:text="Waiting..."
+          android:textAllCaps="false"
+          android:singleLine="true"
+          android:layout_below="@+id/cc"
+          />
+      <Button
+          android:id="@+id/ff"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:text="Waiting..."
+          android:textAllCaps="false"
+          android:singleLine="true"
+          android:layout_below="@+id/cc"
+          android:layout_toRightOf="@+id/ee"
+          />
+</RelativeLayout>
+
+
+
+
+</RelativeLayout>

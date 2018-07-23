@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:state_pressed="true"><!--按住样式-->
+        <shape>
+            <solid android:color="@color/yellow2"/>
+            <corners android:radius="7dp"/>
+        </shape>
+    </item>
+
+ <!--默认样式-->
+    <item>
+    <layer-list>
+        <item>
+            <shape>
+                <!--<solid android:color="@color/green2"/>-->
+                <!--android:centerColor="@color/black"-->
+                <gradient android:startColor="@color/white"
+                    android:centerColor="@color/black"
+                    android:endColor="@color/red"
+                    android:gradientRadius="60"
+                    />
+                <corners android:radius="7dp"/>
+            </shape>
+        </item>
+        <item
+            android:left="3dp"
+            android:top="3dp"
+            android:right="3dp"
+            android:bottom="3dp"
+            >
+            <shape >
+                <solid android:color="@color/white"/>
+                <corners android:radius="7dp"/>
+            </shape>
+        </item>
+    </layer-list>
+    </item>
+
+
+</selector>

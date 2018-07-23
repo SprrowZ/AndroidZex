@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:state_pressed="true">
+<shape>
+    <solid android:color="@color/red"/>
+    <corners android:radius="6dp"/>
+</shape>
+</item>
+    <item ><!--默认的样式，shape作背景图-->
+<layer-list>
+    <item>
+<shape><!--之所以不放在item中是因为redius-->
+    <!--<solid android:color="@color/blue_bg"/>-->
+    <gradient
+    android:startColor="@color/white"
+    android:centerColor="@color/red"
+    android:endColor="@color/black"
+    ></gradient>
+    <corners  android:radius="6dp"/>
+</shape>
+    </item>
+    <item android:left="1dp"
+          android:top="1dp"
+          android:right="1dp"
+          android:bottom="1dp"
+        >
+<shape>
+    <solid android:color="@color/white"/>
+    <corners android:radius="6dp"/>
+    <!--<gradient-->
+        <!--android:startColor="@color/white"-->
+        <!--android:centerColor="@color/red"-->
+        <!--android:endColor="@color/black"-->
+         <!--&gt;</gradient>-->
+</shape>
+    </item>
+</layer-list>
+    </item>
+</selector>

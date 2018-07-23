@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myappsecond">
+
+   <!-- <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!-- 这个没啥用。。。-->
+    <permission android:name="android.permission.STATUS_BAR_SERVICE" android:protectionLevel="signature" />
+    <!--高德地图所需权限在下面-->
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!--用于获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!--用于访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <!--用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <!--用于写入缓存数据到扩展存储卡-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
+    <!--用于申请获取蓝牙信息进行室内定位-->
+    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+    <!--小米推送SDK新增权限-->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <permission android:name="com.example.myappsecond.permission.MIPUSH_RECEIVE" android:protectionLevel="signature" />
+    <!--这里com.xiaomi.mipushdemo改成app的包名-->
+    <uses-permission android:name="com.example.myappsecond.permission.MIPUSH_RECEIVE" />
+    <!--这里com.xiaomi.mipushdemo改成app的包名-->
+    <application
+        android:name=".EChatApp"
+        android:allowBackup="true"
+        android:icon="@drawable/appicon"
+        android:label="@string/appName"
+        android:roundIcon="@drawable/appround"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service android:name="com.amap.api.location.APSService"></service>
+        <meta-data android:name="com.amap.api.v2.apikey"
+            android:value="c82623e86cead19bf4d82c4ca40079e4"/>"
+        <provider
+            android:authorities="com.example.myappsecond.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+        <activity android:name=".MainActivity"
+             android:configChanges="keyboard|orientation|screenSize"
+             android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".First_Activity">
+          <intent-filter>
+          <category android:name="android.intent.category.DEFAULT" />
+          </intent-filter>
+        </activity>
+        <activity android:name=".SecondActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Project.Http_test"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.ImageLoaderUntils"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Camera_Activity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Review.KeepJava"
+           android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.MenuActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.ReviewTest"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Review.BaseAdapterTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.Viewpager.helloActivity"
+             android:theme="@style/AppTheme.Trans"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Review.ViewPagerTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name="com.example.myappsecond.CustomViews.Custom_Top"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Utils.Amap"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Review.myAsyncTask"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Review.myAsyncTask_pg"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.AsyncLoading.AsyncMain"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Animations.ShapeTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Animations.AnimationMain"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.DrawableTest.Drawable_Main"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.DrawableTest.Drawable_layerDrawable"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.CustomMain"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.Custom_First"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.Custom_Second"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.Custom_Third"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.ProjectMain"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.Project_dialog_first"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Animations.Memory"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Animations.Animation_attribute"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Animations.Animation_example"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.Custom_Fivth"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.Custom_Sixth"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.ListView_Delete.List_Main"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".CustomViews.Custom_Seventh"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Utils.ImageUtils.RoundMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Animations.ValueAnimators"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+
+        <activity android:name=".Project.SlidingConflict"/>
+        <activity android:name=".P_SQLiteDatabase.DBActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Project.Files.FileStorageTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <service android:name=".Project.Services.ServiceTest"/>
+        <activity android:name=".Project.Services.ServiceMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            />
+        <activity android:name=".Review.SpannableStringTest"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".CustomViews.CustomMain2"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".CustomViews.Custom_Eighth"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".CustomViews.Custom_Nineth"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".OkHttps.OkHttpMain"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".CustomViews.Mypractice.Custom_Tenth"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".CustomViews.Custom_Eleven"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".CustomViews.Custom_Twelfths"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".CustomViews.GestureDetectors" />
+        <activity android:name=".Project.WebViews.WebViewActivity"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".Project.GreenDaoExamples.GreenDaoDoActivity"
+            android:configChanges="keyboard|orientation|screenSize"/>
+        <activity android:name=".Project.GreenDaoExamples.GreenDaoActivity"
+            android:configChanges="keyboard|orientation|screenSize"/>
+    </application>
+
+</manifest>

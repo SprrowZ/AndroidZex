@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/son"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/icon_title_bar_edit_search"
+            android:hint="搜索" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/search"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="0.5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/search_text"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/vote_select"
+            android:drawableTint="@color/gray_3"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:hint="search"
+            android:paddingBottom="7dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="7dp"
+            android:textColorHint="#CCCCCC" />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,28 @@
+[
+  {
+    "table":"CARTOON",
+    "comment":"动漫角色",
+    "key":"CHAR_NAME",
+    "cols":[
+      {
+        "name":"CHAR_NAME",
+        "type":"TEXT"
+      },
+      {
+        "name":"ORIGIN",
+        "type":"TEXT"
+      },
+      {
+        "name":"AGE",
+        "type":"INTEGER"
+      },
+      {
+        "name":"FRIENDS",
+        "type":"TEXT"
+      }
+      ]
+  },
+  {
+
+  }
+]

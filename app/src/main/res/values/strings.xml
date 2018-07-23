@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">MyAppSecond</string>
+    <string name="someting_new">Someting_new</string>
+    <string name="appName">寻夢</string>
+    <string name="shape">Shape图形</string>
+    <string name="ensure">确认</string>
+    <string name="cancel">取消</string>
+    <string name="Enter">Enter</string>
+    <string name="exit">Exit</string>
+    <string name="Exit">Exit</string>
+    <string name="dream">夢</string>
+    <string name="password">0000</string>
+    <string name="fbi_warning">FBI WARNING!</string>
+    <string name="please_input_password">Please Input Password：</string>
+    <string name="wenzi">文字</string>
+    <string name="please_wait">处理中，请稍候…</string>
+    <string name="Version_number_is_wrong">Version number is wrong</string>
+    <string name="todo_auto_back" formatted="false">将于%d月%d日自动返回</string>
+    <string name="yesterday">昨天</string>
+    <string name="evening">"晚上 "</string>
+    <string name="early_morning">"凌晨 "</string>
+    <string name="pm">"下午 "</string>
+    <string name="am">"上午 "</string>
+
+    <string name="Monday">星期一</string>
+    <string name="Tuesday">星期二</string>
+    <string name="Wednesday">星期三</string>
+    <string name="Thursday">星期四</string>
+    <string name="Friday">星期五</string>
+    <string name="Saturday">星期六</string>
+    <string name="Sunday">星期日</string>
+
+    <string name="time_ago_prefix" />
+    <string name="time_ago_suffix">前</string>
+    <string name="time_ago_seconds">1分钟</string>
+    <string name="time_ago_minute">1分钟</string>
+    <string name="time_ago_minutes" formatted="false">%d分钟</string>
+    <string name="time_ago_hour">1小时</string>
+    <string name="time_ago_hours" formatted="false">%d小时</string>
+    <string name="time_ago_day">1天</string>
+    <string name="time_ago_days" formatted="false">%d天</string>
+    <string name="time_ago_month">1月</string>
+    <string name="time_ago_months" formatted="false">%d月</string>
+    <string name="time_ago_year">一年</string>
+    <string name="time_ago_years" formatted="false">%d年</string>
+    <string name="detail">详情...</string>
+    <string name="end">完结撒花~</string>
+    <string name="keeping">火力仍在！</string>
+</resources>

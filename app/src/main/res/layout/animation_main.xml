@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:text="Animation"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/TitleSize"
+    />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+     <Button
+         android:id="@+id/btn1"
+         android:text="Alpha"
+         android:textAllCaps="false"
+         android:layout_width="0dp"
+         android:layout_weight="1"
+         android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn2"
+            android:text="Scale"
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn3"
+            android:text="Translate"
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn4"
+            android:text="Rotate"
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn5"
+            android:text="组合动画一"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn6"
+            android:text="组合动画二"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn7"
+            android:text="组合动画三"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn8"
+            android:text="属性动画"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_box"
+            />
+        <Button
+            android:id="@+id/btn9"
+            android:text="属性案例"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/appicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btn10"
+            android:text="ValueAnimator"
+            android:textAllCaps="false"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_one"/>
+
+    </LinearLayout>
+</LinearLayout>

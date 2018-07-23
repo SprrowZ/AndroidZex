@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<style type="text/css">
+body{
+	background:#F5F5F5;
+}
+.Pfirst
+{
+	background:white;
+	height:400px;
+}
+.Psecond{
+	background:white;
+	height:230px;
+}
+.Pmiddle{
+	height:20px;
+}
+.Pmiddle2{
+	height:20px;
+}
+.Pthird{
+	background:white;
+	height:400px;
+}
+
+.d1{
+	margin-top:150px;
+	margin-left:200px;
+	font:bold 15px 黑体;
+	color:#8B4276;	 
+}
+.d2{
+	margin-top:20px;
+	margin-left:200px;
+	font-size:18px;
+	position:relative;
+	 border:0px;
+}
+.d2 .b1{
+	height:40px;
+	width:40%;
+	left:100px;
+	border:0px;
+	background:  #FFDA44 ;
+	 }
+	 
+.d2 .b2{
+	height:40px;
+	width:40%;
+	border:0px;
+	background:#efefef ;
+    
+}
+.d3 .b3{
+	margin-left:220px;
+	height:35px;
+	width:15%;
+	border-color:#ffcc44;
+	margin-top:20px;
+	background:#fff8dc;
+	color:#ffb266;
+}
+
+
+.choose .goodstype{
+width: 60%;
+height: 100px;
+box-shadow: -2px 2px 10px #D7A74E
+ 
+
+}
+.choose #tt{
+width:640px;
+height:35px;
+}
+.choose .goodstype button{
+margin-left: 10px;
+margin-top: 10px;
+background: #ffffff;
+border:1px solid #FFCC44;
+width: 100px;
+height: 30px;
+}
+.choose .goodstype{
+margin-left:80px;
+
+}
+.choose{
+margin-left: 300px;
+margin-top:50px;
+}
+.ton{
+	 
+	left:275px;
+	position:absolute;
+	top:360px;
+}
+.ton .ton1{
+ 
+margin-top:30px;
+width:640px;
+height:35px;
+margin-left:103px;
+ 
+}
+.ton .span1{
+	position:absolute;
+	top:35px;
+	width:150px;
+}
+
+.add{
+	 position:absolute;
+	 top:450px;
+	 left:262px;
+  }
+.add .Addsub{
+height:35px;
+width:30px;
+font-size: ;
+background: white;
+border:1px solid #A9A9A9;
+position:relative;
+padding:0px;
+	 
+}
+
+
+.add .account{
+	height: 35px;
+	border:1px solid #A9A9A9;
+	text-align:center;
+	padding:0px;
+	position:relative;
+	 ;	 
+}
+.add .span2{
+	position:absolute;
+	left:0px;
+	width:400px;
+	height:50px;
+}
+.add .span2 #subtract1{
+	position:absolute;
+	top:-30px; 
+left:115px;
+}
+.add .span2 #add1{
+position:absolute;	
+top:-30px; 
+left:310px;
+}
+.add .span2 #account1{
+	position:absolute;
+	top:-30px;
+	left:143px;
+}
+.tax{
+	position:absolute;
+	top:500px;
+	left:272px;
+}
+.tax .tax1{
+	height:35px;
+	width:640px;
+}
+ 
+.transit .choose{
+	width:640px;
+	position:absolute;
+	left:78px;
+	top:530px;
+	height:35px;
+}
+.transit .span1{
+	position:absolute;
+	left:300px;
+	top:585px;
+}
+.transitway{
+	position:absolute;
+	left:300px;
+	top:640px;
+
+}
+
+
+.transitway #txt1{
+height:35px;
+width:640px;
+padding:0px;
+position:absolute;
+left:77px;
+top:-10px;
+}
+.transitway #txt11{
+width:70px;
+height:40px;
+}
+ 
+ 
+.road .s1{
+	width:150px;
+	height:35px;
+}
+.road .s2{
+	top:15px;
+	position:absolute;
+	left:325px;
+    width:150px;
+	height:35px;	
+}
+.road .s3{
+	top:15px;
+	position:absolute;
+	left:480px;
+	width:150px;
+	height:35px;
+}
+.origin{
+	margin-top: 10px;
+}
+.origin .s4{
+	width:460px;
+	height:35px;
+}
+.destination{
+	margin-top: 10px;
+}
+.destination .s5{
+	left:120px;
+width:150px;
+	height:35px;
+}
+.destination .s6{
+width:150px;
+	height:35px;
+}
+.destination .s7{
+width:150px;
+	height:35px;
+	}
+.address{
+	margin-top:10px;
+}
+.address .s8{
+	width:460px;
+	height:35px;
+}
+.road #warning11{
+	 
+	margin-left:160px;
+	 
+	display:none;
+}
+.trucktype{
+	position:absolute;
+	top:690px;
+	left:300px;
+}
+.trucktype #truckchoose{
+	width:640px;
+	height:35px;
+}
+.billtype{
+	position:absolute;
+	top:740px;
+	left:300px;
+}
+.billtype #billchoose{
+	width:640px;
+	height:35px;
+}
+.Sendensure{
+	position:absolute;
+	top:820px;
+	left:300px;
+}
+.Sender{
+	position:absolute;
+	top:850px;
+	left:315px;
+}
+.Sender #sendd{
+	width:640px;
+	height:35px;
+	padding:0px;
+}
+.receivt{
+	position:absolute;
+	top:900px;
+	left:315px;
+}
+.receivt #receivtt{
+	width:640px;
+	height:35px;
+	padding:0px;
+}
+.asknumber{
+position:absolute;
+top:950px;
+left:300px;
+}
+.asknumber #asknumber1{
+width:640px;
+height:35px;
+
+}
+.remarks{
+position:absolute;
+top:1000px;
+left:332px;
+}
+ #remarks11{
+
+width:640px;
+height:70px;
+}
+.last{
+	position:absolute;
+	top:1100px;
+	left:350px;
+}
+.last #last1{
+width:200px;
+height:40px;
+background: #015498;
+color:white;
+border:1px solid white;
+}
+.last #last2{
+width:200px;
+height:40px;
+background: #015498;
+color:white;
+margin-left:40px;
+border:1px solid white;
+}
+.last #last3{
+width:200px;
+height:40px;
+background: #015498;
+color:white;
+margin-left:40px;
+border:1px solid white;
+}
+
+
+</style>
+</head>
+<body>
+<div class="Pfirst">
+<div class="d1">
+&gt;&gt;&gt;我的竞拍编辑
+</div>	
+<div class="d2">
+<input type="button" class="b1" value="价格竞拍" onclick="yellow1()" id="bb1"><input type="button" class="b2" value="数量竞拍" onclick="yellow2()" id="bb2">
+</div>
+<div class="d3">
+<input type="button" class="b3" value="常用运输需求">
+</div>
+
+<div class="choose">
+<span style="color:red;" >*</span><label>运输货品：</label>
+<input type="text" id="tt" onmouseover="display()" onmouseout="indisplay()"  placeholder="选择录入商品">
+<span id="span1"></span>
+<div style="display:none;" id="ff" onmouseout="indisplay()" onmouseover="display()" class="goodstype" >
+<div>
+<span><button id="bt1" value="石灰石" onclick="add(this.value)">石灰石</button></span>
+<span><button id="bt2" value="煤炭"  onclick="add(this.value)">煤炭</button></span>
+<span><button id="bt3" value="煤矸石"  onclick="add(this.value)">煤矸石</button></span>
+<span><button id="bt1" value="石灰石" onclick="add(this.value)">石灰石</button></span>
+<span><button id="bt2" value="铜渣"  onclick="add(this.value)">铜渣</button></span>
+</div>
+<div>
+<span><button id="bt3" value="粉煤灰"  onclick="add(this.value)">粉煤灰</button></span>
+<span><button id="bt4"  value="石膏"  onclick="add(this.value)">石膏</button></span>
+<span><button id="bt5"  value="电石渣"  onclick="add(this.value)">电石渣</button></span>
+<span><button id="bt6"  value="熟料"  onclick="add(this.value)">熟料</button></span>
+</div>
+</div>
+</div>
+<div class="ton" id="tonn">
+  <span class="span1" id="span11"><span style="color:red;" >*</span><label id="auction">竞拍数量(吨)：</label> </span>
+ <span><input type="text" id="ton1" class="ton1" placeholder="请输入竞拍数量"></span>
+</div>
+
+
+<div  class="add">
+
+<span style="color:red;">*</span><span><label>竞拍时长(小时)：</label></span>
+<span class="span2">
+<input type="button" class="Addsub" value="-" id="subtract1" onclick="subtract1()">
+<input type="text" id="account1" class="account" value="1" />
+<input type="button" class="Addsub" value="+" id="add1" onclick="add1()"></span>
+</div>
+<div class="tax">
+<span style="color:red;">*</span><span><label>起拍价(元/吨)：</label></span>
+<input  class="tax1" type="text"  placeholder="请输入最高含税价(元)">
+</div>
+</div>
+
+<div class="Pmiddle"></div>
+
+
+
+<div class="Psecond">
+<div class="transit">
+<span class="span1"><span style="color:red;">*</span><span><label>运输年月：</label></span></span>
+ <select class="choose">
+<option>请选择年月</option>
+<option>2017-07</option>
+<option>2017-08</option>
+<option>2017-09</option>
+<option>2017-10</option>
+ </select>
+</div>
+<div class="transitway">
+<span style="color:red;">*</span><span><label>运输线路：</label></span>
+<button class="btn btn-default" type="button" data-toggle="modal" data-target="#mymodal-data" id="txt1" style=""><input type="text" class="form-control" disabled id="txt11" placeholder="单击选择线路"  style=" width:100%"></button>
+<!-- 模态弹出窗内容 -->
+<div class="modal" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<span> <label>&gt;&gt;&gt;设置线路</label></span><span><label onclick="changePage()" style="margin-left:700px;">常用线路</label></span>
+				 
+			</div>
+			<div class="modal-body">
+ <div class="road" id="xx1">
+<span style="color:red; margin-left:100px">*</span>
+<span>起点：</span>
+<span>
+<select class="s1" id="s1" onblur="warning1()">
+<option>--请选择省份--</option>
+<option>新疆</option>
+</select>
+<label id="warning11">起点不能为空</label>
+</span>
+ 
+<span>
+<select class="s2" id="s2" onclick="warning11()">
+ 
+<option >--请选择城市--</option>
+<option id="s21">乌鲁木齐</option>
+<option id="s22">克拉玛依</option>
+<option id="s23">吐鲁番</option>
+</select>
+</span>
+<span>
+<select class="s3" id="s3" onclick="warning12()">
+ 
+<option>--请选择县区--</option>
+<option id="s24">天山区</option>
+<option id="s25">沙依巴克区</option>
+</select>
+</span>
+</div>
+<div class="origin" id="xx2">
+<span style="color:red;margin-left:72px;">*</span>
+<span>起点地址：</span>
+<span><input id="origin1" type="text" name="" placeholder="请输入起点位置" class="s4"></span>
+</div>
+<div class="destination" id="xx3">
+<span style="color:red;margin-left:100px;">*</span>
+<span>终点：</span>
+<span>
+<select class="s5" id="s5" onblur="warning2()">
+<option >--请选择省份--</option>
+<option >新疆</option>
+</select>
+</span>
+<span id="warning22" style="display:none">fff</span>
+<span>
+<select class="s6" id="s6">
+<option>--请选择城市--</option>
+<option>乌鲁木齐</option>
+<option>克拉玛依</option>
+<option>吐鲁番</option>
+</select>
+</span>
+<span>
+<select class="s7" id="s7">
+<option>--请选择县区--</option>
+<option>天山区</option>
+<option>沙依巴克区</option>
+</select>
+</span>
+</div>
+<div class="address" id="xx4">
+<span style="color:red;margin-left:74px;">*</span><span>终点地址：</span>
+<input class="s8" type="text" placeholder="请输入终点地址" id="address1">
+</div>
+<div>
+<input type="text" id="roadCode" style="display:none;" placeholder="线路编码/线路名称···">
+</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="submit1" class="btn btn-primary"    style="width:180px;  margin-right:540px;" onclick="warn()">确定</button>
+				 
+			</div>
+		</div>
+	</div>
+</div>
+ </div>
+<div class="trucktype">
+<span style="color:red;">*</span><span><label>车辆类型：</label></span>
+<select id="truckchoose">
+<option>--请选择车辆类型--</option>
+<option>自卸后倾翻</option>
+<option>自卸侧倾翻</option>
+<option>平板车</option>
+<option>粉罐车</option>
+<option>液罐车</option>
+<option>水泥搅拌罐车</option>
+</select>
+</div>
+<div class="billtype">
+<span style="color:red;">*</span><span><label>发票类型：</label></span>
+<select id="billchoose">
+<option>--请选择发票类型--</option>
+<option>增值税普通发票</option>
+<option>增值税专用发票</option>
+</select>
+</div>
+ </div>
+<div class="Pmiddle2"></div>
+<div class="Pthird">
+<div class="Sendensure">
+<span style="color:red;">*</span><span><label>发货确认：</label></span>
+ <label class="radio-inline">
+    <input type="radio" checked name="need" onclick="undispear()">需要
+    </label>
+    <label class="radio-inline">
+    <input type="radio" name="need" onclick="dispear()">不需要(无网络时使用)
+    </label>    
+</div>
+<div class="Sender">
+<span style="color:red;">*</span><span><label>发货方：</label></span>
+ <button class="btn btn-default" type="button" data-toggle="modal" data-target="#mymodal" id="sendd"><input type="text" class="form-control" disabled placeholder="单击选择发货方" style="width:100%;height:35px;"></button> 
+<!-- 模态弹出窗内容 -->
+<div class="modal" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> 
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+			<button type="button" id="submit120" class="btn btn-primary"  data-dismiss="modal"  style="width:180px;  margin-right:540px;">确定</button>
+				 
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="receivt" id="receivt">
+<span style="color:red;">*</span><span><label>收货方：</label></span>
+<button class="btn btn-default" type="button" data-toggle="modal" data-target="#mymodall" id="receivtt"><input type="text" class="form-control" disabled placeholder="单击选择收货方" style="width:100%; "></button> 
+<!-- 模态弹出窗内容 -->
+<div class="modal" id="mymodall" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> 
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="submit121" class="btn btn-primary" data-dismiss="modal"   style="width:180px;  margin-right:540px;">确定</button>
+				 
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<div class="asknumber" id="asknumber">
+<span style="color:red;">*</span><span><label>咨询电话：</label></span>
+<input type="text" id="asknumber1" placeholder="请输入咨询电话">
+</div>
+<div class="remarks" id="remarkt">
+ <span><label>备注：</label></span>
+ <input type="textarea" id="remarks11" placeholder="请填写收发时间及其他要求。例：收发时间为早8：00-晚20：00，每日要求运输量3000吨。">
+</div>
+</div>
+<div class="last">
+<span><input type="button" id="last1" value="立即发布"></span>
+<span><input type="button" id="last2" value="预约发布"></span>
+<span><input type="button" id="last3" value="存草稿"></span>
+</div>
+
+
+</body>
+
+
+<script>
+var aa=document.getElementById("bb1");
+var bb=document.getElementById("bb2");
+var cc=document.getElementById("tt");
+var dd=document.getElementById("ff");
+var ee=document.getElementById("ton1");
+var ff=document.getElementById("subtract1");
+var gg=document.getElementById("add1");
+var hh=document.getElementById("account1");
+function yellow1(){
+aa.style.background="#FFDA44";
+bb.style.background="#efefef";
+document.getElementById("auction").innerHTML="竞拍数量(吨)：";
+document.getElementById("span11").style.marginLeft="0px";
+ee.placeholder="请输入竞拍数量";
+}
+function yellow2(){
+bb.style.background="#FFDA44"; 
+aa.style.background="#efefef";
+document.getElementById("auction").innerHTML="运输单价(元/吨)：";
+ee.placeholder="请输入最高含税价(元)";
+document.getElementById("span11").style.marginLeft="-25px";
+ 
+}
+ 
+ function display()
+ {
+ 	dd.style.display="block";
+ 	ee.style.display="none";
+ 	ff.style.display="none";
+ 	gg.style.display="none";
+ 	hh.style.display="none";
+    
+ }
+function indisplay()
+ {
+ 	dd.style.display="none";
+ 	ee.style.display="block";
+ 	ee.style.marginLeft="103px";
+ 	ee.style.marginTop="30px";
+ 	ff.style.display="block";
+ 	gg.style.display="block";
+ 	hh.style.display="block";
+  	 
+ }
+  
+ function add(i)
+{
+	cc.value=i; 
+	document.getElementById("span1").className="glyphicon glyphicon-ok";
+	cc.style.border=" 1px solid #FFCC44";
+	cc.className=" has-success has-feedback";
+}
+
+  
+function  add1(){
+	 
+hh.value=parseInt(hh.value)+1;
+}
+function subtract1(){
+	if(hh.value>1)
+	{
+    hh.value=parseInt(hh.value)-1;
+	}
+	else
+	{
+		alert("不能小于1");
+	}
+}
+var a=document.getElementById("s1");
+ var b=document.getElementById("s2");
+ var c=document.getElementById("s3");
+ var d=document.getElementById("origin1");
+ var e=document.getElementById("s5");
+ var f=document.getElementById("s6");
+ var g=document.getElementById("s7");
+ var h=document.getElementById("s8");
+ var i=document.getElementById("address1");
+ var j=document.getElementById("s21");
+ var k=document.getElementById("s22");
+ var l=document.getElementById("s23");
+ var m=document.getElementById("s24");
+ var n=document.getElementById("s25");
+
+function warning1(){
+if(document.getElementById("s1").value!="新疆")
+{
+	 document.getElementById("warning11").style.display="block";
+	 a.style.borderColor="red";
+	 b.style.borderColor="red";
+	 c.style.borderColor="red";
+	 }
+	 else{
+	 document.getElementById("warning11").style.display="none";
+	 a.style.borderColor="#A8A8A8";
+	 b.style.borderColor="#A8A8A8";
+	c.style.borderColor="#A8A8A8";	
+	 }
+}
+function warning11(){
+	if(a.value!="新疆")
+	{
+	   j.style.display="none";
+	   k.style.display="none";
+	   l.style.display="none";
+
+	}
+	else{
+		j.style.display="block";
+	    k.style.display="block";
+	    l.style.display="block";
+	}
+}
+function warning12(){
+	if(b.value!="乌鲁木齐")
+	{
+		m.style.display="none";
+        n.style.display="none";
+	}
+	else
+	{
+		m.style.display="block";
+        n.style.display="block";
+	}
+
+}
+function warn(){
+	 
+	if(a.value!="--请选择省份--"&&b.value!="--请选择城市--"&&c.value!="--请选择县区--"&&d.value!=""&&e.value!="--请选择省份--"&&f.value!="--请选择城市--"&&g.value!="--请选择县区--"&&i.value!="")
+		{
+		   document.getElementById("submit1").setAttribute("data-dismiss","modal");
+           document.getElementById("text11").value=d.value+"--"+address1.value;
+        }
+        else
+        {
+         
+     document.getElementById("warning11").style.display="block";
+	 a.style.borderColor="red";
+	 b.style.borderColor="red";
+	 c.style.borderColor="red";
+        }
+}
+
+function changePage(){
+document.getElementById("xx1").style.display="none";
+document.getElementById("xx2").style.display="none";
+document.getElementById("xx3").style.display="none";
+document.getElementById("xx4").style.display="none";
+document.getElementById("roadCode").style.display="block";
+}
+function dispear(){
+	document.getElementById("receivt").style.display="none";
+	document.getElementById("asknumber").style.top="900px";
+	document.getElementById("remarkt").style.top="950px";
+}
+function undispear(){
+	document.getElementById("receivt").style.display="block";
+	document.getElementById("asknumber").style.top="950px";
+	document.getElementById("remarkt").style.top="1000px";
+}
+
+
+
+
+</script>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script> 
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</html>

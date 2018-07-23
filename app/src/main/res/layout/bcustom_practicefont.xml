@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+<!--<com.example.myappsecond.Custom_View.Mypractice.PracticeFont-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
+    <com.example.myappsecond.CustomViews.Mypractice.PracticeWave
+        android:id="@+id/wave"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+    <com.example.myappsecond.CustomViews.setXfermode
+        android:id="@+id/XfermodeFirst"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+    <com.example.myappsecond.CustomViews.setXfermode2
+        android:id="@+id/XfermodeSecond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+    <com.example.myappsecond.CustomViews.setXfermode3
+        android:id="@+id/XfermodeThird"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+</LinearLayout>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/round"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:id="@+id/close"
+        android:text="关闭"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        style="@style/SelfInformation"
+        />
+    <TextView
+        android:text="我的信息"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SelfInformation"
+        />
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:layout_marginBottom="15dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="头像"
+            style="@style/SelfInformation"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#000"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="#fff">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            style="@style/SelfInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="姓名" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="牛牛" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/linear1"
+            android:background="#EBEBEB"
+            android:layout_marginLeft="10dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            style="@style/SelfInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="账号" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="00110101" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/linear2"
+            android:background="#EBEBEB"
+            android:layout_marginLeft="10dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            style="@style/SelfInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="性别" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="男" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_marginBottom="15dp"
+        >
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SelfInformation"
+            >
+            <TextView
+                android:text="部门"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:text="北京房山支行现金中心"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/line3"
+            android:layout_below="@+id/linear4"
+            android:background="#EBEBEB"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="10dp"
+            />
+<LinearLayout
+    android:layout_below="@+id/line3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/SelfInformation"
+    >
+    <TextView
+        android:text="职务"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:text="高级业务员"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        />
+
+</LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_marginBottom="30dp"
+        >
+        <LinearLayout
+            android:id="@+id/linear5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SelfInformation"
+            >
+            <TextView
+                android:text="职务"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:text="高级业务员"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                />
+        </LinearLayout>
+<ImageView
+    android:id="@+id/line4"
+    android:layout_below="@+id/linear5"
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="#EBEBEB"
+    android:layout_marginLeft="10dp"
+    />
+<LinearLayout
+    android:id="@+id/linear6"
+    android:layout_below="@+id/line4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    style="@style/SelfInformation"
+    >
+    <TextView
+        android:text="职务"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:text="高级业务员"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        />
+
+</LinearLayout>
+        <ImageView
+            android:id="@+id/line5"
+            android:layout_below="@+id/linear6"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#EBEBEB"
+            android:layout_marginLeft="10dp"
+            />
+        <LinearLayout
+            android:id="@+id/linear7"
+            android:layout_below="@+id/line5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@style/SelfInformation"
+             >
+        <TextView
+            android:text="职务"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:text="高级业务员"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            />
+        </LinearLayout>
+    </RelativeLayout>
+<TextView
+    android:text="以上资源来自人力资源管理系统"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  </LinearLayout>
+    </ScrollView>
+</LinearLayout>

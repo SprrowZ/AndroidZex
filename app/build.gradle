@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'//greendao
 android {
+
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
     defaultConfig {
@@ -27,6 +28,14 @@ android {
         }
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+    signingConfigs {//只是做个实例，默认的配置信息，对app进行签名
+        config {
+            storeFile file('./ryeCatcher.jks')
+            storePassword 'catcher'
+            keyAlias 'ryeCatcher'
+            keyPassword 'catcher'
+        }
+    }
     //greendao
     greendao{
         schemaVersion 1

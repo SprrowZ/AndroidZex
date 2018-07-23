@@ -10,11 +10,11 @@ import org.greenrobot.greendao.annotation.Generated;
  */
 @Entity
 public class Character {
-//    @Id
+    @Id(autoincrement = true)
     private Long ID;
     private String NAME;
     private boolean SEX;
-    @Id @NotNull
+    @NotNull
     private String CARTOON_NAME;
     private int AGE;
     private String ANIME_DUBBING;//声优

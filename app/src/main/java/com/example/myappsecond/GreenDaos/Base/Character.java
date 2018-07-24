@@ -10,20 +10,19 @@ import org.greenrobot.greendao.annotation.Generated;
  */
 @Entity
 public class Character {
-    @Id(autoincrement = true)
+
     private Long ID;
     private String NAME;
     private boolean SEX;
-    @NotNull
+    @Id
     private String CARTOON_NAME;
     private int AGE;
     private String ANIME_DUBBING;//声优
     private String NATIONALITY;//国籍
     private Long CARTOON_ID;
-    @Generated(hash = 308062309)
-    public Character(Long ID, String NAME, boolean SEX,
-            @NotNull String CARTOON_NAME, int AGE, String ANIME_DUBBING,
-            String NATIONALITY, Long CARTOON_ID) {
+    @Generated(hash = 1122278598)
+    public Character(Long ID, String NAME, boolean SEX, String CARTOON_NAME,
+            int AGE, String ANIME_DUBBING, String NATIONALITY, Long CARTOON_ID) {
         this.ID = ID;
         this.NAME = NAME;
         this.SEX = SEX;

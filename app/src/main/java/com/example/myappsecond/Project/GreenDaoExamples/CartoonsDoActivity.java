@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Created by Zzg on 2018/7/8.
  */
-public class GreenDaoDoActivity extends BaseActivity implements View.OnClickListener {
+public class CartoonsDoActivity extends BaseActivity implements View.OnClickListener {
     private EditText edit_name;
     private EditText edit_isend;
     private EditText edit_hero;
@@ -54,7 +54,7 @@ public class GreenDaoDoActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.greendao_data_do);
+        setContentView(R.layout.greendao_cartoons_do);
         initView();
         daoSession = EChatApp.getInstance().getDaoSession();
         cartoonsDao = daoSession.getCartoonsDao();
@@ -134,10 +134,7 @@ public class GreenDaoDoActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.but_modify_data:
                 //更新数据通过Name查吧
-                name = edit_name.getText().toString();
-                isend = edit_isend.getText().toString();
-                hero = edit_hero.getText().toString();
-                heroine = edit_heroine.getText().toString();
+                getTexts();
                 if (name.length() != 0 && isend.length() != 0
                         && hero.length() != 0 && heroine.length() != 0) {
                     Cartoons cartoons1 = daoSession.getCartoonsDao().queryBuilder()
@@ -161,10 +158,7 @@ public class GreenDaoDoActivity extends BaseActivity implements View.OnClickList
 
     private void insert() {
         //不能初始化的时候取值，因为这样为空，刚开始是空的。。。
-        name = edit_name.getText().toString();
-        isend = edit_isend.getText().toString();
-        hero = edit_hero.getText().toString();
-        heroine = edit_heroine.getText().toString();
+         getTexts();
         if (name.length() != 0 && isend.length() != 0
                 && hero.length() != 0 && heroine.length() != 0) {
             Cartoons cartoons = new Cartoons();
@@ -217,5 +211,11 @@ public class GreenDaoDoActivity extends BaseActivity implements View.OnClickList
             tShow.setVisibility(View.GONE);
             SHOW_DATA = true;
         }
+    }
+    private void getTexts(){
+        name = edit_name.getText().toString().trim();
+        isend = edit_isend.getText().toString().trim();
+        hero = edit_hero.getText().toString().trim();
+        heroine = edit_heroine.getText().toString().trim();
     }
 }

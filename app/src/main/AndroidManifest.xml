@@ -210,7 +210,7 @@
         <activity android:name=".CustomViews.GestureDetectors" />
         <activity android:name=".Project.WebViews.WebViewActivity"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".Project.GreenDaoExamples.GreenDaoDoActivity"
+        <activity android:name=".Project.GreenDaoExamples.CartoonsDoActivity"
             android:configChanges="keyboard|orientation|screenSize"/>
         <activity android:name=".Project.GreenDaoExamples.GreenDaoActivity"
             android:configChanges="keyboard|orientation|screenSize"/>

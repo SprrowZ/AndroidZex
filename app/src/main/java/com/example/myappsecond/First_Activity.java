@@ -1,7 +1,5 @@
 package com.example.myappsecond;
 
-import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -20,10 +17,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.myappsecond.Project.GreenDaoExamples.GreenDaoActivity;
-import com.example.myappsecond.Project.GreenDaoExamples.GreenDaoDoActivity;
+import com.example.myappsecond.Project.GreenDaoExamples.CartoonsDoActivity;
 import com.example.myappsecond.Project.WebViews.WebViewActivity;
 
 import java.io.File;
@@ -110,7 +106,7 @@ public class First_Activity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.cc).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(First_Activity.this, GreenDaoDoActivity.class));
+                startActivity(new Intent(First_Activity.this, CartoonsDoActivity.class));
             }
         });
         findViewById(R.id.dd).setOnClickListener(new View.OnClickListener() {

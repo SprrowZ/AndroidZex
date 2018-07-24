@@ -79,7 +79,11 @@ public class CharacterDao extends AbstractDao<Character, String> {
             stmt.bindString(2, NAME);
         }
         stmt.bindLong(3, entity.getSEX() ? 1L: 0L);
-        stmt.bindString(4, entity.getCARTOON_NAME());
+ 
+        String CARTOON_NAME = entity.getCARTOON_NAME();
+        if (CARTOON_NAME != null) {
+            stmt.bindString(4, CARTOON_NAME);
+        }
         stmt.bindLong(5, entity.getAGE());
  
         String ANIME_DUBBING = entity.getANIME_DUBBING();
@@ -112,7 +116,11 @@ public class CharacterDao extends AbstractDao<Character, String> {
             stmt.bindString(2, NAME);
         }
         stmt.bindLong(3, entity.getSEX() ? 1L: 0L);
-        stmt.bindString(4, entity.getCARTOON_NAME());
+ 
+        String CARTOON_NAME = entity.getCARTOON_NAME();
+        if (CARTOON_NAME != null) {
+            stmt.bindString(4, CARTOON_NAME);
+        }
         stmt.bindLong(5, entity.getAGE());
  
         String ANIME_DUBBING = entity.getANIME_DUBBING();
@@ -133,7 +141,7 @@ public class CharacterDao extends AbstractDao<Character, String> {
 
     @Override
     public String readKey(Cursor cursor, int offset) {
-        return cursor.getString(offset + 3);
+        return cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3);
     }    
 
     @Override
@@ -142,7 +150,7 @@ public class CharacterDao extends AbstractDao<Character, String> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // ID
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // NAME
             cursor.getShort(offset + 2) != 0, // SEX
-            cursor.getString(offset + 3), // CARTOON_NAME
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // CARTOON_NAME
             cursor.getInt(offset + 4), // AGE
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // ANIME_DUBBING
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // NATIONALITY
@@ -156,7 +164,7 @@ public class CharacterDao extends AbstractDao<Character, String> {
         entity.setID(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setNAME(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setSEX(cursor.getShort(offset + 2) != 0);
-        entity.setCARTOON_NAME(cursor.getString(offset + 3));
+        entity.setCARTOON_NAME(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setAGE(cursor.getInt(offset + 4));
         entity.setANIME_DUBBING(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setNATIONALITY(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
@@ -179,7 +187,7 @@ public class CharacterDao extends AbstractDao<Character, String> {
 
     @Override
     public boolean hasKey(Character entity) {
-        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
+        return entity.getCARTOON_NAME() != null;
     }
 
     @Override

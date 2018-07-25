@@ -46,4 +46,8 @@
     <string name="detail">详情...</string>
     <string name="end">完结撒花~</string>
     <string name="keeping">火力仍在！</string>
+    <string name="add_data">添加数据</string>
+    <string name="show_data">显示数据</string>
+    <string name="delete">删除</string>
+    <string name="alter">修改</string>
 </resources>

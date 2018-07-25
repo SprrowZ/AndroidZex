@@ -213,7 +213,9 @@
         <activity android:name=".Project.GreenDaoExamples.CartoonsDoActivity"
             android:configChanges="keyboard|orientation|screenSize"/>
         <activity android:name=".Project.GreenDaoExamples.GreenDaoActivity"
-            android:configChanges="keyboard|orientation|screenSize"/>
+            android:configChanges="keyboard|orientation|screenSize" />
+        <activity android:name=".Project.GreenDaoExamples.CharactersDoActivity"
+            android:configChanges="keyboard|orientation|screenSize" />
     </application>
 
 </manifest>

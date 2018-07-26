@@ -67,7 +67,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".First_Activity">
+        <activity android:name=".FirstActivity">
           <intent-filter>
           <category android:name="android.intent.category.DEFAULT" />
           </intent-filter>
@@ -77,144 +77,144 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Project.Http_test"
+        <activity android:name=".project.Http_test"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.ImageLoaderUntils"
+        <activity android:name=".project.ImageLoaderUntils"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Camera_Activity"
+        <activity android:name=".CameraActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Review.KeepJava"
+        <activity android:name=".review.KeepJava"
            android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.MenuActivity"
+        <activity android:name=".project.MenuActivity"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.ReviewTest"
+        <activity android:name=".project.ReviewTest"
             android:clearTaskOnLaunch="true"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Review.BaseAdapterTest"
+        <activity android:name=".review.BaseAdapterTest"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.Viewpager.helloActivity"
+        <activity android:name=".project.Viewpager.helloActivity"
              android:theme="@style/AppTheme.Trans"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Review.ViewPagerTest"
+        <activity android:name=".review.ViewPagerTest"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name="com.example.myappsecond.CustomViews.Custom_Top"
+        <activity android:name="com.example.myappsecond.customViews.Custom_Top"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Utils.Amap"
+        <activity android:name=".utils.ExtraUtil.Amap"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Review.myAsyncTask"
+        <activity android:name=".review.myAsyncTask"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Review.myAsyncTask_pg"
+        <activity android:name=".review.myAsyncTask_pg"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.AsyncLoading.AsyncMain"
+        <activity android:name=".project.AsyncLoading.AsyncMain"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Animations.ShapeTest"
+        <activity android:name=".animations.ShapeTest"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Animations.AnimationMain"
+        <activity android:name=".animations.AnimationMain"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.DrawableTest.Drawable_Main"
+        <activity android:name=".project.DrawableTest.Drawable_Main"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.DrawableTest.Drawable_layerDrawable"
+        <activity android:name=".project.DrawableTest.Drawable_layerDrawable"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.CustomMain"
+        <activity android:name=".customViews.CustomMain"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.Custom_First"
+        <activity android:name=".customViews.Custom_First"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.Custom_Second"
+        <activity android:name=".customViews.Custom_Second"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.Custom_Third"
+        <activity android:name=".customViews.Custom_Third"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.ProjectMain"
+        <activity android:name=".project.ProjectMain"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.Project_dialog_first"
+        <activity android:name=".project.Project_dialog_first"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Animations.Memory"
+        <activity android:name=".animations.Memory"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Animations.Animation_attribute"
+        <activity android:name=".animations.Animation_attribute"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Animations.Animation_example"
+        <activity android:name=".animations.Animation_example"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.Custom_Fivth"
+        <activity android:name=".customViews.Custom_Fivth"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.Custom_Sixth"
+        <activity android:name=".customViews.Custom_Sixth"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.ListView_Delete.List_Main"
+        <activity android:name=".customViews.ListView_Delete.List_Main"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".CustomViews.Custom_Seventh"
+        <activity android:name=".customViews.Custom_Seventh"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Utils.ImageUtils.RoundMainActivity"
+        <activity android:name=".utils.ImageUtils.RoundMainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Animations.ValueAnimators"
+        <activity android:name=".animations.ValueAnimators"
             android:configChanges="keyboard|orientation|screenSize"
             />
 
-        <activity android:name=".Project.SlidingConflict"/>
-        <activity android:name=".P_SQLiteDatabase.DBActivity"
+        <activity android:name=".project.SlidingConflict"/>
+        <activity android:name=".sqlLiteDatabase.DBActivity"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Project.Files.FileStorageTest"
+        <activity android:name=".project.Files.FileStorageTest"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <service android:name=".Project.Services.ServiceTest"/>
-        <activity android:name=".Project.Services.ServiceMainActivity"
+        <service android:name=".project.Services.ServiceTest"/>
+        <activity android:name=".project.Services.ServiceMainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             />
-        <activity android:name=".Review.SpannableStringTest"
+        <activity android:name=".review.SpannableStringTest"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".CustomViews.CustomMain2"
+        <activity android:name=".customViews.CustomMain2"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".CustomViews.Custom_Eighth"
+        <activity android:name=".customViews.Custom_Eighth"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".CustomViews.Custom_Nineth"
+        <activity android:name=".customViews.Custom_Nineth"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".OkHttps.OkHttpMain"
+        <activity android:name=".okHttps.OkHttpMain"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".CustomViews.Mypractice.Custom_Tenth"
+        <activity android:name=".customViews.Mypractice.Custom_Tenth"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".CustomViews.Custom_Eleven"
+        <activity android:name=".customViews.Custom_Eleven"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".CustomViews.Custom_Twelfths"
+        <activity android:name=".customViews.Custom_Twelfths"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".CustomViews.GestureDetectors" />
-        <activity android:name=".Project.WebViews.WebViewActivity"
+        <activity android:name=".customViews.GestureDetectors" />
+        <activity android:name=".project.WebViews.WebViewActivity"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".Project.GreenDaoExamples.CartoonsDoActivity"
+        <activity android:name=".project.GreenDaoExamples.CartoonsDoActivity"
             android:configChanges="keyboard|orientation|screenSize"/>
-        <activity android:name=".Project.GreenDaoExamples.GreenDaoActivity"
+        <activity android:name=".project.GreenDaoExamples.GreenDaoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
-        <activity android:name=".Project.GreenDaoExamples.CharactersDoActivity"
+        <activity android:name=".project.GreenDaoExamples.CharactersDoActivity"
             android:configChanges="keyboard|orientation|screenSize" />
     </application>
 

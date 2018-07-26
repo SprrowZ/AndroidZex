@@ -74,4 +74,5 @@ dependencies {
     compile 'com.github.GrenderG:Toasty:1.2.5'
     //相应的project 的build.gradle中也有相关配置
     compile project(':pulltorefresh')
+    
 }

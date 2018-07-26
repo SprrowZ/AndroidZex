@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\AndroidProjects\AndroidEx\pulltorefresh\src\main\shaders"/></dataSet><dataSet config="debug"><source path="D:\AndroidProjects\AndroidEx\pulltorefresh\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\zAndroid\pulltorefresh\src\main\shaders"/></dataSet><dataSet config="debug"><source path="D:\zAndroid\pulltorefresh\src\debug\shaders"/></dataSet></merger>

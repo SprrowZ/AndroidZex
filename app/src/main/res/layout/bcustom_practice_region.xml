@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
-    <com.example.myappsecond.CustomViews.Mypractice.PracticeFiger
+    <com.example.myappsecond.customViews.Mypractice.PracticeFiger
         android:id="@+id/figer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

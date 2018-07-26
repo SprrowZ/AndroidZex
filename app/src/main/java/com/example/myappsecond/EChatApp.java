@@ -109,6 +109,6 @@ public class EChatApp extends Application{
      * @return 当前时间。格式为：20140506120801
      */
     private static String getCurrentDateString() {
-        return com.example.myappsecond.Utils.DateUtils.getCurrentTime("yyyyMMddHHmmssSSS");
+        return com.example.myappsecond.utils.DateUtils.getCurrentTime("yyyyMMddHHmmssSSS");
     }
 }

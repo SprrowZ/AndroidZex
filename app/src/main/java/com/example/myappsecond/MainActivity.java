@@ -23,12 +23,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.myappsecond.Animations.Memory;
-import com.example.myappsecond.Fragments.Address_Fragment;
-import com.example.myappsecond.Fragments.Frd_Fragment;
-import com.example.myappsecond.Fragments.Settings_Fragment;
-import com.example.myappsecond.Fragments.Weixin_Fragment;
-import com.example.myappsecond.Project.Viewpager.helloActivity;
+import com.example.myappsecond.animations.Memory;
+import com.example.myappsecond.fragments.Address_Fragment;
+import com.example.myappsecond.fragments.Frd_Fragment;
+import com.example.myappsecond.fragments.SettingsFragment;
+import com.example.myappsecond.fragments.Weixin_Fragment;
+import com.example.myappsecond.project.Viewpager.helloActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -197,7 +197,7 @@ private Handler handler=new Handler();
         Fragment mTab01=new Weixin_Fragment();
         Fragment mTab02=new Frd_Fragment();
         Fragment mTab03=new Address_Fragment();
-        Fragment mTab04=new Settings_Fragment();
+        Fragment mTab04=new SettingsFragment();
         mFragments.add(mTab01);
         mFragments.add(mTab02);
         mFragments.add(mTab03);

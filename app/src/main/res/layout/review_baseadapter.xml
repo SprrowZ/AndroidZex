@@ -8,10 +8,10 @@
     android:text="ListView&amp;&amp;BaseAdapter"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
-    <com.example.myappsecond.Review.RefreshListView
+    <com.example.myappsecond.review.RefreshListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.example.myappsecond.Review.RefreshListView>
+    </com.example.myappsecond.review.RefreshListView>
 
 </RelativeLayout>

@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.myappsecond.Project.Http_test;
-import com.example.myappsecond.Project.Http_test1;
-import com.example.myappsecond.Project.ImageLoaderUntils;
+import com.example.myappsecond.project.Http_test;
+import com.example.myappsecond.project.Http_test1;
+import com.example.myappsecond.project.ImageLoaderUntils;
 
 
 /**

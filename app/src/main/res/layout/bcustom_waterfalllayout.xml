@@ -14,12 +14,12 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.example.myappsecond.CustomViews.WaterFallLayout
+    <com.example.myappsecond.customViews.WaterFallLayout
         android:id="@+id/waterfallLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.example.myappsecond.CustomViews.WaterFallLayout>
+    </com.example.myappsecond.customViews.WaterFallLayout>
 </ScrollView>
 
 </LinearLayout>

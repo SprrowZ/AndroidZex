@@ -4,7 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/common_bg"
     >
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="7dp" >
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:paddingLeft="10dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/btn_transparent_circle_selector"
+            android:drawableLeft="@mipmap/icon_title_bar_edit_search"
+
+            android:text="搜索"
+            android:textColor="#CCCCCC"
+            android:textSize="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"/>
+
+    </LinearLayout>
 <com.handmark.pulltorefresh.library.PullToRefreshListView
     android:id="@+id/listView"
     android:layout_width="match_parent"

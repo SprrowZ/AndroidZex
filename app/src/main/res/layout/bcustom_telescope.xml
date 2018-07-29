@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-<com.example.myappsecond.customViews.Telescopes
+<com.example.myappsecond.project.customViews.Telescopes
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:Telesrc="@drawable/my2"

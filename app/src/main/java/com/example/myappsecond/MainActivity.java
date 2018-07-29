@@ -23,11 +23,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.myappsecond.animations.Memory;
-import com.example.myappsecond.fragments.Address_Fragment;
-import com.example.myappsecond.fragments.Frd_Fragment;
-import com.example.myappsecond.fragments.SettingsFragment;
-import com.example.myappsecond.fragments.Weixin_Fragment;
+import com.example.myappsecond.project.animations.Memory;
+import com.example.myappsecond.project.fragments.Address_Fragment;
+import com.example.myappsecond.project.fragments.Frd_Fragment;
+import com.example.myappsecond.project.fragments.SettingsFragment;
+import com.example.myappsecond.project.fragments.Weixin_Fragment;
 import com.example.myappsecond.project.Viewpager.helloActivity;
 
 import java.util.ArrayList;

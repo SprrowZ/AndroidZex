@@ -11,9 +11,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.myappsecond.project.AsyncLoading.AsyncMain;
-import com.example.myappsecond.customViews.Custom_Top;
+import com.example.myappsecond.project.customViews.Custom_Top;
 import com.example.myappsecond.R;
-import com.example.myappsecond.review.*;
+import com.example.myappsecond.project.review.*;
 import com.example.myappsecond.utils.ExtraUtil.Amap;
 
 /**

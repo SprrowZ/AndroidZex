@@ -15,7 +15,10 @@
         android:paddingTop="7dp"
         android:paddingBottom="7dp"
         android:paddingLeft="5dp"
-        android:paddingRight="7dp" >
+        android:paddingRight="7dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
 
         <EditText
             android:id="@+id/search_bar"

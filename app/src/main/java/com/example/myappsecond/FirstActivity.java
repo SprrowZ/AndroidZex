@@ -18,9 +18,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.myappsecond.project.GreenDaoExamples.CharactersDoActivity;
-import com.example.myappsecond.project.GreenDaoExamples.GreenDaoActivity;
-import com.example.myappsecond.project.GreenDaoExamples.CartoonsDoActivity;
+import com.example.myappsecond.activity.CartoonsDoActivity;
+import com.example.myappsecond.activity.CharactersDoActivity;
+import com.example.myappsecond.activity.GreenDaoActivity;
 import com.example.myappsecond.project.WebViews.WebViewActivity;
 
 import java.io.File;

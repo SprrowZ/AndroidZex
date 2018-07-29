@@ -125,7 +125,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <com.example.myappsecond.customViews.Circles
+    <com.example.myappsecond.project.customViews.Circles
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

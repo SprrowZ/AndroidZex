@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.project.Dialog.CommonDialogActivity;
-import com.example.myappsecond.sqlLiteDatabase.DBActivity;
+import com.example.myappsecond.project.sqlLiteDatabase.DBActivity;
 import com.example.myappsecond.project.Files.FileStorageTest;
 import com.example.myappsecond.R;
 import com.example.myappsecond.utils.MeasureUtil;

@@ -14,13 +14,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-            <com.example.myappsecond.customViews.DistortionViews
+            <com.example.myappsecond.project.customViews.DistortionViews
                 app:Dtype="Dcircle"
                 app:Dsrc="@drawable/rectange"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 />
-            <com.example.myappsecond.customViews.DistortionViews
+            <com.example.myappsecond.project.customViews.DistortionViews
                 app:Dtype="DrectTangle"
                 app:Dsrc="@drawable/rectange"
                 app:Dradius="40"
@@ -29,7 +29,7 @@
                 android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
                 />
-            <com.example.myappsecond.customViews.DistortionViews
+            <com.example.myappsecond.project.customViews.DistortionViews
                 app:Dtype="DrectTangle"
                 app:Dsrc="@drawable/my2"
                 app:Dradius="80"
@@ -38,7 +38,7 @@
                 android:layout_height="300dp"
                 android:layout_marginLeft="20dp"
                 />
-            <com.example.myappsecond.customViews.DistortionViews
+            <com.example.myappsecond.project.customViews.DistortionViews
                 app:Dtype="DrectTangle"
                 app:Dsrc="@drawable/my1"
                 app:Dradius="120"

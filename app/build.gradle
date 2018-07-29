@@ -5,7 +5,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
     defaultConfig {
-        applicationId "com.example.myappsecond"
+        applicationId "com.rye.catcher.zzg"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -18,30 +18,112 @@ android {
         preDexLibraries = false
         javaMaxHeapSize "4g"   //这个改大
     }
+
+    signingConfigs {//只是做个实例，默认的配置信息，对app进行签名
+        config {
+            storeFile file('../ryeCatcher.jks')
+            storePassword 'catcher'
+            keyAlias 'key0'
+            keyPassword 'catcher'
+        }
+        //release{}   debug{}
+    }
+
     buildTypes {
         release {
+            shrinkResources true //用来开启删除无用资源，也就是没有被引用的文件,和底下这个要配合使用，只有全为true两者才起作用
+            minifyEnabled true  //minifyEnabled主要用来控制是否运行混淆的，还有就是用来开启删除无用代码，比如没有引用到的代码
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config //签名不要忘了撒
+            manifestPlaceholders = [appid: "100250345"] //貌似是华为沙盒用的，不用管
+            zipAlignEnabled true
+        }
+        debug {//默认安装的文件
+
+            def today = new Date()
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+            signingConfig signingConfigs.config
+            manifestPlaceholders = [appid: "100250711"]
+            applicationIdSuffix '.anyOATest' //applicationIdSuffix代表了默认的应用ID
+            versionNameSuffix '.' + today.format('MMdd')
+            zipAlignEnabled false
+        }
+
+        preview {
+            shrinkResources true //用来开启删除无用资源，也就是没有被引用的文件,和底下这个要配合使用，只有全为true两者才起作用
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug{
-            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.config //引用签名文件
+            manifestPlaceholders = [appid: "100250711"]
+            applicationIdSuffix '.anyOATest' //测试版id和生产版的不一样，一样的话就不能共存了呦
+            versionNameSuffix '.01'   //版本号修改
+            zipAlignEnabled true
+            matchingFallbacks = ['debug', 'release']
+
         }
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
-    signingConfigs {//只是做个实例，默认的配置信息，对app进行签名
-        config {
-            storeFile file('./ryeCatcher.jks')
-            storePassword 'catcher'
-            keyAlias 'ryeCatcher'
-            keyPassword 'catcher'
+
+    packagingOptions {//排除不想放入到apk文件里的文件
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+//维度，比如前面这个，场景：可以出一个免费版一个付费版，后面这个，场景：小米商城、华为商城
+    //如果一个是vip，一个是free，这就不是两个维度了，因为这俩都跟money有关
+    //和productFlavors配合使用
+    flavorDimensions("money", "channel")
+    productFlavors {
+        vip {
+            dimension "money"
+        }
+        free {
+            dimension "money"
+        }
+        baidu {
+            manifestPlaceholders = [CHANNEL: "baidu"]
+            dimension "channel"
+        }
+        xiaomi {
+            manifestPlaceholders = [CHANNEL: "xiaomi"]
+            dimension "channel"
         }
     }
+    //一个有用的技巧：你可以单独只为某一个variants添加一些依赖，只需要在Compile加上对应的variant名字前缀就可以了
+    //dependencies {
+    //compile 'com.android.support:support-v4:22.2.0'
+   // vipCompile 'com.android.support:appcompat-v7:22.2.0'//只为branchOne添加这个依赖
+//}
+
+
+
+    lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+
     //greendao
     greendao{
         schemaVersion 1
         daoPackage 'com.example.myappsecond.GreenDaos.Base'
         targetGenDir 'src/main/java'
     }
+
+
 }
 repositories {
     jcenter()
@@ -53,26 +135,25 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:27.1.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile files('libs/universal-image-loader-1.9.3.jar')
-    compile files('libs/universal-image-loader-1.9.3-sources.jar')
-    compile files('libs/AMap_Location_V4.1.0_20180619.jar')
-    compile files('libs/commons-io-2.2.jar')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    implementation files('libs/universal-image-loader-1.9.3.jar')
+    implementation files('libs/universal-image-loader-1.9.3-sources.jar')
+    implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
+    implementation files('libs/commons-io-2.4.jar')
     //    compile project(':RxTools-library')
     //greendao之相关jar包
     //    compile files('libs/freemarker-2.3.20.jar')
     //    compile files('libs/greendao-3.2.2.jar')
     //    compile files('libs/greendao-generator-3.2.2.jar')
     //greendao之在线引用
-    compile 'org.greenrobot:greendao:3.2.0'
+    implementation 'org.greenrobot:greendao:3.2.0'
     //OkHttp
-    compile 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     //仿微信下拉刷新
-    compile files('libs/android-support-v7-recyclerview.jar')
-    compile 'com.github.GrenderG:Toasty:1.2.5'
+    implementation files('libs/android-support-v7-recyclerview.jar')
+    implementation 'com.github.GrenderG:Toasty:1.2.5'
     //相应的project 的build.gradle中也有相关配置
-    compile project(':pulltorefresh')
-    
+    implementation project(':pulltorefresh')
 }

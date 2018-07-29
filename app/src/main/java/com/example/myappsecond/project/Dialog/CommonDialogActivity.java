@@ -10,9 +10,9 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
+import com.example.myappsecond.BaseActivity;
+
 import com.example.myappsecond.utils.MeasureUtil;
 
 /**
@@ -49,7 +49,7 @@ public class CommonDialogActivity {
         dialog.setContentView(contentView);
     }
 public void setLeftScale(Activity activity,LinearLayout parent,EditText son){
-    MeasureUtil.setLeftScale(activity,parent,son,R.drawable.icon_title_bar_edit_search);
+    MeasureUtil.setLeftScale(activity,parent,son, R.mipmap.icon_title_bar_edit_search);
     Toast.makeText(activity,"dddddd",Toast.LENGTH_LONG).show();
 }
 //    public CommonDialogActivity(BaseActivity activity, int Res,EditText son,LinearLayout parent) {

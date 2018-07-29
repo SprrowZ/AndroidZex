@@ -51,7 +51,7 @@ public class ProjectMain extends BaseActivity {
         search=findViewById(R.id.search);
         search_bar=findViewById(R.id.search_bar);
         center=findViewById(R.id.center);
-        MeasureUtil.setLeftScale(this,search,search_bar,R.drawable.icon_title_bar_edit_search);
+        MeasureUtil.setLeftScale(this,search,search_bar,R.mipmap.icon_title_bar_edit_search);
   //点击textView弹出Dialog
         search_bar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +62,7 @@ public class ProjectMain extends BaseActivity {
                 son= (EditText) topDialog.findViewById(R.id.son);
                 parent= (LinearLayout) topDialog.findViewById(R.id.parent);
                 //设置drawleft的大小
-                MeasureUtil.setLeftScale(ProjectMain.this,parent,son,R.drawable.icon_title_bar_edit_search);
+                MeasureUtil.setLeftScale(ProjectMain.this,parent,son,R.mipmap.icon_title_bar_edit_search);
                 topDialog.getWindow().setBackgroundDrawable(null);
                 //editText绑定键盘
 //                son.setFocusable(true);

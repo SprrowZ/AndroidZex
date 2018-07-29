@@ -55,7 +55,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
-            android:drawableLeft="@drawable/icon_title_bar_edit_search"
+            android:drawableLeft="@mipmap/icon_title_bar_edit_search"
             android:gravity="center_vertical"
             android:text="serach"
             android:textColor="#CCCCCC"

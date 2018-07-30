@@ -46,6 +46,7 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
     private Button btn_modify;
     private EditText edit_id;
     private TextView newData;
+    private List<Cartoons> dataList;
     /**
      * 判断是隐藏数据还是显示数据
      */
@@ -169,6 +170,8 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
             }
             cartoons.setHERO(hero);
             cartoons.setHEROINE(heroine);
+            //插入的时候查询一下本地数据库看有没有已经存在的数据，根据Name查询
+
             cartoonsDao.insert(cartoons);//插入
         } else {
             ToastUtils.shortMsg("请输入数据撒~");
@@ -179,6 +182,7 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
         edit_isend.setText("");
         edit_hero.setText("");
         edit_heroine.setText("");
+        edit_name.setFocusable(true);//焦点重新
 
     }
 
@@ -192,8 +196,9 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
             animator = ObjectAnimator.ofFloat(tShow, "alpha", 0F, 1F);
             animator.setDuration(1000);
             animator.start();
-            cartoonsQuery = cartoonsDao.queryBuilder().orderAsc(CartoonsDao.Properties.NAME).build();
-            List<Cartoons> list = cartoonsQuery.list();//直接拿到list
+//            cartoonsQuery = cartoonsDao.queryBuilder().orderAsc(CartoonsDao.Properties.NAME).build();
+//            List<Cartoons> list = cartoonsQuery.list();//直接拿到list
+            List<Cartoons> list=queryByThread();
             res.delete(0, res.length());
             for (Cartoons cartoons : list) {
                 res.append("NAME:" + cartoons.getNAME() + "\t\t\t\t\t\t");
@@ -216,5 +221,21 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
         isend = edit_isend.getText().toString().trim();
         hero = edit_hero.getText().toString().trim();
         heroine = edit_heroine.getText().toString().trim();
+    }
+
+    //数据过大时，开启线程进行查询
+    private List<Cartoons> queryByThread(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (cartoonsQuery!=null){
+
+                }else{
+                    cartoonsQuery=cartoonsDao.queryBuilder().orderAsc(CartoonsDao.Properties.NAME).build();
+                }
+                dataList=cartoonsQuery.forCurrentThread().list();
+            }
+        }).start();
+        return  dataList;
     }
 }

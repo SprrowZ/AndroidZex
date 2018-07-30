@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:background="@color/common_bg"
     >
+    <include layout="@layout/activity_top_title"/>
     <LinearLayout
         android:id="@+id/ll_search"
         android:layout_width="match_parent"
@@ -31,8 +32,9 @@
             android:background="@drawable/btn_transparent_circle_selector"
             android:drawableLeft="@mipmap/icon_title_bar_edit_search"
 
-            android:text="搜索"
-            android:textColor="#CCCCCC"
+            android:hint="搜索"
+            android:textColorHint="#CCCCCC"
+            android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"/>

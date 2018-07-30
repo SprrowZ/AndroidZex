@@ -6,23 +6,24 @@
     android:orientation="vertical"
     android:background="@color/white"
     >
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:orientation="horizontal"
     >
 <RelativeLayout
-    android:layout_width="60dp"
+    android:layout_width="70dp"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     >
     <ImageView
         android:id="@+id/iv"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
         android:src="@drawable/my1"
         android:scaleType="fitXY"
-        android:layout_marginLeft="8dp"
+
         />
 </RelativeLayout>
 <RelativeLayout
@@ -33,6 +34,7 @@
     <LinearLayout
         android:id="@+id/li_1"
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="20dp">
         <TextView
@@ -40,9 +42,9 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="アニメ:"
-            android:textColor="@color/black"
-            android:textSize="12dp"
+            android:text="漫名:"
+            android:textColor="@color/black_deep"
+            android:textSize="14dp"
             />
         <TextView
             android:id="@+id/name"
@@ -65,9 +67,9 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="主役:"
+            android:text="主演:"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="14dp"
             />
         <TextView
             android:id="@+id/hero"
@@ -90,12 +92,12 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="ヒロイン:"
+            android:text="状态:"
             android:textColor="@color/black"
-            android:textSize="12dp"
+            android:textSize="14dp"
             />
         <TextView
-            android:id="@+id/heroine"
+            android:id="@+id/status"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent"
@@ -104,33 +106,39 @@
             android:textColor="@color/black_deep"
             />
     </LinearLayout>
-    <TextView
-        android:id="@+id/detail"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="10dp"
-        android:text="@string/detail"
-        android:textSize="8dp"
-        android:layout_marginRight="10dp"
-        android:textColor="@color/black"
-        android:textStyle="italic"
-        />
+
 </RelativeLayout>
 <RelativeLayout
+    android:id="@+id/details"
     android:layout_width="0dp"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    android:gravity="center"
     >
     <TextView
-        android:id="@+id/status"
+        android:id="@+id/ss"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        />
+    <TextView
+        android:id="@+id/item_id"
+        android:layout_below="@+id/ss"
+        android:gravity="center"
+        android:text="111"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/detail"
+        android:layout_below="@+id/item_id"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/green3"
-        android:textSize="14dp"
-        android:text="完结撒花~"
+        android:textColor="@color/yellow_deep"
+        android:textSize="12dp"
+        android:textStyle="normal"
+        android:text="详情"
         />
 </RelativeLayout>
 </LinearLayout>

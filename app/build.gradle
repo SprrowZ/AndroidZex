@@ -36,7 +36,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config //签名不要忘了撒
             manifestPlaceholders = [appid: "100250345"] //貌似是华为沙盒用的，不用管
-            zipAlignEnabled true
+            zipAlignEnabled true //这个在打包时需要设置为true，能优化我们的java字节码，提高运行效率；
         }
         debug {//默认安装的文件
 
@@ -219,4 +219,7 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.2.5'
     //相应的project 的build.gradle中也有相关配置
     implementation project(':pulltorefresh')
+    //Glide图片加载框架
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 }

@@ -42,7 +42,7 @@
         android:name=".EChatApp"
         android:allowBackup="true"
         android:icon="@drawable/appicon"
-        android:label="@string/appName"
+         android:label="@string/appName"
         android:roundIcon="@drawable/appround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bottom_gray"
+                android:gravity="center_vertical">
+
+    <LinearLayout
+        android:id="@+id/btn_function_back"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
+
+        <include
+            layout="@layout/commom_back_btn"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/common_tab_bg"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/unread_address_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/unread_count_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/box_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="80dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:textColor="@color/bottom_text_color_normal"
+            android:textSize="16dp"/>
+
+        <ImageView
+            android:id="@+id/down_list_icon"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/icon_title_bar_filter"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/search_image"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/right_image"
+        android:background="@drawable/common_tab_bg"
+        android:clickable="true"
+        android:visibility="gone"
+        android:scaleType="centerInside"
+        android:src="@drawable/fangdajing1"
+        android:tint="@color/gray_3"
+        />
+
+    <ImageView
+        android:id="@+id/right_image"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/common_tab_bg"
+        android:clickable="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/add"
+        android:tint="@color/gray_3"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/right_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/common_tab_bg"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/gray_3"
+        android:textSize="14dp"
+        android:visibility="gone"/>
+</RelativeLayout>

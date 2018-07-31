@@ -5,7 +5,10 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.EChatApp;
@@ -15,6 +18,7 @@ import com.example.myappsecond.GreenDaos.Base.DaoSession;
 import com.example.myappsecond.R;
 import com.example.myappsecond.adapter.BaseArrayAdapter;
 import com.example.myappsecond.adapter.GreenAdapter;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
@@ -31,11 +35,60 @@ public class GreenDaoActivity extends BaseActivity {
     List datalist=new ArrayList<Cartoons>();
     private GreenAdapter adapter;
     private LayoutInflater inflater;
+    public static String CARTOON_NAME;
+    public static String [] HEROS;
+    public static Long ID;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.greendao_exone);
         init();
+        initEvent();
+    }
+
+    private void initEvent() {
+        query.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        AdapterView.OnItemClickListener vsl=new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cartoons cartoons= (Cartoons) adapter.getItem(position);
+
+            }
+        };
+
+        listView.setOnItemClickListener(vsl);
+        //下拉监听回调
+        listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+
+                if (listView.isRefreshing()){
+                    listView.postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            listView.onRefreshComplete();
+                        }
+                    }, 1000);
+                }
+            }
+        });
     }
 
     private void init() {
@@ -47,30 +100,13 @@ public class GreenDaoActivity extends BaseActivity {
 //        TextView endView=new TextView(this);
 //        endView.setText("已经到底了呢~");
 //        endView.setGravity(View.TEXT_ALIGNMENT_CENTER);
+        listView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         daoSession= EChatApp.getInstance().getDaoSession();
         cartoonsDao=daoSession.getCartoonsDao();
         //查询数据进行适配
         datalist=cartoonsDao.queryBuilder().
                 where(
                 CartoonsDao.Properties.NAME.notEq("七龙珠")).list();
-
-        query.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-             adapter.getFilter().filter(s);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
 
 
 

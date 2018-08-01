@@ -1,5 +1,6 @@
 package com.example.myappsecond.activity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.EChatApp;
@@ -38,6 +40,8 @@ public class CartoonsListActivity extends BaseActivity {
     public static String CARTOON_NAME;
     public static String [] HEROS;
     public static Long ID;
+    public static int ITEM_COUNT=20;
+    public int batch=1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +81,8 @@ public class CartoonsListActivity extends BaseActivity {
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+                //获取更新数据
+               new dataAsyncTask().execute();
 
                 if (listView.isRefreshing()){
                     listView.postDelayed(new Runnable() {
@@ -86,7 +92,7 @@ public class CartoonsListActivity extends BaseActivity {
                             listView.onRefreshComplete();
 
                         }
-                    }, 1000);
+                    }, 500);
                 }
             }
         });
@@ -105,12 +111,9 @@ public class CartoonsListActivity extends BaseActivity {
         daoSession= EChatApp.getInstance().getDaoSession();
         cartoonsDao=daoSession.getCartoonsDao();
         //查询数据进行适配
-        datalist=cartoonsDao.queryBuilder().
-                where(
-                CartoonsDao.Properties.NAME.notEq("七龙珠")).list();
-
-
-
+        datalist=cartoonsDao.queryBuilder()
+                .limit(CartoonsListActivity.ITEM_COUNT)
+                .list();
 
         if (adapter==null){
             adapter=new GreenAdapter(this,datalist);
@@ -132,5 +135,39 @@ public class CartoonsListActivity extends BaseActivity {
 
         listView.setAdapter(adapter);
     }
+    public  class  dataAsyncTask extends AsyncTask<Void,Void,List<Cartoons>>{
 
+         @Override
+         protected List<Cartoons> doInBackground(Void... voids) {
+          List<Cartoons> newdata =  cartoonsDao.queryBuilder()
+                     .offset(batch*CartoonsListActivity.ITEM_COUNT)
+                     .limit(20)
+                     .list();
+          if (newdata!=null){
+              batch++;
+              datalist.addAll(newdata);
+              adapter.notifyDataSetChanged();
+          }else{
+
+          }
+
+          return newdata;
+         }
+
+         @Override
+         protected void onPostExecute(List<Cartoons> cartoons) {
+             //提交之前进行一些操作吧，加个bottomView
+                   if (cartoons==null||cartoons.size()==0){
+                       runOnUiThread(new Runnable() {
+                           @Override
+                           public void run() {
+                               TextView textView=new TextView(CartoonsListActivity.this);
+                               textView.setText("没有更多数据了");
+                               listView.getRefreshableView().addFooterView(textView);//要getRefreshableView先。。
+                           }
+                       });
+                   }
+             super.onPostExecute(cartoons);
+         }
+     }
 }

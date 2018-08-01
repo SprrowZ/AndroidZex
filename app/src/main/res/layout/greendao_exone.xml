@@ -47,7 +47,7 @@
     ptr:ptrShowIndicator="true"
     ptr:ptrRefreshableViewBackground="@color/btn_register_normal"
     ptr:ptrHeaderBackground="@color/transparent"
-    ptr:ptrDrawable="@drawable/refresh"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <!--加上面两个属性是为了防止快速滑动出现大量空白-->

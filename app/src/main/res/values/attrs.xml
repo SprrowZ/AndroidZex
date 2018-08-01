@@ -74,16 +74,7 @@
         <!-- 用于设置Header与Footer中上次刷新时间文本的颜色 -->
         <attr name="ptrHeaderSubTextColor" format="reference|color" />
         <!-- 刷新模式 -->
-        <attr name="ptrMode">
-            <flag name="disabled" value="0x0" /> <!-- 禁用下拉刷新 -->
-            <flag name="pullFromStart" value="0x1" /> <!-- 仅支持下拉刷新 -->
-            <flag name="pullFromEnd" value="0x2" /> <!-- 仅支持上拉刷新 -->
-            <flag name="both" value="0x3" /> <!-- 上拉刷新和下拉刷新都支持 -->
-            <flag name="manualOnly" value="0x4" /> <!-- 只允许手动触发 -->
-            <!-- These last two are depreacted -->
-            <flag name="pullDownFromTop" value="0x1" />
-            <flag name="pullUpFromBottom" value="0x2" />
-        </attr>
+
         <!-- 如果为true会在mPullRefreshListView中出现icon，右上角和右下角，挺有意思的 -->
         <attr name="ptrShowIndicator" format="reference|boolean" />
         <!-- 同时改变头部和底部的刷新图标 -->
@@ -97,10 +88,7 @@
         <attr name="ptrHeaderTextAppearance" format="reference" />
         <attr name="ptrSubHeaderTextAppearance" format="reference" />
         <!-- flip（翻转动画）， rotate（旋转动画） -->
-        <attr name="ptrAnimationStyle">
-            <flag name="rotate" value="0x0" />
-            <flag name="flip" value="0x1" />
-        </attr>
+
         <!-- 刷新的时候，是否允许ListView或GridView滚动 -->
         <attr name="ptrScrollingWhileRefreshingEnabled" format="reference|boolean" />
         <!-- 决定了Header，Footer以何种方式加入mPullRefreshListView，true为headView方式加入，就是滚动时刷新头部会一起滚动,false不能刷新 -->

@@ -106,24 +106,18 @@ android {
    // vipCompile 'com.android.support:appcompat-v7:22.2.0'//只为branchOne添加这个依赖
 //}
 
-
-
     lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:
         abortOnError false
     }
-
-
     //greendao
     greendao{
         schemaVersion 1
         daoPackage 'com.example.myappsecond.GreenDaos.Base'
         targetGenDir 'src/main/java'
     }
-
-
 }
 repositories {
     jcenter()

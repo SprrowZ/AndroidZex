@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.myappsecond.project.AsyncLoading.AsyncMain;
-import com.example.myappsecond.project.customViews.Custom_Top;
+import com.example.myappsecond.project.AsyncLoading.AsyncMainActivity;
+import com.example.myappsecond.project.customViews.CtmTopActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.project.review.*;
 import com.example.myappsecond.utils.ExtraUtil.Amap;
@@ -93,7 +93,7 @@ public class ReviewTest extends Activity implements View.OnClickListener {
                 mDialog.getWindow().setAttributes(paramss);
                 break;
             case R.id.btn3:
-                Intent intent2=new Intent(this, Custom_Top.class);
+                Intent intent2=new Intent(this, CtmTopActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.btn4:
@@ -109,7 +109,7 @@ public class ReviewTest extends Activity implements View.OnClickListener {
                 startActivity(intent6);
                 break;
             case R.id.btn7:
-                Intent intent7=new Intent(this, AsyncMain.class);
+                Intent intent7=new Intent(this, AsyncMainActivity.class);
                 startActivity(intent7);
                 break;
             case  R.id.btn8:

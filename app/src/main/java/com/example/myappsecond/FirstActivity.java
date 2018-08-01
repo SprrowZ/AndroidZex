@@ -20,8 +20,8 @@ import android.widget.LinearLayout;
 
 import com.example.myappsecond.activity.CartoonsDoActivity;
 import com.example.myappsecond.activity.CharactersDoActivity;
-import com.example.myappsecond.activity.GreenDaoActivity;
-import com.example.myappsecond.project.WebViews.WebViewActivity;
+import com.example.myappsecond.activity.CartoonsListActivity;
+import com.example.myappsecond.activity.WebViewActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -113,7 +113,7 @@ public class FirstActivity extends BaseActivity implements View.OnClickListener 
         findViewById(R.id.dd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FirstActivity.this,GreenDaoActivity.class));
+                startActivity(new Intent(FirstActivity.this,CartoonsListActivity.class));
             }
         });
         findViewById(R.id.ff).setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.myappsecond.GreenDaos.Base.Cartoons;
 import com.example.myappsecond.R;
+import com.example.myappsecond.utils.DateUtils;
 import com.example.myappsecond.utils.ExtraUtil.Bean;
 import com.example.myappsecond.utils.TypeFaceUtil;
 
@@ -73,7 +74,7 @@ public class GreenAdapter extends BaseArrayAdapter {
             viewHolder.hero=convertView.findViewById(R.id.hero);
             viewHolder.details=convertView.findViewById(R.id.details);
             viewHolder.status=convertView.findViewById(R.id.status);
-            viewHolder.detail=convertView.findViewById(R.id.detail);
+            viewHolder.time=convertView.findViewById(R.id.time);
             viewHolder.item_id=convertView.findViewById(R.id.item_id);
             convertView.setTag(viewHolder);
         }else {
@@ -90,6 +91,8 @@ public class GreenAdapter extends BaseArrayAdapter {
         }
         viewHolder.name.setText("《"+cartoons.getNAME()+"》");
         viewHolder.hero.setText(cartoons.getHERO()+"、"+cartoons.getHEROINE());
+
+        viewHolder.time.setText(DateUtils.getConversationTime(cartoons.getINSERT_TIME()));
         viewHolder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +101,7 @@ public class GreenAdapter extends BaseArrayAdapter {
             }
         });
         viewHolder.name.setTypeface(TypeFaceUtil.getInstance().tf(activity));
-        viewHolder.detail.setTypeface(TypeFaceUtil.getInstance().tf(activity));
+        viewHolder.time.setTypeface(TypeFaceUtil.getInstance().tf(activity));
         viewHolder.item_id.setText(cartoons.getID().toString());
         if (cartoons.getIS_END()){
             viewHolder.status.setText(R.string.end);
@@ -117,7 +120,7 @@ class ViewHolder{
     public TextView  name;
     public TextView  hero;
     public RelativeLayout details;
-    public TextView  detail;
+    public TextView  time;
     public TextView  status;//状态
     public TextView  item_id;
 }

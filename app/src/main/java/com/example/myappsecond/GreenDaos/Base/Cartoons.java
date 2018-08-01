@@ -1,15 +1,15 @@
 package com.example.myappsecond.GreenDaos.Base;
 
+import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.Unique;
 
 import java.util.Date;
 import java.util.List;
-import org.greenrobot.greendao.DaoException;
 
 /**
  * Created by ZZG on 2018/3/22.
@@ -19,7 +19,7 @@ public class Cartoons {
     @Id(autoincrement = true)
     private Long ID;
     @NotNull @Unique
-    public String  NAME;
+    public String  NAME="";
     public String  ACTORS;
     private Date START_TIME;
     private boolean IS_END;

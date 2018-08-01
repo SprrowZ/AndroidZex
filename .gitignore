@@ -36,6 +36,7 @@ DerivedData
 *.hmap
 *.xccheckout
 !default.xcworkspace
+*properties
 
 #CocoaPods
 Pods
@@ -44,3 +45,5 @@ Pods
 !icbc_iphone/Pods/
 *.iml
 *.bin
+*.ser
+*.li

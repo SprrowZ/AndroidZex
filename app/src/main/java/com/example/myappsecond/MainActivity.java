@@ -23,7 +23,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.myappsecond.project.animations.Memory;
+import com.example.myappsecond.project.animations.AnimMemoryActivity;
 import com.example.myappsecond.project.fragments.Address_Fragment;
 import com.example.myappsecond.project.fragments.Frd_Fragment;
 import com.example.myappsecond.project.fragments.SettingsFragment;
@@ -130,7 +130,7 @@ private Handler handler=new Handler();
             @Override
             public void onClick(View view) {
                 if (editText.getText().toString().equals(getString(R.string.password))){
-                    Intent intent=new Intent(MainActivity.this, Memory.class);
+                    Intent intent=new Intent(MainActivity.this, AnimMemoryActivity.class);
                     startActivity(intent);
                     //一个view只能有一个父布局，所以dialog消失，必须去掉myview，下次再重新加载
                     if (myview.getParent() != null) {

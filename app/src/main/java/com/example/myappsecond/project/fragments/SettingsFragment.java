@@ -16,15 +16,15 @@ import com.example.myappsecond.CameraActivity;
 import com.example.myappsecond.FirstActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.SecondActivity;
-import com.example.myappsecond.project.animations.AnimationMain;
-import com.example.myappsecond.project.animations.ShapeTest;
-import com.example.myappsecond.project.customViews.CustomMain;
-import com.example.myappsecond.okHttps.OkHttpMain;
-import com.example.myappsecond.project.DrawableTest.Drawable_Main;
+import com.example.myappsecond.project.animations.AnimMainActivity;
+import com.example.myappsecond.project.animations.AnimShapeActivity;
+import com.example.myappsecond.project.customViews.CtmMainActivity;
+import com.example.myappsecond.activity.OkHttpMainActivity;
+import com.example.myappsecond.activity.DrawableMainActivity;
 import com.example.myappsecond.project.MenuActivity;
 import com.example.myappsecond.project.ProjectMain;
 import com.example.myappsecond.project.ReviewTest;
-import com.example.myappsecond.project.Services.ServiceMainActivity;
+import com.example.myappsecond.project.services.ServiceMainActivity;
 import com.example.myappsecond.project.review.KeepJava;
 import com.example.myappsecond.utils.PermissionUtil;
 import com.example.myappsecond.utils.PermissionsUtil;
@@ -89,7 +89,7 @@ public class SettingsFragment extends Fragment {
 //        int width = outMetrics.widthPixels;
 //        int height = outMetrics.heightPixels;
 //        WindowManager.LayoutParams p = dialogWindow.getAttributes();
-           startActivity(new Intent(getActivity(), OkHttpMain.class));
+           startActivity(new Intent(getActivity(), OkHttpMainActivity.class));
 
     }
 });
@@ -194,7 +194,7 @@ btn3.setOnClickListener(new View.OnClickListener() {
         someting_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             Intent intent6=new Intent(getActivity(), ShapeTest.class);
+             Intent intent6=new Intent(getActivity(), AnimShapeActivity.class);
                 startActivity(intent6);
             }
         });
@@ -202,7 +202,7 @@ Animation=view.findViewById(R.id.animation);
         Animation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent7=new Intent(getActivity(), AnimationMain.class);
+                Intent intent7=new Intent(getActivity(), AnimMainActivity.class);
                 startActivity(intent7);
                getActivity().overridePendingTransition(R.anim.rotate,R.anim.alpha);
         }
@@ -211,7 +211,7 @@ Animation=view.findViewById(R.id.animation);
         drawable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent8=new Intent(getActivity(), Drawable_Main.class);
+                Intent intent8=new Intent(getActivity(), DrawableMainActivity.class);
                 startActivity(intent8);
             }
         });
@@ -222,7 +222,7 @@ custom=view.findViewById(R.id.custom);
             public void onClick(View v) {
                // int height= MeasureUtil.getHeight(getActivity());
                // Toast.makeText(getActivity(),String.valueOf(height),Toast.LENGTH_LONG).show();
-                Intent intent9=new Intent(getActivity(), CustomMain.class);
+                Intent intent9=new Intent(getActivity(), CtmMainActivity.class);
                 startActivity(intent9);
             }
         });

@@ -28,15 +28,16 @@
                        />
                    <EditText
                        android:id="@+id/edit_name"
+                       android:gravity="top"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
+                       android:layout_marginRight="5dp"
                        android:hint="name"
                        android:padding="5dp"
                        android:background="@drawable/bg_edittext_selector"
                        />
                </LinearLayout>
-
-                <LinearLayout
+               <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -51,13 +52,14 @@
                         android:id="@+id/edit_isend"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
                         android:digits="01"
                         android:hint="isend"
                         android:padding="5dp"
                         android:background="@drawable/bg_edittext_selector"
                         />
                 </LinearLayout>
-                <LinearLayout
+               <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -73,12 +75,13 @@
                         android:id="@+id/edit_hero"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
                         android:hint="hero"
                         android:padding="5dp"
                         android:background="@drawable/bg_edittext_selector"
                         />
                 </LinearLayout>
-                <LinearLayout
+               <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -94,12 +97,36 @@
                         android:id="@+id/edit_heroine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
                         android:hint="heroine"
                         android:padding="5dp"
                         android:background="@drawable/bg_edittext_selector"
                         />
                 </LinearLayout>
+               <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--&gt;-->
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="30dp"-->
+                        <!--android:text="介绍："-->
+                        <!--/>-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/edit_description"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginRight="5dp"-->
+                        <!--android:hint="description"-->
+                        <!--android:padding="5dp"-->
 
+                        <!--android:minLines="4"-->
+                        <!--android:background="@drawable/bg_edittext_selector"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
 
             </LinearLayout>
 

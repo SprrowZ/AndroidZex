@@ -2,6 +2,8 @@ package com.example.myappsecond.activity;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -20,6 +22,7 @@ import com.example.myappsecond.utils.ToastUtils;
 
 import org.greenrobot.greendao.query.Query;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +36,6 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
     private TextView tShow;
     private DaoSession daoSession;
     private CartoonsDao cartoonsDao;
-    //  private Cartoons cartoons=new Cartoons();
     private String name;
     private String isend;
     private String hero;
@@ -52,6 +54,33 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
      */
     private boolean SHOW_DATA = true;
 
+    /**
+     *
+     * 查询是异步的，通过handler
+     */
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(final Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 666:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<Cartoons> list= (List<Cartoons>) msg.obj;
+                            res.delete(0, res.length());
+                            for (Cartoons cartoons : list) {
+                                res.append("NAME:" + cartoons.getNAME() + "\t\t\t\t\t\t");
+                                res.append("IS_END:" + cartoons.getIS_END() + "\n");
+                                res.append("HERO:" + cartoons.getHERO() + "\t\t\t\t\t\t");
+                                res.append("HEROINE:" + cartoons.getHEROINE() + "\n\n");
+                            }
+                            tShow.setText(res);
+                        }
+                    });
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +144,6 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
                 find();
                 break;
             case R.id.but_del_data:
-//                String index=edit_isend.getText().toString();
                 //根据动漫名进行删除操作
                 if (edit_id.getText().toString() != null) {
                     Cartoons cartoons = daoSession.getCartoonsDao().queryBuilder()
@@ -159,22 +187,24 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
     private void insert() {
         //不能初始化的时候取值，因为这样为空，刚开始是空的。。。
          getTexts();
-        if (name.length() != 0 && isend.length() != 0
-                && hero.length() != 0 && heroine.length() != 0) {
+        if (name.length() != 0) {
             Cartoons cartoons = new Cartoons();
             cartoons.setNAME(name);
             if (isend.equals("0")) {
                 cartoons.setIS_END(false);
             } else if (isend.equals("1")) {
                 cartoons.setIS_END(true);
+            }else {
+                cartoons.setIS_END(true);
             }
             cartoons.setHERO(hero);
             cartoons.setHEROINE(heroine);
+            Date date=new Date(System.currentTimeMillis());
+            cartoons.setINSERT_TIME(date);
             //插入的时候查询一下本地数据库看有没有已经存在的数据，根据Name查询
-
             cartoonsDao.insert(cartoons);//插入
         } else {
-            ToastUtils.shortMsg("请输入数据撒~");
+            ToastUtils.shortMsg("请输入动漫撒~");
         }
 
         //插入完之后清空一下edittext
@@ -182,6 +212,7 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
         edit_isend.setText("");
         edit_hero.setText("");
         edit_heroine.setText("");
+        edit_name.requestFocus();
         edit_name.setFocusable(true);//焦点重新
 
     }
@@ -198,15 +229,8 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
             animator.start();
 //            cartoonsQuery = cartoonsDao.queryBuilder().orderAsc(CartoonsDao.Properties.NAME).build();
 //            List<Cartoons> list = cartoonsQuery.list();//直接拿到list
-            List<Cartoons> list=queryByThread();
-            res.delete(0, res.length());
-            for (Cartoons cartoons : list) {
-                res.append("NAME:" + cartoons.getNAME() + "\t\t\t\t\t\t");
-                res.append("IS_END:" + cartoons.getIS_END() + "\n");
-                res.append("HERO:" + cartoons.getHERO() + "\t\t\t\t\t\t");
-                res.append("HEROINE:" + cartoons.getHEROINE() + "\n\n");
-            }
-            tShow.setText(res);
+            queryByThread();
+
             SHOW_DATA = false;
         } else {
             animator = ObjectAnimator.ofFloat(tShow, "alpha", 1F, 0F);
@@ -224,7 +248,7 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
     }
 
     //数据过大时，开启线程进行查询
-    private List<Cartoons> queryByThread(){
+    private void queryByThread(){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -233,9 +257,22 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
                 }else{
                     cartoonsQuery=cartoonsDao.queryBuilder().orderAsc(CartoonsDao.Properties.NAME).build();
                 }
+
                 dataList=cartoonsQuery.forCurrentThread().list();
+                for (Cartoons cartoons:dataList){
+                    if (cartoons.getINSERT_TIME()==null){
+                        Date date=new Date(System.currentTimeMillis());
+                        cartoons.setINSERT_TIME(date);
+                        cartoonsDao.update(cartoons);
+                    }
+                }
+                //查到数据后异步通知数据
+                Message message=new Message();
+                message.obj=dataList;
+                message.what=666;
+                handler.sendMessage(message);
             }
         }).start();
-        return  dataList;
+
     }
 }

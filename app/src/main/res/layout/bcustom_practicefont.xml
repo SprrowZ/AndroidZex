@@ -13,19 +13,19 @@
         android:layout_height="match_parent"
 
         />
-    <com.example.myappsecond.project.customViews.setXfermode
+    <com.example.myappsecond.project.customViews.SetXfermode
         android:id="@+id/XfermodeFirst"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         />
-    <com.example.myappsecond.project.customViews.setXfermode2
+    <com.example.myappsecond.project.customViews.SetXfermode2
         android:id="@+id/XfermodeSecond"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         />
-    <com.example.myappsecond.project.customViews.setXfermode3
+    <com.example.myappsecond.project.customViews.SetXfermode3
         android:id="@+id/XfermodeThird"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

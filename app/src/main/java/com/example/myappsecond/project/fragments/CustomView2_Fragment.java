@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.myappsecond.project.customViews.Custom_Eighth;
-import com.example.myappsecond.project.customViews.Custom_Eleven;
-import com.example.myappsecond.project.customViews.Custom_Nineth;
-import com.example.myappsecond.project.customViews.Custom_Twelfths;
+import com.example.myappsecond.project.customViews.CtmEighthActivity;
+import com.example.myappsecond.project.customViews.CtmElevenActivity;
+import com.example.myappsecond.project.customViews.CtmNinethActivity;
+import com.example.myappsecond.project.customViews.CtmTwelfthsActivity;
 import com.example.myappsecond.project.customViews.Mypractice.Custom_Tenth;
 import com.example.myappsecond.R;
 
@@ -80,8 +80,8 @@ private Button btn2;
           getActivity().sendBroadcast(intent);
       break;
       case R.id.btn2:
-          startActivity(new Intent(getActivity(), Custom_Eighth.class));
-          Intent intent2=new Intent(getActivity(),Custom_Eighth.class);
+          startActivity(new Intent(getActivity(), CtmEighthActivity.class));
+          Intent intent2=new Intent(getActivity(),CtmEighthActivity.class);
           intent2.putExtra("origin","Telescope");
           startActivity(intent2);
 //          Intent intent1=new Intent();
@@ -91,21 +91,21 @@ private Button btn2;
 //          getActivity().sendBroadcast(intent1);
           break;
       case R.id.btn3:
-          Intent intent1=new Intent(getActivity(),Custom_Eighth.class);
+          Intent intent1=new Intent(getActivity(),CtmEighthActivity.class);
           intent1.putExtra("origin","DistortionView");
           startActivity(intent1);
           break;
       case R.id.btn4:
-          startActivity(new Intent(getActivity(), Custom_Nineth.class));
+          startActivity(new Intent(getActivity(), CtmNinethActivity.class));
           break;
       case R.id.btn5:
           startActivity(new Intent(getActivity(), Custom_Tenth.class));
           break;
       case R.id.btn6:
-          startActivity(new Intent(getActivity(), Custom_Eleven.class));
+          startActivity(new Intent(getActivity(), CtmElevenActivity.class));
           break;
           case R.id.btn7:
-          startActivity(new Intent(getActivity(), Custom_Twelfths.class));
+          startActivity(new Intent(getActivity(), CtmTwelfthsActivity.class));
           break;
         case R.id.btn8:
             Intent intent8=new Intent();

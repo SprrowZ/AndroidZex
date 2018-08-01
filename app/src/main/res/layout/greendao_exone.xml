@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -44,7 +44,10 @@
 <com.handmark.pulltorefresh.library.PullToRefreshListView
     android:id="@+id/listView"
     android:overScrollMode="never"
-    app:ptrShowIndicator="false"
+    ptr:ptrShowIndicator="true"
+    ptr:ptrRefreshableViewBackground="@color/btn_register_normal"
+    ptr:ptrHeaderBackground="@color/transparent"
+    ptr:ptrDrawable="@drawable/refresh"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <!--加上面两个属性是为了防止快速滑动出现大量空白-->

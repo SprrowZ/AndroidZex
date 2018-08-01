@@ -115,31 +115,35 @@
     android:layout_weight="2"
     >
     <TextView
-        android:id="@+id/ss"
+        android:id="@+id/time"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ID"
-        />
-    <TextView
-        android:id="@+id/item_id"
-        android:layout_below="@+id/ss"
-        android:gravity="center"
-        android:text="111"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/time"
-        android:layout_below="@+id/item_id"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/yellow_deep"
         android:textSize="10dp"
         android:textStyle="normal"
         android:text="时间"
+        android:layout_marginBottom="10dp"
         />
+    <TextView
+        android:id="@+id/ss"
+        android:gravity="left"
+        android:layout_below="@+id/time"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID"
+        />
+    <TextView
+        android:id="@+id/item_id"
+        android:layout_toRightOf="@+id/ss"
+        android:layout_below="@+id/time"
+        android:gravity="center"
+        android:text="111"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
 </LinearLayout>
     <View

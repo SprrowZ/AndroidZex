@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/back_parent"
-    android:layout_width="35dip"
-    android:layout_height="match_parent"
+    android:layout_width="55dp"
+    android:layout_height="49dp"
     android:clickable="true"
+    android:orientation="horizontal"
+    android:background="@drawable/text_white_selector"
     android:onClick="back" >
 
     <ImageView
@@ -15,5 +17,15 @@
         android:scaleType="centerInside"
         android:src="@drawable/icon_title_bar_back"
         android:tint="@color/gray_3" />
+
+    <TextView
+        android:id="@+id/tv_topbtntitle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="14dp"
+        android:textColor="#f00"
+        android:singleLine="true"
+        android:ellipsize="end"
+        />
 
 </LinearLayout>

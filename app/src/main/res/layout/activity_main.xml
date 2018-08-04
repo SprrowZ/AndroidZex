@@ -5,7 +5,9 @@
     android:orientation="vertical"
     android:padding="0dp"
      >
-<include layout="@layout/top"/>
+<include layout="@layout/top"
+    android:visibility="gone"
+    />
   <android.support.v4.view.ViewPager
       android:id="@+id/id_viewpager"
       android:layout_width="match_parent"
@@ -14,5 +16,7 @@
       >
   </android.support.v4.view.ViewPager>
 
-<include layout="@layout/bottom"/>
+<include layout="@layout/bottom"
+    android:visibility="gone"
+    />
 </LinearLayout>

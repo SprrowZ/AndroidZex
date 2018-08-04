@@ -22,6 +22,7 @@ import com.example.myappsecond.activity.CartoonsDoActivity;
 import com.example.myappsecond.activity.CharactersDoActivity;
 import com.example.myappsecond.activity.CartoonsListActivity;
 import com.example.myappsecond.activity.WebViewActivity;
+import com.example.myappsecond.base.sockets.SocketClientActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -122,6 +123,13 @@ public class FirstActivity extends BaseActivity implements View.OnClickListener 
                 startActivity(new Intent(FirstActivity.this, CharactersDoActivity.class));
             }
         });
+        findViewById(R.id.ee).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FirstActivity.this, SocketClientActivity.class));
+            }
+        });
+
     }
 
     private void OperateIO() throws IOException {

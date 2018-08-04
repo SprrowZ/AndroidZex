@@ -128,8 +128,6 @@ android.applicationVariants.all { variant ->
 
     variant.outputs.all { output ->
         if (variant.buildType.name == "debug" || variant.buildType.name == "preview") {
-            resValue "string", "MiPushKey", "5241768687608"
-            resValue "string", "MiPushId", "2882303761517686608"
             resValue "string", "ip_out", "http://114.255.225.50:8088"
             resValue "string", "ip_in", "http://122.40.130.74:8088"
             resValue "string", "app_name", "工银e办公测"
@@ -158,9 +156,6 @@ android.applicationVariants.all { variant ->
             }
 
         } else {
-
-            resValue "string", "MiPushKey", "5551774598582"
-            resValue "string", "MiPushId", "2882303761517745582"
             resValue "string", "ip_out", "https://140.206.54.50:8080"
             resValue "string", "ip_in", "http://10.248.113.15:8081"
             resValue "string", "app_name", "工银e办公"

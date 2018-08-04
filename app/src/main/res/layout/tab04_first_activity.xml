@@ -162,7 +162,7 @@
           android:id="@+id/ee"
           android:layout_width="100dp"
           android:layout_height="wrap_content"
-          android:text="Waiting"
+          android:text="SocketT1"
           android:textAllCaps="false"
           android:singleLine="true"
           android:layout_below="@+id/cc"

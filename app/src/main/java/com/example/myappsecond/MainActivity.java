@@ -24,10 +24,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myappsecond.project.animations.AnimMemoryActivity;
-import com.example.myappsecond.project.fragments.Address_Fragment;
-import com.example.myappsecond.project.fragments.Frd_Fragment;
+import com.example.myappsecond.project.fragments.AddressFragment;
+import com.example.myappsecond.project.fragments.FrdFragment;
 import com.example.myappsecond.project.fragments.SettingsFragment;
-import com.example.myappsecond.project.fragments.Weixin_Fragment;
+import com.example.myappsecond.project.fragments.WeixinFragment;
 import com.example.myappsecond.project.Viewpager.helloActivity;
 
 import java.util.ArrayList;
@@ -194,9 +194,9 @@ private Handler handler=new Handler();
         mImgSettings=findViewById(R.id.image4);
 
         mFragments=new ArrayList<Fragment>();
-        Fragment mTab01=new Weixin_Fragment();
-        Fragment mTab02=new Frd_Fragment();
-        Fragment mTab03=new Address_Fragment();
+        Fragment mTab01=new WeixinFragment();
+        Fragment mTab02=new FrdFragment();
+        Fragment mTab03=new AddressFragment();
         Fragment mTab04=new SettingsFragment();
         mFragments.add(mTab01);
         mFragments.add(mTab02);

@@ -50,4 +50,5 @@
     <string name="show_data">显示数据</string>
     <string name="delete">删除</string>
     <string name="alter">修改</string>
+    <string name="send">发送</string>
 </resources>

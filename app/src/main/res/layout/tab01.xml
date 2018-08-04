@@ -3,11 +3,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     >
-<TextView
-    android:text="FirstPage..."
-    android:textSize="30sp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+<include layout="@layout/activity_top_title"/>
+<ImageView
+    android:id="@+id/iv1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/my1"
+    android:scaleType="fitXY"
+    />
 </LinearLayout>

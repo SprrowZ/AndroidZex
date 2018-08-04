@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.myappsecond.project.Http_test;
+import com.example.myappsecond.project.HttpTestActivity;
 import com.example.myappsecond.project.Http_test1;
 import com.example.myappsecond.project.ImageLoaderUntils;
 
@@ -79,7 +79,7 @@ public void HttpClient_login(){
                 addView();
                 break;
             case R.id.btn2:
-                Intent intent=new Intent(this,Http_test.class);
+                Intent intent=new Intent(this,HttpTestActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn3:

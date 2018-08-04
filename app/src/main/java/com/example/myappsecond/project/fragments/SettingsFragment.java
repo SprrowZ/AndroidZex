@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +15,16 @@ import com.example.myappsecond.CameraActivity;
 import com.example.myappsecond.FirstActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.SecondActivity;
-import com.example.myappsecond.project.animations.AnimMainActivity;
-import com.example.myappsecond.project.animations.AnimShapeActivity;
-import com.example.myappsecond.project.customViews.CtmMainActivity;
-import com.example.myappsecond.activity.OkHttpMainActivity;
 import com.example.myappsecond.activity.DrawableMainActivity;
+import com.example.myappsecond.activity.OkHttpMainActivity;
 import com.example.myappsecond.project.MenuActivity;
 import com.example.myappsecond.project.ProjectMain;
 import com.example.myappsecond.project.ReviewTest;
-import com.example.myappsecond.project.services.ServiceMainActivity;
+import com.example.myappsecond.project.animations.AnimMainActivity;
+import com.example.myappsecond.project.animations.AnimShapeActivity;
+import com.example.myappsecond.project.ctmviews.CtmMainActivity;
 import com.example.myappsecond.project.review.KeepJava;
+import com.example.myappsecond.project.services.ServiceMainActivity;
 import com.example.myappsecond.utils.PermissionUtil;
 import com.example.myappsecond.utils.PermissionsUtil;
 import com.example.myappsecond.utils.ToastUtils;
@@ -34,7 +33,7 @@ import com.example.myappsecond.utils.ToastUtils;
  * Created by zzg on 2017/10/10.
  */
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends BaseFragment {
     private ProgressBar progressBar;
     private Button btn1;
     private View view;
@@ -64,9 +63,11 @@ public class SettingsFragment extends Fragment {
       return  view;
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 //dialog逻辑
+        setBarTitle("苍海");
         btn1=view.findViewById(R.id.btn1);
         btn1.setOnClickListener(new View.OnClickListener() {
 

@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.myappsecond.project.fragments.Camera_Fragment;
+import com.example.myappsecond.project.fragments.CameraFragment;
 import com.example.myappsecond.utils.PermissionsUtil;
 import com.example.myappsecond.utils.ToastUtils;
 
@@ -45,7 +45,7 @@ public class CameraActivity extends BaseActivity {
         textView.setText(getIntent().getStringExtra("info").toString());
         FragmentManager fg = getSupportFragmentManager();
         FragmentTransaction transaction = fg.beginTransaction();
-        camera1 = new Camera_Fragment();
+        camera1 = new CameraFragment();
         transaction.add(R.id.linear1, camera1);
         transaction.commit();
        // showWindow();

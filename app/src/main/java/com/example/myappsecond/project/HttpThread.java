@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by changshuchao on 2017/10/16.
+ * Created by zzg on 2017/10/16.
  */
 
 public class HttpThread extends Thread {

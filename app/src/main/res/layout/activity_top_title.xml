@@ -14,7 +14,9 @@
 
         <include
             layout="@layout/commom_back_btn"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:visibility="gone"
+            />
 
         <TextView
             android:id="@+id/left_text"

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_marginTop="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+<EditText
+    android:id="@+id/ed"
+    android:hint="向服务器发送数据"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:textSize="16dp"
+    android:background="@drawable/edit_bg1"
+    />
+    <TextView
+        android:id="@+id/received"
+        android:layout_marginTop="50dp"
+        android:hint="这里显示从服务器返回的数据"
+        android:textSize="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+     android:id="@+id/send"
+     android:text="@string/send"
+     android:layout_marginTop="50dp"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:background="@drawable/edit_bg1"
+     />
+
+</LinearLayout>
+</LinearLayout>

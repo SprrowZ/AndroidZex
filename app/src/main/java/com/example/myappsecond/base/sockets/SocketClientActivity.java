@@ -2,6 +2,7 @@ package com.example.myappsecond.base.sockets;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +14,13 @@ import com.example.myappsecond.R;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * Created by ZZG on 2018/8/3.
@@ -24,11 +30,11 @@ public class SocketClientActivity extends BaseActivity {
     private TextView received;
     private Button   send;
     //服务器地址，因为是虚拟地址，所以切一次网络换一次，dont forget
-    public static final  String SERVER_IP="112.65.48.244";
+    public static   String SERVER_IP="192.168.43.82";
     //跟服务器端口号保持一致
-    public static final  int PORT=10086;
+    public static   int PORT=20133;
     private Socket socket;
-    private BufferedReader inputReader=null;
+    private BufferedReader reader=null;
     private BufferedWriter writer=null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +49,7 @@ public class SocketClientActivity extends BaseActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doSocket();
+              act();
             }
         });
     }
@@ -59,14 +65,37 @@ public class SocketClientActivity extends BaseActivity {
             public void run() {
                 try {
                     socket=new Socket(SERVER_IP,PORT);//new 实例
-//                    OutputStream os=socket.getOutputStream();
+                   // socket.setSoTimeout(3000);
+                    //读取服务器返回的数据
+                  //  reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    //给服务器发消息
                     writer=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                    writer.write(editText.getText().toString());
+                    writer.write(editText.getText().toString()+"\n");
                     writer.flush();
+                    //解析服务器返回的数据
+                    BufferedReader bufReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    String s = null;
+                    final StringBuffer sb = new StringBuffer();
+                    while((s = bufReader.readLine()) != null){
+                        sb.append(s);
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            received.setText(sb.toString());
+                        }
+                    });
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            received.setText(str);
+//                        }
+//                    });
                 } catch (IOException e) {
                     e.printStackTrace();
                 }finally {
                     try {
+                        reader.close();
                         writer.close();
                         socket.close();
                     } catch (IOException e) {
@@ -77,7 +106,53 @@ public class SocketClientActivity extends BaseActivity {
 
 
             }
-        });
+        }).start();
+
+    }
+    public void act(){
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    //1.创建监听指定服务器地址以及指定服务器监听的端口号
+                    Socket socket = new Socket(SERVER_IP, PORT);
+                    //2.拿到客户端的socket对象的输出流发送给服务器数据
+                    OutputStream os = socket.getOutputStream();
+                    //写入要发送给服务器的数据
+                    os.write(editText.getText().toString().getBytes());
+                    os.flush();
+                    socket.shutdownOutput();
+                    //拿到socket的输入流，这里存储的是服务器返回的数据
+                    InputStream is = socket.getInputStream();
+                    //解析服务器返回的数据
+                    InputStreamReader reader = new InputStreamReader(is);
+                    BufferedReader bufReader = new BufferedReader(reader);
+                    String s = null;
+                    final StringBuffer sb = new StringBuffer();
+                    while((s = bufReader.readLine()) != null){
+                        sb.append(s);
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            received.setText(sb.toString());
+                        }
+                    });
+                    //3、关闭IO资源（注：实际开发中需要放到finally中）
+                    bufReader.close();
+                    reader.close();
+                    is.close();
+                    os.close();
+                    socket.close();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
 
     }
 }

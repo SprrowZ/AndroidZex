@@ -13,6 +13,7 @@ import com.example.myappsecond.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,6 +36,7 @@ public class SocketClientActivity extends BaseActivity {
     private Socket socket;
     private BufferedReader reader=null;
     private BufferedWriter writer=null;
+    private BufferedReader readerText=null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,19 +71,18 @@ public class SocketClientActivity extends BaseActivity {
                     reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     //给服务器发消息
                     writer=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                    writer.write(editText.getText().toString()+"\n");
-                    writer.flush();
-                    String sb;
-                    while ((sb=reader.readLine())!=null){
-                        Log.i("zzg", "run: "+sb);
+                    //读取输入数据流
+                    readerText=new BufferedReader(new InputStreamReader
+                            (getStringStreamex(editText.getText().toString())));
+                    String line = null;
+                    String res = null;
+                    while (!(line=readerText.readLine()).equalsIgnoreCase("bye")){
+                        writer.write(line+"\n");
+                        writer.flush();
+                        res=reader.readLine();
+                        Log.i("zzg", "run: "+res);
                     }
-//                    final String finalSb = sb;
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                           received.setText(finalSb.toString());
-//                        }
-//                    });
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }finally {
@@ -145,5 +146,13 @@ public class SocketClientActivity extends BaseActivity {
         }.start();
 
 
+    }
+
+    public static InputStream getStringStreamex(String str){
+        if (str!=null&&!str.trim().equals("")){
+            ByteArrayInputStream strEx=new ByteArrayInputStream(str.getBytes());
+            return strEx;
+        }
+        return null;
     }
 }

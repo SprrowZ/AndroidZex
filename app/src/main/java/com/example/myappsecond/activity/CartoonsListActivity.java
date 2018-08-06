@@ -135,7 +135,7 @@ public class CartoonsListActivity extends BaseActivity {
 
         listView.setAdapter(adapter);
     }
-    public  class  dataAsyncTask extends AsyncTask<Void,Void,List<Cartoons>>{
+    public  class  dataAsyncTask extends AsyncTask<Void,Integer,List<Cartoons>>{
 
          @Override
          protected List<Cartoons> doInBackground(Void... voids) {
@@ -156,18 +156,23 @@ public class CartoonsListActivity extends BaseActivity {
 
          @Override
          protected void onPostExecute(List<Cartoons> cartoons) {
-             //提交之前进行一些操作吧，加个bottomView
+             //提交之前进行一些操作吧，加个bottomView,不需要runonuithread，因为这个方法和onprogressupdated一样运行在主线程中
                    if (cartoons==null||cartoons.size()==0){
-                       runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
                                TextView textView=new TextView(CartoonsListActivity.this);
                                textView.setText("没有更多数据了");
                                listView.getRefreshableView().addFooterView(textView);//要getRefreshableView先。。
-                           }
-                       });
                    }
              super.onPostExecute(cartoons);
          }
-     }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+    }
 }

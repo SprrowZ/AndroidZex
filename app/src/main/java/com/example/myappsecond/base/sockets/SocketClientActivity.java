@@ -18,7 +18,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -30,7 +29,7 @@ public class SocketClientActivity extends BaseActivity {
     private TextView received;
     private Button   send;
     //服务器地址，因为是虚拟地址，所以切一次网络换一次，dont forget
-    public static   String SERVER_IP="192.168.43.82";
+    public static   String SERVER_IP="192.168.43.231";
     //跟服务器端口号保持一致
     public static   int PORT=20133;
     private Socket socket;
@@ -49,7 +48,7 @@ public class SocketClientActivity extends BaseActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              act();
+              doSocket();
             }
         });
     }
@@ -65,30 +64,22 @@ public class SocketClientActivity extends BaseActivity {
             public void run() {
                 try {
                     socket=new Socket(SERVER_IP,PORT);//new 实例
-                   // socket.setSoTimeout(3000);
+                    socket.setSoTimeout(15000);
                     //读取服务器返回的数据
-                  //  reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     //给服务器发消息
                     writer=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
                     writer.write(editText.getText().toString()+"\n");
                     writer.flush();
-                    //解析服务器返回的数据
-                    BufferedReader bufReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String s = null;
-                    final StringBuffer sb = new StringBuffer();
-                    while((s = bufReader.readLine()) != null){
-                        sb.append(s);
+                    String sb;
+                    while ((sb=reader.readLine())!=null){
+                        Log.i("zzg", "run: "+sb);
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            received.setText(sb.toString());
-                        }
-                    });
+//                    final String finalSb = sb;
 //                    runOnUiThread(new Runnable() {
 //                        @Override
 //                        public void run() {
-//                            received.setText(str);
+//                           received.setText(finalSb.toString());
 //                        }
 //                    });
                 } catch (IOException e) {

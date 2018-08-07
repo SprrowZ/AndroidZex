@@ -50,7 +50,7 @@ public class SocketClientActivity extends BaseActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              doSocket();
+             act();
             }
         });
     }

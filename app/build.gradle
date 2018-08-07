@@ -211,4 +211,6 @@ dependencies {
     //Glide图片加载框架
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    //EventBus,被一亿多app使用
+    implementation 'org.greenrobot:eventbus:3.0.0'
 }

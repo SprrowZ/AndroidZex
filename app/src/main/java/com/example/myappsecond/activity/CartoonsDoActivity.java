@@ -1,6 +1,7 @@
 package com.example.myappsecond.activity;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,8 +19,10 @@ import com.example.myappsecond.GreenDaos.Base.Cartoons;
 import com.example.myappsecond.GreenDaos.Base.CartoonsDao;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
 import com.example.myappsecond.R;
+import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
 import com.example.myappsecond.utils.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.greendao.query.Query;
 
 import java.util.Date;
@@ -141,45 +144,14 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
                 insert();
                 break;
             case R.id.but_show_data://添加隐藏
-                find();
+               // find();
+                jumpToList();
                 break;
             case R.id.but_del_data:
-                //根据动漫名进行删除操作
-                if (edit_id.getText().toString() != null) {
-                    Cartoons cartoons = daoSession.getCartoonsDao().queryBuilder()
-                            .where(CartoonsDao.Properties.NAME.eq(edit_id.getText())).unique();
-                    if (cartoons != null) {
-                         cartoons.delete();
-                        ToastUtils.shortMsg("数据已删除");
-                    } else {
-                        ToastUtils.shortMsg("查无此漫");
-                    }
-
-                } else {
-                    ToastUtils.shortMsg("妈卖批，输入数据撒！");
-                }
-
+                delete();
                 break;
             case R.id.but_modify_data:
-                //更新数据通过Name查吧
-                getTexts();
-                if (name.length() != 0 && isend.length() != 0
-                        && hero.length() != 0 && heroine.length() != 0) {
-                    Cartoons cartoons1 = daoSession.getCartoonsDao().queryBuilder()
-                            .where(CartoonsDao.Properties.NAME.eq(edit_id.getText())).unique();
-                    cartoons1.setNAME(name);
-                    cartoons1.setIS_END(Boolean.valueOf(isend));
-                    cartoons1.setHERO(hero);
-                    cartoons1.setHEROINE(heroine);
-//               insert();
-                    cartoonsDao.update(cartoons1);
-                    String newdata = "名字： " + cartoons1.getNAME() + "  完结？" + cartoons1.getIS_END()
-                      + "\n" + "男主角：" + cartoons1.getHERO() + "女主角：" + cartoons1.getHEROINE();
-                    newData.setVisibility(View.VISIBLE);
-                    newData.setText(newdata);
-                } else {
-                    ToastUtils.shortMsg("龟儿子，输入数据再修改！");
-                }
+                modify();
                 break;
         }
     }
@@ -240,6 +212,13 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
             SHOW_DATA = true;
         }
     }
+    //为了测试EventBus，这里不通过Intent传递数据
+    private void jumpToList(){
+        EventBus.getDefault().postSticky(new MessageEvent("NewMessage"));
+        Intent intent=new Intent(CartoonsDoActivity.this,CartoonsListActivity.class);
+        startActivityForResult(intent,CartoonsListActivity.FROM_CARTOON);
+    }
+
     private void getTexts(){
         name = edit_name.getText().toString().trim();
         isend = edit_isend.getText().toString().trim();
@@ -274,5 +253,51 @@ public class CartoonsDoActivity extends BaseActivity implements View.OnClickList
             }
         }).start();
 
+    }
+
+    private void delete(){
+        //根据动漫名进行删除操作
+        if (edit_id.getText().toString() != null) {
+            Cartoons cartoons = daoSession.getCartoonsDao().queryBuilder()
+                    .where(CartoonsDao.Properties.NAME.eq(edit_id.getText())).unique();
+            if (cartoons != null) {
+                cartoons.delete();
+                ToastUtils.shortMsg("数据已删除");
+            } else {
+                ToastUtils.shortMsg("查无此漫");
+            }
+
+        } else {
+            ToastUtils.shortMsg("妈卖批，输入数据撒！");
+        }
+    }
+    private void modify(){
+        //更新数据通过Name查吧
+        getTexts();
+        if (name.length() != 0 && isend.length() != 0
+                && hero.length() != 0 && heroine.length() != 0) {
+            Cartoons cartoons1 = daoSession.getCartoonsDao().queryBuilder()
+                    .where(CartoonsDao.Properties.NAME.eq(edit_id.getText())).unique();
+            cartoons1.setNAME(name);
+            cartoons1.setIS_END(Boolean.valueOf(isend));
+            cartoons1.setHERO(hero);
+            cartoons1.setHEROINE(heroine);
+//               insert();
+            cartoonsDao.update(cartoons1);
+            String newdata = "名字： " + cartoons1.getNAME() + "  完结？" + cartoons1.getIS_END()
+                    + "\n" + "男主角：" + cartoons1.getHERO() + "女主角：" + cartoons1.getHEROINE();
+            newData.setVisibility(View.VISIBLE);
+            newData.setText(newdata);
+        } else {
+            ToastUtils.shortMsg("龟儿子，输入数据再修改！");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==CartoonsListActivity.FROM_CARTOON){
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

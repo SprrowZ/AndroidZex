@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,8 +21,13 @@ import com.example.myappsecond.GreenDaos.Base.DaoSession;
 import com.example.myappsecond.R;
 import com.example.myappsecond.adapter.BaseArrayAdapter;
 import com.example.myappsecond.adapter.GreenAdapter;
+import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +36,17 @@ import java.util.List;
  * Created by Zzg on 2018/7/5.
  */
 public class CartoonsListActivity extends BaseActivity {
-    public PullToRefreshListView listView;
+
+    /**
+     * from CartoonsDoActivity
+     */
+    public static int  FROM_CARTOON=666;
+
+    private  PullToRefreshListView listView;
     private  EditText query;
     private DaoSession daoSession;
     private CartoonsDao cartoonsDao;
-    List datalist=new ArrayList<Cartoons>();
+    private List datalist=new ArrayList<Cartoons>();
     private GreenAdapter adapter;
     private LayoutInflater inflater;
     public static String CARTOON_NAME;
@@ -51,6 +63,8 @@ public class CartoonsListActivity extends BaseActivity {
     }
 
     private void initEvent() {
+        //注册EventBus
+        EventBus.getDefault().register(this);
         query.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -175,4 +189,20 @@ public class CartoonsListActivity extends BaseActivity {
             super.onPreExecute();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //destroy的时候注销掉EventBus
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void onEventMainThread(MessageEvent event) {
+        String msg = "onEventMainThread收到了消息：" + event.getMessage();
+        Log.i("EventBus", msg);
+        setBarTitle("z漫");
+       // Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
 }

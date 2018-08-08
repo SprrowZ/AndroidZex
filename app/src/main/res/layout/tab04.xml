@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="OkHttp"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/background_transparent"
             android:layout_marginRight="10dp"
             />
 
@@ -98,16 +98,7 @@
         android:background="@drawable/background_one"
         android:layout_marginRight="10dp"
         />
-    <Button
-        android:id="@+id/cameraTwo"
-        android:text="菜单Menu"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:background="@drawable/background_one"
-        android:layout_marginRight="10dp"
-        />
+
     <Button
         android:id="@+id/review"
         android:text="Review"
@@ -147,14 +138,7 @@
              android:background="@drawable/background_one"
              android:layout_marginRight="10dp"
              />
-        <Button
-            android:id="@+id/drawable"
-            android:text="Drawable"
-            android:textAllCaps="false"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_two"/>
+
     </LinearLayout>
 <LinearLayout
     android:id="@+id/linear5"

@@ -6,51 +6,89 @@
     android:background="@color/white"
     >
 
-    <LinearLayout
-        android:id="@+id/parent"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@color/white">
+        android:paddingLeft="5dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:background="#ededed"
+        android:id="@+id/edit_padding_right"
+        >
 
         <EditText
-            android:id="@+id/son"
-            android:layout_width="match_parent"
+            android:id="@+id/query"
+            android:layout_width="312dp"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:drawableLeft="@mipmap/icon_title_bar_edit_search"
-            android:hint="搜索" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/search"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="0.5dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/search_text"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/vote_select"
-            android:drawableTint="@color/gray_3"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/seabar_input"
+            android:drawableLeft="@drawable/search_bar_icon_normal"
+            android:focusable="true"
             android:focusableInTouchMode="true"
-            android:gravity="center_vertical"
-            android:hint="search"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="7dp"
-            android:textColorHint="#CCCCCC" />
+            android:maxLength="1000"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:textColor="@color/normal_color"
+            android:textCursorDrawable="@drawable/focus"
+            android:textSize="14dp" />
+
+        <ImageButton
+            android:id="@+id/search_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/cancel"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="3dp"
+            android:background="@android:color/transparent"
+            android:padding="6dp"
+            android:src="@drawable/search_clear"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:text="@string/cancel"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textColor="@color/contact_value"
+            android:textSize="12dp"
+            android:singleLine="true"
+            />
+    </RelativeLayout>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/search"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:padding="0.5dp"-->
+        <!--android:background="@color/white"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/search_text"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/white"-->
+            <!--android:drawableLeft="@drawable/vote_select"-->
+            <!--android:drawableTint="@color/gray_3"-->
+            <!--android:focusableInTouchMode="true"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:hint="search"-->
+            <!--android:paddingBottom="7dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingTop="7dp"-->
+            <!--android:textColorHint="#CCCCCC" />-->
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 </LinearLayout>

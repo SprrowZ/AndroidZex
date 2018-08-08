@@ -27,11 +27,6 @@
 <shape>
     <solid android:color="@color/white"/>
     <corners android:radius="6dp"/>
-    <!--<gradient-->
-        <!--android:startColor="@color/white"-->
-        <!--android:centerColor="@color/red"-->
-        <!--android:endColor="@color/black"-->
-         <!--&gt;</gradient>-->
 </shape>
     </item>
 </layer-list>

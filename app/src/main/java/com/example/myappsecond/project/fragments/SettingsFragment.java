@@ -15,10 +15,8 @@ import com.example.myappsecond.CameraActivity;
 import com.example.myappsecond.FirstActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.SecondActivity;
-import com.example.myappsecond.activity.DrawableMainActivity;
 import com.example.myappsecond.activity.OkHttpMainActivity;
-import com.example.myappsecond.project.MenuActivity;
-import com.example.myappsecond.project.ProjectMain;
+import com.example.myappsecond.activity.ProjectMainActivity;
 import com.example.myappsecond.project.ReviewTest;
 import com.example.myappsecond.project.animations.AnimMainActivity;
 import com.example.myappsecond.project.animations.AnimShapeActivity;
@@ -41,11 +39,11 @@ public class SettingsFragment extends BaseFragment {
     private Button btn3;
     private Button btn4;
     private Button cameraOne;
-    private Button cameraTwo;
+
     private Button review;
     private Button someting_new;
     private Button Animation;
-    private Button drawable;
+
     private Button custom;
     private Button project;
     private Button service;
@@ -55,9 +53,6 @@ public class SettingsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
           View view=inflater.inflate(R.layout.tab04,container,false);
-       // progressBar= view.findViewById(R.id.progressBar);
-        //btn1=view.findViewById(R.id.btn1);
-
         this.view=view;
         permissionUtil= new PermissionUtil(getActivity());
       return  view;
@@ -172,15 +167,7 @@ btn3.setOnClickListener(new View.OnClickListener() {
                 startActivity(intent3);
             }
         });
-//Menu Test
-        cameraTwo=view.findViewById(R.id.cameraTwo);
-        cameraTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent4=new Intent(getActivity(),MenuActivity.class);
-                startActivity(intent4);
-            }
-        });
+
 //Review
         review=view.findViewById(R.id.review);
         review.setOnClickListener(new View.OnClickListener() {
@@ -208,15 +195,6 @@ Animation=view.findViewById(R.id.animation);
                getActivity().overridePendingTransition(R.anim.rotate,R.anim.alpha);
         }
         });
- drawable=view.findViewById(R.id.drawable);
-        drawable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent8=new Intent(getActivity(), DrawableMainActivity.class);
-                startActivity(intent8);
-            }
-        });
-
 custom=view.findViewById(R.id.custom);
         custom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,7 +210,7 @@ project=view.findViewById(R.id.project);
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent10=new Intent(getActivity(), ProjectMain.class);
+                        Intent intent10=new Intent(getActivity(), ProjectMainActivity.class);
                         startActivity(intent10);
                     }
                 }

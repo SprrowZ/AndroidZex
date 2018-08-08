@@ -20,7 +20,7 @@
     <color name="common_title_bg">#aa111213</color>
     <color name="primary_title_text_color">#ffeeeeee</color>
     <color name="album_item_bg">#fffcfcfd</color>
-
+    <color name="contact_value">#0033ff</color>
     <!-- 登陆界面 -->
     <color name="login_login_button_enable_color">#fffded</color>
     <color name="login_login_button_disable_color">#bdbdbd</color>

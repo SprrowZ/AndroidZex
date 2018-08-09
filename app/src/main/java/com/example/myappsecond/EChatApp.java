@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.myappsecond.GreenDaos.Base.DaoMaster;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -36,6 +37,15 @@ public class EChatApp extends Application{
     }
 
     private void init() {
+        //bugly
+        CrashReport.initCrashReport(getApplicationContext(), "8fdd156f75", false);
+        //第三个参数为SDK调试模式开关，调试模式的行为特性如下：
+
+        //输出详细的Bugly SDK的Log；
+        //每一条Crash都会被立即上报；
+        //自定义日志将会在Logcat中输出。
+        //建议在测试阶段建议设置成true，发布时设置为false。
+       // CrashReport.testJavaCrash();
         if (displayMetrics == null) {
             displayMetrics = getResources().getDisplayMetrics();
         }

@@ -1,18 +1,18 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'//greendao
 android {
-
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion compileSdkVer
+    buildToolsVersion buildToolsVer
     defaultConfig {
         applicationId "com.rye.catcher.zzg"
-        minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //跟导入第三方jar库有关
-        multiDexEnabled true
+        minSdkVersion minSdkVer
+        targetSdkVersion targetSdkVer
+        versionCode 7
+        versionName "1.0.7"
+
+        ndk {
+            abiFilter "armeabi-v7a"
+        }
     }
     dexOptions {
         preDexLibraries = false
@@ -103,7 +103,7 @@ android {
     //一个有用的技巧：你可以单独只为某一个variants添加一些依赖，只需要在Compile加上对应的variant名字前缀就可以了
     //dependencies {
     //compile 'com.android.support:support-v4:22.2.0'
-   // vipCompile 'com.android.support:appcompat-v7:22.2.0'//只为branchOne添加这个依赖
+    // vipCompile 'com.android.support:appcompat-v7:22.2.0'//只为branchOne添加这个依赖
 //}
 
     lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
@@ -112,8 +112,8 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
-    //greendao
-    greendao{
+
+    greendao {
         schemaVersion 1
         daoPackage 'com.example.myappsecond.GreenDaos.Base'
         targetGenDir 'src/main/java'
@@ -213,4 +213,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     //EventBus,被一亿多app使用
     implementation 'org.greenrobot:eventbus:3.0.0'
+    //tencent bugly
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
 }

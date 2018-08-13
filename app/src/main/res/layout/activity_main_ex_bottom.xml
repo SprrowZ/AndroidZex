@@ -19,7 +19,7 @@
             android:id="@+id/message_iv"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/icon_normal1"
+            android:src="@drawable/icon_pressed1"
             android:clickable="false"
             />
         <TextView

@@ -116,11 +116,6 @@ public class CartoonsListActivity extends BaseActivity {
         setBarTitle("漫");
         listView=findViewById(R.id.listView);
         query=findViewById(R.id.search_bar);
-//        inflater=LayoutInflater.from(this);
-//        View view=inflater.inflate();
-//        TextView endView=new TextView(this);
-//        endView.setText("已经到底了呢~");
-//        endView.setGravity(View.TEXT_ALIGNMENT_CENTER);
         listView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         daoSession= EChatApp.getInstance().getDaoSession();
         cartoonsDao=daoSession.getCartoonsDao();
@@ -202,7 +197,6 @@ public class CartoonsListActivity extends BaseActivity {
         String msg = "onEventMainThread收到了消息：" + event.getMessage();
         Log.i("EventBus", msg);
         setBarTitle("z漫");
-       // Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
 }

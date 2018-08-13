@@ -14,6 +14,7 @@ import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.project.MenuActivity;
 import com.example.myappsecond.project.SlidingConflict;
+import com.example.myappsecond.project.animations.AnimShapeActivity;
 import com.example.myappsecond.project.dialog.CommonDialogActivity;
 import com.example.myappsecond.project.sqlLiteDatabase.DBActivity;
 import com.example.myappsecond.utils.MeasureUtil;
@@ -39,6 +40,8 @@ public class ProjectMainActivity extends BaseActivity {
     private Button file;
     private Button menu;
     private Button drawable;
+    private Button shape;
+    private Button service;
     private  SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-dd HH:mm:ss");
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +62,8 @@ public class ProjectMainActivity extends BaseActivity {
         file=findViewById(R.id.file);
         menu=findViewById(R.id.menu);
         drawable=findViewById(R.id.drawable);
+        shape=findViewById(R.id.shape);
+        service=findViewById(R.id.service);
     }
 
     private void initEvent() {
@@ -141,7 +146,22 @@ public class ProjectMainActivity extends BaseActivity {
                startActivity(intent8);
            }
        });
+       shape.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
 
+               Intent intent6=new Intent(ProjectMainActivity.this, AnimShapeActivity.class);
+               startActivity(intent6);
+           }
+       });
+
+       service.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent11=new Intent(ProjectMainActivity.this,TestCoorActivity.class);
+               startActivity(intent11);
+           }
+       });
     }
     private void setClock(){
         Timer timer=new Timer();

@@ -1,6 +1,7 @@
 package com.example.myappsecond;
 
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,11 +26,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myappsecond.project.animations.AnimMemoryActivity;
-import com.example.myappsecond.project.fragments.AddressFragment;
-import com.example.myappsecond.project.fragments.FrdFragment;
-import com.example.myappsecond.project.fragments.SettingsFragment;
-import com.example.myappsecond.project.fragments.WeixinFragment;
+import com.example.myappsecond.fragment.AddressFragment;
+import com.example.myappsecond.fragment.FrdFragment;
+import com.example.myappsecond.fragment.SettingsFragment;
+import com.example.myappsecond.fragment.WeixinFragment;
 import com.example.myappsecond.project.Viewpager.helloActivity;
+import com.example.myappsecond.utils.PermissionsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,7 @@ import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class MainActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "MainActivity";
     private LinearLayout mTabWeixin;
     private LinearLayout mTabFrd;
     private LinearLayout mTabAddress;
@@ -73,7 +77,25 @@ private Handler handler=new Handler();
         setSelect(0);
        // jump();广告页
         findDream();
+        //申請權限
+        authority();
+    }
 
+    private void authority() {
+        String [] permissions=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        PermissionsUtil.showSystemSetting=true;
+        PermissionsUtil.IPermissionsResult result= new PermissionsUtil.IPermissionsResult() {
+            @Override
+            public void passPermissons() {
+                Log.i(TAG, "passPermissons: STORAGE");
+            }
+
+            @Override
+            public void forbitPermissons() {
+                Log.i(TAG, "forbitPermissons: STORAGE");
+            }
+        };
+        PermissionsUtil.getInstance().chekPermissions(this,permissions,result);
     }
 
     private void findDream() {
@@ -82,19 +104,12 @@ private Handler handler=new Handler();
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(MainActivity.this,"dddd",Toast.LENGTH_LONG).show();
                 dialog=new AlertDialog.Builder(MainActivity.this).create();
                 cancel=myview.findViewById(R.id.cancel);
                 dialog.setCancelable(false);
                 dialog.setView(myview);
                 dialog.show();
 
-//                WindowManager.LayoutParams params=dialog.getWindow().getAttributes();
-//                params.height= (int) (MeasureUtil.getHeight(MainActivity.this)*0.3);
-//                params.width= (int) (MeasureUtil.getWidth(MainActivity.this)*0.9);
-//
-//                dialog.getWindow().setAttributes(params);
-//                dialog.getWindow().setGravity(Gravity.CENTER);
             }
         });
         editText=myview.findViewById(R.id.editText);
@@ -117,9 +132,6 @@ private Handler handler=new Handler();
 
             @Override
             public void afterTextChanged(Editable s) {
-//                if(editText.getText().equals("")){
-//                    wrong.setVisibility(View.GONE);
-//                }
             }
         });
 
@@ -141,7 +153,6 @@ private Handler handler=new Handler();
                 }
                 else{
                     wrong.setVisibility(View.VISIBLE);
-                   // editText.setText("");
                 }
 
             }
@@ -327,7 +338,6 @@ private void setSelect(int i){
         mImgFrd.setImageResource(R.drawable.tab_find_frd_normal2);
         mImgAddress.setImageResource(R.drawable.tab_address_normal2);
         mImgSettings.setImageResource(R.drawable.tab_settings_normal2);
-
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.fragments;
+package com.example.myappsecond.fragment;
 
 import android.content.res.Resources;
 

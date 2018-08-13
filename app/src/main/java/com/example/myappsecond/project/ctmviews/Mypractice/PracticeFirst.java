@@ -46,7 +46,7 @@ public class PracticeFirst extends View {
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(8);
-        paint.setColor(getResources().getColor(R.color.blue3));
+        paint.setColor(getResources().getColor(R.color.soft1));
     }
 
     @Override

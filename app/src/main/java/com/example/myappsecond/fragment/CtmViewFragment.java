@@ -1,6 +1,5 @@
-package com.example.myappsecond.project.fragments;
+package com.example.myappsecond.fragment;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,21 +8,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.myappsecond.R;
+import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
 import com.example.myappsecond.project.ctmviews.CtmEighthActivity;
 import com.example.myappsecond.project.ctmviews.CtmElevenActivity;
 import com.example.myappsecond.project.ctmviews.CtmNinethActivity;
 import com.example.myappsecond.project.ctmviews.CtmTwelfthsActivity;
 import com.example.myappsecond.project.ctmviews.Mypractice.Custom_Tenth;
-import com.example.myappsecond.R;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by ZZG on 2018/3/6.
  */
 
-public class CtmViewFragment extends  Fragment implements View.OnClickListener {
-private View view;
-private Button btn1;
-private Button btn2;
+public class CtmViewFragment extends  BaseFragment implements View.OnClickListener {
+    public static final String TELESCOPE="TELESCOPE";
+    public static final String DISTORTIONVIEW="DISTORTIONVIEW";
+    public static final String ORIGIN="ORIGIN";
+    private View view;
+    private Button btn1;
+    private Button btn2;
     private Button btn3;
     private Button btn4;
     private Button btn5;
@@ -71,7 +76,7 @@ private Button btn2;
     switch (v.getId()){
       case R.id.btn1:
           //通过广播控制Activity点击事件
-      View view1=View.inflate(getActivity(),R.layout.bcustom_setshadowlayer,null);
+          View view1=View.inflate(getActivity(),R.layout.bcustom_setshadowlayer,null);
           Intent intent=new Intent();
           intent.setAction("com.custom.fragment.activity");
           Bundle bundle=new Bundle();
@@ -80,19 +85,17 @@ private Button btn2;
           getActivity().sendBroadcast(intent);
       break;
       case R.id.btn2:
-          startActivity(new Intent(getActivity(), CtmEighthActivity.class));
           Intent intent2=new Intent(getActivity(),CtmEighthActivity.class);
-          intent2.putExtra("origin","Telescope");
+          Bundle bundle2=new Bundle();
+          bundle2.putString(CtmViewFragment.ORIGIN,CtmViewFragment.TELESCOPE);
+          intent2.putExtras(bundle2);
           startActivity(intent2);
-//          Intent intent1=new Intent();
-//          intent1.setAction("com.custom.fragment.activity");
-//          Bundle bundle1=new Bundle();
-//          bundle1.putString("telescope","true");
-//          getActivity().sendBroadcast(intent1);
           break;
       case R.id.btn3:
           Intent intent1=new Intent(getActivity(),CtmEighthActivity.class);
-          intent1.putExtra("origin","DistortionView");
+          Bundle bundle1=new Bundle();
+          bundle1.putString(CtmViewFragment.ORIGIN,CtmViewFragment.DISTORTIONVIEW);
+          intent1.putExtras(bundle1);
           startActivity(intent1);
           break;
       case R.id.btn4:
@@ -110,15 +113,19 @@ private Button btn2;
         case R.id.btn8:
             Intent intent8=new Intent();
             intent8.setAction("com.custom.fragment.activity");
-            Bundle bundle1=new Bundle();
-            bundle1.putString("ROTATEFIRST","true");
-            intent8.putExtras(bundle1);
-         getActivity().sendBroadcast(intent8);
+            Bundle bundle3=new Bundle();
+            bundle3.putString("ROTATEFIRST","true");
+            intent8.putExtras(bundle3);
+            getActivity().sendBroadcast(intent8);
 
             break;
 
         case R.id.btn9:
+            //加载一个fragment,发个广播吧。。额，自己坑自己玩
+             EventBus.getDefault().postSticky(new MessageEvent("insertProgress"));
             break;
   }
     }
+
+
 }

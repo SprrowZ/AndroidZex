@@ -61,6 +61,7 @@ public class DistortionViews extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+         //属性设置为wrap_content时候，需要走onmeasure，取到的值为精准值
         //获取控件宽高
         int Measurewidth=MeasureSpec.getSize(widthMeasureSpec);
         int MeasurewidthMode=MeasureSpec.getMode(widthMeasureSpec);
@@ -70,7 +71,7 @@ public class DistortionViews extends View {
         int width=mBitmap.getWidth();
         int height=mBitmap.getHeight();
         setMeasuredDimension((MeasurewidthMode==MeasureSpec.EXACTLY)?Measurewidth:width,
-                (MeasureheightMode==MeasureSpec.EXACTLY)?Measureheight:height);
+                (MeasureheightMode==MeasureSpec.EXACTLY)?Measureheight:height);//最关键的一步
     }
 
     @Override

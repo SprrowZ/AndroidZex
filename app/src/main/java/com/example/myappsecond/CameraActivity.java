@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.myappsecond.project.fragments.CameraFragment;
+import com.example.myappsecond.fragment.CameraFragment;
 import com.example.myappsecond.utils.PermissionsUtil;
 import com.example.myappsecond.utils.ToastUtils;
 

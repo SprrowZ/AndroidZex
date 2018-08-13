@@ -24,7 +24,7 @@ public class SetXfermode2 extends View {
     public SetXfermode2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(getResources().getColor(R.color.accent));
+        mPaint.setColor(getResources().getColor(R.color.soft3));
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(3);
         dstBmp= BitmapFactory.decodeResource(getResources(),R.drawable.bk);

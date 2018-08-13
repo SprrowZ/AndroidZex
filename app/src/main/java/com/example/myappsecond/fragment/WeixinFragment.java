@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.fragments;
+package com.example.myappsecond.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,16 +12,20 @@ import com.example.myappsecond.R;
  * Created by zzg on 2017/10/10.
  */
 
-public class AddressFragment extends BaseFragment {
+public class WeixinFragment extends BaseFragment {
+  private View view;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab03,container,false);
+        View view=inflater.inflate(R.layout.tab01,container,false);
+        this.view=view;
+        return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setBarTitle("天行九歌");
+        setBarTitle("秦时明月");
     }
 }

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/actionsheet_red"
+    android:background="@color/soft2"
     android:id="@+id/window1"
     >
     <TextView

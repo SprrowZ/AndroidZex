@@ -59,7 +59,7 @@ public class PracticeRange extends View {
         // 构造一个画笔，填充Region的操作结果
         Paint paint=new Paint();
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(getResources().getColor(R.color.blue3));
+        paint.setColor(getResources().getColor(R.color.soft1));
         drawRegion(canvas,region,paint);
 
         super.onDraw(canvas);

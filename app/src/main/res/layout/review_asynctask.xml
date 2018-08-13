@@ -5,7 +5,7 @@
 <ImageView
     android:id="@+id/iv"
     android:layout_centerInParent="true"
-    android:background="@color/actionsheet_red"
+    android:background="@color/soft6"
     android:layout_width="200dp"
     android:layout_height="200dp"
     android:scaleType="fitXY"

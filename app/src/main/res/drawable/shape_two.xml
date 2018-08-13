@@ -10,7 +10,7 @@
     <gradient
         android:startColor="@color/white"
         android:endColor="@color/black"
-        android:centerColor="@color/actionsheet_red"
+        android:centerColor="@color/soft6"
         />
     <corners
         android:topLeftRadius="20dp"

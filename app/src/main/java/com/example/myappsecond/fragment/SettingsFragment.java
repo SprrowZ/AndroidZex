@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.fragments;
+package com.example.myappsecond.fragment;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,10 +19,8 @@ import com.example.myappsecond.activity.OkHttpMainActivity;
 import com.example.myappsecond.activity.ProjectMainActivity;
 import com.example.myappsecond.project.ReviewTest;
 import com.example.myappsecond.project.animations.AnimMainActivity;
-import com.example.myappsecond.project.animations.AnimShapeActivity;
 import com.example.myappsecond.project.ctmviews.CtmMainActivity;
 import com.example.myappsecond.project.review.KeepJava;
-import com.example.myappsecond.project.services.ServiceMainActivity;
 import com.example.myappsecond.utils.PermissionUtil;
 import com.example.myappsecond.utils.PermissionsUtil;
 import com.example.myappsecond.utils.ToastUtils;
@@ -46,7 +44,7 @@ public class SettingsFragment extends BaseFragment {
 
     private Button custom;
     private Button project;
-    private Button service;
+
     private EditText editText;
     PermissionUtil permissionUtil;
     @Nullable
@@ -178,14 +176,7 @@ btn3.setOnClickListener(new View.OnClickListener() {
             }
         });
 
-     someting_new=view.findViewById(R.id.someting_new);
-        someting_new.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             Intent intent6=new Intent(getActivity(), AnimShapeActivity.class);
-                startActivity(intent6);
-            }
-        });
+
 Animation=view.findViewById(R.id.animation);
         Animation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,15 +206,10 @@ project=view.findViewById(R.id.project);
                     }
                 }
         );
-editText=view.findViewById(R.id.editText);
-service=view.findViewById(R.id.service);
-        service.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent11=new Intent(getActivity(), ServiceMainActivity.class);
-                startActivity(intent11);
-            }
-        });
+           editText=view.findViewById(R.id.editText);
+
+
+
         super.onActivityCreated(savedInstanceState);
     }
 

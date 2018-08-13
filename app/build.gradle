@@ -194,11 +194,7 @@ dependencies {
     implementation files('libs/universal-image-loader-1.9.3-sources.jar')
     implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
     implementation files('libs/commons-io-2.4.jar')
-    //    compile project(':RxTools-library')
-    //greendao之相关jar包
-    //    compile files('libs/freemarker-2.3.20.jar')
-    //    compile files('libs/greendao-3.2.2.jar')
-    //    compile files('libs/greendao-generator-3.2.2.jar')
+
     //greendao之在线引用
     implementation 'org.greenrobot:greendao:3.2.0'
     //OkHttp
@@ -218,4 +214,5 @@ dependencies {
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
+    implementation 'com.github.bestTao:CoordinatorMenu:v1.0.2'
 }

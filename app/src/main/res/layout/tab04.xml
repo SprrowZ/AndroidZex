@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/my4"
+    android:background="@drawable/my7"
     >
     <include android:id="@+id/tops"
         layout="@layout/activity_top_title"/>
@@ -31,6 +31,7 @@
             android:textAllCaps="false"
             android:background="@drawable/background_transparent"
             android:layout_marginRight="10dp"
+            android:textColor="@color/soft1"
             />
 
         <Button
@@ -40,7 +41,8 @@
             android:layout_height="wrap_content"
             android:text="Java进阶"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/background_transparent"
+            android:textColor="@color/soft1"
             />
 
     </LinearLayout>
@@ -64,8 +66,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/background_transparent"
             android:layout_marginRight="10dp"
+            android:textColor="@color/soft1"
             />
         <Button
             android:id="@+id/btn4"
@@ -74,7 +77,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/background_transparent"
+            android:textColor="@color/soft1"
             />
 
     </LinearLayout>
@@ -95,8 +99,9 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:background="@drawable/background_one"
+        android:background="@drawable/background_transparent"
         android:layout_marginRight="10dp"
+        android:textColor="@color/soft1"
         />
 
     <Button
@@ -106,7 +111,8 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:background="@drawable/background_one"
+        android:background="@drawable/background_transparent"
+        android:textColor="@color/soft1"
         />
 
 </LinearLayout>
@@ -119,15 +125,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         >
-        <Button
-            android:id="@+id/someting_new"
-            android:text="@string/shape"
-            android:textAllCaps="false"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_two"
-            android:layout_marginRight="10dp"/>
+
          <Button
             android:id="@+id/animation"
             android:text="Animation"
@@ -135,8 +133,9 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-             android:background="@drawable/background_one"
+             android:background="@drawable/background_transparent"
              android:layout_marginRight="10dp"
+             android:textColor="@color/soft1"
              />
 
     </LinearLayout>
@@ -155,10 +154,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/background_one"
+        android:background="@drawable/background_transparent"
         android:text="CustomView"
         android:textAllCaps="false"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="10dp"
+        android:textColor="@color/soft7"
+        />
 
     <Button
         android:id="@+id/project"
@@ -167,19 +168,12 @@
         android:layout_weight="1"
         android:text="Project"
         android:textAllCaps="false"
-        android:background="@drawable/background_one"
+        android:background="@drawable/background_transparent"
         android:layout_marginRight="10dp"
+        android:textColor="@color/soft7"
         />
-    <Button
-        android:id="@+id/service"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Service"
-        android:textAllCaps="false"
-        android:background="@drawable/background_one"
-        />
-    <!--  android:background="@drawable/input_box"-->
+
+
 
 </LinearLayout>
 <EditText

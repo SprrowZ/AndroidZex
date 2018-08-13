@@ -81,7 +81,7 @@
             />
         <Button
             android:id="@+id/btn8"
-            android:text="暂定"
+            android:text="太極"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -90,7 +90,7 @@
             />
         <Button
             android:id="@+id/btn9"
-            android:text="暂定"
+            android:text="ProgressBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

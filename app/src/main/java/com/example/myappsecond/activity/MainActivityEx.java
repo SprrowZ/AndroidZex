@@ -45,9 +45,7 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_main_ex);
-       if (savedInstanceState!=null){
-           manager.getFragments();
-       }
+
        initView();
        init();
     }
@@ -117,7 +115,7 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
             case 0:
                 message_iv.setImageResource(R.drawable.icon_pressed1);
                 message_tv.setTextColor(Color.parseColor("#583aca"));
-                if (mFragments.get(0).isVisibleEx(this)){//可见
+                if (mFragments.get(0).isVisible()){//可见
 
                 }else {
                     transaction.hide(mFragments.get(1))
@@ -128,7 +126,7 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
             case 1:
                 friend_iv.setImageResource(R.drawable.icon_pressed2);
                 friend_tv.setTextColor(Color.parseColor("#583aca"));
-                if (mFragments.get(1).isVisibleEx(this)){
+                if (mFragments.get(1).isVisible()){
 
                 }else {
                             transaction.hide(mFragments.get(0))
@@ -139,7 +137,7 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
             case 2:
                 dynamic_iv.setImageResource(R.drawable.icon_pressed3);
                 dynamic_tv.setTextColor(Color.parseColor("#583aca"));
-                if (mFragments.get(2).isVisibleEx(this)){
+                if (mFragments.get(2).isVisible()){
 
                 }else {
                     transaction.hide(mFragments.get(1))
@@ -152,10 +150,7 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        manager.putFragment(outState,"WeixinFragment",weixinFragment);
-        manager.putFragment(outState,"FrdFragment",frdFragment);
-        manager.putFragment(outState,"SettingsFragment",settingsFragment);
-        super.onSaveInstanceState(outState, outPersistentState);
+    protected void onSaveInstanceState(Bundle outState) {//为了解决崩溃点击无效的问题
+       // super.onSaveInstanceState(outState);
     }
 }

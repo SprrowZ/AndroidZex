@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.ctmviews.ListView_Delete;
+package com.example.myappsecond.project.ctmviews.dellist;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

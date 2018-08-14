@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.ctmviews.ListView_Delete;
+package com.example.myappsecond.project.ctmviews.dellist;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,14 +11,14 @@ import android.widget.Scroller;
  * Created by ZZG on 2017/11/30.
  */
 
-public class List_LinearLayout extends LinearLayout {
+public class ItemDelLinear extends LinearLayout {
     private int mlastX = 0;
     private final int MAX_WIDTH = 100;
     private Context mContext;
     private Scroller mScroller;
     //滑动监听
     private OnScrollListener mScrollListener;
-    public List_LinearLayout(Context context, AttributeSet attrs) {
+    public ItemDelLinear(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         mScroller = new Scroller(context, new LinearInterpolator(context, null));
@@ -76,11 +76,11 @@ public class List_LinearLayout extends LinearLayout {
     }
 
     public  interface OnScrollListener {
-        void OnScroll(List_LinearLayout var1);
+        void OnScroll(ItemDelLinear var1);
     }
 
     //设置监听器
-    public void setOnScrollListener(List_LinearLayout.OnScrollListener scrollListener) {
+    public void setOnScrollListener(ItemDelLinear.OnScrollListener scrollListener) {
         mScrollListener = scrollListener;
     }
 

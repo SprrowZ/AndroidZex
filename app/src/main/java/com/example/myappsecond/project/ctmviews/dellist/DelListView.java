@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.ctmviews.ListView_Delete;
+package com.example.myappsecond.project.ctmviews.dellist;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,7 +8,7 @@ import android.widget.ListView;
 /**
  * Created by ZZG on 2017/11/28.
  */
-public class List_ListView extends ListView {
+public class DelListView extends ListView {
 //    private LinearLayout itemRoot;//父布局
 //    private int mlastX=0;//上次位置
 //    private final  int MAX_WIDTH=100;//100是删除按钮的宽度
@@ -83,8 +83,8 @@ public class List_ListView extends ListView {
 //        }
 //    }
 
-    private List_LinearLayout mCurView;
-    public List_ListView(Context context, AttributeSet attrs) {
+    private ItemDelLinear mCurView;
+    public DelListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -98,8 +98,8 @@ public class List_ListView extends ListView {
                 //我们想知道当前点击了哪一行
                 int position = pointToPosition(x, y);
                 if (position != INVALID_POSITION) {
-                    List_MergeListAdapter.DataHolder data = (List_MergeListAdapter.DataHolder) getItemAtPosition(position);
-                    mCurView = (List_LinearLayout) data.rootView;
+                    DelAdapter.DataHolder data = (DelAdapter.DataHolder) getItemAtPosition(position);
+                    mCurView = (ItemDelLinear) data.rootView;
                 }
             }
             default:

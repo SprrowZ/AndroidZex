@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.ctmviews.ListView_Delete;
+package com.example.myappsecond.project.ctmviews.dellist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,15 +15,15 @@ import java.util.List;
 /**
  * Created by ZZG on 2017/11/29.
  */
-public class List_MergeListAdapter extends BaseAdapter {
+public class DelAdapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
     private List<DataHolder> mDataList = new ArrayList<DataHolder>();
     private View.OnClickListener mDelClickListener;
     //
-    private List_LinearLayout.OnScrollListener mScrollListener;
-    public List_MergeListAdapter(Context context, List<DataHolder> dataList, View.OnClickListener delClickListener, List_LinearLayout.OnScrollListener listener) {
+    private ItemDelLinear.OnScrollListener mScrollListener;
+    public DelAdapter(Context context, List<DataHolder> dataList, View.OnClickListener delClickListener, ItemDelLinear.OnScrollListener listener) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
         if (dataList != null && dataList.size() > 0) {
@@ -65,7 +65,7 @@ public class List_MergeListAdapter extends BaseAdapter {
         DataHolder item = mDataList.get(position);
         holder.title.setText(item.title);
         //可滑动的ListView添加
-        item.rootView = (List_LinearLayout)convertView.findViewById(R.id.lin_root);
+        item.rootView = (ItemDelLinear)convertView.findViewById(R.id.lin_root);
         item.rootView.scrollTo(0,0);
         //
         item.rootView.setOnScrollListener(this.mScrollListener);
@@ -83,7 +83,7 @@ public class List_MergeListAdapter extends BaseAdapter {
     public static class DataHolder {
         public String title;
         //Item的父布局，因为滑动的是父布局
-        public List_LinearLayout rootView;
+        public ItemDelLinear rootView;
     }
     public void removeItem(int position){//删除Item
         mDataList.remove(position);

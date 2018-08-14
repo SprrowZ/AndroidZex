@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.myappsecond.BaseActivity;
-import com.example.myappsecond.project.ctmviews.ListView_Delete.List_Main;
+import com.example.myappsecond.project.ctmviews.dellist.DelMainActivity;
 import com.example.myappsecond.project.ctmviews.Mypractice.PracticeWave;
 import com.example.myappsecond.R;
 
@@ -95,7 +95,7 @@ public class CtmMainActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(this,CtmSixthActivity.class));
                 break;
             case R.id.btn6:
-                startActivity(new Intent(this,List_Main.class));
+                startActivity(new Intent(this,DelMainActivity.class));
                 break;
             case R.id.btn7:
                 startActivity(new Intent(this,CtmSeventhActivity.class));

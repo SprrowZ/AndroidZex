@@ -2,8 +2,11 @@ package com.example.myappsecond.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,10 +38,16 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
     private ImageView dynamic_iv;
     private TextView dynamic_tv;
     private List<Fragment> mFragments;
+    //fragment动态切换
+    private  FragmentManager manager=getSupportFragmentManager();
+    private  FragmentTransaction transaction=manager.beginTransaction();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_main_ex);
+       if (savedInstanceState!=null){
+           manager.getFragments();
+       }
        initView();
        init();
     }
@@ -59,6 +68,7 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
     }
 
     private void init() {
+
         mFragments=new ArrayList<>();
         weixinFragment=new WeixinFragment();
         frdFragment=new FrdFragment();
@@ -67,8 +77,8 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
         mFragments.add(frdFragment);
         mFragments.add(settingsFragment);
 
-       getSupportFragmentManager().beginTransaction()
-               .add(R.id.container,mFragments.get(0))
+
+        transaction.add(R.id.container,mFragments.get(0))
                .add(R.id.container,mFragments.get(1))
                .add(R.id.container,mFragments.get(2))
                .hide(mFragments.get(1))
@@ -80,6 +90,8 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         reset();
+        // 点击时启动trancaction事件,不能重复commit
+        transaction = manager.beginTransaction();
         switch (v.getId()){
             case R.id.message:
                 setSelect(0);
@@ -105,41 +117,45 @@ public class MainActivityEx extends BaseActivity implements View.OnClickListener
             case 0:
                 message_iv.setImageResource(R.drawable.icon_pressed1);
                 message_tv.setTextColor(Color.parseColor("#583aca"));
-                if (mFragments.get(0).isVisible()){
+                if (mFragments.get(0).isVisibleEx(this)){//可见
 
                 }else {
-                    getSupportFragmentManager().beginTransaction()
-                            .hide(mFragments.get(1))
+                    transaction.hide(mFragments.get(1))
                             .hide(mFragments.get(2))
-                            .show(mFragments.get(0)).commit();
+                            .show(mFragments.get(0));
                 }
-
-
                 break;
             case 1:
                 friend_iv.setImageResource(R.drawable.icon_pressed2);
                 friend_tv.setTextColor(Color.parseColor("#583aca"));
-                if (mFragments.get(1).isVisible()){
+                if (mFragments.get(1).isVisibleEx(this)){
 
                 }else {
-                    getSupportFragmentManager().beginTransaction()
-                            .hide(mFragments.get(0))
+                            transaction.hide(mFragments.get(0))
                             .hide(mFragments.get(2))
-                            .show(mFragments.get(1)).commit();
+                            .show(mFragments.get(1));
                 }
                 break;
             case 2:
                 dynamic_iv.setImageResource(R.drawable.icon_pressed3);
                 dynamic_tv.setTextColor(Color.parseColor("#583aca"));
-                if (mFragments.get(2).isVisible()){
+                if (mFragments.get(2).isVisibleEx(this)){
 
                 }else {
-                    getSupportFragmentManager().beginTransaction()
-                            .hide(mFragments.get(1))
+                    transaction.hide(mFragments.get(1))
                             .hide(mFragments.get(0))
-                            .show(mFragments.get(2)).commit();
+                            .show(mFragments.get(2));
                 }
                 break;
         }
+        transaction.commit();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        manager.putFragment(outState,"WeixinFragment",weixinFragment);
+        manager.putFragment(outState,"FrdFragment",frdFragment);
+        manager.putFragment(outState,"SettingsFragment",settingsFragment);
+        super.onSaveInstanceState(outState, outPersistentState);
     }
 }

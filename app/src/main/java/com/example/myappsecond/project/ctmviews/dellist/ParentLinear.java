@@ -3,7 +3,6 @@ package com.example.myappsecond.project.ctmviews.dellist;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
@@ -39,9 +38,9 @@ public class ParentLinear extends LinearLayout {
                 deltaX= (int) (ev.getX()-startX);
                 deltaY= (int) (ev.getY()-startY);
                 if (Math.abs(deltaX)>Math.abs(deltaY)){//左右滑動
-                    return false;
+                    return true;
                 }else {
-                    return true;//上下滑动就拦截了
+                    return false;//上下滑动就拦截了
                 }
             case MotionEvent.ACTION_UP:
                 break;
@@ -49,20 +48,5 @@ public class ParentLinear extends LinearLayout {
         return super.onInterceptTouchEvent(ev);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                Log.i(TAG, "onTouchEvent:down ");
-                startY= (int) event.getY();
-                break;
-            case MotionEvent.ACTION_MOVE:
 
-
-                scrollBy(0,-deltaY);
-                Log.i(TAG, "onTouchEvent: move");
-                return true;
-        }
-        return super.onTouchEvent(event);
-    }
 }

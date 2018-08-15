@@ -22,15 +22,15 @@ public class HorizontalProgressbarWithProgress extends ProgressBar {
     private static final int DEFAULT_HEIGHT_REACH = 2;//dp
     private static final int DEFAULT_TEXT_OFFSET = 10;//Dp
 
-    private int mTextSize = sp2px(DEFAULT_TEXT_SIZE);
-    private int mTextColor = DEFAULT_TEXT_COLOR;
-    private int mUnReachColor = DEFAULT_COLOR_UNREACH;
-    private int mUnReachHeight = dp2px(DEFAULT_HEIGHT_UNREACH);
-    private int mReachColor = DEFAULT_COLOR_REACH;
-    private int mReachHeight = dp2px(DEFAULT_HEIGHT_REACH);
-    private int mTextOffset = dp2px(DEFAULT_TEXT_OFFSET);
+    protected int mTextSize = sp2px(DEFAULT_TEXT_SIZE);//圆形progressbar也需要用
+    protected int mTextColor = DEFAULT_TEXT_COLOR;
+    protected int mUnReachColor = DEFAULT_COLOR_UNREACH;
+    protected int mUnReachHeight = dp2px(DEFAULT_HEIGHT_UNREACH);
+    protected int mReachColor = DEFAULT_COLOR_REACH;
+    protected int mReachHeight = dp2px(DEFAULT_HEIGHT_REACH);
+    protected int mTextOffset = dp2px(DEFAULT_TEXT_OFFSET);
 
-    private Paint mPaint = new Paint();
+    protected Paint mPaint = new Paint();
     private int mRealWidth;
 
 

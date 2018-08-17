@@ -38,6 +38,15 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BaseActivity extends FragmentActivity {
 
     protected Map<BroadcastReceiver, Integer> receiverMap = new ConcurrentHashMap<>();
+
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     /**
      * 设置标题栏标题
      */
@@ -400,11 +409,7 @@ public class BaseActivity extends FragmentActivity {
 
 
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //Toast.makeText(this,"dd",Toast.LENGTH_LONG).show();
-    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

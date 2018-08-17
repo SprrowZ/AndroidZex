@@ -23,20 +23,39 @@ import com.example.myappsecond.R;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by ZZG on 2018/7/24.
  */
-public class CharactersDoActivity extends BaseActivity implements View.OnClickListener {
-    private EditText edit_name;
-    private EditText edit_sex;
-    private EditText edit_cartoon_name;
-    private EditText edit_nationality;
-    private EditText edit_cartoon_id;
-    private Button btn_add;
-    private Button btn_show;
-    private Button btn_del;
-    private Button btn_modify;
-    private TextView tShow;
+public class CharactersDoActivity extends BaseActivity {
+    @BindView(R.id.edit_name)
+    EditText editName;
+    @BindView(R.id.edit_sex)
+    EditText editSex;
+    @BindView(R.id.edit_cartoon_name)
+    EditText editCartoonName;
+    @BindView(R.id.edit_nationality)
+    EditText editNationality;
+    @BindView(R.id.edit_cartoon_id)
+    EditText editCartoonId;
+    @BindView(R.id.but_add_data)
+    Button butAddData;
+    @BindView(R.id.but_show_data)
+    Button butShowData;
+    @BindView(R.id.text_show_data)
+    TextView textShowData;
+    @BindView(R.id.but_del_data)
+    Button butDelData;
+    @BindView(R.id.edit_id)
+    EditText editId;
+    @BindView(R.id.but_modify_data)
+    Button butModifyData;
+    @BindView(R.id.new_data)
+    TextView newData;
+
     private String name;
     private String sex;
     private String cartoonName;
@@ -51,60 +70,54 @@ public class CharactersDoActivity extends BaseActivity implements View.OnClickLi
      * 判断是隐藏数据还是显示数据
      */
     private boolean SHOW_DATA = true;
-    Handler handler=new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(final Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 666:
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            edit_cartoon_id.setText(msg.obj.toString());
+                            editCartoonId.setText(msg.obj.toString());
                         }
                     });
-                break;
+                    break;
             }
         }
     };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.greendao_characters_do);
-     initView();
-     initEvent();
+        ButterKnife.bind(this);
+        initEvent();
     }
 
     private void initEvent() {
-        daoSession= EChatApp.getInstance().getDaoSession();//获取session实例
-        cartoonsDao=daoSession.getCartoonsDao();
-        characterDao=daoSession.getCharacterDao();
-//listener
-        btn_add.setOnClickListener(this);
-        btn_show.setOnClickListener(this);
-        btn_modify.setOnClickListener(this);
-        btn_del.setOnClickListener(this);
-
-
-        edit_cartoon_name.addTextChangedListener(new TextWatcher() {
+        daoSession = EChatApp.getInstance().getDaoSession();//获取session实例
+        cartoonsDao = daoSession.getCartoonsDao();
+        characterDao = daoSession.getCharacterDao();
+        editCartoonName.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-              String condition=s.toString().trim();
-             if (s.length()>0){
-                 Cartoons cartoons=cartoonsDao.queryBuilder()
-                         .where(CartoonsDao.Properties.NAME.eq(condition)).unique();
-                 if (cartoons!=null){//如果查询到了数据
-                     Message message=new Message();
-                     String id=cartoons.getID().toString();
-                     message.obj=id;
-                     message.what=666;
-                     handler.sendMessage(message);
-                 }
+                String condition = s.toString().trim();
+                if (s.length() > 0) {
+                    Cartoons cartoons = cartoonsDao.queryBuilder()
+                            .where(CartoonsDao.Properties.NAME.eq(condition)).unique();
+                    if (cartoons != null) {//如果查询到了数据
+                        Message message = new Message();
+                        String id = cartoons.getID().toString();
+                        message.obj = id;
+                        message.what = 666;
+                        handler.sendMessage(message);
+                    }
 
 
-             }else{
+                } else {
 
-             }
+                }
 
             }
 
@@ -120,53 +133,29 @@ public class CharactersDoActivity extends BaseActivity implements View.OnClickLi
         });
     }
 
-    private void initView() {
-        edit_name=findViewById(R.id.edit_name);
-        edit_sex=findViewById(R.id.edit_sex);
-        edit_cartoon_name=findViewById(R.id.edit_cartoon_name);
-        edit_nationality=findViewById(R.id.edit_nationality);
-        edit_cartoon_id=findViewById(R.id.edit_cartoon_id);
-        btn_add=findViewById(R.id.but_add_data);
-        btn_del=findViewById(R.id.but_del_data);
-        btn_modify=findViewById(R.id.but_modify_data);
-        btn_show=findViewById(R.id.but_show_data);
-        tShow = (TextView) findViewById(R.id.text_show_data);
+
+    private void getTexts() {
+        name = editName.getText().toString().trim();
+        sex = editSex.getText().toString().trim();
+        cartoonName = editCartoonName.getText().toString().trim();
+        cartoonId = editCartoonId.getText().toString().trim();
+        nationality = editNationality.getText().toString();
     }
 
-    private void getTexts(){
-    name= edit_name.getText().toString().trim();
-    sex= edit_sex.getText().toString().trim();
-     cartoonName=edit_cartoon_name.getText().toString().trim();
-    cartoonId= edit_cartoon_id.getText().toString().trim();
-     nationality=edit_nationality.getText().toString();
-    }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.but_add_data:
-                getTexts();
-                Character character=new Character();
-                character.setNAME(name);
-                if (sex.length()>0&&sex.equals("男")){
-                    character.setSEX(true);
-                }else if (sex.length()>0&&sex.equals("女")){
-                    character.setSEX(false);
-                }
-                character.setCARTOON_NAME(cartoonName);
-                character.setCARTOON_ID(Long.valueOf(cartoonId));
-                character.setNATIONALITY(nationality);
-                characterDao.insertOrReplace(character);//插入数据
-                break;
-            case R.id.but_show_data:
-                //搜索数据
-                find();
-                break;
-            case R.id.but_modify_data:
-                break;
-            case R.id.but_del_data:
-                break;
+    private void add() {
+        getTexts();
+        Character character = new Character();
+        character.setNAME(name);
+        if (sex.length() > 0 && sex.equals("男")) {
+            character.setSEX(true);
+        } else if (sex.length() > 0 && sex.equals("女")) {
+            character.setSEX(false);
         }
+        character.setCARTOON_NAME(cartoonName);
+        character.setCARTOON_ID(Long.valueOf(cartoonId));
+        character.setNATIONALITY(nationality);
+        characterDao.insertOrReplace(character);//插入数据
     }
 
     private void find() {
@@ -176,28 +165,44 @@ public class CharactersDoActivity extends BaseActivity implements View.OnClickLi
 
         //进行判断是显示数据还是隐藏数据
         if (SHOW_DATA) {//如果是显示数据
-            tShow.setVisibility(View.VISIBLE);
-            animator = ObjectAnimator.ofFloat(tShow, "alpha", 0F, 1F);
+            textShowData.setVisibility(View.VISIBLE);
+            animator = ObjectAnimator.ofFloat(textShowData, "alpha", 0F, 1F);
             animator.setDuration(1000);
             animator.start();
-            List<Character> characterList=characterDao.queryBuilder().
+            List<Character> characterList = characterDao.queryBuilder().
                     orderAsc(CharacterDao.Properties.CARTOON_ID).build().list();
             res.delete(0, res.length());
             for (Character character : characterList) {
                 res.append("Name:" + character.getNAME() + "\t\t\t\t\t\t");
                 res.append("Sex:" + character.getSEX() + "\n");
-                res.append("CartoonName:" + character.getCARTOON_NAME()+ "\t\t\t\t\t\t");
+                res.append("CartoonName:" + character.getCARTOON_NAME() + "\t\t\t\t\t\t");
                 res.append("CartoonId:" + character.getCARTOON_ID() + "\n");
-                res.append("\t\t\t\t\t\t"+"Nationality"+character.getNATIONALITY()+"\n\n");
+                res.append("\t\t\t\t\t\t" + "Nationality" + character.getNATIONALITY() + "\n\n");
             }
-            tShow.setText(res);
+            textShowData.setText(res);
             SHOW_DATA = false;
         } else {
-            animator = ObjectAnimator.ofFloat(tShow, "alpha", 1F, 0F);
+            animator = ObjectAnimator.ofFloat(textShowData, "alpha", 1F, 0F);
             animator.setDuration(2000);
             animator.start();
-            tShow.setVisibility(View.GONE);
+            textShowData.setVisibility(View.GONE);
             SHOW_DATA = true;
+        }
+    }
+
+    @OnClick({R.id.but_add_data, R.id.but_show_data, R.id.but_del_data, R.id.but_modify_data})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.but_add_data:
+                add();
+                break;
+            case R.id.but_show_data:
+                find();
+                break;
+            case R.id.but_del_data:
+                break;
+            case R.id.but_modify_data:
+                break;
         }
     }
 }

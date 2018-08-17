@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'//greendao
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
@@ -194,13 +195,11 @@ dependencies {
     implementation files('libs/universal-image-loader-1.9.3-sources.jar')
     implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
     implementation files('libs/commons-io-2.4.jar')
-
+    implementation files('libs/android-support-v7-recyclerview.jar')
     //greendao之在线引用
     implementation 'org.greenrobot:greendao:3.2.0'
     //OkHttp
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    //仿微信下拉刷新
-    implementation files('libs/android-support-v7-recyclerview.jar')
     implementation 'com.github.GrenderG:Toasty:1.2.5'
     //相应的project 的build.gradle中也有相关配置
     implementation project(':pulltorefresh')
@@ -213,6 +212,8 @@ dependencies {
     implementation 'com.tencent.bugly:crashreport:latest.release'
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
     implementation 'com.github.bestTao:CoordinatorMenu:v1.0.2'
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }

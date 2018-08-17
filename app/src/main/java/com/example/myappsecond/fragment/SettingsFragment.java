@@ -17,11 +17,10 @@ import com.example.myappsecond.R;
 import com.example.myappsecond.SecondActivity;
 import com.example.myappsecond.activity.OkHttpMainActivity;
 import com.example.myappsecond.activity.ProjectMainActivity;
+import com.example.myappsecond.activity.ctmactivity.CtmMainActivity;
 import com.example.myappsecond.project.ReviewTest;
 import com.example.myappsecond.project.animations.AnimMainActivity;
-import com.example.myappsecond.activity.ctmactivity.CtmMainActivity;
 import com.example.myappsecond.project.review.KeepJava;
-import com.example.myappsecond.utils.PermissionUtil;
 import com.example.myappsecond.utils.PermissionsUtil;
 import com.example.myappsecond.utils.ToastUtils;
 
@@ -46,13 +45,13 @@ public class SettingsFragment extends BaseFragment {
     private Button project;
 
     private EditText editText;
-    PermissionUtil permissionUtil;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
           View view=inflater.inflate(R.layout.tab04,container,false);
         this.view=view;
-        permissionUtil= new PermissionUtil(getActivity());
+
       return  view;
     }
 

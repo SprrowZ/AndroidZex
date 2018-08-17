@@ -54,6 +54,7 @@ public class CartoonsListActivity extends BaseActivity {
     public static Long ID;
     public static int ITEM_COUNT=20;
     public int batch=1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

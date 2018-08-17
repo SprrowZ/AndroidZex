@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.myappsecond.project.async.AsyncMainActivity;
-import com.example.myappsecond.project.ctmviews.CtmTopActivity;
+import com.example.myappsecond.activity.ctmactivity.CtmTopActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.project.review.*;
 import com.example.myappsecond.utils.ExtraUtil.Amap;

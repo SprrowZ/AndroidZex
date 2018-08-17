@@ -1,9 +1,10 @@
-package com.example.myappsecond.project.ctmviews;
+package com.example.myappsecond.activity.ctmactivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.example.myappsecond.BaseActivity;
+import com.example.myappsecond.project.ctmviews.CircleImageView;
 
 /**
  * Created by Zzg on 2017/11/21.

@@ -10,10 +10,10 @@ import android.widget.Button;
 
 import com.example.myappsecond.R;
 import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
-import com.example.myappsecond.project.ctmviews.CtmEighthActivity;
-import com.example.myappsecond.project.ctmviews.CtmElevenActivity;
-import com.example.myappsecond.project.ctmviews.CtmNinethActivity;
-import com.example.myappsecond.project.ctmviews.CtmTwelfthsActivity;
+import com.example.myappsecond.activity.ctmactivity.CtmEighthActivity;
+import com.example.myappsecond.activity.ctmactivity.CtmElevenActivity;
+import com.example.myappsecond.activity.ctmactivity.CtmNinethActivity;
+import com.example.myappsecond.activity.ctmactivity.CtmTwelfthsActivity;
 import com.example.myappsecond.project.ctmviews.Mypractice.Custom_Tenth;
 
 import org.greenrobot.eventbus.EventBus;

@@ -19,7 +19,7 @@ import com.example.myappsecond.activity.OkHttpMainActivity;
 import com.example.myappsecond.activity.ProjectMainActivity;
 import com.example.myappsecond.project.ReviewTest;
 import com.example.myappsecond.project.animations.AnimMainActivity;
-import com.example.myappsecond.project.ctmviews.CtmMainActivity;
+import com.example.myappsecond.activity.ctmactivity.CtmMainActivity;
 import com.example.myappsecond.project.review.KeepJava;
 import com.example.myappsecond.utils.PermissionUtil;
 import com.example.myappsecond.utils.PermissionsUtil;

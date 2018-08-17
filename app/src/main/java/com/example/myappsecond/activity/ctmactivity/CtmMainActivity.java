@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.ctmviews;
+package com.example.myappsecond.activity.ctmactivity;
 
 import android.content.Intent;
 import android.os.Bundle;

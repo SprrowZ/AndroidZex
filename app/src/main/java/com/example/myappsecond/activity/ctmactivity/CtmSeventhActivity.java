@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.ctmviews;
+package com.example.myappsecond.activity.ctmactivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

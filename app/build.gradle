@@ -53,8 +53,8 @@ android {
         }
 
         preview {
-            shrinkResources true //用来开启删除无用资源，也就是没有被引用的文件,和底下这个要配合使用，只有全为true两者才起作用
-            minifyEnabled true
+            shrinkResources false //用来开启删除无用资源，也就是没有被引用的文件,和底下这个要配合使用，只有全为true两者才起作用
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable true
             signingConfig signingConfigs.config //引用签名文件

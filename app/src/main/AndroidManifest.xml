@@ -125,7 +125,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmTopActivity"
+        <activity android:name=".activity.ctmactivity.CtmTopActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
@@ -161,19 +161,19 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmMainActivity"
+        <activity android:name=".activity.ctmactivity.CtmMainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmFirstActivity"
+        <activity android:name=".activity.ctmactivity.CtmFirstActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmSecondActivity"
+        <activity android:name=".activity.ctmactivity.CtmSecondActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmThirdActivity"
+        <activity android:name=".activity.ctmactivity.CtmThirdActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
@@ -197,11 +197,11 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmFivthActivity"
+        <activity android:name=".activity.ctmactivity.CtmFivthActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmSixthActivity"
+        <activity android:name=".activity.ctmactivity.CtmSixthActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
@@ -209,7 +209,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmSeventhActivity"
+        <activity android:name=".activity.ctmactivity.CtmSeventhActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
@@ -240,15 +240,15 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmMain2Activity"
+        <activity android:name=".activity.ctmactivity.CtmMain2Activity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmEighthActivity"
+        <activity android:name=".activity.ctmactivity.CtmEighthActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmNinethActivity"
+        <activity android:name=".activity.ctmactivity.CtmNinethActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
@@ -260,11 +260,11 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmElevenActivity"
+        <activity android:name=".activity.ctmactivity.CtmElevenActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".project.ctmviews.CtmTwelfthsActivity"
+        <activity android:name=".activity.ctmactivity.CtmTwelfthsActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />

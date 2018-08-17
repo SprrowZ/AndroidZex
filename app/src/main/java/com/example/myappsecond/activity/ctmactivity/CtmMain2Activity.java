@@ -1,4 +1,4 @@
-package com.example.myappsecond.project.ctmviews;
+package com.example.myappsecond.activity.ctmactivity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,6 +14,8 @@ import com.example.myappsecond.R;
 import com.example.myappsecond.fragment.CtmViewFragment;
 import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
 import com.example.myappsecond.project.ctmviews.Mypractice.RotateFirst;
+import com.example.myappsecond.project.ctmviews.ProgressFragment;
+import com.example.myappsecond.project.ctmviews.Shadows;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -28,7 +30,7 @@ public class CtmMain2Activity extends BaseActivity {
     private Context mContext;
     private CtmViewFragment fragment = new CtmViewFragment();
     private broadcastReceiver receiver = new broadcastReceiver();
-    private  ProgressFragment progressFragment=new ProgressFragment();
+    private ProgressFragment progressFragment=new ProgressFragment();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

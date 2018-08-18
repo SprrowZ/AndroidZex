@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-
+            <include layout="@layout/left_details"/>
         </LinearLayout>
 
         <com.example.myappsecond.project.ctmviews.MainView

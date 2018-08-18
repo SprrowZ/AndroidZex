@@ -18,6 +18,7 @@ import com.example.myappsecond.EChatApp;
 import com.example.myappsecond.GreenDaos.Base.Cartoons;
 import com.example.myappsecond.GreenDaos.Base.CartoonsDao;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
+
 import com.example.myappsecond.R;
 import com.example.myappsecond.adapter.BaseArrayAdapter;
 import com.example.myappsecond.adapter.GreenAdapter;
@@ -149,18 +150,22 @@ public class CartoonsListActivity extends BaseActivity {
 
          @Override
          protected List<Cartoons> doInBackground(Void... voids) {
-          List<Cartoons> newdata =  cartoonsDao.queryBuilder()
+          final List<Cartoons> newdata =  cartoonsDao.queryBuilder()
                      .offset(batch*CartoonsListActivity.ITEM_COUNT)
                      .limit(20)
                      .list();
-          if (newdata!=null){
-              batch++;
-              datalist.addAll(newdata);
-              adapter.notifyDataSetChanged();
-          }else{
+          runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                  if (newdata!=null){
+                      batch++;
+                      datalist.addAll(newdata);
+                      adapter.notifyDataSetChanged();
+                  }else{
 
-          }
-
+                  }
+              }
+          });
           return newdata;
          }
 

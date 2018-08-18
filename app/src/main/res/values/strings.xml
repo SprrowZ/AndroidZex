@@ -52,4 +52,5 @@
     <string name="alter">修改</string>
     <string name="send">发送</string>
     <string name="search">search</string>
+    <string name="codeName">RyeCatcher</string>
 </resources>

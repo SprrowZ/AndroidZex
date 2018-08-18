@@ -102,7 +102,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_one"/>
+            android:background="@drawable/btn_bk1"/>
 
     </LinearLayout>
 </LinearLayout>

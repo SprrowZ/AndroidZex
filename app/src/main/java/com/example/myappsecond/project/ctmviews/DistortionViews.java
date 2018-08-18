@@ -1,5 +1,6 @@
 package com.example.myappsecond.project.ctmviews;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.myappsecond.R;
 
@@ -20,7 +22,8 @@ import com.example.myappsecond.R;
  * Created by ZZG on 2018/3/9.
  */
 
-public class DistortionViews extends View {
+@SuppressLint("AppCompatCustomView")
+public class DistortionViews extends ImageView {
     private Bitmap mBitmap;
     private int type;
     private int radius;
@@ -39,9 +42,6 @@ public class DistortionViews extends View {
 
     private void init(Context context, AttributeSet attrs) throws Exception {
        mPaint=new Paint();
-//       mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-//       mPaint.setColor(Color.RED);
-//       mPaint.setStrokeWidth(25);
        TypedArray typedArray=context.obtainStyledAttributes(attrs,R.styleable.DisView);
        //enum取值,getInt
        type= typedArray.getInt(R.styleable.DisView_Dtype,0);

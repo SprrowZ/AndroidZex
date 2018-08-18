@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="OkHttp"
             android:textAllCaps="false"
-            android:background="@drawable/background_transparent"
+            android:background="@drawable/btn_bk_transparent"
             android:layout_marginRight="10dp"
             android:textColor="@color/soft1"
             />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="Java进阶"
             android:textAllCaps="false"
-            android:background="@drawable/background_transparent"
+            android:background="@drawable/btn_bk_transparent"
             android:textColor="@color/soft1"
             />
 
@@ -66,7 +66,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_transparent"
+            android:background="@drawable/btn_bk_transparent"
             android:layout_marginRight="10dp"
             android:textColor="@color/soft1"
             />
@@ -77,7 +77,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_transparent"
+            android:background="@drawable/btn_bk_transparent"
             android:textColor="@color/soft1"
             />
 
@@ -99,7 +99,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:background="@drawable/background_transparent"
+        android:background="@drawable/btn_bk_transparent"
         android:layout_marginRight="10dp"
         android:textColor="@color/soft1"
         />
@@ -111,7 +111,7 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:background="@drawable/background_transparent"
+        android:background="@drawable/btn_bk_transparent"
         android:textColor="@color/soft1"
         />
 
@@ -133,7 +133,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-             android:background="@drawable/background_transparent"
+             android:background="@drawable/btn_bk_transparent"
              android:layout_marginRight="10dp"
              android:textColor="@color/soft1"
              />
@@ -154,7 +154,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/background_transparent"
+        android:background="@drawable/btn_bk_transparent"
         android:text="CustomView"
         android:textAllCaps="false"
         android:layout_marginRight="10dp"
@@ -168,7 +168,7 @@
         android:layout_weight="1"
         android:text="Project"
         android:textAllCaps="false"
-        android:background="@drawable/background_transparent"
+        android:background="@drawable/btn_bk_transparent"
         android:layout_marginRight="10dp"
         android:textColor="@color/soft7"
         />

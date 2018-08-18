@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_one"
+        android:background="@drawable/btn_bk1"
         android:ems="1"
         />
     <TextView
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_one"
+        android:background="@drawable/btn_bk1"
         android:ems="1"
         />
     <TextView
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_one"
+        android:background="@drawable/btn_bk1"
         android:ems="1"
         />
 </com.example.myappsecond.project.ctmviews.ViewGroupsEx>

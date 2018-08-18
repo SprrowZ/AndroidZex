@@ -16,7 +16,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             />
         <Button
             android:id="@+id/btn2"
@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             />
         <Button
             android:id="@+id/btn3"
@@ -36,7 +36,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             />
     </LinearLayout>
 

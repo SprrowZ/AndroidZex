@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/background_one"
+            android:background="@drawable/btn_bk1"
             android:text="startService"
             android:textAllCaps="false"
             android:layout_marginRight="10dp"/>
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:text="stopService"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/btn_bk1"
             android:layout_marginRight="10dp"
             />
         <Button
@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:text="Service"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/btn_bk1"
             android:visibility="invisible"
             />
         <!--  android:background="@drawable/input_box"-->
@@ -57,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/background_one"
+            android:background="@drawable/btn_bk1"
             android:text="startService"
             android:textAllCaps="false"
             android:layout_marginRight="10dp"
@@ -71,7 +71,7 @@
             android:layout_weight="1"
             android:text="bindService"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/btn_bk1"
             android:layout_marginRight="10dp"
             />
         <Button
@@ -81,7 +81,7 @@
             android:layout_weight="1"
             android:text="unbindService"
             android:textAllCaps="false"
-            android:background="@drawable/background_one"
+            android:background="@drawable/btn_bk1"
             />
         <!--  android:background="@drawable/input_box"-->
 

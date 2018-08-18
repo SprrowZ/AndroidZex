@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="CustomView"
         android:textSize="30sp"
-        android:background="@drawable/background_three"
+        android:background="@drawable/btn_bk3"
         />
     <LinearLayout
         android:id="@+id/linear1"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="Circle"
             android:textAllCaps="false"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
 
         <Button
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="BitmapColor"
             android:textAllCaps="false"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
 
     </LinearLayout>
@@ -58,7 +58,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
         <Button
             android:id="@+id/btn4"
@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
 
     </LinearLayout>
@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
         <Button
             android:id="@+id/btn6"
@@ -94,7 +94,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
 
         <Button
@@ -104,7 +104,7 @@
             android:layout_weight="1"
             android:text="Review"
             android:textAllCaps="false"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
 
     </LinearLayout>
@@ -121,7 +121,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
         <Button
             android:id="@+id/btn9"
@@ -130,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
         <Button
             android:id="@+id/btn10"
@@ -139,7 +139,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
 
     </LinearLayout>
@@ -157,7 +157,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             android:clickable="false"
             />
         <Button
@@ -167,7 +167,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             android:clickable="false"
             />
         <Button
@@ -177,7 +177,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             android:clickable="false"
             />
 
@@ -196,7 +196,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_three"
+            android:background="@drawable/btn_bk3"
             />
 
     </LinearLayout>

@@ -14,7 +14,7 @@
      android:layout_height="wrap_content"
      android:layout_weight="1"
      android:textAllCaps="false"
-     android:background="@drawable/background_four"
+     android:background="@drawable/btn_bk4"
      />
      <Button
          android:id="@+id/btn2"
@@ -23,7 +23,7 @@
          android:layout_width="0dp"
          android:layout_height="wrap_content"
          android:layout_weight="1"
-         android:background="@drawable/background_four"
+         android:background="@drawable/btn_bk4"
          />
      <Button
          android:id="@+id/btn3"
@@ -33,7 +33,7 @@
          android:layout_width="0dp"
          android:layout_height="wrap_content"
          android:layout_weight="1"
-         android:background="@drawable/background_four"
+         android:background="@drawable/btn_bk4"
          />
  </LinearLayout>
     <LinearLayout
@@ -45,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             android:textAllCaps="false"
             />
         <Button
@@ -54,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             android:textAllCaps="false"
             />
         <Button
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             />
     </LinearLayout>
     <LinearLayout
@@ -76,7 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             android:textAllCaps="false"
             />
         <Button
@@ -85,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             android:textAllCaps="false"
             />
         <Button
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textAllCaps="false"
-            android:background="@drawable/background_four"
+            android:background="@drawable/btn_bk4"
             />
     </LinearLayout>
 </LinearLayout>

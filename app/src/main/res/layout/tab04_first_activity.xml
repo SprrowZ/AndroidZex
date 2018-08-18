@@ -24,7 +24,7 @@
                     android:text="callPhone"
                     android:textAllCaps="false"
                     android:singleLine="true"
-                    android:background="@drawable/background_one"
+                    android:background="@drawable/btn_bk1"
                     />
                 <Button
                     android:id="@+id/btn2"
@@ -34,7 +34,7 @@
                     android:textAllCaps="false"
                     android:layout_toRightOf="@+id/btn1"
                     android:singleLine="true"
-                    android:background="@drawable/background_one"
+                    android:background="@drawable/btn_bk1"
                     />
             </RelativeLayout>
 
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
                     android:singleLine="true"
-                    android:background="@drawable/background_one"
+                    android:background="@drawable/btn_bk1"
                     />
                 <Button
                     android:id="@+id/btn6"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
                     android:singleLine="true"
-                    android:background="@drawable/background_one"
+                    android:background="@drawable/btn_bk1"
                     />
 
             </LinearLayout>
@@ -77,7 +77,7 @@
                     android:text="timerLoop"
                     android:textAllCaps="false"
                     android:singleLine="true"
-                    android:background="@drawable/background_one"
+                    android:background="@drawable/btn_bk1"
                     />
 
                 <Button
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
                     android:singleLine="true"
-                    android:background="@drawable/background_one"
+                    android:background="@drawable/btn_bk1"
                     />
             </LinearLayout>
             <LinearLayout
@@ -124,7 +124,7 @@
           android:text="FileIO"
           android:textAllCaps="false"
           android:singleLine="true"
-          android:background="@drawable/background_three"
+          android:background="@drawable/btn_bk3"
           />
       <Button
           android:id="@+id/bb"
@@ -134,7 +134,7 @@
           android:textAllCaps="false"
           android:singleLine="true"
           android:layout_toRightOf="@+id/aa"
-          android:background="@drawable/background_three"
+          android:background="@drawable/btn_bk3"
           />
       <Button
           android:id="@+id/cc"
@@ -144,7 +144,7 @@
           android:textAllCaps="false"
           android:singleLine="true"
           android:layout_below="@+id/aa"
-          android:background="@drawable/background_three"
+          android:background="@drawable/btn_bk3"
           />
       <Button
           android:id="@+id/dd"
@@ -155,7 +155,7 @@
           android:singleLine="true"
           android:layout_below="@+id/aa"
           android:layout_toRightOf="@+id/cc"
-          android:background="@drawable/background_three"
+          android:background="@drawable/btn_bk3"
           android:layout_marginLeft="100dp"
           />
       <Button
@@ -166,7 +166,7 @@
           android:textAllCaps="false"
           android:singleLine="true"
           android:layout_below="@+id/cc"
-          android:background="@drawable/background_three"
+          android:background="@drawable/btn_bk3"
           />
       <Button
           android:id="@+id/ff"
@@ -177,7 +177,7 @@
           android:singleLine="true"
           android:layout_below="@+id/cc"
           android:layout_toRightOf="@+id/ee"
-          android:background="@drawable/background_three"
+          android:background="@drawable/btn_bk3"
           />
 </RelativeLayout>
 

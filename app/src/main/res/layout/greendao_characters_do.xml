@@ -33,7 +33,7 @@
                         android:layout_height="wrap_content"
                         android:hint="name"
                         android:padding="5dp"
-                        android:background="@drawable/bg_edittext_selector"
+                        android:background="@drawable/ed_bk_selector"
                         />
                 </LinearLayout>
 
@@ -57,7 +57,7 @@
                         android:digits="01"
                         android:hint="boyOrgirl"
                         android:padding="5dp"
-                        android:background="@drawable/bg_edittext_selector"
+                        android:background="@drawable/ed_bk_selector"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:hint="hero"
                         android:padding="5dp"
-                        android:background="@drawable/bg_edittext_selector"
+                        android:background="@drawable/ed_bk_selector"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -101,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:hint="heroine"
                         android:padding="5dp"
-                        android:background="@drawable/bg_edittext_selector"
+                        android:background="@drawable/ed_bk_selector"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -123,7 +123,7 @@
                         android:layout_height="wrap_content"
                         android:hint="heroine"
                         android:padding="5dp"
-                        android:background="@drawable/bg_edittext_selector"
+                        android:background="@drawable/ed_bk_selector"
                         />
                 </LinearLayout>
 
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="@string/add_data"
-                    android:background="@drawable/background_three"
+                    android:background="@drawable/btn_bk3"
                     android:textSize="16dp"
                     />
 
@@ -155,7 +155,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/show_data"
-                    android:background="@drawable/background_three"
+                    android:background="@drawable/btn_bk3"
                     android:layout_gravity="right"
                     android:textSize="16dp"
                     />
@@ -173,7 +173,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/delete"
-                    android:background="@drawable/background_three"
+                    android:background="@drawable/btn_bk3"
                     android:textSize="16dp"
                     />
 
@@ -189,7 +189,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/alter"
-                    android:background="@drawable/background_three"
+                    android:background="@drawable/btn_bk3"
                     android:layout_gravity="right"
                     android:textSize="16dp"
                     />

@@ -32,8 +32,8 @@
     <!--变形的ImageView，这个不能有问题-->
     <declare-styleable name="DisView">
         <attr name="Dtype" format="enum">
-            <enum name="Dcircle" value="0"></enum>
-            <enum name="DrectTangle" value="1"></enum>
+            <enum name="circle" value="0"></enum>
+            <enum name="rectangle" value="1"></enum>
         </attr>
         <attr name="Dradius" format="integer"/>
         <attr name="Dsrc" format="reference"/>
@@ -44,26 +44,6 @@
       <attr name="TeleBg" format="reference"></attr>
     </declare-styleable>
 
-
-
-    <!-- <declare-styleable name="myButtonGroup">
-         <attr name="title" format="string"/>
-         <attr name="titleTextSize" format="dimension"/>
-         <attr name="titleTextColor" format="color"/>
-         <attr name="firstButtonBack" format="reference|color"/>
-         <attr name="firstButtonForth" format="color"/>
-         <attr name="firstButtonText" format="string"/>
-         <attr name="secondButtonBack" format="reference|color"/>
-         <attr name="secondButtonForth" format="color"/>
-         <attr name="secondButtonText" format="string"/>
-         <attr name="thirdButtonBack" format="reference|color"/>
-         <attr name="thirdButtonForth" format="color"/>
-         <attr name="thirdButtonText" format="string"/>
-         <attr name="fourthButtonBack" format="reference|color"/>
-         <attr name="fourthButtonForth" format="color"/>
-         <attr name="fourthButtonText" format="string"/>
-     </declare-styleable>
- -->
     <declare-styleable name="ptr">
         <!-- 设置刷新列表的背景色 -->
         <attr name="ptrRefreshableViewBackground" format="reference|color" />

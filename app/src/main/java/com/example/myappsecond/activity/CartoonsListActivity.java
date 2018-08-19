@@ -1,5 +1,6 @@
 package com.example.myappsecond.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,6 +31,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,6 @@ public class CartoonsListActivity extends BaseActivity {
      * from CartoonsDoActivity
      */
     public static int  FROM_CARTOON=666;
-
     private  PullToRefreshListView listView;
     private  EditText query;
     private DaoSession daoSession;
@@ -88,7 +89,20 @@ public class CartoonsListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cartoons cartoons= (Cartoons) adapter.getItem(position);
-
+                Intent intent=new Intent(CartoonsListActivity.this,CartoonsDetailActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString(CartoonsDetailActivity.CARTOON_NAME,cartoons.getNAME());
+                bundle.putString(CartoonsDetailActivity.CARTOON_HEROS,
+                        cartoons.getHERO()+"、"+cartoons.getHEROINE());
+                bundle.putString(CartoonsDetailActivity.CARTOON_PLOT,cartoons.getPLOT());
+                bundle.putString(CartoonsDetailActivity.CARTOON_DIRECTOR,cartoons.getDIRECTOR());
+                bundle.putString(CartoonsDetailActivity.CARTOON_ACTORS,cartoons.getACTORS());
+                if (cartoons.getSTART_TIME()!=null){
+                    bundle.putString(CartoonsDetailActivity.CARTOON_START_TIME,cartoons.getSTART_TIME().toString());
+                }
+                bundle.putSerializable(CartoonsDetailActivity.CARTOON_LIST_ACTOR, (Serializable) cartoons.getCHARACTERS());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         };
 

@@ -8,6 +8,9 @@ import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.project.ctmviews.DistortionViews;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -16,6 +19,24 @@ import butterknife.OnClick;
  * Created by ZZG on 2018/8/19.
  */
 public class CartoonsDetailActivity extends BaseActivity {
+    /**
+     * 属性集合
+     */
+    public static final String CARTOON_NAME="NAME";
+    public static final String CARTOON_HEROS="HEROS";
+    public static final String CARTOON_DIRECTOR="DIRECTOR";
+    public static final String CARTOON_IS_END="IS_END";
+    public static final String CARTOON_ACTORS="ACTORS";
+    public static final String CARTOON_PLOT="PLOT";
+    public static final String CARTOON_START_TIME="START_TIME";
+    public static final String CARTOON_LIST_ACTOR="CARTOON_LIST_ACTOR";
+    private String name;
+    private String heros;
+    private String director;
+    private boolean isEnd;
+    private String actors;
+    private String plot;
+    private String startTime;
     @BindView(R.id.header_img)
     DistortionViews headerImg;
     @BindView(R.id.top_name)
@@ -42,6 +63,15 @@ public class CartoonsDetailActivity extends BaseActivity {
     }
 
     private void init() {
+         Bundle bundle=getIntent().getExtras();
+         name=bundle.getString(CartoonsDetailActivity.CARTOON_NAME,"");
+         heros=bundle.getString(CartoonsDetailActivity.CARTOON_HEROS,"");
+         director=bundle.getString(CartoonsDetailActivity.CARTOON_DIRECTOR,"");
+         isEnd=bundle.getBoolean(CartoonsDetailActivity.CARTOON_IS_END,true);
+         actors=bundle.getString(CartoonsDetailActivity.CARTOON_ACTORS,"");
+         plot=bundle.getString(CartoonsDetailActivity.CARTOON_PLOT,"");
+         startTime=bundle.getString(CartoonsDetailActivity.CARTOON_START_TIME,"");
+
     }
 
     @OnClick(R.id.header_img)

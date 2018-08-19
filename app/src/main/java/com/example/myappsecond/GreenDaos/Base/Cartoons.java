@@ -1,5 +1,7 @@
 package com.example.myappsecond.GreenDaos.Base;
 
+import android.os.Parcelable;
+
 import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
@@ -8,6 +10,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.Unique;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +18,8 @@ import java.util.List;
  * Created by ZZG on 2018/3/22.
  */
 @Entity
-public class Cartoons {
+public class Cartoons implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Id(autoincrement = true)
     private Long ID;
     @NotNull @Unique
@@ -27,7 +31,7 @@ public class Cartoons {
     private String HERO;
     private String HEROINE;
     private int PART;
-    private String PLOT;
+    private String PLOT;//情节。。。详情
     private Date INSERT_TIME;
     @ToMany(referencedJoinProperty = "CARTOON_ID")
     private List<Character> CHARACTERS;//一对多关系，关联动漫人物表

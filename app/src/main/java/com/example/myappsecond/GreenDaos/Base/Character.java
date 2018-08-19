@@ -5,12 +5,14 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.io.Serializable;
+
 /**
  * Created by Zzg on 2018/7/22.
  */
 @Entity
-public class Character {
-
+public class Character implements Serializable {
+    private static final long serialVersionUID = 2L;
     private Long ID;
     private String NAME;
     private boolean SEX;

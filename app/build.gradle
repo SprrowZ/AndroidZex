@@ -133,21 +133,7 @@ android.applicationVariants.all { variant ->
             resValue "string", "ip_in", "http://122.40.130.74:8088"
             resValue "string", "app_name", "工银e办公测"
             resValue "string", "SCREENSHOT_ENANBLE", "1"
-            resValue "string", "map_key", "ea9598082d322512e0cee9526ccf517a"
-            resValue "string", "VOTE_DETAIL", "openserv:///voteForum/Handler/OA/GetVoteDetail.ashx"
-            resValue "string", "VOTE_LIST", "openserv:///voteForum/Handler/OA/GetVoteList.ashx"
-            resValue "string", "Submit_Vote", "openserv:///voteForum/Handler/OA/SubmitVote.ashx"
-            resValue "string", "Survey_DETAIL", "openserv:///voteForum/Handler/OA/GetSurveyDetail.ashx"
-            resValue "string", "Survey_LIST", "openserv:///voteForum/Handler/OA/GetSurveyList.ashx"
-            resValue "string", "Submit_Survey", "openserv:///voteForum/Handler/OA/SubmitSurvey.ashx"
-            resValue "string", "SANDBOX_IP", "114.255.225.50"
-            resValue "string", "SANDBOX_INNER_IP", "122.40.130.116"
-            resValue "string", "SANDBOX_PORT", "1301"
-            resValue "string", "SANDBOX_INNER_PORT", "443"
-            resValue "string", "SANDBOX_WHITELIST", "122.40.130.74;122.18.157.193;122.19.141.46;83." +
-                    "41.18.174;122.40.141.97;122.21.125.158;122.19.29.160;122.19.29.223;122.16.13." +
-                    "155;122.40.141.97;114.255.225.50;cbms-app-agn.sdc.cs.icbc;122.18.125.45;" +
-                    "84.93.232.219;83.24.97.31;122.22.141.224"
+            resValue "string", "SANDBOX_WHITELIST", "122.40.130.74;122.18.157.193;122.19.141.46;83."
             resValue "string", "CAN_CHANGE_USER_CONFIG", "0"
 
             if (variant.buildType.name == "preview") {
@@ -161,17 +147,6 @@ android.applicationVariants.all { variant ->
             resValue "string", "ip_in", "http://10.248.113.15:8081"
             resValue "string", "app_name", "工银e办公"
             resValue "string", "SCREENSHOT_ENANBLE", "0"
-            resValue "string", "map_key", "fb420cc8687cfe6d26c17ab554d00394"
-            resValue "string", "VOTE_DETAIL", "openserv:///vote/Handler/OA/GetVoteDetail.ashx"
-            resValue "string", "VOTE_LIST", "openserv:///vote/Handler/OA/GetVoteList.ashx"
-            resValue "string", "Submit_Vote", "openserv:///vote/Handler/OA/SubmitVote.ashx"
-            resValue "string", "Survey_DETAIL", "openserv:///vote/Handler/OA/GetSurveyDetail.ashx"
-            resValue "string", "Survey_LIST", "openserv:///vote/Handler/OA/GetSurveyList.ashx"
-            resValue "string", "Submit_Survey", "openserv:///vote/Handler/OA/SubmitSurvey.ashx"
-            resValue "string", "SANDBOX_IP", "emm.icbc.com.cn"
-            resValue "string", "SANDBOX_INNER_IP", "10.248.66.77"
-            resValue "string", "SANDBOX_PORT", "443"
-            resValue "string", "SANDBOX_INNER_PORT", "443"
             resValue "string", "SANDBOX_WHITELIST", "10.248.113.15;122.19.141.46;biom-mbo;biom-" +
                     "mbo.icbc;gcms.gcms.icbc;cbms-web.icbc"
             resValue "string", "CAN_CHANGE_USER_CONFIG", "1"
@@ -196,6 +171,8 @@ dependencies {
     implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
     implementation files('libs/commons-io-2.4.jar')
     implementation files('libs/android-support-v7-recyclerview.jar')
+    //Rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:2.2.0"
     //greendao之在线引用
     implementation 'org.greenrobot:greendao:3.2.0'
     //OkHttp

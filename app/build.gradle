@@ -170,7 +170,7 @@ dependencies {
     implementation files('libs/universal-image-loader-1.9.3-sources.jar')
     implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
     implementation files('libs/commons-io-2.4.jar')
-    implementation files('libs/android-support-v7-recyclerview.jar')
+//    implementation files('libs/android-support-v7-recyclerview.jar')
     //Rxjava2
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'

@@ -10,8 +10,11 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by ZZG on 2018/8/20.
@@ -77,8 +80,44 @@ private static  final  String TAG="DemoOne";
                 Log.i(TAG, "accept: "+integer);
             }
         });
+       //子线程
+       final Observable<String> observable=Observable.create(new ObservableOnSubscribe<String>() {
+           @Override
+           public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+              emitter.onNext("大浪淘沙");
+           }
+       });
+        Consumer consumer=new Consumer() {
+            @Override
+            public void accept(Object o) throws Exception {
+                Log.i(TAG, "accept: "+o.toString());
+            }
+        };
+        observable.subscribeOn(Schedulers.newThread())//可以看出来提交是新开了一个线程
+                .observeOn(AndroidSchedulers.mainThread())//接收还是在mainThread中的
+                .subscribe(consumer);
+
+        //Map操作变化符
+        Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) {
+                emitter.onNext("你是一个好人");
+                emitter.onNext("现在想好好学习，不想谈恋爱");
+            }
+        }).map(new Function<String, String>() {
+            @Override
+            public String apply(String s) {
+                return s+"====丑拒";
+            }
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                Log.i(TAG, "accept: "+"拒绝的原因很简单--》"+s);
+            }
+        });
 
     }
+
 
     @Override
     protected void onResume() {

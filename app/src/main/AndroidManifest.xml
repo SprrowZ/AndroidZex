@@ -300,7 +300,7 @@
         <activity android:name=".activity.CartoonsDetailActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"/>
-        <activity android:name=".activity.TreeListActivity"
+        <activity android:name=".activity.ProvinceListActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"/>
         <activity android:name=".project.RxJava2.RxDemoOne"/>

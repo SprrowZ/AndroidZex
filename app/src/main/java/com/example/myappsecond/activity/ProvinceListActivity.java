@@ -11,12 +11,12 @@ import com.example.myappsecond.R;
 /**
  * Created by Zzg on 2018/8/20.
  */
-public class TreeListActivity extends BaseActivity {
+public class ProvinceListActivity extends BaseActivity {
     RecyclerView recyclerView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tree_list);
+        setContentView(R.layout.province_list);
         init();
     }
 

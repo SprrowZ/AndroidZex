@@ -13,6 +13,6 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action=intent.getAction();
-Toast.makeText(context,"广播已经接受到，执行跳转操作",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"广播已经接受到，执行跳转操作",Toast.LENGTH_SHORT).show();
     }
 }

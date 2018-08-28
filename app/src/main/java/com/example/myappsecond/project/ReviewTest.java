@@ -10,11 +10,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.myappsecond.project.async.AsyncMainActivity;
-import com.example.myappsecond.activity.ctmactivity.CtmTopActivity;
 import com.example.myappsecond.R;
-import com.example.myappsecond.project.review.*;
-import com.example.myappsecond.utils.ExtraUtil.Amap;
+import com.example.myappsecond.activity.ctmactivity.CtmTopActivity;
+import com.example.myappsecond.project.async.AsyncMainActivity;
+import com.example.myappsecond.project.review.BaseAdapterTest;
+import com.example.myappsecond.project.review.SpannableStringTest;
+import com.example.myappsecond.project.review.myAsyncTask;
+import com.example.myappsecond.project.review.myAsyncTask_pg;
 
 /**
  * Created by ZZG on 2017/10/25.
@@ -97,8 +99,7 @@ public class ReviewTest extends Activity implements View.OnClickListener {
                 startActivity(intent2);
                 break;
             case R.id.btn4:
-                Intent intent3=new Intent(this,Amap.class);
-                startActivity(intent3);
+
                 break;
             case R.id.btn5:
                 Intent intent5=new Intent(this,myAsyncTask.class);

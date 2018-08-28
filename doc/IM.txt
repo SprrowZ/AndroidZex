@@ -1,0 +1,23 @@
+﻿推送相关账户：（个推）
+包名：com.rye.catcher.zzg.anyOATest
+AppID：THhDMANRLf9chGx4xWDPZ3
+AppSecret：aVxfgYVbDP7MdDc4l3o923
+AppKey：edQEsiKGJA8jjlbMUTPTJ5
+MasterSecret：Cq4RtrIAOE6ve1oSBks037
+
+阿里账号：
+AccessKey ID：LTAIq8qfyarbwdZx 
+Access Key Secret：xDtCGVVIsB6eiEBd5z9aU9clHv3xzm
+
+###Git Tag相关操作
+-git tag
+-git tag -a tag_name -m 'tag描述'
+-git checkout tag_name
+-git branch
+-git checkout -b 'branch_name'
+
+###服务端环境搭建
+1.jdk
+2.gradle
+3.mysql
+

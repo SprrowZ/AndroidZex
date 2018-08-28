@@ -1,118 +1,281 @@
 package com.example.myappsecond;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
-import com.example.myappsecond.project.HttpTestActivity;
-import com.example.myappsecond.project.Http_test1;
-import com.example.myappsecond.project.ImageLoaderUntils;
+import com.example.myappsecond.fragment.HttpT1Fragment;
+import com.example.myappsecond.interfaces.Api;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
  * Created by ZZG on 2017/10/12.
  */
 
-public class SecondActivity extends BaseActivity implements View.OnClickListener{
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button btn5;
-    private EditText editText;
-    Handler handler;
-    LinearLayout li_1;
-  //  Fragment fragment;
+public class SecondActivity extends BaseActivity   {
+    @BindView(R.id.btn1)
+    Button btn1;
+    @BindView(R.id.btn2)
+    Button btn2;
+    @BindView(R.id.btn3)
+    Button btn3;
+    @BindView(R.id.btn4)
+    Button btn4;
+    @BindView(R.id.btn5)
+    Button btn5;
+    @BindView(R.id.btn6)
+    Button btn6;
+    @BindView(R.id.framelayout)
+    FrameLayout framelayout;
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.content1)
+    TextView content1;
+    private static  final  String BASE_URL="https://api.github.com/";
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState){
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.tab04_second_activity);
-        getFuck();
-
+        setContentView(R.layout.tab04_second_activity);
+        ButterKnife.bind(this);
+        init();
     }
 
- private void addView() {
-     //底下这个逻辑是加载View不是加载fragment
-//        LayoutInflater inflater=LayoutInflater.from(this);
-//      View additem= inflater.inflate(R.layout.http_test1,null);
-//     TextView text=additem.findViewById(R.id.text);
-//     text.setText("fuck...");
-//        li_1.addView(additem);
-     Http_test1 fragment=new Http_test1();
-     FragmentManager fm=getSupportFragmentManager();
-     FragmentTransaction transaction=fm.beginTransaction();
-     transaction.replace(R.id.framelayout,fragment);
-     transaction.commit();
-
-
-  }
-
-
-    private void getFuck() {
-  btn1=findViewById(R.id.btn1);
-        btn2=findViewById(R.id.btn2);
-        btn3=findViewById(R.id.btn3);
-        btn4=findViewById(R.id.btn4);
-        btn5=findViewById(R.id.btn5);
-        li_1=findViewById(R.id.li_1);
-        editText=findViewById(R.id.et);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
+    private void init() {
+        setBarTitle("進撃の巨人");
     }
-public void HttpClient_login(){
 
-}
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
+    private void addView() {
+        HttpT1Fragment fragment = new HttpT1Fragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.framelayout, fragment);
+        transaction.commit();
+    }
+
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.btn1:
                 addView();
                 break;
             case R.id.btn2:
-                Intent intent=new Intent(this,HttpTestActivity.class);
-                startActivity(intent);
+                retrofitGet1();
                 break;
             case R.id.btn3:
-                HttpClient_login();
+                retrofitGet2();
                 break;
             case R.id.btn4:
-            Intent intent2=new Intent(this,ImageLoaderUntils.class);
-                 startActivity(intent2);
-//                File sdDir = null;
-//                boolean sdCardExist = Environment.getExternalStorageState()
-//                        .equals(android.os.Environment.MEDIA_MOUNTED);//判断sd卡是否存在
-//                if(sdCardExist)
-//                {
-//                    sdDir = Environment.getExternalStorageDirectory();//获取跟目录
-//                }
-//                Toast.makeText(this,sdDir.toString(),Toast.LENGTH_SHORT).show();
+                retrofitGet3();
                 break;
             case R.id.btn5:
+                retrofitGet4();
+                break;
+            case R.id.btn6:
+                retrofitGet5();
                 break;
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("et",editText.getText().toString());
+    private void retrofitGet5() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        super.onSaveInstanceState(outState);
+                Retrofit retrofit=new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                Api api=retrofit.create(Api.class);
+                //QueryMap传参
+                HashMap<String,Integer> params=new HashMap<>();
+                params.put("page",1);
+                params.put("per_page",3);
+                Call<ResponseBody> call=api.getMessages5("SprrowZ",params);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+                            content1.setText("QueryMap:"+"\n"+response.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        }).start();
     }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        String ett=savedInstanceState.getString("et");
-        editText.setText(ett);
-        super.onRestoreInstanceState(savedInstanceState);
+    private void retrofitGet4() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //retrofit的构建也要放在thread中
+                final Retrofit retrofit2=new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                Api infoService=retrofit2.create(Api.class);
+                Call<ResponseBody> call=infoService.getMessages4("SprrowZ",1,2);
+                call.enqueue(new Callback<ResponseBody>() {//异步请求
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+                            content1.setText("路径带参:"+"\n"+response.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
+        }).start();
     }
+
+    private void retrofitGet3() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //retrofit的构建也要放在thread中
+                final Retrofit retrofit2=new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                Api infoService=retrofit2.create(Api.class);
+                Call<ResponseBody> call=infoService.getMessages3("SprrowZ","AndroidZex");
+                try {
+                    final Response<ResponseBody> response=call.execute();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                content1.setText("路径三:"+"\n"+response.body().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void retrofitGet2() {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //retrofit的构建也要放在thread中
+                final Retrofit retrofit2=new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                Api infoService=retrofit2.create(Api.class);
+                Call<ResponseBody> call=infoService.getMessages2();
+                try {
+                    final Response<ResponseBody> response=call.execute();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                content1.setText("路径二:"+"\n"+response.body().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
+    private void retrofitGet1() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Retrofit retrofit=new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                Api service=retrofit.create(Api.class);
+                Call<ResponseBody> call=service.getMessages();
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        System.out.println(response.body().toString());
+                        try {
+                            content1.setText("get无参:"+"\n"+response.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+
+
+            }
+        }).start();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

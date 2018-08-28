@@ -1,4 +1,4 @@
-package com.example.myappsecond.project;
+package com.example.myappsecond.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,7 +19,7 @@ import com.example.myappsecond.R;
  * Created by ZZG on 2017/10/13.
  */
 
-public class Http_test1 extends Fragment {
+public class HttpT1Fragment extends Fragment {
     private WebView webView;
     private View view1;
     String url;

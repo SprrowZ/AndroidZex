@@ -170,28 +170,21 @@ dependencies {
     implementation files('libs/universal-image-loader-1.9.3-sources.jar')
     implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
     implementation files('libs/commons-io-2.4.jar')
-//    implementation files('libs/android-support-v7-recyclerview.jar')
-    //Rxjava2
+
+
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    //greendao之在线引用
     implementation 'org.greenrobot:greendao:3.2.0'
-    //OkHttp
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.github.GrenderG:Toasty:1.2.5'
-    //相应的project 的build.gradle中也有相关配置
     implementation project(':pulltorefresh')
-    //Glide图片加载框架
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
-    //EventBus,被一亿多app使用
     implementation 'org.greenrobot:eventbus:3.0.0'
-    //tencent bugly
     implementation 'com.tencent.bugly:crashreport:latest.release'
-    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    implementation 'com.github.bestTao:CoordinatorMenu:v1.0.2'
-    //butterknife
     implementation 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }

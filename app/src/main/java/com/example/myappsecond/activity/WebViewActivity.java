@@ -32,10 +32,12 @@ public class WebViewActivity extends Activity {
     private TextView titleView;
     private TextView right_text;
     private ImageView back;
+    private LinearLayout parent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_activity);
+        parent=findViewById(R.id.parent);
         mWebView=findViewById(R.id.webView);
         titleView=findViewById(R.id.title);
         right_text=findViewById(R.id.right_text);
@@ -124,5 +126,13 @@ public class WebViewActivity extends Activity {
             finish();//退不了就返回activity
         }
       return  false;
+    }
+    //别忘了销毁WebView！！
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        parent.removeView(mWebView);//先从父布局移除
+        mWebView.removeAllViews();
+        mWebView.destroy();//顺序不要搞混
     }
 }

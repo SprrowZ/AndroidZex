@@ -1,4 +1,4 @@
-package com.example.myappsecond.project;
+package com.example.myappsecond.javamore;
 
 /**
  * Created by ZZG on 2018/3/14.

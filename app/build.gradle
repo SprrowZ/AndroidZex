@@ -166,8 +166,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    implementation files('libs/universal-image-loader-1.9.3.jar')
-    implementation files('libs/universal-image-loader-1.9.3-sources.jar')
+
     implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
     implementation files('libs/commons-io-2.4.jar')
 

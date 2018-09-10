@@ -73,9 +73,7 @@ public class CtmMain2Activity extends BaseActivity {
         public void onReceive(final Context context, final Intent intent) {
 
             mContext = context;
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(()->{
                     bottomContainers.removeAllViews();
                     View view1 = View.inflate(mContext, R.layout.bcustom_setshadowlayer, null);
                     Shadows shadow = new Shadows(context);
@@ -90,7 +88,6 @@ public class CtmMain2Activity extends BaseActivity {
                         rotateFirst.setVisibility(View.VISIBLE);
                     }
                     bottomContainers.addView(view1);
-                }
             });
 
         }

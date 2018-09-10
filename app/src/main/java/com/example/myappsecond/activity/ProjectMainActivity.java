@@ -43,8 +43,6 @@ public class ProjectMainActivity extends BaseActivity {
     LinearLayout backParent;
     @BindView(R.id.left_text)
     TextView leftText;
-    @BindView(R.id.unread_address_number)
-    TextView unreadAddressNumber;
     @BindView(R.id.btn_function_back)
     LinearLayout btnFunctionBack;
     @BindView(R.id.title)
@@ -131,11 +129,8 @@ public class ProjectMainActivity extends BaseActivity {
             @Override
             public void run() {
                 final Date date = new Date();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                runOnUiThread(()->{
                         sliding.setText(sdf.format(date));
-                    }
                 });
             }
         }, 0, 1000);

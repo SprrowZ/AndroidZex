@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.myappsecond.fragment.HttpT1Fragment;
-import com.example.myappsecond.interfaces.Api;
+import com.example.myappsecond.base.interfaces.GithubApi;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class SecondActivity extends BaseActivity   {
     }
 
     private void init() {
-        setBarTitle("進撃の巨人");
+        setBarTitle("天玄九变");
     }
 
     private void addView() {
@@ -96,50 +96,43 @@ public class SecondActivity extends BaseActivity   {
     }
 
     private void retrofitGet5() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                Retrofit retrofit=new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                Api api=retrofit.create(Api.class);
-                //QueryMap传参
-                HashMap<String,Integer> params=new HashMap<>();
-                params.put("page",1);
-                params.put("per_page",3);
-                Call<ResponseBody> call=api.getMessages5("SprrowZ",params);
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        try {
-                            content1.setText("QueryMap:"+"\n"+response.body().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+        new Thread(()-> {
+            Retrofit retrofit=new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            GithubApi api=retrofit.create(GithubApi.class);
+            //QueryMap传参
+            HashMap<String,Integer> params=new HashMap<>();
+            params.put("page",1);
+            params.put("per_page",3);
+            Call<ResponseBody> call=api.getMessages5("SprrowZ",params);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+                        content1.setText("QueryMap:"+"\n"+response.body().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                    }
-                });
-
-            }
+                }
+            });
         }).start();
     }
 
     private void retrofitGet4() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(()->{
                 //retrofit的构建也要放在thread中
                 final Retrofit retrofit2=new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
-                Api infoService=retrofit2.create(Api.class);
+                GithubApi infoService=retrofit2.create(GithubApi.class);
                 Call<ResponseBody> call=infoService.getMessages4("SprrowZ",1,2);
                 call.enqueue(new Callback<ResponseBody>() {//异步请求
                     @Override
@@ -156,83 +149,69 @@ public class SecondActivity extends BaseActivity   {
 
                     }
                 });
-            }
+
         }).start();
     }
 
     private void retrofitGet3() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(()->{
                 //retrofit的构建也要放在thread中
                 final Retrofit retrofit2=new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
-                Api infoService=retrofit2.create(Api.class);
+                GithubApi infoService=retrofit2.create(GithubApi.class);
                 Call<ResponseBody> call=infoService.getMessages3("SprrowZ","AndroidZex");
                 try {
                     final Response<ResponseBody> response=call.execute();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                    runOnUiThread(()->{
                             try {
                                 content1.setText("路径三:"+"\n"+response.body().string());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        }
                     });
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
         }).start();
     }
 
     private void retrofitGet2() {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(()->{
                 //retrofit的构建也要放在thread中
                 final Retrofit retrofit2=new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
-                Api infoService=retrofit2.create(Api.class);
+                GithubApi infoService=retrofit2.create(GithubApi.class);
                 Call<ResponseBody> call=infoService.getMessages2();
                 try {
                     final Response<ResponseBody> response=call.execute();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                    runOnUiThread(()->{
                             try {
                                 content1.setText("路径二:"+"\n"+response.body().string());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        }
                     });
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
         }).start();
 
     }
 
     private void retrofitGet1() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(()->{
                 Retrofit retrofit=new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
-                Api service=retrofit.create(Api.class);
+                GithubApi service=retrofit.create(GithubApi.class);
                 Call<ResponseBody> call=service.getMessages();
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -250,32 +229,8 @@ public class SecondActivity extends BaseActivity   {
                         t.printStackTrace();
                     }
                 });
-
-
-            }
         }).start();
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

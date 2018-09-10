@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,9 +15,18 @@ import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
+import com.example.myappsecond.base.interfaces.JuheWeatherApi;
 import com.example.myappsecond.fragment.FrdFragment;
 import com.example.myappsecond.fragment.SettingsFragment;
 import com.example.myappsecond.fragment.WeixinFragment;
+
+import com.example.myappsecond.sdks.gmap.AmapAPI;
+import com.example.myappsecond.sdks.gmap.AmapResult;
+import com.example.myappsecond.utils.ExtraUtil.Constant;
+import com.example.myappsecond.utils.ToastUtils;
+import com.example.myappsecond.utils.permission.PermissionUtils;
+import com.yanzhenjie.permission.Permission;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +37,10 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by ZZG on 2018/8/12.
@@ -35,6 +49,7 @@ public class MainActivityEx extends BaseActivity {
     private WeixinFragment weixinFragment;
     private FrdFragment frdFragment;
     private SettingsFragment settingsFragment;
+
     @BindView(R.id.message) //被修饰的不能用private Or static修饰
     public LinearLayout message;
     @BindView(R.id.friend)
@@ -91,8 +106,19 @@ public class MainActivityEx extends BaseActivity {
                 .hide(mFragments.get(1))
                 .hide(mFragments.get(2))
                 .show(mFragments.get(0)).commit();
-
+        getWeather();
     }
+
+    private void getWeather() {
+        new Thread(()->{
+            Retrofit retrofit=new Retrofit.Builder()
+                    .baseUrl(Constant.JUHE_WEATHER)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            Call<ResponseBody> call=
+        })
+    }
+
 
     private void reset() {
         imageViewList.get(0).setImageBitmap(icon_normal1);

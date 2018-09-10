@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
+
+import com.example.myappsecond.EChatApp;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,7 +23,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -37,7 +45,10 @@ public class FileUtils {
         private FileUtils() {
             throw new AssertionError();
         }
-
+       public static boolean isSDCardMounted() {
+        return Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED);
+       }
 
         /**
          * read file
@@ -1006,5 +1017,208 @@ public class FileUtils {
                 e.printStackTrace();
             }
         }
+
+    /**
+     * 取得文件的后缀
+     */
+    public static String getFileSuffix(String fileName) {
+        if (fileName == null) {
+            fileName = "";
+        }
+        return fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
     }
+
+    public static String getMIMEType(File paramFile) {
+        String name = paramFile.getName();
+        String suffix = name.substring(name.lastIndexOf(".") + 1, name.length()).toLowerCase();
+        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(suffix);
+    }
+
+    /**
+     * 判断url是否为本地文件地址
+     *
+     * @param fileId
+     * @return
+     */
+    public static boolean isLocalFile(String fileId) {
+        return fileId.startsWith("file://");
+    }
+
+    /**
+     * 是否是office文档
+     */
+    public static boolean isDoc(String fileName) {
+        boolean result = false;
+
+        if (!TextUtils.isEmpty(fileName)) {
+            String suffix = FileUtils.getFileSuffix(fileName);
+            if ("pdf".equals(suffix)
+                    || "doc".equals(suffix)
+                    || "docx".equals(suffix)
+                    || "xls".equals(suffix)
+                    || "xlsx".equals(suffix)
+                    || "ppt".equals(suffix)
+                    || "pptx".equals(suffix)
+                    || "wpt".equals(suffix)
+                    || "wps".equals(suffix)
+                    || "et".equals(suffix)
+                    || "ett".equals(suffix)
+                    || "dps".equals(suffix)
+                    || "dpt".equals(suffix)
+                    || "dsm".equals(suffix)) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+/**
+ * 写入日志
+ */
+public static void writeUserLog(String content) {
+    File file = makeFilePath(SdHelper.getInstance().getAppExternal(), DateUtils.getCurrentTime(DateUtils.FORMAT_DATE1) + ".log");
+    try {
+        FileOutputStream outputStream = new FileOutputStream(file, true);
+        OutputStreamWriter out = new OutputStreamWriter(outputStream);
+        out.write(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" + "  版本号：" + EChatApp.getInstance().getVersion() + " 手机信息：" + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
+        out.close();
+    } catch (Exception e) {
+
+    }
+}
+
+    /**
+     * 创建文件夹
+     * @param filePath
+     */
+    public static void makeRootDirectory(String filePath) {
+        File file = null;
+        try {
+            file = new File(filePath);
+            if (!file.exists()) {
+                file.mkdir();
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    /**
+     * 获取目录下所有文件(按时间排序)
+     *
+     * @param path
+     * @param asc  true时间倒序，false时间正序
+     * @return
+     */
+    public static List<File> getFilesSortByTime(String path, final boolean asc) {
+        List<File> list = getFiles(path, new ArrayList<File>());
+        if (list != null && list.size() > 0) {
+            Collections.sort(list, new Comparator<File>() {
+                public int compare(File file, File newFile) {
+                    if (file.lastModified() < newFile.lastModified()) {
+                        return asc ? 1 : -1;
+                    } else if (file.lastModified() == newFile.lastModified()) {
+                        return 0;
+                    } else {
+                        return asc ? -1 : 1;
+                    }
+                }
+            });
+        }
+        return list;
+    }
+
+    /**
+     * 获取目录下所有文件
+     *
+     * @param realpath
+     * @param files
+     * @return
+     */
+    public static List<File> getFiles(String realpath, List<File> files) {
+        File realFile = new File(realpath);
+        if (realFile.isDirectory()) {
+            File[] subfiles = realFile.listFiles();
+            for (File file : subfiles) {
+                if (file.isDirectory()) {
+                    getFiles(file.getAbsolutePath(), files);
+                } else {
+                    files.add(file);
+                }
+            }
+        }
+        return files;
+    }
+
+    /**
+     * 写日志专用方法
+     * @param filePath
+     * @param fileName
+     * @return
+     */
+    public static File makeFilePath(String filePath, String fileName) {
+        File file = null;
+        makeRootDirectory(filePath);
+        List<File> files = getFilesSortByTime(filePath, false);
+        if (files.size() == 20) {
+            files.get(0).delete();
+        }
+        try {
+            file = new File(filePath + fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+     public static void createPublicFile(String dirName,String fileName){
+        File file =new File(SdHelper.getSdPath()+dirName);
+        if (!file.exists()){
+            file.mkdirs();
+        }
+         File sonFile=new File(file,fileName);
+         try {
+             if (sonFile.exists()){
+                 file.delete();
+             }
+             sonFile.createNewFile();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+    /**
+     * app私有目录下，新建文件夹和文件
+     * @param dirName
+     * @param fileName
+     */
+    public static void createNewFile(String dirName,String fileName){
+        File file=new File(SdHelper.getAppExternal()+dirName);
+        if (!file.exists()){
+            file.mkdirs();
+        }
+        File sonFile=new File(SdHelper.getAppExternal()+dirName+File.separator+fileName);
+        try {
+            if (sonFile.exists()){
+                file.delete();
+            }
+            sonFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * app私有目录下新建文件夹和文件，主要为txt文件
+     * @param dirName
+     * @param fileName
+     * @param content
+     * @throws IOException
+     */
+   public static void createNewFile(String dirName,String fileName,String content){//主要用于txt文件
+      writeFile(SdHelper.getAppExternal()+dirName+File.separator+fileName,content);
+   }
+
+
+}
 

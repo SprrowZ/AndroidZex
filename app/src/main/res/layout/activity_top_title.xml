@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/rl_top_bar"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/title_height"
                 android:background="@drawable/bottom_gray"
                 android:gravity="center_vertical">
 
@@ -28,21 +28,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="@color/black"
-            android:textSize="14dp"
+            android:textSize="@dimen/title_left_text"
             android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/unread_address_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/unread_count_bg"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="12dp"
-            android:visibility="invisible"/>
 
     </LinearLayout>
 
@@ -61,7 +48,7 @@
             android:layout_height="match_parent"
             android:singleLine="true"
             android:textColor="@color/bottom_text_color_normal"
-            android:textSize="16dp"
+            android:textSize="@dimen/title_center_text"
             android:text="标题"
             />
 
@@ -111,6 +98,6 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textColor="@color/gray_3"
-        android:textSize="14dp"
+        android:textSize="@dimen/title_left_text"
         android:visibility="gone"/>
 </RelativeLayout>

@@ -61,9 +61,7 @@ public class SocketClientActivity extends BaseActivity {
         send=findViewById(R.id.send);
     }
     private void doSocket() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(()->{
                 try {
                     socket=new Socket(SERVER_IP,PORT);//new 实例
                     socket.setSoTimeout(15000);
@@ -96,8 +94,6 @@ public class SocketClientActivity extends BaseActivity {
 
                 }
 
-
-            }
         }).start();
 
     }
@@ -125,11 +121,8 @@ public class SocketClientActivity extends BaseActivity {
                     while((s = bufReader.readLine()) != null){
                         sb.append(s);
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                    runOnUiThread(()->{
                             received.setText(sb.toString());
-                        }
                     });
                     //3、关闭IO资源（注：实际开发中需要放到finally中）
                     bufReader.close();

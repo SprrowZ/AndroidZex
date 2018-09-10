@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.EChatApp;
-import com.example.myappsecond.GreenDaos.Base.Cartoons;
-import com.example.myappsecond.GreenDaos.Base.CartoonsDao;
-import com.example.myappsecond.GreenDaos.Base.Character;
-import com.example.myappsecond.GreenDaos.Base.CharacterDao;
+import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
+import com.example.myappsecond.GreenDaos.Base.TB_CartoonsDao;
+import com.example.myappsecond.GreenDaos.Base.TB_Character;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
+import com.example.myappsecond.GreenDaos.Base.TB_CharacterDao;
 import com.example.myappsecond.R;
 
 import java.util.List;
@@ -62,8 +62,8 @@ public class CharactersDoActivity extends BaseActivity {
     private String cartoonId;
     private String nationality;
     private DaoSession daoSession;
-    private CartoonsDao cartoonsDao;
-    private CharacterDao characterDao;
+    private TB_CartoonsDao cartoonsDao;
+    private TB_CharacterDao characterDao;
     private StringBuilder res = new StringBuilder();
 
     /**
@@ -97,15 +97,15 @@ public class CharactersDoActivity extends BaseActivity {
 
     private void initEvent() {
         daoSession = EChatApp.getInstance().getDaoSession();//获取session实例
-        cartoonsDao = daoSession.getCartoonsDao();
-        characterDao = daoSession.getCharacterDao();
+        cartoonsDao = daoSession.getTB_CartoonsDao();
+        characterDao = daoSession.getTB_CharacterDao();
         editCartoonName.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String condition = s.toString().trim();
                 if (s.length() > 0) {
-                    Cartoons cartoons = cartoonsDao.queryBuilder()
-                            .where(CartoonsDao.Properties.NAME.eq(condition)).unique();
+                    TB_Cartoons cartoons = cartoonsDao.queryBuilder()
+                            .where(TB_CartoonsDao.Properties.NAME.eq(condition)).unique();
                     if (cartoons != null) {//如果查询到了数据
                         Message message = new Message();
                         String id = cartoons.getID().toString();
@@ -145,7 +145,7 @@ public class CharactersDoActivity extends BaseActivity {
 
     private void add() {
         getTexts();
-        Character character = new Character();
+        TB_Character character = new TB_Character();
         character.setNAME(name);
         if (sex.length() > 0 && sex.equals("男")) {
             character.setSEX(true);
@@ -169,10 +169,10 @@ public class CharactersDoActivity extends BaseActivity {
             animator = ObjectAnimator.ofFloat(textShowData, "alpha", 0F, 1F);
             animator.setDuration(1000);
             animator.start();
-            List<Character> characterList = characterDao.queryBuilder().
-                    orderAsc(CharacterDao.Properties.CARTOON_ID).build().list();
+            List<TB_Character> characterList = characterDao.queryBuilder().
+                    orderAsc(TB_CharacterDao.Properties.CARTOON_ID).build().list();
             res.delete(0, res.length());
-            for (Character character : characterList) {
+            for (TB_Character character : characterList) {
                 res.append("Name:" + character.getNAME() + "\t\t\t\t\t\t");
                 res.append("Sex:" + character.getSEX() + "\n");
                 res.append("CartoonName:" + character.getCARTOON_NAME() + "\t\t\t\t\t\t");

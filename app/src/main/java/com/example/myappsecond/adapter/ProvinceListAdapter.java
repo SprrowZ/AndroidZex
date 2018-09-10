@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myappsecond.GreenDaos.Base.Cartoons;
+import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
 import com.example.myappsecond.R;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapter.ProvinceViewHolder> {
     //数据这方面暂且用Cartoons代替吧
 
-    private List<Cartoons> cartoonsList;
+    private List<TB_Cartoons> cartoonsList;
     private Context context;
-    public ProvinceListAdapter(Context context, List<Cartoons> list){
+    public ProvinceListAdapter(Context context, List<TB_Cartoons> list){
         this.context=context;
         this.cartoonsList=list;
     }
@@ -42,7 +42,7 @@ public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapte
     @Override
     public void onBindViewHolder(ProvinceViewHolder viewHolder, int i) {
         //操作
-        Cartoons cartoons=cartoonsList.get(i);
+        TB_Cartoons cartoons=cartoonsList.get(i);
     }
     //ViewHolder用来初始化控件
     class ProvinceViewHolder extends RecyclerView.ViewHolder{

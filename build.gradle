@@ -27,10 +27,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ext {//全局配置变量
+    supportVersion = '27.1.1'
     compileSdkVer = 27
-    buildToolsVer = "27.0.3"
-    supportVer = "21.1.1"
+    buildToolsVer = '27.0.3'
     minSdkVer = 16
     targetSdkVer = 27
-
+    glideVersion='4.7.1'
+    butterVersion='8.4.0'
+    gsonVersion='2.8.5'
 }

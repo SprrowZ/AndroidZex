@@ -21,7 +21,7 @@ public class ProvinceListActivity extends BaseActivity {
     }
 
     private void init() {
-        setBarTitle("树");
+        setBarTitle("省份");
         recyclerView=findViewById(R.id.recyclerView);
         LinearLayoutManager manager=new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);

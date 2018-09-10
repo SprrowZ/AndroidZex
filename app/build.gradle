@@ -17,10 +17,10 @@ android {
     }
     dexOptions {
         preDexLibraries = false
-        javaMaxHeapSize "4g"   //这个改大
+        javaMaxHeapSize "4g"
     }
 
-    signingConfigs {//只是做个实例，默认的配置信息，对app进行签名
+    signingConfigs {
         config {
             storeFile file('../ryeCatcher.jks')
             storePassword 'catcher'
@@ -32,15 +32,14 @@ android {
 
     buildTypes {
         release {
-            shrinkResources true //用来开启删除无用资源，也就是没有被引用的文件,和底下这个要配合使用，只有全为true两者才起作用
-            minifyEnabled true  //minifyEnabled主要用来控制是否运行混淆的，还有就是用来开启删除无用代码，比如没有引用到的代码
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config //签名不要忘了撒
             manifestPlaceholders = [appid: "100250345"] //貌似是华为沙盒用的，不用管
-            zipAlignEnabled true //这个在打包时需要设置为true，能优化我们的java字节码，提高运行效率；
+            zipAlignEnabled true
         }
         debug {//默认安装的文件
-
             def today = new Date()
             shrinkResources false
             minifyEnabled false
@@ -58,10 +57,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable true
-            signingConfig signingConfigs.config //引用签名文件
+            signingConfig signingConfigs.config
             manifestPlaceholders = [appid: "100250711"]
-            applicationIdSuffix '.anyOATest' //测试版id和生产版的不一样，一样的话就不能共存了呦
-            versionNameSuffix '.01'   //版本号修改
+            applicationIdSuffix '.anyOATest'
+            versionNameSuffix '.01'
             zipAlignEnabled true
             matchingFallbacks = ['debug', 'release']
 
@@ -81,31 +80,32 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
     }
-//维度，比如前面这个，场景：可以出一个免费版一个付费版，后面这个，场景：小米商城、华为商城
-    //如果一个是vip，一个是free，这就不是两个维度了，因为这俩都跟money有关
-    //和productFlavors配合使用
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     flavorDimensions("money", "channel")
     productFlavors {
         vip {
             dimension "money"
+            buildConfigField("boolean","IS_VIP_VERSION","true")
         }
         free {
             dimension "money"
+            buildConfigField("boolean","IS_VIP_VERSION","false")
         }
         baidu {
             manifestPlaceholders = [CHANNEL: "baidu"]
             dimension "channel"
+            buildConfigField("boolean","IS_baidu_VERSION","true")
         }
         xiaomi {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
+            buildConfigField("boolean","IS_baidu_VERSION","false")
         }
     }
-    //一个有用的技巧：你可以单独只为某一个variants添加一些依赖，只需要在Compile加上对应的variant名字前缀就可以了
-    //dependencies {
-    //compile 'com.android.support:support-v4:22.2.0'
-    // vipCompile 'com.android.support:appcompat-v7:22.2.0'//只为branchOne添加这个依赖
-//}
 
     lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
         checkReleaseBuilds false
@@ -131,7 +131,7 @@ android.applicationVariants.all { variant ->
         if (variant.buildType.name == "debug" || variant.buildType.name == "preview") {
             resValue "string", "ip_out", "http://114.255.225.50:8088"
             resValue "string", "ip_in", "http://122.40.130.74:8088"
-            resValue "string", "app_name", "工银e办公测"
+            resValue "string", "app_name", "寻梦测"
             resValue "string", "SCREENSHOT_ENANBLE", "1"
             resValue "string", "SANDBOX_WHITELIST", "122.40.130.74;122.18.157.193;122.19.141.46;83."
             resValue "string", "CAN_CHANGE_USER_CONFIG", "0"
@@ -145,7 +145,7 @@ android.applicationVariants.all { variant ->
         } else {
             resValue "string", "ip_out", "https://140.206.54.50:8080"
             resValue "string", "ip_in", "http://10.248.113.15:8081"
-            resValue "string", "app_name", "工银e办公"
+            resValue "string", "app_name", "寻梦"
             resValue "string", "SCREENSHOT_ENANBLE", "0"
             resValue "string", "SANDBOX_WHITELIST", "10.248.113.15;122.19.141.46;biom-mbo;biom-" +
                     "mbo.icbc;gcms.gcms.icbc;cbms-web.icbc"
@@ -163,14 +163,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.supportVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-
-    implementation files('libs/AMap_Location_V4.1.0_20180619.jar')
     implementation files('libs/commons-io-2.4.jar')
-
-
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'org.greenrobot:greendao:3.2.0'
@@ -179,11 +177,18 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.github.GrenderG:Toasty:1.2.5'
     implementation project(':pulltorefresh')
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    implementation 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterVersion"
+    //6.0权限适配，机型适配
+    implementation 'com.yanzhenjie:permission:2.0.0-rc11'
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    //Gaode定位
+
+    implementation 'com.amap.api:location:latest.integration'
+
 }

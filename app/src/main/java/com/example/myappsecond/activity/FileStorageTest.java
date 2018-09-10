@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
-import com.example.myappsecond.utils.FileHelper;
+import com.example.myappsecond.utils.FileUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -140,28 +140,15 @@ public class FileStorageTest extends BaseActivity {
     }
 
     private void createDirFile() {
-        FileHelper fileHelper = new FileHelper(this);
-        try {
-            fileHelper.createSDFileToDir("fuckYou?", "sure!" + ".txt", "随便加数据");
-            Toast.makeText(this, "ojbk", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtils.createNewFile("天玄九变","虎啸山林"+".txt","青林");
+        Toast.makeText(this, "ojbk", Toast.LENGTH_SHORT).show();
     }
 
-    private void createDir() {
-        FileHelper fileHelper = new FileHelper(this);
-        fileHelper.createSDDir("SecondDir", this);
-    }
+
 
     private void createFile() {
-        FileHelper fileHelper = new FileHelper(this);
-        try {
-            File file = fileHelper.creatSDFile("amay" + ".jpg");
-            Toast.makeText(this, file.getAbsolutePath().toString(), Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtils.createNewFile("aSprrowZ","Zzg.jpg");
+        Toast.makeText(this, "创建成功！", Toast.LENGTH_LONG).show();
     }
 
     private void showPath() {
@@ -199,7 +186,7 @@ public class FileStorageTest extends BaseActivity {
                 createFile();
                 break;
             case R.id.btn3:
-                createDir();
+
                 break;
             case R.id.btn4:
                 show();

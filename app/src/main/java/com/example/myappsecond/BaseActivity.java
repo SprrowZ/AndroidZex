@@ -206,9 +206,7 @@ public class BaseActivity extends FragmentActivity {
      * @param msg 提示消息内容
      */
     public void showLoadingDlg(final String msg) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        runOnUiThread(()->{
                 synchronized (lock) {
                     if (_loadingDlg == null) {
                         _loadingDlg = new ProgressDialog(BaseActivity.this);
@@ -227,7 +225,6 @@ public class BaseActivity extends FragmentActivity {
                         _loadingDlg.show();
                     }
                 }
-            }
         });
     }
 
@@ -238,9 +235,7 @@ public class BaseActivity extends FragmentActivity {
      * @param setCancelable 是否能取消
      */
     public void showLoadingDlg(final String msg, final boolean setCancelable) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        runOnUiThread(()->{
                 synchronized (lock) {
                     if (_loadingDlg == null) {
                         _loadingDlg = new ProgressDialog(BaseActivity.this);
@@ -259,7 +254,6 @@ public class BaseActivity extends FragmentActivity {
                         _loadingDlg.show();
                     }
                 }
-            }
         });
     }
 
@@ -268,12 +262,11 @@ public class BaseActivity extends FragmentActivity {
      */
     public void cancelLoadingDlg() {
         try {
-            runOnUiThread(new Runnable() {
-                public void run() {
+            runOnUiThread(()->{
+
                     if (_loadingDlg != null) {
                         _loadingDlg.cancel();
                     }
-                }
             });
         } catch (Exception ignored) {
         }
@@ -286,11 +279,8 @@ public class BaseActivity extends FragmentActivity {
      */
     public void showLongMsg(final String msg) {
         try {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(()->{
                     ToastUtils.longMsg(msg);
-                }
             });
         } catch (Exception ignored) {
         }
@@ -303,11 +293,8 @@ public class BaseActivity extends FragmentActivity {
      */
     public void showShortMsg(final String msg) {
         try {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            runOnUiThread(()->{
                     ToastUtils.shortMsg(msg);
-                }
             });
         } catch (Exception ignored) {
         }
@@ -327,7 +314,10 @@ public class BaseActivity extends FragmentActivity {
         super.startActivity(intent);
         overridePendingTransition(0, 0);
     }
-
+    public void startActivityByAlpha(Intent intent){
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.alpha_enter_anim,R.anim.alpha_exit_anim);
+    }
     @Override
     public void finish() {
         super.finish();

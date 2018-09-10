@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.EChatApp;
-import com.example.myappsecond.GreenDaos.Base.Cartoons;
-import com.example.myappsecond.GreenDaos.Base.CartoonsDao;
+import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
 
+import com.example.myappsecond.GreenDaos.Base.TB_CartoonsDao;
 import com.example.myappsecond.R;
 import com.example.myappsecond.adapter.BaseArrayAdapter;
 import com.example.myappsecond.adapter.GreenAdapter;
@@ -47,8 +47,8 @@ public class CartoonsListActivity extends BaseActivity {
     private  PullToRefreshListView listView;
     private  EditText query;
     private DaoSession daoSession;
-    private CartoonsDao cartoonsDao;
-    private List datalist=new ArrayList<Cartoons>();
+    private TB_CartoonsDao cartoonsDao;
+    private List datalist=new ArrayList<TB_Cartoons>();
     private GreenAdapter adapter;
     private LayoutInflater inflater;
     public static String CARTOON_NAME;
@@ -88,7 +88,7 @@ public class CartoonsListActivity extends BaseActivity {
         AdapterView.OnItemClickListener vsl=new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Cartoons cartoons= (Cartoons) adapter.getItem(position);
+                TB_Cartoons cartoons= (TB_Cartoons) adapter.getItem(position);
                 Intent intent=new Intent(CartoonsListActivity.this,CartoonsDetailActivity.class);
                 Bundle bundle=new Bundle();
                 bundle.putString(CartoonsDetailActivity.CARTOON_NAME,cartoons.getNAME());
@@ -115,13 +115,8 @@ public class CartoonsListActivity extends BaseActivity {
                new dataAsyncTask().execute();
 
                 if (listView.isRefreshing()){
-                    listView.postDelayed(new Runnable() {
-
-                        @Override
-                        public void run() {
+                    listView.postDelayed(()->{
                             listView.onRefreshComplete();
-
-                        }
                     }, 500);
                 }
             }
@@ -134,7 +129,7 @@ public class CartoonsListActivity extends BaseActivity {
         query=findViewById(R.id.search_bar);
         listView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         daoSession= EChatApp.getInstance().getDaoSession();
-        cartoonsDao=daoSession.getCartoonsDao();
+        cartoonsDao=daoSession.getTB_CartoonsDao();
         //查询数据进行适配
         datalist=cartoonsDao.queryBuilder()
                 .limit(CartoonsListActivity.ITEM_COUNT)
@@ -142,9 +137,9 @@ public class CartoonsListActivity extends BaseActivity {
 
         if (adapter==null){
             adapter=new GreenAdapter(this,datalist);
-            adapter.setService(new BaseArrayAdapter.IService<Cartoons>() {
+            adapter.setService(new BaseArrayAdapter.IService<TB_Cartoons>() {
                 @Override
-                public boolean add(Cartoons item, String query) {
+                public boolean add(TB_Cartoons item, String query) {
                     return item.getNAME().contains(query)
                             ||item.getHERO().contains(query)
                             ||item.getHEROINE().contains(query);
@@ -160,11 +155,11 @@ public class CartoonsListActivity extends BaseActivity {
 
         listView.setAdapter(adapter);
     }
-    public  class  dataAsyncTask extends AsyncTask<Void,Integer,List<Cartoons>>{
+    public  class  dataAsyncTask extends AsyncTask<Void,Integer,List<TB_Cartoons>>{
 
          @Override
-         protected List<Cartoons> doInBackground(Void... voids) {
-          final List<Cartoons> newdata =  cartoonsDao.queryBuilder()
+         protected List<TB_Cartoons> doInBackground(Void... voids) {
+          final List<TB_Cartoons> newdata =  cartoonsDao.queryBuilder()
                      .offset(batch*CartoonsListActivity.ITEM_COUNT)
                      .limit(20)
                      .list();
@@ -184,7 +179,7 @@ public class CartoonsListActivity extends BaseActivity {
          }
 
          @Override
-         protected void onPostExecute(List<Cartoons> cartoons) {
+         protected void onPostExecute(List<TB_Cartoons> cartoons) {
              //提交之前进行一些操作吧，加个bottomView,不需要runonuithread，因为这个方法和onprogressupdated一样运行在主线程中
                    if (cartoons==null||cartoons.size()==0){
                                TextView textView=new TextView(CartoonsListActivity.this);

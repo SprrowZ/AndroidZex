@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!-- 这个没啥用。。。-->
     <permission android:name="android.permission.STATUS_BAR_SERVICE" android:protectionLevel="signature" />
     <!--高德地图所需权限在下面-->
@@ -49,9 +50,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:label"
         >
-        <service android:name="com.amap.api.location.APSService"></service>
         <meta-data android:name="com.amap.api.v2.apikey"
-            android:value="c82623e86cead19bf4d82c4ca40079e4"/>"
+            android:value="09f608d1c15c69d760761fec208845ab"/>
         <provider
             android:authorities="com.example.myappsecond.MyFileProvider"
             android:name="android.support.v4.content.FileProvider"
@@ -61,6 +61,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
+        <service android:name="com.amap.api.location.APSService"></service>
+        <activity android:name=".activity.SplashActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity"
              android:configChanges="keyboard|orientation|screenSize"
              android:screenOrientation="portrait"
@@ -70,10 +81,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".FirstActivity">

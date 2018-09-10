@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.myappsecond.GreenDaos.Base.Cartoons;
+import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
 import com.example.myappsecond.R;
 import com.example.myappsecond.utils.DateUtils;
 import com.example.myappsecond.utils.ExtraUtil.Bean;
@@ -23,9 +23,9 @@ import java.util.List;
  */
 public class GreenAdapter extends BaseArrayAdapter {
     private LayoutInflater layoutInflater;
-    private List<Cartoons> list=new ArrayList<Cartoons>();
+    private List<TB_Cartoons> list=new ArrayList<TB_Cartoons>();
     private Bean bean=new Bean();
-    public GreenAdapter(Activity activity, List<Cartoons> list){
+    public GreenAdapter(Activity activity, List<TB_Cartoons> list){
         super(activity,0,list);
         this.list=list;
         layoutInflater=LayoutInflater.from(activity);
@@ -45,7 +45,7 @@ public class GreenAdapter extends BaseArrayAdapter {
         bean.set("超神学院","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532965757379&di=29cd7c4b00321a9c62729bfc5cef1499&imgtype=0&src=http%3A%2F%2Fimg.anzhuotan.com%2Fupic%2Fnews%2F2017-07-27%2F59798584f36e8.jpg");
     }
 
-    Cartoons cartoons=new Cartoons();
+    TB_Cartoons cartoons=new TB_Cartoons();
 
     @Override
     public int getCount() {

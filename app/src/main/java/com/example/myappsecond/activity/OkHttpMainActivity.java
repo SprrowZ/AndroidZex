@@ -79,11 +79,8 @@ public class OkHttpMainActivity extends BaseActivity {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                runOnUiThread(()->{
                         Toast.makeText(OkHttpMainActivity.this, "连接服务器失败", Toast.LENGTH_SHORT).show();
-                    }
                 });
             }
 
@@ -92,11 +89,8 @@ public class OkHttpMainActivity extends BaseActivity {
                 //读出来图片后显示出来
                 InputStream is = response.body().byteStream();
                 final Bitmap bitmap = BitmapFactory.decodeStream(is);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                runOnUiThread(()->{
                         iv.setImageBitmap(bitmap);//这里Bitmap.Options对图片进行压缩等操作，二次取样
-                    }
                 });
             }
         });
@@ -110,22 +104,17 @@ public class OkHttpMainActivity extends BaseActivity {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                runOnUiThread(()->{
                         Toast.makeText(OkHttpMainActivity.this, "连接服务器失败", Toast.LENGTH_SHORT).show();
-                    }
                 });
 
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                runOnUiThread(()->{
                         Toast.makeText(OkHttpMainActivity.this, "下载成功", Toast.LENGTH_SHORT).show();
-                    }
+
                 });
                 //******************追踪进度*********************
                 long total = request.body().contentLength();//文件的大小

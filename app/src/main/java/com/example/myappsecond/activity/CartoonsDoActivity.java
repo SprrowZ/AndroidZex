@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.EChatApp;
-import com.example.myappsecond.GreenDaos.Base.Cartoons;
-import com.example.myappsecond.GreenDaos.Base.CartoonsDao;
+import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
+import com.example.myappsecond.GreenDaos.Base.TB_CartoonsDao;
 import com.example.myappsecond.R;
 import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
 import com.example.myappsecond.utils.ToastUtils;
@@ -59,15 +59,15 @@ public class CartoonsDoActivity extends BaseActivity {
     TextView newData;
 
     private DaoSession daoSession;
-    private CartoonsDao cartoonsDao;
+    private TB_CartoonsDao cartoonsDao;
     private String name;
     private String isend;
     private String hero;
     private String heroine;
-    private Query<Cartoons> cartoonsQuery;
+    private Query<TB_Cartoons> cartoonsQuery;
     private StringBuilder res = new StringBuilder();
 
-    private List<Cartoons> dataList;
+    private List<TB_Cartoons> dataList;
     /**
      * 判断是隐藏数据还是显示数据
      */
@@ -85,9 +85,9 @@ public class CartoonsDoActivity extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            List<Cartoons> list = (List<Cartoons>) msg.obj;
+                            List<TB_Cartoons> list = (List<TB_Cartoons>) msg.obj;
                             res.delete(0, res.length());
-                            for (Cartoons cartoons : list) {
+                            for (TB_Cartoons cartoons : list) {
                                 res.append("NAME:" + cartoons.getNAME() + "\t\t\t\t\t\t");
                                 res.append("IS_END:" + cartoons.getIS_END() + "\n");
                                 res.append("HERO:" + cartoons.getHERO() + "\t\t\t\t\t\t");
@@ -106,7 +106,7 @@ public class CartoonsDoActivity extends BaseActivity {
         setContentView(R.layout.greendao_cartoons_do);
         ButterKnife.bind(this);
         daoSession = EChatApp.getInstance().getDaoSession();
-        cartoonsDao = daoSession.getCartoonsDao();
+        cartoonsDao = daoSession.getTB_CartoonsDao();
         initEvent();
     }
 
@@ -142,7 +142,7 @@ public class CartoonsDoActivity extends BaseActivity {
         //不能初始化的时候取值，因为这样为空，刚开始是空的。。。
         getTexts();
         if (name.length() != 0) {
-            Cartoons cartoons = new Cartoons();
+            TB_Cartoons cartoons = new TB_Cartoons();
             cartoons.setNAME(name);
             if (isend.equals("0")) {
                 cartoons.setIS_END(false);
@@ -217,11 +217,11 @@ public class CartoonsDoActivity extends BaseActivity {
                 if (cartoonsQuery != null) {
 
                 } else {
-                    cartoonsQuery = cartoonsDao.queryBuilder().orderAsc(CartoonsDao.Properties.NAME).build();
+                    cartoonsQuery = cartoonsDao.queryBuilder().orderAsc(TB_CartoonsDao.Properties.NAME).build();
                 }
 
                 dataList = cartoonsQuery.forCurrentThread().list();
-                for (Cartoons cartoons : dataList) {
+                for (TB_Cartoons cartoons : dataList) {
                     if (cartoons.getINSERT_TIME() == null) {
                         Date date = new Date(System.currentTimeMillis());
                         cartoons.setINSERT_TIME(date);
@@ -241,8 +241,8 @@ public class CartoonsDoActivity extends BaseActivity {
     private void delete() {
         //根据动漫名进行删除操作
         if (editId.getText().toString() != null) {
-            Cartoons cartoons = daoSession.getCartoonsDao().queryBuilder()
-                    .where(CartoonsDao.Properties.NAME.eq(editId.getText())).unique();
+            TB_Cartoons cartoons = daoSession.getTB_CartoonsDao().queryBuilder()
+                    .where(TB_CartoonsDao.Properties.NAME.eq(editId.getText())).unique();
             if (cartoons != null) {
                 cartoons.delete();
                 ToastUtils.shortMsg("数据已删除");
@@ -260,8 +260,8 @@ public class CartoonsDoActivity extends BaseActivity {
         getTexts();
         if (name.length() != 0 && isend.length() != 0
                 && hero.length() != 0 && heroine.length() != 0) {
-            Cartoons cartoons1 = daoSession.getCartoonsDao().queryBuilder()
-                    .where(CartoonsDao.Properties.NAME.eq(editId.getText())).unique();
+            TB_Cartoons cartoons1 = daoSession.getTB_CartoonsDao().queryBuilder()
+                    .where(TB_CartoonsDao.Properties.NAME.eq(editId.getText())).unique();
             cartoons1.setNAME(name);
             cartoons1.setIS_END(Boolean.valueOf(isend));
             cartoons1.setHERO(hero);

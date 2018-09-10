@@ -101,16 +101,12 @@ private Handler handler=new Handler();
     private void findDream() {
         textView=findViewById(R.id.textView);
         myview=getLayoutInflater().inflate(R.layout.dialog_password,null);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        textView.setOnClickListener(v -> {
                 dialog=new AlertDialog.Builder(MainActivity.this).create();
                 cancel=myview.findViewById(R.id.cancel);
                 dialog.setCancelable(false);
                 dialog.setView(myview);
                 dialog.show();
-
-            }
         });
         editText=myview.findViewById(R.id.editText);
         ensure=myview.findViewById(R.id.ensure);
@@ -135,12 +131,7 @@ private Handler handler=new Handler();
             }
         });
 
-
-
-
-        ensure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        ensure.setOnClickListener(v -> {
                 if (editText.getText().toString().equals(getString(R.string.password))){
                     Intent intent=new Intent(MainActivity.this, AnimMemoryActivity.class);
                     startActivity(intent);
@@ -154,12 +145,8 @@ private Handler handler=new Handler();
                 else{
                     wrong.setVisibility(View.VISIBLE);
                 }
-
-            }
         });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        cancel.setOnClickListener(v->{
                 //一个view只能有一个父布局，所以dialog消失，必须去掉myview，下次再重新加载
                 if (myview.getParent() != null) {
                     ((ViewGroup) myview.getParent()).removeAllViews();
@@ -167,18 +154,15 @@ private Handler handler=new Handler();
                 dialog.dismiss();
                 editText.setText("");
                 wrong.setVisibility(View.GONE);
-            }
+
         });
     }
 
 
     private void jump() {//广告页
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        handler.postDelayed(()->{
                 Intent intent=new Intent(MainActivity.this,helloActivity.class);
                 startActivity(intent);
-            }
         },1000);
 
     }

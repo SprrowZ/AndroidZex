@@ -26,11 +26,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myappsecond.project.animations.AnimMemoryActivity;
-import com.example.myappsecond.fragment.AddressFragment;
-import com.example.myappsecond.fragment.FrdFragment;
-import com.example.myappsecond.fragment.SettingsFragment;
-import com.example.myappsecond.fragment.WeixinFragment;
-import com.example.myappsecond.project.Viewpager.helloActivity;
+import com.example.myappsecond.activity.fragment.AddressFragment;
+import com.example.myappsecond.activity.fragment.FrdFragment;
+import com.example.myappsecond.activity.fragment.SettingsFragment;
+import com.example.myappsecond.activity.fragment.WeixinFragment;
+import com.example.myappsecond.project.viewpager.helloActivity;
 import com.example.myappsecond.utils.PermissionsUtil;
 
 import java.util.ArrayList;

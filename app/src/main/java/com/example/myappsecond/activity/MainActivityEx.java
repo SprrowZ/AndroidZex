@@ -3,6 +3,8 @@ package com.example.myappsecond.activity;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,21 +15,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.base.interfaces.JuheWeatherApi;
-import com.example.myappsecond.fragment.FrdFragment;
-import com.example.myappsecond.fragment.SettingsFragment;
-import com.example.myappsecond.fragment.WeixinFragment;
+import com.example.myappsecond.activity.fragment.FrdFragment;
+import com.example.myappsecond.activity.fragment.SettingsFragment;
+import com.example.myappsecond.activity.fragment.WeixinFragment;
 
+import com.example.myappsecond.project.dao.KeyValueMgr;
+import com.example.myappsecond.sdks.beans.WeatherBean;
 import com.example.myappsecond.sdks.gmap.AmapAPI;
 import com.example.myappsecond.sdks.gmap.AmapResult;
+import com.example.myappsecond.utils.DateUtils;
+import com.example.myappsecond.utils.ExtraUtil.Bean;
 import com.example.myappsecond.utils.ExtraUtil.Constant;
-import com.example.myappsecond.utils.ToastUtils;
-import com.example.myappsecond.utils.permission.PermissionUtils;
-import com.yanzhenjie.permission.Permission;
+import com.example.myappsecond.utils.JsonUtils;
 
 
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +49,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -46,10 +58,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by ZZG on 2018/8/12.
  */
 public class MainActivityEx extends BaseActivity {
-    private WeixinFragment weixinFragment;
-    private FrdFragment frdFragment;
-    private SettingsFragment settingsFragment;
-
+    private static  final  String TAG="MainActivityEx";
     @BindView(R.id.message) //被修饰的不能用private Or static修饰
     public LinearLayout message;
     @BindView(R.id.friend)
@@ -80,15 +89,38 @@ public class MainActivityEx extends BaseActivity {
 //    public boolean start(){
 //        return true;
 //    }
+    //地理位置
+    private AmapResult amapResult;
+    private WeixinFragment weixinFragment;
+    private FrdFragment frdFragment;
+    private SettingsFragment settingsFragment;
     private List<Fragment> mFragments;
     //fragment动态切换
     private FragmentManager manager = getSupportFragmentManager();
     private FragmentTransaction transaction = manager.beginTransaction();
+    Handler mapHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1://返回一次定位结果
+                    amapResult= (AmapResult) msg.obj;
+                    getWeather(amapResult);
+                    Log.i(TAG, "errorCode"+amapResult.getErrorCode());
+                    break;
+                case 11://LastKnowLocation
+                    amapResult= (AmapResult) msg.obj;
+                    getWeather(amapResult);
+                    Log.i(TAG, "LastKnowLocationCallback: "+amapResult.getErrorCode());
+            }
+            super.handleMessage(msg);
+        }
+    };
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ex);
         ButterKnife.bind(this);
+  //      EventBus.getDefault().register(this);
         init();
     }
 
@@ -106,17 +138,74 @@ public class MainActivityEx extends BaseActivity {
                 .hide(mFragments.get(1))
                 .hide(mFragments.get(2))
                 .show(mFragments.get(0)).commit();
-        getWeather();
+
+        //获取定位数据
+        AmapAPI.getInstance().initLocation(this,mapHandler);
     }
 
-    private void getWeather() {
-        new Thread(()->{
-            Retrofit retrofit=new Retrofit.Builder()
-                    .baseUrl(Constant.JUHE_WEATHER)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            Call<ResponseBody> call=
-        })
+    /**
+     * 获取天气信息
+     */
+    private void getWeather(AmapResult amapResult) {
+        if ("".equals(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME))){
+           KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
+        }
+        boolean needRefreshWeather=!DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
+        Log.i(TAG, "getWeather: "+String.valueOf(needRefreshWeather));
+        if (needRefreshWeather){
+            new Thread(()->{
+                KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
+                Retrofit retrofit=new Retrofit.Builder()
+                        .baseUrl(Constant.JUHE_WEATHER)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        //   .client(HttpLogger.getOkHttpClient())//增加日志拦截
+                        .build();
+                JuheWeatherApi weatherApi=retrofit.create(JuheWeatherApi.class);
+                Call<ResponseBody> call= weatherApi.getWeather(1,amapResult.getCity(),Constant.JUHE_WEATHER_KEY);
+                Log.i(TAG, "getWeather: weatherApi");
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+                            String result=response.body().string();//返回结果
+                            dealWeather(result);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.i(TAG, "onFailure:weatherApi ");
+                    }
+                });
+            }).start();
+        }else {
+            Log.i(TAG, "getWeather: 未满一天");
+        }
+  
+    }
+
+    private void dealWeather(String result) {
+        Log.i(TAG, "onResponse:weatherApi "+result);
+        JSONObject todayTemperature= null;
+        try {
+            todayTemperature = JsonUtils.toJSONObject(result)
+                    .getJSONObject(WeatherBean.WEATHER_RESULT)
+                    .getJSONObject(WeatherBean.WEATHER_TODAY);
+            if (todayTemperature!=null){
+                String temperature=todayTemperature.getString(WeatherBean.TEMPERATURE);
+                String weather=todayTemperature.getString(WeatherBean.WEATHER);
+                Log.i(TAG, "weatherApi: "+"temperature:"+temperature+"weather:"+weather);
+                Bean bean=new Bean();
+                bean.set(WeatherBean.TEMPERATURE,temperature);
+                bean.set(WeatherBean.WEATHER,weather);
+                //发送广播
+                EventBus.getDefault().postSticky(bean);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -190,5 +279,9 @@ public class MainActivityEx extends BaseActivity {
                 setSelect(2);
                 break;
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

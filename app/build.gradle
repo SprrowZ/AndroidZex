@@ -109,8 +109,6 @@ android {
 
     lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
         checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
         abortOnError false
     }
 
@@ -135,7 +133,7 @@ android.applicationVariants.all { variant ->
             resValue "string", "SCREENSHOT_ENANBLE", "1"
             resValue "string", "SANDBOX_WHITELIST", "122.40.130.74;122.18.157.193;122.19.141.46;83."
             resValue "string", "CAN_CHANGE_USER_CONFIG", "0"
-
+            buildConfigField  "String","ip","\"www.bilibili.com\""
             if (variant.buildType.name == "preview") {
                 outputFileName = "${rootProject.name}-${variant.buildType.name}" +
                         "-${variant.versionName}.apk"
@@ -147,10 +145,9 @@ android.applicationVariants.all { variant ->
             resValue "string", "ip_in", "http://10.248.113.15:8081"
             resValue "string", "app_name", "寻梦"
             resValue "string", "SCREENSHOT_ENANBLE", "0"
-            resValue "string", "SANDBOX_WHITELIST", "10.248.113.15;122.19.141.46;biom-mbo;biom-" +
-                    "mbo.icbc;gcms.gcms.icbc;cbms-web.icbc"
+            resValue "string", "SANDBOX_WHITELIST", "10.248.113.15;cbms-web.icbc"
             resValue "string", "CAN_CHANGE_USER_CONFIG", "1"
-
+            buildConfigField  "String","ip","\"www.bilibili.com\""
             outputFileName = "${rootProject.name}-${variant.buildType.name}" +
                     "-${variant.versionName}.apk"
             variant.packageApplication.outputDirectory = new File("./../apk")
@@ -163,32 +160,33 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
-    implementation "com.android.support:cardview-v7:$rootProject.ext.supportVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVer"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.supportVer"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportVer"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     implementation files('libs/commons-io-2.4.jar')
+    implementation files('libs/IKAnalyzer2012_u6.jar')//sqlite全文检索；
+    implementation files('libs/lucene-core-3.6.0.jar')//sqlite全文检索；
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'org.greenrobot:greendao:3.2.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okHttpVer"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okHttpVer"
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.github.GrenderG:Toasty:1.2.5'
     implementation project(':pulltorefresh')
-    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVer"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVer"
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    implementation "com.jakewharton:butterknife:$rootProject.ext.butterVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterVersion"
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterVer"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterVer"
     //6.0权限适配，机型适配
     implementation 'com.yanzhenjie:permission:2.0.0-rc11'
-    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-    //Gaode定位
-
+    implementation 'com.alibaba:fastjson:1.2.49'
     implementation 'com.amap.api:location:latest.integration'
 
 }

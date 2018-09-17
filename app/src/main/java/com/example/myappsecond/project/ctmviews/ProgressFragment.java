@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myappsecond.R;
-import com.example.myappsecond.fragment.BaseFragment;
+import com.example.myappsecond.activity.fragment.BaseFragment;
 
 /**
  * Created by ZZG on 2018/8/12.

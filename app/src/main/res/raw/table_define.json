@@ -1,0 +1,2873 @@
+[
+  {
+    "table": "user_friends",
+    "comment": "用户好友表",
+    "key": "USER_CODE",
+    "cols": [
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_IMG_SRC",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_SHORT_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_EN_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_SEX",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_POST",
+        "type": "TEXT"
+      },
+      {
+        "name": "SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_OFFICE_PHONE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_MOBILE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_EMAIL",
+        "type": "TEXT"
+      },
+      {
+        "name": "NICK_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "HIDE_PEER_MSG",
+        "type": "TEXT"
+      },
+      {
+        "name": "BLACKLIST",
+        "type": "TEXT"
+      },
+      {
+        "name": "TOP_CHAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "STARRED_FRIEND",
+        "type": "TEXT"
+      },
+      {
+        "name": "HIDE_MY_MSG",
+        "type": "TEXT"
+      },
+      {
+        "name": "NEW_MSG_NOTIFY",
+        "type": "TEXT"
+      },
+      {
+        "name": "UF_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "APPLY_STATE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "APPLY_MSG",
+        "type": "TEXT"
+      },
+      {
+        "name": "UNREAD",
+        "type": "INTEGER"
+      },
+      {
+        "name": "USER_ROOM",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_WORK_NUM",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CURRENT_EMAIL",
+        /*此字段表示用户当前绑定邮箱*/
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "user_good_friends",
+    "comment": "用户好友表",
+    "key": "FRIEND_USER_CODE",
+    "cols": [
+      {
+        "name": "FRIEND_USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_IMG_SRC",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_SHORT_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_EN_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_SEX",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_POST",
+        "type": "TEXT"
+      },
+      {
+        "name": "SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_OFFICE_PHONE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_MOBILE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_EMAIL",
+        "type": "TEXT"
+      },
+      {
+        "name": "NICK_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "HIDE_PEER_MSG",
+        "type": "TEXT"
+      },
+      {
+        "name": "BLACKLIST",
+        "type": "TEXT"
+      },
+      {
+        "name": "TOP_CHAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "STARRED_FRIEND",
+        "type": "TEXT"
+      },
+      {
+        "name": "HIDE_MY_MSG",
+        "type": "TEXT"
+      },
+      {
+        "name": "NEW_MSG_NOTIFY",
+        "type": "TEXT"
+      },
+      {
+        "name": "UF_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "APPLY_STATE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "APPLY_MSG",
+        "type": "TEXT"
+      },
+      {
+        "name": "UNREAD",
+        "type": "INTEGER"
+      },
+      {
+        "name": "USER_ROOM",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_WORK_NUM",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CURRENT_EMAIL",
+        /*此字段表示用户当前绑定邮箱*/
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_FULL_NAME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "user_conversation",
+    "comment": "用户会话表",
+    "key": "CHATTER",
+    "cols": [
+      {
+        "name": "CHATTER",
+        "type": "char(40)"
+      },
+      {
+        "name": "CHATTER_NAME",
+        "type": "char(200)"
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "type": "INTEGER"
+      },
+      {
+        "name": "LAST_READ_TIME",
+        "type": "INTEGER"
+      },
+      {
+        "name": "UNREAD_COUNT",
+        "type": "INTEGER"
+      },
+      {
+        "name": "CHATTER_BACKGROUND",
+        "type": "TEXT"
+      },
+      {
+        "name": "CHATTER_DRAFT",
+        "type": "TEXT"
+      },
+      {
+        "name": "redFlag",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "user_message",
+    "comment": "用户聊天消息表",
+    "key": "LOCAL_MESSAGE_ID",
+    "fts": "FTS4",
+    "cols": [
+      {
+        "name": "LOCAL_MESSAGE_ID",
+        "type": "char(40)"
+      },
+      {
+        "name": "FROM_ID",
+        "type": "char(200)"
+      },
+      {
+        "name": "LISTENED",
+        "type": "TEXT"
+      },
+      {
+        "name": "TO_ID",
+        "type": "char(200)"
+      },
+      {
+        "name": "CHATTER",
+        "type": "char(200)"
+      },
+      {
+        "name": "BODY",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME_MILLIS",
+        "type": "INTEGER"
+      },
+      {
+        "name": "SERVER_MESSAGE_ID",
+        "type": "char(40)"
+      },
+      {
+        "name": "FROM_NICK_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "TO_NICK_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "isread",//是否打开过对话
+        "type": "INTEGER"
+        //0为未打开，1为已打开，此字段为标志这条消息所属会话有没有打开，用于计算红点 2018-04-18；
+        //如果被打开了，就会被置为1，用在消息被撤回，如果未读，要把红点去掉；
+      },
+      {
+        "name": "unread_count",
+        //对应会话中的未读数【单人：已读未读；多人：*人未读，全部已读】；
+        "type": "TEXT"
+      },
+      {
+        "name": "read_status",//
+        //登陆人相对于此条消息是否已读,避免多次告诉消息服务器我读了这条消息，让服务器告诉对方我读了，此字段逻辑主要是为了减轻服务端并发压力；
+        "type": "TEXT"
+      },
+      {
+        "name": "read_switch",
+        //是否已读的开关；
+        "type": "TEXT"
+      },
+      {
+        "name": "send_status",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "sy_key_value",
+    "comment": "系统常用的KEY-VALUE表",
+    "key": "ITEM_KEY",
+    "cols": [
+      {
+        "name": "ITEM_KEY",
+        "type": "TEXT"
+      },
+      {
+        "name": "ITEM_VALUE",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "org_groups",
+    "comment": "系统群组表",
+    "key": "GROUP_CODE",
+    "fts": "fts4",
+    "cols": [
+      {
+        "name": "GROUP_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "GU_ALERT",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "TOP_CHAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "MEMBERLIST",
+        "type": "TEXT"
+      },
+      {
+        "name": "ADMINS",
+        "type": "TEXT"
+      },
+      {
+        "name": "ANAMES",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_MEMO",
+        "type": "TEXT"
+      },
+      {
+        "name": "GU_PUBLISHER",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_USER",
+        "type": "TEXT"
+      },
+      {
+        "name": "IS_PUBLIC",
+        "type": "TEXT"
+      },
+      {
+        "name": "MAX_USERS",
+        "type": "TEXT"
+      },
+      {
+        "name": "ALLOW_INVITES",
+        "type": "TEXT"
+      },
+      {
+        "name": "MEMBERS_ONLY",
+        "type": "TEXT"
+      },
+      {
+        "name": "EN_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "MTYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "IMG_AUTO",
+        "type": "TEXT"
+      },
+      {
+        "name": "ACCESS_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "MEMBER_COUNT",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_IMG",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_SHOW",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "colleague_feed",
+    "comment": "分享表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "_TEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "IMAGES",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_IMAGES",
+        "type": "TEXT"
+      },
+      {
+        "name": "POSITION",
+        "type": "TEXT"
+      },
+      {
+        "name": "LINK",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "RICHTEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "UN_SEND",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEND_STATE",
+        "type": "TEXT"
+      },
+      {
+        "name": "VISIBLE_RANGE",
+        "type": "TEXT"
+      },
+      {
+        "name": "VISITOR_GROUPS",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "colleague_like",
+    "comment": "分享点赞表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "HAS_SYNC",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "colleague_comment",
+    "comment": "分享评论表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "_USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "_USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "_TO_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "_TO_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "HAS_SYNC",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "colleague_cover",
+    "comment": "分享封面信息表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "IMAGE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_MODIFY",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "colleague_message",
+    "comment": "评论点赞信息表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "ACTION",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_IMAGE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_TEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "FROM_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FROM_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "COMMENT_TEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "type",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "org_address_list",
+    "comment": "机构通讯录表",
+    "key": "ID",
+    "fts": "fts4",
+    "cols": [
+      {
+        "name": "SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "PID",
+        "type": "TEXT"
+      },
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "OTYPE",
+        "type": "INTEGER"
+      },
+      {
+        "name": "ODEPT",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "UF_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEX",
+        "type": "TEXT"
+      },
+      {
+        "name": "EMAIL",
+        "type": "TEXT"
+      },
+      {
+        "name": "OPHONE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "SNAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "POST",
+        "type": "TEXT"
+      },
+      {
+        "name": "ENAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CATEGORY_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "IS_ATTENTION_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEC_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "OADDR",
+        "type": "TEXT"
+      },
+      {
+        "name": "CONTACT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SSIC_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "OROME",
+        "type": "TEXT"
+      },
+      {
+        "name": "BLACKLIST",
+        "type": "TEXT"
+      },
+      {
+        "name": "NICK_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "HPHONE",
+        "type": "TEXT"
+      },
+      {
+        "name": "MOBILE",
+        "type": "TEXT"
+      },
+      {
+        "name": "TOP_CHAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "NEW_MSG_NOTIFY",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_IMG_SRC",
+        "type": "TEXT"
+      },
+      {
+        "name": "IS_NEED_SYNC",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "PERMISSION_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_FULL_NAME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "org_address_list_private",
+    "comment": "通讯录保密数据",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "HPHONE",
+        "type": "TEXT"
+      },
+      {
+        "name": "MOBILE",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "CC_OPEN_APP_DEF",
+    "comment": "应用定义及当前用户设置",
+    "fts": "fts4",
+    "key": "APP_ID",
+    "cols": [
+      {
+        "name": "PORTAL_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "BELONG_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "ACTION_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "APP_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "APP_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "SETTING_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "ACCESS_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "IMG",
+        "type": "TEXT"
+      },
+      {
+        "name": "APP_DESC",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU",
+        "type": "TEXT"
+      },
+      {
+        "name": "ACCESS_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "APP_SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTICE_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "AU_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "ENABLE_STRATEGY",
+        "type": "TEXT"
+      },
+      {
+        "name": "TOP_CHAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "NEW_MSG_NOTIFY",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "INTEGER"
+      },
+      {
+        "name": "HIDE_CHAT_INPUT",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_POS",
+        "type": "TEXT"
+      },
+      {
+        "name": "LINK_CAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_NUM",
+        "type": "INTEGER"
+      },
+      {
+        "name": "HIDE_HEADER",
+        "type": "INTEGER"
+      },
+      {
+        "name": "MORE_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "DISPLAY_SHARE",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEFAULT_ENABLED",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_ENABLED",
+        "type": "TEXT"
+      },
+      {
+        "name": "COL",
+        "type": "TEXT"
+      },
+      {
+        "name": "AUTHOR_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "AUTHOR_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "APP_CATEGORY",
+        "type": "TEXT"
+      },
+      {
+        "name": "APP_SCOPE_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "EXT_CONFIG",
+        "type": "TEXT"
+      },
+      {
+        "name": "DISABLE_STRATEGY",
+        "type": "TEXT"
+      },
+      {
+        "name": "ORG_SHORT_NAME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "address_tags",
+    "comment": "标签",
+    "key": "TAG_ID",
+    "cols": [
+      {
+        "name": "TAG_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAG_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAG_NAME_ALIAS",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODES",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAMES",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "type": "INTEGER"
+      },
+      {
+        "name": "USER_EMAILS",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "user_tags",
+    //改版标签
+    "comment": "标签",
+    "key": "TAG_ID",
+    "cols": [
+      {
+        "name": "TAG_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAG_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAG_NAME_ALIAS",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAG_REF_COUNT",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "user_tags_relation",
+    //改版标签人员表
+    "comment": "标签关系表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAG_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "favorites",
+    "comment": "收藏表",
+    "key": "CLIENT_ID",
+    "fts": "fts4",
+    "cols": [
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "type": "INTEGER"
+      },
+      {
+        "name": "OWNER",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "HAS_SYNC",
+        //是否同步成功1成功 2失败
+        "type": "TEXT"
+      },
+      {
+        "name": "UF_FLAG",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "tasks",
+    "comment": "任务圈",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CONTENT",
+        //改
+        "type": "TEXT"
+      },
+      {
+        "name": "COVER_IMAGE_ID",
+        //改
+        "type": "TEXT"
+      },
+      {
+        "name": "POSITION",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "STATUS",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEND_STATE",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_FEED_MODIFIED",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_NOTICE",
+        "type": "TEXT"
+      },
+      {
+        "name": "ICON_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "COVER_IMAGE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "RED_FLAG",
+        /*新分享的红点数，2017/3/29改为存放新分享的未读数*/
+        "type": "TEXT"
+      },
+      {
+        "name": "RED_DETAIL_FLAG",
+        /*工作圈详情被修改的未读数*/
+        "type": "TEXT"
+      },
+      {
+        "name": "UNREAD",
+        /*评论点赞未读数*/
+        "type": "TEXT"
+      },
+      {
+        "name": "ADD_MEMBERS",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "task_member",
+    "comment": "任务圈成员",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TASK_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "MEMBER_CODE",
+        //MEMBER_CODE//改
+        "type": "TEXT"
+      },
+      {
+        "name": "MEMBER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "MEMBER_TYPE",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "task_feed",
+    "comment": "任务圈分享",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TASK_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "IMAGES",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_IMAGES",
+        "type": "TEXT"
+      },
+      {
+        "name": "POSITION",
+        "type": "TEXT"
+      },
+      {
+        "name": "LINK",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILES",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "RICHTEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "UN_SEND",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEND_STATE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_VIDEO_BEAN",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "share_feed",
+    "comment": "分享",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TASK_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "IMAGES",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_IMAGES",
+        "type": "TEXT"
+      },
+      {
+        "name": "POSITION",
+        "type": "TEXT"
+      },
+      {
+        "name": "LINK",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILES",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "LAST_MODIFIED",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "RICHTEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "UN_SEND",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEND_STATE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "task_message",
+    "comment": "任务评论点赞",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TASK_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "ACTION",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_IMAGE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FEED_TEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "FROM_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FROM_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "COMMENT_TEXT",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "favorites_tag",
+    "comment": "收藏标签表",
+    "key": "CLIENT_ID",
+    "cols": [
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "favorites_tag_relation",
+    "comment": "收藏-标签关联表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FAVORITES_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FAVORITES_TAG_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAG_ACTION",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "red_flag_event",
+    "comment": "记录哪些应用需要显示小红点",
+    "key": "APP_CODE",
+    "cols": [
+      {
+        "name": "APP_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "UNREAD",
+        "type": "INTEGER"
+      },
+      {
+        "name": "RED_FLAG",
+        "type": "INTEGER"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA",
+        "type": "TEXT"
+      },
+      {
+        "name": "CATEGORY",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "org_address_attention_org",
+    "comment": "组织通讯录关注的机构",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "lastModifyTime",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_NAME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "serv_def",
+    "comment": "服务定义",
+    "key": "key",
+    "cols": [
+      {
+        "name": "key",
+        "type": "TEXT"
+      },
+      {
+        "name": "digest",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "calendar",
+    "comment": "日程",
+    "key": "CAL_ID",
+    "cols": [
+      {
+        "name": "AUDIO_NUMBER",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_EMERGENCY",
+        "type": "INTEGER"
+      },
+      {
+        "name": "CAL_EMERGENCY__NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_END_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_REMIND",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_REMIND__NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_START_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_STATE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_TITLE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_HTML",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_HTML_DATA",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_JSON",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_PHOTO",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEVICE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "date",
+        "type": "TEXT"
+      },
+      {
+        "name": "DONE_USERS",
+        "type": "TEXT"
+      },
+      {
+        "name": "DONE_USERS_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "FULL_DAY",
+        "type": "TEXT"
+      },
+      {
+        "name": "IMG_NUMBER",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTICE_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME_DEVICE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME_DEVICE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_USER",
+        "type": "TEXT"
+      },
+      {
+        "name": "_PK_",
+        "type": "TEXT"
+      },
+      {
+        "name": "clientId",
+        "type": "TEXT"
+      },
+      {
+        "name": "HAS_SYNC",
+        "type": "TEXT"
+      },
+      {
+        "name": "UF_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_LOCATION",
+        "type": "TEXT"
+      },
+      {
+        "name": "AGENT_USER",
+        "type": "TEXT"
+      },
+      {
+        "name": "AGENT_USER__NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_CLASS",//1: 我的日程 2:代填日程 3:领导日程活动安排
+        "type": "TEXT"
+      },
+      {
+        "name": "S_USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_MODEL",//1.会议  2.活动  3.出差 4 休假
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "calendar_notice",
+    "comment": "日程通知",
+    "key": "CLIENT_ID",
+    "cols": [
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CALNOTICE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_TITLE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_SUMMARY",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_POSITION",
+        "type": "TEXT"
+      },
+      {
+        "name": "C_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "E_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "F_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "F_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FULL_DAY",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_POST",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_DEPT",
+        "type": "TEXT"
+      },
+      {
+        "name": "CAL_LINK",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME_STAMP",
+        "type": "TEXT"
+      },
+      {
+        "name": "DONE_USERS_NAME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "user_mail_bind",
+    "comment": "用户绑定邮箱",
+    "key": "LOGIN_NAME",
+    "cols": [
+      {
+        "name": "UM_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOGIN_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "MAIL_SERVER",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEFAULT_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "UN_BIND",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "cc_open_mail",
+    "comment": "邮件基本信息",
+    "key": "MAIL_ID",
+    //    "indexs": {
+    //      "columns": "MAIL_UID,FOLDER,RECEIVER",
+    //      "name": "mail_uid_folder_rece"
+    //    },
+    "cols": [
+      {
+        "name": "MAIL_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SUBJECT",
+        "type": "TEXT"
+      },
+      {
+        "name": "SUMMARY",
+        "type": "TEXT"
+      },
+      {
+        "name": "MAIL_FROM",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEND_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "MAIL_TO",
+        "type": "TEXT"
+      },
+      {
+        "name": "CC",
+        "type": "TEXT"
+      },
+      {
+        "name": "BCC",
+        "type": "TEXT"
+      },
+      {
+        "name": "FOLDER",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "RECEIVER",
+        "type": "TEXT"
+      },
+      {
+        "name": "RECEIVE_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "RECEIVE_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "PRE_MAIL_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SEND_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "ERROR_DESC",
+        "type": "TEXT"
+      },
+      {
+        "name": "OWNER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "RECEIVE_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "OPEN_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "MESSAGE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "R_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "F_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "OPERATION_FLAG",
+        // 邮件（0.没有操作 1.回复 2.转发）
+        "type": "TEXT"
+      },
+      {
+        "name": "IMPORTANCE",
+        //是否重要邮件
+        "type": "TEXT"
+      },
+      {
+        "name": "SSIC_ID",
+        //认证号，取用户头像之用
+        "type": "TEXT"
+      },
+      {
+        "name": "REPLY_SIGN",
+        //等于1表示需要回执
+        "type": "TEXT"
+      },
+      {
+        "name": "REPLY_MAIL_ID",
+        //如果是回复邮件则需要提供这个字段
+        "type": "TEXT"
+      },
+      {
+        "name": "MAIL_UID",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "cc_open_mail_content",
+    "comment": "邮件正文",
+    "key": "CID",
+    "cols": [
+      {
+        "name": "CID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CONTENT_MIME_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "MAIL_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SORT",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "cc_open_mail_folder",
+    "comment": "邮件目录",
+    "key": "FID",
+    "cols": [
+      {
+        "name": "FID",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FOLDER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "sy_comm_file",
+    "comment": "文件",
+    "key": "FILE_ID",
+    "cols": [
+      {
+        "name": "FILE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_FILE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DIS_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_PATH",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_SIZE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_MTYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_MEMO",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_SORT",
+        "type": "INTEGER"
+      },
+      {
+        "name": "CLIENT_SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_DATA_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_CAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "ITEM_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_USER",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_UNAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_DEPT",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_DNAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_CHECKSUM",
+        "type": "TEXT"
+      },
+      {
+        "name": "ORIG_FILE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_SATIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "cc_open_app_category",
+    "comment": "订阅号分类表",
+    "key": "CATEGORY_ID",
+    "cols": [
+      {
+        "name": "CATEGORY_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CATEGORY_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DESCRIBE",
+        "type": "TEXT"
+      },
+      {
+        "name": "SORT",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_USER",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "CC_OPEN_NOTE_FOLDER",
+    "comment": "笔记文件夹列表",
+    "key": "FOLDER_ID",
+    "cols": [
+      {
+        "name": "FOLDER_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "PARENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FOLDER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_USER",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "VERSION",
+        "type": "INTEGER"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "INTEGER"
+      },
+      {
+        "name": "HAS_SYNC",
+        "type": "INTEGER"
+      },
+      {
+        "name": "CLIENT_SMTIME",
+        "type": "INTEGER"
+      }
+    ]
+  },
+  {
+    "table": "CC_OPEN_NOTE",
+    "comment": "笔记列表",
+    "key": "NOTE_ID",
+    "cols": [
+      {
+        "name": "FOLDER_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTE_TITLE",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTE_SUMMARY",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTE_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTE_DATA",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTE_CONTENT_HTML",
+        "type": "TEXT"
+      },
+      {
+        "name": "NOTE_THUM_IMAGE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_USER",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "VERSION",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "HAS_SYNC",
+        "type": "TEXT"
+      },
+      {
+        "name": "CLIENT_SMTIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "finished_todo",
+    "comment": "待办完成",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "todo_notice",
+    "comment": "流程通知",
+    "key": "CLIENT_ID",
+    "cols": [
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "REMIND_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "REMIND_HEADER",
+        "type": "TEXT"
+      },
+      {
+        "name": "REMIND_TITLE",
+        "type": "TEXT"
+      },
+      {
+        "name": "REMIND_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "F_USERCODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "F_USERNAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "D_USERCODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "D_USERNAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "D_USERPOST",
+        "type": "TEXT"
+      },
+      {
+        "name": "D_DEPTCODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "D_DEPTNAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "MIND_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "REMIND_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "REMIND_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME_STAMP",
+        "type": "INTEGER"
+      }
+    ]
+  },
+  {
+    "table": "news_channel",
+    "comment": "网讯栏目",
+    "key": "id",
+    "cols": [
+      {
+        "name": "id",
+        "type": "TEXT"
+      },
+      {
+        "name": "sort",
+        "type": "INTEGER"
+      },
+      {
+        "name": "title",
+        "type": "TEXT"
+      },
+      {
+        "name": "url",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "appcode",
+        "type": "TEXT"
+      },
+      {
+        "name": "isadd",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "FULL_SEARCH_TEST",
+    "comment": "全局搜索测试表",
+    "key": "id",
+    "fts": "fts4",
+    "cols": [
+      {
+        "name": "id",
+        "type": "TEXT"
+      },
+      {
+        "name": "name",
+        "type": "TEXT"
+      },
+      {
+        "name": "title",
+        "type": "TEXT"
+      },
+      {
+        "name": "content",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "FILE_CACHE",
+    "comment": "app文件缓存表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERVER_FILEID",
+        "type": "TEXT"
+      },
+      {
+        "name": "SERV_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "DATA_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "FILE_SIZE",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "PATH",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    //需求更改，弃用
+    "table": "flow_category",
+    "comment": "流程分类",
+    "key": "MENU_ID",
+    "cols": [
+      {
+        "name": "MENU_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_OWNER",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_PARENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_TITLE",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_APPURL",
+        "type": "TEXT"
+      },
+      {
+        "name": "FLAG",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_DESC",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_COUNT",
+        "type": "TEXT"
+      },
+      {
+        "name": "TAP_COUNT",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "flow_comm",
+    "comment": "常用流程",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_APP_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_TITLE",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_DESC",
+        "type": "TEXT"
+      },
+      {
+        "name": "MENU_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "APP_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "CMPY_CODE",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "flow_mind",
+    "comment": "签署意见",
+    "key": "CLIENT_ID",
+    "cols": [
+      {
+        "name": "CLIENT_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "MIND_CONTENT",
+        "type": "TEXT"
+      },
+      {
+        "name": "TIME_STAMP",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "cc_video_conference",
+    "comment": "视频会议",
+    "key": "CONFERENCE_ID",
+    "cols": [
+      {
+        "name": "CONFERENCE_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "CONFERENCE_TYPE",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_START_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_END_TIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_FINISHED",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "rich_editor_file",
+    "comment": "富文本中资源文件管理表",
+    "key": "ID",
+    "cols": [
+      {
+        "name": "ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "LOCAL_PATH",
+        "type": "TEXT"
+      },
+      {
+        "name": "REMOTE_URL",
+        "type": "TEXT"
+      },
+      {
+        "name": "EDITOR_ID",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "table": "user_group_memberlist",
+    "comment": "群组人员表",
+    "key": "GU_ID",
+    "cols": [
+      {
+        "name": "GU_ID",
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_CODE",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "DEPT_NAME",
+        "type": "TEXT"
+      },
+      {
+        "name": "USER_POST",
+        "type": "TEXT"
+      },
+      {
+        "name": "GU_ADMIN",
+        //管理员 1是管理员 2创建者 3普通用户
+        "type": "TEXT"
+      },
+      {
+        "name": "GU_ALERT",
+        //新消息提醒
+        "type": "TEXT"
+      },
+      {
+        "name": "TOP_CHAT",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_FLAG",
+        //假删除 1显示 2删除
+        "type": "TEXT"
+      },
+      {
+        "name": "GROUP_SHOW",
+        //是否保存到常用群组
+        "type": "TEXT"
+      },
+      {
+        "name": "S_MTIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "S_ATIME",
+        "type": "TEXT"
+      },
+      {
+        "name": "SORT",
+        //越小排的越靠前
+        "type": "INTEGER"
+      },
+      {
+        "name": "DEPT_SORT",
+        //群成员列表
+        "type": "INTEGER"
+      },
+      {
+        "name": "DEPT_FULL_NAME",
+        "type": "INTEGER"
+      }
+    ]
+  },
+  {
+    "table": "user_protal_channel",
+    "comment": "机构门户频道表",
+    "key": "CHANNEL_ID",
+    "cols": [
+      {"name": "CHANNEL_ID","type": "TEXT"},
+      {"name": "CHANNEL_CODE","type": "TEXT"},
+      {"name": "CHANNEL_NAME","type": "TEXT"},
+      {"name": "PORTAL_ID","type": "TEXT"},
+      {"name": "S_ATIME","type": "TEXT"},
+      {"name": "S_MTIME","type": "TEXT"},
+      {"name": "SORT","type": "INTEGER"},
+      {"name": "ISADD","type": "TEXT"},
+      {"name": "NEWS_LIST","type": "TEXT"},
+      {"name": "DATA_TYPE","type": "TEXT"},
+      {"name": "ATTENTION_FLAG","type": "TEXT"}
+    ]
+  }
+]

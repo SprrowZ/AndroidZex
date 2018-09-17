@@ -1,11 +1,12 @@
 package com.example.myappsecond.sdks.gmap;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by ZZG on 2018/9/7.
  */
-public class AmapResult {
+public class AmapResult implements Serializable {
     private  String LocationType;
     private  String longitude;
     private String latitude;

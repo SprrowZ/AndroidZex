@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.myappsecond.GreenDaos.Base.DaoMaster;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
+import com.example.myappsecond.utils.EchatAppUtil;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.greendao.database.Database;
@@ -29,6 +30,8 @@ public class EChatApp extends Application{
         instance = this;//赋值
         mContext = getApplicationContext();
         init();
+        //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
+        EchatAppUtil.setContext(this);
     }
                //GreenDao初始化
 

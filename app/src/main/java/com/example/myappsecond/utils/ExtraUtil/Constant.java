@@ -1,9 +1,10 @@
 package com.example.myappsecond.utils.ExtraUtil;
 
 /**
- * Created by jinyunyang on 15/3/5.
+ * 全局变量
  */
 public class Constant {
+    public static  final String FILE_PROVIDER="com.example.myappsecond.fileprovider";
     /**
      * 回车符
      */
@@ -17,9 +18,9 @@ public class Constant {
 
     public static final String YES = "1";
     public static final String NO = "0";
-
     public static final int YES_INT = 1;
     public static final int NO_INT = 2;
-    public static final String JUHE_WEATHER="http://v.juhe.cn/weather/index";
+    public static final String WEATHER_UPDATE_TIME="WEATHER_UPDATE_TIME";
+    public static final String JUHE_WEATHER="http://v.juhe.cn/";
     public static final String JUHE_WEATHER_KEY="3444d95f001d7765de768376c3a2d870";
 }

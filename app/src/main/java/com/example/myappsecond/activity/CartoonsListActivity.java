@@ -21,8 +21,8 @@ import com.example.myappsecond.GreenDaos.Base.DaoSession;
 
 import com.example.myappsecond.GreenDaos.Base.TB_CartoonsDao;
 import com.example.myappsecond.R;
-import com.example.myappsecond.adapter.BaseArrayAdapter;
-import com.example.myappsecond.adapter.GreenAdapter;
+import com.example.myappsecond.activity.adapter.BaseArrayAdapter;
+import com.example.myappsecond.activity.adapter.GreenAdapter;
 import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;

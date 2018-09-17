@@ -1,10 +1,13 @@
 package com.example.myappsecond.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.os.StatFs;
+
+import com.example.myappsecond.EChatApp;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -42,11 +45,11 @@ public class SdHelper {
        storagePath=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator;
        publicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+File.separator;
        //app私有目录
-       external=EchatAppUtil.getAppContext().getExternalFilesDir(null)+File.separator;
+       external= EChatApp.getInstance().getApplicationContext().getExternalFilesDir(null)+File.separator;
        privateData=Environment.getDataDirectory()+File.separator;
        rootDirectory=Environment.getRootDirectory()+File.separator;
        //app私有缓存
-       external=EchatAppUtil.getAppContext().getExternalCacheDir()+File.separator;
+       externalCache=EChatApp.getInstance().getApplicationContext().getExternalCacheDir()+File.separator;
     }
    public  static String getAppExternal(){
         return  external;
@@ -83,7 +86,7 @@ public class SdHelper {
     public static long getSDCardFreeSize() {
         if (isSDCardMounted()) {
             StatFs fs = new StatFs(getSDCardBaseDir());
-            long count = fs.getFreeBlocksLong();
+            @SuppressLint("NewApi") long count = fs.getFreeBlocksLong();
             long size = fs.getBlockSizeLong();
             return count * size / 1024 / 1024;
         }

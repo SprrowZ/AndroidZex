@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.myappsecond.fragment.HttpT1Fragment;
+import com.example.myappsecond.activity.fragment.HttpT1Fragment;
 import com.example.myappsecond.base.interfaces.GithubApi;
 
 import java.io.IOException;

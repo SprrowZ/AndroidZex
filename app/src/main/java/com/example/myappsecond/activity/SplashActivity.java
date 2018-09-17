@@ -18,6 +18,8 @@ import com.example.myappsecond.utils.ToastUtils;
 import com.example.myappsecond.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,8 +28,6 @@ import butterknife.ButterKnife;
  */
 public class SplashActivity extends BaseActivity {
     private static  final  String TAG="SplashActivity";
-    //地理位置
-    private AmapResult amapResult;
     @BindView(R.id.image)
      ImageView image;
     Handler mHandler=new Handler(){
@@ -41,16 +41,7 @@ public class SplashActivity extends BaseActivity {
             }
         }
     };
-    Handler mapHandler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case 1:
-                    Log.i(TAG, "handleMessage: ");
-            }
-            super.handleMessage(msg);
-        }
-    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,10 +54,7 @@ public class SplashActivity extends BaseActivity {
         //安装申请权限
         authority();
         Glide.with(this).load(R.drawable.ling).into(image);
-        //获取定位数据
-        amapResult=  AmapAPI.getInstance().initLocation(this,mapHandler);
-        Log.i("location", "init: "+ amapResult.getAddress());
-        ToastUtils.shortMsg(amapResult.getAddress());
+
     }
 
     private void authority() {

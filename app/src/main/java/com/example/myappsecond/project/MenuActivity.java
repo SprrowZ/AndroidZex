@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.myappsecond.BaseActivity;
-import com.example.myappsecond.fragment.MenuFragment;
+import com.example.myappsecond.activity.fragment.MenuFragment;
 import com.example.myappsecond.R;
 
 /**

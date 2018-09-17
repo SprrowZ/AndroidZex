@@ -25,6 +25,8 @@ import com.example.myappsecond.utils.ToastUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -396,7 +398,22 @@ public class BaseActivity extends FragmentActivity {
         return result;
     }
 
-
+    /**
+     * 记录所有活动的Activity
+     */
+    private static final List<BaseActivity> mActivities = new LinkedList<BaseActivity>();
+    /**
+     * 关闭所有Activity
+     */
+    public static void finishAll() {
+        List<BaseActivity> copy;
+        synchronized (mActivities) {
+            copy = new ArrayList<BaseActivity>(mActivities);
+        }
+        for (BaseActivity activity : copy) {
+            activity.finish();
+        }
+    }
 
 
 

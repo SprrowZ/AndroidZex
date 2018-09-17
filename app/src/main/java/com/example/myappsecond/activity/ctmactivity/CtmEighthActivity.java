@@ -5,9 +5,9 @@ import android.support.annotation.Nullable;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
-import com.example.myappsecond.fragment.CtmViewFragment;
-import com.example.myappsecond.fragment.DistortionFragment;
-import com.example.myappsecond.fragment.TelescopeFragment;
+import com.example.myappsecond.activity.fragment.CtmViewFragment;
+import com.example.myappsecond.activity.fragment.DistortionFragment;
+import com.example.myappsecond.activity.fragment.TelescopeFragment;
 
 /**
  * Created by ZZG on 2018/3/8.

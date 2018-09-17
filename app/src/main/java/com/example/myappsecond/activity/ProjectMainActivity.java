@@ -18,7 +18,7 @@ import com.example.myappsecond.project.MenuActivity;
 import com.example.myappsecond.project.SlidingConflict;
 import com.example.myappsecond.project.animations.AnimShapeActivity;
 import com.example.myappsecond.project.dialog.CommonDialogActivity;
-import com.example.myappsecond.project.sqlLiteDatabase.DBActivity;
+import com.example.myappsecond.project.sqlDemo.DBActivity;
 import com.example.myappsecond.utils.MeasureUtil;
 
 import java.text.SimpleDateFormat;

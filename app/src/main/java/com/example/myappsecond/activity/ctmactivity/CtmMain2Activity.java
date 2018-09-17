@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
-import com.example.myappsecond.fragment.CtmViewFragment;
+import com.example.myappsecond.activity.fragment.CtmViewFragment;
 import com.example.myappsecond.project.catcher.eventbus.MessageEvent;
 import com.example.myappsecond.project.ctmviews.Mypractice.RotateFirst;
 import com.example.myappsecond.project.ctmviews.ProgressFragment;

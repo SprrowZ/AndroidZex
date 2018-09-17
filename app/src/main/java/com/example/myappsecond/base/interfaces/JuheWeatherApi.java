@@ -1,5 +1,6 @@
 package com.example.myappsecond.base.interfaces;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -8,8 +9,8 @@ import retrofit2.http.Query;
  * Created by ZZG on 2018/9/10.
  */
 public interface JuheWeatherApi {
-    @GET("/")
-    Call<ResponseBody> getWeather(@Query("format") String format,
-                                  @Query("cityname") String cityname,
+    @GET("/weather/index")
+    Call<ResponseBody> getWeather( @Query("format") int format,
+                                   @Query("cityname") String cityname,
                                   @Query("key") String key);
 }

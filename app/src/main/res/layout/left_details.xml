@@ -31,8 +31,16 @@
         android:textColor="@color/black_deep"
         android:text="@string/codeName"
         />
+    <LinearLayout
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    </LinearLayout>
 </LinearLayout>
-    <ScrollView
+<ScrollView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@+id/top_linear"

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myappsecond.R;
-import com.example.myappsecond.project.Viewpager.MyPagerAdapter;
+import com.example.myappsecond.project.viewpager.MyPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

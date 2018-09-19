@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Zzg on 2018/8/20.
  */
 public class ProvinceListActivity extends BaseActivity {
-    public static  final  String TAG="ProvinceListActivity";
+   public static  final  String TAG="ProvinceListActivity";
    private  RecyclerView recyclerView;
    private ProvinceListAdapter adapter;
    private List<DataModel> dataList;

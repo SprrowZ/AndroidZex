@@ -79,6 +79,8 @@ public class ProjectMainActivity extends BaseActivity {
     Button shape;
     @BindView(R.id.service)
     Button service;
+    @BindView(R.id.recyclerView)
+    Button recycleView;
     LinearLayout parent;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
@@ -143,7 +145,7 @@ public class ProjectMainActivity extends BaseActivity {
     }
 
     @OnClick({R.id.popup, R.id.sliding, R.id.dbtest, R.id.file,
-            R.id.menu, R.id.drawable, R.id.shape, R.id.service,R.id.search_bar})
+            R.id.menu, R.id.drawable, R.id.shape, R.id.service,R.id.search_bar,R.id.recyclerView})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -176,6 +178,9 @@ public class ProjectMainActivity extends BaseActivity {
                 Intent intent11 = new Intent(ProjectMainActivity.this, TestCoorActivity.class);
                 startActivity(intent11);
                 break;
+            case R.id.recyclerView:
+                Intent intent12= new Intent(ProjectMainActivity.this,RecycleDemoActivity.class);
+                startActivity(intent12);
         }
     }
 }

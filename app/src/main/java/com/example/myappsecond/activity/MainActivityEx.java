@@ -24,12 +24,14 @@ import com.example.myappsecond.activity.fragment.SettingsFragment;
 import com.example.myappsecond.activity.fragment.WeixinFragment;
 
 import com.example.myappsecond.project.dao.KeyValueMgr;
+import com.example.myappsecond.sdks.HttpLogger;
 import com.example.myappsecond.sdks.beans.WeatherBean;
 import com.example.myappsecond.sdks.gmap.AmapAPI;
 import com.example.myappsecond.sdks.gmap.AmapResult;
 import com.example.myappsecond.utils.DateUtils;
 import com.example.myappsecond.utils.ExtraUtil.Bean;
 import com.example.myappsecond.utils.ExtraUtil.Constant;
+import com.example.myappsecond.utils.FileUtils;
 import com.example.myappsecond.utils.JsonUtils;
 
 
@@ -141,6 +143,7 @@ public class MainActivityEx extends BaseActivity {
 
         //获取定位数据
         AmapAPI.getInstance().initLocation(this,mapHandler);
+        FileUtils.writeUserLog(TAG+"onCreate:");
     }
 
     /**
@@ -149,43 +152,51 @@ public class MainActivityEx extends BaseActivity {
     private void getWeather(AmapResult amapResult) {
         if ("".equals(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME))){
            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
+           weatherThread();
+        }else{
+            boolean needRefreshWeather=!DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
+            Log.i(TAG, "getWeather: "+String.valueOf(needRefreshWeather));
+            if (needRefreshWeather){
+                weatherThread();
+            }else {
+                Log.i(TAG, "getWeather: 未满一天");
+            }
         }
-        boolean needRefreshWeather=!DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
-        Log.i(TAG, "getWeather: "+String.valueOf(needRefreshWeather));
-        if (needRefreshWeather){
-            new Thread(()->{
-                KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
-                Retrofit retrofit=new Retrofit.Builder()
-                        .baseUrl(Constant.JUHE_WEATHER)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        //   .client(HttpLogger.getOkHttpClient())//增加日志拦截
-                        .build();
-                JuheWeatherApi weatherApi=retrofit.create(JuheWeatherApi.class);
-                Call<ResponseBody> call= weatherApi.getWeather(1,amapResult.getCity(),Constant.JUHE_WEATHER_KEY);
-                Log.i(TAG, "getWeather: weatherApi");
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        try {
-                            String result=response.body().string();//返回结果
-                            dealWeather(result);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.i(TAG, "onFailure:weatherApi ");
-                    }
-                });
-            }).start();
-        }else {
-            Log.i(TAG, "getWeather: 未满一天");
-        }
   
     }
+    private void weatherThread(){
+        new Thread(()->{
+            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
+            Retrofit retrofit=new Retrofit.Builder()
+                    .baseUrl(Constant.JUHE_WEATHER)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(HttpLogger.getOkHttpClient())//增加日志拦截
+                    .build();
+            JuheWeatherApi weatherApi=retrofit.create(JuheWeatherApi.class);
+            Call<ResponseBody> call= weatherApi.getWeather(1,amapResult.getCity(),Constant.JUHE_WEATHER_KEY);
+            Log.i(TAG, "getWeather: weatherApi");
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+                        String result=response.body().string();//返回结果
+                        FileUtils.writeUserLog("getWeather-->onResponse:"+result);
+                        dealWeather(result);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.i(TAG, "onFailure:weatherApi ");
+                    FileUtils.writeUserLog("getWeather-->onFailure"+t.toString());
+                }
+            });
+        }).start();
+    }
     private void dealWeather(String result) {
         Log.i(TAG, "onResponse:weatherApi "+result);
         JSONObject todayTemperature= null;
@@ -196,7 +207,7 @@ public class MainActivityEx extends BaseActivity {
             if (todayTemperature!=null){
                 String temperature=todayTemperature.getString(WeatherBean.TEMPERATURE);
                 String weather=todayTemperature.getString(WeatherBean.WEATHER);
-                Log.i(TAG, "weatherApi: "+"temperature:"+temperature+"weather:"+weather);
+                Log.i(TAG, "weatherApi: --->"+"temperature:"+temperature+"weather:"+weather);
                 Bean bean=new Bean();
                 bean.set(WeatherBean.TEMPERATURE,temperature);
                 bean.set(WeatherBean.WEATHER,weather);
@@ -283,5 +294,6 @@ public class MainActivityEx extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        FileUtils.writeUserLog(TAG+"onDestroy:");
     }
 }

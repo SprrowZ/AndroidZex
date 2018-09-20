@@ -1,23 +1,25 @@
-package com.example.myappsecond.activity.adapter.recyadapter;
+package com.example.myappsecond.activity.adapter.recyadapter.diffdata;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myappsecond.R;
+import com.example.myappsecond.activity.adapter.recyadapter.samedata.TypeAbstractViewHolder;
 import com.example.myappsecond.activity.testdata.DataModel;
+import com.example.myappsecond.activity.testdata.DataModelThree;
 
 /**
  * Created at 2018/9/18.
  *
  * @author Zzg
  */
-public class TypeThreeViewHolder extends TypeAbstractViewHolder {
+public class TypeThreeViewHolderEx extends TypeAbstractViewHolderEx<DataModelThree> {
     public ImageView avatar;
     public TextView name;
     public TextView  content;
     public ImageView contentImg;
-    public TypeThreeViewHolder(View itemView) {
+    public TypeThreeViewHolderEx(View itemView) {
         super(itemView);
         avatar=itemView.findViewById(R.id.avatar);
         name=itemView.findViewById(R.id.name);
@@ -26,7 +28,7 @@ public class TypeThreeViewHolder extends TypeAbstractViewHolder {
         itemView.setBackgroundResource(R.color.soft5);
     }
     @Override
-    public void bindHolder(DataModel dataModel){
+    public void bindHolder(DataModelThree dataModel){
         avatar.setBackgroundResource(dataModel.avatarColor);
         name.setText(dataModel.name);
         content.setText(dataModel.content);

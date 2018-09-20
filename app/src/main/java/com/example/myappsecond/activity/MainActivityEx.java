@@ -151,6 +151,7 @@ public class MainActivityEx extends BaseActivity {
      */
     private void getWeather(AmapResult amapResult) {
         if ("".equals(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME))){
+            Log.i(TAG, "getWeather: 字段为空");
            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
            weatherThread();
         }else{

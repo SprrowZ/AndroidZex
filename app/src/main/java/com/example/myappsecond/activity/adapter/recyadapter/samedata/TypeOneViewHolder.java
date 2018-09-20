@@ -1,10 +1,11 @@
-package com.example.myappsecond.activity.adapter.recyadapter;
+package com.example.myappsecond.activity.adapter.recyadapter.samedata;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myappsecond.R;
+import com.example.myappsecond.activity.adapter.recyadapter.samedata.TypeAbstractViewHolder;
 import com.example.myappsecond.activity.testdata.DataModel;
 
 /**
@@ -12,21 +13,19 @@ import com.example.myappsecond.activity.testdata.DataModel;
  *
  * @author Zzg
  */
-public class TypeTwoViewHolder extends TypeAbstractViewHolder {
-    public ImageView avatar;
-    public TextView name;
-    public TextView  content;
-    public TypeTwoViewHolder(View itemView) {
+public class TypeOneViewHolder extends TypeAbstractViewHolder {
+    public ImageView  avatar;
+    public TextView  name;
+
+    public TypeOneViewHolder(View itemView) {
         super(itemView);
         avatar=itemView.findViewById(R.id.avatar);
         name=itemView.findViewById(R.id.name);
-        content=itemView.findViewById(R.id.content);
-        itemView.setBackgroundResource(R.color.soft6);
+        itemView.setBackgroundResource(R.color.soft8);
     }
     @Override
     public void bindHolder(DataModel dataModel){
-        avatar.setBackgroundResource(dataModel.avatarColor);
+        avatar.setBackgroundColor(dataModel.avatarColor);
         name.setText(dataModel.name);
-        content.setText(dataModel.content);
     }
 }

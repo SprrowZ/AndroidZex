@@ -1,4 +1,4 @@
-package com.example.myappsecond.activity.adapter.recyadapter;
+package com.example.myappsecond.activity.adapter.recyadapter.samedata;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

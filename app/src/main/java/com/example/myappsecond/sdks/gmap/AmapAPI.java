@@ -54,18 +54,19 @@ public class AmapAPI {
         locationClient.setLocationOption(locationOption);
         // 设置定位监听
         locationClient.setLocationListener(locationListener);
-        locationClient.startLocation();//开启定位
         // TODO: 2018/9/15 onLocationChanged不回调，只能取last，但是每次都调用，需要优化 
         //onLocationChanged方法可能不回调，这时候就用LastKnowLocation方法获取位置,目前是每次都调用
         //暂时没有解决方案
         AMapLocation  location=locationClient.getLastKnownLocation();
-        Log.i(TAG, "getLastKnownLocation: "+location.getCity());
         if (location!=null){
+            Log.i(TAG, "getLastKnownLocation: "+location.getCity());
             setLastKnowLocation(location);
             Message message=new Message();
             message.what=11;
             message.obj=amapResult;
             mapHandler.sendMessage(message);
+        }else{
+            locationClient.startLocation();//开启定位
         }
     }
     private static void setLastKnowLocation(AMapLocation location){

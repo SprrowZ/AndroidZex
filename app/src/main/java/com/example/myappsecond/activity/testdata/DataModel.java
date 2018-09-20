@@ -14,15 +14,4 @@ public class DataModel {
     public String name;
     public String content;
     public int contentColor;
-
-
-
-
-
-
-
-
-
-
-
 }

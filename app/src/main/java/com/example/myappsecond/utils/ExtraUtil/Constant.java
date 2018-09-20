@@ -4,7 +4,7 @@ package com.example.myappsecond.utils.ExtraUtil;
  * 全局变量
  */
 public class Constant {
-    public static  final String FILE_PROVIDER="com.example.myappsecond.fileprovider";
+    public static  final String FILE_PROVIDER="com.example.myappsecond.MyFileProvider";
     /**
      * 回车符
      */

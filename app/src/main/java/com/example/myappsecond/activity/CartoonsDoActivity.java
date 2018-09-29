@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
 import com.example.myappsecond.GreenDaos.Base.TB_CartoonsDao;
@@ -105,7 +105,7 @@ public class CartoonsDoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.greendao_cartoons_do);
         ButterKnife.bind(this);
-        daoSession = EChatApp.getInstance().getDaoSession();
+        daoSession = zApplication.getInstance().getDaoSession();
         cartoonsDao = daoSession.getTB_CartoonsDao();
         initEvent();
     }

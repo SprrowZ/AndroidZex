@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
 import com.example.myappsecond.GreenDaos.Base.DaoSession;
 
@@ -128,7 +128,7 @@ public class CartoonsListActivity extends BaseActivity {
         listView=findViewById(R.id.listView);
         query=findViewById(R.id.search_bar);
         listView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
-        daoSession= EChatApp.getInstance().getDaoSession();
+        daoSession= zApplication.getInstance().getDaoSession();
         cartoonsDao=daoSession.getTB_CartoonsDao();
         //查询数据进行适配
         datalist=cartoonsDao.queryBuilder()

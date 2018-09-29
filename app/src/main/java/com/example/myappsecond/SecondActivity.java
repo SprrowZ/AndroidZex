@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.myappsecond.activity.fragment.HttpT1Fragment;
 import com.example.myappsecond.base.interfaces.GithubApi;
+import com.example.myappsecond.utils.ExtraUtil.Constant;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -50,7 +51,6 @@ public class SecondActivity extends BaseActivity   {
     TextView title;
     @BindView(R.id.content1)
     TextView content1;
-    private static  final  String BASE_URL="https://api.github.com/";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +98,7 @@ public class SecondActivity extends BaseActivity   {
     private void retrofitGet5() {
         new Thread(()-> {
             Retrofit retrofit=new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(Constant.GITHUB_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             GithubApi api=retrofit.create(GithubApi.class);
@@ -129,7 +129,7 @@ public class SecondActivity extends BaseActivity   {
         new Thread(()->{
                 //retrofit的构建也要放在thread中
                 final Retrofit retrofit2=new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(Constant.GITHUB_BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 GithubApi infoService=retrofit2.create(GithubApi.class);
@@ -157,7 +157,7 @@ public class SecondActivity extends BaseActivity   {
         new Thread(()->{
                 //retrofit的构建也要放在thread中
                 final Retrofit retrofit2=new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(Constant.GITHUB_BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 GithubApi infoService=retrofit2.create(GithubApi.class);
@@ -183,7 +183,7 @@ public class SecondActivity extends BaseActivity   {
         new Thread(()->{
                 //retrofit的构建也要放在thread中
                 final Retrofit retrofit2=new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(Constant.GITHUB_BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 GithubApi infoService=retrofit2.create(GithubApi.class);
@@ -208,7 +208,7 @@ public class SecondActivity extends BaseActivity   {
     private void retrofitGet1() {
         new Thread(()->{
                 Retrofit retrofit=new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
+                        .baseUrl(Constant.GITHUB_BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 GithubApi service=retrofit.create(GithubApi.class);

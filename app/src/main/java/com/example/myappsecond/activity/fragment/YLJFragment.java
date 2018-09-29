@@ -21,7 +21,7 @@ import butterknife.Unbinder;
  * Created by zzg on 2017/10/10.
  */
 
-public class WeixinFragment extends BaseFragment {
+public class YLJFragment extends BaseFragment {
   private View view;
   private Unbinder unbinder;//butterknife
     @Nullable

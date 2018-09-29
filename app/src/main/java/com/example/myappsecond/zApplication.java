@@ -18,10 +18,10 @@ import org.greenrobot.greendao.database.Database;
  * Created by ZZG on 2018/3/22.
  */
 
-public class EChatApp extends Application{
+public class zApplication extends Application{
     private static Context mContext;
     private DisplayMetrics displayMetrics;
-    private static EChatApp instance=new EChatApp();
+    private static zApplication instance=new zApplication();
     private boolean DAO_INITED=false;
     private DaoSession daoSession;
     @Override
@@ -71,7 +71,7 @@ public class EChatApp extends Application{
             DAO_INITED = true;
         }
     }
-    public static EChatApp getInstance() {
+    public static zApplication getInstance() {
         return instance;
     }
 

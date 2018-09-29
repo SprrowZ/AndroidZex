@@ -60,13 +60,13 @@ public class DemoAdapterEx extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
          switch (viewType){
-             case DataModel.TYPE_ONE:
+             case TYPE_ONE:
                  return  new TypeOneViewHolderEx(mInflater.inflate(
                          R.layout.recycleview_type_one,parent,false));
-             case DataModel.TYPE_TWO:
+             case TYPE_TWO:
                  return  new TypeTwoViewHolderEx(mInflater.inflate(
                          R.layout.recycleview_type_two,parent,false));
-             case DataModel.TYPE_THREE:
+             case TYPE_THREE:
                  return  new TypeThreeViewHolderEx(mInflater.inflate(
                          R.layout.recycleview_type_three,parent,false));
          }
@@ -79,13 +79,13 @@ public class DemoAdapterEx extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         int viewType = holder.getItemViewType();
         int realPosition=position-mPositions.get(viewType);
          switch (viewType){
-             case DataModel.TYPE_ONE:
+             case TYPE_ONE:
                  ((TypeOneViewHolderEx)holder).bindHolder(mList1.get(realPosition));
                  break;
-             case DataModel.TYPE_TWO:
+             case TYPE_TWO:
                  ((TypeTwoViewHolderEx)holder).bindHolder(mList2.get(realPosition));
                  break;
-             case DataModel.TYPE_THREE:
+             case TYPE_THREE:
                  ((TypeThreeViewHolderEx)holder).bindHolder(mList3.get(realPosition));
                  break;
 

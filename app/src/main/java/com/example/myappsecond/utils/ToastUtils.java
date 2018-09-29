@@ -1,7 +1,7 @@
 package com.example.myappsecond.utils;
 
 
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 
 import es.dmoral.toasty.Toasty;
 
@@ -17,7 +17,7 @@ public class ToastUtils {
         if (StringUtils.isEmpty(msg)) {
             return;
         }
-        Toasty.custom(EChatApp.getContext(), msg,
+        Toasty.custom(zApplication.getContext(), msg,
                 null, 0, LENGTH_SHORT, false, false).show();
     }
 
@@ -25,19 +25,19 @@ public class ToastUtils {
         if (StringUtils.isEmpty(msg)) {
             return;
         }
-        Toasty.custom(EChatApp.getContext(), msg,
+        Toasty.custom(zApplication.getContext(), msg,
                 null, 0, LENGTH_LONG, false, false).show();
     }
 
     public static void shortMsg(int resId) {
-        Toasty.custom(EChatApp.getContext(),
-                EChatApp.getContext().getString(resId),
+        Toasty.custom(zApplication.getContext(),
+                zApplication.getContext().getString(resId),
                 null, 0, LENGTH_SHORT, false, false).show();
     }
 
     public static void longMsg(int resId) {
-        Toasty.custom(EChatApp.getContext(),
-                EChatApp.getContext().getString(resId),
+        Toasty.custom(zApplication.getContext(),
+                zApplication.getContext().getString(resId),
                 null, 0, LENGTH_LONG, false, false).show();
     }
 

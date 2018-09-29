@@ -124,6 +124,33 @@
                 android:textAllCaps="false"
                 android:layout_marginTop="10dp"
                 />
+            <Button
+                android:id="@+id/callPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_bg1"
+                android:text="callPhone"
+                android:textAllCaps="false"
+                android:layout_marginTop="10dp"
+                />
+            <Button
+                android:id="@+id/sendSMS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_bg1"
+                android:text="sendSMS"
+                android:textAllCaps="false"
+                android:layout_marginTop="10dp"
+                />
+            <Button
+                android:id="@+id/sendEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_bg1"
+                android:text="sendEmail"
+                android:textAllCaps="false"
+                android:layout_marginTop="10dp"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -10,10 +10,9 @@ import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -1080,7 +1079,7 @@ public static void writeUserLog(String content) {
     try {
         FileOutputStream outputStream = new FileOutputStream(file, true);
         OutputStreamWriter out = new OutputStreamWriter(outputStream);
-        out.write(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" + "  版本号：" + EChatApp.getInstance().getVersion() + " 手机信息：" + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
+        out.write(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" + "  版本号：" + zApplication.getInstance().getVersion() + " 手机信息：" + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
         out.close();
     } catch (Exception e) {
 

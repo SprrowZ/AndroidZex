@@ -1,6 +1,6 @@
 package com.example.myappsecond.utils.ExtraUtil;
 
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 
 /**
  * Created by zzg on 2017/6/13.
@@ -16,10 +16,10 @@ public class LanguageHelper {
     }
 
     public boolean isChinese(){
-        if (EChatApp.getInstance().getResources().getConfiguration().locale.getCountry().equals("CN")
-                ||EChatApp.getInstance().getResources().getConfiguration().locale.getCountry().equals("TW")
-                ||EChatApp.getInstance().getResources().getConfiguration().locale.getCountry().equals("HK")
-                ||EChatApp.getInstance().getResources().getConfiguration().locale.getCountry().equals("MO")) {
+        if (zApplication.getInstance().getResources().getConfiguration().locale.getCountry().equals("CN")
+                || zApplication.getInstance().getResources().getConfiguration().locale.getCountry().equals("TW")
+                || zApplication.getInstance().getResources().getConfiguration().locale.getCountry().equals("HK")
+                || zApplication.getInstance().getResources().getConfiguration().locale.getCountry().equals("MO")) {
             return true;
         }else {
             return false;

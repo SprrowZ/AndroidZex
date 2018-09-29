@@ -42,7 +42,7 @@
     <!--<uses-permission android:name="com.example.myappsecond.permission.MIPUSH_RECEIVE" />-->
     <!--这里com.xiaomi.mipushdemo改成app的包名-->
     <application
-        android:name=".EChatApp"
+        android:name=".zApplication"
         android:allowBackup="true"
         android:icon="@drawable/appicon"
          android:label="@string/appName"
@@ -208,7 +208,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
-        <activity android:name=".utils.ImageUtils.RoundMainActivity"
+        <activity android:name=".project.ctmviews.ctmimg.RoundMainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />

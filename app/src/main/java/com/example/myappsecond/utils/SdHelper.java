@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.os.StatFs;
 
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -45,11 +45,11 @@ public class SdHelper {
        storagePath=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator;
        publicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+File.separator;
        //app私有目录
-       external= EChatApp.getInstance().getApplicationContext().getExternalFilesDir(null)+File.separator;
+       external= zApplication.getInstance().getApplicationContext().getExternalFilesDir(null)+File.separator;
        privateData=Environment.getDataDirectory()+File.separator;
        rootDirectory=Environment.getRootDirectory()+File.separator;
        //app私有缓存
-       externalCache=EChatApp.getInstance().getApplicationContext().getExternalCacheDir()+File.separator;
+       externalCache= zApplication.getInstance().getApplicationContext().getExternalCacheDir()+File.separator;
     }
    public  static String getAppExternal(){
         return  external;

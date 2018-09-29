@@ -19,9 +19,9 @@ import android.widget.TextView;
 import com.example.myappsecond.BaseActivity;
 import com.example.myappsecond.R;
 import com.example.myappsecond.base.interfaces.JuheWeatherApi;
-import com.example.myappsecond.activity.fragment.FrdFragment;
+import com.example.myappsecond.activity.fragment.LMFragment;
 import com.example.myappsecond.activity.fragment.SettingsFragment;
-import com.example.myappsecond.activity.fragment.WeixinFragment;
+import com.example.myappsecond.activity.fragment.YLJFragment;
 
 import com.example.myappsecond.project.dao.KeyValueMgr;
 import com.example.myappsecond.sdks.HttpLogger;
@@ -33,6 +33,7 @@ import com.example.myappsecond.utils.ExtraUtil.Bean;
 import com.example.myappsecond.utils.ExtraUtil.Constant;
 import com.example.myappsecond.utils.FileUtils;
 import com.example.myappsecond.utils.JsonUtils;
+import com.example.myappsecond.utils.ToastUtils;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -61,6 +62,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MainActivityEx extends BaseActivity {
     private static  final  String TAG="MainActivityEx";
+    private long back_pressed;
     @BindView(R.id.message) //被修饰的不能用private Or static修饰
     public LinearLayout message;
     @BindView(R.id.friend)
@@ -87,19 +89,18 @@ public class MainActivityEx extends BaseActivity {
     Bitmap icon_pressed2;
     @BindBitmap(R.drawable.icon_pressed3)
     Bitmap icon_pressed3;
-//    @OnLongClick(R.id.dynamic_tv)
-//    public boolean start(){
-//        return true;
-//    }
+
+    private YLJFragment weixinFragment;
+    private LMFragment frdFragment;
+    private SettingsFragment settingsFragment;
+
+
     //地理位置
     private AmapResult amapResult;
-    private WeixinFragment weixinFragment;
-    private FrdFragment frdFragment;
-    private SettingsFragment settingsFragment;
-    private List<Fragment> mFragments;
-    //fragment动态切换
-    private FragmentManager manager = getSupportFragmentManager();
-    private FragmentTransaction transaction = manager.beginTransaction();
+    //当前Fragment
+    private  Fragment currentFragment;
+    private  int currentPos=-1;
+
     Handler mapHandler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -127,25 +128,57 @@ public class MainActivityEx extends BaseActivity {
     }
 
     private void init() {
-        mFragments = new ArrayList<>();
-        weixinFragment = new WeixinFragment();
-        frdFragment = new FrdFragment();
-        settingsFragment = new SettingsFragment();
-        mFragments.add(weixinFragment);
-        mFragments.add(frdFragment);
-        mFragments.add(settingsFragment);
-        transaction.add(R.id.container, mFragments.get(0))
-                .add(R.id.container, mFragments.get(1))
-                .add(R.id.container, mFragments.get(2))
-                .hide(mFragments.get(1))
-                .hide(mFragments.get(2))
-                .show(mFragments.get(0)).commit();
-
+        selectItem(0);
         //获取定位数据
         AmapAPI.getInstance().initLocation(this,mapHandler);
         FileUtils.writeUserLog(TAG+"onCreate:");
     }
 
+    /**
+     * 获取当前Fragment
+     */
+    private void selectItem(int pos) {
+        //点击的正是当前正在显示的，直接返回
+        if (currentPos == pos) return;
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (currentFragment != null) {
+            //隐藏当前正在显示的fragment
+            transaction.hide(currentFragment);
+        }
+        currentPos = pos;
+        Fragment fragment = manager.findFragmentByTag(getTag(pos));
+        //通过findFragmentByTag判断是否已存在目标fragment，若存在直接show，否则去add
+        if (fragment != null) {
+            currentFragment = fragment;
+            transaction.show(fragment);
+        } else {
+            transaction.add(R.id.container, getFragment(pos), getTag(pos));//加TAG
+        }
+        transaction.commitAllowingStateLoss();
+        //改变颜色值
+        setSelect(pos);
+    }
+    private String getTag(int pos) {
+        return "Zzg_" + pos;
+    }
+    private Fragment getFragment(int pos) {
+        switch (pos) {
+            case 0:
+                currentFragment = new YLJFragment();
+                break;
+            case 1:
+                currentFragment = new LMFragment();
+                break;
+            case 2:
+                currentFragment = new SettingsFragment();
+                break;
+            default:
+                currentFragment = new YLJFragment();
+                break;
+        }
+        return currentFragment;
+    }
     /**
      * 获取天气信息
      */
@@ -166,6 +199,10 @@ public class MainActivityEx extends BaseActivity {
 
   
     }
+
+    /**
+     * 天气请求Thread
+     */
     private void weatherThread(){
         new Thread(()->{
             KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
@@ -198,6 +235,11 @@ public class MainActivityEx extends BaseActivity {
             });
         }).start();
     }
+
+    /**
+     * 天气结果处理
+     * @param result
+     */
     private void dealWeather(String result) {
         Log.i(TAG, "onResponse:weatherApi "+result);
         JSONObject todayTemperature= null;
@@ -235,38 +277,18 @@ public class MainActivityEx extends BaseActivity {
             case 0:
                 imageViewList.get(0).setImageBitmap(icon_pressed1);
                 textViewList.get(0).setTextColor(violetBottom);
-                if (mFragments.get(0).isVisible()) {//可见
 
-                } else {
-                    transaction.hide(mFragments.get(1))
-                            .hide(mFragments.get(2))
-                            .show(mFragments.get(0));
-                }
                 break;
             case 1:
                 imageViewList.get(1).setImageBitmap(icon_pressed2);
                 textViewList.get(1).setTextColor(violetBottom);
-                if (mFragments.get(1).isVisible()) {
 
-                } else {
-                    transaction.hide(mFragments.get(0))
-                            .hide(mFragments.get(2))
-                            .show(mFragments.get(1));
-                }
                 break;
             case 2:
                 imageViewList.get(2).setImageBitmap(icon_pressed3);
                 textViewList.get(2).setTextColor(violetBottom);
-                if (mFragments.get(2).isVisible()) {
-
-                } else {
-                    transaction.hide(mFragments.get(1))
-                            .hide(mFragments.get(0))
-                            .show(mFragments.get(2));
-                }
                 break;
         }
-        transaction.commit();
     }
 
     @SuppressLint("MissingSuperCall")
@@ -277,18 +299,16 @@ public class MainActivityEx extends BaseActivity {
 
     @OnClick({R.id.message, R.id.friend, R.id.dynamic})
     public void onViewClicked(View view) {
-        reset();
-        // 点击时启动trancaction事件,不能重复commit
-        transaction = manager.beginTransaction();
+        reset();// 重置底部栏
         switch (view.getId()) {
             case R.id.message:
-                setSelect(0);
+             selectItem(0);
                 break;
             case R.id.friend:
-                setSelect(1);
+              selectItem(1);
                 break;
             case R.id.dynamic:
-                setSelect(2);
+               selectItem(2);
                 break;
         }
     }
@@ -296,5 +316,15 @@ public class MainActivityEx extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         FileUtils.writeUserLog(TAG+"onDestroy:");
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+        } else {
+            ToastUtils.shortMsg("再点一次退出应用");
+        }
+        back_pressed = System.currentTimeMillis();
     }
 }

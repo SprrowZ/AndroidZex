@@ -19,7 +19,7 @@ import java.util.List;
  * Created by zzg on 2017/10/10.
  */
 
-public class FrdFragment extends BaseFragment {
+public class LMFragment extends BaseFragment {
     private ListView listView;
     List<ItemBean> itemBeanList;
     View view;

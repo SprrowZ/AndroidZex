@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myappsecond.BaseActivity;
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 import com.example.myappsecond.GreenDaos.Base.TB_Cartoons;
 import com.example.myappsecond.GreenDaos.Base.TB_CartoonsDao;
 import com.example.myappsecond.GreenDaos.Base.TB_Character;
@@ -96,7 +96,7 @@ public class CharactersDoActivity extends BaseActivity {
     }
 
     private void initEvent() {
-        daoSession = EChatApp.getInstance().getDaoSession();//获取session实例
+        daoSession = zApplication.getInstance().getDaoSession();//获取session实例
         cartoonsDao = daoSession.getTB_CartoonsDao();
         characterDao = daoSession.getTB_CharacterDao();
         editCartoonName.addTextChangedListener(new TextWatcher() {

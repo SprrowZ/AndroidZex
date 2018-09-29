@@ -5,7 +5,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 
 import org.apache.commons.io.IOUtils;
 
@@ -30,7 +30,7 @@ public class DeviceUtils {
     public static String getUUID(Context context) {
         // ANDROID_ID是设备第一次启动时产生和存储的64bit的一个数，当设备被wipe后该数重置
         if (context == null) {
-            context = EChatApp.getInstance().getBaseContext();
+            context = zApplication.getInstance().getBaseContext();
         }
 
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);

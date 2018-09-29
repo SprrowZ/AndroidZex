@@ -1,4 +1,4 @@
-package com.example.myappsecond.utils.ImageUtils;
+package com.example.myappsecond.project.ctmviews.ctmimg;
 
 import android.content.Context;
 import android.content.res.TypedArray;

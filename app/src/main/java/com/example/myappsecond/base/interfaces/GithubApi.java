@@ -5,6 +5,7 @@ import java.util.HashMap;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -13,6 +14,10 @@ import retrofit2.http.QueryMap;
  * Created by ZZG on 2018/8/23.
  */
 public interface GithubApi {
+    /**
+     * GET请求
+     * @return
+     */
     //访问文件地址：https://raw.githubusercontent.com/SprrowZ(用户名)/AndroidZex(仓库名)/master(分支)/.gitignore(路径)
     @GET("/")//不传参数
     Call<ResponseBody> getMessages();
@@ -25,4 +30,8 @@ public interface GithubApi {
                                     @Query("page") int page,@Query("per_page")int per_page);
     @GET("users/{user}/repos")
     Call<ResponseBody> getMessages5(@Path("user") String user, @QueryMap HashMap<String,Integer> info);
+
+
+
+
 }

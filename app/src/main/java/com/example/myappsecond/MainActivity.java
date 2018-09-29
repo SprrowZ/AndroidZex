@@ -27,9 +27,9 @@ import android.widget.TextView;
 
 import com.example.myappsecond.project.animations.AnimMemoryActivity;
 import com.example.myappsecond.activity.fragment.AddressFragment;
-import com.example.myappsecond.activity.fragment.FrdFragment;
+import com.example.myappsecond.activity.fragment.LMFragment;
 import com.example.myappsecond.activity.fragment.SettingsFragment;
-import com.example.myappsecond.activity.fragment.WeixinFragment;
+import com.example.myappsecond.activity.fragment.YLJFragment;
 import com.example.myappsecond.project.viewpager.helloActivity;
 import com.example.myappsecond.utils.PermissionsUtil;
 
@@ -102,10 +102,11 @@ private Handler handler=new Handler();
         textView=findViewById(R.id.textView);
         myview=getLayoutInflater().inflate(R.layout.dialog_password,null);
         textView.setOnClickListener(v -> {
-                dialog=new AlertDialog.Builder(MainActivity.this).create();
+                dialog=new AlertDialog.Builder(MainActivity.this)
+                        .setCancelable(false)
+                        .setView(myview)
+                        .create();
                 cancel=myview.findViewById(R.id.cancel);
-                dialog.setCancelable(false);
-                dialog.setView(myview);
                 dialog.show();
         });
         editText=myview.findViewById(R.id.editText);
@@ -189,8 +190,8 @@ private Handler handler=new Handler();
         mImgSettings=findViewById(R.id.image4);
 
         mFragments=new ArrayList<Fragment>();
-        Fragment mTab01=new WeixinFragment();
-        Fragment mTab02=new FrdFragment();
+        Fragment mTab01=new YLJFragment();
+        Fragment mTab02=new LMFragment();
         Fragment mTab03=new AddressFragment();
         Fragment mTab04=new SettingsFragment();
         mFragments.add(mTab01);

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.example.myappsecond.EChatApp;
+import com.example.myappsecond.zApplication;
 import com.example.myappsecond.R;
 import com.example.myappsecond.utils.ExtraUtil.LanguageHelper;
 
@@ -399,13 +399,13 @@ public class DateUtils {
         String str1 = null;
         int i = paramDate.getHours();
         if (i > 17)
-            str1 = EChatApp.getInstance().getString(R.string.evening);
+            str1 = zApplication.getInstance().getString(R.string.evening);
         else if ((i >= 0) && (i <= 6))
-            str1 = EChatApp.getInstance().getString(R.string.early_morning);
+            str1 = zApplication.getInstance().getString(R.string.early_morning);
         else if ((i > 11) && (i <= 17))
-            str1 = EChatApp.getInstance().getString(R.string.pm);
+            str1 = zApplication.getInstance().getString(R.string.pm);
         else
-            str1 = EChatApp.getInstance().getString(R.string.am);
+            str1 = zApplication.getInstance().getString(R.string.am);
         return str1+ new SimpleDateFormat("hh:mm", Locale.CHINA).format(paramDate);
     }
 
@@ -435,22 +435,22 @@ public class DateUtils {
             int i = localCalendar.get(11);
             if (i > 17){
                 str = "hh:mm";
-                return EChatApp.getInstance().getString(R.string.evening) + new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
+                return zApplication.getInstance().getString(R.string.evening) + new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
             }else if ((i >= 0) && (i <= 6)){
                 str = "hh:mm";
-                return EChatApp.getInstance().getString(R.string.early_morning)+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
+                return zApplication.getInstance().getString(R.string.early_morning)+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
             }else if ((i > 11) && (i <= 17)){
                 str = "hh:mm";
-                return EChatApp.getInstance().getString(R.string.pm)+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
+                return zApplication.getInstance().getString(R.string.pm)+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
             }else{
                 str = "hh:mm";
-                return EChatApp.getInstance().getString(R.string.am)+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
+                return zApplication.getInstance().getString(R.string.am)+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
             }
 
         } else if (isYesterday(l)) {
             //    str = "昨天 HH:mm";
-//            str = EChatApp.getInstance().getString(R.string.yesterday);
-            return EChatApp.getInstance().getString(R.string.yesterday);
+//            str = zApplication.getInstance().getString(R.string.yesterday);
+            return zApplication.getInstance().getString(R.string.yesterday);
         } else if (isThisWeek(paramDate)) {
             str = getWeekStr(paramDate);
             return str;
@@ -490,7 +490,7 @@ public class DateUtils {
             str = FORMAT_TIME;
         } else if (isYesterday(l)) {
             str =  FORMAT_TIME;
-            return EChatApp.getInstance().getString(R.string.yesterday)+" "+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
+            return zApplication.getInstance().getString(R.string.yesterday)+" "+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
         } else {
             str = "yy/MM/dd";
         }
@@ -536,7 +536,7 @@ public class DateUtils {
         long l = paramDate.getTime();
         int month = paramDate.getMonth() + 1;
         int day = paramDate.getDate();
-        str = String.format(EChatApp.getInstance().getString(R.string.todo_auto_back), month, day);
+        str = String.format(zApplication.getInstance().getString(R.string.todo_auto_back), month, day);
         return str;
     }
 
@@ -827,19 +827,19 @@ public class DateUtils {
         String str = "";
         str = getWeek(date);
         if ("1".equals(str)) {
-            str = EChatApp.getInstance().getString(R.string.Sunday);
+            str = zApplication.getInstance().getString(R.string.Sunday);
         } else if ("2".equals(str)) {
-            str = EChatApp.getInstance().getString(R.string.Monday);
+            str = zApplication.getInstance().getString(R.string.Monday);
         } else if ("3".equals(str)) {
-            str = EChatApp.getInstance().getString(R.string.Tuesday);
+            str = zApplication.getInstance().getString(R.string.Tuesday);
         } else if ("4".equals(str)) {
-            str = EChatApp.getInstance().getString(R.string.Wednesday);
+            str = zApplication.getInstance().getString(R.string.Wednesday);
         } else if ("5".equals(str)) {
-            str = EChatApp.getInstance().getString(R.string.Thursday);
+            str = zApplication.getInstance().getString(R.string.Thursday);
         } else if ("6".equals(str)) {
-            str = EChatApp.getInstance().getString(R.string.Friday);
+            str = zApplication.getInstance().getString(R.string.Friday);
         } else if ("7".equals(str)) {
-            str = EChatApp.getInstance().getString(R.string.Saturday);
+            str = zApplication.getInstance().getString(R.string.Saturday);
         }
         return str;
     }
@@ -856,7 +856,7 @@ public class DateUtils {
     public static String timeAgo(long millis) {
         long diff = (new Date().getTime()) - millis;
 
-        Resources r = EChatApp.getInstance().getBaseContext().getResources();
+        Resources r = zApplication.getInstance().getBaseContext().getResources();
 
         String prefix = r.getString(R.string.time_ago_prefix);
         String suffix = r.getString(R.string.time_ago_suffix);

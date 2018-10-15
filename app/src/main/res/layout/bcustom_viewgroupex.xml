@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<com.example.myappsecond.project.ctmviews.ViewGroupsEx
+<com.rye.catcher.project.ctmviews.ViewGroupsEx
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
@@ -33,5 +33,5 @@
         android:background="@drawable/btn_bk1"
         android:ems="1"
         />
-</com.example.myappsecond.project.ctmviews.ViewGroupsEx>
+</com.rye.catcher.project.ctmviews.ViewGroupsEx>
 </LinearLayout>

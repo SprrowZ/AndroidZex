@@ -13,7 +13,7 @@
     android:background="@drawable/bottom_bk2"
     android:orientation="vertical"
     >
-    <com.example.myappsecond.project.ctmviews.DistortionViews
+    <com.rye.catcher.project.ctmviews.DistortionViews
         android:id="@+id/header_img"
         custom:Dtype="rectangle"
         custom:Dradius="20"

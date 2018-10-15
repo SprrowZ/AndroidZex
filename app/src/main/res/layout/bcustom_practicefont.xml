@@ -7,25 +7,25 @@
 <!--<com.example.myappsecond.Custom_View.Mypractice.PracticeFont-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent" />-->
-    <com.example.myappsecond.project.ctmviews.Mypractice.PracticeWave
+    <com.rye.catcher.project.ctmviews.Mypractice.PracticeWave
         android:id="@+id/wave"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
         />
-    <com.example.myappsecond.project.ctmviews.SetXfermode
+    <com.rye.catcher.project.ctmviews.SetXfermode
         android:id="@+id/XfermodeFirst"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         />
-    <com.example.myappsecond.project.ctmviews.SetXfermode2
+    <com.rye.catcher.project.ctmviews.SetXfermode2
         android:id="@+id/XfermodeSecond"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
         />
-    <com.example.myappsecond.project.ctmviews.SetXfermode3
+    <com.rye.catcher.project.ctmviews.SetXfermode3
         android:id="@+id/XfermodeThird"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

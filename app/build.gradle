@@ -114,7 +114,7 @@ android {
 
     greendao {
         schemaVersion 1
-        daoPackage 'com.example.myappsecond.GreenDaos.Base'
+        daoPackage 'com.rye.catcher.GreenDaos.Base'
         targetGenDir 'src/main/java'
     }
 }

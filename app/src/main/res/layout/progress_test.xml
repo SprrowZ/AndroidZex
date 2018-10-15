@@ -9,7 +9,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
-    <com.example.myappsecond.project.ctmviews.HorizontalProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.HorizontalProgressbarWithProgress
         android:id="@+id/progress1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         custom:progress_text_size="15dp"
         custom:progress_text_color="@color/red"
         />
-    <com.example.myappsecond.project.ctmviews.HorizontalProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.HorizontalProgressbarWithProgress
         android:id="@+id/progress2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         custom:progress_text_size="15dp"
         custom:progress_text_color="@color/green1"
         />
-    <com.example.myappsecond.project.ctmviews.HorizontalProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.HorizontalProgressbarWithProgress
         android:id="@+id/progress3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:background="@color/soft1"
         custom:progress_text_size="15dp"
         />
-    <com.example.myappsecond.project.ctmviews.RoundProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.RoundProgressbarWithProgress
         android:id="@+id/round1"
         android:layout_width="200dp"
         android:layout_height="200dp"

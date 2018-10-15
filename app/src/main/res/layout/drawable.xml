@@ -125,7 +125,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <com.example.myappsecond.project.ctmviews.Circles
+    <com.rye.catcher.project.ctmviews.Circles
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

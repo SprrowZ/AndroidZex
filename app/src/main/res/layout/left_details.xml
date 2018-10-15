@@ -11,7 +11,7 @@
     android:layout_height="120dp"
     android:background="@drawable/bottom_bk2"
     >
-   <com.example.myappsecond.project.ctmviews.DistortionViews
+   <com.rye.catcher.project.ctmviews.DistortionViews
        custom:Dtype="circle"
        custom:Dsrc="@drawable/my1"
        android:scaleType="center"

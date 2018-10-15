@@ -9,29 +9,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView
+        <com.rye.catcher.project.ctmviews.ctmimg.RoundImageView
             android:id="@+id/id_qiqiu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:src="@drawable/my1" >
-        </com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView>
+        </com.rye.catcher.project.ctmviews.ctmimg.RoundImageView>
 
-        <com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView
+        <com.rye.catcher.project.ctmviews.ctmimg.RoundImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_margin="10dp"
             android:src="@drawable/my1" >
-        </com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView>
+        </com.rye.catcher.project.ctmviews.ctmimg.RoundImageView>
 
-        <com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView
+        <com.rye.catcher.project.ctmviews.ctmimg.RoundImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:src="@drawable/my1" >
-        </com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView>
+        </com.rye.catcher.project.ctmviews.ctmimg.RoundImageView>
 
-        <com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView
+        <com.rye.catcher.project.ctmviews.ctmimg.RoundImageView
             android:id="@+id/id_meinv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,25 +39,25 @@
             android:src="@drawable/my1"
             zhy:borderRadius="20dp"
             zhy:type="round" >
-        </com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView>
+        </com.rye.catcher.project.ctmviews.ctmimg.RoundImageView>
 
-        <com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView
+        <com.rye.catcher.project.ctmviews.ctmimg.RoundImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:src="@drawable/my1"
             zhy:borderRadius="40dp"
             zhy:type="round" >
-        </com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView>
+        </com.rye.catcher.project.ctmviews.ctmimg.RoundImageView>
 
-        <com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView
+        <com.rye.catcher.project.ctmviews.ctmimg.RoundImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:src="@drawable/my1"
             zhy:borderRadius="60dp"
             zhy:type="round" >
-        </com.example.myappsecond.project.ctmviews.ctmimg.RoundImageView>
+        </com.rye.catcher.project.ctmviews.ctmimg.RoundImageView>
     </LinearLayout>
 
 </ScrollView>

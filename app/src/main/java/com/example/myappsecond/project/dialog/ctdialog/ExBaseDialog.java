@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.myappsecond.project.dialog.ctdialog.manager.ExDialogManager;
+
 /**
  * Created at 2018/9/27.
  *
@@ -137,7 +139,7 @@ public abstract class ExBaseDialog extends DialogFragment {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
-
+        super.onDestroy();//这里千万不要忘了！
+        ExDialogManager.getInstance().over();
     }
 }

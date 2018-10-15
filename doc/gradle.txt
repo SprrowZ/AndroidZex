@@ -1,0 +1,17 @@
+
+
+一、******************************
+    //一个有用的技巧：你可以单独只为某一个variants添加一些依赖，只需要在Compile加上对应的variant名字前缀就可以了
+    //dependencies {
+    //compile 'com.android.support:support-v4:22.2.0'
+    // vipCompile 'com.android.support:appcompat-v7:22.2.0'//只为branchOne添加这个依赖
+    //}
+二、***************************
+   flavorDimensions
+//维度，比如前面这个，场景：可以出一个免费版一个付费版，后面这个，场景：小米商城、华为商城
+    //如果一个是vip，一个是free，这就不是两个维度了，因为这俩都跟money有关
+    //和productFlavors配合使用
+三、*****************************
+ shrinkResources true //用来开启删除无用资源，也就是没有被引用的文件,和底下这个要配合使用，只有全为true两者才起作用
+  minifyEnabled true  //minifyEnabled主要用来控制是否运行混淆的，还有就是用来开启删除无用代码，比如没有引用到的代码
+  zipAlignEnabled true //这个在打包时需要设置为true，能优化我们的java字节码，提高运行效率；

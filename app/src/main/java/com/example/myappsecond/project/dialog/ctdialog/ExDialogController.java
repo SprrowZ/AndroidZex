@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myappsecond.R;
 
@@ -81,7 +82,8 @@ public class ExDialogController {
     }
     public void setChildView(View view){
        setDialogView(view);
-
+        dealDefaultDialog(mPositiveButtonListener, mNegativeButtonListener, titleStr,
+                contentStr, showBtnLeft, negativeStr, showBtnRight, positiveStr);
     }
     void dealDefaultDialog(IDialog.OnClickListener positiveBtnListener,IDialog.OnClickListener
                            negativeBtnListener,String titleStr,String contentStr,
@@ -97,6 +99,21 @@ public class ExDialogController {
            btn_ok.setText(positiveStr);
            btn_ok.setOnClickListener(mButtonHandler);
        }
+        if (btn_cancal != null) {
+            btn_cancal.setVisibility(showBtnLeft ? View.VISIBLE : View.GONE);
+            btn_cancal.setText(negativeStr);
+            btn_cancal.setOnClickListener(mButtonHandler);
+        }
+        TextView tv_title = (TextView) dialogView.findViewById(R.id.dialog_title);
+        TextView tv_content = (TextView) dialogView.findViewById(R.id.dialog_content);
+        if (tv_title != null) {
+            tv_title.setVisibility(TextUtils.isEmpty(titleStr) ? View.GONE : View.VISIBLE);
+            tv_title.setText(titleStr);
+        }
+        if (tv_content != null) {
+            tv_content.setVisibility(TextUtils.isEmpty(contentStr) ? View.GONE : View.VISIBLE);
+            tv_content.setText(contentStr);
+        }
     }
 
     /**

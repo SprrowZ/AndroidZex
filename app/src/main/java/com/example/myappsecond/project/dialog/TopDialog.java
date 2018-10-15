@@ -19,7 +19,7 @@ import com.example.myappsecond.utils.MeasureUtil;
  * Created by ZZG on 2017/11/14.
  */
 
-public class CommonDialogActivity {
+public class TopDialog {
     //这个是Top的Dialog
     private AlertDialog dialog;
     private View contentView;
@@ -28,7 +28,7 @@ public class CommonDialogActivity {
      * 构造方法
      * @param activity Activity对象
      */
-    public CommonDialogActivity(BaseActivity activity, int layoutResId) {
+    public TopDialog(BaseActivity activity, int layoutResId) {
         //1.创建AlertDialog
         dialog = new AlertDialog.Builder(activity).create();
         dialog.show();

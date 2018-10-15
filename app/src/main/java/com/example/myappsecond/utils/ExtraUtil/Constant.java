@@ -24,4 +24,5 @@ public class Constant {
     public static final String JUHE_WEATHER="http://v.juhe.cn/";
     public static final String JUHE_WEATHER_KEY="3444d95f001d7765de768376c3a2d870";
     public static final String GITHUB_BASE_URL="https://api.github.com/";
+    public static final String GITHUB_NAME="SprrowZ";
 }

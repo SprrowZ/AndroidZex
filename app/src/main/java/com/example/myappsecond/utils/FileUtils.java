@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
+import com.example.myappsecond.utils.ExtraUtil.IOUtils;
 import com.example.myappsecond.zApplication;
 
 import java.io.BufferedReader;

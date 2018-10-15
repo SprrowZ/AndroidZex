@@ -44,113 +44,71 @@
 
             <Button
                 android:id="@+id/popup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="PopupWindow"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
 
             <Button
                 android:id="@+id/sliding"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="滑动冲突"
-                android:layout_marginTop="10dp"
                 />
 
             <Button
                 android:id="@+id/dbtest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="数据库相关"
-                android:layout_marginTop="10dp"
                 />
 
             <Button
                 android:id="@+id/file"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="FileStorage"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/menu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="Menu"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/drawable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="Drawable"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/shape"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="Shape"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/service"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="Service"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="RecycleView"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/callPhone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="callPhone"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/sendSMS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="sendSMS"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/sendEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_bg1"
+                style="@style/project_activity_btn"
                 android:text="sendEmail"
-                android:textAllCaps="false"
-                android:layout_marginTop="10dp"
                 />
+            <Button
+                android:id="@+id/dialogs"
+                style="@style/project_activity_btn"
+                android:text="DialogEx" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

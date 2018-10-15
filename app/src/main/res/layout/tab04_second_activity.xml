@@ -5,75 +5,69 @@
     android:layout_height="match_parent">
     <include layout="@layout/activity_top_title"/>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20px"
         >
-
         <Button
             android:id="@+id/btn1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="Fragment网络测试"
             android:singleLine="true"
             android:background="@drawable/btn_bk4"
             android:textAllCaps="false"
+            android:layout_marginLeft="10dp"
             />
 
         <Button
             android:id="@+id/btn2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
             android:text="Retrofit无参"
             android:singleLine="true"
             android:background="@drawable/btn_bk4"
             android:textAllCaps="false"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Retrofit路径一"
+            android:singleLine="true"
+            android:background="@drawable/btn_bk4"
+            android:textAllCaps="false"
+            android:layout_marginLeft="10dp"
             />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
         >
 
         <Button
-            android:id="@+id/btn3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Retrofit路径一"
-            android:singleLine="true"
-            android:background="@drawable/btn_bk4"
-            android:textAllCaps="false"
-            />
-
-        <Button
             android:id="@+id/btn4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
             android:text="Retrofit路径二"
             android:singleLine="true"
             android:background="@drawable/btn_bk4"
             android:textAllCaps="false"
             />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        >
-
         <Button
             android:id="@+id/btn5"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="路径带参"
             android:singleLine="true"
             android:background="@drawable/btn_bk4"
@@ -82,10 +76,50 @@
 
         <Button
             android:id="@+id/btn6"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
             android:text="QueryMap"
+            android:singleLine="true"
+            android:background="@drawable/btn_bk4"
+            android:textAllCaps="false"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Post请求"
+            android:singleLine="true"
+            android:background="@drawable/btn_bk4"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/btn8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="..."
+            android:singleLine="true"
+            android:background="@drawable/btn_bk4"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/btn9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="..."
             android:singleLine="true"
             android:background="@drawable/btn_bk4"
             android:textAllCaps="false"

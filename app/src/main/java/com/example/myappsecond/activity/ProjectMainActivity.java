@@ -18,7 +18,7 @@ import com.example.myappsecond.R;
 import com.example.myappsecond.project.MenuActivity;
 import com.example.myappsecond.project.SlidingConflict;
 import com.example.myappsecond.project.animations.AnimShapeActivity;
-import com.example.myappsecond.project.dialog.CommonDialogActivity;
+import com.example.myappsecond.project.dialog.TopDialog;
 import com.example.myappsecond.project.sqlDemo.DBActivity;
 import com.example.myappsecond.utils.MeasureUtil;
 import com.example.myappsecond.utils.permission.PermissionUtils;
@@ -91,8 +91,8 @@ public class ProjectMainActivity extends BaseActivity {
     Button sendSMS;
     @BindView(R.id.sendEmail)
     Button sendEmail;
-
-
+   @BindView(R.id.dialogs)
+    Button dialogs;
     LinearLayout parent;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
@@ -108,8 +108,8 @@ public class ProjectMainActivity extends BaseActivity {
 
 
     private void showDialog(){
-        CommonDialogActivity topDialog =
-                new CommonDialogActivity(ProjectMainActivity.this, R.layout.project_dialog_first);
+        TopDialog topDialog =
+                new TopDialog(ProjectMainActivity.this, R.layout.project_dialog_first);
 
 
         parent = (LinearLayout) topDialog.findViewById(R.id.parent);
@@ -159,7 +159,7 @@ public class ProjectMainActivity extends BaseActivity {
     @OnClick({R.id.popup, R.id.sliding, R.id.dbtest, R.id.file,
             R.id.menu, R.id.drawable, R.id.shape, R.id.service,
             R.id.search_bar,R.id.recyclerView,R.id.callPhone,
-            R.id.sendSMS,R.id.sendEmail})
+            R.id.sendSMS,R.id.sendEmail,R.id.dialogs})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -215,6 +215,8 @@ public class ProjectMainActivity extends BaseActivity {
                         sendEmail();
                         },0, Permission.CALL_PHONE);
                 break;
+            case R.id.dialogs:
+                startActivity(new Intent(this,CommonDialogActivity.class));
         }
     }
 

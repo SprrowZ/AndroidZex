@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -45,6 +46,8 @@ public class SecondActivity extends BaseActivity   {
     Button btn5;
     @BindView(R.id.btn6)
     Button btn6;
+    @BindView(R.id.btn7)
+    Button btn7;
     @BindView(R.id.framelayout)
     FrameLayout framelayout;
     @BindView(R.id.title)
@@ -71,7 +74,7 @@ public class SecondActivity extends BaseActivity   {
         transaction.commit();
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6})
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6,R.id.btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
@@ -92,9 +95,46 @@ public class SecondActivity extends BaseActivity   {
             case R.id.btn6:
                 retrofitGet5();
                 break;
+            case R.id.btn7:
+                retrofitPost1();
+                break;
         }
     }
 
+    /**
+     * 最简单的Post请求
+     */
+    private void retrofitPost1() {
+        new Thread(()->{
+            Retrofit retrofit=new Retrofit.Builder()
+                    .baseUrl(Constant.GITHUB_BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            GithubApi githubApi=retrofit.create(GithubApi.class);
+            Call<ResponseBody> call= githubApi.getPostMessage1(Constant.GITHUB_NAME,"0517");
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+                        String result=response.body().string();
+                        Log.i("retrofitPost1", "onResponse:success===>>> "+result);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.i("retrofitPost1", "onFailure:failure ");
+                }
+            });
+        }).start();
+    }
+
+    /**
+     * 比较复杂的Get请求
+     */
     private void retrofitGet5() {
         new Thread(()-> {
             Retrofit retrofit=new Retrofit.Builder()

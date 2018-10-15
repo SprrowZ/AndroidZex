@@ -197,7 +197,7 @@ public class ExDialog extends ExBaseDialog implements IDialog{
         }
 
         /**
-         * 构建子View的listener
+         * 构建子View的listener，自定义xml文件用
          * @param listener
          * @return
          */

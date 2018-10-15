@@ -54,6 +54,7 @@ public class ExDialogManager {
     if (!showing){
         next();
     }
+
     }
     /**
      * 弹出下一个弹窗

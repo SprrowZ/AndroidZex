@@ -109,6 +109,10 @@
                 android:id="@+id/dialogs"
                 style="@style/project_activity_btn"
                 android:text="DialogEx" />
+            <Button
+                android:id="@+id/coor"
+                style="@style/project_activity_btn"
+                android:text="CoordinatorLayout" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

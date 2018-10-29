@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
@@ -24,6 +25,7 @@ import butterknife.Unbinder;
 public class YLJFragment extends BaseFragment {
   private View view;
   private Unbinder unbinder;//butterknife
+  private ScrollView scrollView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class YLJFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         setBarTitle("秦时明月");
         EventBus.getDefault().register(this);
-
+        scrollView=getView().findViewById(R.id.scrollView);
     }
 
     @Override

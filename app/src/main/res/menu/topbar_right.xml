@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<item android:id="@+id/action_search"
+    android:icon="@drawable/search"
+    android:title="search"
+    app:showAsAction="ifRoom"
+    android:iconTint="@color/white"
+    />
+<item android:id="@+id/notification"
+    android:icon="@drawable/notification"
+    android:title="notification"
+    app:showAsAction="ifRoom"
+    android:iconTint="@color/white"
+    />
+<item android:id="@+id/settings_about"
+    android:icon="@drawable/ellipsis"
+    android:title="about"
+    app:showAsAction="never"
+    />
+<item android:id="@+id/mulu"
+    android:icon="@drawable/mulu"
+    android:title="mulu"
+    app:showAsAction="never"
+    />
+</menu>

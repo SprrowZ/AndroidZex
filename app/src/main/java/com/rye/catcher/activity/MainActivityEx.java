@@ -41,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,34 +91,12 @@ public class MainActivityEx extends BaseActivity {
     @BindBitmap(R.drawable.icon_pressed3)
     Bitmap icon_pressed3;
 
-    private YLJFragment weixinFragment;
-    private LMFragment frdFragment;
-    private SettingsFragment settingsFragment;
-
-
     //地理位置
     private AmapResult amapResult;
     //当前Fragment
     private  Fragment currentFragment;
     private  int currentPos=-1;
-
-    Handler mapHandler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case 1://返回一次定位结果
-                    amapResult= (AmapResult) msg.obj;
-                    getWeather(amapResult);
-                    Log.i(TAG, "errorCode"+amapResult.getErrorCode());
-                    break;
-                case 11://LastKnowLocation
-                    amapResult= (AmapResult) msg.obj;
-                    getWeather(amapResult);
-                    Log.i(TAG, "LastKnowLocationCallback: "+amapResult.getErrorCode());
-            }
-            super.handleMessage(msg);
-        }
-    };
+    private final  Handler mapHandler=new MapHandler(this);
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +111,7 @@ public class MainActivityEx extends BaseActivity {
         //获取定位数据
         AmapAPI.getInstance().initLocation(this,mapHandler);
         FileUtils.writeUserLog(TAG+"onCreate:");
+        Log.i(TAG, "onCrate: ...");
     }
 
     /**
@@ -238,7 +218,7 @@ public class MainActivityEx extends BaseActivity {
 
     /**
      * 天气结果处理
-     * @param result
+     *
      */
     private void dealWeather(String result) {
         Log.i(TAG, "onResponse:weatherApi "+result);
@@ -312,9 +292,23 @@ public class MainActivityEx extends BaseActivity {
                 break;
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause: ...");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "onStop: ...");
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.i(TAG, "onDestroy: ...");
         FileUtils.writeUserLog(TAG+"onDestroy:");
     }
 
@@ -326,5 +320,28 @@ public class MainActivityEx extends BaseActivity {
             ToastUtils.shortMsg("再点一次退出应用");
         }
         back_pressed = System.currentTimeMillis();
+    }
+
+    private static class MapHandler extends Handler{
+        WeakReference<MainActivityEx> mActivity;
+        public MapHandler(MainActivityEx mainActivityEx){
+            mActivity=new WeakReference<>(mainActivityEx);
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            MainActivityEx activityEx=mActivity.get();
+            switch (msg.what){
+                case 1://返回一次定位结果
+                    activityEx.amapResult= (AmapResult) msg.obj;
+                    activityEx.getWeather(activityEx.amapResult);
+                    Log.i(TAG, "errorCode"+activityEx.amapResult.getErrorCode());
+                    break;
+                case 11://LastKnowLocation
+                    activityEx.amapResult= (AmapResult) msg.obj;
+                    activityEx.getWeather(activityEx.amapResult);
+                    Log.i(TAG, "LastKnowLocationCallback: "+activityEx.amapResult.getErrorCode());
+            }
+            super.handleMessage(msg);
+        }
     }
 }

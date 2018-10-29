@@ -37,10 +37,10 @@ public class ParentLinear extends LinearLayout {
             case MotionEvent.ACTION_MOVE:
                 deltaX= (int) (ev.getX()-startX);
                 deltaY= (int) (ev.getY()-startY);
-                if (Math.abs(deltaX)>Math.abs(deltaY)){//左右滑動
+                if (Math.abs(deltaX)>Math.abs(deltaY)){//左右滑動拦截
                     return true;
                 }else {
-                    return false;//上下滑动就拦截了
+                    return false;//false不拦截
                 }
             case MotionEvent.ACTION_UP:
                 break;

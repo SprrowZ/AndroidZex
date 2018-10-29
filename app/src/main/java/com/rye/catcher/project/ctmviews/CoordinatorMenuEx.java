@@ -12,6 +12,7 @@ import android.support.v4.view.AbsSavedState;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -53,6 +54,12 @@ public class CoordinatorMenuEx extends FrameLayout {
     private String mShadowOpacity = DEFAULT_SHADOW_OPACITY;
     private int mMenuLeft;
     private int mMainLeft;
+
+    //解决滑动冲突
+    private int startX;
+    private int startY;
+    private int deltaX;
+    private int deltaY;
 
     public CoordinatorMenuEx(Context context) {
         this(context, null);
@@ -172,12 +179,27 @@ public class CoordinatorMenuEx extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
+        Log.i(TAG, "onInterceptTouchEvent: "+mViewDragHelper.shouldInterceptTouchEvent(event));
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                startX= (int) event.getX();
+                startY= (int) event.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                deltaX= (int) (event.getX()-startX);
+                deltaY= (int) (event.getY()-startY);
+                if (Math.abs(deltaX)>Math.abs(deltaY)){
+                    //如果是横向滑动，拦截处理
+                    return true;
+                }
+        }
         return mViewDragHelper.shouldInterceptTouchEvent(event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         //将触摸事件传递给ViewDragHelper，此操作必不可少
+        Log.i(TAG, "onTouchEvent: ");
         mViewDragHelper.processTouchEvent(event);
         return true;
     }
@@ -229,6 +251,7 @@ public class CoordinatorMenuEx extends FrameLayout {
 
     @Override
     public void computeScroll() {
+        //此方法用于自动滚动，比如自动回滚到默认位置
         if (mViewDragHelper.continueSettling(true)) {
             ViewCompat.postInvalidateOnAnimation(this);
         }

@@ -85,7 +85,9 @@ public class GreenAdapter extends BaseArrayAdapter {
       //进行赋值操作
         for (int i=0;i<bean.size();i++){//这样循环，数据一多肯定就会卡死的
             if (!bean.getStr(cartoons.getNAME()).equals("")){
-                Glide.with(activity).load(bean.getStr(cartoons.getNAME())).into(viewHolder.iv);
+                Glide.with(activity)
+                        .load(bean.getStr(cartoons.getNAME()))
+                        .into(viewHolder.iv);
              continue;
             }
         }

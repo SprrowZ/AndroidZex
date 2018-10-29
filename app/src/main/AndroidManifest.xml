@@ -45,10 +45,10 @@
         android:name=".zApplication"
         android:allowBackup="true"
         android:icon="@drawable/appicon"
-         android:label="@string/appName"
+        android:label="@string/appName"
         android:roundIcon="@drawable/appround"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.Base"
         tools:replace="android:label"
         >
         <meta-data android:name="com.amap.api.v2.apikey"
@@ -304,6 +304,9 @@
             android:launchMode="singleTask"/>
 
         <activity android:name=".activity.CommonDialogActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask"/>
+        <activity android:name=".activity.CoordinatorActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"/>
     </application>

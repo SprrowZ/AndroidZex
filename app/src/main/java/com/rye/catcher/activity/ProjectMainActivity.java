@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,6 +40,7 @@ import butterknife.OnClick;
 
 public class ProjectMainActivity extends BaseActivity {
     private static boolean flag=true;
+    private static  final  String TAG="ProjectMainActivity";
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.tv_topbtntitle)
@@ -93,6 +95,10 @@ public class ProjectMainActivity extends BaseActivity {
     Button sendEmail;
    @BindView(R.id.dialogs)
     Button dialogs;
+   @BindView(R.id.coor)
+    Button coor;
+
+
     LinearLayout parent;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
@@ -104,6 +110,8 @@ public class ProjectMainActivity extends BaseActivity {
         setBarTitle("Mix");
 
         MeasureUtil.setLeftScale(this, search, searchBar, R.mipmap.icon_title_bar_edit_search);
+
+        Log.i(TAG, "onCreate: ...");
     }
 
 
@@ -159,7 +167,7 @@ public class ProjectMainActivity extends BaseActivity {
     @OnClick({R.id.popup, R.id.sliding, R.id.dbtest, R.id.file,
             R.id.menu, R.id.drawable, R.id.shape, R.id.service,
             R.id.search_bar,R.id.recyclerView,R.id.callPhone,
-            R.id.sendSMS,R.id.sendEmail,R.id.dialogs})
+            R.id.sendSMS,R.id.sendEmail,R.id.dialogs,R.id.coor})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -217,6 +225,10 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
             case R.id.dialogs:
                 startActivity(new Intent(this,CommonDialogActivity.class));
+                break;
+            case R.id.coor:
+                startActivity(new Intent(this,CoordinatorActivity.class));
+                break;
         }
     }
 
@@ -250,5 +262,11 @@ public class ProjectMainActivity extends BaseActivity {
       data.putExtra(Intent.EXTRA_SUBJECT," ");
       data.putExtra(Intent.EXTRA_TEXT,"内容");
       startActivity(data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy: ...");
     }
 }

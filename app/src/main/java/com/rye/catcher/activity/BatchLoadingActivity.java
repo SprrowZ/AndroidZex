@@ -40,9 +40,6 @@ public class BatchLoadingActivity extends Activity {
         listView.setAdapter(adapter);
         listView.removeFooterView(footer);
     }
-
-
-
     private int number = 20; // 每次获取多少条数据
     private int maxpage = 5; // 总共有多少页
     private boolean loadfinish = true; // 指示数据是否加载完成
@@ -64,23 +61,19 @@ public class BatchLoadingActivity extends Activity {
                     if (nextpage <= maxpage && loadfinish) {
                         loadfinish = false;
                         listView.addFooterView(footer);
-
                         // 开一个线程加载数据
-                        new Thread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
-                                // 发送消息
-                                handler.sendMessage(handler.obtainMessage(100,
-                                        data));
+                        new Thread(()->{
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
+
+                            // 发送消息
+                            handler.sendMessage(handler.obtainMessage(100,
+                                    data));
                         }).start();
+
                     }
                 }
             }

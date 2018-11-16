@@ -18,7 +18,6 @@ import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.SlideActivity;
 import com.rye.catcher.project.MenuActivity;
-import com.rye.catcher.project.SlidingConflict;
 import com.rye.catcher.project.animations.AnimShapeActivity;
 import com.rye.catcher.project.dialog.TopDialog;
 import com.rye.catcher.project.sqlDemo.DBActivity;
@@ -181,7 +180,7 @@ public class ProjectMainActivity extends BaseActivity {
                 showPop();
                 break;
             case R.id.sliding:
-                startActivity(new Intent(ProjectMainActivity.this, SlidingConflict.class));
+                startActivity(new Intent(ProjectMainActivity.this, LivePreservationActivity.class));
                 break;
             case R.id.dbtest:
                 startActivity(new Intent(ProjectMainActivity.this, DBActivity.class));

@@ -212,7 +212,10 @@
             android:name=".project.animations.AnimValueActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity android:name=".project.SlidingConflict" />
+        <activity android:name=".activity.LivePreservationActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask"
+            />
         <activity
             android:name=".project.sqlDemo.DBActivity"
             android:configChanges="keyboard|orientation|screenSize"

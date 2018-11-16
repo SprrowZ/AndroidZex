@@ -14,6 +14,7 @@ import com.rye.catcher.utils.ExtraUtil.IOUtils;
 import com.rye.catcher.zApplication;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,6 +25,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -1218,6 +1221,43 @@ public static void writeUserLog(String content) {
    public static void createNewFile(String dirName,String fileName,String content){//主要用于txt文件
       writeFile(SdHelper.getAppExternal()+dirName+File.separator+fileName,content);
    }
+
+    /**
+     * 下载网络图片
+     * @param path The path of image
+     * @return byte[]
+     * @throws Exception
+     */
+    public static byte[] getImage(String path) throws Exception{
+        URL url = new URL(path);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setConnectTimeout(5 * 1000);
+        conn.setRequestMethod("GET");
+        InputStream inStream = conn.getInputStream();
+        if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+            return readStream(inStream);
+        }
+        return null;
+    }
+
+
+    /**
+     * Get data from stream
+     * @param inStream
+     * @return byte[]
+     * @throws Exception
+     */
+    public static byte[] readStream(InputStream inStream) throws Exception{
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while( (len=inStream.read(buffer)) != -1){
+            outStream.write(buffer, 0, len);
+        }
+        outStream.close();
+        inStream.close();
+        return outStream.toByteArray();
+    }
 
 
 }

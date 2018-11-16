@@ -113,6 +113,14 @@
                 android:id="@+id/coor"
                 style="@style/project_activity_btn"
                 android:text="CoordinatorLayout" />
+            <Button
+                android:id="@+id/viewDrag"
+                style="@style/project_activity_btn"
+                android:text="ViewDragHelper" />
+            <Button
+                android:id="@+id/batchLoading"
+                style="@style/project_activity_btn"
+                android:text="ListView的分批加载" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

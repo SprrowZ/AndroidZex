@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
+import com.rye.catcher.SlideActivity;
 import com.rye.catcher.project.MenuActivity;
 import com.rye.catcher.project.SlidingConflict;
 import com.rye.catcher.project.animations.AnimShapeActivity;
@@ -97,8 +98,10 @@ public class ProjectMainActivity extends BaseActivity {
     Button dialogs;
    @BindView(R.id.coor)
     Button coor;
-
-
+   @BindView(R.id.viewDrag)
+    Button viewDrag;
+   @BindView(R.id.batchLoading)
+   Button batchLoading;
     LinearLayout parent;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
@@ -167,7 +170,8 @@ public class ProjectMainActivity extends BaseActivity {
     @OnClick({R.id.popup, R.id.sliding, R.id.dbtest, R.id.file,
             R.id.menu, R.id.drawable, R.id.shape, R.id.service,
             R.id.search_bar,R.id.recyclerView,R.id.callPhone,
-            R.id.sendSMS,R.id.sendEmail,R.id.dialogs,R.id.coor})
+            R.id.sendSMS,R.id.sendEmail,R.id.dialogs,R.id.coor,
+            R.id.viewDrag,R.id.batchLoading})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -229,6 +233,11 @@ public class ProjectMainActivity extends BaseActivity {
             case R.id.coor:
                 startActivity(new Intent(this,CoordinatorActivity.class));
                 break;
+            case R.id.viewDrag:
+                startActivity(new Intent(this, SlideActivity.class));
+                break;
+            case R.id.batchLoading:
+                startActivity(new Intent(this,BatchLoadingActivity.class));
         }
     }
 

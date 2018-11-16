@@ -36,7 +36,9 @@
         <item name="android:textSize">30sp</item>
         <item name="android:textAllCaps">false</item>
     </style>
-
+    <style name="ToolbarNoPadding" parent="Base.V7.Widget.AppCompat.Toolbar">
+        <item name="android:minWidth">0dp</item>
+    </style>
 
     <!--扇形按钮选择-->
     <style name="MenuStyle">

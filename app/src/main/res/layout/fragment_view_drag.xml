@@ -1,0 +1,14 @@
+<com.rye.catcher.project.ctmviews.ViewDragHelperView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rye.catcher.activity.fragment.ViewDragFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/test1"
+        android:layout_width="@dimen/len_64"
+        android:layout_height="@dimen/len_64"
+        android:text="Fling.." />
+
+</com.rye.catcher.project.ctmviews.ViewDragHelperView>

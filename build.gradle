@@ -30,7 +30,7 @@ ext {//全局配置变量
     supportVer = '27.1.1'
     compileSdkVer = 27
     buildToolsVer = '27.0.3'
-    minSdkVer = 16
+    minSdkVer = 23
     targetSdkVer = 27
     glideVer='4.7.1'
     butterVer='8.4.0'

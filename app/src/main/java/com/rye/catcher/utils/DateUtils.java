@@ -483,62 +483,12 @@ public class DateUtils {
         return Integer.parseInt(String.valueOf(between_days)) + 1;
     }
 
-    public static String getMailTime(Date paramDate) {
-        String str;
-        long l = paramDate.getTime();
-        if (isToday(l)) {
-            str = FORMAT_TIME;
-        } else if (isYesterday(l)) {
-            str =  FORMAT_TIME;
-            return zApplication.getInstance().getString(R.string.yesterday)+" "+ new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
-        } else {
-            str = "yy/MM/dd";
-        }
-        return new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
-    }
 
 
-    public static String getVoteTime(Date paramDate) {
-        String str;
-        if (paramDate != null) {
-            long l = paramDate.getTime();
-            str = FORMAT_DATE_VOTE;
-            return new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
-        } else {
-            return null;
-        }
-    }
 
-    public static String getDoneTime1(Date paramDate) {
-        String str;
-        if (paramDate != null) {
-            long l = paramDate.getTime();
-            str = FORMAT_DATE_DONE;
-            return new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
-        } else {
-            return null;
-        }
-    }
 
-    public static String getDoneTime2(Date paramDate) {
-        String str;
-        if (paramDate != null) {
-            long l = paramDate.getTime();
-            str = FORMAT_DATE_DONE1;
-            return new SimpleDateFormat(str, Locale.CHINA).format(paramDate);
-        } else {
-            return null;
-        }
-    }
 
-    public static String todoTimeFormat(Date paramDate) {
-        String str;
-        long l = paramDate.getTime();
-        int month = paramDate.getMonth() + 1;
-        int day = paramDate.getDate();
-        str = String.format(zApplication.getInstance().getString(R.string.todo_auto_back), month, day);
-        return str;
-    }
+
 
     public static boolean isCloseEnough(long paramLong1, long paramLong2) {
         long l = paramLong1 - paramLong2;

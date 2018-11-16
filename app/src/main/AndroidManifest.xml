@@ -3,312 +3,322 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rye.catcher">
 
-   <!-- <uses-permission android:name="android.permission.INTERNET"/>
+    <!--
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <!-- 这个没啥用。。。-->
-    <permission android:name="android.permission.STATUS_BAR_SERVICE" android:protectionLevel="signature" />
-    <!--高德地图所需权限在下面-->
-    <!--用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <!--用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <!--用于获取运营商信息，用于支持提供运营商信息相关的接口-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-    <!--用于访问网络，网络定位需要上网-->
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <!--用于读取手机当前的状态-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-    <!--用于写入缓存数据到扩展存储卡-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <!--用于申请调用A-GPS模块-->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
-    <!--用于申请获取蓝牙信息进行室内定位-->
-    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
-    <!--小米推送SDK新增权限-->
-    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
-    <!--<uses-permission android:name="android.permission.VIBRATE"/>-->
-    <!--<permission android:name="com.example.myappsecond.permission.MIPUSH_RECEIVE" android:protectionLevel="signature" />-->
-    <!--&lt;!&ndash;这里com.xiaomi.mipushdemo改成app的包名&ndash;&gt;-->
-    <!--<uses-permission android:name="com.example.myappsecond.permission.MIPUSH_RECEIVE" />-->
-    <!--这里com.xiaomi.mipushdemo改成app的包名-->
+    -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 这个没啥用。。。 -->
+    <permission
+        android:name="android.permission.STATUS_BAR_SERVICE"
+        android:protectionLevel="signature" />
+    <!-- 高德地图所需权限在下面 -->
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 用于写入缓存数据到扩展存储卡 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:name=".zApplication"
         android:allowBackup="true"
         android:icon="@drawable/appicon"
-        android:label="@string/appName"
+        android:label="${appName}"
         android:roundIcon="@drawable/appround"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base"
-        tools:replace="android:label"
-        >
-        <meta-data android:name="com.amap.api.v2.apikey"
-            android:value="09f608d1c15c69d760761fec208845ab"/>
+        tools:replace="android:label">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="09f608d1c15c69d760761fec208845ab" />
+
         <provider
-            android:authorities="com.rye.catcher.MyFileProvider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.rye.catcher.MyFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
-        <service android:name="com.amap.api.location.APSService"></service>
-        <activity android:name=".activity.SplashActivity"
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity
+            android:name=".activity.SplashActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-             android:configChanges="keyboard|orientation|screenSize"
-             android:screenOrientation="portrait"
-            >
-        </activity>
-        <activity android:name=".activity.MainActivityEx"
+        <activity
+            android:name=".MainActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            >
-
-        </activity>
-
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MainActivityEx"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity android:name=".FirstActivity">
-          <intent-filter>
-          <category android:name="android.intent.category.DEFAULT" />
-          </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity android:name=".SecondActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CameraActivity"
+        <activity
+            android:name=".activity.CameraActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.review.KeepJava"
-           android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.MenuActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.review.KeepJava"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.ReviewTest"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.MenuActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.ReviewTest"
             android:clearTaskOnLaunch="true"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.review.BaseAdapterTest"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.review.BaseAdapterTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.viewpager.helloActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
-            />
-        <activity android:name=".project.viewpager.helloActivity"
-             android:theme="@style/AppTheme.Trans"
+            android:theme="@style/AppTheme.Trans" />
+        <activity
+            android:name=".project.review.ViewPagerTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmTopActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.review.myAsyncTask"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.review.myAsyncTask_pg"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.async.AsyncMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.animations.AnimShapeActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.animations.AnimMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.DrawableMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.LayerDrawableActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmFirstActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmSecondActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmThirdActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ProjectMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.animations.AnimMemoryActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.animations.AnimAttrActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.animations.AnimExActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmFivthActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmSixthActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.ctmviews.dellist.DelMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmSeventhActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.ctmviews.ctmimg.RoundMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.animations.AnimValueActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity android:name=".project.SlidingConflict" />
+        <activity
+            android:name=".project.sqlDemo.DBActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.FileStorageTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+
+        <service android:name=".project.services.ServiceTest" />
+
+        <activity
+            android:name=".project.services.ServiceMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.review.SpannableStringTest"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmMain2Activity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmEighthActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmNinethActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.OkHttpMainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.ctmviews.Mypractice.Custom_Tenth"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmElevenActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmTwelfthsActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".project.ctmviews.GestureDetectors"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.CartoonsDoActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.CartoonsListActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
-            />
-        <activity android:name=".project.review.ViewPagerTest"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.CharactersDoActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmTopActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".base.sockets.SocketClientActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.TestCoorActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.CartoonsDetailActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ProvinceListActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity android:name=".project.RxJava2.RxDemoOne" />
+        <activity
+            android:name=".activity.RecycleDemoActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.CommonDialogActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.CoordinatorActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".SlideActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask"/>
+        <activity android:name=".activity.BatchLoadingActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             />
 
-        <activity android:name=".project.review.myAsyncTask"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.review.myAsyncTask_pg"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.async.AsyncMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.animations.AnimShapeActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.animations.AnimMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.DrawableMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.LayerDrawableActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmFirstActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmSecondActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmThirdActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ProjectMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
 
-        <activity android:name=".project.animations.AnimMemoryActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.animations.AnimAttrActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.animations.AnimExActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmFivthActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmSixthActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.ctmviews.dellist.DelMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmSeventhActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.ctmviews.ctmimg.RoundMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.animations.AnimValueActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-
-        <activity android:name=".project.SlidingConflict"/>
-        <activity android:name=".project.sqlDemo.DBActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.FileStorageTest"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <service android:name=".project.services.ServiceTest"/>
-        <activity android:name=".project.services.ServiceMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.review.SpannableStringTest"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmMain2Activity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmEighthActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmNinethActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.OkHttpMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.ctmviews.Mypractice.Custom_Tenth"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmElevenActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmTwelfthsActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".project.ctmviews.GestureDetectors"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.WebViewActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.CartoonsDoActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.CartoonsListActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:windowSoftInputMode="adjustPan"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.CharactersDoActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-
-        <activity android:name=".base.sockets.SocketClientActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.TestCoorActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.CartoonsDetailActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"/>
-        <activity android:name=".activity.ProvinceListActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"/>
-        <activity android:name=".project.RxJava2.RxDemoOne"/>
-        <activity android:name=".activity.RecycleDemoActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"/>
-
-        <activity android:name=".activity.CommonDialogActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"/>
-        <activity android:name=".activity.CoordinatorActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"/>
     </application>
 
 </manifest>

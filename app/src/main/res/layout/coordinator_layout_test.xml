@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             app:expandedTitleMarginEnd="10dp"
             app:expandedTitleMarginStart="10dp"
+            android:minHeight="100dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -22,7 +23,8 @@
                 android:layout_height="300dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/cartoon1"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

@@ -121,6 +121,10 @@
                 android:id="@+id/batchLoading"
                 style="@style/project_activity_btn"
                 android:text="ListView的分批加载" />
+            <Button
+                android:id="@+id/siteProtection"
+                style="@style/project_activity_btn"
+                android:text="现场保护" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -24,6 +24,7 @@ public class LivePreservationActivity extends BaseActivity {
     @BindView(R.id.container)
     LinearLayout container;
     private static final String DATE_FORMAT="yyyy年MM月dd日 HH:mm:ss";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

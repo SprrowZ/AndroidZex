@@ -81,7 +81,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MainActivityEx"
-            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:launchMode="singleTask" />
         <activity android:name=".FirstActivity">
             <intent-filter>
@@ -212,16 +212,16 @@
             android:name=".project.animations.AnimValueActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity android:name=".activity.LivePreservationActivity"
+        <activity
+            android:name=".activity.LivePreservationActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
         <activity
             android:name=".project.sqlDemo.DBActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.FileStorageTest"
+            android:name=".activity.FilesDemoActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
 
@@ -315,13 +315,14 @@
         <activity
             android:name=".SlideActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"/>
-        <activity android:name=".activity.BatchLoadingActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.BatchLoadingActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.SiteProtectionActivity"
+
             />
-
-
     </application>
 
 </manifest>

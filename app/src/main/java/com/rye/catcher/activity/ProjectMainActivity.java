@@ -102,6 +102,9 @@ public class ProjectMainActivity extends BaseActivity {
    @BindView(R.id.batchLoading)
    Button batchLoading;
     LinearLayout parent;
+   @BindView(R.id.siteProtection)
+    Button siteProtection;
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
     @Override
@@ -170,7 +173,7 @@ public class ProjectMainActivity extends BaseActivity {
             R.id.menu, R.id.drawable, R.id.shape, R.id.service,
             R.id.search_bar,R.id.recyclerView,R.id.callPhone,
             R.id.sendSMS,R.id.sendEmail,R.id.dialogs,R.id.coor,
-            R.id.viewDrag,R.id.batchLoading})
+            R.id.viewDrag,R.id.batchLoading,R.id.siteProtection})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -186,7 +189,7 @@ public class ProjectMainActivity extends BaseActivity {
                 startActivity(new Intent(ProjectMainActivity.this, DBActivity.class));
                 break;
             case R.id.file:
-                startActivity(new Intent(ProjectMainActivity.this, FileStorageTest.class));
+                startActivity(new Intent(ProjectMainActivity.this, FilesDemoActivity.class));
                 break;
             case R.id.menu:
                 startActivity(new Intent(ProjectMainActivity.this, MenuActivity.class));
@@ -237,6 +240,8 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
             case R.id.batchLoading:
                 startActivity(new Intent(this,BatchLoadingActivity.class));
+            case R.id.siteProtection:
+                startActivity(new Intent(this,SiteProtectionActivity.class));
         }
     }
 

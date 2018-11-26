@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * Created by ZZG on 2018/1/19.
  */
 
-public class FileStorageTest extends BaseActivity {
+public class FilesDemoActivity extends BaseActivity {
     @BindView(R.id.thistitle)
     TextView thistitle;
     @BindView(R.id.btn1)

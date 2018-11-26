@@ -1,9 +1,11 @@
 package com.rye.catcher.utils;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 
@@ -31,51 +33,59 @@ public class SdHelper {
     public static String privateData;//用户数据目录，不可见
     public static String rootDirectory;//Android根目录
     public static String externalCache;//应用外部缓存目录........专属缓存路径
+    private static SdHelper sdHelper=new SdHelper();
     public static SdHelper getInstance(){
-     if (instance==null){
-         instance=new SdHelper();
-     }
      initPath();
      return instance;
     }
 
     public  static void initPath() {
-        //内存根目录，创建外部文件可用
+        //根存储
        sdPath = Environment.getExternalStorageDirectory().getPath() + File.separator;
        storagePath=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator;
        publicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+File.separator;
-       //app私有目录
+       //app私有存储
        external= zApplication.getInstance().getApplicationContext().getExternalFilesDir(null)+File.separator;
        privateData=Environment.getDataDirectory()+File.separator;
        rootDirectory=Environment.getRootDirectory()+File.separator;
        //app私有缓存
        externalCache= zApplication.getInstance().getApplicationContext().getExternalCacheDir()+File.separator;
     }
+
+    /**
+     * App专属目录
+     * @return
+     */
    public  static String getAppExternal(){
         return  external;
    }
+
+    /**
+     * 公共目录
+     * @return
+     */
    public  static String getSdPath(){
         return sdPath;
    }
-    // 判断SD卡是否被挂载
+
+    /**
+     * 判断内存卡是否被挂载
+     * @return
+     */
     public static boolean isSDCardMounted() {
         // return Environment.getExternalStorageState().equals("mounted");
         return Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED);
     }
 
-    // 获取SD卡的根目录
-    public static String getSDCardBaseDir() {
-        if (isSDCardMounted()) {
-            return Environment.getExternalStorageDirectory().getAbsolutePath();
-        }
-        return null;
-    }
-
-    // 获取SD卡的完整空间大小，返回MB
+    /**
+     * 获取SD卡的完整空间大小，返回MB
+     * @return
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static long getSDCardSize() {
         if (isSDCardMounted()) {
-            StatFs fs = new StatFs(getSDCardBaseDir());
+            StatFs fs = new StatFs(getSdPath());
             long count = fs.getBlockCountLong();
             long size = fs.getBlockSizeLong();
             return count * size / 1024 / 1024;
@@ -83,10 +93,11 @@ public class SdHelper {
         return 0;
     }
     // 获取SD卡的剩余空间大小
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static long getSDCardFreeSize() {
         if (isSDCardMounted()) {
-            StatFs fs = new StatFs(getSDCardBaseDir());
-            @SuppressLint("NewApi") long count = fs.getFreeBlocksLong();
+            StatFs fs = new StatFs(getSdPath());
+            @SuppressLint({"NewApi", "LocalSuppress"}) long count = fs.getFreeBlocksLong();
             long size = fs.getBlockSizeLong();
             return count * size / 1024 / 1024;
         }
@@ -96,7 +107,7 @@ public class SdHelper {
     // 获取SD卡的可用空间大小
     public static long getSDCardAvailableSize() {
         if (isSDCardMounted()) {
-            StatFs fs = new StatFs(getSDCardBaseDir());
+            StatFs fs = new StatFs(getSdPath());
             long count = fs.getAvailableBlocksLong();
             long size = fs.getBlockSizeLong();
             return count * size / 1024 / 1024;
@@ -135,36 +146,10 @@ public class SdHelper {
                                                     String fileName) {
         BufferedOutputStream bos = null;
         if (isSDCardMounted()) {
-            File file = new File(getSDCardBaseDir() + File.separator + dir);
+            File file = new File(getSdPath() + File.separator + dir);
             if (!file.exists()) {
                 file.mkdirs();// 递归创建自定义目录
             }
-            try {
-                bos = new BufferedOutputStream(new FileOutputStream(new File(
-                        file, fileName)));
-                bos.write(data);
-                bos.flush();
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    bos.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }
-        return false;
-    }
-
-    // 往SD卡的私有Files目录下保存文件
-    public static boolean saveFileToSDCardPrivateFilesDir(byte[] data,
-                                                          String type, String fileName, Context context) {
-        BufferedOutputStream bos = null;
-        if (isSDCardMounted()) {
-            File file = context.getExternalFilesDir(type);
             try {
                 bos = new BufferedOutputStream(new FileOutputStream(new File(
                         file, fileName)));
@@ -211,9 +196,14 @@ public class SdHelper {
         return false;
     }
 
-    // 保存bitmap图片到SDCard的私有Cache目录
-    public static boolean saveBitmapToSDCardPrivateCacheDir(Bitmap bitmap,
-                                                            String fileName, Context context) {
+    /**
+     *
+     * @param bitmap
+     * @param fileName
+     * @param context
+     * @return  保存bitmap图片到SDCard的私有Cache目录
+     */
+    public static boolean saveImage(Bitmap bitmap, String fileName, Context context) {
         if (isSDCardMounted()) {
             BufferedOutputStream bos = null;
             // 获取私有的Cache缓存目录
@@ -302,10 +292,6 @@ public class SdHelper {
         return context.getExternalFilesDir(type).getAbsolutePath();
     }
 
-    public static boolean isFileExist(String filePath) {
-        File file = new File(filePath);
-        return file.isFile();
-    }
 
     // 从sdcard中删除文件
     public static boolean removeFileFromSDCard(String filePath) {

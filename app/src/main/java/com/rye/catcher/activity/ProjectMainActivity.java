@@ -4,22 +4,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.SlideActivity;
-import com.rye.catcher.project.MenuActivity;
 import com.rye.catcher.project.animations.AnimShapeActivity;
 import com.rye.catcher.project.dialog.TopDialog;
+import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.sqlDemo.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
 import com.rye.catcher.utils.permission.PermissionUtils;
@@ -69,7 +67,7 @@ public class ProjectMainActivity extends BaseActivity {
     TextView searchBar;
     @BindView(R.id.search)
     LinearLayout search;
-    @BindView(R.id.popup)
+    @BindView(R.id.service)
     Button popup;
     @BindView(R.id.sliding)
     Button sliding;
@@ -77,14 +75,14 @@ public class ProjectMainActivity extends BaseActivity {
     Button dbtest;
     @BindView(R.id.file)
     Button file;
-    @BindView(R.id.menu)
-    Button menu;
+    @BindView(R.id.aidl)
+    Button aidl;
     @BindView(R.id.drawable)
     Button drawable;
     @BindView(R.id.shape)
     Button shape;
-    @BindView(R.id.service)
-    Button service;
+    @BindView(R.id.slidingDemo)
+    Button slidingDemo;
     @BindView(R.id.recyclerView)
     Button recycleView;
     @BindView(R.id.callPhone)
@@ -137,17 +135,8 @@ public class ProjectMainActivity extends BaseActivity {
 //                inputManager.showSoftInput(son, 0);
 
     }
-    private void showPop(){
-        View view1 = View.inflate(ProjectMainActivity.this, R.layout.popupwindow, null);
-        PopupWindow pop = new PopupWindow(ProjectMainActivity.this);
-        pop.setContentView(view1);
-        pop.setHeight(ViewPager.LayoutParams.WRAP_CONTENT);
-        pop.setWidth(ViewPager.LayoutParams.MATCH_PARENT);
-        pop.setFocusable(true);
-        // pop.setOutsideTouchable(false);
-        // ObjectAnimator  animator=ObjectAnimator.ofFloat(view1,"translationY",0F,100F);
-        // animator.setDuration(100).start();
-        pop.showAsDropDown(popup);
+    private void startService(){
+        startActivityByAlpha(new Intent(this, ServiceMainActivity.class));
     }
 
     private void setClock() {
@@ -169,8 +158,8 @@ public class ProjectMainActivity extends BaseActivity {
         setClock();
     }
 
-    @OnClick({R.id.popup, R.id.sliding, R.id.dbtest, R.id.file,
-            R.id.menu, R.id.drawable, R.id.shape, R.id.service,
+    @OnClick({R.id.service, R.id.sliding, R.id.dbtest, R.id.file,
+            R.id.aidl, R.id.drawable, R.id.shape, R.id.slidingDemo,
             R.id.search_bar,R.id.recyclerView,R.id.callPhone,
             R.id.sendSMS,R.id.sendEmail,R.id.dialogs,R.id.coor,
             R.id.viewDrag,R.id.batchLoading,R.id.siteProtection})
@@ -179,52 +168,63 @@ public class ProjectMainActivity extends BaseActivity {
             case R.id.search_bar:
                 showDialog();
                 break;
-            case R.id.popup:
-                showPop();
+            case R.id.service:
+                startService();
                 break;
             case R.id.sliding:
-                startActivity(new Intent(ProjectMainActivity.this, LivePreservationActivity.class));
+                startActivity(new Intent(ProjectMainActivity.this,
+                        LivePreservationActivity.class));
                 break;
             case R.id.dbtest:
-                startActivity(new Intent(ProjectMainActivity.this, DBActivity.class));
+                startActivity(new Intent(ProjectMainActivity.this,
+                        DBActivity.class));
                 break;
             case R.id.file:
-                startActivity(new Intent(ProjectMainActivity.this, FilesDemoActivity.class));
+                startActivity(new Intent(ProjectMainActivity.this,
+                        FilesDemoActivity.class));
                 break;
-            case R.id.menu:
-                startActivity(new Intent(ProjectMainActivity.this, MenuActivity.class));
+            case R.id.aidl:
+                startActivity(new Intent(ProjectMainActivity.this,
+                        AIDLActivity.class));
                 break;
             case R.id.drawable:
-                Intent intent8 = new Intent(ProjectMainActivity.this, DrawableMainActivity.class);
+                Intent intent8 = new Intent(ProjectMainActivity.this,
+                        DrawableMainActivity.class);
                 startActivity(intent8);
                 break;
             case R.id.shape:
-                Intent intent6 = new Intent(ProjectMainActivity.this, AnimShapeActivity.class);
+                Intent intent6 = new Intent(ProjectMainActivity.this,
+                        AnimShapeActivity.class);
                 startActivity(intent6);
                 break;
-            case R.id.service:
-                Intent intent11 = new Intent(ProjectMainActivity.this, TestCoorActivity.class);
+            case R.id.slidingDemo:
+                Intent intent11 = new Intent(ProjectMainActivity.this,
+                        TestCoorActivity.class);
                 startActivity(intent11);
                 break;
             case R.id.recyclerView:
-                Intent intent12= new Intent(ProjectMainActivity.this,RecycleDemoActivity.class);
+                Intent intent12= new Intent(ProjectMainActivity.this,
+                        RecycleDemoActivity.class);
                 startActivity(intent12);
                 break;
             case R.id.callPhone:
-                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置",false,
+                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置"
+                        ,false,
                         data -> {
                         //打电话
                         callPhone();
                         },0, Permission.CALL_PHONE);
                 break;
             case R.id.sendSMS:
-                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置",false,
+                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置",
+                        false,
                         data -> {
                         sendSMS();
                         },0, Permission.CALL_PHONE);
                 break;
             case R.id.sendEmail:
-                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置",false,
+                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置",
+                        false,
                         data -> {
                         sendEmail();
                         },0, Permission.CALL_PHONE);

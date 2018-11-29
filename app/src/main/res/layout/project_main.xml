@@ -43,9 +43,9 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/popup"
+                android:id="@+id/service"
                 style="@style/project_activity_btn"
-                android:text="PopupWindow"
+                android:text="Service"
                 />
 
             <Button
@@ -66,9 +66,9 @@
                 android:text="FileStorage"
                 />
             <Button
-                android:id="@+id/menu"
+                android:id="@+id/aidl"
                 style="@style/project_activity_btn"
-                android:text="Menu"
+                android:text="PackageManager/AIDL"
                 />
             <Button
                 android:id="@+id/drawable"
@@ -81,9 +81,9 @@
                 android:text="Shape"
                 />
             <Button
-                android:id="@+id/service"
+                android:id="@+id/slidingDemo"
                 style="@style/project_activity_btn"
-                android:text="Service"
+                android:text="SlidingDemo"
                 />
             <Button
                 android:id="@+id/recyclerView"

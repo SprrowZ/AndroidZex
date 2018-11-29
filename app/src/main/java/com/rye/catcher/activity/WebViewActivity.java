@@ -131,7 +131,9 @@ public class WebViewActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        parent.removeView(mWebView);//先从父布局移除
+        if (parent!=null){
+            parent.removeView(mWebView);//先从父布局移除
+        }
         mWebView.removeAllViews();
         mWebView.destroy();//顺序不要搞混
     }

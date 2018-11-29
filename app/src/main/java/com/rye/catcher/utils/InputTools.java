@@ -22,6 +22,10 @@ public class InputTools {
         }
     }
 
+    /**
+     * 显示键盘
+     * @param context
+     */
     public static void showInput(Activity context) {
         View v = context.getCurrentFocus();
         if (v != null) {
@@ -30,6 +34,10 @@ public class InputTools {
         }
     }
 
+    /**
+     * 隐藏键盘
+     * @param context
+     */
     public static void hideInput(Activity context) {
         View v = context.getCurrentFocus();
         if (v != null) {

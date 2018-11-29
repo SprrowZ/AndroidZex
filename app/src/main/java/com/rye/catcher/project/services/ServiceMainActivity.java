@@ -37,12 +37,16 @@ public class ServiceMainActivity extends BaseActivity {
     Button unbindService;
 
     //与Service进行绑定
-    private ServiceTest.MyBinder myBinder;
+    private LocalService.MyBinder myBinder;
+    //IBinder
+    //ServiceConnection用于绑定客户端和service
+    //进度监控
     private ServiceConnection connection = new ServiceConnection() {
+        //服务绑定成功后调用，毕竟onBind方法只执行一次，绑定成功/失败调用下面的两个方法
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             //实例化service
-            myBinder = (ServiceTest.MyBinder) iBinder;
+            myBinder = (LocalService.MyBinder) iBinder;
             //开始调用Service中的方法
             myBinder.startDownload();
             Log.i(TAG, "onServiceConnected: -----------bindService---------");
@@ -62,16 +66,17 @@ public class ServiceMainActivity extends BaseActivity {
         ButterKnife.bind(this);
 
     }
-    @OnClick({R.id.startService, R.id.stopService, R.id.service, R.id.sService, R.id.bindService, R.id.unbindService})
+    @OnClick({R.id.startService, R.id.stopService, R.id.service,
+            R.id.sService, R.id.bindService, R.id.unbindService})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.startService:
                 //开启Service
-                Intent intent1 = new Intent(this, ServiceTest.class);
+                Intent intent1 = new Intent(this, LocalService.class);
                 startService(intent1);
                 break;
             case R.id.stopService:
-                Intent intent2 = new Intent(this, ServiceTest.class);
+                Intent intent2 = new Intent(this, LocalService.class);
                 stopService(intent2);
                 break;
             case R.id.service:
@@ -79,7 +84,7 @@ public class ServiceMainActivity extends BaseActivity {
             case R.id.sService:
                 break;
             case R.id.bindService:
-                Intent intent3 = new Intent(this, ServiceTest.class);
+                Intent intent3 = new Intent(this, LocalService.class);
                 bindService(intent3, connection, BIND_AUTO_CREATE);
                 break;
             case R.id.unbindService:

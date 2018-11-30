@@ -46,7 +46,7 @@ public class AnimValueActivity extends BaseActivity implements View.OnClickListe
         btn4=findViewById(R.id.btn4);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
-        content=findViewById(R.id.content);
+        content=findViewById(R.id.appName);
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);

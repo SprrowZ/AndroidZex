@@ -47,7 +47,7 @@ public class MyAdapter extends BaseAdapter {
             convertView=mInflater.inflate(R.layout.review_baseadapter_item,null);
             viewHolder.iv=convertView.findViewById(R.id.iv);
             viewHolder.title=convertView.findViewById(R.id.title);
-            viewHolder.content=convertView.findViewById(R.id.content);
+            viewHolder.content=convertView.findViewById(R.id.appName);
             convertView.setTag(viewHolder);
         }
         else{

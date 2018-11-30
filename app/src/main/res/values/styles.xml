@@ -65,8 +65,20 @@
         <item name="android:background">@drawable/btn_selector_done</item>
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
     </style>
+    <!--TextView-->
+    <style name="tv_style_parent">
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_marginTop">@dimen/len_4</item>
+        <item name="android:layout_marginBottom">@dimen/len_4</item>
+    </style>
+    <style name="tv_style_normal" parent="tv_style_parent">
+        <item name="android:textSize">@dimen/len_16</item>
+    </style>
+
   <!--Project页面按钮-->
     <style name="project_activity_btn" >
         <item name="android:layout_marginTop">10dp</item>

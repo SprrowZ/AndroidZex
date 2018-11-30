@@ -685,7 +685,17 @@ public class DateUtils {
         return formatter.format(date);
     }
 
-
+    /**
+     * 得到当前时间
+     * @param time
+     * @param format
+     * @return
+     */
+    public static String  getTime(long time,String format){
+        SimpleDateFormat format1=new SimpleDateFormat(format);
+        Date date=new Date(time);
+        return format1.format(date);
+    }
     /**
      * Adds the given amount to a {@code Calendar} field.
      *

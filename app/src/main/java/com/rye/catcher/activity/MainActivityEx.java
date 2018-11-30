@@ -309,7 +309,10 @@ public class MainActivityEx extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy: ...");
-        FileUtils.writeUserLog(TAG+"onDestroy:");
+        new Thread(()->{
+            FileUtils.writeUserLog(TAG+"onDestroy:");
+        }).start();
+
     }
 
     @Override
@@ -322,6 +325,9 @@ public class MainActivityEx extends BaseActivity {
         back_pressed = System.currentTimeMillis();
     }
 
+    /**
+     * handler内存泄露处理
+     */
     private static class MapHandler extends Handler{
         WeakReference<MainActivityEx> mActivity;
         public MapHandler(MainActivityEx mainActivityEx){

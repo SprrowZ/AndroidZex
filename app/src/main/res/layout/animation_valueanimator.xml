@@ -47,7 +47,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/content"
+        android:id="@+id/appName"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"

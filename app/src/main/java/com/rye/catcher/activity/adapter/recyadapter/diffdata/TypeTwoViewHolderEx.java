@@ -5,8 +5,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recyadapter.samedata.TypeAbstractViewHolder;
-import com.rye.catcher.activity.testdata.DataModel;
 import com.rye.catcher.activity.testdata.DataModelTwo;
 
 /**
@@ -22,7 +20,7 @@ public class TypeTwoViewHolderEx extends TypeAbstractViewHolderEx<DataModelTwo> 
         super(itemView);
         avatar=itemView.findViewById(R.id.avatar);
         name=itemView.findViewById(R.id.name);
-        content=itemView.findViewById(R.id.content);
+        content=itemView.findViewById(R.id.appName);
         itemView.setBackgroundResource(R.color.soft6);
     }
     @Override

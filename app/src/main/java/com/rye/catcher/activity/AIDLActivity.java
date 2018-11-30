@@ -20,10 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AIDLActivity extends BaseActivity{
-    private PackageManagerFragment packageManagerFragment;
-    private AIDLFragment aidlFragment;
-    private FragmentTransaction transaction;
-    private FragmentManager manager;
     private Fragment currentFragment;
     private int currentPos=-1;
     @BindView(R.id.pm)
@@ -37,15 +33,9 @@ public class AIDLActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aidl);
         ButterKnife.bind(this);
-        init();
-    }
-    private void init(){
-        packageManagerFragment=new PackageManagerFragment();
-        aidlFragment=new AIDLFragment();
-        manager=getSupportFragmentManager();
-        transaction=manager.beginTransaction();
 
     }
+
     @OnClick({R.id.pm,R.id.aidl})//一定要public
     public void onViewClicked(View view){
         switch (view.getId()){
@@ -64,6 +54,8 @@ public class AIDLActivity extends BaseActivity{
      */
     private  void changeFragment(int pos){
         if (pos==currentPos) return;
+        FragmentManager   manager=getSupportFragmentManager();
+        FragmentTransaction   transaction=manager.beginTransaction();
         if (currentFragment!=null){
              transaction.hide(currentFragment);
         }
@@ -73,13 +65,32 @@ public class AIDLActivity extends BaseActivity{
             currentFragment=fragment;
             transaction.show(fragment);
         }else{
-            transaction.add(R.id.container,fragment,getTag(pos));
+            transaction.add(R.id.container,getFragment(pos),getTag(pos));
         }
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
     private String getTag(int pos){
         return "Zzg"+pos;
     }
 
+    /**
+     * 根据pos获取对应的Fragment
+     * @param pos
+     * @return
+     */
+    private Fragment getFragment(int pos){
+        switch (pos){
+            case 0:
+                currentFragment=new PackageManagerFragment();
+                break;
+            case 1:
+                currentFragment=new AIDLFragment();
+                break;
+            default:
+                currentFragment=new PackageManagerFragment();
+                break;
+        }
+        return currentFragment;
+    }
 
 }

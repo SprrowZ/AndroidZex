@@ -5,7 +5,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recyadapter.samedata.TypeAbstractViewHolder;
 import com.rye.catcher.activity.testdata.DataModel;
 
 /**
@@ -22,7 +21,7 @@ public class TypeThreeViewHolder extends TypeAbstractViewHolder {
         super(itemView);
         avatar=itemView.findViewById(R.id.avatar);
         name=itemView.findViewById(R.id.name);
-        content=itemView.findViewById(R.id.content);
+        content=itemView.findViewById(R.id.appName);
         contentImg=itemView.findViewById(R.id.contentImg);
         itemView.setBackgroundResource(R.color.soft5);
     }

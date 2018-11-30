@@ -5,32 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/gray_dividing"
     tools:context="com.rye.catcher.activity.AIDLActivity">
+   <android.support.v7.widget.CardView
+       android:layout_marginTop="@dimen/len_16"
+       android:layout_marginBottom="@dimen/len_16"
+       android:layout_marginLeft="@dimen/len_16"
+       android:layout_marginRight="@dimen/len_16"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/len_64"
+       app:cardElevation="@dimen/len_10"
+       app:cardCornerRadius="@dimen/len_16"
+       >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           >
+           <TextView
+               android:id="@+id/pm"
+               android:layout_width="@dimen/len_100"
+               android:layout_height="match_parent"
+               android:text="PackageManager"
+               android:layout_gravity="left|center_vertical"
+               style="@style/btn_style_done_new"
+               />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+           <TextView
+               android:id="@+id/aidl"
+               android:layout_width="@dimen/len_100"
+               android:layout_height="match_parent"
+               android:text="AIDL"
+               android:layout_gravity="right|center_vertical"
+               style="@style/btn_style_done_new"
+               />
 
-        <TextView
-            android:id="@+id/pm"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:text="PackageManager"
-            style="@style/btn_style_done_new"
-            />
+       </LinearLayout>
 
-        <TextView
-            android:id="@+id/aidl"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:text="AIDL"
-            style="@style/btn_style_done_new"
-            />
+   </android.support.v7.widget.CardView>
 
-    </LinearLayout>
   <LinearLayout
       android:id="@+id/container"
       android:orientation="vertical"

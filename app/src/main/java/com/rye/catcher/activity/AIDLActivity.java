@@ -33,7 +33,6 @@ public class AIDLActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aidl);
         ButterKnife.bind(this);
-
     }
 
     @OnClick({R.id.pm,R.id.aidl})//一定要public

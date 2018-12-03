@@ -24,5 +24,24 @@ public class Constant {
     public static final String JUHE_WEATHER="http://v.juhe.cn/";
     public static final String JUHE_WEATHER_KEY="3444d95f001d7765de768376c3a2d870";
     public static final String GITHUB_BASE_URL="https://api.github.com/";
+    /**
+     * MyGitHubName
+     */
     public static final String GITHUB_NAME="SprrowZ";
+    /**
+     * 微信PackageName
+     */
+    public static final String APP_WECHAT_PACKAGENAME="com.tencent.mm";
+    /**
+     * 微信MainActivity
+     */
+    public static final String APP_WECHAT_MAINACTIVITY="com.tencent.mm.ui.LauncherUI";
+    /**
+     * QQPackageName
+     */
+    public static final String APP_QQ_PACKAGENAME="com.tencent.mobileqq";
+    /**
+     * QQMainActivity
+     */
+    public static final String APP_QQ_MAINACTIVITY="com.tencent.mobileqq.activity.HomeActivity";
 }

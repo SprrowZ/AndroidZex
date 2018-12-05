@@ -24,9 +24,10 @@ public class IRemoteService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return mBinder;
     }
- private final Binder mBinder=new IDemoAIDL.Stub() {
+
+    private final Binder mBinder=new IDemoAIDL.Stub() {
      @Override
      public int add(int num1, int num) throws RemoteException {
          Log.d("ZzgAidl", "add:....传入的两个参数为： "+num+"、"+num1);

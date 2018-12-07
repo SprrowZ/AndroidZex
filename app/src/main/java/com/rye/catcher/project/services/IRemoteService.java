@@ -9,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.rye.catcher.activity.IDemoAIDL;
+import com.rye.catcher.activity.IMyAidlInterface;
+
+import java.util.List;
 
 /**
  * Created at 2018/12/3.
@@ -27,6 +30,9 @@ public class IRemoteService extends Service {
         return mBinder;
     }
 
+    /**
+     * ADD------>
+     */
     private final Binder mBinder=new IDemoAIDL.Stub() {
      @Override
      public int add(int num1, int num) throws RemoteException {
@@ -34,4 +40,13 @@ public class IRemoteService extends Service {
          return num1+num;
      }
  };
+    /**
+     *基本类型传递
+     */
+    private final Binder iBinder=new IMyAidlInterface.Stub() {
+        @Override
+        public List<String> basicTypes(byte aByte, int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, char aChar, String aString, List<String> aList) throws RemoteException {
+            return null;
+        }
+    };
 }

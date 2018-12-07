@@ -7,8 +7,7 @@
     <color name="title_text_color">#ff363636</color>
     <color name="full_transparent">#00000000</color>
     <color name="container_bg">#ffeeeeee</color>
-    <color name="trans">#00000000</color>
-    <color name="black">#000000</color>
+
     <color name="common_title_bg">#aa111213</color>
     <color name="primary_title_text_color">#ffeeeeee</color>
     <color name="contact_value">#0033ff</color>
@@ -119,11 +118,6 @@
     <color name="gray_9">#999999</color>
     <color name="gray_dividing">#ffcccccc</color>
     <color name="gray_bg">#ffeeeeee</color>
-    <color name="white">#ffffffff</color>
-
-
-
-
     <color name="green1">#33FF66</color>
     <color name="green2">#33FF33</color>
     <color name="green3">#66FF33</color>

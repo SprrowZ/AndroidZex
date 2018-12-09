@@ -1,4 +1,4 @@
-package com.rye.catcher.project.services;
+package com.rye.catcher.activity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -62,4 +62,11 @@ public class PersonBean implements Parcelable {
             return new PersonBean[size];
         }
     };
+    @Override
+    public String toString() {
+        return "PersonBean{" +
+                "name='" + name + '\'' +
+                ", sex=" + sex +
+                '}';
+    }
 }

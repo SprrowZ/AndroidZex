@@ -10,7 +10,9 @@ import android.util.Log;
 
 import com.rye.catcher.activity.IDemoAIDL;
 import com.rye.catcher.activity.IMyAidlInterface;
+import com.rye.catcher.activity.PersonBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +21,9 @@ import java.util.List;
  * @author Zzg
  */
 public class IRemoteService extends Service {
+    ArrayList<PersonBean> persons;
+
+
     /**
      * 当客户端绑定到该服务时会执行
      * @param intent
@@ -27,7 +32,9 @@ public class IRemoteService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return mBinder;
+        //一绑定就传过来一个列表
+        persons=new ArrayList<PersonBean>();
+        return iBinder;
     }
 
     /**
@@ -43,10 +50,22 @@ public class IRemoteService extends Service {
     /**
      *基本类型传递
      */
-    private final Binder iBinder=new IMyAidlInterface.Stub() {
+//    private final Binder iBinder=new IMyAidlInterface.Stub() {
+//        @Override
+//        public List<String> basicTypes(byte aByte, int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, char aChar, String aString, List<String> aList) throws RemoteException {
+//            return null;
+//        }
+//    };
+    /**
+     * 自定义实体类传递
+     */
+      private final Binder iBinder=new IMyAidlInterface.Stub() {
         @Override
-        public List<String> basicTypes(byte aByte, int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, char aChar, String aString, List<String> aList) throws RemoteException {
-            return null;
+        public List<PersonBean> add(PersonBean person) throws RemoteException {
+            //传过来就加到persons列表中去
+            persons.add(person);
+            Log.i("zzg", "add: "+person.toString());
+            return persons;
         }
     };
 }

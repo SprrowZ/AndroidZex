@@ -125,6 +125,10 @@
                 android:id="@+id/siteProtection"
                 style="@style/project_activity_btn"
                 android:text="现场保护" />
+            <Button
+                android:id="@+id/blueTooth"
+                style="@style/project_activity_btn"
+                android:text="蓝牙" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

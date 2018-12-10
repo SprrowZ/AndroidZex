@@ -94,13 +94,15 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".project.services.IRemoteService"
+        <service
+            android:name=".project.services.IRemoteService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.rye.catcher.project.services.IRemoteService"/>
+                <action android:name="com.rye.catcher.project.services.IRemoteService" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".activity.CameraActivity"
             android:alwaysRetainTaskState="true"
@@ -325,10 +327,11 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity android:name=".activity.SiteProtectionActivity" />
-        <activity android:name=".activity.AIDLActivity"
+        <activity
+            android:name=".activity.AIDLActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.BlueToothActivity"></activity>
     </application>
 
 </manifest>

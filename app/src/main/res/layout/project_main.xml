@@ -49,7 +49,7 @@
                 />
 
             <Button
-                android:id="@+id/sliding"
+                android:id="@+id/intents"
                 style="@style/project_activity_btn"
                 android:text="滑动冲突"
                 />
@@ -77,8 +77,9 @@
                 />
             <Button
                 android:id="@+id/shape"
-                style="@style/project_activity_btn"
+                style="@style/btn_unclikable"
                 android:text="Shape"
+                android:clickable="false"
                 />
             <Button
                 android:id="@+id/slidingDemo"
@@ -89,21 +90,6 @@
                 android:id="@+id/recyclerView"
                 style="@style/project_activity_btn"
                 android:text="RecycleView"
-                />
-            <Button
-                android:id="@+id/callPhone"
-                style="@style/project_activity_btn"
-                android:text="callPhone"
-                />
-            <Button
-                android:id="@+id/sendSMS"
-                style="@style/project_activity_btn"
-                android:text="sendSMS"
-                />
-            <Button
-                android:id="@+id/sendEmail"
-                style="@style/project_activity_btn"
-                android:text="sendEmail"
                 />
             <Button
                 android:id="@+id/dialogs"

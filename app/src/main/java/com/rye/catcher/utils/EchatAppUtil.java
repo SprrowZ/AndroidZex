@@ -29,12 +29,4 @@ public class EchatAppUtil {
         return handler;
     }
 
-//    public static void gotoMain(final EMCallBack emCallBack, final boolean showMsg, String message, String deviceName){
-//        Intent intent =  new Intent(logout);
-//        intent.putExtra("showMsg",showMsg);
-//        intent.putExtra("message",message);
-//        intent.putExtra("deviceName",deviceName);
-//        context.sendBroadcast(intent);
-//    }
-
 }

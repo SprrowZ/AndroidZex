@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="packageInfo"
-                style="@style/btn_style_done_new"
+                style="@style/btn_style_red"
                 android:layout_gravity="top"
                 />
             <TextView
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="第三方应用"
-                style="@style/btn_style_done_new"
+                style="@style/btn_style_red"
 
                 />
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OpenWeChat"
-                style="@style/btn_style_done_new"
+                style="@style/btn_style_red"
                 android:layout_gravity="bottom"
                 />
         </LinearLayout>

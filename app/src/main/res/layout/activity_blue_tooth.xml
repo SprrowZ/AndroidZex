@@ -4,6 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rye.catcher.activity.BlueToothActivity">
-
+    tools:context="com.rye.catcher.activity.BlueToothActivity"
+    android:orientation="vertical"
+    >
+    <Button
+        android:id="@+id/btn_paired_devices"
+        android:text="已匹配过设备"
+        style="@style/btn_style_red"
+        />
+    <Button
+        android:id="@+id/btn_scan"
+        android:text="扫描设备"
+        style="@style/btn_style_red"
+        />
 </LinearLayout>

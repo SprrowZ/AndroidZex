@@ -37,7 +37,7 @@ import butterknife.OnClick;
  */
 
 public class ProjectMainActivity extends BaseActivity {
-    private static boolean flag=true;
+
     private static  final  String TAG="ProjectMainActivity";
     @BindView(R.id.back)
     ImageView back;
@@ -69,7 +69,7 @@ public class ProjectMainActivity extends BaseActivity {
     LinearLayout search;
     @BindView(R.id.service)
     Button popup;
-    @BindView(R.id.sliding)
+    @BindView(R.id.intents)
     Button sliding;
     @BindView(R.id.dbtest)
     Button dbtest;
@@ -85,12 +85,6 @@ public class ProjectMainActivity extends BaseActivity {
     Button slidingDemo;
     @BindView(R.id.recyclerView)
     Button recycleView;
-    @BindView(R.id.callPhone)
-    Button callPhone;
-    @BindView(R.id.sendSMS)
-    Button sendSMS;
-    @BindView(R.id.sendEmail)
-    Button sendEmail;
    @BindView(R.id.dialogs)
     Button dialogs;
    @BindView(R.id.coor)
@@ -102,6 +96,8 @@ public class ProjectMainActivity extends BaseActivity {
     LinearLayout parent;
    @BindView(R.id.siteProtection)
     Button siteProtection;
+   @BindView(R.id.blueTooth)
+   Button blueTooth;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
@@ -140,8 +136,7 @@ public class ProjectMainActivity extends BaseActivity {
     }
 
     private void setClock() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 final Date date = new Date();
@@ -158,11 +153,11 @@ public class ProjectMainActivity extends BaseActivity {
         setClock();
     }
 
-    @OnClick({R.id.service, R.id.sliding, R.id.dbtest, R.id.file,
+    @OnClick({R.id.service, R.id.intents, R.id.dbtest, R.id.file,
             R.id.aidl, R.id.drawable, R.id.shape, R.id.slidingDemo,
-            R.id.search_bar,R.id.recyclerView,R.id.callPhone,
-            R.id.sendSMS,R.id.sendEmail,R.id.dialogs,R.id.coor,
-            R.id.viewDrag,R.id.batchLoading,R.id.siteProtection})
+            R.id.search_bar,R.id.recyclerView, R.id.dialogs,R.id.coor,
+            R.id.viewDrag,R.id.batchLoading,R.id.siteProtection,
+            R.id.blueTooth})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -171,9 +166,9 @@ public class ProjectMainActivity extends BaseActivity {
             case R.id.service:
                 startService();
                 break;
-            case R.id.sliding:
+            case R.id.intents:
                 startActivity(new Intent(ProjectMainActivity.this,
-                        LivePreservationActivity.class));
+                        IntentsActivity.class));
                 break;
             case R.id.dbtest:
                 startActivity(new Intent(ProjectMainActivity.this,
@@ -207,28 +202,6 @@ public class ProjectMainActivity extends BaseActivity {
                         RecycleDemoActivity.class);
                 startActivity(intent12);
                 break;
-            case R.id.callPhone:
-                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置"
-                        ,false,
-                        data -> {
-                        //打电话
-                        callPhone();
-                        },0, Permission.CALL_PHONE);
-                break;
-            case R.id.sendSMS:
-                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置",
-                        false,
-                        data -> {
-                        sendSMS();
-                        },0, Permission.CALL_PHONE);
-                break;
-            case R.id.sendEmail:
-                PermissionUtils.requestPermission(this,"权限申请失败，请到手机设置中设置",
-                        false,
-                        data -> {
-                        sendEmail();
-                        },0, Permission.CALL_PHONE);
-                break;
             case R.id.dialogs:
                 startActivity(new Intent(this,CommonDialogActivity.class));
                 break;
@@ -240,42 +213,17 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
             case R.id.batchLoading:
                 startActivity(new Intent(this,BatchLoadingActivity.class));
+                break;
             case R.id.siteProtection:
                 startActivity(new Intent(this,SiteProtectionActivity.class));
+                break;
+            case R.id.blueTooth:
+                startActivity(new Intent(this,BlueToothActivity.class));
+                break;
         }
     }
 
-    private void callPhone(){
-        Intent intent2=new Intent(Intent.ACTION_DIAL);
-        Uri datas;
-        if (flag){
-           datas=Uri.parse("tel:");
-        }else {
-            datas=Uri.parse("tel:"+"13201383679");
-        }
-        flag=false;
-        intent2.setData(datas);
-        startActivity(intent2);
-    }
-    private void sendSMS(){
-        Uri smsToUri;
-     if (flag){
-         smsToUri=Uri.parse("smsto:"+"13201383679");
-     }else {
-         smsToUri=Uri.parse("smsto:");
-     }
-     flag=true;
-     Intent intent=new Intent(Intent.ACTION_SENDTO,smsToUri);
-     intent.putExtra("sms_body","");
-     startActivity(intent);
-    }
-    private void sendEmail(){
-      Intent data=new Intent(Intent.ACTION_SENDTO);
-      data.setData(Uri.parse("mailto:1804124963@qq.com"));
-      data.putExtra(Intent.EXTRA_SUBJECT," ");
-      data.putExtra(Intent.EXTRA_TEXT,"内容");
-      startActivity(data);
-    }
+
 
     @Override
     protected void onDestroy() {

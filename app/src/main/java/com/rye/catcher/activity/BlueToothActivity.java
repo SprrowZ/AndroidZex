@@ -2,21 +2,54 @@ package com.rye.catcher.activity;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.service.restrictions.RestrictionsReceiver;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ToastUtils;
+
+import java.util.Set;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class BlueToothActivity extends Activity {
     private static final String TAG="BlueToothActivity";
     private BluetoothAdapter adapter;
     private int REQUEST_BLUE_TOOTH=1;
+    @BindView(R.id.btn_paired_devices)
+    Button btn_paired_devices;
+    @BindView(R.id.btn_scan)
+    Button btn_scan;
+    private final BroadcastReceiver receiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action=intent.getAction();
+            Log.d(TAG, "Action: "+action);
+            if (action.equals(BluetoothDevice.ACTION_FOUND)){
+             BluetoothDevice device=intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.d(TAG, "device:Name--> "+device.getName());
+                Log.d(TAG, "device:Address--> "+device.getAddress());
+            }else if(action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)){
+                Log.d(TAG, "Discovery Finished! ");
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blue_tooth);
+        ButterKnife.bind(this);
         init();
     }
     private void init(){
@@ -26,8 +59,37 @@ public class BlueToothActivity extends Activity {
         }else{
             Log.i(TAG, "init: 设备不支持蓝牙");
         }
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
+        intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        registerReceiver(receiver,intentFilter);
     }
 
+    @OnClick({R.id.btn_paired_devices,R.id.btn_scan})
+    public void onViewClicked(View view){
+       switch (view.getId()){
+           case R.id.btn_paired_devices:
+           getPairedDevices();
+               break;
+           case R.id.btn_scan:
+               scanDevices();
+               break;
+       }
+    }
+    private void getPairedDevices(){
+        Set<BluetoothDevice> devices=adapter.getBondedDevices();
+        for (BluetoothDevice device: devices
+             ) {
+            Log.d(TAG, "getPairedDevices:Name-> "+device.getName());
+            Log.d(TAG, "getPairedDevices:Address-----> ");
+        }
+    }
+    private void scanDevices(){
+        if (adapter.isDiscovering()){//如果在扫描再
+            adapter.cancelDiscovery();
+        }
+        adapter.startDiscovery();//发现完发广播！
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -40,11 +102,16 @@ public class BlueToothActivity extends Activity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==REQUEST_BLUE_TOOTH){
             ToastUtils.shortMsg("蓝牙设备已开启");
-
         }
     }
 }

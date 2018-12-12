@@ -10,5 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/callPhone"
+            android:text="callPhone"
+            style="@style/btn_style_red"
+            />
+        <Button
+            android:id="@+id/sendSMS"
+            android:text="sendSMS"
+            style="@style/btn_style_red"
+            />
+        <Button
+            android:id="@+id/sendEmail"
+            android:text="sendEmail"
+            style="@style/btn_style_red"
+            />
     </LinearLayout>
 </LinearLayout>

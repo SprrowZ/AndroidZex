@@ -37,6 +37,11 @@
         </attr>
         <attr name="Dradius" format="integer"/>
         <attr name="Dsrc" format="reference"/>
+        <!--边框-->
+        <attr name="NeedBorder" format="boolean"/>
+        <attr name="Bdistance" format="dimension"/>
+        <attr name="Bwidth" format="dimension"/>
+        <attr name="Bcolor" format="color"/>
     </declare-styleable>
     <!--望远镜-->
     <declare-styleable name="Telescope">
@@ -93,7 +98,18 @@
     <declare-styleable name="RoundProgressbarWithProgress">
         <attr name="radius" format="dimension"></attr>
     </declare-styleable>
-
+    <!--下滑菜单-->
+    <declare-styleable name="dropDownMenu">
+       <attr name="underlineColor" format="color"/>
+       <attr name="dividerColor" format="color"/>
+       <attr name="textSelectedColor" format="color"/>
+       <attr name="textUnSelectedColor" format="color"/>
+       <attr name="menuBackgroundColor" format="color"/>
+       <attr name="maskColor" format="color"/>
+       <attr name="menuTextSize" format="dimension"/>
+       <attr name="menuSelectedIcon" format="reference"/>
+       <attr name="menuUnSelectedIcon" format="reference"/>
+    </declare-styleable>
 
 
 

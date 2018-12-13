@@ -19,6 +19,9 @@
                 app:Dsrc="@drawable/rectange"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                app:NeedBorder="true"
+                app:Bdistance="@dimen/len_4"
+
                 />
             <com.rye.catcher.project.ctmviews.DistortionViews
                 app:Dtype="rectangle"
@@ -28,6 +31,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
+                app:NeedBorder="true"
                 />
             <com.rye.catcher.project.ctmviews.DistortionViews
                 app:Dtype="rectangle"

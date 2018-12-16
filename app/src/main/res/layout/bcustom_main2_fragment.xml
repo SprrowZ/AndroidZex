@@ -68,11 +68,42 @@
             />
     </LinearLayout>
     <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btn7"
+        android:text="WaterFallLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/btn_bk4"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/btn8"
+        android:text="太極"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/btn_bk4"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/btn9"
+        android:text="ProgressBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_bk4"
+        />
+</LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/btn7"
-            android:text="WaterFallLayout"
+            android:id="@+id/btn10"
+            android:text="DropDownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,8 +111,8 @@
             android:textAllCaps="false"
             />
         <Button
-            android:id="@+id/btn8"
-            android:text="太極"
+            android:id="@+id/btn11"
+            android:text="Wait..."
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -89,8 +120,8 @@
             android:textAllCaps="false"
             />
         <Button
-            android:id="@+id/btn9"
-            android:text="ProgressBar"
+            android:id="@+id/btn12"
+            android:text="Wait..."
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

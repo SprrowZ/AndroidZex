@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.rye.catcher.R;
+import com.rye.catcher.activity.ctmactivity.CtmDDActivity;
 import com.rye.catcher.project.catcher.eventbus.MessageEvent;
 import com.rye.catcher.activity.ctmactivity.CtmEighthActivity;
 import com.rye.catcher.activity.ctmactivity.CtmElevenActivity;
@@ -36,6 +37,7 @@ public class CtmViewFragment extends BaseFragment implements View.OnClickListene
     private Button btn7;
     private Button btn8;
     private Button btn9;
+    private Button btn10;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class CtmViewFragment extends BaseFragment implements View.OnClickListene
         btn7=view.findViewById(R.id.btn7);
         btn8=view.findViewById(R.id.btn8);
         btn9=view.findViewById(R.id.btn9);
+        btn10=view.findViewById(R.id.btn10);
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
@@ -69,6 +72,7 @@ public class CtmViewFragment extends BaseFragment implements View.OnClickListene
         btn7.setOnClickListener(this);
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
+        btn10.setOnClickListener(this);
     }
 
     @Override
@@ -124,6 +128,12 @@ public class CtmViewFragment extends BaseFragment implements View.OnClickListene
             //加载一个fragment,发个广播吧。。额，自己坑自己玩
              EventBus.getDefault().postSticky(new MessageEvent("insertProgress"));
             break;
+        case R.id.btn10:
+              Intent intent3=new Intent(getActivity(),CtmDDActivity.class);
+              startActivity(intent3);
+            break;
+            default:
+                break;
   }
     }
 

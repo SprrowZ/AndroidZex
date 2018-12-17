@@ -50,22 +50,22 @@ public class DropDownMenu extends LinearLayout {
     private int menuSelectedIcon;
     private int menuUnSelectedIcon;
     public DropDownMenu(Context context) {
-        super(context,null);
+        this(context,null);
     }
 
     public DropDownMenu(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs,0);
+        this(context, attrs,0);
     }
 
     public DropDownMenu(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init( context) ;
+        init( context,attrs) ;
     }
-   private void init(Context context){
+   private void init(Context context,AttributeSet attrs){
         //垂直方向
         setOrientation(VERTICAL);
         //获取属性
-       TypedArray ta=context.obtainStyledAttributes(R.styleable.dropDownMenu);
+       TypedArray ta=context.obtainStyledAttributes(attrs,R.styleable.dropDownMenu);
        underlineColor=ta.getColor(R.styleable.dropDownMenu_underlineColor,
                context.getResources().getColor(R.color.soft7));
        dividerColor=ta.getColor(R.styleable.dropDownMenu_dividerColor,
@@ -102,10 +102,10 @@ public class DropDownMenu extends LinearLayout {
        underLine.setBackgroundColor(underlineColor);
        addView(underLine,1);
        //内容区域
-       contentView=new FrameLayout(context);
-       contentView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+       containerView=new FrameLayout(context);
+       containerView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                ViewGroup.LayoutParams.MATCH_PARENT));
-       addView(contentView,2);
+       addView(containerView,2);
        //where is mask？
 
    }

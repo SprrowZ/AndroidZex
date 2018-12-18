@@ -149,6 +149,7 @@ public class DropDownMenu extends LinearLayout {
                    ViewGroup.LayoutParams.WRAP_CONTENT));
            popupMenuViews.addView(popuViews.get(i),i);
        }
+       containerView.addView(popupMenuViews,2);
    }
     /**
      * 构建tabMenuView里的子View
@@ -217,6 +218,7 @@ public class DropDownMenu extends LinearLayout {
 
                 }
             }else{//没有点击的其他tabMenu里的子Item也设置一下默认的样式
+                popupMenuViews.getChildAt(i/2).setVisibility(GONE);
                 ((TextView)tabMenuView.getChildAt(i)).setTextColor(textUnSelectedColor);
                 ((TextView)tabMenuView.getChildAt(i)).setCompoundDrawablesWithIntrinsicBounds(null,
                         null,getResources().getDrawable(menuUnSelectedIcon),null);

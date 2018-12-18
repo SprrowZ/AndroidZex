@@ -44,4 +44,8 @@ public class Constant {
      * QQMainActivity
      */
     public static final String APP_QQ_MAINACTIVITY="com.tencent.mobileqq.activity.HomeActivity";
+    /**
+     * 头像URL
+     */
+    public static final String PORTRAIT_URL="https://raw.githubusercontent.com/SprrowZ/AndroidZex/master/app/src/main/res/drawable/my3.png";
 }

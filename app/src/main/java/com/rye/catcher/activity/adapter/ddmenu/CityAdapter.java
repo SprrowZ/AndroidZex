@@ -23,7 +23,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.GridDDViewHold
     @NonNull
     @Override
     public GridDDViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view=inflater.inflate(R.layout.drop_down_menu_item,null,false);
+       View view=inflater.inflate(R.layout.drop_down_menu_item,parent,false);
        GridDDViewHolder viewHolder=new GridDDViewHolder(view);
         return viewHolder;
     }
@@ -31,6 +31,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.GridDDViewHold
     @Override
     public void onBindViewHolder(@NonNull GridDDViewHolder holder, int position) {
         int type= holder.getItemViewType();
+        holder.content.setText(dataList.get(position));
         holder.content.setOnClickListener(data->{
             zonClickListener.onClick();
         });

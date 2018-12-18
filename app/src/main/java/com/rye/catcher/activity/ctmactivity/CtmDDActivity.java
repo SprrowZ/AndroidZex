@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
@@ -52,11 +53,15 @@ public class CtmDDActivity extends BaseActivity {
         //
         RecyclerView  lvSex= new RecyclerView(this);
         lvSex.setLayoutManager(new LinearLayoutManager(this));
+        lvSex.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
         sexAdapter =new ListDropDownAdapter(this,Arrays.asList(sexs));
         lvSex.setAdapter(sexAdapter);
         //
         RecyclerView  lvage= new RecyclerView(this);
         lvage.setLayoutManager(new LinearLayoutManager(this));
+        lvage.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
         ageAdapter =new ListDropDownAdapter(this,Arrays.asList(ages));
         lvage.setAdapter(ageAdapter);
         //
@@ -64,10 +69,10 @@ public class CtmDDActivity extends BaseActivity {
         constellation.setLayoutManager(new GridLayoutManager(this,4));
         constellationAdapter =new ConstellationAdapter(this,Arrays.asList(constellations));
         constellation.setAdapter(constellationAdapter);
-        //将四个View添加进来
-        popViews.add(lvSex);
-        popViews.add(lvage);
+        //将四个View添加进来,顺序别搞反了
         popViews.add(lvCity);
+        popViews.add(lvage);
+        popViews.add(lvSex);
         popViews.add(constellation);
 
         //

@@ -9,7 +9,10 @@ import android.widget.ScrollView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.project.ctmviews.DistortionViews;
 import com.rye.catcher.utils.ExtraUtil.Bean;
+import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.catcher.utils.FileUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,6 +29,8 @@ public class YLJFragment extends BaseFragment {
   private View view;
   private Unbinder unbinder;//butterknife
   private ScrollView scrollView;
+  //头像
+  private DistortionViews portrait;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +47,18 @@ public class YLJFragment extends BaseFragment {
         setBarTitle("秦时明月");
         EventBus.getDefault().register(this);
         scrollView=getView().findViewById(R.id.scrollView);
+        portrait=getView().findViewById(R.id.portrait);
+        savePortraitToLocal();
+    }
+
+    /**
+     * 保存头像到本地，从本地中提取，取小图
+     */
+    private void savePortraitToLocal() {
+        new Thread(()->{
+            FileUtils.saveImage(Constant.PORTRAIT_URL,"portrait.png");
+        }).start();
+
     }
 
     @Override

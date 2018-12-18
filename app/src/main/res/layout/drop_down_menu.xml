@@ -13,7 +13,7 @@
     app:menuUnSelectedIcon="@drawable/arrow_down"
     app:menuSelectedIcon="@drawable/arrow_up"
     app:menuBackgroundColor="@color/white"
-    app:maskColor="@color/fuckAlpha"
+    app:maskColor="@color/soft1"
     >
 
 </com.rye.catcher.project.ctmviews.DropDownMenu>

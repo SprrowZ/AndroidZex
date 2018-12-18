@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -28,15 +26,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -916,100 +914,6 @@ public class FileUtils {
     }
 
 
-    /**
-     * 将content://形式的uri转为实际文件路径
-     *
-     * @param context 上下文
-     * @param uri     地址
-     * @return uri转为实际文件路径
-     */
-    public static String uriToPath(Context context, Uri uri) {
-
-        Cursor cursor = null;
-        try {
-            if (uri.getScheme().equalsIgnoreCase(URI_TYPE_FILE)) {
-                return uri.getPath();
-            }
-            cursor = context.getContentResolver()
-                    .query(uri, null, null, null, null);
-            if (cursor.moveToFirst()) {
-                return cursor.getString(cursor.getColumnIndex(
-                        MediaStore.Images.Media.DATA)); //图片文件路径
-            }
-        } catch (Exception e) {
-            if (null != cursor) {
-                cursor.close();
-                cursor = null;
-            }
-            return null;
-        }
-        return null;
-    }
-
-
-    /**
-     * 打开多媒体文件.
-     *
-     * @param context 上下文
-     * @param file    多媒体文件
-     */
-    public static void playSound(Context context, String file) {
-
-        playSound(context, new File(file));
-    }
-
-
-    /**
-     * 打开多媒体文件.
-     *
-     * @param context 上下文
-     * @param file    多媒体文件
-     */
-    public static void playSound(Context context, File file) {
-
-        try {
-            // 调用系统程序打开文件.
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            //			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            //			intent.setClassName("com.android.music", "com.android.music.MediaPlaybackActivity");
-            intent.setDataAndType(Uri.fromFile(file), "audio/*");
-            context.startActivity(intent);
-        } catch (Exception ex) {
-            Toast.makeText(context, "打开失败.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-    /**
-     * 打开视频文件.
-     *
-     * @param context 上下文
-     * @param file    视频文件
-     */
-    public static void playVideo(Context context, String file) {
-
-        playVideo(context, new File(file));
-    }
-
-
-    /**
-     * 打开视频文件.
-     *
-     * @param context 上下文
-     * @param file    视频文件
-     */
-    public static void playVideo(Context context, File file) {
-        try {
-            // 调用系统程序打开文件.
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            //			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setDataAndType(Uri.fromFile(file), "video/*");
-            context.startActivity(intent);
-        } catch (Exception ex) {
-            Toast.makeText(context, "打开失败.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     /**
      * 文件重命名
@@ -1090,7 +994,7 @@ public class FileUtils {
      * 写入日志
      */
     public static void writeUserLog(String content) {
-        File file = makeFilePath(SdHelper.getInstance().getAppExternal() + "logs",
+        File file = makeFilePath(SDHelper.getInstance().getAppExternal() + "logs",
                 DateUtils.getCurrentTime(DateUtils.FORMAT_DATE1) + ".log");
         try {
             FileOutputStream outputStream = new FileOutputStream(file, true);
@@ -1192,22 +1096,6 @@ public class FileUtils {
         return file;
     }
 
-    public static void createPublicFile(String dirName, String fileName) {
-        File file = new File(SdHelper.getSdPath() + dirName);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        File sonFile = new File(file, fileName);
-        try {
-            if (sonFile.exists()) {
-                file.delete();
-            }
-            sonFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * app私有目录下，新建文件夹和文件
      *
@@ -1215,11 +1103,11 @@ public class FileUtils {
      * @param fileName
      */
     public static void createNewFile(String dirName, String fileName) {
-        File file = new File(SdHelper.getAppExternal() + dirName);
+        File file = new File(SDHelper.getAppExternal() + dirName);
         if (!file.exists()) {
             file.mkdirs();
         }
-        File sonFile = new File(SdHelper.getAppExternal() + dirName + File.separator + fileName);
+        File sonFile = new File(SDHelper.getAppExternal() + dirName + File.separator + fileName);
         try {
             if (sonFile.exists()) {
                 file.delete();
@@ -1239,7 +1127,7 @@ public class FileUtils {
      * @throws IOException
      */
     public static void createNewFile(String dirName, String fileName, String content) {//主要用于txt文件
-        writeFile(SdHelper.getAppExternal() + dirName + File.separator + fileName, content);
+        writeFile(SDHelper.getAppExternal() + dirName + File.separator + fileName, content);
     }
 
     /**
@@ -1249,15 +1137,27 @@ public class FileUtils {
      * @return byte[]
      * @throws Exception
      */
-    public static byte[] downloadImage(String path) throws Exception {
-        URL url = new URL(path);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setConnectTimeout(5 * 1000);
-        conn.setRequestMethod("GET");
-        InputStream inStream = conn.getInputStream();
-        if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            return readStream(inStream);
+    public static byte[] downloadImage(String path) {
+        URL url = null;
+        try {
+            url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5 * 1000);
+            conn.setRequestMethod("GET");
+            InputStream inStream = conn.getInputStream();
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                return readStream(inStream);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return null;
     }
 
@@ -1280,6 +1180,38 @@ public class FileUtils {
         inStream.close();
         return outStream.toByteArray();
     }
+
+    /**
+     * 下载文件，可以是图片、文本文件等等，反正返回的都是流
+     * @param url
+     * @return
+     */
+    public static InputStream downLoadFile(String url){
+        try {
+            URL url1=new URL(url);
+            HttpURLConnection connection=(HttpURLConnection) url1.openConnection();
+           return  connection.getInputStream();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 保存图片到本地
+     * @param remotePath
+     */
+    public static void saveImage(String remotePath,String fileName){
+
+         InputStream inputStream=downLoadFile(remotePath);
+         File file=new File(SDHelper.getInstance().getImageFolder()+File.separator+fileName);
+         writeFile(file,inputStream);
+    }
+            //__________________________测试代码__________________________________//
+        //_______________________________________________________________________//
+    //_____________________________________________________________________________//
 //-------------------------------------->测试代码<-----------------------------------//
 
     /**

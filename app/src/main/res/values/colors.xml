@@ -132,7 +132,7 @@
     <color name="select_bottom">#27cdf2</color>
     <color name="bottom_gray">#ececec</color>
     <!--soft color-->
-    <color name="soft1">#2ae0c8</color>
+    <color name="soft1">#202ae0c8</color>
     <color name="soft2">#a2e1d4</color>
     <color name="soft3">#acf6ef</color>
     <color name="soft4">#cbf5fb</color>

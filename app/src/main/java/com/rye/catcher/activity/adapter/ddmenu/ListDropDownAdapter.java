@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.utils.TypeFaceUtil;
 
 import java.util.List;
 
@@ -18,21 +19,25 @@ public class ListDropDownAdapter extends RecyclerView.Adapter<ListDropDownAdapte
 
     private LayoutInflater inflater;
     private ConstellationAdapter.zOnClickListener zonClickListener;
+    Context mContext;
     public  ListDropDownAdapter(Context context,List<String> datas){
         this.dataList=datas;
+        this.mContext=context;
         inflater=LayoutInflater.from(context);
     }
     @NonNull
     @Override
     public ListDropDownAdapter.DropDownViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=inflater.inflate(R.layout.drop_down_menu_item,null,false);
+        View view=inflater.inflate(R.layout.drop_down_menu_item,parent,false);
         DropDownViewHolder viewHolder=new DropDownViewHolder(view);
         return viewHolder;
     }
     //可在这里指定类型
     @Override
     public void onBindViewHolder(@NonNull ListDropDownAdapter.DropDownViewHolder holder, int position) {
-          holder.content.setOnClickListener(data->{
+        holder.content.setText(dataList.get(position));
+        holder.content.setTypeface(TypeFaceUtil.getInstance().tf(mContext));
+        holder.content.setOnClickListener(data->{
                 zonClickListener.onClick();
           });
     }

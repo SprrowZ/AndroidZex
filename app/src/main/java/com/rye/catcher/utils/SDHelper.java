@@ -23,8 +23,8 @@ import java.io.IOException;
  * Created by ZZG on 2018/1/11.
  */
 
-public class SdHelper {
-    public static SdHelper instance;
+public class SDHelper {
+    public static SDHelper instance;
     public static String sdPath;//重要,公有存储路径
     public static String filePath;//data文件夹，不可见。存放一些私有信息。【重】
     public static String storagePath;
@@ -33,8 +33,9 @@ public class SdHelper {
     public static String privateData;//用户数据目录，不可见
     public static String rootDirectory;//Android根目录
     public static String externalCache;//应用外部缓存目录........专属缓存路径
-    private static SdHelper sdHelper=new SdHelper();
-    public static SdHelper getInstance(){
+
+    private static SDHelper sdHelper=new SDHelper();
+    public static SDHelper getInstance(){
      initPath();
      return instance;
     }
@@ -60,6 +61,13 @@ public class SdHelper {
         return  external;
    }
 
+    /**
+     * 此App图片存储目录
+     * @return
+     */
+   public  static String getImageFolder(){
+       return  external+"images"+File.separator;
+   }
     /**
      * 公共目录
      * @return

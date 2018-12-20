@@ -31,7 +31,6 @@
                 android:layout_below="@+id/top_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/my1"
                 android:scaleType="fitXY"
                 />
         </com.rye.catcher.project.ctmviews.MainView>

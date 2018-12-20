@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 
+import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.zApplication;
 
 import java.io.BufferedInputStream;
@@ -66,7 +67,7 @@ public class SDHelper {
      * @return
      */
    public  static String getImageFolder(){
-       return  external+"images"+File.separator;
+       return  external+ Constant.IMAGES+File.separator;
    }
     /**
      * 公共目录

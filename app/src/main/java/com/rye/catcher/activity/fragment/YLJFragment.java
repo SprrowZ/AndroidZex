@@ -1,18 +1,21 @@
 package com.rye.catcher.activity.fragment;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.project.ctmviews.DistortionViews;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.FileUtils;
+import com.rye.catcher.utils.ImageUtils;
+import com.rye.catcher.utils.SDHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,6 +34,8 @@ public class YLJFragment extends BaseFragment {
   private ScrollView scrollView;
   //头像
   private DistortionViews portrait;
+
+  private ImageView iv1;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,15 +53,24 @@ public class YLJFragment extends BaseFragment {
         EventBus.getDefault().register(this);
         scrollView=getView().findViewById(R.id.scrollView);
         portrait=getView().findViewById(R.id.portrait);
+        iv1=getView().findViewById(R.id.iv1);
         savePortraitToLocal();
     }
 
     /**
-     * 保存头像到本地，从本地中提取，取小图
+     * 头像还是有问题，后续优化
      */
     private void savePortraitToLocal() {
         new Thread(()->{
+            //先保存到本地
             FileUtils.saveImage(Constant.PORTRAIT_URL,"portrait.png");
+            //取小图
+            Bitmap portraitUrl= ImageUtils.ratio(SDHelper.getImageFolder()+"portrait.png",
+                    200,200);
+            getActivity().runOnUiThread(()->{
+//                portrait.setBitmap(portraitUrl);
+                iv1.setImageBitmap(portraitUrl);
+            });
         }).start();
 
     }

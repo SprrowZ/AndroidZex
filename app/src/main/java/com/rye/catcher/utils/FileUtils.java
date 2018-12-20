@@ -13,6 +13,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.rye.catcher.GreenDaos.Base.TB_Character;
+import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.ExtraUtil.IOUtils;
 import com.rye.catcher.zApplication;
 
@@ -509,17 +510,6 @@ public class FileUtils {
                 ? true
                 : folder.mkdirs();
     }
-
-
-    /**
-     * @param filePath 路径
-     * @return 是否创建成功
-     */
-    public static boolean makeFolders(String filePath) {
-        return makeDirs(filePath);
-
-    }
-
 
     /**
      * @param filePath 路径
@@ -1080,13 +1070,13 @@ public class FileUtils {
      */
     public static File makeFilePath(String filePath, String fileName) {
         File file = null;
-        makeRootDirectory(filePath);
+        makeDirs(filePath);
         List<File> files = getFilesSortByTime(filePath, false);
         if (files.size() == 20) {
             files.get(0).delete();
         }
         try {
-            file = new File(filePath + fileName);
+            file = new File(filePath +File.separator+ fileName);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -1102,20 +1092,28 @@ public class FileUtils {
      * @param dirName
      * @param fileName
      */
-    public static void createNewFile(String dirName, String fileName) {
-        File file = new File(SDHelper.getAppExternal() + dirName);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        File sonFile = new File(SDHelper.getAppExternal() + dirName + File.separator + fileName);
+    public static File createNewFile(String dirName, String fileName) {
+        String dirNamex=SDHelper.getAppExternal() + dirName;
+        String fileNamex=SDHelper.getAppExternal() + dirName +
+                File.separator + fileName;
+        File file = new File(dirNamex);
+         if (!file.isDirectory()){
+             if (file.exists()){
+                 file.delete();
+             }
+             file.mkdirs();
+         }
+                File sonFile = new File(fileNamex);
         try {
             if (sonFile.exists()) {
-                file.delete();
+                sonFile.delete();
             }
             sonFile.createNewFile();
+            return sonFile;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return  null;
     }
 
     /**
@@ -1201,13 +1199,17 @@ public class FileUtils {
 
     /**
      * 保存图片到本地
-     * @param remotePath
+     * @param remotePath 网络地址
      */
     public static void saveImage(String remotePath,String fileName){
-
-         InputStream inputStream=downLoadFile(remotePath);
-         File file=new File(SDHelper.getInstance().getImageFolder()+File.separator+fileName);
-         writeFile(file,inputStream);
+         File  file=null;
+         //先判断本地有没有，没有再下载
+         file=new File(SDHelper.getImageFolder()+fileName);
+         if (!file.exists()){//本地文件不存在
+             InputStream inputStream=downLoadFile(remotePath);
+             file=createNewFile(Constant.IMAGES,fileName);
+             writeFile(file,inputStream);
+         }
     }
             //__________________________测试代码__________________________________//
         //_______________________________________________________________________//

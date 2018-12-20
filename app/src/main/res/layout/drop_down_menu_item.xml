@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/white"
+    android:layout_height="@dimen/len_48"
+    android:orientation="horizontal"
+    android:background="@drawable/drop_down_shape"
+    android:layout_marginLeft="@dimen/len_10"
+    android:layout_marginRight="@dimen/len_10"
+    android:id="@+id/container"
     >
 <TextView
     android:id="@+id/content"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:textSize="@dimen/font_20"
-    android:gravity="center"
+    android:gravity="center_vertical"
     tools:text="Hello"
-    android:background="@drawable/drop_down_shape"
-    android:layout_margin="@dimen/len_2"
+    android:layout_marginLeft="@dimen/len_16"
     />
-</LinearLayout>
+<ImageView
+    android:id="@+id/tick"
+    android:layout_width="@dimen/len_28"
+    android:layout_height="match_parent"
+    android:src="@drawable/tick"
+    android:layout_gravity="right"
+    android:layout_marginRight="@dimen/len_16"
+    />
+</FrameLayout>

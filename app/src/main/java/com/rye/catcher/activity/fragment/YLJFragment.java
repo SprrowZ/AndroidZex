@@ -66,7 +66,7 @@ public class YLJFragment extends BaseFragment {
             FileUtils.saveImage(Constant.PORTRAIT_URL,"portrait.png");
             //取小图
             Bitmap portraitUrl= ImageUtils.ratio(SDHelper.getImageFolder()+"portrait.png",
-                    200,200);
+                    200,200,null);
             getActivity().runOnUiThread(()->{
 //                portrait.setBitmap(portraitUrl);
                 iv1.setImageBitmap(portraitUrl);

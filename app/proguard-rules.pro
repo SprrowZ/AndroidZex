@@ -285,3 +285,26 @@ public static java.lang.String TABLENAME;
 -keep class com.amap.api.fence.**{*;}
 
 -keep class com.autonavi.aps.amapapi.model.**{*;}
+#---------------------------Tinker-----------------------------
+-keep class com.tencent.tinker.loader.** {
+*;
+}
+
+#-keep class tinker.sample.android.app.SampleApplication {
+#*;
+#}
+-keep class com.rye.catcher.zApplication{
+*;
+}
+
+-keep public class * implements com.tencent.tinker.loader.app.ApplicationLifeCycle {
+*;
+}
+
+-keep public class * extends com.tencent.tinker.loader.TinkerLoader {
+*;
+}
+
+-keep public class * extends com.tencent.tinker.loader.app.TinkerApplication {
+*;
+}

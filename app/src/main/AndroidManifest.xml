@@ -101,6 +101,11 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name=".sdks.tinker.TinkerService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".activity.CameraActivity"
             android:alwaysRetainTaskState="true"

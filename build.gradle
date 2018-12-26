@@ -12,6 +12,8 @@ buildscript {
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0"
         //greendao
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.0'
+
+        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
     }
 }
 

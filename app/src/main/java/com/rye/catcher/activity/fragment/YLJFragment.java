@@ -1,21 +1,26 @@
 package com.rye.catcher.activity.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.DistortionViews;
+import com.rye.catcher.sdks.tinker.TinkerService;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.ImageUtils;
 import com.rye.catcher.utils.SDHelper;
+import com.tencent.tinker.lib.tinker.TinkerInstaller;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,6 +41,8 @@ public class YLJFragment extends BaseFragment {
   private DistortionViews portrait;
 
   private ImageView iv1;
+
+  private Button tinker;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,9 +61,22 @@ public class YLJFragment extends BaseFragment {
         scrollView=getView().findViewById(R.id.scrollView);
         portrait=getView().findViewById(R.id.portrait);
         iv1=getView().findViewById(R.id.iv1);
+        tinker=getView().findViewById(R.id.tinker);
         savePortraitToLocal();
-    }
 
+        tinker.setOnClickListener(data->{
+            install_patch();
+        });
+
+    }
+    public void install_patch( ) {
+        TinkerInstaller.onReceiveUpgradePatch(getContext(), Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed.apk");
+    }
+    private void startAllService(){
+        //启动TinkerService
+        Intent intent=new Intent(getActivity(), TinkerService.class);
+        startActivity(intent);
+    }
     /**
      * 头像还是有问题，后续优化
      */

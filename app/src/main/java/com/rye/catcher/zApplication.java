@@ -11,6 +11,8 @@ import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.utils.EchatAppUtil;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -18,12 +20,26 @@ import org.greenrobot.greendao.database.Database;
  * Created by ZZG on 2018/3/22.
  */
 
-public class zApplication extends Application{
+public class zApplication extends TinkerApplication{
     private static Context mContext;
     private DisplayMetrics displayMetrics;
     private static zApplication instance=new zApplication();
     private boolean DAO_INITED=false;
     private DaoSession daoSession;
+
+    public zApplication() {
+        super(
+                //tinkerFlags, tinker支持的类型，dex,library，还是全部都支持！
+                ShareConstants.TINKER_ENABLE_ALL,
+                //ApplicationLike的实现类，只能传递字符串
+                "com.rye.catcher.sdks.tinker.CustomTinkerLike",//不要忘了替换
+                //Tinker的加载器，一般来说用默认的即可
+                "com.tencent.tinker.loader.TinkerLoader",
+                //tinkerLoadVerifyFlag, 运行加载时是否校验dex与,ib与res的Md5
+                false);
+    }
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -76,18 +92,6 @@ public class zApplication extends Application{
     }
 
 
-    public int getVersionCode() {
-        try {
-            PackageManager manager = this.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
-            int versionCode = info.versionCode;
-            return versionCode;
-        } catch (Exception e) {
-            Log.e("zzg", e.getMessage(), e);
-            return 0;
-        }
-    }
-
     /**
      * 获取当前应用程序的版本号
      */
@@ -102,26 +106,4 @@ public class zApplication extends Application{
         }
     }
 
-    /**
-     * @return
-     * @Description： 获取当前屏幕的宽度
-     */
-    public int getWindowWidth() {
-        return displayMetrics.widthPixels;
-    }
-
-    /**
-     * @return
-     * @Description： 获取当前屏幕的高度
-     */
-    public int getWindowHeight() {
-        return displayMetrics.heightPixels;
-    }
-
-    /**
-     * @return 当前时间。格式为：20140506120801
-     */
-    private static String getCurrentDateString() {
-        return com.rye.catcher.utils.DateUtils.getCurrentTime("yyyyMMddHHmmssSSS");
-    }
 }

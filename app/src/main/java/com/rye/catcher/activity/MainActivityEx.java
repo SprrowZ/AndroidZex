@@ -350,4 +350,7 @@ public class MainActivityEx extends BaseActivity {
             super.handleMessage(msg);
         }
     }
+
+
+
 }

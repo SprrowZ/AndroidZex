@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
-
+def bakPath=file("${buildDir}/bakApk/")
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
@@ -10,7 +10,7 @@ android {
         targetSdkVersion targetSdkVer
         versionCode 7
         versionName "1.0.7"
-
+        multiDexEnabled true
         ndk {
             abiFilter "armeabi-v7a"
         }
@@ -84,32 +84,32 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    flavorDimensions("money", "channel")
-    productFlavors {
-        vip {
-            dimension "money"
-            buildConfigField("boolean", "IS_VIP_VERSION", "true")
-            minSdkVersion 16
-        }
-        free {
-            dimension "money"
-            buildConfigField("boolean", "IS_VIP_VERSION", "false")
-            minSdkVersion 16
-        }
-        baidu {
-            manifestPlaceholders = [CHANNEL: "baidu"]
-            dimension "channel"
-            buildConfigField("boolean", "IS_baidu_VERSION", "true")
-            minSdkVersion 16
-        }
-        xiaomi {
-            manifestPlaceholders = [CHANNEL: "xiaomi"]
-            dimension "channel"
-            buildConfigField("boolean", "IS_baidu_VERSION", "false")
-            minSdkVersion 16
-        }
-    }
+/*************************先屏蔽多渠道打包****************************/
+//    flavorDimensions("money", "channel")
+//    productFlavors {
+//        vip {
+//            dimension "money"
+//            buildConfigField("boolean", "IS_VIP_VERSION", "true")
+//            minSdkVersion 16
+//        }
+//        free {
+//            dimension "money"
+//            buildConfigField("boolean", "IS_VIP_VERSION", "false")
+//            minSdkVersion 16
+//        }
+//        baidu {
+//            manifestPlaceholders = [CHANNEL: "baidu"]
+//            dimension "channel"
+//            buildConfigField("boolean", "IS_baidu_VERSION", "true")
+//            minSdkVersion 16
+//        }
+//        xiaomi {
+//            manifestPlaceholders = [CHANNEL: "xiaomi"]
+//            dimension "channel"
+//            buildConfigField("boolean", "IS_baidu_VERSION", "false")
+//            minSdkVersion 16
+//        }
+//    }
 
     lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
         checkReleaseBuilds false
@@ -152,9 +152,9 @@ android.applicationVariants.all { variant ->
             resValue "string", "SANDBOX_WHITELIST", "10.248.113.15;cbms-web.icbc"
             resValue "string", "CAN_CHANGE_USER_CONFIG", "1"
             buildConfigField "String", "ip", "\"www.bilibili.com\""
-            outputFileName = "${rootProject.name}-${variant.buildType.name}" +
-                    "-${variant.versionName}.apk"
-            variant.packageApplication.outputDirectory = new File("./../apk")
+//            outputFileName = "${rootProject.name}-${variant.buildType.name}" +
+//                    "-${variant.versionName}.apk"
+//            variant.packageApplication.outputDirectory = new File("./../apk")
         }
     }
 }
@@ -195,4 +195,126 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.49'
     implementation 'com.amap.api:location:latest.integration'
 
+    implementation "com.android.support:multidex:1.0.1"
+    //tinker的核心库
+    implementation("com.tencent.tinker:tinker-android-lib:1.9.1") { changing = true }
+    //可选，用于生成application类
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:1.9.1") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno:1.9.1") { changing = true }
+}
+
+ext{
+    tinkerEnable=true
+    tinkerOldApkPath="${bakPath}/app-release-1226-10-59-00.apk"
+    tinkerID="1.0"
+    tinkerApplyMappingPath="${bakPath}/app-release-1226-10-59-00-mapping.txt"
+    tinkerApplyResourcePath="${bakPath}/app-release-1226-10-59-00-R.txt"
+}
+
+def buildWithTinker(){
+    return ext.tinkerEnable
+}
+
+def getOldApkPath(){
+    return ext.tinkerOldApkPath
+}
+
+def getApplyMappingPath(){
+    return ext.tinkerApplyMappingPath
+}
+
+def getApplyResourceMappingPath(){
+    return ext.tinkerApplyResourcePath
+}
+
+def getTinkerIdValue(){
+    return ext.tinkerID
+}
+
+
+if(buildWithTinker()){
+    apply plugin:'com.tencent.tinker.patch'
+
+    tinkerPatch{
+        oldApk=getOldApkPath() //指定old apk文件路径
+        ignoreWarning = false //不忽略警告
+        useSign = true //强制patch文件也使用签名
+        tinkerEnable = buildWithTinker() //指定是否启用tinker
+        buildConfig{
+            applyMapping = getApplyMappingPath() //指定old apk 打包时所用的混淆文件
+            applyResourceMapping = getApplyResourceMappingPath() //指定old apk的资源文件
+            tinkerId = getTinkerIdValue()//指定TinkerID
+            keepDexApply = false
+        }
+
+        dex{
+            dexMode="jar" //jar、raw
+            pattern=["classes*.dex","assets/secondary-dex-?.jar"] //指定dex文件目录
+            loader=["com.rye.catcher.zApplication"]
+        }
+
+        lib{
+            pattern=["libs/*/*.so"]
+        }
+
+        res{
+            pattern=["res/*","assets/*","resources.arsc","AndroidManifest.xml"]
+
+            ignoreChange=["assets/sample_meta.txt"]//指定不受影响的文件
+
+            largeModSize = 100 //资源修改大小默认值
+        }
+
+        packageConfig{
+           configField("patchMessage","fix the 1.0 version's bugs")
+           configField("patchVersion","1.0")
+        }
+
+    }
+    List<String> flavors = new ArrayList<>();
+    project.android.productFlavors.each { flavor ->
+        flavors.add(flavor.name)
+    }
+    boolean hasFlavors = flavors.size() > 0
+    /**
+     * 复制基准包和其它必须文件到指定目录
+     */
+    android.applicationVariants.all { variant ->
+        /**
+         * task type, you want to bak
+         */
+        def taskName = variant.name
+        def date = new Date().format("MMdd-HH-mm-ss")
+
+        tasks.all {
+            if ("assemble${taskName.capitalize()}".equalsIgnoreCase(it.name)) {
+
+                it.doLast {
+                    copy {
+                        def fileNamePrefix = "${project.name}-${variant.baseName}"
+                        def newFileNamePrefix = hasFlavors ? "${fileNamePrefix}" : "${fileNamePrefix}-${date}"
+
+                        def destPath = hasFlavors ? file("${bakPath}/${project.name}-${date}/${variant.flavorName}") : bakPath
+                        from variant.outputs.first().outputFile
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("${fileNamePrefix}.apk", "${newFileNamePrefix}.apk")
+                        }
+
+                        from "${buildDir}/outputs/mapping/${variant.dirName}/mapping.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("mapping.txt", "${newFileNamePrefix}-mapping.txt")
+                        }
+
+                        from "${buildDir}/intermediates/symbols/${variant.dirName}/R.txt"
+                        into destPath
+                        rename { String fileName ->
+                            fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

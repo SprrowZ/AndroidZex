@@ -38,6 +38,7 @@
     <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <application
         android:name=".zApplication"
         android:allowBackup="true"
@@ -50,6 +51,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="09f608d1c15c69d760761fec208845ab" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.rye.catcher.MyFileProvider"
@@ -329,14 +331,15 @@
             android:name=".activity.AIDLActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity android:name=".activity.BlueToothActivity"
+        <activity
+            android:name=".activity.BlueToothActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".activity.ctmactivity.CtmDDActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".activity.ctmactivity.CtmDDActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
+        <activity android:name=".common.bigimg.ImageActivity"></activity>
     </application>
 
 </manifest>

@@ -14,5 +14,5 @@ public class PatchInfo implements Serializable {
 
     public String patchMessage; //本次patch包含的相关信息，例如：主要做了那些改动
 
-    public String md5;//patch文件正确的md5值
+    public String md5;//patch文件正确的md5值============需要服务器返回
 }

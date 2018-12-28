@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
-def bakPath=file("${buildDir}/bakApk/")
+def bakPath = file("${buildDir}/bakApk/")
+def appDirectory = "app-1228-09-35-46"
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
@@ -86,7 +87,8 @@ android {
     }
 /*************************先屏蔽多渠道打包****************************/
 //    flavorDimensions("money", "channel")
-//    productFlavors {
+    flavorDimensions("channel")
+    productFlavors {
 //        vip {
 //            dimension "money"
 //            buildConfigField("boolean", "IS_VIP_VERSION", "true")
@@ -97,19 +99,19 @@ android {
 //            buildConfigField("boolean", "IS_VIP_VERSION", "false")
 //            minSdkVersion 16
 //        }
-//        baidu {
-//            manifestPlaceholders = [CHANNEL: "baidu"]
-//            dimension "channel"
-//            buildConfigField("boolean", "IS_baidu_VERSION", "true")
-//            minSdkVersion 16
-//        }
-//        xiaomi {
-//            manifestPlaceholders = [CHANNEL: "xiaomi"]
-//            dimension "channel"
-//            buildConfigField("boolean", "IS_baidu_VERSION", "false")
-//            minSdkVersion 16
-//        }
-//    }
+        baidu {
+            manifestPlaceholders = [CHANNEL: "baidu"]
+            dimension "channel"
+            buildConfigField("boolean", "IS_baidu_VERSION", "true")
+            minSdkVersion 16
+        }
+        xiaomi {
+            manifestPlaceholders = [CHANNEL: "xiaomi"]
+            dimension "channel"
+            buildConfigField("boolean", "IS_baidu_VERSION", "false")
+            minSdkVersion 16
+        }
+    }
 
     lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
         checkReleaseBuilds false
@@ -204,11 +206,13 @@ dependencies {
 }
 
 ext{
-    tinkerEnable=true
-    tinkerOldApkPath="${bakPath}/app-release-1226-10-59-00.apk"
+    tinkerEnable = true
+    tinkerOldApkPath = "${bakPath}/${appDirectory}"
     tinkerID="1.0"
-    tinkerApplyMappingPath="${bakPath}/app-release-1226-10-59-00-mapping.txt"
-    tinkerApplyResourcePath="${bakPath}/app-release-1226-10-59-00-R.txt"
+    tinkerApplyMappingPath = "${bakPath}/${appDirectory}"
+    tinkerApplyResourcePath = "${bakPath}/${appDirectory}"
+    //多渠道打包，变量名可以自定义
+    tinkerBuildFlavorDirectory = "${bakPath}/${appDirectory}"
 }
 
 def buildWithTinker(){
@@ -227,8 +231,13 @@ def getApplyResourceMappingPath(){
     return ext.tinkerApplyResourcePath
 }
 
+
 def getTinkerIdValue(){
     return ext.tinkerID
+}
+//多渠道打包
+def getTinkerBuildFlavorDirectory(){
+    return  ext.tinkerBuildFlavorDirectory
 }
 
 
@@ -313,6 +322,48 @@ if(buildWithTinker()){
                             fileName.replace("R.txt", "${newFileNamePrefix}-R.txt")
                         }
                     }
+                }
+            }
+        }
+    }
+    /**
+     * 多渠道打包
+     */
+    project.afterEvaluate {
+        //sample use for build all flavor for one time
+        if (hasFlavors) {
+            task(tinkerPatchAllFlavorRelease) {
+                group = 'tinker'
+                def originOldPath = getTinkerBuildFlavorDirectory()
+                for (String flavor : flavors) {
+                    def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Release")
+                    dependsOn tinkerTask
+                    def preAssembleTask = tasks.getByName("process${flavor.capitalize()}ReleaseManifest")
+                    preAssembleTask.doFirst {
+                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 15)
+                        project.tinkerPatch.oldApk = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-release.apk"
+                        project.tinkerPatch.buildConfig.applyMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-release-mapping.txt"
+                        project.tinkerPatch.buildConfig.applyResourceMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-release-R.txt"
+
+                    }
+
+                }
+            }
+
+            task(tinkerPatchAllFlavorDebug) {
+                group = 'tinker'
+                def originOldPath = getTinkerBuildFlavorDirectory()
+                for (String flavor : flavors) {
+                    def tinkerTask = tasks.getByName("tinkerPatch${flavor.capitalize()}Debug")
+                    dependsOn tinkerTask
+                    def preAssembleTask = tasks.getByName("process${flavor.capitalize()}DebugManifest")
+                    preAssembleTask.doFirst {
+                        String flavorName = preAssembleTask.name.substring(7, 8).toLowerCase() + preAssembleTask.name.substring(8, preAssembleTask.name.length() - 13)
+                        project.tinkerPatch.oldApk = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug.apk"
+                        project.tinkerPatch.buildConfig.applyMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-mapping.txt"
+                        project.tinkerPatch.buildConfig.applyResourceMapping = "${originOldPath}/${flavorName}/${project.name}-${flavorName}-debug-R.txt"
+                    }
+
                 }
             }
         }

@@ -47,9 +47,12 @@ public class ImageUtils {
      */
     public static  byte[] getBytesByBitmap(Bitmap bitmap) {
         //只有JPEG格式的可以压缩
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(bitmap.getByteCount());
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-        return outputStream.toByteArray();
+        if (bitmap!=null){
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream(bitmap.getByteCount());
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            return outputStream.toByteArray();
+        }
+       return  null;
     }
 
     /**
@@ -67,7 +70,7 @@ public class ImageUtils {
         //预加载，之后就可以获取到图片的宽和高
         BitmapFactory.decodeFile(path,options);
         //输出原图的字节大小
-        Log.i(TAG, "ratio:Original "+getBytesByBitmap(BitmapFactory.decodeFile(path,options)).length);
+    //    Log.i(TAG, "ratio:Original "+getBytesByBitmap(BitmapFactory.decodeFile(path,options)).length);
         int originalH=options.outHeight;
         int originalW=options.outWidth;
         options.inSampleSize=getSampleSize(originalH,originalW,pixelHeight,

@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="寂静之地 "
+                    android:text="空山鸟语"
                     android:background="@color/transparent"
                     />
             </LinearLayout>
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="凌空"
+                    android:text="斗罗大陆"
                     android:background="@color/transparent"
                     />
             </LinearLayout>
@@ -152,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="Tinker"
+                    android:text="Tinker(热修复)"
                     android:textAllCaps="false"
                     android:background="@color/transparent"
                     />

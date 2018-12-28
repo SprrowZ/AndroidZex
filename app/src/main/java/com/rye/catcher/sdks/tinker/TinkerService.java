@@ -117,7 +117,7 @@ public class TinkerService extends Service {
           @Override
           public void onSuccess(Object responseObj) {
 
-                TinkerManager.loadPatch(mFilePatch);
+                TinkerManager.loadPatch(mFilePatch,mBasePatchInfo.data.md5);
           }
 
           @Override

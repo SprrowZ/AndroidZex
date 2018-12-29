@@ -83,8 +83,7 @@ private Handler handler=new Handler();
 
     private void authority() {
         String [] permissions=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        PermissionsUtil.showSystemSetting=true;
-        PermissionsUtil.IPermissionsResult result= new PermissionsUtil.IPermissionsResult() {
+        PermissionsUtil.getInstance().checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
             @Override
             public void passPermissons() {
                 Log.i(TAG, "passPermissons: STORAGE");
@@ -94,8 +93,7 @@ private Handler handler=new Handler();
             public void forbitPermissons() {
                 Log.i(TAG, "forbitPermissons: STORAGE");
             }
-        };
-        PermissionsUtil.getInstance().chekPermissions(this,permissions,result);
+        },permissions);
     }
 
     private void findDream() {

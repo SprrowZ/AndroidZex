@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.TypeFaceUtil;
 
 import java.util.Map;
@@ -325,5 +327,12 @@ public abstract class BaseFragment extends Fragment implements View.OnTouchListe
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //就多一个参数this
+        PermissionsUtil.getInstance().onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
     }
 }

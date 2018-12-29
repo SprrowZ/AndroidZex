@@ -14,6 +14,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.zApplication;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -88,16 +89,20 @@ public class ImageUtils {
     public static Bitmap ratio(String path,int pixelHeight,int pixelWidth,InputStream inputStream){
         BitmapFactory.Options options=new BitmapFactory.Options();
         //只加载图片宽高，不加载内容
-//        options.inJustDecodeBounds=true;
+        options.inJustDecodeBounds=true;
         //位深度最低
         options.inPreferredConfig=Bitmap.Config.RGB_565;
         if (path!=null){
-            //预加载，之后就可以获取到图片的宽和高
-            BitmapFactory.decodeFile(path,options);
-            //输出原图的字节大小
-            Log.i(TAG, "ratio:Original "+getBytesByBitmap(BitmapFactory.decodeFile(path,options)).length);
+            File file=new File(path);
+            if (file.exists()){
+                //预加载，之后就可以获取到图片的宽和高
+                BitmapFactory.decodeFile(path,options);
+            }
         }else if (inputStream!=null){
             BitmapFactory.decodeStream(inputStream,null,options);
+        }else{
+            Log.i(TAG, "ratio: Failed");
+            return null;
         }
         int originalH=options.outHeight;
         int originalW=options.outWidth;
@@ -105,7 +110,6 @@ public class ImageUtils {
                 pixelWidth);
         //一定要记得返回内容，不然加个鸡儿啊
         options.inJustDecodeBounds=false;
-        Log.i(TAG, "ratio:after "+getBytesByBitmap(BitmapFactory.decodeFile(path,options)).length);
        return BitmapFactory.decodeFile(path,options);
     }
 
@@ -128,6 +132,25 @@ public class ImageUtils {
          inSampleSize=1;
      }
      return inSampleSize;
+    }
+
+    /**
+     * 本地有图片则取本地，没有则下载后存本地
+     * @param path
+     * @param height
+     * @param width
+     * @param url
+     * @return
+     */
+    public Bitmap getBitmap(String path,int height,int width,String url){
+        Bitmap bitmap=ratio(path,height,width,null);
+        if (bitmap!=null){
+            return  bitmap;
+        }else if (url!=null){
+          FileUtils.saveImage(url,path);//
+          return ratio(path,height,width,null);
+        }
+        return BitmapFactory.decodeResource(EchatAppUtil.getAppContext().getResources(),R.drawable.default_img);
     }
 /********************************************LruCache**********************************************/
 
@@ -197,6 +220,7 @@ public class ImageUtils {
             e.printStackTrace();
         }
     }
+
 
 
 

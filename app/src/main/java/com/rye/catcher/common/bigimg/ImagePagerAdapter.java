@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.rye.catcher.R;
 import com.rye.catcher.base.photoview.PhotoView;
+import com.rye.catcher.utils.ToastUtils;
 
 
 import java.util.ArrayList;
@@ -34,9 +36,13 @@ public class ImagePagerAdapter extends PagerAdapter {
         //从文件中获取bitmap
         Bitmap bitmap=BitmapFactory.decodeFile(imgList.get(position));
         photoView.setImageBitmap(bitmap);
+        photoView.setOnLongClickListener(v -> {
+            ToastUtils.shortMsg("ddd");
+            return false;
+        });
         container.addView(photoView,ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
-        return container;
+        return photoView;
     }
 
     @Override

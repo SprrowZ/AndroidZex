@@ -1,7 +1,9 @@
 package com.rye.catcher.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
+import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +38,7 @@ public class PermissionsUtil {
         return permissionsUtils;
     }
 
-    public void chekPermissions(Activity context, String[] permissions, @NonNull IPermissionsResult permissionsResult) {
+    public void checkPermissions(Activity context, @NonNull IPermissionsResult permissionsResult, String... permissions) {
         mPermissionsResult = permissionsResult;
 
         if (Build.VERSION.SDK_INT < 23) {//6.0才用动态权限
@@ -144,33 +147,8 @@ public class PermissionsUtil {
 
         void forbitPermissons();
     }
-    /**
-     * 使用案例
-     */
-//    String[] permissions = new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-////  PermissionsUtils.showSystemSetting = false;//是否支持显示系统设置权限设置窗口跳转
-//    //这里的this不是上下文，是Activity对象！
-//  PermissionsUtils.getInstance().chekPermissions(this, permissions, permissionsResult);
-//}
-//
-//    //创建监听权限的接口对象
-//    PermissionsUtils.IPermissionsResult permissionsResult = new PermissionsUtils.IPermissionsResult() {
-//        @Override
-//        public void passPermissons() {
-//            Toast.makeText(MainActivity.this, "权限通过，可以做其他事情!", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void forbitPermissons() {
-////finish();
-//            Toast.makeText(MainActivity.this, "权限不通过!", Toast.LENGTH_SHORT).show();
-//        }
-//    };
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        //就多一个参数this
-//        PermissionsUtils.getInstance().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-//    }
+
+    /*************************************权限适配*****************************************/
+
+
 }

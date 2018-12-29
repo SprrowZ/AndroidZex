@@ -339,7 +339,9 @@
             android:name=".activity.ctmactivity.CtmDDActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity android:name=".common.bigimg.ImageActivity"></activity>
+        <activity android:name=".common.bigimg.ImageActivity"
+            android:launchMode="singleTask"
+            />
     </application>
 
 </manifest>

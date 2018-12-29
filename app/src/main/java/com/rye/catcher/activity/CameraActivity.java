@@ -2,7 +2,6 @@ package com.rye.catcher.activity;
 
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +24,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.CameraFragment;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
+import com.rye.catcher.utils.ubean.Permissions;
 
 /**
  * Created by ZZG on 2017/10/18.
@@ -57,10 +57,8 @@ public class CameraActivity extends BaseActivity {
     }
 
     private void authority() {
-        //申请权限
-        String[] permissions = new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        PermissionsUtil.showSystemSetting = true;//是否支持显示系统设置权限设置窗口跳转
-        PermissionsUtil.IPermissionsResult permissionsResult=new PermissionsUtil.IPermissionsResult() {
+        //这里的this不是上下文，是Activity对象！
+        PermissionsUtil.getInstance().checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
             @Override
             public void passPermissons() {
                 ToastUtils.shortMsg("权限申请成功");
@@ -70,26 +68,18 @@ public class CameraActivity extends BaseActivity {
             public void forbitPermissons() {
                 ToastUtils.shortMsg("权限申请失败");
             }
-        };
-        //这里的this不是上下文，是Activity对象！
-        PermissionsUtil.getInstance().chekPermissions(this, permissions, permissionsResult);
+        }, Permissions.CAMERA);
     }
 
     private void showWindow2() {
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("title")
                 .setMessage("message")
-                .setPositiveButton("test",new android.content.DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        System.out.println("positive");
-                    }
+                .setPositiveButton("test",(dialog1,which)->{
+
                 })
-                .setNegativeButton("tttt", new android.content.DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        System.out.println("negative");
-                    }
+                .setNegativeButton("tttt",(dialog1,which)->{
+
                 }).create();
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.show();
@@ -148,10 +138,5 @@ public class CameraActivity extends BaseActivity {
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //就多一个参数this
-        PermissionsUtil.getInstance().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-    }
+
 }

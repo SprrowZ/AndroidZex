@@ -24,25 +24,14 @@
             />
         <Button
             android:id="@+id/btn1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:text="OkHttp"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_bk_transparent"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/soft1"
+            style="@style/btn_settings"
             />
 
         <Button
             android:id="@+id/btn2"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:text="Java进阶"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_bk_transparent"
-            android:textColor="@color/soft1"
+            style="@style/btn_settings"
             />
 
     </LinearLayout>
@@ -62,23 +51,12 @@
         <Button
             android:id="@+id/btn3"
             android:text="First_Activity"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_bk_transparent"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/soft1"
+            style="@style/btn_settings"
             />
         <Button
             android:id="@+id/btn4"
             android:text="Second_Activity"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:background="@drawable/btn_bk_transparent"
-            android:textColor="@color/soft1"
+            style="@style/btn_settings"
             />
 
     </LinearLayout>
@@ -95,24 +73,13 @@
     <Button
         android:id="@+id/cameraOne"
         android:text="Camera相机"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:background="@drawable/btn_bk_transparent"
-        android:layout_marginRight="10dp"
-        android:textColor="@color/soft1"
+        style="@style/btn_settings"
         />
 
     <Button
         android:id="@+id/review"
         android:text="Review"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:background="@drawable/btn_bk_transparent"
-        android:textColor="@color/soft1"
+        style="@style/btn_settings"
         />
 
 </LinearLayout>
@@ -129,13 +96,7 @@
          <Button
             android:id="@+id/animation"
             android:text="Animation"
-            android:textAllCaps="false"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-             android:background="@drawable/btn_bk_transparent"
-             android:layout_marginRight="10dp"
-             android:textColor="@color/soft1"
+             style="@style/btn_settings"
              />
 
     </LinearLayout>

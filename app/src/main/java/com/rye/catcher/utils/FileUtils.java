@@ -236,7 +236,6 @@ public class FileUtils {
      */
     public static boolean writeFile(File file, InputStream stream) {
         return writeFile(file, stream, false);
-
     }
 
 
@@ -1127,7 +1126,25 @@ public class FileUtils {
     public static void createNewFile(String dirName, String fileName, String content) {//主要用于txt文件
         writeFile(SDHelper.getAppExternal() + dirName + File.separator + fileName, content);
     }
-
+    /**
+     * 下载文件，可以是图片、文本文件等等，反正返回的都是流
+     * @param url
+     * @return
+     */
+    public static InputStream downloadFileI(String url){
+        try {
+            URL url1=new URL(url);
+            HttpURLConnection connection=(HttpURLConnection) url1.openConnection();
+            connection.setConnectTimeout(5 * 1000);
+            connection.setRequestMethod("GET");
+            return  connection.getInputStream();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     /**
      * 下载网络图片
      *
@@ -1135,7 +1152,7 @@ public class FileUtils {
      * @return byte[]
      * @throws Exception
      */
-    public static byte[] downloadImage(String path) {
+    public static byte[] downloadFile(String path) {
         URL url = null;
         try {
             url = new URL(path);
@@ -1179,37 +1196,19 @@ public class FileUtils {
         return outStream.toByteArray();
     }
 
-    /**
-     * 下载文件，可以是图片、文本文件等等，反正返回的都是流
-     * @param url
-     * @return
-     */
-    public static InputStream downLoadFile(String url){
-        try {
-            URL url1=new URL(url);
-            HttpURLConnection connection=(HttpURLConnection) url1.openConnection();
-           return  connection.getInputStream();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     /**
-     * 保存图片到本地
+     * 保存图片到本地,如果已经存在相同名字的图片，则覆盖
      * @param remotePath 网络地址
      */
-    public static void saveImage(String remotePath,String fileName){
+    public static void saveImage(String remotePath,String localPath){
          File  file=null;
          //先判断本地有没有，没有再下载
-         file=new File(SDHelper.getImageFolder()+fileName);
-         if (!file.exists()){//本地文件不存在
-             InputStream inputStream=downLoadFile(remotePath);
-             file=createNewFile(Constant.IMAGES,fileName);
-             writeFile(file,inputStream);
-         }
+         file=new File(localPath);
+         InputStream inputStream=downloadFileI(remotePath);
+         writeFile(file,inputStream);
+
     }
             //__________________________测试代码__________________________________//
         //_______________________________________________________________________//

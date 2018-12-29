@@ -38,6 +38,12 @@ public class PermissionsUtil {
         return permissionsUtils;
     }
 
+    /**
+     * 判断/申请权限
+     * @param context
+     * @param permissionsResult
+     * @param permissions
+     */
     public void checkPermissions(Activity context, @NonNull IPermissionsResult permissionsResult, String... permissions) {
         mPermissionsResult = permissionsResult;
 
@@ -59,19 +65,19 @@ public class PermissionsUtil {
         if (mPermissionList.size() > 0) {//有权限没有通过，需要申请
             ActivityCompat.requestPermissions(context, permissions, mRequestCode);
         } else {
-//说明权限都已经通过，可以做你想做的事情去
             permissionsResult.passPermissons();
             return;
         }
 
 
     }
-
-    //请求权限后回调的方法
-    //参数： requestCode  是我们自己定义的权限请求码
-    //参数： permissions  是我们请求的权限名称数组
-    //参数： grantResults 是我们在弹出页面后是否允许权限的标识数组，数组的长度对应的是权限名称数组的长度，数组的数据0表示允许权限，-1表示我们点击了禁止权限
-
+    /**
+     * 请求权限回调后的方法，在Activity或者Fragment中调用
+     * @param context
+     * @param requestCode 是我们自己定义的权限请求码
+     * @param permissions 是我们请求的权限名称数组
+     * @param grantResults 是我们在弹出页面后是否允许权限的标识数组，数组的长度对应的是权限名称数组的长度，数组的数据0表示允许权限，-1表示我们点击了禁止权限
+     */
     public void onRequestPermissionsResult(Activity context, int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         boolean hasPermissionDismiss = false;//有权限没有通过
@@ -107,25 +113,18 @@ public class PermissionsUtil {
         if (mPermissionDialog == null) {
             mPermissionDialog = new AlertDialog.Builder(context)
                     .setMessage("已禁用权限，请手动授予")
-                    .setPositiveButton("设置", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            cancelPermissionDialog();
-
-                            Uri packageURI = Uri.parse("package:" + mPackName);
-                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
-                            context.startActivity(intent);
-                            context.finish();
-                        }
+                    .setPositiveButton("设置", (dialog, which) -> {
+                        cancelPermissionDialog();
+                        Uri packageURI = Uri.parse("package:" + mPackName);
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                        context.startActivity(intent);
+                        context.finish();
                     })
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //关闭页面或者做其他操作
-                            cancelPermissionDialog();
-                            //mContext.finish();
-                            mPermissionsResult.forbitPermissons();
-                        }
+                    .setNegativeButton("取消", (dialog, which) -> {
+                        //关闭页面或者做其他操作
+                        cancelPermissionDialog();
+                        //mContext.finish();
+                        mPermissionsResult.forbitPermissons();
                     })
                     .create();
         }

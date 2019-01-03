@@ -198,8 +198,7 @@
 #-----------处理第三方依赖库---------
 
 #-------------------------------------bugly混淆-------------------------------
--dontwarn com.tencent.bugly.**
--keep public class com.tencent.bugly.**{*;}
+
 #-------------------------------------butterknife-----------------------------
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**
@@ -285,3 +284,13 @@ public static java.lang.String TABLENAME;
 -keep class com.amap.api.fence.**{*;}
 
 -keep class com.autonavi.aps.amapapi.model.**{*;}
+#--------------------------Bugly-Tinker--------------------------
+-keep class com.rye.catcher.zApplication{
+*;
+}
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+# tinker混淆规则
+-dontwarn com.tencent.tinker.**
+-keep class com.tencent.tinker.** { *; }
+-keep class android.support.**{*;}

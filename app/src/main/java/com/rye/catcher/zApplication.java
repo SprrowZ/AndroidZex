@@ -11,6 +11,8 @@ import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.utils.EchatAppUtil;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.tinker.loader.app.TinkerApplication;
+import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -18,12 +20,18 @@ import org.greenrobot.greendao.database.Database;
  * Created by ZZG on 2018/3/22.
  */
 
-public class zApplication extends Application{
+public class zApplication extends TinkerApplication {
     private static Context mContext;
     private DisplayMetrics displayMetrics;
     private static zApplication instance=new zApplication();
     private boolean DAO_INITED=false;
     private DaoSession daoSession;
+
+    protected zApplication( ) {
+        super(ShareConstants.TINKER_ENABLE_ALL,"com.rye.catcher.sdks.tinker.SampleApplicationLike",
+                "com.tencent.tinker.loader.TinkerLoader",false);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

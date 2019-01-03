@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
-
+apply from: 'tinker-support.gradle'
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
@@ -85,31 +85,31 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    flavorDimensions("money", "channel")
-    productFlavors {
-        vip {
-            dimension "money"
-            buildConfigField("boolean", "IS_VIP_VERSION", "true")
-            minSdkVersion 16
-        }
-        free {
-            dimension "money"
-            buildConfigField("boolean", "IS_VIP_VERSION", "false")
-            minSdkVersion 16
-        }
-        baidu {
-            manifestPlaceholders = [CHANNEL: "baidu"]
-            dimension "channel"
-            buildConfigField("boolean", "IS_baidu_VERSION", "true")
-            minSdkVersion 16
-        }
-        xiaomi {
-            manifestPlaceholders = [CHANNEL: "xiaomi"]
-            dimension "channel"
-            buildConfigField("boolean", "IS_baidu_VERSION", "false")
-            minSdkVersion 16
-        }
-    }
+//    flavorDimensions("money", "channel")
+//    productFlavors {
+//        vip {
+//            dimension "money"
+//            buildConfigField("boolean", "IS_VIP_VERSION", "true")
+//            minSdkVersion 16
+//        }
+//        free {
+//            dimension "money"
+//            buildConfigField("boolean", "IS_VIP_VERSION", "false")
+//            minSdkVersion 16
+//        }
+//        baidu {
+//            manifestPlaceholders = [CHANNEL: "baidu"]
+//            dimension "channel"
+//            buildConfigField("boolean", "IS_baidu_VERSION", "true")
+//            minSdkVersion 16
+//        }
+//        xiaomi {
+//            manifestPlaceholders = [CHANNEL: "xiaomi"]
+//            dimension "channel"
+//            buildConfigField("boolean", "IS_baidu_VERSION", "false")
+//            minSdkVersion 16
+//        }
+//    }
 
     lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
         checkReleaseBuilds false
@@ -154,7 +154,7 @@ android.applicationVariants.all { variant ->
             buildConfigField "String", "ip", "\"www.bilibili.com\""
             outputFileName = "${rootProject.name}-${variant.buildType.name}" +
                     "-${variant.versionName}.apk"
-            variant.packageApplication.outputDirectory = new File("./../apk")
+//            variant.packageApplication.outputDirectory = new File("./../apk")
         }
     }
 }

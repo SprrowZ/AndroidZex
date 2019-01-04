@@ -27,7 +27,7 @@ public class zApplication extends TinkerApplication {
     private boolean DAO_INITED=false;
     private DaoSession daoSession;
 
-    protected zApplication( ) {
+    public zApplication( ) {
         super(ShareConstants.TINKER_ENABLE_ALL,"com.rye.catcher.sdks.tinker.SampleApplicationLike",
                 "com.tencent.tinker.loader.TinkerLoader",false);
     }

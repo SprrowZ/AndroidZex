@@ -1,7 +1,7 @@
 apply plugin: 'com.tencent.bugly.tinker-support'
 
 def bakPath = file("${buildDir}/bakApk/")
-def appName = "app-0104-16-25"
+def appName = "app-0104-18-54-09"
 /**
  * 此处填写每次构建生成的基准包目录
  */

@@ -152,8 +152,8 @@ android.applicationVariants.all { variant ->
             resValue "string", "SANDBOX_WHITELIST", "10.248.113.15;cbms-web.icbc"
             resValue "string", "CAN_CHANGE_USER_CONFIG", "1"
             buildConfigField "String", "ip", "\"www.bilibili.com\""
-            outputFileName = "${rootProject.name}-${variant.buildType.name}" +
-                    "-${variant.versionName}.apk"
+//            outputFileName = "${rootProject.name}-${variant.buildType.name}" +
+//                    "-${variant.versionName}.apk"
 //            variant.packageApplication.outputDirectory = new File("./../apk")
         }
     }

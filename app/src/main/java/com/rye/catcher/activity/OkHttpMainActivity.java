@@ -64,7 +64,7 @@ public class OkHttpMainActivity extends BaseActivity {
     private String URL = "http://192.168.43.197:8080/ServerToAndroid/";
 
     //拿到对象
-    OkHttpClient okHttpClient = new OkHttpClient();
+    private final  OkHttpClient okHttpClient = new OkHttpClient();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -176,7 +176,7 @@ public class OkHttpMainActivity extends BaseActivity {
     }
 
     public void doPostFile(View view) {
-        //本地必须得有这个图片呀，呀呀呀，嘤嘤婴
+        //本地必须得有这个图片
         File file = new File(Environment.getExternalStorageDirectory(), "test.jpg");
         if (!file.exists()) {
             runOnUiThread(new Runnable() {
@@ -258,12 +258,10 @@ public class OkHttpMainActivity extends BaseActivity {
                 .add("name", "空山鸟语")
                 .add("password", String.valueOf(12132))
                 .build();
-        Request.Builder requestBuilder = new Request.Builder();
-        Request request = requestBuilder.url(URL + "login").post(requestBody).build();
-        //封装Request成Call
-        Call call = okHttpClient.newCall(request);
-        //执行Call
-        call.enqueue(new Callback() {
+        Request request = new Request.Builder()
+                .url(URL + "login")
+                .post(requestBody).build();
+       okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 //e.getMessage获得错误信息，e.printStackTrace打印出错误路径
@@ -297,18 +295,11 @@ public class OkHttpMainActivity extends BaseActivity {
     }
 
     public void doGet(View view) throws IOException {
-
-
-        //构造Request
-        Request.Builder builder = new Request.Builder();
-        Request request = builder
+        Request request = new Request.Builder()
                 .get()
                 .url(URL + "login?name=zzg&password=1234")
                 .build();
-        //封装Request成Call
-        Call call = okHttpClient.newCall(request);
-        //执行Call
-        call.enqueue(new Callback() {
+         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 //e.getMessage获得错误信息，e.printStackTrace打印出错误路径
@@ -371,6 +362,22 @@ public class OkHttpMainActivity extends BaseActivity {
                 break;
             case R.id.btn10:
                 break;
+        }
+    }
+    private void doGet(){
+        Request request=new Request.Builder()
+                .addHeader("password","hello")
+                .url(URL)
+                .build();
+        try {
+            Response response=okHttpClient.newCall(request).execute();
+            if (!response.isSuccessful()){
+                throw new IOException("Unexpected code" +response.code());
+            }else{
+                Log.i(TAG, "doGet: "+response.body().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

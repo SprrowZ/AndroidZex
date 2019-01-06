@@ -8,8 +8,8 @@ android {
         applicationId "com.rye.catcher.zzg"
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
-        versionCode 7
-        versionName "1.0.7"
+        versionCode 9
+        versionName "1.0.9"
         //bugly需要，还有其他地方要用，架构模式
         ndk {
             abiFilter "armeabi-v7a"

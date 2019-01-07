@@ -305,7 +305,6 @@
             android:name=".activity.ProvinceListActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity android:name=".project.RxJava2.RxDemoOne" />
         <activity
             android:name=".activity.RecycleDemoActivity"
             android:configChanges="keyboard|orientation|screenSize"

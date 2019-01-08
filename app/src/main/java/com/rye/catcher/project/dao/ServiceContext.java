@@ -119,7 +119,7 @@ public class ServiceContext {
      * @return 设备的UUID
      */
     public static String getUUID () {
-        return _uuid;
+        return DeviceUtils.getUUID(EchatAppUtil.getAppContext());
     }
 
     /**
@@ -127,7 +127,7 @@ public class ServiceContext {
      * @param uuid 设备的UUID
      */
     public static void setUUID (String uuid) {
-        _uuid = uuid;
+        _uuid = DeviceUtils.getUUID(EchatAppUtil.getAppContext());
     }
 
 

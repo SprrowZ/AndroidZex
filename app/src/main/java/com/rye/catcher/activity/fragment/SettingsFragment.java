@@ -15,10 +15,9 @@ import com.rye.catcher.activity.CameraActivity;
 import com.rye.catcher.FirstActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.SecondActivity;
-import com.rye.catcher.activity.OkHttpMainActivity;
+import com.rye.catcher.activity.ORRActivity;
 import com.rye.catcher.activity.ProjectMainActivity;
 import com.rye.catcher.activity.ctmactivity.CtmMainActivity;
-import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.project.ReviewTest;
 import com.rye.catcher.project.animations.AnimMainActivity;
 import com.rye.catcher.project.review.KeepJava;
@@ -67,24 +66,7 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     public void onClick(View view) {
-//        MyDialog dialog=new MyDialog(getActivity());
-//        dialog.setCancelable(false);
-//        dialog.show();
-//        Window dialogWindow = dialog.getWindow();
-//        WindowManager m = getActivity().getWindowManager();
-//        Display d = m.getDefaultDisplay(); // 获取屏幕宽、高度
-//        WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
-//        p.height = (int) (d.getHeight()* 0.8); // 高度设置为屏幕的0.6，根据实际情况调整
-//        p.width = (int) (d.getWidth() * 0.8); // 宽度设置为屏幕的0.65，根据实际情况调整
-//        dialogWindow.setAttributes(p);
-//        WindowManager manager = getActivity().getWindowManager();
-//        DisplayMetrics outMetrics = new DisplayMetrics();
-//        manager.getDefaultDisplay().getMetrics(outMetrics);
-//        int width = outMetrics.widthPixels;
-//        int height = outMetrics.heightPixels;
-//        WindowManager.LayoutParams p = dialogWindow.getAttributes();
-           startActivity(new Intent(getActivity(), OkHttpMainActivity.class));
-
+           startActivity(new Intent(getActivity(), ORRActivity.class));
     }
 });
         //测试finish方法
@@ -96,23 +78,6 @@ public class SettingsFragment extends BaseFragment {
                 startActivity(intent4);
             }
         });
-
-
-
-
-
-
-        /**
-         * Timer
-         */
-//        Timer timer=new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                progressBar.setVisibility(View.GONE);
-//            }
-//        },3000);
-
 
         progressBar= view.findViewById(R.id.progressBar);
         new Thread(new Runnable() {

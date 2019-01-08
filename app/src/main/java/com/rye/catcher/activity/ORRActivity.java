@@ -22,7 +22,7 @@ import butterknife.OnClick;
 
 public class ORRActivity extends AppCompatActivity {
  private Fragment currentFragment;
- private int  currentPos;
+ private int  currentPos=-1;
  @BindView(R.id.container)
  FrameLayout container;
  @BindView(R.id.okhttp)

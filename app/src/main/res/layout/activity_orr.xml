@@ -7,10 +7,19 @@
     tools:context="com.rye.catcher.activity.ORRActivity"
     android:orientation="vertical"
     >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Okhttp+Retrofit+Rxjava"
+        android:textSize="@dimen/font_24"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:autoLink="all"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/len_56"
+        android:layout_marginTop="@dimen/len_40"
         >
         <Button
             android:id="@+id/okhttp"
@@ -64,5 +73,9 @@
 <FrameLayout
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"></FrameLayout>
+    android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
+    >
+
+</FrameLayout>
 </LinearLayout>

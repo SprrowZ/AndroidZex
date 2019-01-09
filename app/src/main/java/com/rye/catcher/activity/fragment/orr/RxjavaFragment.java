@@ -6,13 +6,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.project.dao.ServiceContext;
+import com.rye.catcher.project.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 
 import java.io.IOException;
@@ -175,6 +178,27 @@ public class RxjavaFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 通过Dialog显示
+     * @param result
+     */
+    private void showDialog(String result){
+        TextView tv=new TextView(getContext());
+        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        tv.setText(result);
+        new ExDialog.Builder(getContext())
+                .setDialogView(tv)
+                .setCancelable(true)
+                .setGravity(Gravity.CENTER)
+                .setAnimStyle(R.style.translate_style)
+                .show();
+
+    }
+
+    /**
+     * 以rxjava方式查询天气数据
+     */
     private void getWeatherData() {
         //被观察者
        Observable<String> observable=Observable.create(new ObservableOnSubscribe<String>() {
@@ -183,10 +207,10 @@ public class RxjavaFragment extends BaseFragment {
                    emitter.onNext(getResponse());
            }
        });
-       Consumer consumer=new Consumer() {
+       Consumer<String> consumer=new Consumer<String>() {
            @Override
-           public void accept(Object o) throws Exception {
-
+           public void accept(String o) throws Exception {
+               showDialog(o);
            }
        };
 

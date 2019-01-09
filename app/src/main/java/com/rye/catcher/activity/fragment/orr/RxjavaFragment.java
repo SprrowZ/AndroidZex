@@ -12,8 +12,13 @@ import android.view.ViewGroup;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.project.dao.ServiceContext;
+import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
+
+import java.io.IOException;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -25,6 +30,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 /**
@@ -35,6 +43,8 @@ public class RxjavaFragment extends BaseFragment {
     private static  final String TAG="RxjavaFragment";
     private Unbinder unbinder;
     private View view;
+    private OkHttpClient client= OkHttpUtil.getInstance().getClient();
+    private static  final  String url="http://v.juhe.cn/weather/index?cityname=%E4%B8%8A%E6%B5%B7&dtype=&format=&key=3444d95f001d7765de768376c3a2d870";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -153,6 +163,55 @@ public class RxjavaFragment extends BaseFragment {
 
     }
 
+    @OnClick({R.id.btn1,R.id.btn2,R.id.btn3,
+            R.id.btn4,R.id.btn5,R.id.btn6})
+    public void onViewClicked(View view){
+        switch (view.getId()){
+            case R.id.btn1:
+                getWeatherData();
+                break;
+            case R.id.btn2:
+                break;
+        }
+    }
+
+    private void getWeatherData() {
+        //被观察者
+       Observable<String> observable=Observable.create(new ObservableOnSubscribe<String>() {
+           @Override
+           public void subscribe(ObservableEmitter<String> emitter) {
+                   emitter.onNext(getResponse());
+           }
+       });
+       Consumer consumer=new Consumer() {
+           @Override
+           public void accept(Object o) throws Exception {
+
+           }
+       };
+
+       observable.subscribeOn(Schedulers.newThread())
+               .observeOn(AndroidSchedulers.mainThread())
+               .subscribe(consumer);
+    }
+    private String getResponse(){
+        Request request=new Request.Builder()
+                .get()
+                .url(url)
+                .addHeader("X-ZZ-TOKEN", ServiceContext.getUUID())
+                .build();
+        try {
+            Response response=client.newCall(request).execute();
+            if (!response.isSuccessful()){
+               throw  new Exception("Unexpected result "+String.valueOf(response.code()));
+            }
+            String result=response.body().string();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

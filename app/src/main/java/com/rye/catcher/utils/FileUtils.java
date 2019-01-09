@@ -985,7 +985,7 @@ public class FileUtils {
      * 写入日志
      */
     public static void writeUserLog(String content) {
-        File file = makeFilePath(SDHelper.getInstance().getAppExternal() + "logs",
+        File file = makeFilePath(SDHelper.getAppExternal() + "logs",
                 DateUtils.getCurrentTime(DateUtils.FORMAT_DATE1) + ".log");
         try {
             FileOutputStream outputStream = new FileOutputStream(file, true);

@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.support.annotation.RequiresApi;
 
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.zApplication;
@@ -25,60 +26,47 @@ import java.io.IOException;
  */
 
 public class SDHelper {
-    public static SDHelper instance;
-    public static String sdPath;//重要,公有存储路径
-    public static String filePath;//data文件夹，不可见。存放一些私有信息。【重】
-    public static String storagePath;
-    public static String publicDir;//公用路径，例如音乐、视频
-    public static String external;//APP专属存储路径，app卸载，这部分消失
-    public static String privateData;//用户数据目录，不可见
-    public static String rootDirectory;//Android根目录
-    public static String externalCache;//应用外部缓存目录........专属缓存路径
+    //根存储
+    public static String sdPath = Environment.getExternalStorageDirectory().getPath() + File.separator;
 
-    private static SDHelper sdHelper=new SDHelper();
-    public static SDHelper getInstance(){
-     initPath();
-     return instance;
-    }
-
-    public  static void initPath() {
-        //根存储
-       sdPath = Environment.getExternalStorageDirectory().getPath() + File.separator;
-       storagePath=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator;
-       publicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()+File.separator;
-       //app私有存储
-       external= zApplication.getInstance().getApplicationContext().getExternalFilesDir(null)+File.separator;
-       privateData=Environment.getDataDirectory()+File.separator;
-       rootDirectory=Environment.getRootDirectory()+File.separator;
-       //app私有缓存
-       externalCache= zApplication.getInstance().getApplicationContext().getExternalCacheDir()+File.separator;
-    }
-
+    public static String storagePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
+    public static String publicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator;
+    //app私有存储
+    public static String external = zApplication.getInstance().getApplicationContext().getExternalFilesDir(null) + File.separator;
+    public static String privateData = Environment.getDataDirectory() + File.separator;
+    public static String rootDirectory = Environment.getRootDirectory() + File.separator;
+    //app私有缓存
+    public static String externalCache = zApplication.getInstance().getApplicationContext().getExternalCacheDir() + File.separator;
     /**
      * App专属目录
+     *
      * @return
      */
-   public  static String getAppExternal(){
-        return  external;
-   }
+    public static String getAppExternal() {
+        return external;
+    }
 
     /**
      * 此App图片存储目录
+     *
      * @return
      */
-   public  static String getImageFolder(){
-       return  external+ Constant.IMAGES+File.separator;
-   }
+    public static String getImageFolder() {
+        return external + Constant.IMAGES + File.separator;
+    }
+
     /**
      * 公共目录
+     *
      * @return
      */
-   public  static String getSdPath(){
+    public static String getSdPath() {
         return sdPath;
-   }
+    }
 
     /**
      * 判断内存卡是否被挂载
+     *
      * @return
      */
     public static boolean isSDCardMounted() {
@@ -89,6 +77,7 @@ public class SDHelper {
 
     /**
      * 获取SD卡的完整空间大小，返回MB
+     *
      * @return
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -101,6 +90,7 @@ public class SDHelper {
         }
         return 0;
     }
+
     // 获取SD卡的剩余空间大小
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static long getSDCardFreeSize() {
@@ -114,6 +104,7 @@ public class SDHelper {
     }
 
     // 获取SD卡的可用空间大小
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static long getSDCardAvailableSize() {
         if (isSDCardMounted()) {
             StatFs fs = new StatFs(getSdPath());
@@ -206,11 +197,10 @@ public class SDHelper {
     }
 
     /**
-     *
      * @param bitmap
      * @param fileName
      * @param context
-     * @return  保存bitmap图片到SDCard的私有Cache目录
+     * @return 保存bitmap图片到SDCard的私有Cache目录
      */
     public static boolean saveImage(Bitmap bitmap, String fileName, Context context) {
         if (isSDCardMounted()) {
@@ -316,7 +306,6 @@ public class SDHelper {
             return false;
         }
     }
-
 
 
 }

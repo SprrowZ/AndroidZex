@@ -21,11 +21,30 @@ public class OkHttpUtil {
     private static  final int CONNECTION_TIME_OUT=10;
     private static  final int READ_TIME_OUT=15;
     private static  final int WRITE_TIME_OUT=15;
-    //拦截器，用来看日志
+
+    /**
+     *静态内部类单例模式
+     */
+    private static class SingleOKhttp{
+        private static OkHttpUtil INSTANCE=new OkHttpUtil();
+    }
+    public static  OkHttpUtil getInstance(){
+        return  SingleOKhttp.INSTANCE;
+    }
+
+    public OkHttpClient getClient() {
+        return client;
+    }
+
+    /**
+     * 拦截器，用来看日志
+     */
     private HttpLoggingInterceptor interceptor= new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
         @Override
         public void log(String message) {
             try {
+                //替换单独出现的百分号
+                message = message.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
                 String logs=URLDecoder.decode(message,"utf-8");
                 Log.i("OkHttp",  logs);
             } catch (UnsupportedEncodingException e) {
@@ -41,17 +60,5 @@ public class OkHttpUtil {
             .writeTimeout(WRITE_TIME_OUT,TimeUnit.SECONDS)
             .addInterceptor(interceptor)
             .build();
-    /**
-     *静态内部类单例模式
-     */
-    private static class SingleOKhttp{
-        private static OkHttpUtil INSTANCE=new OkHttpUtil();
-    }
-    public static  OkHttpUtil getInstance(){
-        return  SingleOKhttp.INSTANCE;
-    }
 
-    public OkHttpClient getClient() {
-        return client;
-    }
 }

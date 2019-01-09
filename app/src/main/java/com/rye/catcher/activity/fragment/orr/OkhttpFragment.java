@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -214,7 +217,7 @@ public class OkhttpFragment extends BaseFragment {
      */
     public void doPostFile(View view) {
         //本地必须得有这个图片
-        File file = new File(SDHelper.getImageFolder(), "portrait.jpg");
+        File file = new File(SDHelper.getImageFolder(), "portrait.png");
         if (!file.exists()) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -250,86 +253,26 @@ public class OkhttpFragment extends BaseFragment {
         });
 
     }
-    public void doDownLoadImg(View view) {
-        Request request = new Request.Builder().url(URL + "files/test.jpg").build();//电脑上这个路径下要有test.jpg
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                getActivity().runOnUiThread(()->{
-                    Toast.makeText(getActivity(), "连接服务器失败", Toast.LENGTH_SHORT).show();
-                });
-            }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                //读出来图片后显示出来
-                InputStream is = response.body().byteStream();
-                final Bitmap bitmap = BitmapFactory.decodeStream(is);
-                getActivity().runOnUiThread(()->{
-                    iv.setImageBitmap(bitmap);//这里Bitmap.Options对图片进行压缩等操作，二次取样
-                });
-            }
-        });
-    }
-
-    public void doDownLoad(View view) {
-        final Request request = new Request.Builder().url(URL + "files/test.jpg").build();//电脑上这个路径下要有test.jpg
-        //输出路径
-        Log.i(TAG, "doDownLoad: " + URL + "files/test.jpg");
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                getActivity().runOnUiThread(()->{
-                    Toast.makeText(getActivity(), "连接服务器失败", Toast.LENGTH_SHORT).show();
-                });
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                getActivity().runOnUiThread(()->{
-                    Toast.makeText(getActivity(), "下载成功", Toast.LENGTH_SHORT).show();
-
-                });
-                //******************追踪进度*********************
-                long total = request.body().contentLength();//文件的大小
-                long sum = 0L;
-
-                InputStream is = response.body().byteStream();
-                int len = 0;//每次读多少字节
-                File file = new File(Environment.getExternalStorageDirectory(), "download.jpg");//这个名字本地不能有
-                byte[] buf = new byte[128];
-                FileOutputStream fos = new FileOutputStream(file);
-                while ((len = is.read(buf)) != -1) {
-                    fos.write(buf, 0, len);
-                    //输出进度
-                    sum += len;
-                    Log.e(TAG, sum + "/" + total);//输出下载进度
-                }
-                fos.flush();
-                fos.close();
-                is.close();
-            }
-        });
-    }
-
+    /**
+     * 上传文件...跟上面差在可能是也传参数过去吧
+     * @param view
+     */
     public void doUpLoad(View view) {
-        File file = new File(Environment.getExternalStorageDirectory(), "test2.jpg");
+        File file = new File(SDHelper.getImageFolder(), "portrait.png");
         MultipartBody multipartBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("name", "zzg")
-                .addFormDataPart("password", "zzz")
-                .addFormDataPart("mPhoto", "test2.jpg", RequestBody.create(//mPhoto是Key，服务器端通过这个取内容
+                .addFormDataPart("userName", "SprrowZ")
+                .addFormDataPart("password", "0517")
+                .addFormDataPart("mPhoto", "SprrowZ.png", RequestBody.create(//mPhoto是Key，服务器端通过这个取内容
                         //上传成功后，文件名还是为yy.jpg
                         MediaType.parse("application/octet-stream"), file))
                 .build();
         Request request = new Request.Builder().url(URL + "uploadInfo").post(multipartBody).build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
+       okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.i(TAG, "onFailure: ....." + e.getMessage());
-               getActivity().runOnUiThread(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Toast.makeText(getActivity(), "连接服务器失败", Toast.LENGTH_SHORT).show();
@@ -350,6 +293,96 @@ public class OkhttpFragment extends BaseFragment {
             }
         });
     }
+
+    /**
+     *下载文件
+     * @param view
+     */
+    public void doDownLoad(View view) {
+        final Request request = new Request.Builder().url(URL + "files/zzzz.jpg").build();//电脑上这个路径下要有test.jpg
+        //输出路径
+        Log.i(TAG, "doDownLoad: " + URL + "files/zzg.jpg");
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getActivity().runOnUiThread(()->{
+                    Toast.makeText(getActivity(), "连接服务器失败", Toast.LENGTH_SHORT).show();
+                });
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                getActivity().runOnUiThread(()->{
+                    Toast.makeText(getActivity(), "下载成功!已保存到"+SDHelper.getImageFolder()+"目录下！",
+                            Toast.LENGTH_SHORT).show();
+                });
+                //******************追踪进度*********************
+                long total = request.body().contentLength();//文件的大小
+                InputStream is = response.body().byteStream();
+                monitorProgress(is,total);
+
+            }
+        });
+    }
+    public void doDownLoadImg(View view) {
+        Request request = new Request.Builder().url(URL + "files/zzzz.jpg").build();//电脑上这个路径下要有test.jpg
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                getActivity().runOnUiThread(()->{
+                    Toast.makeText(getActivity(), "连接服务器失败", Toast.LENGTH_SHORT).show();
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //读出来图片后显示出来
+                InputStream is = response.body().byteStream();
+                final Bitmap bitmap = BitmapFactory.decodeStream(is);
+                getActivity().runOnUiThread(()->{
+                    iv.setImageBitmap(bitmap);//这里Bitmap.Options对图片进行压缩等操作，二次取样
+                    //加动画
+                    AlphaAnimation animation=new AlphaAnimation(0,1);
+                    animation.setDuration(1500);
+                    iv.setAnimation(animation);
+                });
+            }
+        });
+    }
+
+    /**
+     * 监控文件下载进度
+     * @param is
+     * @param total
+     */
+   private void monitorProgress(InputStream is,long total){
+       long sum = 0L;
+       int len = 0;
+       File file = new File(SDHelper.getImageFolder(), "fromServer.png");//这个名字本地不能有
+       byte[] buf = new byte[128];
+       FileOutputStream fos = null;
+       try {
+           fos = new FileOutputStream(file);
+           while ((len = is.read(buf)) != -1) {
+               fos.write(buf, 0, len);
+               //输出进度
+               sum += len;
+               Log.e(TAG, sum + "/" + total);//输出下载进度
+           }
+           fos.flush();
+           fos.close();
+           is.close();
+       } catch (FileNotFoundException e) {
+           e.printStackTrace();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+
+   }
+
+
 
 
 

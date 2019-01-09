@@ -41,7 +41,7 @@ public class YLJFragment extends BaseFragment {
   //头像
   private DistortionViews portrait;
   //头像本地地址
-  private static  final String pLocal=SDHelper.getInstance().getImageFolder()+"portrait.png";
+  private static  final String pLocal=SDHelper.getImageFolder()+"portrait.png";
   private ImageView iv1;
     @Nullable
     @Override

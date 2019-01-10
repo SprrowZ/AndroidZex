@@ -16,6 +16,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.project.dao.ServiceContext;
 import com.rye.catcher.project.dialog.ctdialog.ExDialog;
+import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 
 import java.io.IOException;
@@ -185,12 +186,14 @@ public class RxjavaFragment extends BaseFragment {
     private void showDialog(String result){
         TextView tv=new TextView(getContext());
         tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
+                DensityUtil.dip2px(getContext(),300)));
+        tv.setBackgroundColor(getResources().getColor(R.color.white));
         tv.setText(result);
         new ExDialog.Builder(getContext())
                 .setDialogView(tv)
                 .setCancelable(true)
                 .setGravity(Gravity.CENTER)
+                .setWindowBackgroundP(getResources().getColor(R.color.fuckAlpha))
                 .setAnimStyle(R.style.translate_style)
                 .show();
 

@@ -2,6 +2,7 @@ package com.rye.catcher.activity.fragment.orr;
 
 
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,13 +16,21 @@ import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.activity.fragment.orr.interfaces.PostBean;
 import com.rye.catcher.activity.fragment.orr.interfaces.zServerApi;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
+import com.rye.catcher.utils.SDHelper;
+import com.rye.catcher.utils.ToastUtils;
 
+import java.io.File;
 import java.io.IOException;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -67,7 +76,7 @@ public class RetrofitFragment extends BaseFragment {
                 break;
 
             case R.id.btn3:
-                postFile(view);
+                uploadFile(view);
               break;
         }
     }
@@ -97,7 +106,40 @@ public class RetrofitFragment extends BaseFragment {
         }).start();
     }
 
-    private void postFile(View view) {
+    private void uploadFile(View view) {
+        new Thread(()->{
+            Retrofit retrofit =new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(OkHttpUtil.getInstance().getClient())
+                    .build();
+
+            File file=new File(SDHelper.getImageFolder(),"portrait.png");
+            if (!file.exists()){
+                ToastUtils.shortMsg("文件不存在！");
+                return;
+            }
+            RequestBody requestBody=RequestBody.create(MediaType.parse("image/png"),file);
+            MultipartBody.Part part=MultipartBody.Part.createFormData("picture","retrofit.png",requestBody);
+            zServerApi zServerApi=retrofit.create(zServerApi.class);
+            Call<ResponseBody> call=zServerApi.uploadFile("uploadFile",part);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    getActivity().runOnUiThread(()->{
+                        ToastUtils.shortMsg("上传成功");
+                    });
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.i(TAG, "onFailure: ");
+                    getActivity().runOnUiThread(()->{
+                        ToastUtils.shortMsg("上传失败");
+                    });
+                }
+            });
+        }).start();
 
     }
 

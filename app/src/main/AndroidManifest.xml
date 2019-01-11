@@ -337,10 +337,10 @@
         <activity
             android:name=".common.bigimg.ImageActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".activity.ORRActivity"
-            android:launchMode="singleTask"
-
-            ></activity>
+        <activity
+            android:name=".activity.ORRActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.ctmactivity.CtmPTRActivity"></activity>
     </application>
 
 </manifest>

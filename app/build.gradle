@@ -194,5 +194,7 @@ dependencies {
     implementation 'com.yanzhenjie:permission:2.0.0-rc11'
     implementation 'com.alibaba:fastjson:1.2.49'
     implementation 'com.amap.api:location:latest.integration'
+    //一个loadingView库
+    implementation 'com.zyao89:zloading:1.2.0'
 
 }

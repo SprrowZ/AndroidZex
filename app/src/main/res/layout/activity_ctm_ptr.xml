@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rye.catcher.activity.ctmactivity.CtmPTRActivity">
+    tools:context="com.rye.catcher.activity.ctmactivity.CtmPTRActivity"
+
+    >
 <com.rye.catcher.project.ctmviews.zPullToRefreshView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="fitXY"
         android:src="@drawable/my1"
         />
 </com.rye.catcher.project.ctmviews.zPullToRefreshView>

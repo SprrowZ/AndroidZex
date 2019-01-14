@@ -13,7 +13,7 @@ import android.widget.Scroller;
 
 import com.rye.catcher.R;
 import com.rye.catcher.utils.DensityUtil;
-import com.rye.catcher.utils.MeasureUtil;
+import com.zyao89.view.zloading.ZLoadingView;
 
 /**
  * Created at 2019/1/11.
@@ -22,66 +22,75 @@ import com.rye.catcher.utils.MeasureUtil;
  * @function:
  */
 public class zPullToRefreshView extends ViewGroup {
-    private static final String TAG="zPullToRefreshView";
+    private static final String TAG = "zPullToRefreshView";
     /**
      * 上下加载视图
      */
     //头部、底部
     private View zHeaderView;
     private View zBottomView;
-    private View mainView;
+    //头部处理
+    private RelativeLayout pullDown;
+    private RelativeLayout pullUp;
+    private ZLoadingView loadingView;
     //此ViewGroup的高宽
-    private int mHeight=-1;
-    private int mWidth=-1;
+    private int mHeight = -1;
+    private int mWidth = -1;
     //主视图高度
     private int contentHeight;
-
+    //下滑最大距离
+    private float maxScrollHeight = DensityUtil.dip2px(getContext(), 150f);
+    //有效滑动距离
+    private int effectiveHeight;
     private Scroller mScroller;
+
+
     public zPullToRefreshView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public zPullToRefreshView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public zPullToRefreshView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //先实例化头部尾部布局
-        zHeaderView= LayoutInflater.from(getContext()).inflate(R.layout.top,null,false);
-        zBottomView= LayoutInflater.from(getContext()).inflate(R.layout.bottom,null,false);
+        zHeaderView = LayoutInflater.from(getContext()).inflate(R.layout.refresh_custom_header, null, false);
+        //  zBottomView = LayoutInflater.from(getContext()).inflate(R.layout.refresh_custom_footer, null, false);
+        findViews();
         //滑动
-        mScroller=new Scroller(context);
+        mScroller = new Scroller(context);
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT);
-       zHeaderView.setLayoutParams(params);
-       zBottomView.setLayoutParams(params);
-       addView(zHeaderView);
-       addView(zBottomView);
-       contentHeight=MeasureUtil.getScreenHeight(getContext());
+        zHeaderView.setLayoutParams(params);
+        // zBottomView.setLayoutParams(params);
+        addView(zHeaderView);
+        //   addView(zBottomView);
+
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int count=getChildCount();
+        int count = getChildCount();
 
-        for (int i=0;i<count;i++){
-            View child=getChildAt(i);
-            measureChild(child,widthMeasureSpec,heightMeasureSpec);
-            mHeight+=child.getMeasuredHeight();
-            if (child.getMeasuredWidth()>mWidth){
-                mWidth=child.getMeasuredWidth();
+        for (int i = 0; i < count; i++) {
+            View child = getChildAt(i);
+            measureChild(child, widthMeasureSpec, heightMeasureSpec);
+            mHeight += child.getMeasuredHeight();
+            if (child.getMeasuredWidth() > mWidth) {
+                mWidth = child.getMeasuredWidth();
             }
         }
-        int finalWidth=resolveSize(mWidth,widthMeasureSpec);
-        int finalHeight=resolveSize(mHeight,heightMeasureSpec);
-        setMeasuredDimension(finalWidth,finalHeight);
+        int finalWidth = resolveSize(mWidth, widthMeasureSpec);
+        int finalHeight = resolveSize(mHeight, heightMeasureSpec);
+        setMeasuredDimension(finalWidth, finalHeight);
     }
 
     @Override
@@ -91,60 +100,161 @@ public class zPullToRefreshView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-      int count=getChildCount();
-       for (int i=0;i<count;i++){
-           View child=getChildAt(i);
-           if (child==zHeaderView){
-               child.layout(0,-100,child.getMeasuredWidth(),0);
-           }else if (child==zBottomView){
-               child.layout(0,contentHeight,child.getWidth(),contentHeight+100);
-           }else{
-              child.layout(0,0,child.getMeasuredWidth(),child.getMeasuredHeight());
-           }
-       }
+        int count = getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = getChildAt(i);
+            if (child == zHeaderView) {
+                child.layout(0, -child.getMeasuredHeight(), child.getMeasuredWidth(), 0);
+            }
+//            else if (child == zBottomView) {
+//                Log.i(TAG, "onLayout: bottom...");
+//                child.layout(0, contentHeight, child.getMeasuredWidth(), contentHeight + child.getMeasuredHeight());
+//            }
+            else {
+                contentHeight += child.getMeasuredHeight();//计算内容视图的高度
+                child.layout(0, 0, child.getMeasuredWidth(), child.getMeasuredHeight());
+            }
+        }
+    }
+
+
+    //private int originY=getScrollY();
+//private int lastY;
+//private int y;
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        //获取每次手指的位置
+//        y= (int) event.getY();
+//        switch (event.getAction()){
+//            case MotionEvent.ACTION_DOWN:
+//                lastY=y;
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                int moveY=getScrollY()+lastY-y;//要滑动到的点
+//
+//                if (Math.abs(moveY-originY)>zHeaderView.getMeasuredHeight()){//下滑距离超过有效距离
+//                    pullDown.setVisibility(GONE);
+//                    pullUp.setVisibility(VISIBLE);
+//                    loadingView.setVisibility(GONE);
+//                }
+//
+//
+//                if (originY-getScrollY()> maxScrollHeight){//对最大滑动距离做限制
+//                    moveY= (int) (originY-maxScrollHeight);
+//                }
+//                //先不上滑
+//                if (moveY<0){
+//                    scrollTo(0,moveY);
+//                }
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                //
+//                int moveBackY= (int) (maxScrollHeight-zHeaderView.getMeasuredHeight());//最大和有效差值
+//                if (originY-getScrollY()>0){//下拉
+//                    if (originY-getScrollY()<zHeaderView.getMeasuredHeight()){//小于有效距离
+//                        scrollTo(0,originY);
+//                    }else{//超过有效距离
+//                        scrollTo(0,originY-zHeaderView.getMeasuredHeight());
+//                        pullDown.setVisibility(GONE);
+//                        pullUp.setVisibility(GONE);
+//                        loadingView.setVisibility(VISIBLE);
+//                    }
+//                }
+//               // scrollTo(0,moveBackY);
+//                break;
+//        }
+//        lastY=y;
+//        return true;
+//    }
+
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()){
+            case MotionEvent.ACTION_UP:
+                Log.i(TAG, "onInterceptTouchEvent:... ");
+                break;
+        }
+        return super.onInterceptTouchEvent(ev);
     }
 
     private int mLastMoveY;
-    private int originY;
+
+    private int originY = getScrollY();
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int y = (int) event.getY();
-        Log.i(TAG, "onTouchEvent: yyyy"+y);
-        switch (event.getAction()){
+        switch (event.getAction()) {
+
             case MotionEvent.ACTION_DOWN:
                 mLastMoveY = y;
-                originY=y;
-                Log.i(TAG, "onTouchEvent:cccc ");
+                //
+                pullDown.setVisibility(VISIBLE);
+                pullUp.setVisibility(GONE);
+                loadingView.setVisibility(GONE);
                 break;
             case MotionEvent.ACTION_MOVE:
                 int dy = mLastMoveY - y;
-                if (Math.abs(originY-y)>200){
-                    break;
+                //已滑动距离
+                int deltaY = originY - getScrollY();
+                if (getScrollY() + dy > 0) {//不向上滑动
+                    dy = 0;
                 }
-                Log.i(TAG, "onTouchEvent: "+dy);
-                scrollBy(0, dy);
+                if (deltaY > maxScrollHeight&&dy<0) {//超过最大距离
+                    dy = 0;
+                }
+                if (deltaY > zHeaderView.getMeasuredHeight()) {//大于有效距离
+                    pullDown.setVisibility(GONE);
+                    pullUp.setVisibility(VISIBLE);
+                    loadingView.setVisibility(GONE);
+                }
+                mScroller.startScroll(0, 0,0,dy);
+                postInvalidate();
+              //  scrollBy(0, dy);
                 break;
             case MotionEvent.ACTION_UP:
-                //方向要搞清
-                int wholeDistance=y-originY;
-                if (Math.abs(wholeDistance)>200){
-                    if (wholeDistance>0){//向上滑动
-                        scrollBy(0,200);
-                    }else{
-                        scrollBy(0,-200);
-                    }
-                     break;
+                pullDown.setVisibility(GONE);
+                pullUp.setVisibility(GONE);
+                loadingView.setVisibility(VISIBLE);
+                if (originY - getScrollY()<zHeaderView.getMeasuredHeight()) {//小于有效距离
+                    mScroller.startScroll(0,getScrollY(),0,originY-getScrollY());
+                    //scrollBy(0, originY - getScrollY());
+                }else{
+                     mScroller.startScroll(0,getScrollY(),0,
+                             originY-getScrollY()-zHeaderView.getMeasuredHeight());
+                   // scrollBy(0, originY - getScrollY() - zHeaderView.getMeasuredHeight());
                 }
-                scrollBy(0,wholeDistance);
                 break;
         }
-
         mLastMoveY = y;
-        Log.i(TAG, "onTouchEvent: xxxxxxx");
         //不要忘了返回为true消耗此次事件
         return true;
     }
 
+    private void findViews() {
+        pullDown = zHeaderView.findViewById(R.id.pullDown);
+        pullUp = zHeaderView.findViewById(R.id.pullUp);
+        loadingView = zHeaderView.findViewById(R.id.loadingView);
+    }
 
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()){
+            scrollTo(mScroller.getCurrX(),mScroller.getCurrY());
+        }
+        postInvalidate();
+        super.computeScroll();
+    }
 
+    /**
+     * 刷新操作
+     */
+    private interface RefreshListener {
+        void refresh();
+    }
+
+    private void setRefreshListener(RefreshListener listener) {
+        listener.refresh();
+    }
 }

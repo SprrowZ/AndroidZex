@@ -8,13 +8,13 @@
 
     >
 <com.rye.catcher.project.ctmviews.zPullToRefreshView
+    android:id="@+id/pullToRefreshView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/my1"
-        />
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </com.rye.catcher.project.ctmviews.zPullToRefreshView>
 </LinearLayout>

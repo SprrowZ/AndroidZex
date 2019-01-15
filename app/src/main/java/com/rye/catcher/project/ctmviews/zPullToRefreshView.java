@@ -44,6 +44,8 @@ public class zPullToRefreshView extends ViewGroup {
     private int effectiveHeight;
     private Scroller mScroller;
 
+    //监听接口
+    private RefreshListener listener;
 
     public zPullToRefreshView(Context context) {
         this(context, null);
@@ -151,17 +153,18 @@ public class zPullToRefreshView extends ViewGroup {
             case MotionEvent.ACTION_UP:
                 if (originY - getScrollY() > 0) {//下拉
                     if (originY - getScrollY() < zHeaderView.getMeasuredHeight()) {//小于有效距离
-                        scrollTo(0, originY);
+                        //scrollTo(0, originY);
+                        mScroller.startScroll(0,getScrollY(),0,originY-getScrollY());
                         pullDown.setVisibility(VISIBLE);
                         pullUp.setVisibility(GONE);
                         loadingView.setVisibility(GONE);
                     } else {//超过有效距离
                       //  scrollTo(0, originY - zHeaderView.getMeasuredHeight());
-                        mScroller.startScroll(0,getScrollY(),0,-getScrollY()-zHeaderView.getMeasuredHeight());
-                        postInvalidate();
+                        mScroller.startScroll(0,getScrollY(),0,-getScrollY()-zHeaderView.getMeasuredHeight(),600);
                         pullDown.setVisibility(GONE);
                         pullUp.setVisibility(GONE);
                         loadingView.setVisibility(VISIBLE);
+                        listener.refresh();
                     }
                 }
                 break;
@@ -179,6 +182,36 @@ public class zPullToRefreshView extends ViewGroup {
                 break;
         }
         return super.onInterceptTouchEvent(ev);
+    }
+    private void findViews() {
+        pullDown = zHeaderView.findViewById(R.id.pullDown);
+        pullUp = zHeaderView.findViewById(R.id.pullUp);
+        loadingView = zHeaderView.findViewById(R.id.loadingView);
+    }
+
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+        }
+        postInvalidate();
+    }
+
+    /**
+     * 刷新操作
+     */
+    public interface RefreshListener {
+        void refresh();
+    }
+
+    public void setRefreshListener(RefreshListener listener) {
+        this.listener=listener;
+    }
+    public void dataCompleated(){
+        mScroller.startScroll(0,getScrollY(),0,-getScrollY());
+        pullDown.setVisibility(GONE);
+        pullUp.setVisibility(GONE);
+        loadingView.setVisibility(GONE);
     }
 
 //    private int mLastMoveY;
@@ -232,28 +265,5 @@ public class zPullToRefreshView extends ViewGroup {
 //        return true;
 //    }
 
-    private void findViews() {
-        pullDown = zHeaderView.findViewById(R.id.pullDown);
-        pullUp = zHeaderView.findViewById(R.id.pullUp);
-        loadingView = zHeaderView.findViewById(R.id.loadingView);
-    }
 
-    @Override
-    public void computeScroll() {
-        if (mScroller.computeScrollOffset()) {
-            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
-        }
-        postInvalidate();
-    }
-
-    /**
-     * 刷新操作
-     */
-    private interface RefreshListener {
-        void refresh();
-    }
-
-    private void setRefreshListener(RefreshListener listener) {
-        listener.refresh();
-    }
 }

@@ -1,6 +1,7 @@
 package com.rye.catcher.activity.ctmactivity;
 
 import android.app.Activity;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,7 +46,9 @@ public class CtmPTRActivity extends BaseActivity {
         initEvent();
     }
 
-
+    /**
+     *
+     */
     private void initEvent(){
         pullToRefreshView=findViewById(R.id.pullToRefreshView);
         recyclerView=findViewById(R.id.recyclerView);
@@ -57,8 +60,13 @@ public class CtmPTRActivity extends BaseActivity {
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                outRect.left=10;
+                outRect.top=20;
+            }
 
-                super.getItemOffsets(outRect, view, parent, state);
+            @Override
+            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+                super.onDraw(c, parent, state);
             }
         });
         recyclerView.setAdapter(adapter);

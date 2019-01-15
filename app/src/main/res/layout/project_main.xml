@@ -45,75 +45,105 @@
             <Button
                 android:id="@+id/service"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Service"
                 />
 
             <Button
                 android:id="@+id/intents"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="滑动冲突"
                 />
 
             <Button
                 android:id="@+id/dbtest"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="数据库相关"
                 />
 
             <Button
                 android:id="@+id/file"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="FileStorage"
                 />
             <Button
                 android:id="@+id/aidl"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="PackageManager/AIDL"
                 />
             <Button
                 android:id="@+id/drawable"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Drawable"
                 />
             <Button
                 android:id="@+id/shape"
                 style="@style/btn_unclikable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Shape"
                 android:clickable="false"
                 />
             <Button
                 android:id="@+id/slidingDemo"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="SlidingDemo"
                 />
             <Button
                 android:id="@+id/recyclerView"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="RecycleView"
                 />
             <Button
                 android:id="@+id/dialogs"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="DialogEx" />
             <Button
                 android:id="@+id/coor"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="CoordinatorLayout" />
             <Button
                 android:id="@+id/viewDrag"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="ViewDragHelper" />
             <Button
                 android:id="@+id/batchLoading"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="ListView的分批加载" />
             <Button
                 android:id="@+id/siteProtection"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="现场保护" />
             <Button
                 android:id="@+id/blueTooth"
                 style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="蓝牙" />
         </LinearLayout>
     </ScrollView>

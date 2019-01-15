@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.rye.catcher.activity.ctmactivity.CtmPTRActivity"
-
     >
 <com.rye.catcher.project.ctmviews.zPullToRefreshView
+    android:background="@color/gray_backgroud"
     android:id="@+id/pullToRefreshView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

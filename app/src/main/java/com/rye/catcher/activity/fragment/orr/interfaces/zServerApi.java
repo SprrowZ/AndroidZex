@@ -11,6 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created at 2019/1/10.
@@ -33,7 +34,18 @@ public interface zServerApi {
                                    @Field("userName") String user,
                                    @Field("password") String pass,
                                    @Body PostBean postBean);
+
+    /**
+     * 上传文件
+     * @param path
+     * @param file
+     * @return
+     */
     @Multipart
     @POST("{path}")
     Call<ResponseBody> uploadFile(@Path("path") String path, @Part MultipartBody.Part file);
+
+
+    @POST
+    Call<ResponseBody> downloadFile(@Url String url);
 }

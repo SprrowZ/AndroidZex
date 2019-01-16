@@ -2,7 +2,6 @@ package com.rye.catcher.activity.fragment.orr;
 
 
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -72,7 +71,7 @@ public class RetrofitFragment extends BaseFragment {
 
                 break;
             case R.id.btn2:
-                DownloadPost(view);
+                downLoadFile(view);
                 break;
 
             case R.id.btn3:
@@ -81,6 +80,9 @@ public class RetrofitFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 上传json字符串
+     */
     private void postString() {
         new Thread(()->{
             Retrofit retrofit =new Retrofit.Builder()
@@ -106,6 +108,10 @@ public class RetrofitFragment extends BaseFragment {
         }).start();
     }
 
+    /**
+     * 上传文件
+     * @param view
+     */
     private void uploadFile(View view) {
         new Thread(()->{
             Retrofit retrofit =new Retrofit.Builder()
@@ -120,8 +126,10 @@ public class RetrofitFragment extends BaseFragment {
                 return;
             }
             RequestBody requestBody=RequestBody.create(MediaType.parse("image/png"),file);
+            //创建上传文件
             MultipartBody.Part part=MultipartBody.Part.createFormData("picture","retrofit.png",requestBody);
             zServerApi zServerApi=retrofit.create(zServerApi.class);
+            //上传文件
             Call<ResponseBody> call=zServerApi.uploadFile("uploadFile",part);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -143,6 +151,27 @@ public class RetrofitFragment extends BaseFragment {
 
     }
 
-    private void DownloadPost(View view){
+    /**
+     * 下载文件
+     * @param view
+     */
+    private void downLoadFile(View view){
+        Retrofit retrofit=new Retrofit.Builder()
+                .client(OkHttpUtil.getInstance().getClient())
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        zServerApi api=retrofit.create(zServerApi.class);
+        api.downloadFile("files/retrofit.png").enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 }

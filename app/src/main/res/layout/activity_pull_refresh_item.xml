@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/len_172"
-    android:background="@drawable/edit_bg1"
+    android:background="@drawable/recycle_item_bk"
     >
 
     <ImageView

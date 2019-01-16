@@ -2,6 +2,7 @@ package com.rye.catcher.project.ctmviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,11 +43,14 @@ public class zPullToRefreshView extends ViewGroup {
     private float maxScrollHeight = DensityUtil.dip2px(getContext(), 150f);
     //有效滑动距离
     private int effectiveHeight;
+    //下滑过程中上滑最大距离限制
+    private int downUpHeight=-1;
     private Scroller mScroller;
 
     //监听接口
     private RefreshListener listener;
-
+    //是否拦截
+    private boolean intercept=false;
     public zPullToRefreshView(Context context) {
         this(context, null);
     }
@@ -106,6 +110,7 @@ public class zPullToRefreshView extends ViewGroup {
         for (int i = 0; i < count; i++) {
             View child = getChildAt(i);
             if (child == zHeaderView) {
+
                 child.layout(0, -child.getMeasuredHeight(), child.getMeasuredWidth(), 0);
             }
 //            else if (child == zBottomView) {
@@ -113,6 +118,7 @@ public class zPullToRefreshView extends ViewGroup {
 //                child.layout(0, contentHeight, child.getMeasuredWidth(), contentHeight + child.getMeasuredHeight());
 //            }
             else {
+
                 contentHeight += child.getMeasuredHeight();//计算内容视图的高度
                 child.layout(0, 0, child.getMeasuredWidth(), child.getMeasuredHeight());
             }
@@ -126,16 +132,21 @@ public class zPullToRefreshView extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        //取消拦截
+         intercept=false;
+         Log.i(TAG, "onTouchEvent: --"+intercept);
         //获取每次手指的位置
         y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 lastY = y;
-                pullDown.setVisibility(VISIBLE);
-                pullUp.setVisibility(GONE);
-                loadingView.setVisibility(GONE);
+                Log.i(TAG, "onTouchEvent: down....");
                 break;
             case MotionEvent.ACTION_MOVE:
+
+                if (lastY-y>0&&getScrollY()>=0){//如果下滑之后上滑，且上滑距离大于下滑距离，就不花懂了
+                    break;
+                }
                 int moveY = getScrollY() + lastY - y;//要滑动到的点
                 if (originY-moveY> zHeaderView.getMeasuredHeight()) {//下滑距离超过有效距离
                     pullDown.setVisibility(GONE);
@@ -145,10 +156,9 @@ public class zPullToRefreshView extends ViewGroup {
                 if (originY - getScrollY() >= maxScrollHeight) {//对最大滑动距离做限制
                     moveY = (int) (originY - maxScrollHeight);
                 }
-                //先不上滑
-                if (moveY < 0) {
-                    scrollTo(0, moveY);
-                }
+
+                Log.i(TAG, "onTouchEvent: "+getScrollY());
+                scrollTo(0, moveY);
                 break;
             case MotionEvent.ACTION_UP:
                 if (originY - getScrollY() > 0) {//下拉
@@ -173,15 +183,53 @@ public class zPullToRefreshView extends ViewGroup {
         return true;
     }
 
+    private int zlastY = 0;
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        int y= (int) ev.getY();
+
         switch (ev.getAction()) {
-            case MotionEvent.ACTION_UP:
-                Log.i(TAG, "onInterceptTouchEvent:... ");
+            case MotionEvent.ACTION_DOWN:
+                zlastY=y;
+
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.i(TAG, "onInterceptTouchEvent: zLastY:"+zlastY+"y:"+y);
+                 if (zlastY-y<0){//下滑操作
+                     //
+                     pullDown.setVisibility(VISIBLE);
+                     pullUp.setVisibility(GONE);
+                     loadingView.setVisibility(GONE);
+                     //
+                     View recycleView=getChildAt(0);
+                     if (recycleView instanceof RecyclerView){
+                         ((RecyclerView) recycleView).addOnScrollListener(new RecyclerView.OnScrollListener() {
+                             @Override
+                             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                                 super.onScrollStateChanged(recyclerView, newState);
+                                 //-1代表顶部，返回true表示可以继续上滑，反之；1为底部，返回true，表示可以继续下滑，反之；
+                                boolean canScroll= recyclerView.canScrollVertically(-1);
+                                 Log.i(TAG, "onScrollStateChanged: can Scroll?--"+canScroll);
+                                if (!canScroll){
+                                    intercept=true;
+                                }else{
+                                    intercept=false;
+                                }
+                             }
+                         });
+                     }
+                 }
+
+                break;
+            case MotionEvent.ACTION_UP://oneTime
+                Log.i(TAG, "onInterceptTouchEvent: up...");
+                intercept=false;
                 break;
         }
-        return super.onInterceptTouchEvent(ev);
+        Log.i(TAG, "onInterceptTouchEvent: "+intercept);
+        lastY=y;
+        return intercept;
     }
     private void findViews() {
         pullDown = zHeaderView.findViewById(R.id.pullDown);

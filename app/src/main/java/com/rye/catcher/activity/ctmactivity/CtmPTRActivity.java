@@ -12,12 +12,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.PullToRefreshAdapter;
 import com.rye.catcher.beans.ImageBean;
 import com.rye.catcher.project.ctmviews.zPullToRefreshView;
+import com.rye.catcher.utils.ToastUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class CtmPTRActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ctm_ptr);
         initEvent();
+
     }
 
     /**
@@ -77,6 +80,7 @@ public class CtmPTRActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
                 zHandler.sendEmptyMessage(1);
             }).start();
         });
@@ -119,6 +123,9 @@ public class CtmPTRActivity extends BaseActivity {
             switch (msg.what){
                 case 1:
                     //数据加载完毕
+                    ctmPTRActivity.addDatas();
+                    ctmPTRActivity.adapter.notifyDataSetChanged();
+                    ToastUtils.shortMsg("数据已更新！");
                     ctmPTRActivity.pullToRefreshView.dataCompleated();
                     break;
             }

@@ -18,13 +18,12 @@ public class ViewDragHelperView extends FrameLayout {
     //...
     ViewDragHelper viewDragHelper;
     public ViewDragHelperView(@NonNull Context context) {
-        super(context);
-        init();
+        this(context,null);
+
     }
 
     public ViewDragHelperView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs,0);
     }
 
     public ViewDragHelperView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

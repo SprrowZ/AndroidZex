@@ -19,7 +19,7 @@ import retrofit2.http.Url;
  * @author Zzg
  * @function:
  */
-public interface zServerApi {
+public interface zRetrofitApi {
     /**
      * post提交jsonString给服务器
      * @param path
@@ -28,11 +28,10 @@ public interface zServerApi {
      * @param postBean
      * @return
      */
-    @FormUrlEncoded
     @POST("{path}")
     Call<ResponseBody> postMessage(@Path("path") String path,
-                                   @Field("userName") String user,
-                                   @Field("password") String pass,
+                                   @Query("userName") String user,
+                                   @Query("password") String pass,
                                    @Body PostBean postBean);
 
     /**

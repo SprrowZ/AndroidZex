@@ -136,19 +136,19 @@ public class ImageUtils {
 
     /**
      * 本地有图片则取本地，没有则下载后存本地
-     * @param path
+     * @param imgName
      * @param height
      * @param width
      * @param url
      * @return
      */
-    public Bitmap getBitmap(String path,int height,int width,String url){
-        Bitmap bitmap=ratio(path,height,width,null);
+    public Bitmap getBitmap(String imgName,int height,int width,String url){
+        Bitmap bitmap=ratio(SDHelper.getImageFolder()+imgName,height,width,null);
         if (bitmap!=null){
             return  bitmap;
         }else if (url!=null){
-          FileUtils.saveImage(url,path);//
-          return ratio(path,height,width,null);
+          FileUtils.saveImage(url,imgName);//
+          return ratio(SDHelper.getImageFolder()+imgName,height,width,null);
         }
         return BitmapFactory.decodeResource(EchatAppUtil.getAppContext().getResources(),R.drawable.default_img);
     }

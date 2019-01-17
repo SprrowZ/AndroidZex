@@ -19,6 +19,9 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.PullToRefreshAdapter;
 import com.rye.catcher.beans.ImageBean;
 import com.rye.catcher.project.ctmviews.zPullToRefreshView;
+import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.catcher.utils.FileUtils;
+import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.lang.ref.WeakReference;
@@ -93,6 +96,13 @@ public class CtmPTRActivity extends BaseActivity {
             public void subscribe(ObservableEmitter<ImageBean> emitter) throws Exception {
                //
                adapter.setDataList(addDatas());
+               //将图片存在本地
+                List<ImageBean> imageList=addDatas();
+                for (int i=0;i<imageList.size();i++){
+                    if (FileUtils.getDirSize(SDHelper.getImageFolder())<20){
+                        FileUtils.saveImage(imageList.get(i).getUrl(), Constant.IMAGE_PREFIX+i+".png");
+                    }
+                }
             }
         });
 
@@ -138,6 +148,7 @@ public class CtmPTRActivity extends BaseActivity {
         for (int i=0;i<20;i++){
             ImageBean bean=new ImageBean();
             String url="https://picsum.photos/300/300?image="+(int)(Math.random()*1048);
+            Log.i(TAG, "addDatas: "+url);
             bean.setUrl(url);
             bean.setDescription("-人生若只如初见-");
             Log.i(TAG, "addDatas: "+url);

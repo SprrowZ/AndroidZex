@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.activity.fragment.orr.interfaces.PostBean;
-import com.rye.catcher.activity.fragment.orr.interfaces.zServerApi;
+import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
@@ -63,19 +63,18 @@ public class RetrofitFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btn10})
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
+            R.id.btn5, R.id.btn6,R.id.btn7, R.id.btn8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
                 postString();
-
                 break;
             case R.id.btn2:
-                downLoadFile(view);
-                break;
-
-            case R.id.btn3:
                 uploadFile(view);
+                break;
+            case R.id.btn3:
+                downLoadFile(view);
               break;
         }
     }
@@ -90,7 +89,7 @@ public class RetrofitFragment extends BaseFragment {
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(OkHttpUtil.getInstance().getClient())
                     .build();
-            zServerApi serverApi=retrofit.create(zServerApi.class);
+            zRetrofitApi serverApi=retrofit.create(zRetrofitApi.class);
             PostBean bean=new PostBean();
             bean.setCity("ShangHai");
             bean.setJob("程序员");
@@ -101,7 +100,12 @@ public class RetrofitFragment extends BaseFragment {
                 if (!response.isSuccessful()){
                     throw  new IOException("Unexpected result:"+response.code());
                 }
-                Log.i(TAG, "postString: "+response.body().string());
+                String result=response.body().string();
+                Log.i(TAG, "postString: "+result);
+                getActivity().runOnUiThread(()->{
+                    ToastUtils.shortMsg(result);
+                });
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -126,11 +130,12 @@ public class RetrofitFragment extends BaseFragment {
                 return;
             }
             RequestBody requestBody=RequestBody.create(MediaType.parse("image/png"),file);
-            //创建上传文件
-            MultipartBody.Part part=MultipartBody.Part.createFormData("picture","retrofit.png",requestBody);
-            zServerApi zServerApi=retrofit.create(zServerApi.class);
+            //创建上传文件,这里mPhoto是服务器的一个属性，我们还有userName和password
+
+            MultipartBody.Part part=MultipartBody.Part.createFormData("mPhoto","retrofit.png",requestBody);
+            zRetrofitApi zServerApi=retrofit.create(zRetrofitApi.class);
             //上传文件
-            Call<ResponseBody> call=zServerApi.uploadFile("uploadFile",part);
+            Call<ResponseBody> call=zServerApi.uploadFile("uploadInfo",part);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -161,7 +166,7 @@ public class RetrofitFragment extends BaseFragment {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        zServerApi api=retrofit.create(zServerApi.class);
+        zRetrofitApi api=retrofit.create(zRetrofitApi.class);
         api.downloadFile("files/retrofit.png").enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

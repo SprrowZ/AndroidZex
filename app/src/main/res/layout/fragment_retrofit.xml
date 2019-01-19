@@ -31,7 +31,7 @@
                         />
                     <Button
                         android:id="@+id/btn2"
-                        android:text="postFile"
+                        android:text="uploadFile"
                         android:textAllCaps="false"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -59,7 +59,7 @@
                         />
                     <Button
                         android:id="@+id/btn4"
-                        android:text="...."
+                        android:text="uploadFileEx"
                         android:textAllCaps="false"
                         android:layout_width="0dp"
                         android:layout_weight="1"

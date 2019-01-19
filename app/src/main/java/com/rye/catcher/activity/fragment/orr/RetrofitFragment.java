@@ -75,7 +75,9 @@ public class RetrofitFragment extends BaseFragment {
                 break;
             case R.id.btn3:
                 downLoadFile(view);
-              break;
+            case R.id.btn4:
+                upLoadFileEx();//通过RequestBody
+                break;
         }
     }
 
@@ -135,7 +137,7 @@ public class RetrofitFragment extends BaseFragment {
             MultipartBody.Part part=MultipartBody.Part.createFormData("mPhoto","retrofit.png",requestBody);
             zRetrofitApi zServerApi=retrofit.create(zRetrofitApi.class);
             //上传文件
-            Call<ResponseBody> call=zServerApi.uploadFile("uploadInfo",part);
+            Call<ResponseBody> call=zServerApi.uploadFile("uploadInfo","zzg","111",part);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -157,26 +159,63 @@ public class RetrofitFragment extends BaseFragment {
     }
 
     /**
+     *
+     */
+    private void upLoadFileEx(){
+        new Thread(()->{
+            Retrofit retrofit=new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(BASE_URL)
+                    .client(OkHttpUtil.getInstance().getClient())
+                    .build();
+            zRetrofitApi api=retrofit.create(zRetrofitApi.class);
+            File file=new File(SDHelper.getImageFolder(),"zAndroid-1.png");
+            RequestBody body=RequestBody.create(MediaType.parse("image/png"),file);
+            Call<ResponseBody> call=api.uploadFileEx("uploadInfo","SprrowZ","sss",body);
+            try {
+                Response response= call.execute();
+                if (response.isSuccessful()){
+                    getActivity().runOnUiThread(()->{
+                        ToastUtils.shortMsg("上传文件成功！");
+                    });
+                }else{
+                    getActivity().runOnUiThread(()->{
+                        ToastUtils.shortMsg("上传文件失败,错误码："+response.code());
+                    });
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    /**
      * 下载文件
      * @param view
      */
     private void downLoadFile(View view){
-        Retrofit retrofit=new Retrofit.Builder()
-                .client(OkHttpUtil.getInstance().getClient())
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        zRetrofitApi api=retrofit.create(zRetrofitApi.class);
-        api.downloadFile("files/retrofit.png").enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        new Thread(()->{
+            Retrofit retrofit=new Retrofit.Builder()
+                    .client(OkHttpUtil.getInstance().getClient())
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            zRetrofitApi api=retrofit.create(zRetrofitApi.class);
+            api.downloadFile("files/retrofit.png").enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    getActivity().runOnUiThread(()->{
+                        ToastUtils.shortMsg("文件下载成功"+response.message());
+                    });
+                }
 
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                   getActivity().runOnUiThread(()->{
+                       ToastUtils.shortMsg("文件下载失败！错误码："+t.getMessage());
+                   });
+                }
+            });
+        }).start();
     }
 }

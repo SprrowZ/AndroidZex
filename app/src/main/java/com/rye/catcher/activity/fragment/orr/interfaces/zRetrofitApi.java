@@ -1,12 +1,15 @@
 package com.rye.catcher.activity.fragment.orr.interfaces;
 
+import com.rye.catcher.beans.MultiBean;
+import com.rye.catcher.beans.PostBean;
+
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -64,6 +67,16 @@ public interface zRetrofitApi {
                                     @Query("password") String password,
                                     @Part("mPhoto")RequestBody file);
 
+
+    /**
+     * 多文件上传，有两种方式，一种parts，一种MultipartBody和@Body
+     * @param files
+     * @return
+     */
+    @Multipart
+    @POST("{path}")
+    Call<MultiBean> uploadFilesWithParts(@Path("path") String path,
+                                         @Part() List<MultipartBody.Part> files);
     /**
      * 下载文件，需要完整的Url，这样使用@Url拼接Url，为啥不是@Path呢？
       * @param url

@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.testdata;
+package com.rye.catcher.beans.recybean;
 
 /**
  * Created at 2018/9/16.

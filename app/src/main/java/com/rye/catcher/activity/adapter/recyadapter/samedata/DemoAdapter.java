@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.testdata.DataModel;
+import com.rye.catcher.beans.recybean.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.testdata.DataModelThree;
+import com.rye.catcher.beans.recybean.DataModelThree;
 
 /**
  * Created at 2018/9/18.

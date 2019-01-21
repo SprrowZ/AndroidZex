@@ -5,9 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recyadapter.samedata.TypeAbstractViewHolder;
-import com.rye.catcher.activity.testdata.DataModel;
-import com.rye.catcher.activity.testdata.DataModelOne;
+import com.rye.catcher.beans.recybean.DataModelOne;
 
 /**
  * Created at 2018/9/18.

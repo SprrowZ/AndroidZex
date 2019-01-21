@@ -7,14 +7,9 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recyadapter.samedata.TypeAbstractViewHolder;
-import com.rye.catcher.activity.adapter.recyadapter.samedata.TypeOneViewHolder;
-import com.rye.catcher.activity.adapter.recyadapter.samedata.TypeThreeViewHolder;
-import com.rye.catcher.activity.adapter.recyadapter.samedata.TypeTwoViewHolder;
-import com.rye.catcher.activity.testdata.DataModel;
-import com.rye.catcher.activity.testdata.DataModelOne;
-import com.rye.catcher.activity.testdata.DataModelThree;
-import com.rye.catcher.activity.testdata.DataModelTwo;
+import com.rye.catcher.beans.recybean.DataModelOne;
+import com.rye.catcher.beans.recybean.DataModelThree;
+import com.rye.catcher.beans.recybean.DataModelTwo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

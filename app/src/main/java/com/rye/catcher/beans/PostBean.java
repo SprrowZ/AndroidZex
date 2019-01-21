@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.fragment.orr.interfaces;
+package com.rye.catcher.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;

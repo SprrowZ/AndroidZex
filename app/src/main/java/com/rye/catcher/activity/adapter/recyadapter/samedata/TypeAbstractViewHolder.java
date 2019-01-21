@@ -3,7 +3,7 @@ package com.rye.catcher.activity.adapter.recyadapter.samedata;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.rye.catcher.activity.testdata.DataModel;
+import com.rye.catcher.beans.recybean.DataModel;
 
 /**
  * Created at 2018/9/18.

@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
-import com.rye.catcher.activity.fragment.orr.interfaces.PostBean;
+import com.rye.catcher.beans.MultiBean;
+import com.rye.catcher.beans.PostBean;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 import com.rye.catcher.utils.SDHelper;
@@ -20,6 +21,8 @@ import com.rye.catcher.utils.ToastUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -159,7 +162,7 @@ public class RetrofitFragment extends BaseFragment {
     }
 
     /**
-     *
+     *暂不行。。。
      */
     private void upLoadFileEx(){
         new Thread(()->{
@@ -217,5 +220,47 @@ public class RetrofitFragment extends BaseFragment {
                 }
             });
         }).start();
+    }
+
+    /**
+     * 上传多个文件
+     */
+    private void upLoadFilesWithParts(){
+        Retrofit retrofit=new Retrofit.Builder()
+                .client(OkHttpUtil.getInstance().getClient())
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        zRetrofitApi api=retrofit.create(zRetrofitApi.class);
+        File fileOne = new File(SDHelper.getImageFolder(),"zAndroid-10.png");
+        File fileTwo = new File(SDHelper.getImageFolder(),"zAndroid-11.png");
+
+        RequestBody body1=RequestBody.create(MediaType.parse("image/png"),fileOne);
+        RequestBody body2=RequestBody.create(MediaType.parse("image/png"),fileTwo);
+        //Form name keep same with server
+        MultipartBody.Part part1=MultipartBody.Part.createFormData("mPhoto",fileOne.getName(),
+                body1);
+        MultipartBody.Part part2=MultipartBody.Part.createFormData("mPhoto2",fileTwo.getName(),
+                body2);
+
+        List<MultipartBody.Part> parts=new ArrayList<>();
+        parts.add(part1);
+        parts.add(part2);
+
+        try {
+            Response<MultiBean> response=api.uploadFilesWithParts("uploadFiles",
+                    parts).execute();
+            if (!response.isSuccessful()){
+                getActivity().runOnUiThread(()->{
+                    ToastUtils.shortMsg("上传文件失败！错误码："+response.code());
+                });
+            }else{
+                getActivity().runOnUiThread(()->{
+                    ToastUtils.shortMsg("上传文件成功！");
+                });
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

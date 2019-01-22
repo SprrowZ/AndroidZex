@@ -72,7 +72,7 @@ public class YLJFragment extends BaseFragment {
             iv1.getViewTreeObserver().addOnGlobalLayoutListener(()->{
                 new Thread(()->{
                     Log.i(TAG, "savePortraitToLocal: "+iv1.getMeasuredHeight()+"xxx"+iv1.getHeight());
-                    Bitmap bitmap=ImageUtils.getIntance().getBitmap(SDHelper.getImageFolder()+"portrait.png",
+                    Bitmap bitmap=ImageUtils.getIntance().getBitmap(  "portrait.png",
                             iv1.getMeasuredHeight(), iv1.getMeasuredWidth(),Constant.PORTRAIT_URL);
                     getActivity().runOnUiThread(()->{
                         iv1.setImageBitmap(bitmap);

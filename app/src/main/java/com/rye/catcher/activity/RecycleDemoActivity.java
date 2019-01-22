@@ -12,10 +12,10 @@ import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.recyadapter.diffdata.DemoAdapterEx;
 import com.rye.catcher.activity.adapter.recyadapter.samedata.DemoAdapter;
-import com.rye.catcher.activity.testdata.DataModel;
-import com.rye.catcher.activity.testdata.DataModelOne;
-import com.rye.catcher.activity.testdata.DataModelThree;
-import com.rye.catcher.activity.testdata.DataModelTwo;
+import com.rye.catcher.beans.recybean.DataModel;
+import com.rye.catcher.beans.recybean.DataModelOne;
+import com.rye.catcher.beans.recybean.DataModelThree;
+import com.rye.catcher.beans.recybean.DataModelTwo;
 
 import java.util.ArrayList;
 import java.util.List;

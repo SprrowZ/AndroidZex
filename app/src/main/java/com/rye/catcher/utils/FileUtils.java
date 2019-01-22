@@ -942,15 +942,6 @@ public class FileUtils {
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(suffix);
     }
 
-    /**
-     * 判断url是否为本地文件地址
-     *
-     * @param fileId
-     * @return
-     */
-    public static boolean isLocalFile(String fileId) {
-        return fileId.startsWith("file://");
-    }
 
     /**
      * 是否是office文档
@@ -999,21 +990,6 @@ public class FileUtils {
         }
     }
 
-    /**
-     * 创建文件夹
-     *
-     * @param filePath
-     */
-    public static void makeRootDirectory(String filePath) {
-        File file = null;
-        try {
-            file = new File(filePath);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-        } catch (Exception e) {
-        }
-    }
 
     /**
      * 获取目录下所有文件(按时间排序)
@@ -1204,12 +1180,34 @@ public class FileUtils {
      * 保存图片到本地,如果已经存在相同名字的图片，则覆盖
      * @param remotePath 网络地址
      */
-    public static void saveImage(String remotePath,String localPath){
+    public static void saveImage(String remotePath,String imgName){
          File  file=null;
          //先判断本地有没有，没有再下载
-         file=new File(localPath);
+         file=new File(SDHelper.getImageFolder()+imgName);
          InputStream inputStream=downloadFileI(remotePath);
+         if (inputStream==null){
+             Log.i("saveImage", "saveImage: error:"+remotePath);
+             FileUtils.writeUserLog("图片下载失败："+remotePath);
+             return;
+         }
          writeFile(file,inputStream);
+    }
+
+    /**
+     * 返回当前文件夹文件数量
+     * @param path
+     * @return
+     */
+    public static int getDirSize(String path){
+        File file =new File(path);
+        if (!file.exists()){
+            return 0;
+        }
+        if (file.isDirectory()){
+            return file.listFiles().length;
+        }else{
+           return file.getParentFile().listFiles().length;
+        }
     }
             //__________________________测试代码__________________________________//
         //_______________________________________________________________________//

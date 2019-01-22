@@ -6,9 +6,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -34,7 +31,7 @@
                         />
                     <Button
                         android:id="@+id/btn2"
-                        android:text="postFile"
+                        android:text="uploadFile"
                         android:textAllCaps="false"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -51,7 +48,7 @@
                     android:layout_marginTop="15dp"
                     >
                     <Button
-                        android:id="@+id/btn5"
+                        android:id="@+id/btn3"
                         android:text="downloadFile"
                         android:textAllCaps="false"
                         android:layout_width="0dp"
@@ -61,8 +58,8 @@
                         android:layout_marginLeft="5dp"
                         />
                     <Button
-                        android:id="@+id/btn6"
-                        android:text="PostFile"
+                        android:id="@+id/btn4"
+                        android:text="uploadFileEx"
                         android:textAllCaps="false"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -72,8 +69,8 @@
                         />
 
                     <Button
-                        android:id="@+id/btn7"
-                        android:text="UploadFile"
+                        android:id="@+id/btn5"
+                        android:text="..."
                         android:textAllCaps="false"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -90,8 +87,8 @@
 
                     >
                     <Button
-                        android:id="@+id/btn8"
-                        android:text="DownLoad"
+                        android:id="@+id/btn6"
+                        android:text="..."
                         android:singleLine="true"
                         android:textAllCaps="false"
                         android:layout_width="0dp"
@@ -101,8 +98,8 @@
                         android:layout_marginLeft="5dp"
                         />
                     <Button
-                        android:id="@+id/btn9"
-                        android:text="DownLoadImg"
+                        android:id="@+id/btn7"
+                        android:text="..."
                         android:textAllCaps="false"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -110,8 +107,8 @@
                         android:background="@drawable/btn_orr"
                         android:layout_marginLeft="5dp"/>
                     <Button
-                        android:id="@+id/btn10"
-                        android:text="待定"
+                        android:id="@+id/btn8"
+                        android:text="..."
                         android:textAllCaps="false"
                         android:layout_width="0dp"
                         android:layout_weight="1"

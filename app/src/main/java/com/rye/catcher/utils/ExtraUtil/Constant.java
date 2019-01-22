@@ -52,4 +52,8 @@ public class Constant {
      * app图片存储文件夹
      */
     public static final String IMAGES="images";
+    /**
+     * 图片前缀
+     */
+    public static final String IMAGE_PREFIX="zAndroid-";
 }

@@ -3,6 +3,8 @@ package com.rye.catcher.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -16,10 +18,12 @@ import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.SlideActivity;
 import com.rye.catcher.project.animations.AnimShapeActivity;
+import com.rye.catcher.project.catcher.DelayHandleUtil;
 import com.rye.catcher.project.dialog.TopDialog;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.sqlDemo.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
+import com.rye.catcher.utils.ToastUtils;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
@@ -101,6 +105,21 @@ public class ProjectMainActivity extends BaseActivity {
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
+    //测试Handler
+    private Handler zHander=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    runOnUiThread(()->{
+                        ToastUtils.shortMsg("弹出框。。。");
+                    });
+                    break;
+            }
+        }
+    };
+    private long lastTime;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -188,9 +207,7 @@ public class ProjectMainActivity extends BaseActivity {
                 startActivity(intent8);
                 break;
             case R.id.shape:
-                Intent intent6 = new Intent(ProjectMainActivity.this,
-                        AnimShapeActivity.class);
-                startActivity(intent6);
+                testHandler();
                 break;
             case R.id.slidingDemo:
                 Intent intent11 = new Intent(ProjectMainActivity.this,
@@ -222,8 +239,21 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
         }
     }
-
-
+    //
+    private void testHandler(){
+//            if (zHander.hasMessages(1)){
+//                zHander.removeMessages(1);
+//                Log.i(TAG, "testHandler: ");
+//            }
+//      zHander.sendEmptyMessageDelayed(1,3000);
+        Log.i(TAG, "testHandler: ...");
+        DelayHandleUtil.setDelay("zzg", 0L, 2000, new DelayHandleUtil.HandleListener() {
+            @Override
+            public void ReachTheTime() {
+                Log.i(TAG, "testHandler222: ...");
+            }
+        });
+    }
 
     @Override
     protected void onDestroy() {

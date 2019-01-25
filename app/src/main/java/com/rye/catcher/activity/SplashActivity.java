@@ -20,6 +20,9 @@ import com.yanzhenjie.permission.Permission;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -30,7 +33,7 @@ public class SplashActivity extends BaseActivity {
     private static  final  String TAG="SplashActivity";
     @BindView(R.id.image)
      ImageView image;
-    Handler mHandler=new Handler(){
+     Handler mHandler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
@@ -42,13 +45,18 @@ public class SplashActivity extends BaseActivity {
         }
     };
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_splash);
         ButterKnife.bind(this);
         initEx();
+
     }
+
+
 
     private void initEx() {
         //安装申请权限

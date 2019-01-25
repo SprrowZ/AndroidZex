@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.rye.catcher.activity.IDemoAIDL;
 import com.rye.catcher.activity.IMyAidlInterface;
-import com.rye.catcher.beans.PersonBean;
+import com.rye.catcher.activity.PersonBean;
 
 import java.util.ArrayList;
 import java.util.List;

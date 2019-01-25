@@ -1,9 +1,11 @@
 package com.rye.catcher;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -19,11 +21,17 @@ import org.greenrobot.greendao.database.Database;
  */
 
 public class zApplication extends Application{
+
+    private static final String TAG="zApplication";
+
+
     private static Context mContext;
     private DisplayMetrics displayMetrics;
     private static zApplication instance=new zApplication();
     private boolean DAO_INITED=false;
     private DaoSession daoSession;
+    //前后台判断
+    private int countActivity=0;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -59,6 +67,48 @@ public class zApplication extends Application{
             daoSession = new DaoMaster(db).newSession();
             DAO_INITED = true;
         }
+
+        //----------监听生命周期
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+              //如果为1，则说明从后台进入到前台
+               countActivity++;
+                Log.i(TAG, "onActivityStarted: "+countActivity);
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+                Log.i(TAG, "onActivityResumed: "+activity.getLocalClassName());
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+               countActivity--;
+               //如果为0，说明程序已经运行在后台
+                Log.i(TAG, "onActivityStopped: "+countActivity);
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
     }
     public DaoSession getDaoSession() {//获取dao实例
         return daoSession;
@@ -75,19 +125,6 @@ public class zApplication extends Application{
         return instance;
     }
 
-
-    public int getVersionCode() {
-        try {
-            PackageManager manager = this.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
-            int versionCode = info.versionCode;
-            return versionCode;
-        } catch (Exception e) {
-            Log.e("zzg", e.getMessage(), e);
-            return 0;
-        }
-    }
-
     /**
      * 获取当前应用程序的版本号
      */
@@ -102,26 +139,5 @@ public class zApplication extends Application{
         }
     }
 
-    /**
-     * @return
-     * @Description： 获取当前屏幕的宽度
-     */
-    public int getWindowWidth() {
-        return displayMetrics.widthPixels;
-    }
 
-    /**
-     * @return
-     * @Description： 获取当前屏幕的高度
-     */
-    public int getWindowHeight() {
-        return displayMetrics.heightPixels;
-    }
-
-    /**
-     * @return 当前时间。格式为：20140506120801
-     */
-    private static String getCurrentDateString() {
-        return com.rye.catcher.utils.DateUtils.getCurrentTime("yyyyMMddHHmmssSSS");
-    }
 }

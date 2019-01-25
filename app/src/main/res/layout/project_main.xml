@@ -92,8 +92,8 @@
                 style="@style/btn_unclikable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shape"
-                android:clickable="false"
+                android:text="Handler"
+
                 />
             <Button
                 android:id="@+id/slidingDemo"

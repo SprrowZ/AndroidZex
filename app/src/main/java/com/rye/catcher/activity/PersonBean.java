@@ -1,11 +1,11 @@
-package com.rye.catcher.beans;
+package com.rye.catcher.activity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * Created at 2018/12/6.
- *
+ *  不能移动，AIDL要用
  * @author Zzg
  */
 public class PersonBean implements Parcelable {

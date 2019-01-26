@@ -15,11 +15,7 @@ public class DelayHandleUtil {
 
     //延时action
     public static String DELAY_ACTION_UPDATE_MSG_STATUS = "DELAY_ACTION_UPDATE_MSG_STATUS";//更新消息已读未读状态
-    public static String DELAY_ACTION_MSG_POOL = "DELAY_ACTION_MSG_POOL";//消息存储缓存池
-    public static String DELAY_ACTION_REFRESH_CHAT_DETAIL = "DELAY_ACTION_REFRESH_CHAT_DETAIL";//刷新聊天详情页面消息
-    public static String DELAY_ACTION_REFRESH_CHAT_LIST = "DELAY_ACTION_REFRESH_CHAT_LIST";//刷新聊天详情页面消息
-    public static String DELAY_ACTION_SAVE_LOGINTIME = "DELAY_ACTION_SAVE_LOGINTIME";//存储最后登录时间
-    public static String DELAY_WRITE_ACTION_MSG_POOL = "DELAY_WRITE_ACTION_MSG_POOL";//写消息
+
     public static int msg_what = 1;
     private static Map<String,Handler> handlerContainer = new HashMap();
 

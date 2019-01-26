@@ -15,6 +15,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.rye.catcher.GreenDaos.Base.TB_Character;
+import com.rye.catcher.project.catcher.DelayHandleUtil;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.ExtraUtil.IOUtils;
 import com.rye.catcher.zApplication;
@@ -975,21 +976,31 @@ public class FileUtils {
     /**
      * 写入日志
      */
+    private static   StringBuffer stringBuffer;
     public static void writeUserLog(String content) {
-        File file = makeFilePath(SDHelper.getAppExternal() + "logs",
-                DateUtils.getCurrentTime(DateUtils.FORMAT_DATE1) + ".log");
-        try {
-            FileOutputStream outputStream = new FileOutputStream(file, true);
-            OutputStreamWriter out = new OutputStreamWriter(outputStream);
-            out.write(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" +
-                    "  版本号：" + zApplication.getInstance().getVersion() + " 手机信息："
-                    + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
-            out.close();
-        } catch (Exception e) {
-
-        }
+        stringBuffer.append(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" +
+                "  版本号：" + zApplication.getInstance().getVersion() +
+                " 手机信息：" + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
+        DelayHandleUtil.setDelay(DelayHandleUtil.DELAY_ACTION_UPDATE_MSG_STATUS, 0L, 2000, new DelayHandleUtil.HandleListener() {
+            @Override
+            public void ReachTheTime() {
+                write();
+            }
+        });
     }
+   private  static void write(){
+      File file = makeFilePath(SDHelper.getAppExternal() + "logs",
+              DateUtils.getCurrentTime(DateUtils.FORMAT_DATE1) + ".log");
+      try {
+          FileOutputStream outputStream = new FileOutputStream(file, true);
+          OutputStreamWriter out = new OutputStreamWriter(outputStream);
+          out.write(stringBuffer.toString());
+          out.close();
+          stringBuffer.setLength(0);
+      } catch (Exception e) {
 
+      }
+  }
 
     /**
      * 获取目录下所有文件(按时间排序)

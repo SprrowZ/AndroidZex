@@ -53,6 +53,10 @@ public class Constant {
      */
     public static final String IMAGES="images";
     /**
+     * app视频存储文件夹
+     */
+    public static final String VIDEOS="videos";
+    /**
      * 图片前缀
      */
     public static final String IMAGE_PREFIX="zAndroid-";

@@ -2,6 +2,7 @@ package com.rye.catcher.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.rye.catcher.R;
 import com.rye.catcher.project.dialog.ctdialog.ExDialog;
@@ -15,6 +16,7 @@ import java.util.HashMap;
  * @author Zzg
  */
 public class DialogUtil {
+    private static final  String TAG="DialogUtil";
     /**
      * 创建默认dialog
      * @param context
@@ -73,7 +75,7 @@ public class DialogUtil {
     public static void createLoadingDialog(Context context){
         closeLoadingDialog(context);
         ExDialog dialog= new ExDialog.Builder(context)
-                .setDialogView(R.layout.loading_dialog)
+                .setDialogView(R.layout.loading_dialog_second)
                 .setWindowBackgroundP(0.5f)
                 .setCancelable(false)
                 .setCancelableOutSide(false)
@@ -87,7 +89,8 @@ public class DialogUtil {
      */
     public  static void closeLoadingDialog(Context context){
         String dialogKey=context.getClass().getSimpleName();
-       ExDialog dialog=hashMap.get(dialogKey);
+        Log.i(TAG, "closeLoadingDialog: "+dialogKey);
+        ExDialog dialog=hashMap.get(dialogKey);
        if (dialog!=null){
            hashMap.remove(dialogKey);
            dialog.dismiss();

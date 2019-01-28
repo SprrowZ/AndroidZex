@@ -54,7 +54,9 @@ public class SDHelper {
     public static String getImageFolder() {
         return external + Constant.IMAGES + File.separator;
     }
-
+    public static String getVideoFolder(){
+        return external+Constant.VIDEOS+File.separator;
+    }
     /**
      * 公共目录
      *

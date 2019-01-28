@@ -13,8 +13,16 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
+import com.rye.catcher.utils.SDHelper;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.security.auth.login.LoginException;
 
@@ -91,6 +99,9 @@ public class ORRFragment extends BaseFragment {
                 try {
                     int fileSize=responseBody.bytes().length;
                     Log.i(TAG, "onNext:fileSize--> "+fileSize);
+                    Log.i(TAG, "onNext: fileType-->"+responseBody.contentType());
+                    //执行下载操作
+                    download(responseBody.byteStream(),"z-Video.mp4");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -109,6 +120,30 @@ public class ORRFragment extends BaseFragment {
         observable.subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+    }
+
+    /**
+     * 下载文件
+     * @param inputStream
+     * @param fileName
+     */
+    private void download(InputStream inputStream,String fileName){
+        File file=new File(SDHelper.getVideoFolder(),fileName);
+        try {
+            BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream(file));
+            byte[] buf=new byte[2048];
+            int length=-1;
+            while((length=inputStream.read(buf))!=-1){
+                bos.write(buf,0,length);
+            }
+            bos.flush();
+            inputStream.close();
+            bos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public void onDestroy() {

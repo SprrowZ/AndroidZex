@@ -5,11 +5,13 @@ import com.rye.catcher.beans.PostBean;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -84,4 +86,12 @@ public interface zRetrofitApi {
      */
     @POST
     Call<ResponseBody> downloadFile(@Url String url);
+
+    /**
+     * Rxjava+Retrofit+Okhttp
+     * @param fileName
+     * @return 返回一个被观察者
+     */
+    @GET("{FILE_NAME}")
+    Observable<ResponseBody> downLoadRx(@Path("FILE_NAME")String fileName);
 }

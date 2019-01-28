@@ -1,28 +1,48 @@
 package com.rye.catcher.activity.fragment.orr;
-
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
+import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 
+import java.io.IOException;
+
+import javax.security.auth.login.LoginException;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
 *
  */
 public class ORRFragment extends BaseFragment {
+    private static  final  String TAG="ORRFragment";
    private Unbinder unbinder;
    private View view;
+   @BindView(R.id.test1) Button test1;
+
+   private static final String VEDIO_URL="https://media.w3.org/2010/05/sintel/";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,7 +55,61 @@ public class ORRFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+   @OnClick({R.id.test1})
+   public void onViewClicked(View view){
+        switch (view.getId()){
+            case R.id.test1:
+               downLoadRx();
+                break;
+        }
+    }
 
+    /**
+     * Rxjava+Retrofit+Okhttp---测试方法1
+     */
+    private void downLoadRx(){
+        Retrofit retrofit= new Retrofit.Builder()
+                .baseUrl(VEDIO_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(OkHttpUtil.getInstance().getClient())
+                .build();
+        zRetrofitApi api=retrofit.create(zRetrofitApi.class);
+        Observable<ResponseBody> observable=api.downLoadRx("trailer.mp4");
+
+        showLoadingDlg(getContext());
+        //Observer
+        Observer<ResponseBody> observer=new Observer<ResponseBody>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+            //成功走此
+            @Override
+            public void onNext(ResponseBody responseBody) {
+                cancelLoadingDlg(getContext());
+                try {
+                    int fileSize=responseBody.bytes().length;
+                    Log.i(TAG, "onNext:fileSize--> "+fileSize);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i(TAG, "onError: "+e.toString());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.i(TAG, "onComplete: ");
+            }
+        };
+        observable.subscribeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rye.catcher.utils.DialogUtil;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.StringUtils;
@@ -178,22 +179,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 判断当前应用是否是本应用
-     */
-    public static boolean isApplicationBroughtToBackground(final Context context) {
-        ActivityManager am = (ActivityManager) context
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
-        if (!tasks.isEmpty()) {
-            ComponentName topActivity = tasks.get(0).topActivity;
-            if (topActivity.getPackageName().equals(context.getPackageName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * 返回
      */
     public void back(View view) {
@@ -312,13 +297,6 @@ public class BaseActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.translate_to_left, R.anim.translate_to_left_hide);//activity间跳转动画
     }
 
-    /**
-     * 不带动画的startActivity
-     */
-    public void startActivityNoTransition(Intent intent) {
-        super.startActivity(intent);
-        overridePendingTransition(0, 0);
-    }
     public void startActivityByAlpha(Intent intent){
         super.startActivity(intent);
         overridePendingTransition(R.anim.alpha_enter_anim,R.anim.alpha_exit_anim);
@@ -327,14 +305,6 @@ public class BaseActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.translate_to_right, R.anim.translate_to_right_hide);//activity间跳转动画
-    }
-
-    /**
-     * 不带动画的finish
-     */
-    public void finishNoTransition() {
-        super.finish();
-        overridePendingTransition(0, 0);
     }
 
     /**
@@ -446,6 +416,18 @@ public class BaseActivity extends AppCompatActivity {
             finish();
             System.exit(0);
         }
+    }
+/*************************************新增********************************************/
+    /**
+     * Loading Dialog
+     * @param context
+     */
+    protected void showLoadingDlg(Context context){
+        DialogUtil.createLoadingDialog(context);
+    }
+
+    protected  void cancelLoadingDlg(Context context){
+        DialogUtil.closeLoadingDialog(context);
     }
 
     @Override

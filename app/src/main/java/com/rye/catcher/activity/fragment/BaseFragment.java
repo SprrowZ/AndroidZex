@@ -2,6 +2,7 @@ package com.rye.catcher.activity.fragment;
 
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Typeface;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.utils.DialogUtil;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.TypeFaceUtil;
 
@@ -216,23 +218,6 @@ public abstract class BaseFragment extends Fragment implements View.OnTouchListe
         }
     }
 
-//    @Override
-//    public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//      //  getActivity().setTheme(ThemeManager.instance().getTheme());
-//
-//        View view = onCreateView2(inflater, container, savedInstanceState);
-//        //为了解决Fragment点击穿透的问题
-//        if (view != null) {
-//            view.setOnTouchListener(this);
-//        }
-//        return view;
-//    }
-
-    /**
-     * 真正的onCreateView
-     */
-//    protected abstract View onCreateView2(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
@@ -261,68 +246,20 @@ public abstract class BaseFragment extends Fragment implements View.OnTouchListe
         receiverMap.clear();
     }
 
-//    public final void runOnUiThread(Runnable action) {
-//        Activity activity = getActivity();
-//        if (activity != null) {
-//            activity.runOnUiThread(action);
-//        } else {
-//            if (EChatApp.getInstance() != null) {
-//                EChatApp.getInstance().getGlobalHandler().post(action);
-//            }
-//        }
-//
-//    }
+
 
     /**
-     * 显示装载中对话框
-     *
-     * @param msg 提示消息内容
+     * Loading Dialog
+     * @param context
      */
-//    public void showLoadingDlg(final String msg) {
-//        this.runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                synchronized (lock) {
-//                    if (_loadingDlg == null) {
-//                        _loadingDlg = new ProgressDialog(getActivity());
-//                        _loadingDlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//                        _loadingDlg.setIcon(R.drawable.ajax_loader);
-//                        _loadingDlg.setCancelable(true);
-//                    }
-//
-//                    if (StringUtils.isNotEmpty(msg)) {
-//                        _loadingDlg.setMessage(msg);
-//                    } else {
-//                        _loadingDlg.setMessage(getResources().getString(R.string.please_wait));
-//                    }
-//
-//                    if (!_loadingDlg.isShowing()) {
-//                        _loadingDlg.show();
-//                    }
-//                }
-//            }
-//        });
-//    }
+    protected void showLoadingDlg(Context context){
+        DialogUtil.createLoadingDialog(context);
+    }
 
-    /**
-     * 隐藏加载中对话框
-     */
-//    public void cancelLoadingDlg() {
-//        if (this.getActivity() == null || !this.isAdded()){
-//            return;
-//        }
-//        try {
-//            this.runOnUiThread(new Runnable() {
-//                public void run() {
-//                    if (_loadingDlg != null) {
-//                        _loadingDlg.cancel();
-//                    }
-//                }
-//            });
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
+    protected  void cancelLoadingDlg(Context context){
+        DialogUtil.closeLoadingDialog(context);
+    }
+
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {

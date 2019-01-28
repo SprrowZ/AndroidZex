@@ -976,7 +976,7 @@ public class FileUtils {
     /**
      * 写入日志
      */
-    private static   StringBuffer stringBuffer;
+    private static   StringBuffer stringBuffer=new StringBuffer();
     public static void writeUserLog(String content) {
         stringBuffer.append(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" +
                 "  版本号：" + zApplication.getInstance().getVersion() +
@@ -988,7 +988,10 @@ public class FileUtils {
             }
         });
     }
-   private  static void write(){
+   private  static synchronized void write(){
+        if (stringBuffer.length()==0){
+            return;
+        }
       File file = makeFilePath(SDHelper.getAppExternal() + "logs",
               DateUtils.getCurrentTime(DateUtils.FORMAT_DATE1) + ".log");
       try {

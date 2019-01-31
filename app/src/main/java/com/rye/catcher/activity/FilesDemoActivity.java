@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.FileUtils;
+import com.rye.catcher.utils.SDHelper;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -147,7 +148,7 @@ public class FilesDemoActivity extends BaseActivity {
 
 
     private void createFile() {
-        FileUtils.createNewFile("aSprrowZ","Zzg.jpg");
+        FileUtils.createNewFile(SDHelper.getAppExternal()+"SprrowZ/","Zzg.jpg");
         Toast.makeText(this, "创建成功！", Toast.LENGTH_LONG).show();
     }
 

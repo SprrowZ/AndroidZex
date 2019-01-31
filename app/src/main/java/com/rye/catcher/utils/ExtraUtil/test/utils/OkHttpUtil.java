@@ -18,9 +18,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class OkHttpUtil {
     private static final String TAG="OkHttpUtil";
     //超时时间
-    private static  final int CONNECTION_TIME_OUT=10;
-    private static  final int READ_TIME_OUT=15;
-    private static  final int WRITE_TIME_OUT=15;
+    private static  final int CONNECTION_TIME_OUT=60;
+    private static  final int READ_TIME_OUT=100;
+    private static  final int WRITE_TIME_OUT=100;
 
     /**
      *静态内部类单例模式

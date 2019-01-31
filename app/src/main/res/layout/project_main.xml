@@ -145,6 +145,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="蓝牙" />
+            <Button
+                android:id="@+id/blueTooth2"
+                style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="低功耗蓝牙" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rye.catcher.activity.BLEActivity">
+
+    <TextView
+        android:id="@+id/tv_ble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_16"
+        />
+    <Button
+        android:id="@+id/connect"
+        android:text="连接"
+        style="@style/btn_style_red"
+        android:layout_above="@+id/startScan"
+        />
+    <Button
+    android:id="@+id/startScan"
+    android:text="开启扫描"
+    style="@style/btn_style_red"
+   android:layout_alignParentBottom="true"
+    />
+</RelativeLayout>

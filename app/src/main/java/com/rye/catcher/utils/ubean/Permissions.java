@@ -18,4 +18,5 @@ public class Permissions {
     public static  final  String  STORAGE=Manifest.permission.READ_EXTERNAL_STORAGE;
     public static  final  String  RECORD_AUDIO=Manifest.permission.RECORD_AUDIO;
     public static  final  String  SMS=Manifest.permission.READ_SMS;
+    public static  final  String  BLUE_TOOTH=Manifest.permission.BLUETOOTH;
 }

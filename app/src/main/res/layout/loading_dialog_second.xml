@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    tools:background="@color/orange"
-    android:background="@color/white"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
     >
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="300dp"
+        android:layout_height="@dimen/len_88"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/len_28"
         android:layout_marginRight="@dimen/len_28"
-        tools:background="@color/white"
+        android:background="@drawable/loading_bk"
         >
         <ProgressBar
-            android:layout_width="@dimen/len_72"
+            android:layout_width="@dimen/len_64"
             android:layout_height="match_parent"
             android:padding="@dimen/len_8"
-            android:layout_marginLeft="@dimen/len_56"
+            android:layout_marginLeft="@dimen/len_20"
             android:theme="@android:style/Widget.ProgressBar.Inverse"
             />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center_vertical"
             android:text="加载中..."
-            android:textSize="@dimen/len_20"
+            android:textSize="@dimen/font_18"
             />
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

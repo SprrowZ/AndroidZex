@@ -85,7 +85,7 @@
         <attr name="ptrDrawableTop" format="reference" />
         <attr name="ptrDrawableBottom" format="reference" />
     </declare-styleable>
-    <declare-styleable name="HorizontalProgressbarWithProgress">
+    <declare-styleable name="HorizontalProgress">
         <attr name="progress_unreach_color" format="color"></attr>
         <attr name="progress_unreach_height" format="dimension"></attr>
         <attr name="progress_reach_color" format="color"></attr>
@@ -95,7 +95,7 @@
         <attr name="progress_text_offset" format="dimension"></attr>
     </declare-styleable>
 
-    <declare-styleable name="RoundProgressbarWithProgress">
+    <declare-styleable name="RoundProgress">
         <attr name="radius" format="dimension"></attr>
     </declare-styleable>
     <!--下滑菜单-->

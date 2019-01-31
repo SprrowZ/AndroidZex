@@ -9,7 +9,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
-    <com.rye.catcher.project.ctmviews.HorizontalProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.HorizontalProgress
         android:id="@+id/progress1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -24,7 +24,7 @@
         custom:progress_text_color="@color/red"
         />
 
-    <com.rye.catcher.project.ctmviews.HorizontalProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.HorizontalProgress
         android:id="@+id/progress2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -37,7 +37,7 @@
         custom:progress_text_size="15dp"
         custom:progress_unreach_color="@color/soft1"
         custom:progress_unreach_height="3dp" />
-    <com.rye.catcher.project.ctmviews.HorizontalProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.HorizontalProgress
         android:id="@+id/progress3"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -51,7 +51,7 @@
         android:background="@color/soft1"
         custom:progress_text_size="15dp"
         />
-    <com.rye.catcher.project.ctmviews.RoundProgressbarWithProgress
+    <com.rye.catcher.project.ctmviews.RoundProgress
         android:id="@+id/round1"
         android:layout_width="200dp"
         android:layout_height="200dp"

@@ -1078,23 +1078,32 @@ public class FileUtils {
     }
 
     /**
-     * app私有目录下，新建文件夹和文件
+     * 创建新文件
+     * @param filePath
+     * @return
+     */
+    public static File createNewFile(String filePath){
+        if (filePath==null) return null;
+         String dir=filePath.substring(0,filePath.lastIndexOf(File.separator));
+         String fileName=filePath.substring(filePath.lastIndexOf(File.separator));
+         return createNewFile(dir,fileName);
+    }
+
+    /**
+     * 创建新文件
      *
      * @param dirName
      * @param fileName
      */
     public static File createNewFile(String dirName, String fileName) {
-        String dirNamex=SDHelper.getAppExternal() + dirName;
-        String fileNamex=SDHelper.getAppExternal() + dirName +
-                File.separator + fileName;
-        File file = new File(dirNamex);
-         if (!file.isDirectory()){
-             if (file.exists()){
-                 file.delete();
-             }
-             file.mkdirs();
-         }
-                File sonFile = new File(fileNamex);
+        File file = new File(dirName);
+        if (!file.exists()){
+            file.mkdirs();
+        }
+        if (file.exists()&&!file.isDirectory()){
+            file.mkdirs();
+        }
+       File sonFile = new File(dirName+fileName);
         try {
             if (sonFile.exists()) {
                 sonFile.delete();

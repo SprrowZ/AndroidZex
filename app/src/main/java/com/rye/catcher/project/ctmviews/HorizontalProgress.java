@@ -13,7 +13,7 @@ import com.rye.catcher.R;
 /**
  * Created by ZZG on 2018/8/12.
  */
-public class HorizontalProgressbarWithProgress extends ProgressBar {
+public class HorizontalProgress extends ProgressBar {
     private static final int DEFAULT_TEXT_SIZE = 10;//sp
     private static final int DEFAULT_TEXT_COLOR = 0xFFFC00D1;
     private static final int DEFAULT_COLOR_UNREACH = 0XFFD3D6DA;//sp
@@ -34,15 +34,15 @@ public class HorizontalProgressbarWithProgress extends ProgressBar {
     private int mRealWidth;
 
 
-    public HorizontalProgressbarWithProgress(Context context) {
+    public HorizontalProgress(Context context) {
         this(context, null, 0);//骚操作，一个参数的构造方法调用两个参数的
     }
 
-    public HorizontalProgressbarWithProgress(Context context, AttributeSet attrs) {
+    public HorizontalProgress(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HorizontalProgressbarWithProgress(Context context, AttributeSet attrs, int defStyleAttr) {
+    public HorizontalProgress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         obtainStyledAttrs(attrs);
@@ -51,20 +51,20 @@ public class HorizontalProgressbarWithProgress extends ProgressBar {
 
     private void obtainStyledAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs,
-                R.styleable.HorizontalProgressbarWithProgress);
-        mTextSize = (int) typedArray.getDimension(R.styleable.HorizontalProgressbarWithProgress_progress_text_size,
+                R.styleable.HorizontalProgress);
+        mTextSize = (int) typedArray.getDimension(R.styleable.HorizontalProgress_progress_text_size,
                 -1);
-        mTextColor = typedArray.getColor(R.styleable.HorizontalProgressbarWithProgress_progress_text_color,
+        mTextColor = typedArray.getColor(R.styleable.HorizontalProgress_progress_text_color,
                 -1);
-        mReachColor = typedArray.getColor(R.styleable.HorizontalProgressbarWithProgress_progress_reach_color,
+        mReachColor = typedArray.getColor(R.styleable.HorizontalProgress_progress_reach_color,
                 -1);
-        mReachHeight = (int) typedArray.getDimension(R.styleable.HorizontalProgressbarWithProgress_progress_reach_height,
+        mReachHeight = (int) typedArray.getDimension(R.styleable.HorizontalProgress_progress_reach_height,
                 -1);
-        mUnReachColor = typedArray.getColor(R.styleable.HorizontalProgressbarWithProgress_progress_unreach_color,
+        mUnReachColor = typedArray.getColor(R.styleable.HorizontalProgress_progress_unreach_color,
                 -1);
-        mUnReachHeight = (int) typedArray.getDimension(R.styleable.HorizontalProgressbarWithProgress_progress_unreach_height,
+        mUnReachHeight = (int) typedArray.getDimension(R.styleable.HorizontalProgress_progress_unreach_height,
                 -1);
-        mTextOffset = (int) typedArray.getDimension(R.styleable.HorizontalProgressbarWithProgress_progress_text_offset,
+        mTextOffset = (int) typedArray.getDimension(R.styleable.HorizontalProgress_progress_text_offset,
                 -1);
         typedArray.recycle();//??????
         mPaint.setTextSize(mTextSize);//指定Text高度

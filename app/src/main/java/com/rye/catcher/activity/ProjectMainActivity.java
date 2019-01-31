@@ -42,7 +42,7 @@ import butterknife.OnClick;
 
 public class ProjectMainActivity extends BaseActivity {
 
-    private static  final  String TAG="ProjectMainActivity";
+    private static final String TAG = "ProjectMainActivity";
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.tv_topbtntitle)
@@ -89,37 +89,38 @@ public class ProjectMainActivity extends BaseActivity {
     Button slidingDemo;
     @BindView(R.id.recyclerView)
     Button recycleView;
-   @BindView(R.id.dialogs)
+    @BindView(R.id.dialogs)
     Button dialogs;
-   @BindView(R.id.coor)
+    @BindView(R.id.coor)
     Button coor;
-   @BindView(R.id.viewDrag)
+    @BindView(R.id.viewDrag)
     Button viewDrag;
-   @BindView(R.id.batchLoading)
-   Button batchLoading;
+    @BindView(R.id.batchLoading)
+    Button batchLoading;
     LinearLayout parent;
-   @BindView(R.id.siteProtection)
+    @BindView(R.id.siteProtection)
     Button siteProtection;
-   @BindView(R.id.blueTooth)
-   Button blueTooth;
-
+    @BindView(R.id.blueTooth)
+    Button blueTooth;
+    @BindView(R.id.blueTooth2)
+    Button blueTooth2;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
     //测试Handler
-    private Handler zHander=new Handler(){
+    private Handler zHander = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
-                    runOnUiThread(()->{
+                    runOnUiThread(() -> {
                         ToastUtils.shortMsg("弹出框。。。");
                     });
                     break;
             }
         }
     };
-    private long lastTime;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +134,7 @@ public class ProjectMainActivity extends BaseActivity {
     }
 
 
-    private void showDialog(){
+    private void showDialog() {
         TopDialog topDialog =
                 new TopDialog(ProjectMainActivity.this, R.layout.project_dialog_first);
 
@@ -142,15 +143,9 @@ public class ProjectMainActivity extends BaseActivity {
         //设置drawleft的大小
 
         topDialog.getWindow().setBackgroundDrawable(null);
-        //editText绑定键盘
-//                son.setFocusable(true);
-//                son.setFocusableInTouchMode(true);
-//                son.requestFocus();
-//                InputMethodManager inputManager = (InputMethodManager)son.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                inputManager.showSoftInput(son, 0);
-
     }
-    private void startService(){
+
+    private void startService() {
         startActivityByAlpha(new Intent(this, ServiceMainActivity.class));
     }
 
@@ -159,8 +154,8 @@ public class ProjectMainActivity extends BaseActivity {
             @Override
             public void run() {
                 final Date date = new Date();
-                runOnUiThread(()->{
-                        sliding.setText(sdf.format(date));
+                runOnUiThread(() -> {
+                    sliding.setText(sdf.format(date));
                 });
             }
         }, 0, 1000);
@@ -174,9 +169,9 @@ public class ProjectMainActivity extends BaseActivity {
 
     @OnClick({R.id.service, R.id.intents, R.id.dbtest, R.id.file,
             R.id.aidl, R.id.drawable, R.id.shape, R.id.slidingDemo,
-            R.id.search_bar,R.id.recyclerView, R.id.dialogs,R.id.coor,
-            R.id.viewDrag,R.id.batchLoading,R.id.siteProtection,
-            R.id.blueTooth})
+            R.id.search_bar, R.id.recyclerView, R.id.dialogs, R.id.coor,
+            R.id.viewDrag, R.id.batchLoading, R.id.siteProtection,
+            R.id.blueTooth,R.id.blueTooth2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -215,37 +210,36 @@ public class ProjectMainActivity extends BaseActivity {
                 startActivity(intent11);
                 break;
             case R.id.recyclerView:
-                Intent intent12= new Intent(ProjectMainActivity.this,
+                Intent intent12 = new Intent(ProjectMainActivity.this,
                         RecycleDemoActivity.class);
                 startActivity(intent12);
                 break;
             case R.id.dialogs:
-                startActivity(new Intent(this,CommonDialogActivity.class));
+                startActivity(new Intent(this, CommonDialogActivity.class));
                 break;
             case R.id.coor:
-                startActivity(new Intent(this,CoordinatorActivity.class));
+                startActivity(new Intent(this, CoordinatorActivity.class));
                 break;
             case R.id.viewDrag:
                 startActivity(new Intent(this, SlideActivity.class));
                 break;
             case R.id.batchLoading:
-                startActivity(new Intent(this,BatchLoadingActivity.class));
+                startActivity(new Intent(this, BatchLoadingActivity.class));
                 break;
             case R.id.siteProtection:
-                startActivity(new Intent(this,SiteProtectionActivity.class));
+                startActivity(new Intent(this, SiteProtectionActivity.class));
                 break;
             case R.id.blueTooth:
-                startActivity(new Intent(this,BlueToothActivity.class));
+                startActivity(new Intent(this, BlueToothActivity.class));
+                break;
+            case R.id.blueTooth2:
+                startActivity(new Intent(this,BLEActivity.class));
                 break;
         }
     }
+
     //
-    private void testHandler(){
-//            if (zHander.hasMessages(1)){
-//                zHander.removeMessages(1);
-//                Log.i(TAG, "testHandler: ");
-//            }
-//      zHander.sendEmptyMessageDelayed(1,3000);
+    private void testHandler() {
         Log.i(TAG, "testHandler: ...");
         DelayHandleUtil.setDelay("zzg", 0L, 2000, new DelayHandleUtil.HandleListener() {
             @Override

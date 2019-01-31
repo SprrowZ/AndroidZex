@@ -2,12 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rye.catcher">
+    <uses-feature android:name="android.hardware.bluetooth.le"
+        android:required="true"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
-    <!--
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -102,6 +101,7 @@
                 <action android:name="com.rye.catcher.project.services.IRemoteService" />
             </intent-filter>
         </service>
+        <service android:name=".project.services.DownLoadService" />
 
         <activity
             android:name=".activity.CameraActivity"
@@ -340,7 +340,8 @@
         <activity
             android:name=".activity.ORRActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".activity.ctmactivity.CtmPTRActivity"></activity>
+        <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
+        <activity android:name=".activity.BLEActivity"></activity>
     </application>
 
 </manifest>

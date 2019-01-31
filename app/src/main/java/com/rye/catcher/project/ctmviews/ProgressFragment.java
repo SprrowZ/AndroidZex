@@ -18,9 +18,9 @@ import com.rye.catcher.activity.fragment.BaseFragment;
 public class ProgressFragment extends BaseFragment {
     private static  final  String TAG="ProgressFragment";
     private View view;
-    private HorizontalProgressbarWithProgress mProgress1;
-    private HorizontalProgressbarWithProgress mProgress2;
-    private RoundProgressbarWithProgress mRound1;
+    private HorizontalProgress mProgress1;
+    private HorizontalProgress mProgress2;
+    private RoundProgress mRound1;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

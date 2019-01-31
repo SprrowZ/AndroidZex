@@ -13,19 +13,19 @@ import com.rye.catcher.utils.DensityUtil;
 /**
  * Created by Zzg on 2018/8/15.
  */
-public class RoundProgressbarWithProgress extends HorizontalProgressbarWithProgress {
+public class RoundProgress extends HorizontalProgress {
     private int mRadius;
     private Context mContext;
     private int mMaxPaintWidth;
-    public RoundProgressbarWithProgress(Context context) {
+    public RoundProgress(Context context) {
         this(context,null,0);
     }
 
-    public RoundProgressbarWithProgress(Context context, AttributeSet attrs) {
+    public RoundProgress(Context context, AttributeSet attrs) {
         super(context, attrs,0);
     }
 
-    public RoundProgressbarWithProgress(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RoundProgress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext=context;
         init(attrs);
@@ -35,8 +35,8 @@ public class RoundProgressbarWithProgress extends HorizontalProgressbarWithProgr
         //为了好看
         mReachHeight= (int) (mUnReachHeight*2.5f);
         mRadius=DensityUtil.dip2px(mContext,30);
-        TypedArray typedArray=mContext.obtainStyledAttributes(attrs,R.styleable.RoundProgressbarWithProgress);
-        mRadius= (int) typedArray.getDimension(R.styleable.RoundProgressbarWithProgress_radius,30);
+        TypedArray typedArray=mContext.obtainStyledAttributes(attrs,R.styleable.RoundProgress);
+        mRadius= (int) typedArray.getDimension(R.styleable.RoundProgress_radius,30);
         //回收
         typedArray.recycle();
         mPaint.setStyle(Paint.Style.STROKE);

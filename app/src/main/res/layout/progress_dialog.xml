@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    >
+    <com.rye.catcher.project.ctmviews.HorizontalProgress
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:padding="5dp"
+        android:progress="0"
+        custom:progress_reach_color="@color/soft3"
+        custom:progress_reach_height="1dp"
+        custom:progress_text_color="@color/green1"
+        custom:progress_text_size="15dp"
+        custom:progress_unreach_color="@color/soft1"
+        custom:progress_unreach_height="3dp" />
+</LinearLayout>

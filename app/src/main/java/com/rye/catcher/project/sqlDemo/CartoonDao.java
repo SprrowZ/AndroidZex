@@ -70,13 +70,29 @@ public class CartoonDao  {
                 new String[]{(String) cartoon.getValue(Cartoon.ID)});
     }
 
-    public void query(){
+    /**
+     * 查询
+     * @return
+     */
+    public ArrayList<Cartoon> query(){
         ArrayList<Cartoon> resultList=new ArrayList<>();
         Cursor cursor=queryTheCursor();
         while (cursor.moveToNext()){
             Cartoon cartoon=new Cartoon();
-            
+            cartoon.setValue(Cartoon.ID,cursor.getColumnIndex(Cartoon.ID));
+            cartoon.setValue(Cartoon.NAME,cursor.getColumnIndex(Cartoon.NAME));
+            cartoon.setValue(Cartoon.ACTORS,cursor.getColumnIndex(Cartoon.ACTORS));
+            cartoon.setValue(Cartoon.LEAD,cursor.getColumnIndex(Cartoon.LEAD));
+            cartoon.setValue(Cartoon.ISSUE_TIME,cursor.getColumnIndex(Cartoon.ISSUE_TIME));
+            cartoon.setValue(Cartoon.DIRECTOR,cursor.getColumnIndex(Cartoon.DIRECTOR));
+            cartoon.setValue(Cartoon.IS_END,cursor.getColumnIndex(Cartoon.IS_END));
+            cartoon.setValue(Cartoon.NATIONALITY,cursor.getColumnIndex(Cartoon.NATIONALITY));
+            cartoon.setValue(Cartoon.DETAILS,cursor.getColumnIndex(Cartoon.DETAILS));
+            cartoon.setValue(Cartoon.INSERT_TIME,cursor.getColumnIndex(Cartoon.INSERT_TIME));
+            resultList.add(cartoon);
         }
+        cursor.close();
+        return resultList;
     }
 
     public Cursor queryTheCursor(){

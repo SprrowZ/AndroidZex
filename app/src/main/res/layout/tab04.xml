@@ -24,7 +24,7 @@
             />
         <Button
             android:id="@+id/btn1"
-            android:text="OkHttp"
+            android:text="ORR"
             style="@style/btn_settings"
             />
 
@@ -55,7 +55,7 @@
             />
         <Button
             android:id="@+id/btn4"
-            android:text="Second_Activity"
+            android:text="Retrofit"
             style="@style/btn_settings"
             />
 

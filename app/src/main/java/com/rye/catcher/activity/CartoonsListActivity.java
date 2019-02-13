@@ -97,8 +97,8 @@ public class CartoonsListActivity extends BaseActivity {
                 bundle.putString(CartoonsDetailActivity.CARTOON_PLOT,cartoons.getPLOT());
                 bundle.putString(CartoonsDetailActivity.CARTOON_DIRECTOR,cartoons.getDIRECTOR());
                 bundle.putString(CartoonsDetailActivity.CARTOON_ACTORS,cartoons.getACTORS());
-                if (cartoons.getSTART_TIME()!=null){
-                    bundle.putString(CartoonsDetailActivity.CARTOON_START_TIME,cartoons.getSTART_TIME().toString());
+                if (cartoons.getISSUE_TIME()!=null){
+                    bundle.putString(CartoonsDetailActivity.CARTOON_START_TIME,cartoons.getISSUE_TIME().toString());
                 }
                 bundle.putSerializable(CartoonsDetailActivity.CARTOON_LIST_ACTOR, (Serializable) cartoons.getCHARACTERS());
                 intent.putExtras(bundle);

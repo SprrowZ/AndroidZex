@@ -85,7 +85,7 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
             stmt.bindString(3, ACTORS);
         }
  
-        java.util.Date START_TIME = entity.getSTART_TIME();
+        java.util.Date START_TIME = entity.getISSUE_TIME();
         if (START_TIME != null) {
             stmt.bindLong(4, START_TIME.getTime());
         }
@@ -133,7 +133,7 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
             stmt.bindString(3, ACTORS);
         }
  
-        java.util.Date START_TIME = entity.getSTART_TIME();
+        java.util.Date START_TIME = entity.getISSUE_TIME();
         if (START_TIME != null) {
             stmt.bindLong(4, START_TIME.getTime());
         }
@@ -200,7 +200,7 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
         entity.setID(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setNAME(cursor.getString(offset + 1));
         entity.setACTORS(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setSTART_TIME(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
+        entity.setISSUE_TIME(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
         entity.setIS_END(cursor.getShort(offset + 4) != 0);
         entity.setDIRECTOR(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setHERO(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));

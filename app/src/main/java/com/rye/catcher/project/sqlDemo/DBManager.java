@@ -31,7 +31,7 @@ public void add(List<Person> persons) {
     db.beginTransaction();//开始事务
     try {
         for (Person person : persons) {
-            db.execSQL("INSERT INTO " + DatabaseHelper.TABLE_NAME + " VALUES(null, ?, ?, ?)",
+            db.execSQL("INSERT INTO " + DatabaseHelper.PERSON_TABLE + " VALUES(null, ?, ?, ?)",
                     new Object[]{person.name, person.age, person.info});
             //带两个参数的execSQL()方法，采用占位符参数？，把参数值放在后面，顺序对应
             //一个参数的execSQL()方法中，用户输入特殊字符时需要转义
@@ -47,11 +47,11 @@ public void add(List<Person> persons) {
     public void updataAge(Person person){
         ContentValues cv=new ContentValues();
         cv.put("age",person.age);
-        db.update(DatabaseHelper.TABLE_NAME,cv,"name = ?",new String[]{person.name});
+        db.update(DatabaseHelper.PERSON_TABLE,cv,"name = ?",new String[]{person.name});
     }
     public void deleteOldPerson(Person person){
 
-   db.delete(DatabaseHelper.TABLE_NAME,"age >= ?",
+    db.delete(DatabaseHelper.PERSON_TABLE,"age >= ?",
            new String[]{String.valueOf(person.age)});
     }
 
@@ -70,7 +70,7 @@ public void add(List<Person> persons) {
         return persons;
     }
  public Cursor queryTheCursor(){
-        Cursor c=db.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_NAME,null);
+        Cursor c=db.rawQuery("SELECT * FROM "+DatabaseHelper.PERSON_TABLE,null);
         return c;
  }
 

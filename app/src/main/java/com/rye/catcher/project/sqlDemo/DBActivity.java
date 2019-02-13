@@ -63,7 +63,7 @@ public void add(View view){
 
     dbManager.add(persons);
 }
-  public void updata(View view){
+  public void update(View view){
     //将Jane的年龄改为30（更改的事数据库中的值，要查询才能刷新ListView中显示的结果）
       Person person=new Person();
       person.name="Jane";

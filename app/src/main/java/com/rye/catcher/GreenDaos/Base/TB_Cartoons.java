@@ -20,18 +20,29 @@ import java.util.List;
 @Entity
 public class TB_Cartoons implements Serializable{
     private static final long serialVersionUID = 1L;
+    //表ID
     @Id(autoincrement = true)
     private Long ID;
     @NotNull @Unique
+    //动漫名
     public String  NAME="";
+    //演员
     public String  ACTORS;
-    private Date START_TIME;
+    //开更时间
+    private Date ISSUE_TIME;
+    //是否完结
     private boolean IS_END;
+    //导演
     private String DIRECTOR;
+    //男主角
     private String HERO;
+    //女主角
     private String HEROINE;
+    //国家
     private int PART;
+    //动漫详情
     private String PLOT;//情节。。。详情
+    //插入时间
     private Date INSERT_TIME;
     @ToMany(referencedJoinProperty = "CARTOON_ID")
     private List<TB_Character> CHARACTERS;//一对多关系，关联动漫人物表
@@ -43,12 +54,12 @@ public class TB_Cartoons implements Serializable{
     private transient TB_CartoonsDao myDao;
     @Generated(hash = 1984184515)
     public TB_Cartoons(Long ID, @NotNull String NAME, String ACTORS,
-            Date START_TIME, boolean IS_END, String DIRECTOR, String HERO,
-            String HEROINE, int PART, String PLOT, Date INSERT_TIME) {
+                       Date ISSUE_TIME, boolean IS_END, String DIRECTOR, String HERO,
+                       String HEROINE, int PART, String PLOT, Date INSERT_TIME) {
         this.ID = ID;
         this.NAME = NAME;
         this.ACTORS = ACTORS;
-        this.START_TIME = START_TIME;
+        this.ISSUE_TIME = ISSUE_TIME;
         this.IS_END = IS_END;
         this.DIRECTOR = DIRECTOR;
         this.HERO = HERO;
@@ -78,11 +89,11 @@ public class TB_Cartoons implements Serializable{
     public void setACTORS(String ACTORS) {
         this.ACTORS = ACTORS;
     }
-    public Date getSTART_TIME() {
-        return this.START_TIME;
+    public Date getISSUE_TIME() {
+        return this.ISSUE_TIME;
     }
-    public void setSTART_TIME(Date START_TIME) {
-        this.START_TIME = START_TIME;
+    public void setISSUE_TIME(Date ISSUE_TIME) {
+        this.ISSUE_TIME = ISSUE_TIME;
     }
     public boolean getIS_END() {
         return this.IS_END;

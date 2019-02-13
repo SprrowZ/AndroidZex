@@ -76,6 +76,7 @@ public class BLEActivity extends BaseActivity {
       @Override
       public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
           super.onConnectionStateChange(gatt, status, newState);
+          Log.i(TAG, "onConnectionStateChange: "+status);
          handler.sendEmptyMessage(newState);
       }
 
@@ -130,9 +131,6 @@ public class BLEActivity extends BaseActivity {
         setContentView(R.layout.activity_ble);
         requestPermissions();
         //
-        startScan=findViewById(R.id.startScan);
-        connect=findViewById(R.id.connect);
-        tv_ble=findViewById(R.id.tv_ble);
     }
 
     private void requestPermissions() {
@@ -153,6 +151,11 @@ public class BLEActivity extends BaseActivity {
     @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     private void initEvent(){
+
+        startScan=findViewById(R.id.startScan);
+        connect=findViewById(R.id.connect);
+        tv_ble=findViewById(R.id.tv_ble);
+
         final BluetoothManager manager=(BluetoothManager)getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter=manager.getAdapter();
         if (mBluetoothAdapter!=null){
@@ -220,8 +223,10 @@ public class BLEActivity extends BaseActivity {
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     private boolean connect( ){
+        Log.i(TAG, "connect:isMainThread: "+isMainThread());
         //根据地址获取远端蓝牙设备
         final  BluetoothDevice device=mBluetoothAdapter.getRemoteDevice(mBleAddress);
+        Log.i(TAG, "connect: deviceName"+device.getName()+"deviceAddress:"+device.getAddress());
      mGatt=device.connectGatt(this,false,gattCallback);
      if(mGatt!=null){
          isConnected=true;
@@ -269,10 +274,12 @@ public class BLEActivity extends BaseActivity {
                 case BluetoothProfile.STATE_CONNECTED:
                     zActivity.isConnected = true;
                     zActivity.connect.setText("断开...");
+                    ToastUtils.shortMsg("匹配成功！");
                     break;
                 case BluetoothProfile.STATE_DISCONNECTED:
                     zActivity.isConnected = false;
                     zActivity.connect.setText("连接...");
+                    ToastUtils.shortMsg("匹配失败！");
                     break;
             }
             super.handleMessage(msg);

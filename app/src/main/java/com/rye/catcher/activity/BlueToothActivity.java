@@ -13,6 +13,7 @@ import android.service.restrictions.RestrictionsReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ToastUtils;
@@ -31,17 +32,31 @@ public class BlueToothActivity extends Activity {
     Button btn_paired_devices;
     @BindView(R.id.btn_scan)
     Button btn_scan;
+    @BindView(R.id.paired)
+    TextView paired;
+    @BindView(R.id.none_paired)
+    TextView none_paired;
+    private StringBuilder bond=new StringBuilder();
+    private StringBuilder bond_none=new StringBuilder();
     private final BroadcastReceiver receiver=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action=intent.getAction();
-            Log.d(TAG, "Action: "+action);
+            Log.d(TAG, "onReceive: "+action);
             if (action.equals(BluetoothDevice.ACTION_FOUND)){
-             BluetoothDevice device=intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                BluetoothDevice device=intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                if (device.getBondState()==BluetoothDevice.BOND_BONDED){
+                    bond.append("deviceName:"+device.getName()+"---deviceAddress"+device.getAddress()+"\n");
+                    paired.setText(bond);
+                }else if (device.getBondState()==BluetoothDevice.BOND_NONE){
+                    bond_none.append("deviceName:"+device.getName()+"---deviceAddress："+device.getAddress()+"\n");
+                    none_paired.setText(bond_none);
+                }
                 Log.d(TAG, "device:Name--> "+device.getName());
                 Log.d(TAG, "device:Address--> "+device.getAddress());
             }else if(action.equals(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)){
                 Log.d(TAG, "Discovery Finished! ");
+                btn_scan.setText("扫描完毕！");
             }
         }
     };
@@ -59,6 +74,7 @@ public class BlueToothActivity extends Activity {
         }else{
             Log.i(TAG, "init: 设备不支持蓝牙");
         }
+        //通过系统广播发现蓝牙设备
         IntentFilter intentFilter=new IntentFilter();
         intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
@@ -81,7 +97,7 @@ public class BlueToothActivity extends Activity {
         for (BluetoothDevice device: devices
              ) {
             Log.d(TAG, "getPairedDevices:Name-> "+device.getName());
-            Log.d(TAG, "getPairedDevices:Address-----> ");
+            Log.d(TAG, "getPairedDevices:Address-----> "+device.getAddress());
         }
     }
     private void scanDevices(){

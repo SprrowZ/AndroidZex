@@ -25,7 +25,12 @@ public class Cartoon  extends ConcurrentHashMap<String,Object>{
         return super.get(key);
     }
     public void setValue(String key,Object value){
-        super.put(key,value);
+        if (value!=null){
+            super.put(key,value);
+        }else{
+            super.put(key,"");
+        }
+
     }
 
 }

@@ -7,25 +7,25 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="add"
+        android:onClick="addCartoons"
         android:text="add" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="update"
+        android:onClick="updateCartoons"
         android:text="update" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="delete"
+        android:onClick="deleteCartoons"
         android:text="delete" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="query"
+        android:onClick="queryCartoons"
         android:text="query" />
 
     <Button

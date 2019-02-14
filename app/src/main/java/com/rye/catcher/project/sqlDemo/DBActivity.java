@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
@@ -23,9 +24,11 @@ import java.util.Map;
  */
 
 public class DBActivity extends BaseActivity {
+    private static final   String TAG="DBActivity";
     private DBManager dbManager;
     private ListView listView;
 
+    private CartoonDao dao;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,8 @@ public class DBActivity extends BaseActivity {
         listView=findViewById(R.id.listView);
         //初始化DBManger
         dbManager=new DBManager(this);
+        //第二个测试
+        dao=new CartoonDao(this);
     }
 
 
@@ -47,7 +52,7 @@ public class DBActivity extends BaseActivity {
         super.onDestroy();
         dbManager.closeDB();
     }
-public void add(View view){
+   public void add(View view){
     ArrayList<Person> persons=new ArrayList<Person>();
     Person person1=new Person("Ella",22,"lively girl");
     Person person2 = new Person("Jenny", 22, "beautiful girl");
@@ -63,6 +68,7 @@ public void add(View view){
 
     dbManager.add(persons);
 }
+
   public void update(View view){
     //将Jane的年龄改为30（更改的事数据库中的值，要查询才能刷新ListView中显示的结果）
       Person person=new Person();
@@ -109,6 +115,8 @@ public void add(View view){
 
         }
     };
+
+
     //确保查询结果中有 "_id"列
     SimpleCursorAdapter adapter=new SimpleCursorAdapter(this,android.R.layout.simple_expandable_list_item_2,
             cursorWrapper,new String[]{"name","info"},new int[]{
@@ -118,11 +126,50 @@ public void add(View view){
     listView.setAdapter(adapter);
 }
 
+/*******************************第二次Demo*****************************************/
+public void addCartoons(View view){
+    ArrayList<Cartoon> dataList=new ArrayList<>();
+    Cartoon cartoon=new Cartoon();
+    cartoon.setValue(Cartoon.NAME,"夏目友人帐");
+    cartoon.setValue(Cartoon.LEAD,"夏目贵志");
+    cartoon.setValue(Cartoon.NATIONALITY,"日本");
+    //
+    Cartoon cartoon2=new Cartoon();
+    cartoon2.setValue(Cartoon.NAME,"天行九歌");
+    cartoon2.setValue(Cartoon.LEAD,"韩非子");
+    cartoon2.setValue(Cartoon.NATIONALITY,"中国");
+    //
+    dataList.add(cartoon);
+    dataList.add(cartoon2);
+    dao.insertData(dataList);
+}
 
+public void updateCartoons(View view){
+    Cartoon cartoon=new Cartoon();
+   // cartoon.setValue(Cartoon.ID,"15");
+    cartoon.setValue(Cartoon.NAME,"我的一生");
+    cartoon.setValue(Cartoon.LEAD,"悲歌一首..");
+    dao.update(cartoon);
+}
 
+public void deleteCartoons(View view){
+    dao.deleteData();
+}
 
-
-
+public void queryCartoons(View view){
+    ArrayList<Cartoon> cartoons=dao.query();
+    Log.i(TAG, "queryCartoons: "+cartoons.toString());
+   ArrayList<Map<String,String>> dataList=new ArrayList<>();
+   for (Cartoon cartoon:cartoons){
+       HashMap map=new HashMap();
+       map.put(Cartoon.ID,cartoon.getValue(Cartoon.ID));
+       map.put("INFO",cartoon.getValue(Cartoon.NAME)+","+cartoon.getValue(Cartoon.LEAD));
+       dataList.add(map);
+   }
+   SimpleAdapter adapter=new SimpleAdapter(this,dataList,android.R.layout.simple_expandable_list_item_2,
+           new String[]{Cartoon.ID,"INFO"},new int[]{android.R.id.text1,android.R.id.text2});
+   listView.setAdapter(adapter);
+}
 
 
 

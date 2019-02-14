@@ -10,6 +10,7 @@ import android.util.Log;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String TAG="DatabaseHelper";
     //数据库版本号
     private static final int DATABASE_VERSION=1;
     //数据库名
@@ -41,7 +42,7 @@ public DatabaseHelper(Context context){
 //继承SQLiteOpenHelper类，必须要覆写的三个方法：onCreate(),onUpgrade(),onOpen()
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //调用时间：数据库第一次创建时onCreate()方法会被调用
+        //调用时间：数据库创建时onCreate()方法会被调用,也就是整个app只调用一次
         //onCreate方法有一个SQLiteDatabase对象作为参数，根据需要对这个对象填充表和初始化数据
         //这个方法中主要完成创建数据库后对数据库的操作
         Log.i("Create", "onCreate:Database ");
@@ -69,7 +70,7 @@ public DatabaseHelper(Context context){
         buffer.append("[ID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,");
         buffer.append("[NAME] TEXT NOT NULL ,");
         buffer.append("[ACTORS] TEXT ,");
-        buffer.append("[LEADS] TEXT ,");
+        buffer.append("[LEAD] TEXT ,");
         buffer.append("[ISSUE_TIME] TEXT ,");
         buffer.append("[DIRECTOR] TEXT ,");
         buffer.append("[IS_END] TEXT ,");
@@ -77,7 +78,7 @@ public DatabaseHelper(Context context){
         buffer.append("[DETAILS] TEXT ,");
         buffer.append("[INSERT_TIME] TEXT )");
         db.execSQL(buffer.toString());
-
+        Log.i(TAG, "createCartoonDB:..success ");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

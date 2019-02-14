@@ -25,7 +25,7 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
         public final static Property ID = new Property(0, Long.class, "ID", true, "_id");
         public final static Property NAME = new Property(1, String.class, "NAME", false, "NAME");
         public final static Property ACTORS = new Property(2, String.class, "ACTORS", false, "ACTORS");
-        public final static Property START_TIME = new Property(3, java.util.Date.class, "START_TIME", false, "START__TIME");
+        public final static Property ISSUE_TIME = new Property(3, java.util.Date.class, "ISSUE_TIME", false, "ISSUE__TIME");
         public final static Property IS_END = new Property(4, boolean.class, "IS_END", false, "IS__END");
         public final static Property DIRECTOR = new Property(5, String.class, "DIRECTOR", false, "DIRECTOR");
         public final static Property HERO = new Property(6, String.class, "HERO", false, "HERO");
@@ -54,7 +54,7 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: ID
                 "\"NAME\" TEXT NOT NULL UNIQUE ," + // 1: NAME
                 "\"ACTORS\" TEXT," + // 2: ACTORS
-                "\"START__TIME\" INTEGER," + // 3: START_TIME
+                "\"ISSUE__TIME\" INTEGER," + // 3: ISSUE_TIME
                 "\"IS__END\" INTEGER NOT NULL ," + // 4: IS_END
                 "\"DIRECTOR\" TEXT," + // 5: DIRECTOR
                 "\"HERO\" TEXT," + // 6: HERO
@@ -85,9 +85,9 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
             stmt.bindString(3, ACTORS);
         }
  
-        java.util.Date START_TIME = entity.getISSUE_TIME();
-        if (START_TIME != null) {
-            stmt.bindLong(4, START_TIME.getTime());
+        java.util.Date ISSUE_TIME = entity.getISSUE_TIME();
+        if (ISSUE_TIME != null) {
+            stmt.bindLong(4, ISSUE_TIME.getTime());
         }
         stmt.bindLong(5, entity.getIS_END() ? 1L: 0L);
  
@@ -133,9 +133,9 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
             stmt.bindString(3, ACTORS);
         }
  
-        java.util.Date START_TIME = entity.getISSUE_TIME();
-        if (START_TIME != null) {
-            stmt.bindLong(4, START_TIME.getTime());
+        java.util.Date ISSUE_TIME = entity.getISSUE_TIME();
+        if (ISSUE_TIME != null) {
+            stmt.bindLong(4, ISSUE_TIME.getTime());
         }
         stmt.bindLong(5, entity.getIS_END() ? 1L: 0L);
  
@@ -183,7 +183,7 @@ public class TB_CartoonsDao extends AbstractDao<TB_Cartoons, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // ID
             cursor.getString(offset + 1), // NAME
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // ACTORS
-            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)), // START_TIME
+            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)), // ISSUE_TIME
             cursor.getShort(offset + 4) != 0, // IS_END
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // DIRECTOR
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // HERO

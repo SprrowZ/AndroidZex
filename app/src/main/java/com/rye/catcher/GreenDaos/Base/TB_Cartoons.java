@@ -4,6 +4,7 @@ import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.Unique;
@@ -52,7 +53,7 @@ public class TB_Cartoons implements Serializable{
     /** Used for active entity operations. */
     @Generated(hash = 2009244494)
     private transient TB_CartoonsDao myDao;
-    @Generated(hash = 1984184515)
+    @Keep
     public TB_Cartoons(Long ID, @NotNull String NAME, String ACTORS,
                        Date ISSUE_TIME, boolean IS_END, String DIRECTOR, String HERO,
                        String HEROINE, int PART, String PLOT, Date INSERT_TIME) {

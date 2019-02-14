@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/len_68"
+    android:layout_marginLeft="@dimen/len_8"
+    app:cardBackgroundColor="@color/gray_backgroud"
+    app:cardElevation="@dimen/len_12"
+    >
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_24"
+        android:layout_marginLeft="@dimen/len_20"
+        tools:text="小米手机" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_20"
+        android:layout_marginLeft="@dimen/len_32"
+        tools:text="小米手机"
+        android:layout_gravity="bottom"
+        />
+</android.support.v7.widget.CardView>

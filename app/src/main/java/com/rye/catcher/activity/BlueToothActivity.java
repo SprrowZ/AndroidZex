@@ -13,11 +13,15 @@ import android.service.restrictions.RestrictionsReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.activity.adapter.BlueToothAdapter;
+import com.rye.catcher.beans.BTBean;
 import com.rye.catcher.utils.ToastUtils;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import butterknife.BindView;
@@ -35,9 +39,13 @@ public class BlueToothActivity extends Activity {
     @BindView(R.id.paired)
     TextView paired;
     @BindView(R.id.none_paired)
-    TextView none_paired;
+    ListView none_paired;
     private StringBuilder bond=new StringBuilder();
-    private StringBuilder bond_none=new StringBuilder();
+//    private StringBuilder bond_none=new StringBuilder();
+    //ListView
+    private ArrayList<BTBean> noneList=new ArrayList<>();
+    private BlueToothAdapter adapters;
+
     private final BroadcastReceiver receiver=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -49,8 +57,15 @@ public class BlueToothActivity extends Activity {
                     bond.append("deviceName:"+device.getName()+"---deviceAddress"+device.getAddress()+"\n");
                     paired.setText(bond);
                 }else if (device.getBondState()==BluetoothDevice.BOND_NONE){
-                    bond_none.append("deviceName:"+device.getName()+"---deviceAddress："+device.getAddress()+"\n");
-                    none_paired.setText(bond_none);
+
+                    BTBean bean=new BTBean();
+                    bean.setName(device.getName());
+                    bean.setAddress(device.getAddress());
+                    noneList.add(bean);
+                    //刷新界面
+                    adapters.notifyDataSetChanged();
+//                    bond_none.append("deviceName:"+device.getName()+"---deviceAddress："+device.getAddress()+"\n");
+//                    none_paired.setText(bond_none);
                 }
                 Log.d(TAG, "device:Name--> "+device.getName());
                 Log.d(TAG, "device:Address--> "+device.getAddress());
@@ -79,6 +94,9 @@ public class BlueToothActivity extends Activity {
         intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(receiver,intentFilter);
+        //listView
+        adapters=new BlueToothAdapter(this,noneList);
+        none_paired.setAdapter(adapters);
     }
 
     @OnClick({R.id.btn_paired_devices,R.id.btn_scan})

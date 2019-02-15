@@ -142,4 +142,6 @@ public abstract class ExBaseDialog extends DialogFragment {
         super.onDestroy();//这里千万不要忘了！
         ExDialogManager.getInstance().over();
     }
+
+
 }

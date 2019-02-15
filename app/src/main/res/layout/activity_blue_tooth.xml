@@ -4,62 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rye.catcher.activity.BlueToothActivity"
-    >
-    <ScrollView
+    tools:context="com.rye.catcher.activity.BlueToothActivity">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomContainer"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:gravity="center"
+            android:text="搜索到的设备："
+            android:textColor="@color/black"
+            android:textSize="@dimen/len_28"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已匹配过设备："
+            android:textSize="@dimen/font_24" />
+
+        <TextView
+            android:id="@+id/paired"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_20"
+            tools:text="........Paired" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未匹配过设备："
+            android:textSize="@dimen/font_24" />
+
+        <ListView
+            android:id="@+id/none_paired"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
             >
-            <TextView
-                android:text="搜索到的设备："
-                android:gravity="center"
-                android:textSize="@dimen/len_28"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="已匹配过设备："
-                android:textSize="@dimen/font_24"
-                />
-            <TextView
-                android:id="@+id/paired"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/font_20"
-                tools:text="........Paired"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="未匹配过设备："
-                android:textSize="@dimen/font_24"
-                />
-             <ListView
-                 android:id="@+id/none_paired"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent">
+        </ListView>
 
-             </ListView>
+    </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
-    <Button
-        android:id="@+id/btn_paired_devices"
-        android:layout_above="@+id/btn_scan"
-        android:text="已匹配过设备"
-        style="@style/btn_style_red"
-        />
-    <Button
-        android:id="@+id/btn_scan"
+    <LinearLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="扫描设备"
-        style="@style/btn_style_red"
-        />
+        android:orientation="vertical"
+
+        >
+
+        <Button
+            android:id="@+id/btn_paired_devices"
+            style="@style/btn_style_red"
+            android:layout_above="@+id/btn_scan"
+            android:text="已匹配过设备" />
+
+        <Button
+            android:id="@+id/btn_scan"
+            style="@style/btn_style_red"
+            android:layout_alignParentBottom="true"
+            android:text="扫描设备" />
+    </LinearLayout>
+
 </RelativeLayout>

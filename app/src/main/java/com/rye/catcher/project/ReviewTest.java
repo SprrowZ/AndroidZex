@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.ctmactivity.CtmTopActivity;
-import com.rye.catcher.project.async.AsyncMainActivity;
+import com.rye.catcher.activity.AsyncMainActivity;
 import com.rye.catcher.project.review.BaseAdapterTest;
 import com.rye.catcher.project.review.SpannableStringTest;
 import com.rye.catcher.project.review.myAsyncTask;

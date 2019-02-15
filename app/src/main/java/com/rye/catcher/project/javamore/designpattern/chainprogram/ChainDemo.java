@@ -1,7 +1,5 @@
 package com.rye.catcher.project.javamore.designpattern.chainprogram;
 
-import com.rye.catcher.project.sqlDemo.Person;
-
 /**
  * Created at 2018/9/26.
  *

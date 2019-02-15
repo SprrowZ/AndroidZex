@@ -1,4 +1,4 @@
-package com.rye.catcher.project.sqlDemo;
+package com.rye.catcher.project.SQLiteZ;
 
 import android.content.ContentValues;
 import android.content.Context;

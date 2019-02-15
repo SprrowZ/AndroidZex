@@ -2,11 +2,17 @@ package com.rye.catcher.utils.ExtraUtil.test.utils;
 
 import android.util.Log;
 
+import com.rye.catcher.project.services.FileResponseBody;
+import com.rye.catcher.project.services.RetrofitCallBack;
+
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -37,6 +43,17 @@ public class OkHttpUtil {
     }
 
     /**
+     *下载专用
+     * @return
+     */
+    private RetrofitCallBack<T> callBack;
+    public <T> OkHttpClient getDownloadClient(RetrofitCallBack<T> callBack) {
+        this.callBack= (RetrofitCallBack<T>) callBack;
+        return downloadClient;
+    }
+
+
+    /**
      * 拦截器，用来看日志
      */
     private HttpLoggingInterceptor interceptor= new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -53,6 +70,18 @@ public class OkHttpUtil {
             }
         }
     }).setLevel(HttpLoggingInterceptor.Level.BODY);
+    /**
+     * 下载拦截器
+     */
+    private Interceptor dInterceptor=new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Response response=chain.proceed(chain.request());
+            //将ResponBody转换成我们自定义的FileResponseBody
+
+            return response.newBuilder().body(new FileResponseBody(response.body(),));
+        }
+    };
 
     private OkHttpClient client=new OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIME_OUT, TimeUnit.SECONDS)
@@ -60,5 +89,10 @@ public class OkHttpUtil {
             .writeTimeout(WRITE_TIME_OUT,TimeUnit.SECONDS)
             .addInterceptor(interceptor)
             .build();
-
+    private OkHttpClient downloadClient=new OkHttpClient.Builder()
+            .connectTimeout(CONNECTION_TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(READ_TIME_OUT,TimeUnit.SECONDS)
+            .writeTimeout(WRITE_TIME_OUT,TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
+            .build();
 }

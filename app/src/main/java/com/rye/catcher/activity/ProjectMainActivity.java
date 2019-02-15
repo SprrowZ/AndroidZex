@@ -1,7 +1,6 @@
 package com.rye.catcher.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,15 +16,12 @@ import android.widget.TextView;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.SlideActivity;
-import com.rye.catcher.project.animations.AnimShapeActivity;
 import com.rye.catcher.project.catcher.DelayHandleUtil;
 import com.rye.catcher.project.dialog.TopDialog;
 import com.rye.catcher.project.services.ServiceMainActivity;
-import com.rye.catcher.project.sqlDemo.DBActivity;
+import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
 import com.rye.catcher.utils.ToastUtils;
-import com.rye.catcher.utils.permission.PermissionUtils;
-import com.yanzhenjie.permission.Permission;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

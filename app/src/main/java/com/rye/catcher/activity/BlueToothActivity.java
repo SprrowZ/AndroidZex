@@ -1,6 +1,5 @@
 package com.rye.catcher.activity;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -8,14 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.service.restrictions.RestrictionsReceiver;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.BlueToothAdapter;
 import com.rye.catcher.beans.BTBean;
@@ -28,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BlueToothActivity extends Activity {
+public class BlueToothActivity extends BaseActivity {
     private static final String TAG="BlueToothActivity";
     private BluetoothAdapter adapter;
     private int REQUEST_BLUE_TOOTH=1;
@@ -43,29 +42,27 @@ public class BlueToothActivity extends Activity {
     private StringBuilder bond=new StringBuilder();
 //    private StringBuilder bond_none=new StringBuilder();
     //ListView
-    private ArrayList<BTBean> noneList=new ArrayList<>();
-    private BlueToothAdapter adapters;
+    private ArrayList<BTBean> noneList;
+    private BlueToothAdapter noneAdapter;
 
     private final BroadcastReceiver receiver=new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action=intent.getAction();
-            Log.d(TAG, "onReceive: "+action);
+            Log.d(TAG, "onReceive: "+action+"isMainThread:"+isMainThread());
             if (action.equals(BluetoothDevice.ACTION_FOUND)){
                 BluetoothDevice device=intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (device.getBondState()==BluetoothDevice.BOND_BONDED){
                     bond.append("deviceName:"+device.getName()+"---deviceAddress"+device.getAddress()+"\n");
                     paired.setText(bond);
                 }else if (device.getBondState()==BluetoothDevice.BOND_NONE){
-
+                    Log.i(TAG, "BOND_NONE: "+device.getName()+","+device.getAddress()+"/n"+noneList.toString());
                     BTBean bean=new BTBean();
                     bean.setName(device.getName());
                     bean.setAddress(device.getAddress());
                     noneList.add(bean);
                     //刷新界面
-                    adapters.notifyDataSetChanged();
-//                    bond_none.append("deviceName:"+device.getName()+"---deviceAddress："+device.getAddress()+"\n");
-//                    none_paired.setText(bond_none);
+                    noneAdapter.notifyDataSetChanged();
                 }
                 Log.d(TAG, "device:Name--> "+device.getName());
                 Log.d(TAG, "device:Address--> "+device.getAddress());
@@ -95,8 +92,13 @@ public class BlueToothActivity extends Activity {
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(receiver,intentFilter);
         //listView
-        adapters=new BlueToothAdapter(this,noneList);
-        none_paired.setAdapter(adapters);
+        none_paired.setOnItemClickListener((parent, view, position, id) -> {
+
+        });
+        noneList=new ArrayList<>();
+
+        noneAdapter =new BlueToothAdapter(this,noneList);
+        none_paired.setAdapter(noneAdapter);
     }
 
     @OnClick({R.id.btn_paired_devices,R.id.btn_scan})

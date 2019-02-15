@@ -1,4 +1,4 @@
-package com.rye.catcher.project.async;
+package com.rye.catcher.activity.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.project.ImageLoader;
+import com.rye.catcher.beans.NewsBean;
 
 
 import java.util.List;
@@ -53,8 +54,7 @@ public class AsyncAdapter extends BaseAdapter {
             viewHolder.tv_title=convertView.findViewById(R.id.tv_title);
             viewHolder.tv_content=convertView.findViewById(R.id.tv_content);
             convertView.setTag(viewHolder);
-        }
-        else {
+        }else {
             viewHolder= (ViewHolder) convertView.getTag();
         }
         String url=newsBeanList.get(position).newsIconUrl;

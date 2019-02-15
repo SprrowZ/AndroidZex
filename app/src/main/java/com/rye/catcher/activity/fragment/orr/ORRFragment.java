@@ -1,6 +1,8 @@
 package com.rye.catcher.activity.fragment.orr;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -41,8 +43,24 @@ public class ORRFragment extends BaseFragment {
    private HorizontalProgress progressBar;
    private View dialogView;
 
+   //文件是否在下载中
+    private int statusCode=-1;
 
    private static  HashMap<String,ExDialog> hashMap=new HashMap<>();
+   private Handler handler=new Handler(){
+       @Override
+       public void handleMessage(Message msg) {
+           switch (msg.what){
+               case 10:
+                   Log.i(TAG, "handleMessage: 文件下载完成，path："+msg.obj);
+                   getActivity().runOnUiThread(()->{
+                       ToastUtils.shortMsg("文件已下载至："+msg.obj);
+                   });
+                   break;
+           }
+           super.handleMessage(msg);
+       }
+   };
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,12 +82,28 @@ public class ORRFragment extends BaseFragment {
      * 创建dialog
      */
     public void showProgessDialog(){
-         ExDialog   exDialog=new ExDialog.Builder(getContext())
+        Log.i(TAG, "showProgessDialog: "+dialogView.getParent()+"statusCode:"+statusCode);
+         if (dialogView.getParent()==null){
+            ExDialog   exDialog=new ExDialog.Builder(getContext())
                     .setDialogView(dialogView)
                     .setWindowBackgroundP(0.5F)
                     .setGravity(Gravity.CENTER)
                     .show();
             hashMap.put(getClass().getSimpleName(),exDialog);
+        }else if (statusCode==1){
+            getActivity().runOnUiThread(()->{
+                ToastUtils.shortMsg("文件在下载中...");
+            });
+        }else if (statusCode==2){
+            getActivity().runOnUiThread(()->{
+                ToastUtils.shortMsg("文件已经下载!");
+            });
+        }else  if (statusCode==3){
+            getActivity().runOnUiThread(()->{
+                ToastUtils.shortMsg("文件下载失败！");
+            });
+        }
+
     }
 
     /**
@@ -118,19 +152,26 @@ public class ORRFragment extends BaseFragment {
         @Override
         public void onProgress(int progress) {
             Log.i(TAG, "onProgress: "+progress);
+            statusCode=1;
             progressBar.setProgress(progress);
         }
 
         @Override
         public void onFinish(String path) {
             Log.i(TAG, "onFinish: ...");
+            statusCode=2;
             closeProgressDialog();
-            ToastUtils.shortMsg("文件已下载至："+path);
+            //发送消息
+            Message message=new Message();
+            message.what=10;
+            message.obj=path;
+            handler.sendMessage(message);
         }
 
         @Override
         public void onFail(String errorInfo) {
-
+            Log.i(TAG, "onFail: "+errorInfo);
+            statusCode=3;
         }
     }
 }

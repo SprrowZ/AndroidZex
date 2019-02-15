@@ -1,4 +1,4 @@
-package com.rye.catcher.project.async;
+package com.rye.catcher.beans;
 
 /**
  * Created by ZZG on 2017/11/1.

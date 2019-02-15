@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.rye.catcher.activity.fragment.orr.interfaces.DownLoadListener;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
+import com.rye.catcher.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.SDHelper;
@@ -68,6 +69,7 @@ public class DownLoadService extends Service {
      * Rxjava+Retrofit+Okhttp---测试方法1
      */
     private void downLoadRx(String url){
+        Log.i(TAG, "downLoadRx: "+ DateUtils.getCurrentTime(null));
         Retrofit retrofit= new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -86,6 +88,7 @@ public class DownLoadService extends Service {
             //成功走此
             @Override
             public void onNext(ResponseBody responseBody) {
+                Log.i(TAG, "onNext: "+ DateUtils.getCurrentTime(null));
                 //执行下载操作
                 download(responseBody,"z-Video.mp4");
                 //关闭服务

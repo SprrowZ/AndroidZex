@@ -1,4 +1,4 @@
-package com.rye.catcher.project.async;
+package com.rye.catcher.activity;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.activity.adapter.AsyncAdapter;
+import com.rye.catcher.beans.NewsBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;

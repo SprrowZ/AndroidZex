@@ -29,6 +29,7 @@ import butterknife.OnClick;
 public class IntentsActivity extends BaseActivity {
     private static boolean flag=true;
     private static final String TAG = "LivePreservationActivit";
+    private static final String TAG2="LifeCycle-B";
     @BindView(R.id.container)
     LinearLayout container;
     @BindView(R.id.callPhone)
@@ -43,6 +44,7 @@ public class IntentsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intents);
+        Log.i(TAG2, "onCreate: ....");
         ButterKnife.bind(this);
         init();
     }
@@ -112,5 +114,35 @@ public class IntentsActivity extends BaseActivity {
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
         Log.i(TAG, "onSaveInstanceState: ---------->");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG2, "onStart: ...");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG2, "onResume: ...");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG2, "onPause: ....");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG2, "onStop: ...");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG2, "onDestroy: ....");
     }
 }

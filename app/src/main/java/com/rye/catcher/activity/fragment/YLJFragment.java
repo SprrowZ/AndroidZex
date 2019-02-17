@@ -69,17 +69,18 @@ public class YLJFragment extends BaseFragment {
         /**
          * 下载头像
          */
-            iv1.getViewTreeObserver().addOnGlobalLayoutListener(()->{
-                new Thread(()->{
-                    Log.i(TAG, "savePortraitToLocal: "+iv1.getMeasuredHeight()+"xxx"+iv1.getHeight());
-                    Bitmap bitmap=ImageUtils.getIntance().getBitmap(  "portrait.png",
-                            iv1.getMeasuredHeight(), iv1.getMeasuredWidth(),Constant.PORTRAIT_URL);
-                    getActivity().runOnUiThread(()->{
-                        iv1.setImageBitmap(bitmap);
-                    });
-                }).start();
-            });
-
+//            iv1.getViewTreeObserver().addOnGlobalLayoutListener(()->{
+////                new Thread(()->{
+////                    Log.i(TAG, "savePortraitToLocal: "+iv1.getMeasuredHeight()+"xxx"+iv1.getHeight());
+////                    Bitmap bitmap=ImageUtils.getIntance().getBitmap(  "portrait.png",
+////                            iv1.getMeasuredHeight(), iv1.getMeasuredWidth(),Constant.PORTRAIT_URL);
+////                    getActivity().runOnUiThread(()->{
+////
+////                       // iv1.setImageBitmap(bitmap);
+////                    });
+////                }).start();
+////            });
+        ImageUtils.getIntance().displayImage(iv1,Constant.PORTRAIT_URL);
        //点击头像进大图
         portrait.setOnClickListener(data->{
             Intent intent=new Intent(getActivity(), ImageActivity.class);
@@ -106,5 +107,20 @@ public class YLJFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume: ...");
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.i(TAG, "onHiddenChanged: ...");
+        if (!hidden){
+//            ImageUtils.getIntance().displayImage(iv1,Constant.PORTRAIT_URL);
+        }
     }
 }

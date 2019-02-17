@@ -83,27 +83,14 @@ public class ORRFragment extends BaseFragment {
      */
     public void showProgessDialog(){
         Log.i(TAG, "showProgessDialog: "+dialogView.getParent()+"statusCode:"+statusCode);
-         if (dialogView.getParent()==null){
+         if (dialogView.getParent()==null&&statusCode==-1){
             ExDialog   exDialog=new ExDialog.Builder(getContext())
                     .setDialogView(dialogView)
                     .setWindowBackgroundP(0.5F)
                     .setGravity(Gravity.CENTER)
                     .show();
             hashMap.put(getClass().getSimpleName(),exDialog);
-        }else if (statusCode==1){
-            getActivity().runOnUiThread(()->{
-                ToastUtils.shortMsg("文件在下载中...");
-            });
-        }else if (statusCode==2){
-            getActivity().runOnUiThread(()->{
-                ToastUtils.shortMsg("文件已经下载!");
-            });
-        }else  if (statusCode==3){
-            getActivity().runOnUiThread(()->{
-                ToastUtils.shortMsg("文件下载失败！");
-            });
         }
-
     }
 
     /**
@@ -130,9 +117,23 @@ public class ORRFragment extends BaseFragment {
      * 通过Service下载任务
      */
     private void startDownLoad(){
-        Intent intent=new Intent(getActivity(),DownLoadService.class);
-        intent.putExtra(DownLoadService.BASE_URL,VEDIO_URL);
-        getActivity().startService(intent);
+        switch (statusCode){
+            case -1:
+                Intent intent=new Intent(getActivity(),DownLoadService.class);
+                intent.putExtra(DownLoadService.BASE_URL,VEDIO_URL);
+                getActivity().startService(intent);
+                break;
+            case 1:
+                ToastUtils.shortMsg("文件在下载中...");
+                break;
+            case 2:
+                ToastUtils.shortMsg("文件已经下载!");
+                break;
+            case 3:
+                ToastUtils.shortMsg("文件下载失败！");
+                break;
+        }
+
     }
 
     @Override

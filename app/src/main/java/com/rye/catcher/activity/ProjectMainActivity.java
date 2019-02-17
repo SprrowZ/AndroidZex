@@ -39,6 +39,7 @@ import butterknife.OnClick;
 public class ProjectMainActivity extends BaseActivity {
 
     private static final String TAG = "ProjectMainActivity";
+    private static final String TAG2="LifeCycle-A";
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.tv_topbtntitle)
@@ -126,7 +127,7 @@ public class ProjectMainActivity extends BaseActivity {
 
         MeasureUtil.setLeftScale(this, search, searchBar, R.mipmap.icon_title_bar_edit_search);
 
-        Log.i(TAG, "onCreate: ...");
+        Log.i(TAG2, "onCreate: ...");
     }
 
 
@@ -160,6 +161,7 @@ public class ProjectMainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i(TAG2, "onResume: ....");
         setClock();
     }
 
@@ -246,8 +248,26 @@ public class ProjectMainActivity extends BaseActivity {
     }
 
     @Override
+    protected void onRestart() {
+        Log.i(TAG2, "onRestart: ...");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG2, "onPause: ...");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG2, "onStop: ...");
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "onDestroy: ...");
+        Log.i(TAG2, "onDestroy: ...");
     }
 }

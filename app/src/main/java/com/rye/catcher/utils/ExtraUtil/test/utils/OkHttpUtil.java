@@ -14,6 +14,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 
 /**
  * Created at 2019/1/7.
@@ -46,9 +47,23 @@ public class OkHttpUtil {
      *下载专用
      * @return
      */
-    private RetrofitCallBack<T> callBack;
-    public <T> OkHttpClient getDownloadClient(RetrofitCallBack<T> callBack) {
-        this.callBack= (RetrofitCallBack<T>) callBack;
+    private RetrofitCallBack  callBack=new RetrofitCallBack() {
+        @Override
+        public void onSuccess(Call call, retrofit2.Response response) {
+            Log.i(TAG, "onSuccess: ");
+        }
+
+        @Override
+        public void onLoading(long total, long progress) {
+            Log.i(TAG, "onLoading: "+progress);
+        }
+
+        @Override
+        public void onFailure(Call call, Throwable t) {
+            Log.i(TAG, "onFailure: ");
+        }
+    };
+    public <T> OkHttpClient getDownloadClient( ) {
         return downloadClient;
     }
 
@@ -79,20 +94,25 @@ public class OkHttpUtil {
             Response response=chain.proceed(chain.request());
             //将ResponBody转换成我们自定义的FileResponseBody
 
-            return response.newBuilder().body(new FileResponseBody(response.body(),));
+            return response.newBuilder().body(new FileResponseBody(response.body(),callBack)).build();
         }
     };
-
+    /**
+     * 一般情况下的客户端
+     */
     private OkHttpClient client=new OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIME_OUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIME_OUT,TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIME_OUT,TimeUnit.SECONDS)
             .addInterceptor(interceptor)
             .build();
+    /**
+     * 下载专用客户端
+     */
     private OkHttpClient downloadClient=new OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIME_OUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIME_OUT,TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIME_OUT,TimeUnit.SECONDS)
-            .addInterceptor(interceptor)
+            .addInterceptor(dInterceptor)
             .build();
 }

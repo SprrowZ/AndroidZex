@@ -74,7 +74,7 @@ public class DownLoadService extends Service {
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(OkHttpUtil.getInstance().getClient())
+                .client(OkHttpUtil.getInstance().getDownloadClient())
                 .build();
         zRetrofitApi api=retrofit.create(zRetrofitApi.class);
         listener.onStart();

@@ -1,6 +1,7 @@
 package com.rye.catcher.project.services;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ import okio.Source;
  * @function:
  */
 public class FileResponseBody<T> extends ResponseBody {
+    private static  final  String TAG="FileResponseBody";
     /**
      * 请求体
      */
@@ -75,6 +77,8 @@ public class FileResponseBody<T> extends ResponseBody {
             public long read(Buffer sink, long byteCount) throws IOException {
                 long bytesRead=sink.read(sink,byteCount);
                 totalBytesRead+=bytesRead!=-1?bytesRead:0;
+                Log.i(TAG, "read: "+bytesRead+"contentLength:"+responseBody.contentLength()+
+                ",totalBytesRead:"+totalBytesRead+",byteCount:"+byteCount);
                 callBack.onLoading(responseBody.contentLength(),totalBytesRead);
                 return super.read(sink, byteCount);
             }

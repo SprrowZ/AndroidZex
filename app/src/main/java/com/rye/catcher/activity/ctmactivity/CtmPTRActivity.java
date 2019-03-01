@@ -3,6 +3,7 @@ package com.rye.catcher.activity.ctmactivity;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;

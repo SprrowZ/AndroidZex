@@ -33,7 +33,7 @@ public class OkHttpUtil {
      *静态内部类单例模式
      */
     private static class SingleOKhttp{
-        private static OkHttpUtil INSTANCE=new OkHttpUtil();
+        private static final OkHttpUtil INSTANCE=new OkHttpUtil();
     }
     public static  OkHttpUtil getInstance(){
         return  SingleOKhttp.INSTANCE;

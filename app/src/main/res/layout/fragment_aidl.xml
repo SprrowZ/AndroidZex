@@ -1,13 +1,57 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rye.catcher.activity.fragment.AIDLFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context="com.rye.catcher.activity.fragment.AIDLFragment"
+    android:orientation="vertical"
+    >
+<LinearLayout
+    android:id="@+id/linear1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+     android:layout_centerInParent="true"
+    >
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="从客户端传过来的基本类型参数："
+        android:textSize="@dimen/font_20"
+        />
+    <TextView
+        android:id="@+id/baseType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="123"
+        android:textSize="@dimen/font_16"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/len_8"
+        />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/linear1"
+    android:layout_marginTop="@dimen/len_12"
+    >
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="从客户端传过来的自定义类型参数："
+        android:textSize="@dimen/font_20"
+        />
+    <TextView
+        android:id="@+id/bean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_16"
+        tools:text="宇智波鼬"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/len_8"
+        />
+</LinearLayout>
+
+</RelativeLayout>

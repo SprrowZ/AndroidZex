@@ -49,10 +49,10 @@ public class SettingsFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-          View view=inflater.inflate(R.layout.tab04,container,false);
-        this.view=view;
+        View view = inflater.inflate(R.layout.tab04, container, false);
+        this.view = view;
 
-      return  view;
+        return view;
     }
 
 
@@ -60,119 +60,79 @@ public class SettingsFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 //dialog逻辑
         setBarTitle("苍海");
-        btn1=view.findViewById(R.id.btn1);
-        btn1.setOnClickListener(new View.OnClickListener() {
-
-
-    @Override
-    public void onClick(View view) {
-           startActivity(new Intent(getActivity(), ORRActivity.class));
-    }
-});
+        btn1 = view.findViewById(R.id.btn1);
+        btn1.setOnClickListener(view -> startActivity(new Intent(getActivity(), ORRActivity.class)));
         //测试finish方法
-        btn2=view.findViewById(R.id.btn2);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             Intent intent4=new Intent(getActivity(),KeepJava.class);
-                startActivity(intent4);
-            }
+        btn2 = view.findViewById(R.id.btn2);
+        btn2.setOnClickListener(view -> {
+            Intent intent4 = new Intent(getActivity(), KeepJava.class);
+            startActivity(intent4);
         });
 
-        progressBar= view.findViewById(R.id.progressBar);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                    if (getActivity()==null){
-                        return ;
-                    }else{
+        progressBar = view.findViewById(R.id.progressBar);
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+                if (getActivity() == null) {
+                    return;
+                } else {
 
-                     getActivity().runOnUiThread(new Runnable() {
-                         @Override
-                       public void run() {
-                             progressBar.setVisibility(View.GONE);
-                         }
-                    });
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    getActivity().runOnUiThread(() -> progressBar.setVisibility(View.GONE));
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }).start();
         //跳转到子Activity中
-        btn3=view.findViewById(R.id.btn3);
-btn3.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent1=new Intent(getActivity(),FirstActivity.class);
-        startActivity(intent1);
-    }
-});
+        btn3 = view.findViewById(R.id.btn3);
+        btn3.setOnClickListener(view -> {
+            Intent intent1 = new Intent(getActivity(), FirstActivity.class);
+            startActivity(intent1);
+        });
         //
-        btn4=view.findViewById(R.id.btn4);
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent2=new Intent(getActivity(),SecondActivity.class);
-                startActivity(intent2);
-            }
+        btn4 = view.findViewById(R.id.btn4);
+        btn4.setOnClickListener(view -> {
+            Intent intent2 = new Intent(getActivity(), SecondActivity.class);
+            startActivity(intent2);
         });
 //camera Test
-        cameraOne=view.findViewById(R.id.cameraOne);
-        cameraOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                authority();
-                Intent intent3=new Intent(getActivity(),CameraActivity.class);
-                intent3.putExtra("info","fuck...");
-                startActivity(intent3);
-            }
+        cameraOne = view.findViewById(R.id.cameraOne);
+        cameraOne.setOnClickListener(v -> {
+            authority();
+            Intent intent3 = new Intent(getActivity(), CameraActivity.class);
+            intent3.putExtra("info", "fuck...");
+            startActivity(intent3);
         });
 
 //Review
-        review=view.findViewById(R.id.review);
-        review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent5=new Intent(getActivity(), ReviewTest.class);
-                startActivity(intent5);
-            }
+        review = view.findViewById(R.id.review);
+        review.setOnClickListener(v -> {
+            Intent intent5 = new Intent(getActivity(), ReviewTest.class);
+            startActivity(intent5);
         });
 
 
-Animation=view.findViewById(R.id.animation);
-        Animation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent7=new Intent(getActivity(), AnimMainActivity.class);
-                startActivity(intent7);
-               getActivity().overridePendingTransition(R.anim.rotate,R.anim.alpha);
-        }
+        Animation = view.findViewById(R.id.animation);
+        Animation.setOnClickListener(view -> {
+            Intent intent7 = new Intent(getActivity(), AnimMainActivity.class);
+            startActivity(intent7);
+            getActivity().overridePendingTransition(R.anim.translate_to_right, R.anim.translate_to_right_hide);
         });
-custom=view.findViewById(R.id.custom);
-        custom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // int height= MeasureUtil.getHeight(getActivity());
-               // Toast.makeText(getActivity(),String.valueOf(height),Toast.LENGTH_LONG).show();
-                Intent intent9=new Intent(getActivity(), CtmMainActivity.class);
-                startActivity(intent9);
-            }
+        custom = view.findViewById(R.id.custom);
+        custom.setOnClickListener(v -> {
+            // int height= MeasureUtil.getHeight(getActivity());
+            // Toast.makeText(getActivity(),String.valueOf(height),Toast.LENGTH_LONG).show();
+            Intent intent9 = new Intent(getActivity(), CtmMainActivity.class);
+            startActivity(intent9);
         });
-project=view.findViewById(R.id.project);
+        project = view.findViewById(R.id.project);
         project.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent10=new Intent(getActivity(), ProjectMainActivity.class);
-                        startActivity(intent10);
-                    }
+                v -> {
+                    Intent intent10 = new Intent(getActivity(), ProjectMainActivity.class);
+                    startActivity(intent10);
                 }
         );
-           editText=view.findViewById(R.id.editText);
-
+        editText = view.findViewById(R.id.editText);
 
 
         super.onActivityCreated(savedInstanceState);
@@ -182,7 +142,7 @@ project=view.findViewById(R.id.project);
         //申请权限
         String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         PermissionsUtil.showSystemSetting = false;//是否支持显示系统设置权限设置窗口跳转
-        PermissionsUtil.IPermissionsResult permissionsResult=new PermissionsUtil.IPermissionsResult() {
+        PermissionsUtil.IPermissionsResult permissionsResult = new PermissionsUtil.IPermissionsResult() {
             @Override
             public void passPermissons() {
                 ToastUtils.shortMsg("权限申请成功");
@@ -198,7 +158,7 @@ project=view.findViewById(R.id.project);
 
     @Override
     public void onDestroy() {
-       // Toast.makeText(getActivity(),"destroy",Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getActivity(),"destroy",Toast.LENGTH_SHORT).show();
         super.onDestroy();
     }
 

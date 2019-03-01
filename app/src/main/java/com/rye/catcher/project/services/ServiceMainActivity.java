@@ -35,7 +35,8 @@ public class ServiceMainActivity extends BaseActivity {
     Button bindService;
     @BindView(R.id.unbindService)
     Button unbindService;
-
+    @BindView(R.id.intentService)
+    Button intentService;
     //与Service进行绑定
     private LocalService.MyBinder myBinder;
     //IBinder
@@ -67,7 +68,8 @@ public class ServiceMainActivity extends BaseActivity {
 
     }
     @OnClick({R.id.startService, R.id.stopService, R.id.service,
-            R.id.sService, R.id.bindService, R.id.unbindService})
+            R.id.sService, R.id.bindService, R.id.unbindService,
+            R.id.intentService})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.startService:
@@ -89,6 +91,12 @@ public class ServiceMainActivity extends BaseActivity {
                 break;
             case R.id.unbindService:
                 unbindService(connection);
+                break;
+            case R.id.intentService:
+                Intent intent4=new Intent(this,IntentServiceEx.class);
+                intent4.putExtra("KEY","ZZG-TOKEN");
+                intent4.putExtra("VALUE","ZZG1995");
+                startService(intent4);
                 break;
         }
     }

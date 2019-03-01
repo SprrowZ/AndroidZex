@@ -1,4 +1,4 @@
-package com.rye.catcher.project.javamore.designpattern.chainprogram;
+package com.rye.catcher.project.Ademos.designpattern.chainprogram;
 
 /**
  * Created at 2018/9/27.

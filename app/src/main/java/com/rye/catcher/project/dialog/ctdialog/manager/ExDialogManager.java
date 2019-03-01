@@ -23,7 +23,7 @@ public class ExDialogManager {
      * 静态内部类单例模式
      */
     private static class DialogHoler{
-        private static ExDialogManager INSTANCE=new ExDialogManager();
+        private static final ExDialogManager INSTANCE=new ExDialogManager();
     }
     public static ExDialogManager getInstance(){
         return DialogHoler.INSTANCE;

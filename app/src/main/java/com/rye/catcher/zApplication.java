@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
+import com.rye.catcher.common.ActivityManager;
 import com.rye.catcher.utils.EchatAppUtil;
 import com.tencent.bugly.crashreport.CrashReport;
 
@@ -39,7 +40,7 @@ public class zApplication extends Application{
         mContext = getApplicationContext();
         init();
         //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
-        EchatAppUtil.setContext(this);
+        EchatAppUtil.setContext(mContext);
     }
                //GreenDao初始化
 
@@ -78,13 +79,14 @@ public class zApplication extends Application{
             @Override
             public void onActivityStarted(Activity activity) {
               //如果为1，则说明从后台进入到前台
-               countActivity++;
+                countActivity++;
                 Log.i(TAG, "onActivityStarted: "+countActivity);
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
                 Log.i(TAG, "onActivityResumed: "+activity.getLocalClassName());
+                ActivityManager.getInstance().setCurrentActivity(activity);
             }
 
             @Override

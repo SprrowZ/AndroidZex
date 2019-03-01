@@ -39,7 +39,7 @@ public class ImageUtils {
      * 静态内部类
      */
     private static class ImageUtil {
-        public static ImageUtils INSTANCE = new ImageUtils();
+        public static final ImageUtils INSTANCE = new ImageUtils();
     }
 
     public static ImageUtils getIntance() {

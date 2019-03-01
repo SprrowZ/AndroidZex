@@ -32,7 +32,7 @@ public class LocalService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(TAG, "onCreate:--------创建-------- ");
+        Log.d(TAG, "onCreate:--------创建-------- ");
         System.out.print("----------StartService---------");
      //   createNotification();
         new Thread(()->{
@@ -68,7 +68,7 @@ public class LocalService extends Service {
      */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i(TAG, "onStartCommand: 开启");
+        Log.d(TAG, "onStartCommand: 开启");
         //这个是为了防止ANR（程序无响应）
         new Thread(()->{
             //开始后台任务
@@ -78,8 +78,7 @@ public class LocalService extends Service {
        
     @Override
     public void onDestroy() {
-        Log.i(TAG, "onDestroy: --------stopService-------");
-        System.out.print("----------StopService---------");
+        Log.d(TAG, "onDestroy: --------stopService-------");
         super.onDestroy();
     }
 
@@ -92,13 +91,13 @@ public class LocalService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         //此方法是用来将Service和Activity进行绑定
-        Log.i(TAG, "onBind: 绑定");
+        Log.d(TAG, "onBind: 绑定");
         return mBinder;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.i(TAG, "onUnbind: ...");
+        Log.d(TAG, "onUnbind: ...");
         return super.onUnbind(intent);
     }
 

@@ -28,7 +28,7 @@ public class ThreadPoolManager {
 
     private static  ThreadPoolManager sInstance;
 
-    public synchronized static  ThreadPoolManager getsInstance() {
+    public synchronized static  ThreadPoolManager getInstance() {
         if (sInstance == null) {
             sInstance = new  ThreadPoolManager();
         }

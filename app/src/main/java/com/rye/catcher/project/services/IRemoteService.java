@@ -11,6 +11,9 @@ import android.util.Log;
 import com.rye.catcher.activity.IDemoAIDL;
 import com.rye.catcher.activity.IMyAidlInterface;
 import com.rye.catcher.activity.PersonBean;
+import com.rye.catcher.beans.AIDLBean;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +35,11 @@ public class IRemoteService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        //一绑定就传过来一个列表
-        persons=new ArrayList<PersonBean>();
-        return iBinder;
+        //一绑定就传过来一个列表，这是用来传递自定义实体类
+//        persons=new ArrayList<PersonBean>();
+//        return iBinder;
+        //调用服务器方法
+        return mBinder;
     }
 
     /**
@@ -43,7 +48,11 @@ public class IRemoteService extends Service {
     private final Binder mBinder=new IDemoAIDL.Stub() {
      @Override
      public int add(int num1, int num) throws RemoteException {
-         Log.d("ZzgAidl", "add:....传入的两个参数为： "+num+"、"+num1);
+         AIDLBean bean=new AIDLBean();
+         bean.setIntParam1(num1);
+         bean.setIntParam2(num);
+         Log.d("ZzgAidl", "传入参数为： "+num+"、"+num1+";"+"AIDLBean:"+bean.toString());
+         EventBus.getDefault().postSticky(bean);
          return num1+num;
      }
  };

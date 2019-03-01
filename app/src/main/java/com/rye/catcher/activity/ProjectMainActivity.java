@@ -18,6 +18,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.SlideActivity;
 import com.rye.catcher.project.catcher.DelayHandleUtil;
 import com.rye.catcher.project.dialog.TopDialog;
+import com.rye.catcher.project.Ademos.mvp.MvpActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
@@ -101,6 +102,8 @@ public class ProjectMainActivity extends BaseActivity {
     Button blueTooth;
     @BindView(R.id.blueTooth2)
     Button blueTooth2;
+    @BindView(R.id.mvpDemo)
+    Button mvpDemo;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 
     //测试Handler
@@ -169,7 +172,7 @@ public class ProjectMainActivity extends BaseActivity {
             R.id.aidl, R.id.drawable, R.id.shape, R.id.slidingDemo,
             R.id.search_bar, R.id.recyclerView, R.id.dialogs, R.id.coor,
             R.id.viewDrag, R.id.batchLoading, R.id.siteProtection,
-            R.id.blueTooth,R.id.blueTooth2})
+            R.id.blueTooth,R.id.blueTooth2,R.id.mvpDemo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -232,6 +235,9 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
             case R.id.blueTooth2:
                 startActivity(new Intent(this,BLEActivity.class));
+                break;
+            case R.id.mvpDemo:
+                startActivity(new Intent(this, MvpActivity.class));
                 break;
         }
     }

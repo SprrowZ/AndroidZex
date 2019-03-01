@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rye.catcher">
-    <uses-feature android:name="android.hardware.bluetooth.le"
-        android:required="true"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
+    <uses-feature
+        android:name="android.hardware.bluetooth.le"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -102,6 +104,7 @@
             </intent-filter>
         </service>
         <service android:name=".project.services.DownLoadService" />
+        <service android:name=".project.services.IntentServiceEx" />
 
         <activity
             android:name=".activity.CameraActivity"
@@ -231,9 +234,10 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
 
-        <service android:name=".project.services.LocalService"
-            >
-            <intent-filter android:priority="999"/>
+        <service android:name=".project.services.LocalService">
+            <intent-filter android:priority="999">
+                <action android:name="project.services.LocalService" />
+            </intent-filter>
         </service>
 
         <activity
@@ -344,7 +348,9 @@
             android:name=".activity.ORRActivity"
             android:launchMode="singleTask" />
         <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
-        <activity android:name=".activity.BLEActivity"></activity>
+        <activity android:name=".activity.BLEActivity" />
+        <activity android:name=".project.Ademos.mvp.MvpActivity" />
+        <activity android:name=".project.Ademos.mvp.MvpBaseActivity"></activity>
     </application>
 
 </manifest>

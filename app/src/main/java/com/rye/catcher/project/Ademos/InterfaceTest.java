@@ -1,4 +1,4 @@
-package com.rye.catcher.project.javamore;
+package com.rye.catcher.project.Ademos;
 
 /**
  * Created by ZZG on 2018/3/14.

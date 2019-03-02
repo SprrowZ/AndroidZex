@@ -178,6 +178,6 @@
     <color name="light_black">#666666</color>
     <color name="line_color">#505050</color>
     <color name="light_gray">#ffececec</color>
-
-
+    <color name="preview_mock">#9a000000</color>
+    <color name="preview">#3fFFFFFF</color>
 </resources>

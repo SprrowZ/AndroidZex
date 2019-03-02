@@ -57,4 +57,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_not_installed">请先安装应用！</string>
+    <string name="touch_to_focus">触摸屏幕对焦</string>
+    <string name="if_id">查身份证</string>
+    <string name="if_card">查名片</string>
+    <string name="if_invoice">验发票</string>
+    <string name="if_license">查驾驶证</string>
+
 </resources>

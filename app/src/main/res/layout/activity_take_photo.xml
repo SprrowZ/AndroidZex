@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <com.rye.catcher.project.ctmviews.takephoto.CameraPreview
+        android:id="@+id/camera_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/topContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_76"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:background="@color/black"
+        >
+
+        <LinearLayout
+            android:id="@+id/idContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+        <ImageView
+            android:id="@+id/idImg"
+            android:layout_width="@dimen/len_44"
+            android:layout_height="@dimen/len_44"
+            android:src="@mipmap/if_id"
+            android:tint="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/idText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/if_id"
+            android:textSize="@dimen/font_16"
+            android:gravity="center"
+            android:textColor="@color/white"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/cardImg"
+                android:layout_width="@dimen/len_44"
+                android:layout_height="@dimen/len_44"
+                android:src="@mipmap/if_card"
+                android:tint="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/cardText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/if_card"
+                android:textSize="@dimen/font_16"
+                android:gravity="center"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/invoiceContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/invoiceImg"
+                android:layout_width="@dimen/len_44"
+                android:layout_height="@dimen/len_44"
+                android:src="@mipmap/if_invoice"
+                android:tint="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/invoiceText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/if_invoice"
+                android:textSize="@dimen/font_16"
+                android:gravity="center"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/licenseContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/licenseImg"
+                android:layout_width="@dimen/len_44"
+                android:layout_height="@dimen/len_44"
+                android:src="@mipmap/if_license"
+                android:tint="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/licenseText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/if_license"
+                android:textSize="@dimen/font_16"
+                android:gravity="center"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/camera_crop_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@+id/topContainer"
+        android:layout_above="@+id/bottomContainer"
+        >
+
+        <ImageView
+            android:id="@+id/camera_crop"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY" />
+
+        <View
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/camera_crop"
+            />
+
+        <View
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/camera_crop"
+            />
+
+        <View
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom"
+            android:layout_below="@+id/top"
+            android:layout_toLeftOf="@+id/camera_crop"
+          />
+
+        <View
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom"
+            android:layout_below="@+id/top"
+            android:layout_toRightOf="@+id/camera_crop"
+         />
+
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_80"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black">
+
+        <LinearLayout
+            android:id="@+id/camera_option"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/camera_close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_16" />
+
+            <ImageView
+                android:id="@+id/camera_take"
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/len_48"
+                android:layout_marginRight="@dimen/len_48"
+                android:src="@mipmap/camera_take" />
+
+            <ImageView
+                android:id="@+id/camera_flash"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/camera_flash_off" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/camera_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/camera_result_cancel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/camera_result_cancel" />
+
+            <ImageView
+                android:id="@+id/camera_result_ok"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="80dp"
+                android:src="@mipmap/camera_result_ok" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+</RelativeLayout>

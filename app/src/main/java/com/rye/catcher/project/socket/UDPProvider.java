@@ -1,4 +1,4 @@
-package com.rye.catcher.project.sockets;
+package com.rye.catcher.project.socket;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

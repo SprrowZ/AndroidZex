@@ -62,8 +62,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                 Camera.Parameters parameters = camera.getParameters();
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                     //竖屏拍照时，需要设置旋转90度，否者看到的相机预览方向和界面方向不相同
-                    camera.setDisplayOrientation(90);
-                    parameters.setRotation(90);
+                    camera.setDisplayOrientation(90);//摄像头
+                    parameters.setRotation(90);//图片
                 } else {
                     camera.setDisplayOrientation(0);
                     parameters.setRotation(0);

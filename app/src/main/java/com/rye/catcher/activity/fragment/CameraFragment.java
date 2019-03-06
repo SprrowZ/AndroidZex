@@ -108,8 +108,11 @@ public class CameraFragment extends BaseFragment {
         startActivityForResult(intent, TAKE_PHOTO);
     }
     private void callAlbum(){
-        Intent intent5 = new Intent(Intent.ACTION_PICK, null);
-        intent5.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+//        Intent intent5 = new Intent(Intent.ACTION_PICK, null);
+//        intent5.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+//        intent5.setAction(Intent.ACTION_GET_CONTENT);
+        Intent intent5 = new Intent();
+        intent5.setType("image/*");
         intent5.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent5, 5);
     }

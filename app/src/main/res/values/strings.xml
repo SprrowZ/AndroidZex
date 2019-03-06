@@ -62,5 +62,10 @@
     <string name="if_card">查名片</string>
     <string name="if_invoice">验发票</string>
     <string name="if_license">查驾驶证</string>
-
+    <string name="id_text">请将查询身份证放入框内，拍照查询</string>
+    <string name="card_text">请将企业名片放入框内，拍照查询</string>
+    <string name="invoice_text">请将发票放入框内，拍照查询</string>
+    <string name="license_text">请将驾驶证放入框内，拍照查询</string>
+    <string name="distinguishing">正在识别...</string>
+    <string name="dis_error">无法识别该证件真伪，请重新拍摄查询</string>
 </resources>

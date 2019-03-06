@@ -35,7 +35,7 @@ public class TestPhotoActivity extends AppCompatActivity {
     }
 
     /**
-     * 拍摄证件照片
+     * 拍摄身份证
      *
      * @param type 拍摄证件类型
      */
@@ -44,34 +44,34 @@ public class TestPhotoActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0x12);
             return;
         }
-        CameraActivity2.openCertificateCamera(this, type);
+        CameraActivity2.openCamera(this, type);
     }
 
     /**
-     * 身份证正面
+     * 身份证
      */
-    public void frontIdCard(View view) {
-        takePhoto(CameraActivity2.TYPE_IDCARD_FRONT);
+    public void takeID(View view) {
+        takePhoto(CameraActivity2.TYPE_ID);
     }
 
     /**
-     * 身份证反面
+     * 证件
      */
-    public void backIdCard(View view) {
-        takePhoto(CameraActivity2.TYPE_IDCARD_BACK);
+    public void takeCard(View view) {
+        takePhoto(CameraActivity2.TYPE_CARD);
     }
 
     /**
-     * 营业执照竖版
+     * 发票
      */
-    public void businessLicensePortrait(View view) {
-        takePhoto(CameraActivity2.TYPE_COMPANY_PORTRAIT);
+    public void takeInvoice(View view) {
+        takePhoto(CameraActivity2.TYPE_INVOICE);
     }
 
     /**
-     * 营业执照横版
+     * 驾照
      */
-    public void businessLicenseLandscape(View view) {
-        takePhoto(CameraActivity2.TYPE_COMPANY_LANDSCAPE);
+    public void takeLicense(View view) {
+        takePhoto(CameraActivity2.TYPE_LICENSE);
     }
 }

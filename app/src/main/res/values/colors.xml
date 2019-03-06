@@ -180,4 +180,5 @@
     <color name="light_gray">#ffececec</color>
     <color name="preview_mock">#9a000000</color>
     <color name="preview">#3fFFFFFF</color>
+    <color name="if_color">#eed0ab</color>
 </resources>

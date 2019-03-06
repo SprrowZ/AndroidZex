@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <ImageView
         android:id="@+id/main_image"
         android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:gravity="center"
-                android:onClick="frontIdCard"
+                android:onClick="takeID"
                 android:text="身份证正面"
                 android:textColor="#555"
                 android:textSize="16dp" />
@@ -41,7 +42,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:gravity="center"
-                android:onClick="backIdCard"
+                android:onClick="takeCard"
                 android:text="身份证反面"
                 android:textColor="#555"
                 android:textSize="16dp" />
@@ -60,7 +61,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:gravity="center"
-                android:onClick="businessLicensePortrait"
+                android:onClick="takeInvoice"
                 android:text="营业执照竖版"
                 android:textColor="#555"
                 android:textSize="16dp" />
@@ -72,7 +73,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shape_button"
                 android:gravity="center"
-                android:onClick="businessLicenseLandscape"
+                android:onClick="takeLicense"
                 android:text="营业执照横版"
                 android:textColor="#555"
                 android:textSize="16dp" />

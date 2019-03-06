@@ -1,27 +1,43 @@
 package com.rye.catcher.project.ctmviews.takephoto;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Camera;
+import android.hardware.SensorManager;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Looper;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
-import android.view.Gravity;
+import android.util.Pair;
+import android.view.OrientationEventListener;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.rye.catcher.R;
+import com.rye.catcher.utils.FileUtils;
+import com.rye.catcher.utils.ImageUtils;
+import com.rye.catcher.utils.permission.PermissionUtils;
+import com.yanzhenjie.permission.Permission;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -37,29 +53,34 @@ import java.io.IOException;
  * 拍照界面
  */
 public class CameraActivity2 extends Activity implements View.OnClickListener {
-
+     private static final  String TAG="CameraActivity2";
     /**
-     * 拍摄类型-身份证正面
+     * 查身份证
      */
-    public final static int TYPE_IDCARD_FRONT = 1;
+    public final static int TYPE_ID = 1;
     /**
-     * 拍摄类型-身份证反面
+     * 查名片
      */
-    public final static int TYPE_IDCARD_BACK = 2;
+    public final static int TYPE_CARD = 2;
     /**
-     * 拍摄类型-竖版营业执照
+     * 查发票
      */
-    public final static int TYPE_COMPANY_PORTRAIT = 3;
+    public final static int TYPE_INVOICE = 3;
     /**
-     * 拍摄类型-横版营业执照
+     * 查驾照
      */
-    public final static int TYPE_COMPANY_LANDSCAPE = 4;
+    public final static int TYPE_LICENSE = 4;
 
     public final static int REQUEST_CODE = 0X13;
     public final static int RESULT_CODE = 0X14;
-
-
-    public static void openCertificateCamera(Activity activity, int type) {
+    //水平还是垂直
+    private boolean IS_VERTICAL=true;
+    //是否还能旋转
+    private boolean CAN_ROTATE=true;
+    private final static int CAMERA_REQUEST_CODE=5;
+    //相册
+    private Bitmap Abitmap;
+    public static void openCamera(Activity activity, int type) {
         Intent intent = new Intent(activity, CameraActivity2.class);
         intent.putExtra("type", type);
         activity.startActivityForResult(intent, REQUEST_CODE);
@@ -78,9 +99,8 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
     private CameraPreview cameraPreview;
     private View containerView;
     private ImageView cropView;
-    private ImageView flashImageView;
-    private View optionView;
-    private View resultView;
+    private ImageView pickPhoto;
+
 
     //顶部四个布局
     private LinearLayout idContainer;
@@ -97,14 +117,23 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
     private TextView cardText;
     private TextView invoiceText;
     private TextView licenseText;
+    private LinearLayout topContainer;
+    //cropView上边的文字
+    private TextView cropTextV;
+    private TextView cropTextH;
 
+    private TextView remake;
 
     //哪个图标被选中
-    private int type=1;
+    private int type;
     //屏幕宽度
     private float screenWidth;
     //当前位置
     private int currentPos=-1;
+    // 设备方向监听器
+    private OrientationEventListener mOrEventListener;
+    //获取最近一张照片
+    private cameraThread mThread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,12 +143,14 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
     }
     private void initView(){
         //type表示是哪个被选中了
-     //   type = getIntent().getIntExtra("type", 0);
+        type = getIntent().getIntExtra("type", 0);
         cameraPreview = findViewById(R.id.camera_surface);
         //中间布局
         containerView = findViewById(R.id.camera_crop_container);
         //裁剪布局
         cropView =  findViewById(R.id.camera_crop);
+
+        topContainer=findViewById(R.id.topContainer);
         //顶部四个按钮
         idContainer=findViewById(R.id.idContainer);
         cardContainer=findViewById(R.id.cardContainer);
@@ -135,22 +166,30 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
         cardText=findViewById(R.id.cardText);
         invoiceText=findViewById(R.id.invoiceText);
         licenseText=findViewById(R.id.licenseText);
-
-
+        //文字
+        cropTextV =findViewById(R.id.cropTextV);
+        cropTextH=findViewById(R.id.cropTextH);
         //设置crop图片
-        flashImageView = (ImageView) findViewById(R.id.camera_flash);
-        optionView = findViewById(R.id.camera_option);
-        resultView = findViewById(R.id.camera_result);
+        pickPhoto = (ImageView) findViewById(R.id.album_pick);
+        //
+        remake=findViewById(R.id.remake);
 
-
-
+        //监听<---还是ButterKnife好用啊--- >
+        idContainer.setOnClickListener(this);
+        cardContainer.setOnClickListener(this);
+        invoiceContainer.setOnClickListener(this);
+        licenseContainer.setOnClickListener(this);
+        //
         cameraPreview.setOnClickListener(this);
+        //
+        remake.setOnClickListener(this);
         findViewById(R.id.camera_close).setOnClickListener(this);
         findViewById(R.id.camera_take).setOnClickListener(this);
-        flashImageView.setOnClickListener(this);
-        findViewById(R.id.camera_result_ok).setOnClickListener(this);
-        findViewById(R.id.camera_result_cancel).setOnClickListener(this);
+        pickPhoto.setOnClickListener(this);
+        mThread=new cameraThread();
+        mThread.start();
     }
+     @SuppressLint("NewApi")
      private void initEvent(){
 
          screenWidth = Math.min(getResources().getDisplayMetrics().widthPixels,
@@ -165,8 +204,29 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
              horizontalView();
          }
          //获取type，判定哪个item应该被选中
+         selectedItem(type);
+         //监听屏幕方向
+         mOrEventListener=new OrientationEventListener(this, SensorManager.SENSOR_DELAY_NORMAL) {
+             @Override
+             public void onOrientationChanged(int orientation) {
+                 Log.i(TAG, "isMainThread:"+( Looper.getMainLooper() == Looper.myLooper())+","+CAN_ROTATE);
+                 if ((((orientation >= 0) && (orientation <= 45)) || (orientation >= 315)
+                         || ((orientation >= 135) && (orientation <= 225)))&&CAN_ROTATE) {// portrait
+                      IS_VERTICAL=true;
+                     verticalView();
+                     Log.i(TAG, "竖屏");
+                 } else if ((((orientation > 45) && (orientation < 135))
+                         || ((orientation > 225) && (orientation < 315)))&&CAN_ROTATE) {// landscape
+                     IS_VERTICAL=false;
+                     horizontalView();
+                     Log.i(TAG, "横屏");
+                 }
 
+
+             }
+         };
      }
+    @SuppressLint("NewApi")
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -179,20 +239,52 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
             case R.id.camera_take:
                 takePhoto();
                 break;
-            case R.id.camera_flash:
-                boolean isFlashOn = cameraPreview.switchFlashLight();
-                flashImageView.setImageResource(isFlashOn ? R.mipmap.camera_flash_on : R.mipmap.camera_flash_off);
+            case R.id.album_pick:
+                pickPhotos();
                 break;
-            case R.id.camera_result_ok:
-                goBack();
+            case R.id.idContainer://新增顶部四个按钮点击事件
+                selectedItem(TYPE_ID);
                 break;
-            case R.id.camera_result_cancel:
-                optionView.setVisibility(View.VISIBLE);
-                cameraPreview.setEnabled(true);
-                resultView.setVisibility(View.GONE);
-                cameraPreview.startPreview();
+            case R.id.cardContainer:
+                selectedItem(TYPE_CARD);
+                break;
+            case R.id.invoiceContainer:
+                selectedItem(TYPE_INVOICE);
+                break;
+            case R.id.licenseContainer:
+                selectedItem(TYPE_LICENSE);
+                break;
+            case R.id.remake:
+                remakePhoto();
                 break;
         }
+    }
+
+    /**
+     * 打开相册
+     */
+    private void pickPhotos() {
+        PermissionUtils.requestPermission(this,"需要相机权限！",false,
+                data->{
+                    Intent intent = new Intent(
+                            Intent.ACTION_PICK);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, CAMERA_REQUEST_CODE);
+                },0, Permission.CAMERA);
+    }
+
+    /**
+     * 重拍
+     */
+    private void remakePhoto(){
+     CAN_ROTATE=true;//可以旋转
+     remake.setVisibility(View.GONE);
+     cropView.setBackgroundResource(0);
+     if (IS_VERTICAL){
+          cropView.setImageResource(R.drawable.vertical_crop);
+     }else{
+          cropView.setImageResource(R.drawable.horizontal_crop);
+     }
     }
 
     /**
@@ -213,9 +305,18 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
      * 竖屏
      */
     private void verticalView(){
+        //设置Text位置
+//        RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) cropTextV.getLayoutParams();
+//        params.width=ViewGroup.LayoutParams.MATCH_PARENT;
+//        params.height=ViewGroup.LayoutParams.WRAP_CONTENT;
+//
+//        params.addRule(RelativeLayout.RIGHT_OF,0);//移除
+//        params.addRule(RelativeLayout.ABOVE,R.id.camera_crop);
+        cropTextV.setVisibility(View.VISIBLE);
+        cropTextH.setVisibility(View.GONE);
         cropView.setImageResource(R.drawable.vertical_crop);
-        float width = (int) (screenWidth * 0.8);
-        float height = (int) (width * 0.8f);
+        float width = (int) (screenWidth * 0.9);
+        float height = (int) (width * 0.75f);
         RelativeLayout.LayoutParams cropParams = new RelativeLayout.LayoutParams((int) width, (int) height);
         cropParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         cropView.setLayoutParams(cropParams);
@@ -225,7 +326,16 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
      * 横屏
      */
     private void horizontalView(){
-
+        //设置Text位置
+//         cropTextV.setRotation(90);
+//        RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) cropTextV.getLayoutParams();
+//        params.width=ViewGroup.LayoutParams.MATCH_PARENT;
+//        params.height=ViewGroup.LayoutParams.MATCH_PARENT;
+//        params.addRule(RelativeLayout.ABOVE,0);
+//        params.addRule(RelativeLayout.RIGHT_OF,R.id.camera_crop);
+//        params.rightMargin=10;
+        cropTextV.setVisibility(View.GONE);
+        cropTextH.setVisibility(View.VISIBLE);
         cropView.setImageResource(R.drawable.horizontal_crop);
         float width = (int) (screenWidth * 0.7);
         float height = (int) (width * 1.6f);
@@ -258,10 +368,10 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
         invoiceImg.setImageTintList(csl);
         licenseImg.setImageTintList(csl);
 
-        idText.setBackgroundTintList(csl);
-        cardText.setBackgroundTintList(csl);
-        invoiceText.setBackgroundTintList(csl);
-        licenseText.setBackgroundTintList(csl);
+        idText.setTextColor(getResources().getColor(R.color.white));
+        cardText.setTextColor(getResources().getColor(R.color.white));
+        invoiceText.setTextColor(getResources().getColor(R.color.white));
+        licenseText.setTextColor(getResources().getColor(R.color.white));
 
     }
 
@@ -274,25 +384,33 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
         if (currentPos==id) return;
         currentPos=id;
         switch (id){
-            case 1:
+            case TYPE_ID:
                 restoreItem();
                 idImg.setImageTintList(null);
-                idText.setBackgroundTintList(null);
+                idText.setTextColor(getResources().getColor(R.color.if_color));
+                cropTextH.setText(getResources().getString(R.string.id_text));
+                cropTextV.setText(getResources().getString(R.string.id_text));
                 break;
-            case 2:
+            case TYPE_CARD:
                 restoreItem();
                 cardImg.setImageTintList(null);
-                cardText.setBackgroundTintList(null);
+                cardText.setTextColor(getResources().getColor(R.color.if_color));
+                cropTextH.setText(getResources().getString(R.string.card_text));
+                cropTextV.setText(getResources().getString(R.string.card_text));
                 break;
-            case 3:
+            case TYPE_INVOICE:
                 restoreItem();
                 invoiceImg.setImageTintList(null);
-                invoiceText.setBackgroundTintList(null);
+                invoiceText.setTextColor(getResources().getColor(R.color.if_color));
+                cropTextH.setText(getResources().getString(R.string.invoice_text));
+                cropTextV.setText(getResources().getString(R.string.invoice_text));
                 break;
-            case 4:
+            case TYPE_LICENSE:
                 restoreItem();
                 licenseImg.setImageTintList(null);
-                licenseText.setBackgroundTintList(null);
+                licenseText.setTextColor(getResources().getColor(R.color.if_color));
+                cropTextH.setText(getResources().getString(R.string.license_text));
+                cropTextV.setText(getResources().getString(R.string.license_text));
                 break;
         }
     }
@@ -300,68 +418,57 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
 
 
     private void takePhoto() {
-        optionView.setVisibility(View.GONE);
         cameraPreview.setEnabled(false);
         cameraPreview.takePhoto(new Camera.PictureCallback() {
             @Override
             public void onPictureTaken(final byte[] data, Camera camera) {
-                camera.stopPreview();
+            //    camera.stopPreview();
                 //子线程处理图片，防止ANR
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        //拍好了不能再旋转
+                        CAN_ROTATE=false;
                         try {
-                            File originalFile = getOriginalFile();
-                            FileOutputStream originalFileOutputStream = new FileOutputStream(originalFile);
-                            originalFileOutputStream.write(data);
-                            originalFileOutputStream.close();
-
-                            Bitmap bitmap = BitmapFactory.decodeFile(originalFile.getPath());
-
+                            Bitmap bitmap =rotateBitmapByDegree(BitmapFactory.decodeByteArray(data,0,data.length),90) ;
                             //计算裁剪位置
-                            float left, top, right, bottom;
-                            if (type == TYPE_COMPANY_PORTRAIT) {
-                                left = (float) cropView.getLeft() / (float) cameraPreview.getWidth();
-                                top = ((float) containerView.getTop() - (float) cameraPreview.getTop()) / (float) cameraPreview.getHeight();
-                                right = (float) cropView.getRight() / (float) cameraPreview.getWidth();
-                                bottom = (float) containerView.getBottom() / (float) cameraPreview.getHeight();
-                            } else {
-                                left = ((float) containerView.getLeft() - (float) cameraPreview.getLeft()) / (float) cameraPreview.getWidth();
-                                top = (float) cropView.getTop() / (float) cameraPreview.getHeight();
-                                right = (float) containerView.getRight() / (float) cameraPreview.getWidth();
-                                bottom = (float) cropView.getBottom() / (float) cameraPreview.getHeight();
-                            }
-                            //裁剪及保存到文件
+                            int pX, pY, pWidth, pHeight;
+                               pX=cropView.getLeft();
+                               pY=cropView.getTop()+topContainer.getHeight();
+                               pWidth=(int) ((float)cropView.getWidth()/cameraPreview.getWidth() * (float) bitmap.getWidth());
+                               pHeight= (int) ((float)cropView.getHeight()/cameraPreview.getHeight() * (float) bitmap.getHeight());
+                            //裁剪图片
                             Bitmap cropBitmap = Bitmap.createBitmap(bitmap,
-                                    (int) (left * (float) bitmap.getWidth()),
-                                    (int) (top * (float) bitmap.getHeight()),
-                                    (int) ((right - left) * (float) bitmap.getWidth()),
-                                    (int) ((bottom - top) * (float) bitmap.getHeight()));
+                                    pX,
+                                    pY,
+                                    pWidth,
+                                    pHeight);
 
-                            final File cropFile = getCropFile();
-                            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(cropFile));
-                            cropBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-                            bos.flush();
-                            bos.close();
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    resultView.setVisibility(View.VISIBLE);
+                            bitmap.recycle();
+                           // cropBitmap.recycle();
+                            runOnUiThread(() -> {
+                                //
+                                if (IS_VERTICAL){
+                                    cropView.setImageResource(R.drawable.vertical_crop_no);
+                                }else {
+                                    cropView.setImageResource(R.drawable.horizontal_crop_no);
+                                }
+                                cropView.setBackground(new BitmapDrawable(getResources(),cropBitmap));
+                            });
+                            // TODO: 2019/3/5 处理接口
+                            runOnUiThread(()->{
+                                if (true){//如果处理失败
+                                    remake.setVisibility(View.VISIBLE);
+                                    cropTextH.setText(getResources().getString(R.string.dis_error));
+                                    cropTextV.setText(getResources().getString(R.string.dis_error));
+                                }else{//处理成功
+
                                 }
                             });
-                            return;
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
+
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                optionView.setVisibility(View.VISIBLE);
-                                cameraPreview.setEnabled(true);
-                            }
-                        });
                     }
                 }).start();
 
@@ -370,51 +477,227 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
     }
 
     /**
-     * @return 拍摄图片原始文件
+     * 旋转图片
+     * @param bm
+     * @param degree
+     * @return
      */
-    private File getOriginalFile() {
-        switch (type) {
-            case TYPE_IDCARD_FRONT:
-                return new File(getExternalCacheDir(), "idCardFront.jpg");
-            case TYPE_IDCARD_BACK:
-                return new File(getExternalCacheDir(), "idCardBack.jpg");
-            case TYPE_COMPANY_PORTRAIT:
-            case TYPE_COMPANY_LANDSCAPE:
-                return new File(getExternalCacheDir(), "companyInfo.jpg");
+    public Bitmap rotateBitmapByDegree(Bitmap bm, int degree) {
+        Bitmap returnBm = null;
+        // 根据旋转角度，生成旋转矩阵
+        Matrix matrix = new Matrix();
+        matrix.postRotate(degree);
+        try {
+            // 将原始图片按照旋转矩阵进行旋转，并得到新的图片
+            returnBm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
+                    bm.getHeight(), matrix, true);
+        } catch (OutOfMemoryError e) {
         }
-        return new File(getExternalCacheDir(), "picture.jpg");
+        if (returnBm == null) {
+            returnBm = bm;
+        }
+        if (bm != returnBm) {
+            bm.recycle();
+        }
+        return returnBm;
+    }
+   public int readPictureDegress(String path){
+        int degree=0;
+       try {
+           ExifInterface exifInterface=new ExifInterface(path);
+           int orientation=exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_NORMAL);
+           switch (orientation){
+               case ExifInterface.ORIENTATION_ROTATE_90:
+                   degree=90;
+                   break;
+               case ExifInterface.ORIENTATION_ROTATE_180:
+                   degree=180;
+                   break;
+               case ExifInterface.ORIENTATION_ROTATE_270:
+                   degree=270;
+                   break;
+           }
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       return degree;
+   }
+
+
+    /**
+     * 获取相册中最新一张图片
+     *
+     * @param context
+     * @return
+     */
+    public static Pair<Long, String> getLatestPhoto(Context context) {
+        //拍摄照片的地址
+        String CAMERA_IMAGE_BUCKET_NAME = Environment.getExternalStorageDirectory().toString() + "/DCIM/Camera";
+        //截屏照片的地址
+        String SCREENSHOTS_IMAGE_BUCKET_NAME = getScreenshotsPath();
+        //拍摄照片的地址ID
+        String CAMERA_IMAGE_BUCKET_ID = getBucketId(CAMERA_IMAGE_BUCKET_NAME);
+        //截屏照片的地址ID
+        String SCREENSHOTS_IMAGE_BUCKET_ID = getBucketId(SCREENSHOTS_IMAGE_BUCKET_NAME);
+        //查询路径和修改时间
+        String[] projection = {MediaStore.Images.Media.DATA,
+                MediaStore.Images.Media.DATE_MODIFIED};
+        //
+        String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
+        //
+        String[] selectionArgs = {CAMERA_IMAGE_BUCKET_ID};
+        String[] selectionArgsForScreenshots = {SCREENSHOTS_IMAGE_BUCKET_ID};
+
+        //检查camera文件夹，查询并排序
+        Pair<Long, String> cameraPair = null;
+        Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArgs,
+                MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC");
+        if (cursor.moveToFirst()) {
+            cameraPair = new Pair(cursor.getLong(cursor.getColumnIndex(MediaStore.Images.Media.DATE_MODIFIED)),
+                    cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA)));
+        }
+        //检查Screenshots文件夹
+        Pair<Long, String> screenshotsPair = null;
+        //查询并排序
+        cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArgsForScreenshots,
+                MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC");
+
+        if (cursor.moveToFirst()) {
+            screenshotsPair = new Pair(cursor.getLong(cursor.getColumnIndex(MediaStore.Images.Media.DATE_MODIFIED)),
+                    cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA)));
+        }
+        if (!cursor.isClosed()) {
+            cursor.close();
+        }
+        //对比
+        if (cameraPair != null && screenshotsPair != null) {
+            if (cameraPair.first > screenshotsPair.first) {
+                screenshotsPair = null;
+                Log.i(TAG, "getLatestPhoto: "+cameraPair.first+","+cameraPair.second);
+                return cameraPair;
+            } else {
+                cameraPair = null;
+                Log.i(TAG, "getLatestPhoto2: "+screenshotsPair.first+","+screenshotsPair.second);
+                return screenshotsPair;
+            }
+
+        } else if (cameraPair != null && screenshotsPair == null) {
+            Log.i(TAG, "getLatestPhoto3: "+cameraPair.first+","+cameraPair.second);
+            return cameraPair;
+
+        } else if (cameraPair == null && screenshotsPair != null) {
+            Log.i(TAG, "getLatestPhoto4: "+screenshotsPair.first+","+screenshotsPair.second);
+            return screenshotsPair;
+        }
+        return null;
+    }
+
+    private static String getBucketId(String path) {
+        return String.valueOf(path.toLowerCase().hashCode());
     }
 
     /**
-     * @return 拍摄图片裁剪文件
+     * 获取截图路径
+     * @return
      */
-    private File getCropFile() {
-        switch (type) {
-            case TYPE_IDCARD_FRONT:
-                return new File(getExternalCacheDir(), "idCardFrontCrop.jpg");
-            case TYPE_IDCARD_BACK:
-                return new File(getExternalCacheDir(), "idCardBackCrop.jpg");
-            case TYPE_COMPANY_PORTRAIT:
-            case TYPE_COMPANY_LANDSCAPE:
-                return new File(getExternalCacheDir(), "companyInfoCrop.jpg");
+    public static String getScreenshotsPath(){
+        String path = Environment.getExternalStorageDirectory().toString() + "/DCIM/Screenshots";
+        File file = new File(path);
+        if(!file.exists()){
+            path = Environment.getExternalStorageDirectory().toString() + "/Pictures/Screenshots";
         }
-        return new File(getExternalCacheDir(), "pictureCrop.jpg");
+        file = null;
+        return path;
     }
 
-    /**
-     * 点击对勾，使用拍照结果，返回对应图片路径
-     */
-    private void goBack() {
-        Intent intent = new Intent();
-        intent.putExtra("result", getCropFile().getPath());
-        setResult(RESULT_CODE, intent);
-        finish();
+    private class cameraThread extends  Thread{
+        @Override
+        public void run() {
+            super.run();
+           Pair pair= getLatestPhoto(CameraActivity2.this);
+           if (pair!=null){
+             Bitmap bitmap= rotateBitmapByDegree(ImageUtils.ratio(String.valueOf(pair.second),
+                       150,150,null),90);
+             runOnUiThread(()->{
+                 pickPhoto.setImageBitmap(bitmap);
+             });
+           }
+        }
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        super.onConfigurationChanged(newConfig);
-        Log.i("ConfigurationChanged", "onConfigurationChanged: ....");
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==CAMERA_REQUEST_CODE&&resultCode==RESULT_OK){
+                dealAlbum(data);
+        }else if (requestCode==CAMERA_REQUEST_CODE&&resultCode==0){
+            //
+            cameraPreview.setEnabled(true);
+            Pair pair= getLatestPhoto(CameraActivity2.this);
+            if (pair!=null){
+                Abitmap=BitmapFactory.decodeFile(String.valueOf(pair.second));
+                    cropView.setBackground(new BitmapDrawable(getResources(),Abitmap));
+                // TODO: 2019/3/5 待调试接口
+                remake.setVisibility(View.VISIBLE);
+            }
+        }
     }
+    private void dealAlbum(Intent data){
+        String path;
+        try {
+            Uri selectedImage = data.getData(); //获取系统返回的照片的Uri
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);//从系统表中查询指定Uri对应的照片
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            path = cursor.getString(columnIndex);  //获取照片路径
+            cursor.close();
+            Abitmap = rotateBitmapByDegree(BitmapFactory.decodeFile(path),readPictureDegress(path));
+            cropView.setBackground(new BitmapDrawable(getResources(),Abitmap));
+            //选中后，不可再旋转
+            CAN_ROTATE=false;
+            if (IS_VERTICAL){
+                cropView.setImageResource(R.drawable.vertical_crop_no);
+            }else{
+                cropView.setImageResource(R.drawable.horizontal_crop_no);
+            }
+            // TODO: 2019/3/5 接口处理
+            if (true){//如果处理失败
+                remake.setVisibility(View.VISIBLE);
+            }else{
+
+            }
+
+        } catch (Exception e) {
+            // TODO Auto-generatedcatch block
+            e.printStackTrace();
+        }finally {
+
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mOrEventListener.enable();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mOrEventListener.disable();
+        //及时回收
+        if (Abitmap!=null&&!Abitmap.isRecycled()){
+            Abitmap.recycle();
+            Abitmap=null;
+        }
+    }
+
+
 }

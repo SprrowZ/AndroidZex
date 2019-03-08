@@ -44,6 +44,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by smartown on 2018/2/24 11:46.
@@ -423,6 +425,7 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
             @Override
             public void onPictureTaken(final byte[] data, Camera camera) {
             //    camera.stopPreview();
+                camera.startPreview();//机型适配
                 //子线程处理图片，防止ANR
                 new Thread(new Runnable() {
                     @Override
@@ -430,11 +433,20 @@ public class CameraActivity2 extends Activity implements View.OnClickListener {
                         //拍好了不能再旋转
                         CAN_ROTATE=false;
                         try {
-                            Bitmap bitmap =rotateBitmapByDegree(BitmapFactory.decodeByteArray(data,0,data.length),90) ;
+                            // TODO: 2019/3/7 暂时处理，目前没有更好的解决办法
+                            Bitmap bitmap;
                             //计算裁剪位置
                             int pX, pY, pWidth, pHeight;
-                               pX=cropView.getLeft();
-                               pY=cropView.getTop()+topContainer.getHeight();
+                            pX=cropView.getLeft();
+
+                            if ("HUAWEI".equals(Build.MANUFACTURER)){
+                                pY=cropView.getTop()+topContainer.getHeight()*2;
+                               bitmap =rotateBitmapByDegree(BitmapFactory.decodeByteArray(data,0,data.length),0) ;
+                            }else{
+                                pY=cropView.getTop()+topContainer.getHeight();
+                               bitmap =rotateBitmapByDegree(BitmapFactory.decodeByteArray(data,0,data.length),90) ;
+                            }
+                              //裁剪长度
                                pWidth=(int) ((float)cropView.getWidth()/cameraPreview.getWidth() * (float) bitmap.getWidth());
                                pHeight= (int) ((float)cropView.getHeight()/cameraPreview.getHeight() * (float) bitmap.getHeight());
                             //裁剪图片

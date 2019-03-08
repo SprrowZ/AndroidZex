@@ -178,7 +178,7 @@
 
         <TextView
             android:id="@+id/cropTextH"
-            android:layout_width="@dimen/len_256"
+            android:layout_width="276dp"
             android:layout_height="@dimen/font_20"
             android:layout_centerVertical="true"
             android:gravity="center"
@@ -186,7 +186,7 @@
             android:text="@string/id_text"
             android:textColor="@color/white"
             android:textSize="@dimen/font_16"
-            android:translationX="@dimen/len_224" />
+            android:translationX="214dp" />
 
     </RelativeLayout>
 

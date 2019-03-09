@@ -1,4 +1,4 @@
-package com.rye.catcher.project.socket;
+package com.rye.catcher.project.socket.udpdemo1;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -9,7 +9,7 @@ import java.net.SocketException;
  * Created at 2019/3/6.
  *
  * @author Zzg
- * @function:udp内容提供者
+ * @function:udp内容提供者（单播）
  */
 public class UDPProvider {
     public static void main(String[] args) throws IOException {

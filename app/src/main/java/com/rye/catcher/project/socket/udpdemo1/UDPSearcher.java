@@ -1,4 +1,4 @@
-package com.rye.catcher.project.socket;
+package com.rye.catcher.project.socket.udpdemo1;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -9,7 +9,7 @@ import java.net.InetAddress;
  * Created at 2019/3/6.
  *
  * @author Zzg
- * @function:搜索者
+ * @function:搜索者（单播）
  */
 public class UDPSearcher {
     public static void main(String[] args) throws IOException {
@@ -25,7 +25,7 @@ public class UDPSearcher {
                 requestDataBytes.length);
         //用本机测
         requestPacket.setAddress(InetAddress.getLocalHost());
-        requestPacket.setPort(20000);
+        requestPacket.setPort(20000);//provider的端口，searcher不需要指定自己端口，系统随机分配
         request.send(requestPacket);//回送数据
 
         //接收回送的消息

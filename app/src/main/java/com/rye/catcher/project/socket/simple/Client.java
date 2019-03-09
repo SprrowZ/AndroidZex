@@ -1,4 +1,4 @@
-package com.rye.catcher.project.socket;
+package com.rye.catcher.project.socket.simple;
 
 import java.io.BufferedReader;
 import java.io.IOException;

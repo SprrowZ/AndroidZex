@@ -21,6 +21,7 @@ import com.rye.catcher.project.dialog.ctdialog.ExDialog;
 import com.rye.catcher.project.services.DownLoadService;
 import com.rye.catcher.utils.ToastUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -37,7 +38,6 @@ public class ORRFragment extends BaseFragment {
    private Unbinder unbinder;
    private View view;
    @BindView(R.id.test1) Button test1;
-   private DownLoadProcess listener=new DownLoadProcess();
    private static final String VEDIO_URL="https://media.w3.org/2010/05/sintel/";
 
    private HorizontalProgress progressBar;
@@ -47,6 +47,7 @@ public class ORRFragment extends BaseFragment {
     private int statusCode=-1;
 
    private static  HashMap<String,ExDialog> hashMap=new HashMap<>();
+   //会造成内存泄露
    private Handler handler=new Handler(){
        @Override
        public void handleMessage(Message msg) {
@@ -73,7 +74,7 @@ public class ORRFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //添加监听器
-        DownLoadService.addListener(new DownLoadProcess());
+        DownLoadService.addListener(new DownLoadProcess(this));
         dialogView=LayoutInflater.from(getContext()).inflate(R.layout.progress_dialog,null,false);
         progressBar=dialogView.findViewById(R.id.progress);
     }
@@ -142,37 +143,43 @@ public class ORRFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    private class DownLoadProcess implements DownLoadListener{
-
+    private static class DownLoadProcess implements DownLoadListener{
+        private WeakReference<ORRFragment> weakReference;
+        public DownLoadProcess(ORRFragment fragment){
+            weakReference=new WeakReference<>(fragment);
+        }
+        private ORRFragment zFragment=weakReference.get();
         @Override
         public void onStart() {
             Log.i(TAG, "onStart: ...");
-             showProgessDialog();
+            zFragment.showProgessDialog();
         }
 
         @Override
         public void onProgress(int progress) {
             Log.i(TAG, "onProgress: "+progress);
-            statusCode=1;
-            progressBar.setProgress(progress);
+            zFragment.statusCode=1;
+            zFragment.progressBar.setProgress(progress);
         }
 
         @Override
         public void onFinish(String path) {
             Log.i(TAG, "onFinish: ...");
-            statusCode=2;
-            closeProgressDialog();
+            zFragment.statusCode=2;
+            zFragment.closeProgressDialog();
             //发送消息
             Message message=new Message();
             message.what=10;
             message.obj=path;
-            handler.sendMessage(message);
+            zFragment.handler.sendMessage(message);
         }
 
         @Override
         public void onFail(String errorInfo) {
             Log.i(TAG, "onFail: "+errorInfo);
-            statusCode=3;
+            zFragment.statusCode=3;
         }
     }
+
+
 }

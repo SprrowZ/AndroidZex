@@ -1,5 +1,6 @@
 package com.rye.catcher.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.Serializable;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,17 +110,13 @@ public class CartoonsListActivity extends BaseActivity {
 
         listView.setOnItemClickListener(vsl);
         //下拉监听回调
-        listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
-            @Override
-            public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                //获取更新数据
-               new dataAsyncTask().execute();
-
-                if (listView.isRefreshing()){
-                    listView.postDelayed(()->{
-                            listView.onRefreshComplete();
-                    }, 500);
-                }
+        listView.setOnRefreshListener(refreshView -> {
+            //获取更新数据
+           new dataAsyncTask(CartoonsListActivity.this).execute();
+           if (listView.isRefreshing()){
+                listView.postDelayed(()->{
+                        listView.onRefreshComplete();
+                }, 500);
             }
         });
     }
@@ -137,14 +135,10 @@ public class CartoonsListActivity extends BaseActivity {
 
         if (adapter==null){
             adapter=new GreenAdapter(this,datalist);
-            adapter.setService(new BaseArrayAdapter.IService<TB_Cartoons>() {
-                @Override
-                public boolean add(TB_Cartoons item, String query) {
-                    return item.getNAME().contains(query)
-                            ||item.getHERO().contains(query)
-                            ||item.getHEROINE().contains(query);
-                }
-            });
+            adapter.setService((BaseArrayAdapter.IService<TB_Cartoons>) (item, query) ->
+                    item.getNAME().contains(query)
+                    ||item.getHERO().contains(query)
+                    ||item.getHEROINE().contains(query));
             listView.setAdapter(adapter);
         }else{
           adapter.notifyDataSetChanged();
@@ -155,24 +149,27 @@ public class CartoonsListActivity extends BaseActivity {
 
         listView.setAdapter(adapter);
     }
-    public  class  dataAsyncTask extends AsyncTask<Void,Integer,List<TB_Cartoons>>{
-
+    //AsyncTask 静态内部类
+    private static class  dataAsyncTask extends AsyncTask<Void,Integer,List<TB_Cartoons>>{
+          WeakReference<CartoonsListActivity> mActivity;
+          public dataAsyncTask(CartoonsListActivity activity){
+              mActivity=new WeakReference<>(activity);
+          }
+          CartoonsListActivity zActivity=mActivity.get();
          @Override
          protected List<TB_Cartoons> doInBackground(Void... voids) {
-          final List<TB_Cartoons> newdata =  cartoonsDao.queryBuilder()
-                     .offset(batch*CartoonsListActivity.ITEM_COUNT)
+
+          final List<TB_Cartoons> newdata =  zActivity.cartoonsDao.queryBuilder()
+                     .offset(zActivity.batch*CartoonsListActivity.ITEM_COUNT)
                      .limit(20)
                      .list();
-          runOnUiThread(new Runnable() {
-              @Override
-              public void run() {
-                  if (newdata!=null){
-                      batch++;
-                      datalist.addAll(newdata);
-                      adapter.notifyDataSetChanged();
-                  }else{
+          zActivity.runOnUiThread(() -> {
+              if (newdata!=null){
+                  zActivity.batch++;
+                  zActivity.datalist.addAll(newdata);
+                  zActivity.adapter.notifyDataSetChanged();
+              }else{
 
-                  }
               }
           });
           return newdata;
@@ -182,9 +179,9 @@ public class CartoonsListActivity extends BaseActivity {
          protected void onPostExecute(List<TB_Cartoons> cartoons) {
              //提交之前进行一些操作吧，加个bottomView,不需要runonuithread，因为这个方法和onprogressupdated一样运行在主线程中
                    if (cartoons==null||cartoons.size()==0){
-                               TextView textView=new TextView(CartoonsListActivity.this);
+                               TextView textView=new TextView(zActivity);
                                textView.setText("没有更多数据了");
-                               listView.getRefreshableView().addFooterView(textView);//要getRefreshableView先。。
+                       zActivity.listView.getRefreshableView().addFooterView(textView);//要getRefreshableView先。。
                    }
              super.onPostExecute(cartoons);
          }

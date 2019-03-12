@@ -25,7 +25,7 @@ public class UDPProviderEx {
     }
 
     /**
-     * 子线程用于循环处理消息
+     * 子线程用于循环处理消息,主要为了可以随时结束任务
      */
     private static class Provider extends Thread {
         private final String sn;
@@ -50,12 +50,12 @@ public class UDPProviderEx {
                     DatagramPacket receivePack = new DatagramPacket(buf, buf.length);
                     ds.receive(receivePack);
                     //发送者的ip、端口
-                    String senderIP = receivePack.getAddress().getHostAddress();
-                    int senderPort = receivePack.getPort();
+                    String ip = receivePack.getAddress().getHostAddress();
+                    int port = receivePack.getPort();
                     int packLength = receivePack.getLength();
                     String data = new String(receivePack.getData(), 0, packLength);
                     //输出发送者的相关信息
-                    System.out.println("接收到来自：" + senderIP + ":" + senderPort + ",的数据为："
+                    System.out.println("接收到来自：" + ip + ":" + port + ",的数据为："
                             + data);
                     //解析端口号，回送到A指定的端口号
                     int responsePort=MessageCreator.parsePort(data);

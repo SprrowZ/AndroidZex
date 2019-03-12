@@ -18,6 +18,8 @@ import com.rye.catcher.R;
 import com.rye.catcher.utils.DialogUtil;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.TypeFaceUtil;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -244,6 +246,12 @@ public abstract class BaseFragment extends Fragment implements View.OnTouchListe
             }
         }
         receiverMap.clear();
+
+        //LeakCanery检测内存泄露
+        RefWatcher refWatcher = LeakCanary.installedRefWatcher();
+
+// We expect schrodingerCat to be gone soon (or not), let's watch it.
+        refWatcher.watch(this);
     }
 
 

@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Created at 2018/12/3.
- *
+ * AIDL-Service
  * @author Zzg
  */
 public class IRemoteService extends Service {

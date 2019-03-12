@@ -13,6 +13,8 @@ import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.common.ActivityManager;
 import com.rye.catcher.utils.EchatAppUtil;
+
+import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.greendao.database.Database;
@@ -41,6 +43,14 @@ public class zApplication extends Application{
         init();
         //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
         EchatAppUtil.setContext(mContext);
+        //内存泄露检测LeakCanary
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+
     }
                //GreenDao初始化
 

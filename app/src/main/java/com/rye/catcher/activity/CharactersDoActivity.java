@@ -70,6 +70,7 @@ public class CharactersDoActivity extends BaseActivity {
      * 判断是隐藏数据还是显示数据
      */
     private boolean SHOW_DATA = true;
+    //内存泄漏...待修改
     Handler handler = new Handler() {
         @Override
         public void handleMessage(final Message msg) {

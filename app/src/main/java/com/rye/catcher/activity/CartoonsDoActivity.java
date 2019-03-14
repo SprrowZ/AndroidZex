@@ -74,7 +74,7 @@ public class CartoonsDoActivity extends BaseActivity {
     private boolean SHOW_DATA = true;
 
     /**
-     * 查询是异步的，通过handler
+     * 查询是异步的，通过handler，会内存泄漏
      */
     private Handler handler = new Handler() {
         @Override

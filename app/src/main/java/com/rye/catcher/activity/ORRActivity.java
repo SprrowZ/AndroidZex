@@ -1,9 +1,11 @@
 package com.rye.catcher.activity;
 
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,10 +15,14 @@ import android.widget.FrameLayout;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
+import com.rye.catcher.activity.adapter.ZviewPagerAdapter;
 import com.rye.catcher.activity.fragment.orr.ORRFragment;
 import com.rye.catcher.activity.fragment.orr.OkhttpFragment;
 import com.rye.catcher.activity.fragment.orr.RetrofitFragment;
 import com.rye.catcher.activity.fragment.orr.RxjavaFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,17 +43,43 @@ public class ORRActivity extends BaseActivity {
  Button orr;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    //下标及Fragments
+    private List<String> tabIndicators;
+    private List<Fragment> tabFragments;
+    private ZviewPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orr);
         ButterKnife.bind(this);
-        doSelect(0);
+       // doSelect(0);
+        initDatas();
         initEvent();
+    }
+
+    private void initDatas() {
+        tabIndicators=new ArrayList<>();
+        tabFragments=new ArrayList<>();
+        tabIndicators.add("Okhttp");
+        tabIndicators.add("Retrofit");
+        tabIndicators.add("Rxjava");
+        tabIndicators.add("ORR");
+        tabFragments.add(new OkhttpFragment());
+        tabFragments.add(new RetrofitFragment());
+        tabFragments.add(new RxjavaFragment());
+        tabFragments.add(new ORRFragment());
     }
 
     private void initEvent() {
          toolbar.inflateMenu(R.menu.rx);
+         //tabLayout
+         adapter=new ZviewPagerAdapter(getSupportFragmentManager(),tabIndicators,tabFragments);
+         viewPager.setAdapter(adapter);
+         tabLayout.setupWithViewPager(viewPager);//将tabLayout和viewpager绑定
     }
 
     @OnClick({R.id.okhttp,R.id.retrofit,R.id.rxjava,R.id.orr})

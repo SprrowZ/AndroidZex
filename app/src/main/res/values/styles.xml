@@ -127,4 +127,13 @@
         <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
     </style>
+
+    <style name="zTablayoutstyle" parent="Base.Widget.Design.TabLayout">
+        <item name="tabBackground">@color/gray_backgroud</item>
+        <item name="tabIndicatorColor">@color/soft17</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabSelectedTextColor">@color/soft17</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

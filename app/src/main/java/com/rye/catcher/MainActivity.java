@@ -83,7 +83,7 @@ private Handler handler=new Handler();
 
     private void authority() {
         String [] permissions=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        PermissionsUtil.getInstance().checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
+        PermissionsUtil.INSTANCE.checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
             @Override
             public void passPermissons() {
                 Log.i(TAG, "passPermissons: STORAGE");

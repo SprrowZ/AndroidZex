@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 
 /**
- * Created by ruaho on 2017/7/5.
+ *
  */
 
 public class EchatAppUtil {

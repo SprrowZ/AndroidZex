@@ -21,22 +21,11 @@ import java.util.List;
 /**
  * Created by ZZG on 2018/7/26.
  */
-public class PermissionsUtil {
+public enum  PermissionsUtil {
+    INSTANCE;
     private final int mRequestCode = 100;//权限请求码
     public static boolean showSystemSetting = true;
-
-    private PermissionsUtil() {
-    }
-
-    private static PermissionsUtil permissionsUtils;
     private IPermissionsResult mPermissionsResult;
-
-    public static PermissionsUtil getInstance() {
-        if (permissionsUtils == null) {
-            permissionsUtils = new PermissionsUtil();
-        }
-        return permissionsUtils;
-    }
 
     /**
      * 判断/申请权限

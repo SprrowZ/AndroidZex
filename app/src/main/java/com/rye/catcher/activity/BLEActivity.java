@@ -134,7 +134,7 @@ public class BLEActivity extends BaseActivity {
     }
 
     private void requestPermissions() {
-        PermissionsUtil.getInstance().checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
+        PermissionsUtil.INSTANCE.checkPermissions( this,new PermissionsUtil.IPermissionsResult() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
             @Override
             public void passPermissons() {

@@ -108,31 +108,15 @@ public class ProjectMainActivity extends BaseActivity {
     @BindView(R.id.takePhoto)
     Button takePhoto;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-
-    //测试Handler
-    private Handler zHander = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 1:
-                    runOnUiThread(() -> {
-                        ToastUtils.shortMsg("弹出框。。。");
-                    });
-                    break;
-            }
-        }
-    };
-
+    private Timer timer;
+    private TimerTask timerTask;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_main);
         ButterKnife.bind(this);
         setBarTitle("Mix");
-
         MeasureUtil.setLeftScale(this, search, searchBar, R.mipmap.icon_title_bar_edit_search);
-
         Log.i(TAG2, "onCreate: ...");
     }
 
@@ -140,8 +124,6 @@ public class ProjectMainActivity extends BaseActivity {
     private void showDialog() {
         TopDialog topDialog =
                 new TopDialog(ProjectMainActivity.this, R.layout.project_dialog_first);
-
-
         parent = (LinearLayout) topDialog.findViewById(R.id.parent);
         //设置drawleft的大小
 
@@ -153,7 +135,8 @@ public class ProjectMainActivity extends BaseActivity {
     }
 
     private void setClock() {
-        new Timer().schedule(new TimerTask() {
+        timer=new Timer();
+        timerTask=new TimerTask(){
             @Override
             public void run() {
                 final Date date = new Date();
@@ -161,7 +144,8 @@ public class ProjectMainActivity extends BaseActivity {
                     sliding.setText(sdf.format(date));
                 });
             }
-        }, 0, 1000);
+        };
+        timer.schedule(timerTask,0,1000);
     }
 
     @Override
@@ -281,5 +265,11 @@ public class ProjectMainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG2, "onDestroy: ...");
+        if (timer!=null){
+            timer.cancel();
+        }
+        if (timerTask!=null){
+            timerTask.cancel();
+        }
     }
 }

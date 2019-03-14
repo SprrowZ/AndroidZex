@@ -6,10 +6,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.orr.ORRFragment;
 import com.rye.catcher.activity.fragment.orr.OkhttpFragment;
@@ -20,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ORRActivity extends AppCompatActivity {
+public class ORRActivity extends BaseActivity {
  private Fragment currentFragment;
  private int  currentPos=-1;
  @BindView(R.id.container)
@@ -33,12 +35,19 @@ public class ORRActivity extends AppCompatActivity {
  Button rxjava;
  @BindView(R.id.orr)
  Button orr;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orr);
         ButterKnife.bind(this);
         doSelect(0);
+        initEvent();
+    }
+
+    private void initEvent() {
+         toolbar.inflateMenu(R.menu.rx);
     }
 
     @OnClick({R.id.okhttp,R.id.retrofit,R.id.rxjava,R.id.orr})

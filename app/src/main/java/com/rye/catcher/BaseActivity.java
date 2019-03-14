@@ -30,6 +30,7 @@ import com.rye.catcher.utils.ToastUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -402,22 +403,35 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private static Boolean isExit = false;
-
+    private ZTask timerTask;
+    //双击两次退出应用
+    Timer timer;
     private void Exit() {
-        Timer timer;
         if (isExit == false) {
             timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    isExit = false;
-                }
-            }, 2000);
+            timerTask= new ZTask(BaseActivity.this);
+            timer.schedule(timerTask,2000);
         } else {
             finish();
             System.exit(0);
         }
     }
+
+    /**
+     * timer内存泄露
+     */
+    private static class ZTask extends TimerTask{
+        private WeakReference<BaseActivity> weakReference;
+        public ZTask(BaseActivity activity){
+            weakReference=new WeakReference<>(activity);
+        }
+        @Override
+        public void run() {
+           weakReference.get().isExit=false;
+        }
+    }
+
+
 /*************************************新增********************************************/
     /**
      * Loading Dialog
@@ -438,6 +452,15 @@ public class BaseActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //就多一个参数this
-        PermissionsUtil.getInstance().onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+        PermissionsUtil.INSTANCE.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (timer!=null){//防止内存泄露
+            timerTask.cancel();
+            timer.cancel();
+        }
     }
 }

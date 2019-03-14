@@ -278,6 +278,6 @@ public abstract class BaseFragment extends Fragment implements View.OnTouchListe
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //就多一个参数this
-        PermissionsUtil.getInstance().onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
+        PermissionsUtil.INSTANCE.onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
     }
 }

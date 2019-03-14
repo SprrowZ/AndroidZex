@@ -20,6 +20,7 @@ import com.yanzhenjie.permission.Permission;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.lang.ref.WeakReference;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,18 +34,7 @@ public class SplashActivity extends BaseActivity {
     private static  final  String TAG="SplashActivity";
     @BindView(R.id.image)
      ImageView image;
-     Handler mHandler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case 1:
-                    startActivityByAlpha(new Intent(SplashActivity.this,MainActivityEx.class));
-                    finish();
-                    break;
-            }
-        }
-    };
-
+    private JumpHandler mHandler;
 
 
     @Override
@@ -60,6 +50,7 @@ public class SplashActivity extends BaseActivity {
 
     private void initEx() {
         //安装申请权限
+        mHandler=new JumpHandler(this);
         authority();
         Glide.with(this).load(R.drawable.ling).into(image);
 
@@ -68,19 +59,39 @@ public class SplashActivity extends BaseActivity {
     private void authority() {
         PermissionUtils.requestPermission(this,"本地文件读写和手机状态需要此类权限,请去设置里授予权限",
                 false,data ->{
-                    Message message=new Message();
+                    Message message=mHandler.obtainMessage();
                     message.what=1;
                     mHandler.sendMessageDelayed(message,4000);
                 },0,
                 Permission.WRITE_EXTERNAL_STORAGE,Permission.CALL_PHONE,Permission.ACCESS_COARSE_LOCATION);
     }
-    private void actions(){
 
-    }
 
     @Override
     protected void onDestroy() {
         AmapAPI.getInstance().destroyLocation();
         super.onDestroy();
+    }
+
+    /**
+     * 静态内部类，弱引用防止内存泄露
+     */
+    private static class JumpHandler extends Handler{
+        private WeakReference<SplashActivity> weakReference;
+        public JumpHandler(SplashActivity activity){
+            weakReference=new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            SplashActivity zActivity=weakReference.get();
+            switch (msg.what){
+                case 1:
+                    zActivity.startActivityByAlpha(new Intent(zActivity,MainActivityEx.class));
+                    zActivity.finish();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
     }
 }

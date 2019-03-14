@@ -40,7 +40,6 @@ import butterknife.Unbinder;
  */
 
 public class CameraFragment extends BaseFragment {
-    private static final int EXTERNAL_STORAGE_REQ_CODE = 12;
     @BindView(R.id.text)
     TextView text;
     @BindView(R.id.btn_camera)
@@ -108,9 +107,6 @@ public class CameraFragment extends BaseFragment {
         startActivityForResult(intent, TAKE_PHOTO);
     }
     private void callAlbum(){
-//        Intent intent5 = new Intent(Intent.ACTION_PICK, null);
-//        intent5.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-//        intent5.setAction(Intent.ACTION_GET_CONTENT);
         Intent intent5 = new Intent();
         intent5.setType("image/*");
         intent5.setAction(Intent.ACTION_GET_CONTENT);

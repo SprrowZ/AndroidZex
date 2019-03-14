@@ -346,7 +346,9 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".activity.ORRActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/TranslucentTheme"
+            />
         <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
         <activity android:name=".activity.BLEActivity" />
         <activity android:name=".project.Ademos.mvp.MvpActivity" />

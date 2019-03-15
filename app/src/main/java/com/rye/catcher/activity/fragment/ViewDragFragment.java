@@ -15,17 +15,16 @@ import com.rye.catcher.R;
  */
 public class ViewDragFragment extends BaseFragment {
 
-
-    public ViewDragFragment() {
-        // Required empty public constructor
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.fragment_view_drag;
     }
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_view_drag, container, false);
+    protected void initData() {
+
     }
+
+
 
 }

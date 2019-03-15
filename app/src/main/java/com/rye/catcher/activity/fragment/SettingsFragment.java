@@ -24,119 +24,109 @@ import com.rye.catcher.project.review.KeepJava;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 /**
  * Created by zzg on 2017/10/10.
  */
 
 public class SettingsFragment extends BaseFragment {
-    private ProgressBar progressBar;
-    private Button btn1;
-    private View view;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button cameraOne;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+    @BindView(R.id.btn1)
+    Button btn1;
+    @BindView(R.id.btn2)
+    Button btn2;
+    @BindView(R.id.btn3)
+    Button btn3;
+    @BindView(R.id.btn4)
+    Button btn4;
+    @BindView(R.id.cameraOne)
+    Button cameraOne;
+    @BindView(R.id.review)
+    Button review;
+    @BindView(R.id.animation)
+    Button animation;
+    @BindView(R.id.custom)
+    Button custom;
+    @BindView(R.id.project)
+    Button project;
+    @BindView(R.id.editText)
+    EditText editText;
 
-    private Button review;
-    private Button someting_new;
-    private Button Animation;
 
-    private Button custom;
-    private Button project;
 
-    private EditText editText;
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab04, container, false);
-        this.view = view;
-
-        return view;
+    protected int getLayoutResId() {
+        return R.layout.tab04;
     }
 
-
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//dialog逻辑
+    protected void initData() {
         setBarTitle("苍海");
-        btn1 = view.findViewById(R.id.btn1);
-        btn1.setOnClickListener(view -> startActivity(new Intent(getActivity(), ORRActivity.class)));
-        //测试finish方法
-        btn2 = view.findViewById(R.id.btn2);
-        btn2.setOnClickListener(view -> {
-            Intent intent4 = new Intent(getActivity(), KeepJava.class);
-            startActivity(intent4);
-        });
-
-        progressBar = view.findViewById(R.id.progressBar);
-        new Thread(() -> {
-            try {
-                Thread.sleep(3000);
-                if (getActivity() == null) {
-                    return;
-                } else {
-
-                    getActivity().runOnUiThread(() -> progressBar.setVisibility(View.GONE));
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-        //跳转到子Activity中
-        btn3 = view.findViewById(R.id.btn3);
-        btn3.setOnClickListener(view -> {
-            Intent intent1 = new Intent(getActivity(), FirstActivity.class);
-            startActivity(intent1);
-        });
-        //
-        btn4 = view.findViewById(R.id.btn4);
-        btn4.setOnClickListener(view -> {
-            Intent intent2 = new Intent(getActivity(), SecondActivity.class);
-            startActivity(intent2);
-        });
-//camera Test
-        cameraOne = view.findViewById(R.id.cameraOne);
-        cameraOne.setOnClickListener(v -> {
-            authority();
-            Intent intent3 = new Intent(getActivity(), CameraActivity.class);
-            intent3.putExtra("info", "fuck...");
-            startActivity(intent3);
-        });
-
-//Review
-        review = view.findViewById(R.id.review);
-        review.setOnClickListener(v -> {
-            Intent intent5 = new Intent(getActivity(), ReviewTest.class);
-            startActivity(intent5);
-        });
-
-
-        Animation = view.findViewById(R.id.animation);
-        Animation.setOnClickListener(view -> {
-            Intent intent7 = new Intent(getActivity(), AnimMainActivity.class);
-            startActivity(intent7);
-            getActivity().overridePendingTransition(R.anim.translate_to_right, R.anim.translate_to_right_hide);
-        });
-        custom = view.findViewById(R.id.custom);
-        custom.setOnClickListener(v -> {
-            // int height= MeasureUtil.getHeight(getActivity());
-            // Toast.makeText(getActivity(),String.valueOf(height),Toast.LENGTH_LONG).show();
-            Intent intent9 = new Intent(getActivity(), CtmMainActivity.class);
-            startActivity(intent9);
-        });
-        project = view.findViewById(R.id.project);
-        project.setOnClickListener(
-                v -> {
-                    Intent intent10 = new Intent(getActivity(), ProjectMainActivity.class);
-                    startActivity(intent10);
-                }
-        );
-        editText = view.findViewById(R.id.editText);
-
-
-        super.onActivityCreated(savedInstanceState);
     }
+    @OnClick({R.id.btn1,R.id.btn2,R.id.btn3,R.id.btn4,
+    R.id.progressBar,R.id.cameraOne,R.id.review,R.id.animation,
+    R.id.custom,R.id.project})
+    public void onViewCreated(View view){
+        switch (view.getId()){
+            case R.id.btn1:
+                startActivity(new Intent(getActivity(), ORRActivity.class));
+                break;
+            case R.id.btn2:
+                Intent intent4 = new Intent(getActivity(), KeepJava.class);
+                startActivity(intent4);
+                break;
+            case R.id.btn3:
+                Intent intent1 = new Intent(getActivity(), FirstActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.btn4:
+                Intent intent2 = new Intent(getActivity(), SecondActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.progressBar:
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(3000);
+                        if (getActivity() == null) {
+                            return;
+                        } else {
+
+                            getActivity().runOnUiThread(() -> progressBar.setVisibility(View.GONE));
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
+                break;
+            case R.id.cameraOne:
+                authority();
+                Intent intent3 = new Intent(getActivity(), CameraActivity.class);
+                intent3.putExtra("info", "fuck...");
+                startActivity(intent3);
+                break;
+            case R.id.review:
+                Intent intent5 = new Intent(getActivity(), ReviewTest.class);
+                startActivity(intent5);
+                break;
+            case R.id.animation:
+                Intent intent7 = new Intent(getActivity(), AnimMainActivity.class);
+                startActivity(intent7);
+                break;
+            case R.id.custom:
+                Intent intent9 = new Intent(getActivity(), CtmMainActivity.class);
+                startActivity(intent9);
+                break;
+            case R.id.project:
+                Intent intent10 = new Intent(getActivity(), ProjectMainActivity.class);
+                startActivity(intent10);
+                break;
+        }
+    }
+
+
 
     private void authority() {
         //申请权限
@@ -158,7 +148,6 @@ public class SettingsFragment extends BaseFragment {
 
     @Override
     public void onDestroy() {
-        // Toast.makeText(getActivity(),"destroy",Toast.LENGTH_SHORT).show();
         super.onDestroy();
     }
 

@@ -28,41 +28,24 @@ import butterknife.Unbinder;
 public class AIDLFragment extends BaseFragment {
     private static final String TAG="AIDLFragment";
     private static String fromClientParam;
-    private View view;
-    Unbinder unbinder;
+
     @BindView(R.id.baseType)
     TextView  baseType;
     @BindView(R.id.bean)
     TextView customType;
-    public AIDLFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view=inflater.inflate(R.layout.fragment_aidl, container, false);
-        unbinder= ButterKnife.bind(this,view);
-        return view;
+    protected int getLayoutResId() {
+        return R.layout.fragment_aidl;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initData() {
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-
-    @Override
     public void onDestroy() {
-        unbinder.unbind();
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }

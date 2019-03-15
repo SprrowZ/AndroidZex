@@ -1,34 +1,32 @@
 package com.rye.catcher.activity.fragment.orr;
 
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.activity.adapter.RxjavaAdapter;
 import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.project.dao.ServiceContext;
 import com.rye.catcher.project.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
+import com.rye.catcher.utils.ToastUtils;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
+import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -44,149 +42,222 @@ import okhttp3.Response;
  */
 public class RxjavaFragment extends BaseFragment {
 
-    private static  final String TAG="RxjavaFragment";
-    private Unbinder unbinder;
-    private View view;
-    private OkHttpClient client= OkHttpUtil.getInstance().getClient();
-    private static  final  String url="http://v.juhe.cn/weather/index?cityname=%E4%B8%8A%E6%B5%B7&dtype=&format=&key=3444d95f001d7765de768376c3a2d870";
+    private static final String TAG = "RxjavaFragment";
+
+    private OkHttpClient client = OkHttpUtil.getInstance().getClient();
+    private static final String url = "http://v.juhe.cn/weather/index?cityname=%E4%B8%8A%E6%B5%B7&dtype=&format=&key=3444d95f001d7765de768376c3a2d870";
+
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.result)
+    TextView result;
+    private StringBuffer stringBuffer = new StringBuffer();
+
+    private RxjavaAdapter adapter;
+
+    private List<String> dataList;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view=inflater.inflate(R.layout.fragment_rxjava, container, false);
-        unbinder=ButterKnife.bind(this,view);
-        return  view;
+    protected int getLayoutResId() {
+        return R.layout.fragment_rxjava;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initData() {
+        fakeData();//填充数据
+        adapter = new RxjavaAdapter(getActivity(), dataList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.HORIZONTAL));
+        recyclerView.setAdapter(adapter);
+        adapter.setOnClickListener(pos -> itemClick(pos));
         initEvent();
     }
 
-    private void initEvent() {
-
-            //上游
-            Observable.create(new ObservableOnSubscribe<String>() {
-                @Override
-                public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                    emitter.onNext("1---秦时明月");
-                    emitter.onNext("2---空山鸟语");
-                    emitter.onNext("3---天行九歌");
-                    emitter.onComplete();
-                }
-            }).subscribe(new Observer<String>() {//通过subscribe连接下游
-                private Disposable mDisposable;
-                private int i=0;//计数器
-                @Override
-                public void onSubscribe(Disposable d) {
-                    Log.i(TAG, "onSubscribe: ");
-                    mDisposable=d;
-                }
-                @Override
-                public void onNext(String s) {
-                    Log.i(TAG, "onNext: ");
-                    i++;
-                    if (i==2){
-                        mDisposable.dispose();//阻断,dls上线！
-                    }
-                }
-                @Override
-                public void onError(Throwable e) {
-
-                }
-
-                @Override
-                public void onComplete() {
-
-                }
-            });
-            /***********************只要onNext,x需要一个Consumer*********************/
-            Observable.create(new ObservableOnSubscribe<Integer>() {
-                @Override
-                public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-                    emitter.onNext(666);
-                }
-            }).subscribe(new Consumer<Integer>() {
-                @Override
-                public void accept(Integer integer) throws Exception {
-                    Log.i(TAG, "accept: "+integer);
-                }
-            });
-            /************************在子线程中运行***************************/
-            final Observable<String> observable=Observable.create(new ObservableOnSubscribe<String>() {
-                @Override
-                public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                    emitter.onNext("大浪淘沙");
-                }
-            });
-            Consumer consumer=new Consumer() {
-                @Override
-                public void accept(Object o) throws Exception {
-                    Log.i(TAG, "accept: "+o.toString());
-                }
-            };
-            observable.subscribeOn(Schedulers.newThread())//可以看出来提交是新开了一个线程
-                    .observeOn(AndroidSchedulers.mainThread())//接收还是在mainThread中的
-                    .subscribe(consumer);
-
-            /******************************Map操作变化符******************************/
-            Observable.create(new ObservableOnSubscribe<String>() {
-                @Override
-                public void subscribe(ObservableEmitter<String> emitter) {
-                    emitter.onNext("你是一个好人");
-                    emitter.onNext("现在想好好学习，不想谈恋爱");
-                }
-            }).map(new Function<String, String>() {
-                @Override
-                public String apply(String s) {
-                    return s+"====丑拒";
-                }
-            }).subscribe(new Consumer<String>() {
-                @Override
-                public void accept(String s) throws Exception {
-                    Log.i(TAG, "accept: "+"拒绝的原因很简单--》"+s);
-                }
-            });
-
-            Observable<String> observable1=Observable.create(new ObservableOnSubscribe<String>() {
-                @Override
-                public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                    emitter.onNext("zzg->");
-                }
-            });
-            Consumer<String> consumer1=new Consumer<String>() {
-                @Override
-                public void accept(String s) throws Exception {
-                    Log.i(TAG, "accept: "+s);
-                }
-            };
-            observable1.subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(consumer);
-
-    }
-
-    @OnClick({R.id.btn1,R.id.btn2,R.id.btn3,
-            R.id.btn4,R.id.btn5,R.id.btn6})
-    public void onViewClicked(View view){
-        switch (view.getId()){
-            case R.id.btn1:
-                getWeatherData();
+    /**
+     * item点击事件
+     *
+     * @param pos
+     */
+    private void itemClick(int pos) {
+        switch (pos) {
+            case 0:
+                ToastUtils.longMsg("...");
+                create();
                 break;
-            case R.id.btn2:
+            case 1:
+                consumer();
+                break;
+            case 2:
+                map();
+                break;
+            case 3:
+
+                break;
+            case 4:
+                break;
+            case 5:
                 break;
         }
     }
 
+    private void fakeData() {
+        dataList = new ArrayList<>();
+        dataList.add("create");
+        dataList.add("consumer");
+        dataList.add("Map");
+        dataList.add("FlatMap");
+    }
+
+    private void create() {
+        //上游
+        Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                emitter.onNext("1---秦时明月");
+                emitter.onNext("2---空山鸟语");
+                emitter.onNext("3---天行九歌");
+                emitter.onComplete();
+                stringBuffer.append("发送数据：" + "\n"
+                        + "1---秦时明月" + "\n" + "2---空山鸟语" + "\n" + "3---天行九歌" + "\n"
+                );
+                Log.i(TAG, "subscribe: .....");
+            }
+        }).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {//通过subscribe连接下游
+                    private Disposable mDisposable;
+                    private int i = 0;//计数器
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.i(TAG, "onSubscribe: ");
+                        mDisposable = d;
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.i(TAG, "onNext: ");
+                        if (i == 0) {
+                            stringBuffer.append("接收到的数据：" + "\n");
+                        }
+                        stringBuffer.append(s + "\n");
+                        i++;//第几个事件
+                        if (i == 2) {
+                            result.setText(stringBuffer);
+                            stringBuffer.delete(0, stringBuffer.length());
+                            mDisposable.dispose();//阻断,dls上线！
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //走不到，被上面的拦截了
+                        Log.i(TAG, "onComplete: " + stringBuffer);
+
+                    }
+                });
+    }
+
+    /**
+     * 下游只关心onNext事件
+     */
+    private void consumer() {
+        Observable.create((ObservableOnSubscribe<Integer>) emitter -> emitter.onNext(666))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(integer -> Log.i(TAG, "accept: " + integer));
+    }
+
+    private void differentThread() {
+        final Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                emitter.onNext("大浪淘沙");
+            }
+        });
+        Consumer consumer = new Consumer() {
+            @Override
+            public void accept(Object o) throws Exception {
+                Log.i(TAG, "accept: " + o.toString());
+            }
+        };
+        observable.subscribeOn(Schedulers.newThread())//可以看出来提交是新开了一个线程
+                .observeOn(AndroidSchedulers.mainThread())//接收还是在mainThread中的
+                .subscribe(consumer);
+    }
+
+    private void map() {
+
+    Observable<Integer> observable= Observable.create(emitter -> {
+        int[] arr=new int[3];
+        arr[0]=111;
+        arr[1]=222;
+        arr[2]=333;
+        for (int i=0;i<arr.length;i++){
+            emitter.onNext(arr[i]);
+            if (i==0){
+                stringBuffer.append("上游发送的数据："+"\n");
+            }
+            stringBuffer.append(arr[i]+"\n");
+        }
+        emitter.onComplete();
+    });
+
+      Observer observer=new Observer<String>() {
+          int i=0;
+          Disposable disposable;
+          @Override
+          public void onSubscribe(Disposable d) {
+              disposable=d;
+          }
+
+          @Override
+          public void onNext(String o) {
+              if (i==0){
+                  stringBuffer.append("接收到的数据为："+"\n");
+              }
+              stringBuffer.append(o+"\n");
+              i++;
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onComplete() {
+              result.setText(stringBuffer);
+              stringBuffer.delete(0,stringBuffer.length());
+          }
+      };
+
+   observable.subscribeOn(Schedulers.newThread())
+   .observeOn(AndroidSchedulers.mainThread())
+   .map(integer -> "ZZG-DATA："+integer).subscribe(observer);
+
+    }
+
+    private void initEvent() {
+
+    }
+
+
     /**
      * 通过Dialog显示
+     *
      * @param result
      */
-    private void showDialog(String result){
-        TextView tv=new TextView(getContext());
+    private void showDialog(String result) {
+        TextView tv = new TextView(getContext());
         tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                DensityUtil.dip2px(getContext(),300)));
+                DensityUtil.dip2px(getContext(), 300)));
         tv.setBackgroundColor(getResources().getColor(R.color.white));
         tv.setText(result);
         new ExDialog.Builder(getContext())
@@ -204,44 +275,41 @@ public class RxjavaFragment extends BaseFragment {
      */
     private void getWeatherData() {
         //被观察者
-       Observable<String> observable=Observable.create(new ObservableOnSubscribe<String>() {
-           @Override
-           public void subscribe(ObservableEmitter<String> emitter) {
-                   emitter.onNext(getResponse());
-           }
-       });
-       Consumer<String> consumer=new Consumer<String>() {
-           @Override
-           public void accept(String o) throws Exception {
-               showDialog(o);
-           }
-       };
+        Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) {
+                emitter.onNext(getResponse());
+            }
+        });
+        Consumer<String> consumer = new Consumer<String>() {
+            @Override
+            public void accept(String o) throws Exception {
+                showDialog(o);
+            }
+        };
 
-       observable.subscribeOn(Schedulers.newThread())
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribe(consumer);
+        observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(consumer);
     }
-    private String getResponse(){
-        Request request=new Request.Builder()
+
+    private String getResponse() {
+        Request request = new Request.Builder()
                 .get()
                 .url(url)
                 .addHeader("X-ZZ-TOKEN", ServiceContext.getUUID())
                 .build();
         try {
-            Response response=client.newCall(request).execute();
-            if (!response.isSuccessful()){
-               throw  new Exception("Unexpected result "+String.valueOf(response.code()));
+            Response response = client.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new Exception("Unexpected result " + String.valueOf(response.code()));
             }
-            String result=response.body().string();
+            String result = response.body().string();
             return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
-    }
+
 }

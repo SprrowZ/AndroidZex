@@ -34,8 +34,7 @@ import butterknife.Unbinder;
  */
 public class ORRFragment extends BaseFragment {
     private static  final  String TAG="ORRFragment";
-   private Unbinder unbinder;
-   private View view;
+
    @BindView(R.id.test1) Button test1;
    private DownLoadProcess listener=new DownLoadProcess();
    private static final String VEDIO_URL="https://media.w3.org/2010/05/sintel/";
@@ -62,22 +61,23 @@ public class ORRFragment extends BaseFragment {
            super.handleMessage(msg);
        }
    };
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_orr,container,false);
-        unbinder=ButterKnife.bind(this,view) ;
-        return view;
+    protected int getLayoutResId() {
+        return R.layout.fragment_orr;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //添加监听器
+    protected void initData() {
+//添加监听器
         DownLoadService.addListener(new DownLoadProcess());
         dialogView=LayoutInflater.from(getContext()).inflate(R.layout.progress_dialog,null,false);
         progressBar=dialogView.findViewById(R.id.progress);
     }
+
+
+
+
 
     /**
      * 创建dialog
@@ -140,7 +140,6 @@ public class ORRFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
     }
 
     private class DownLoadProcess implements DownLoadListener{

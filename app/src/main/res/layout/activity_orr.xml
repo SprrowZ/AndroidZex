@@ -8,6 +8,7 @@
     >
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -30,110 +31,111 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_marginTop="@dimen/len_12"
-                app:layout_collapseMode="pin"
+                app:layout_collapseMode="parallax"
                 app:contentInsetStart="0dp"
-                android:gravity="center_horizontal"
-                >
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="@string/rxjava"
-                 android:textStyle="bold"
 
-                 android:textSize="@dimen/font_20"
-                 />
+                >
+             <!--<TextView-->
+                 <!--android:layout_width="match_parent"-->
+                 <!--android:layout_height="wrap_content"-->
+                 <!--android:gravity="center_horizontal"-->
+                 <!--android:text="@string/ror"-->
+                 <!--android:textStyle="bold"-->
+                 <!--android:textSize="@dimen/font_20"-->
+                 <!--/>-->
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
-
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            app:tabBackground="@color/transparent"
+            app:tabIndicatorColor="@color/soft27"
+            app:tabSelectedTextColor="@color/soft17"
+            app:tabTextColor="@color/soft12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabMode="fixed"
+            >
+        </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        app:tabIndicatorColor="@color/soft17"
-        app:tabBackground="@color/gray_backgroud"
-        app:tabSelectedTextColor="@color/soft17"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        >
-    </android.support.design.widget.TabLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:visibility="gone"
-        >
 
-        <LinearLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/len_12"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/len_40"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        </android.support.v4.view.ViewPager>
 
-                <Button
-                    android:id="@+id/okhttp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/len_10"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_selector_done"
-                    android:text="Okhttp"
-                    android:textAllCaps="false" />
 
-                <Button
-                    android:id="@+id/retrofit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/len_10"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_selector_done"
-                    android:singleLine="true"
-                    android:text="Retrofit"
-                    android:textAllCaps="false" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/len_40"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <Button
-                    android:id="@+id/rxjava"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/len_10"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_selector_done"
-                    android:text="Rxjava"
-                    android:textAllCaps="false" />
+        <Button
+            android:id="@+id/okhttp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_10"
+            android:layout_weight="1"
+            android:background="@drawable/btn_selector_done"
+            android:text="Okhttp"
+            android:textAllCaps="false" />
 
-                <Button
-                    android:id="@+id/orr"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/len_10"
-                    android:layout_marginRight="@dimen/len_10"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_selector_done"
-                    android:text="ORR"
-                    android:textAllCaps="false" />
-            </LinearLayout>
+        <Button
+            android:id="@+id/retrofit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_10"
+            android:layout_weight="1"
+            android:background="@drawable/btn_selector_done"
+            android:singleLine="true"
+            android:text="Retrofit"
+            android:textAllCaps="false" />
 
-            <FrameLayout
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        <Button
+            android:id="@+id/rxjava"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_10"
+            android:layout_weight="1"
+            android:background="@drawable/btn_selector_done"
+            android:text="Rxjava"
+            android:textAllCaps="false" />
 
-                >
+        <Button
+            android:id="@+id/orr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/len_10"
+            android:layout_marginRight="@dimen/len_10"
+            android:layout_weight="1"
+            android:background="@drawable/btn_selector_done"
+            android:text="ORR"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
-            </FrameLayout>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+        >
+
+    </FrameLayout>
+</LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

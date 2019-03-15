@@ -35,19 +35,16 @@ public class CtmViewFragment extends BaseFragment  {
     private Unbinder unbinder;
     private View view;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view=inflater.inflate(R.layout.bcustom_main2_fragment,container,false);
-    unbinder= ButterKnife.bind(this,view);
-    this.view=view;
-    return view;
+    protected int getLayoutResId() {
+        return R.layout.bcustom_main2_fragment;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initData() {
+
     }
+
 
     @OnClick({R.id.btn1,R.id.btn2,R.id.btn3,
     R.id.btn4,R.id.btn5,R.id.btn6, R.id.btn7, R.id.btn8,R.id.btn9,R.id.btn10,

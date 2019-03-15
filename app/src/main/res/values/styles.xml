@@ -129,11 +129,17 @@
     </style>
 
     <style name="zTablayoutstyle" parent="Base.Widget.Design.TabLayout">
-        <item name="tabBackground">@color/gray_backgroud</item>
-        <item name="tabIndicatorColor">@color/soft17</item>
-        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabBackground">@color/soft14</item>
+        <item name="tabIndicatorColor">@color/soft27</item>
+        <item name="tabIndicatorHeight">1dp</item>
         <item name="tabSelectedTextColor">@color/soft17</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/soft12</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+   <!--TabLayout字体-->
+    <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/font_12</item>
+        <item name="textAllCaps">false</item>
     </style>
 </resources>

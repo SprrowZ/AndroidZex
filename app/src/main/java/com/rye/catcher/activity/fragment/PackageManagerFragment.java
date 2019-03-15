@@ -34,8 +34,7 @@ import butterknife.Unbinder;
  * A simple {@link Fragment} subclass.
  */
 public class PackageManagerFragment extends BaseFragment {
-    private View view;
-    private Unbinder unbinder;
+
     @BindView(R.id.tv1)
     TextView tv1;
     @BindView(R.id.tv2)
@@ -51,18 +50,18 @@ public class PackageManagerFragment extends BaseFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.fragment_package_manager, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
+    protected int getLayoutResId() {
+        return R.layout.fragment_package_manager;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initData() {
 
     }
+
+
+
+
 
     @OnClick({R.id.tv1, R.id.tv2, R.id.tv3})
     public void onViewClicked(View view) {
@@ -134,9 +133,5 @@ public class PackageManagerFragment extends BaseFragment {
         }).start();
     }
 
-    @Override
-    public void onDestroyView() {
-        unbinder.unbind();//别忘了销毁
-        super.onDestroyView();
-    }
+
 }

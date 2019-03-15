@@ -12,33 +12,33 @@ import android.view.ViewGroup;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
 
+import butterknife.BindView;
+
 /**
  * Created by ZZG on 2018/8/12.
  */
 public class ProgressFragment extends BaseFragment {
     private static  final  String TAG="ProgressFragment";
-    private View view;
-    private HorizontalProgress mProgress1;
-    private HorizontalProgress mProgress2;
-    private RoundProgress mRound1;
-    @Nullable
+
+
+    @BindView(R.id.progress1)
+    HorizontalProgress mProgress1;
+    @BindView(R.id.progress2)
+    HorizontalProgress mProgress2;
+    @BindView(R.id.round1)
+    RoundProgress mRound1;
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      View views=inflater.inflate(R.layout.progress_test,container,false);
-      this.view=views;
-      return view;
+    protected int getLayoutResId() {
+        return R.layout.progress_test;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mProgress1=view.findViewById(R.id.progress1);
-        mProgress2=view.findViewById(R.id.progress2);
-        mRound1=view.findViewById(R.id.round1);
+    protected void initData() {
         new AsyncTaskEx().execute(mProgress1.getProgress(),mProgress2.getProgress(),mRound1.getProgress());
     }
 
-    class  AsyncTaskEx extends AsyncTask<Integer,Integer,Void>{
+    //内存泄露
+    private   class  AsyncTaskEx extends AsyncTask<Integer,Integer,Void>{
 
         @Override
         protected Void doInBackground(Integer... integers) {

@@ -62,24 +62,19 @@ public class CameraFragment extends BaseFragment {
     private int REQUEST_TAKE_PHOTO_PERMISSION = 100;
     private int Ok;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.camera_fragment, container, false);
-        this.view = view;
-        unbinder = ButterKnife.bind(this, view);
-        return view;
+    protected int getLayoutResId() {
+        return R.layout.camera_fragment;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initData() {
         imageView = view.findViewById(R.id.imageView);
         //获取文件位置
         mFilepath = Environment.getExternalStorageDirectory().getPath();
         mFilepath = mFilepath + "/" + "temp.png";
     }
+
     private void getThumbnail(){//获取缩略图
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQ_1);

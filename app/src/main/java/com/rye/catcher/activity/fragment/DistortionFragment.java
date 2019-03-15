@@ -15,16 +15,16 @@ import com.rye.catcher.activity.fragment.BaseFragment;
  */
 public class DistortionFragment extends BaseFragment {
     private View view;
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      View views=inflater.inflate(R.layout.bcustom_distortionview,container,false);
-      this.view=views;
-      return views;
+    protected int getLayoutResId() {
+        return R.layout.bcustom_distortionview;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initData() {
+
     }
+
+
 }

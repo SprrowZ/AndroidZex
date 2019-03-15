@@ -43,28 +43,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitFragment extends BaseFragment {
     private static  final String TAG="RetrofitFragment";
-    private Unbinder unbinder;
-    private View view;
+
 
     private static final String BASE_URL="http://192.168.43.231:8088/OkhttpServer/";
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-         view=inflater.inflate(R.layout.fragment_retrofit, container, false);
-        unbinder=ButterKnife.bind(this,view);
-        return view;
+    protected int getLayoutResId() {
+        return R.layout.fragment_retrofit;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initData() {
+
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
-    }
+
+
+
+
 
     @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
             R.id.btn5, R.id.btn6,R.id.btn7, R.id.btn8})

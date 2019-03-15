@@ -6,11 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.rye.catcher.BaseActivity;
@@ -26,21 +23,20 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ORRActivity extends BaseActivity {
  private Fragment currentFragment;
  private int  currentPos=-1;
  @BindView(R.id.container)
  FrameLayout container;
- @BindView(R.id.okhttp)
- Button okhttp;
- @BindView(R.id.retrofit)
- Button retrofit;
- @BindView(R.id.rxjava)
- Button rxjava;
- @BindView(R.id.orr)
- Button orr;
+// @BindView(R.id.okhttp)
+// Button okhttp;
+// @BindView(R.id.retrofit)
+// Button retrofit;
+// @BindView(R.id.rxjava)
+// Button rxjava;
+// @BindView(R.id.orr)
+// Button orr;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tabLayout)
@@ -64,10 +60,10 @@ public class ORRActivity extends BaseActivity {
     private void initDatas() {
         tabIndicators=new ArrayList<>();
         tabFragments=new ArrayList<>();
-        tabIndicators.add("Okhttp");
-        tabIndicators.add("Retrofit");
-        tabIndicators.add("Rxjava");
-        tabIndicators.add("ORR");
+        tabIndicators.add(getString(R.string.okhttp));
+        tabIndicators.add(getString(R.string.retrofit));
+        tabIndicators.add(getString(R.string.rxjava));
+        tabIndicators.add(getString(R.string.orr));
         tabFragments.add(new OkhttpFragment());
         tabFragments.add(new RetrofitFragment());
         tabFragments.add(new RxjavaFragment());
@@ -75,30 +71,39 @@ public class ORRActivity extends BaseActivity {
     }
 
     private void initEvent() {
-         toolbar.inflateMenu(R.menu.rx);
+       //先不显示item
+       //    toolbar.inflateMenu(R.menu.rx);
          //tabLayout
          adapter=new ZviewPagerAdapter(getSupportFragmentManager(),tabIndicators,tabFragments);
          viewPager.setAdapter(adapter);
          tabLayout.setupWithViewPager(viewPager);//将tabLayout和viewpager绑定
+
+
     }
 
-    @OnClick({R.id.okhttp,R.id.retrofit,R.id.rxjava,R.id.orr})
-    public void onViewClicked(View view){
-        switch (view.getId()){
-            case R.id.okhttp:
-                doSelect(0);
-                break;
-            case R.id.retrofit:
-                doSelect(1);
-                break;
-            case R.id.rxjava:
-                doSelect(2);
-                break;
-            case R.id.orr:
-                doSelect(3);
-                break;
-        }
-    }
+
+
+
+ /*********************************底下方法暂且不用，使用MD***************************************/
+
+
+//    @OnClick({R.id.okhttp,R.id.retrofit,R.id.rxjava,R.id.orr})
+//    public void onViewClicked(View view){
+//        switch (view.getId()){
+//            case R.id.okhttp:
+//                doSelect(0);
+//                break;
+//            case R.id.retrofit:
+//                doSelect(1);
+//                break;
+//            case R.id.rxjava:
+//                doSelect(2);
+//                break;
+//            case R.id.orr:
+//                doSelect(3);
+//                break;
+//        }
+//    }
 
     private void doSelect(int pos) {
         if (pos==currentPos){

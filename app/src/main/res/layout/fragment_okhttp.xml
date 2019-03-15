@@ -2,138 +2,16 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ScrollView
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <Button
-                        android:id="@+id/btn1"
-                        android:text="doGet"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"
-                        />
-                    <Button
-                        android:id="@+id/btn2"
-                        android:text="doPost"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"
-                        />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="15dp"
-                    >
-                    <Button
-                        android:id="@+id/btn5"
-                        android:text="PostString"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"
-                        />
-                    <Button
-                        android:id="@+id/btn6"
-                        android:text="PostFile"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"
-                        />
-
-                    <Button
-                        android:id="@+id/btn7"
-                        android:text="UploadFile"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-
-                    >
-                    <Button
-                        android:id="@+id/btn8"
-                        android:text="DownLoad"
-                        android:singleLine="true"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"
-                        />
-                    <Button
-                        android:id="@+id/btn9"
-                        android:text="DownLoadImg"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"/>
-                    <Button
-                        android:id="@+id/btn10"
-                        android:text="待定"
-                        android:textAllCaps="false"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_orr"
-                        android:layout_marginLeft="5dp"/>
-                </LinearLayout>
-
-            </LinearLayout>
-            <TextView
-                android:id="@+id/tv1"
-                android:textSize="14dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/iv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </LinearLayout>
-
-
-
-    </ScrollView>
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

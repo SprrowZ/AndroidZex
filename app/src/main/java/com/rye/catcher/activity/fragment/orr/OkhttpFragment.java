@@ -1,12 +1,20 @@
 package com.rye.catcher.activity.fragment.orr;
 
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +26,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rye.catcher.R;
+import com.rye.catcher.activity.adapter.OkHttpAdapter;
 import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.items.SimpleItemDecoration;
 import com.rye.catcher.project.dao.ServiceContext;
+import com.rye.catcher.utils.DensityUtil;
+import com.rye.catcher.utils.DeviceUtils;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.SDHelper;
@@ -31,6 +43,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,43 +66,129 @@ import okhttp3.Response;
  */
 public class OkhttpFragment extends BaseFragment {
     private static  final String TAG="OkhttpFragment";
-    @BindView(R.id.tv1)
-    TextView tv1;
-    @BindView(R.id.iv)
-    ImageView iv;
+//    @BindView(R.id.tv1)
+//    TextView tv1;
+//    @BindView(R.id.iv)
+//    ImageView iv;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
-    private  Unbinder unbinder;
-    private View view;
+    private OkHttpAdapter adapter;
 
     private String URL = "http://192.168.43.231:8088/OkhttpServer/";
-
     //拿到对象
     private final OkHttpClient okHttpClient = OkHttpUtil.getInstance().getClient();
 
     //向服务器传递字符串
     private static final  String  jsonString="{\"username\":\"zzg\",\"job\":\"coder\"}";
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    //假数据
+    private List<String> dataList;
 
-        view=inflater.inflate(R.layout.fragment_okhttp,container,false);
-        unbinder=ButterKnife.bind(this,view);
-        return view;
+
+
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.fragment_okhttp;
     }
 
+    @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initData() {
+        //假数据
+        fakedata();
+        adapter=new OkHttpAdapter(getActivity(),dataList);
+        GridLayoutManager manager=new GridLayoutManager(recyclerView.getContext(),3);
 
+        //item之间加分割线，也可以在item上画
+        recyclerView.addItemDecoration(new SimpleItemDecoration(DensityUtil.dip2px(getActivity(),1),
+                DensityUtil.dip2px(getActivity(),1),getActivity().getColor(R.color.soft12)));
+        //一个item占多少列
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if ("康娜".equals(dataList.get(position))){
+                    return 2;
+                }else{
+                   // manager.getSpanCount();
+                    return 1;
+                }
+            }
+        });
+
+        recyclerView.setLayoutManager(manager);
+        //同上分割线
+       // recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+        //
+        adapter.setOnItemClickLister((view, pos) -> itemClick(pos));
+    }
+
+    /**
+     * 子View的点击事件
+     * @param pos
+     */
+    private void itemClick(int pos){
+        switch (pos){
+            case 0:
+                ToastUtils.shortMsg("....");
+                doGet();
+                break;
+            case 1:
+                doPost();
+                break;
+            case 2:
+              doPostString();
+                break;
+            case 3:
+              doPostFile();
+                break;
+            case 4:
+                doUpLoad();
+                break;
+            case 5:
+                doDownLoad();
+                break;
+            case 6:
+                doDownLoadImg();
+                break;
+            case 7:
+                break;
+        }
+    }
+    private void fakedata() {
+        dataList=new ArrayList<>();
+        dataList.add("doGet");
+        dataList.add("doPost");
+        dataList.add("PostString");
+        dataList.add("PostFile");
+        dataList.add("UploadFile");
+        dataList.add("DownLoad");
+        dataList.add("DownLoadImg");
+        dataList.add("蕾姆");
+        dataList.add("康娜");
+        dataList.add("焰灵姬");
+        dataList.add("女神彦");
+        dataList.add("炮姐");
+        dataList.add("康娜");
+        dataList.add("雏田");
+        dataList.add("康娜");
+        dataList.add("康娜");
+        dataList.add("雏田");
+        dataList.add("康娜");
+        dataList.add("康娜");
+        dataList.add("雏田");
+        dataList.add("康娜");
     }
 
 
     /**
      * 同步GET请求execute
-     * @param view
+     * @param
      * @throws IOException
      */
-    public void doGet(View view)  {
+    public void doGet()  {
         new Thread(()->{
             Request request = new Request.Builder()
                     .get()
@@ -107,7 +207,8 @@ public class OkhttpFragment extends BaseFragment {
                 }else{
                     String resp=response.body().string();
                     getActivity().runOnUiThread(()->{
-                        tv1.setText(resp);
+                        ToastUtils.longMsg(resp);
+//                        tv1.setText(resp);
                     });
                 }
             } catch (IOException e) {
@@ -118,9 +219,9 @@ public class OkhttpFragment extends BaseFragment {
 
     /**
      * 异步Post请求
-     * @param view
+     * @param
      */
-    public void doPost(View view) {
+    public void doPost() {
         new Thread(()->{
             RequestBody requestBody = new FormBody.Builder()
                     .add("userName", "空山鸟语")
@@ -153,7 +254,8 @@ public class OkhttpFragment extends BaseFragment {
                         @Override
                         public void run() {
                             try {
-                                tv1.setText("服务器返回数据："+s);
+                              //  tv1.setText("服务器返回数据："+s);
+                                ToastUtils.longMsg(s);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -167,9 +269,9 @@ public class OkhttpFragment extends BaseFragment {
 
     /**
      * 上传json字符串
-     * @param view
+     * @param
      */
-    public void doPostString(View view) {
+    public void doPostString() {
         new  Thread(()->{
             RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain;chaset=utf-8"), jsonString);
             Request request = new Request.Builder()
@@ -199,7 +301,8 @@ public class OkhttpFragment extends BaseFragment {
                         @Override
                         public void run() {
                             try {
-                                tv1.setText(s);
+                              //  tv1.setText(s);
+                                ToastUtils.longMsg(s);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -213,9 +316,9 @@ public class OkhttpFragment extends BaseFragment {
 
     /**
      * 上传文件
-     * @param view
+     * @param
      */
-    public void doPostFile(View view) {
+    public void doPostFile() {
         //本地必须得有这个图片
         File file = new File(SDHelper.getImageFolder(), "portrait.png");
         if (!file.exists()) {
@@ -256,9 +359,9 @@ public class OkhttpFragment extends BaseFragment {
 
     /**
      * 上传文件...跟上面差在可能是也传参数过去吧
-     * @param view
+     * @param
      */
-    public void doUpLoad(View view) {
+    public void doUpLoad() {
         File file = new File(SDHelper.getImageFolder(), "portrait.png");
         MultipartBody multipartBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("userName", "SprrowZ")
@@ -296,9 +399,9 @@ public class OkhttpFragment extends BaseFragment {
 
     /**
      *下载文件
-     * @param view
+     * @param
      */
-    public void doDownLoad(View view) {
+    public void doDownLoad() {
         final Request request = new Request.Builder().url(URL + "files/zzzz.jpg").build();//电脑上这个路径下要有test.jpg
         //输出路径
         Log.i(TAG, "doDownLoad: " + URL + "files/zzg.jpg");
@@ -326,7 +429,7 @@ public class OkhttpFragment extends BaseFragment {
             }
         });
     }
-    public void doDownLoadImg(View view) {
+    public void doDownLoadImg() {
         Request request = new Request.Builder().url(URL + "files/zzzz.jpg").build();//电脑上这个路径下要有test.jpg
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -342,11 +445,11 @@ public class OkhttpFragment extends BaseFragment {
                 InputStream is = response.body().byteStream();
                 final Bitmap bitmap = BitmapFactory.decodeStream(is);
                 getActivity().runOnUiThread(()->{
-                    iv.setImageBitmap(bitmap);//这里Bitmap.Options对图片进行压缩等操作，二次取样
-                    //加动画
-                    AlphaAnimation animation=new AlphaAnimation(0,1);
-                    animation.setDuration(1500);
-                    iv.setAnimation(animation);
+//                    iv.setImageBitmap(bitmap);//这里Bitmap.Options对图片进行压缩等操作，二次取样
+//                    //加动画
+//                    AlphaAnimation animation=new AlphaAnimation(0,1);
+//                    animation.setDuration(1500);
+//                    iv.setAnimation(animation);
                 });
             }
         });
@@ -382,36 +485,9 @@ public class OkhttpFragment extends BaseFragment {
 
    }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btn10})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn1:
-                doGet(view);
-                break;
-            case R.id.btn2:
-                doPost(view);
-                break;
-            case R.id.btn5:
-                doPostString(view);
-                break;
-            case R.id.btn6:
-                doPostFile(view);
-                break;
-            case R.id.btn7:
-                doUpLoad(view);
-                break;
-            case R.id.btn8:
-                doDownLoad(view);
-                break;
-            case R.id.btn9:
-                doDownLoadImg(view);
-                break;
-            case R.id.btn10:
-                break;
-        }
-    }
+
     /*******************************************写着玩************************************************/
-    private void doGet(){
+    private void doGet2(){
         Request request=new Request.Builder()
                 .addHeader("password","hello")
                 .url(URL)
@@ -426,16 +502,6 @@ public class OkhttpFragment extends BaseFragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
     }
 
 }

@@ -13,15 +13,15 @@ import com.rye.catcher.R;
  */
 
 public class AddressFragment extends BaseFragment {
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab03,container,false);
+    protected int getLayoutResId() {
+        return R.layout.tab03;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void initData() {
         setBarTitle("天行九歌");
     }
+
+
 }

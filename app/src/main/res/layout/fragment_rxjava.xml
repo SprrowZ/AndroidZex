@@ -34,7 +34,7 @@
        android:layout_height="match_parent"
        android:textSize="@dimen/font_20"
        android:textAllCaps="false"
-       android:gravity="center"
+       android:gravity="top"
        />
     </LinearLayout>
 

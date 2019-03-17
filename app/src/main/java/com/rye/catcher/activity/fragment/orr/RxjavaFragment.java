@@ -31,9 +31,11 @@ import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -110,13 +112,20 @@ public class RxjavaFragment extends BaseFragment {
                 zip();
                 break;
             case 8:
+                filter();
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
                 break;
         }
     }
 
     private void fakeData() {
         dataArr=new String[]{"create","consumer","just","from","interval","map","FlatMap"
-                ,"zip"};
+                ,"zip","filter"};
         dataList=Arrays.asList(dataArr);
     }
 
@@ -155,8 +164,7 @@ public class RxjavaFragment extends BaseFragment {
                         stringBuffer.append(s + "\n");
                         i++;//第几个事件
                         if (i == 2) {
-                            result.setText(stringBuffer);
-                            stringBuffer.delete(0, stringBuffer.length());
+                           setResult();
                             mDisposable.dispose();//阻断,dls上线！
                         }
                     }
@@ -206,8 +214,7 @@ public class RxjavaFragment extends BaseFragment {
                       }
                     }
                 });
-        result.setText(stringBuffer);
-        stringBuffer.delete(0,stringBuffer.length());
+        setResult();
     }
 
     /**
@@ -229,8 +236,7 @@ public class RxjavaFragment extends BaseFragment {
                         Log.i(TAG, "accept: "+string);
                     }
                 });
-        result.setText(stringBuffer);
-        stringBuffer.delete(0,stringBuffer.length());
+        setResult();
     }
 
     /**
@@ -292,8 +298,7 @@ public class RxjavaFragment extends BaseFragment {
 
             @Override
             public void onComplete() {
-                result.setText(stringBuffer);
-                stringBuffer.delete(0,stringBuffer.length());
+               setResult();
             }
         };
 
@@ -329,8 +334,7 @@ public class RxjavaFragment extends BaseFragment {
                         stringBuffer.append(str+"\n");
                         i++;
                         if (i==5){
-                            result.setText(stringBuffer);
-                            stringBuffer.delete(0,stringBuffer.length());
+                           setResult();
                         }
                         Log.i(TAG, "accept: "+str);
                     }
@@ -375,8 +379,7 @@ public class RxjavaFragment extends BaseFragment {
 
                      @Override
                      public void onComplete() {
-                         result.setText(stringBuffer);
-                         stringBuffer.delete(0,stringBuffer.length());
+                       setResult();
                      }
                  });
 
@@ -407,7 +410,66 @@ public class RxjavaFragment extends BaseFragment {
         });
     }
 
+    /**
+     * 过滤操作
+     */
+    private void filter(){
+        String[] arr=new String[]{"1","2","3","4","5"};
+        List list= Arrays.asList(arr);
+        Observable.fromIterable(list)
+                .filter(new Predicate<String>() {
+                    @Override
+                    public boolean test(String o) throws Exception {
+                        if (Integer.parseInt(o)>3){
+                            return true;
+                        }
+                        return false;
+                    }
+                }).subscribe(new Consumer<String>() {
+                    int i=0;
+            @Override
+            public void accept(String str) throws Exception {
+                if (i==0){
+                    stringBuffer.append("接收到的数据为："+"\n");
+                }
+                stringBuffer.append(str+"\n");
+                i++;
+                Log.i(TAG, "accept: "+str);
+            }
+        });
+       setResult();
+    }
 
+
+    private void  doOnNext(){
+        String[] arr=new String[]{"1","2","3","4","5"};
+        List list= Arrays.asList(arr);
+        Observable.fromIterable(list).doOnNext(new Consumer<String>() {
+            @Override
+            public void accept(String str) throws Exception {
+                Log.i(TAG, "doOnNext:... "+str);
+            }
+        }).doAfterNext(new Consumer<String>() {
+            @Override
+            public void accept(String str) throws Exception {
+                Log.i(TAG, "doAfterNext:... "+str);
+            }
+        }).doFinally(new Action() {
+            @Override
+            public void run() throws Exception {
+                Log.i(TAG, "doFinally:... ");
+            }
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String str) throws Exception {
+
+            }
+        });
+    }
+    private void setResult(){
+        result.setText(stringBuffer);
+        stringBuffer.delete(0,stringBuffer.length());
+    }
     private void initEvent() {
 
     }

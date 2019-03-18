@@ -18,21 +18,23 @@ import android.widget.TextView;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.base.interfaces.JuheWeatherApi;
+import com.rye.catcher.base.interfaces.FreeApi;
 import com.rye.catcher.activity.fragment.LMFragment;
 import com.rye.catcher.activity.fragment.SettingsFragment;
 import com.rye.catcher.activity.fragment.YLJFragment;
 
+import com.rye.catcher.common.KeyValueMgrZ;
 import com.rye.catcher.project.dao.KeyValueMgr;
 import com.rye.catcher.sdks.HttpLogger;
+import com.rye.catcher.sdks.beans.TangBean;
 import com.rye.catcher.sdks.beans.WeatherBean;
 import com.rye.catcher.sdks.gmap.AmapAPI;
 import com.rye.catcher.sdks.gmap.AmapResult;
 import com.rye.catcher.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.catcher.utils.ExtraUtil.test.utils.RetrofitManager;
 import com.rye.catcher.utils.FileUtils;
-import com.rye.catcher.utils.JsonUtils;
 import com.rye.catcher.utils.ToastUtils;
 
 
@@ -42,8 +44,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
+
 
 import butterknife.BindBitmap;
 import butterknife.BindColor;
@@ -51,6 +53,9 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,6 +117,8 @@ public class MainActivityEx extends BaseActivity {
         AmapAPI.getInstance().initLocation(this,mapHandler);
         FileUtils.writeUserLog(TAG+"onCreate:");
         Log.i(TAG, "onCrate: ...");
+        tangObservable();
+        tangTest();
     }
 
     /**
@@ -163,9 +170,9 @@ public class MainActivityEx extends BaseActivity {
      * 获取天气信息
      */
     private void getWeather(AmapResult amapResult) {
-        if ("".equals(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME))){
+        if ("".equals(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME))){
             Log.i(TAG, "getWeather: 字段为空");
-           KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
+           KeyValueMgrZ.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
            weatherThread();
         }else{
             boolean needRefreshWeather=!DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
@@ -176,8 +183,6 @@ public class MainActivityEx extends BaseActivity {
                 Log.i(TAG, "getWeather: 未满一天");
             }
         }
-
-  
     }
 
     /**
@@ -191,7 +196,7 @@ public class MainActivityEx extends BaseActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(HttpLogger.getOkHttpClient())//增加日志拦截
                     .build();
-            JuheWeatherApi weatherApi=retrofit.create(JuheWeatherApi.class);
+            FreeApi weatherApi=retrofit.create(FreeApi.class);
             Call<ResponseBody> call= weatherApi.getWeather(1,amapResult.getCity(),Constant.JUHE_WEATHER_KEY);
             Log.i(TAG, "getWeather: weatherApi");
             call.enqueue(new Callback<ResponseBody>() {
@@ -215,6 +220,39 @@ public class MainActivityEx extends BaseActivity {
             });
         }).start();
     }
+    private void tangTest(){
+        new Thread(()->{
+            Retrofit retrofit=new Retrofit.Builder()
+                    .baseUrl(Constant.TANG_POETRY)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(HttpLogger.getOkHttpClient())//增加日志拦截
+                    .build();
+            FreeApi api=retrofit.create(FreeApi.class);
+            try {
+                Response<ResponseBody> response=api.getTangPoetry2().execute();
+                Log.i(TAG, "tangTest: "+response.body().string());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+    }
+
+    private void tangObservable(){
+        RetrofitManager.INSTANCE
+                .getClient(Constant.TANG_POETRY)
+                .create(FreeApi.class)
+                .getTangPoetry()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody responseBody) throws Exception {
+                        Log.i(TAG, "acceptZZZ: "+ responseBody.string());
+                    }
+                });
+
+    }
 
     /**
      * 天气结果处理
@@ -224,7 +262,9 @@ public class MainActivityEx extends BaseActivity {
         Log.i(TAG, "onResponse:weatherApi "+result);
         JSONObject todayTemperature= null;
         try {
-            todayTemperature = JsonUtils.toJSONObject(result)
+//            com.alibaba.fastjson.JSONObject result2= com.alibaba.fastjson.JSONObject.parseObject(result)
+//            JuHeBean bean= JSON.toJavaObject(result2,JuHeBean.class);
+            todayTemperature =new JSONObject(result)
                     .getJSONObject(WeatherBean.WEATHER_RESULT)
                     .getJSONObject(WeatherBean.WEATHER_TODAY);
             if (todayTemperature!=null){

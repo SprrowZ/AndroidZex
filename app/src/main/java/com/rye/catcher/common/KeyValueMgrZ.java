@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Zzg
  * @function: 使用SP存储配置信息，90K空间
  */
-public class KeyValueMgr {
+public class KeyValueMgrZ {
    private static final String SP_NAME="Z-RYE-CATCHER";
     //内存缓存
    private static ConcurrentHashMap concurrentHashMap=new ConcurrentHashMap();
@@ -26,7 +26,7 @@ public class KeyValueMgr {
                 .getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         return sp.getString(key,"");
     }
-    public static void setValue(String key,Object value){
+    public static void saveValue(String key,Object value){
         if (key==null){
             throw new IllegalStateException("key can not be null!");
         }

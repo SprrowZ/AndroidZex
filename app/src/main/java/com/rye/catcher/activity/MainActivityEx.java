@@ -1,21 +1,19 @@
 package com.rye.catcher.activity;
 
-import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
@@ -40,21 +38,19 @@ import com.rye.catcher.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.List;
 
-
-import butterknife.BindBitmap;
-import butterknife.BindColor;
 import butterknife.BindView;
-import butterknife.BindViews;
+
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -68,57 +64,50 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MainActivityEx extends BaseActivity {
     private static  final  String TAG="MainActivityEx";
-    private long back_pressed;
-    @BindView(R.id.message) //被修饰的不能用private Or static修饰
-    public LinearLayout message;
-    @BindView(R.id.friend)
-    public LinearLayout friend;
-    @BindView(R.id.dynamic)
-    public LinearLayout dynamic;
-    @BindViews({R.id.message_iv, R.id.friend_iv, R.id.dynamic_iv})
-    public List<ImageView> imageViewList;
-    @BindViews({R.id.message_tv, R.id.friend_tv, R.id.dynamic_tv})
-    public List<TextView> textViewList;
-    @BindColor(R.color.grayBottom)
-    int grayBottom;
-    @BindColor(R.color.violetBottom)
-    int violetBottom;
-    @BindBitmap(R.drawable.icon_normal1)
-     Bitmap icon_normal1;
-    @BindBitmap(R.drawable.icon_normal2)
-    Bitmap icon_normal2;
-    @BindBitmap(R.drawable.icon_normal3)
-    Bitmap icon_normal3;
-    @BindBitmap(R.drawable.icon_pressed1)
-    Bitmap icon_pressed1;
-    @BindBitmap(R.drawable.icon_pressed2)
-    Bitmap icon_pressed2;
-    @BindBitmap(R.drawable.icon_pressed3)
-    Bitmap icon_pressed3;
+     private long back_pressed;
 
-    //地理位置
+//    //地理位置
     private AmapResult amapResult;
-    //当前Fragment
-    private  Fragment currentFragment;
+
+
+@BindView(R.id.design_bottom_sheet)
+BottomNavigationView bottom;
+     private  Fragment currentFragment;
     private  int currentPos=-1;
     private final  Handler mapHandler=new MapHandler(this);
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_ex);
-        ButterKnife.bind(this);
-  //      EventBus.getDefault().register(this);
-        init();
+        setContentView(R.layout.activity_main_exx);
+       ButterKnife.bind(this);
+      init();
     }
 
     private void init() {
+
         selectItem(0);
         //获取定位数据
-        AmapAPI.getInstance().initLocation(this,mapHandler);
+         AmapAPI.getInstance().initLocation(this,mapHandler);
         FileUtils.writeUserLog(TAG+"onCreate:");
         Log.i(TAG, "onCrate: ...");
         tangObservable();
-        tangTest();
+        bottom.setOnNavigationItemSelectedListener(item -> {
+               item.setChecked(true);
+            switch (item.getItemId()){
+                case R.id.first:
+                    selectItem(0);
+                    break;
+                case R.id.second:
+                    selectItem(1);
+                break;
+                case R.id.third:
+                    selectItem(2);
+                    break;
+            }
+            return false;
+        });
+
+
     }
 
     /**
@@ -144,7 +133,7 @@ public class MainActivityEx extends BaseActivity {
         }
         transaction.commitAllowingStateLoss();
         //改变颜色值
-        setSelect(pos);
+      //  setSelect(pos);
     }
     private String getTag(int pos) {
         return "Zzg_" + pos;
@@ -220,23 +209,7 @@ public class MainActivityEx extends BaseActivity {
             });
         }).start();
     }
-    private void tangTest(){
-        new Thread(()->{
-            Retrofit retrofit=new Retrofit.Builder()
-                    .baseUrl(Constant.TANG_POETRY)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(HttpLogger.getOkHttpClient())//增加日志拦截
-                    .build();
-            FreeApi api=retrofit.create(FreeApi.class);
-            try {
-                Response<ResponseBody> response=api.getTangPoetry2().execute();
-                Log.i(TAG, "tangTest: "+response.body().string());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
 
-    }
 
     private void tangObservable(){
         RetrofitManager.INSTANCE
@@ -245,105 +218,59 @@ public class MainActivityEx extends BaseActivity {
                 .getTangPoetry()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseBody>() {
+                .flatMap(new Function<ResponseBody, ObservableSource<TangBean>>() {
                     @Override
-                    public void accept(ResponseBody responseBody) throws Exception {
-                        Log.i(TAG, "acceptZZZ: "+ responseBody.string());
+                    public ObservableSource<TangBean> apply(ResponseBody responseBody) throws Exception {
+                       String result=responseBody.string();
+                        Log.i(TAG, "tangObservable:"+result);
+                        JSONObject json=JSONObject.parseObject(result);
+                        TangBean bean=JSONObject.toJavaObject(json,TangBean.class);
+                        return Observable.just(bean);
+                    }
+                }).subscribe(new Consumer<TangBean>() {
+                    @Override
+                    public void accept(TangBean bean) throws Exception {
+                        Log.i(TAG, "acceptZZZ: "+ bean.toString());
+                        EventBus.getDefault().post(bean);
                     }
                 });
 
     }
-
-    /**
-     * 天气结果处理
-     *
-     */
+//
+//    /**
+//     * 天气结果处理
+//     *
+//     */
     private void dealWeather(String result) {
         Log.i(TAG, "onResponse:weatherApi "+result);
         JSONObject todayTemperature= null;
-        try {
-//            com.alibaba.fastjson.JSONObject result2= com.alibaba.fastjson.JSONObject.parseObject(result)
+        //            com.alibaba.fastjson.JSONObject result2= com.alibaba.fastjson.JSONObject.parseObject(result)
 //            JuHeBean bean= JSON.toJavaObject(result2,JuHeBean.class);
-            todayTemperature =new JSONObject(result)
-                    .getJSONObject(WeatherBean.WEATHER_RESULT)
-                    .getJSONObject(WeatherBean.WEATHER_TODAY);
-            if (todayTemperature!=null){
-                String temperature=todayTemperature.getString(WeatherBean.TEMPERATURE);
-                String weather=todayTemperature.getString(WeatherBean.WEATHER);
-                Log.i(TAG, "weatherApi: --->"+"temperature:"+temperature+"weather:"+weather);
-                Bean bean=new Bean();
-                bean.set(WeatherBean.TEMPERATURE,temperature);
-                bean.set(WeatherBean.WEATHER,weather);
-                //发送广播
-                EventBus.getDefault().postSticky(bean);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        todayTemperature =JSONObject.parseObject(result)
+                .getJSONObject(WeatherBean.WEATHER_RESULT)
+                .getJSONObject(WeatherBean.WEATHER_TODAY);
+        if (todayTemperature!=null){
+            String temperature=todayTemperature.getString(WeatherBean.TEMPERATURE);
+            String weather=todayTemperature.getString(WeatherBean.WEATHER);
+            Log.i(TAG, "weatherApi: --->"+"temperature:"+temperature+"weather:"+weather);
+            Bean bean=new Bean();
+            bean.set(WeatherBean.TEMPERATURE,temperature);
+            bean.set(WeatherBean.WEATHER,weather);
+            //发送广播
+            EventBus.getDefault().postSticky(bean);
         }
     }
 
 
-    private void reset() {
-        imageViewList.get(0).setImageBitmap(icon_normal1);
-        imageViewList.get(1).setImageBitmap(icon_normal2);
-        imageViewList.get(2).setImageBitmap(icon_normal3);
-        textViewList.get(0).setTextColor(grayBottom);
-        textViewList.get(1).setTextColor(grayBottom);
-        textViewList.get(2).setTextColor(grayBottom);
-    }
 
-    private void setSelect(int number) {
-        switch (number) {
-            case 0:
-                imageViewList.get(0).setImageBitmap(icon_pressed1);
-                textViewList.get(0).setTextColor(violetBottom);
+//
+//    @SuppressLint("MissingSuperCall")
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {//为了解决崩溃点击无效的问题
+//        // super.onSaveInstanceState(outState);
+//    }
+//
 
-                break;
-            case 1:
-                imageViewList.get(1).setImageBitmap(icon_pressed2);
-                textViewList.get(1).setTextColor(violetBottom);
-
-                break;
-            case 2:
-                imageViewList.get(2).setImageBitmap(icon_pressed3);
-                textViewList.get(2).setTextColor(violetBottom);
-                break;
-        }
-    }
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {//为了解决崩溃点击无效的问题
-        // super.onSaveInstanceState(outState);
-    }
-
-    @OnClick({R.id.message, R.id.friend, R.id.dynamic})
-    public void onViewClicked(View view) {
-        reset();// 重置底部栏
-        switch (view.getId()) {
-            case R.id.message:
-             selectItem(0);
-                break;
-            case R.id.friend:
-              selectItem(1);
-                break;
-            case R.id.dynamic:
-               selectItem(2);
-                break;
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(TAG, "onPause: ...");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(TAG, "onStop: ...");
-    }
 
     @Override
     protected void onDestroy() {
@@ -364,10 +291,10 @@ public class MainActivityEx extends BaseActivity {
         }
         back_pressed = System.currentTimeMillis();
     }
-
-    /**
-     * handler内存泄露处理
-     */
+//
+//    /**
+//     * handler内存泄露处理
+//     */
     private static class MapHandler extends Handler{
         WeakReference<MainActivityEx> mActivity;
         public MapHandler(MainActivityEx mainActivityEx){

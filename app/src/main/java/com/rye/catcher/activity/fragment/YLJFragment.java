@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import com.rye.catcher.R;
 import com.rye.catcher.common.bigimg.ImageActivity;
 import com.rye.catcher.project.ctmviews.DistortionViews;
+import com.rye.catcher.sdks.beans.TangBean;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.ImageUtils;
@@ -39,11 +40,11 @@ public class YLJFragment extends BaseFragment {
 
 
     //头像本地地址
-    private static final String pLocal = SDHelper.getImageFolder() + "portrait.png";
-    @BindView(R.id.portrait)
-    DistortionViews portrait;
-    @BindView(R.id.iv1)
-    ImageView iv1;
+//    private static final String pLocal = SDHelper.getImageFolder() + "portrait.png";
+//    @BindView(R.id.portrait)
+//    DistortionViews portrait;
+//    @BindView(R.id.iv1)
+//    ImageView iv1;
 
     @Override
     protected int getLayoutResId() {
@@ -53,29 +54,33 @@ public class YLJFragment extends BaseFragment {
     @Override
     protected void initData() {
         setBarTitle("秦时明月");
-        initEvent();
+   //     initEvent();
+        EventBus.getDefault().register(this);
     }
 
 
-    private void initEvent() {
-
-        ImageUtils.getIntance().displayImage(iv1, Constant.PORTRAIT_URL);
-        //点击头像进大图
-        portrait.setOnClickListener(data -> {
-            Intent intent = new Intent(getActivity(), ImageActivity.class);
-            ArrayList<String> imgList = new ArrayList<>();
-            imgList.add(pLocal);
-            intent.putStringArrayListExtra(ImageActivity.IMAGE_LIST, imgList);
-            startActivity(intent);
-        });
-
-    }
+//    private void initEvent() {
+//
+//        ImageUtils.getIntance().displayImage(iv1, Constant.PORTRAIT_URL);
+//        //点击头像进大图
+//        portrait.setOnClickListener(data -> {
+//            Intent intent = new Intent(getActivity(), ImageActivity.class);
+//            ArrayList<String> imgList = new ArrayList<>();
+//            imgList.add(pLocal);
+//            intent.putStringArrayListExtra(ImageActivity.IMAGE_LIST, imgList);
+//            startActivity(intent);
+//        });
+//
+//    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+   EventBus.getDefault().unregister(this);
     }
+@Subscribe(threadMode = ThreadMode.MAIN)
+    public void setPoetry(TangBean bean){
 
+}
 
 }

@@ -48,24 +48,17 @@ public class ProjectMainActivity extends BaseActivity {
     TextView tvTopbtntitle;
     @BindView(R.id.back_parent)
     LinearLayout backParent;
-    @BindView(R.id.left_text)
-    TextView leftText;
-    @BindView(R.id.btn_function_back)
-    LinearLayout btnFunctionBack;
+
+
     @BindView(R.id.title)
     TextView title;
-    @BindView(R.id.down_list_icon)
-    ImageView downListIcon;
-    @BindView(R.id.box_place)
-    LinearLayout boxPlace;
-    @BindView(R.id.search_image)
-    ImageView searchImage;
+
+
     @BindView(R.id.right_image)
     ImageView rightImage;
     @BindView(R.id.right_text)
     TextView rightText;
-    @BindView(R.id.rl_top_bar)
-    RelativeLayout rlTopBar;
+
     @BindView(R.id.search_bar)
     TextView searchBar;
     @BindView(R.id.search)

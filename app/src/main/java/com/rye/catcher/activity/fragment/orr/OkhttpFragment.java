@@ -1,55 +1,34 @@
 package com.rye.catcher.activity.fragment.orr;
 
-import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.OkHttpAdapter;
 import com.rye.catcher.activity.fragment.BaseFragment;
-import com.rye.catcher.items.SimpleItemDecoration;
+import com.rye.catcher.helpers.SimpleItemDecoration;
 import com.rye.catcher.project.dao.ServiceContext;
 import com.rye.catcher.utils.DensityUtil;
-import com.rye.catcher.utils.DeviceUtils;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
-import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;

@@ -83,7 +83,9 @@
         <activity
             android:name=".activity.MainActivityEx"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+
+            />
         <activity android:name=".FirstActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -347,7 +349,6 @@
         <activity
             android:name=".activity.ORRActivity"
             android:launchMode="singleTask"
-            android:theme="@style/TranslucentTheme"
             />
         <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
         <activity android:name=".activity.BLEActivity" />

@@ -1,4 +1,4 @@
-package com.rye.catcher.items;
+package com.rye.catcher.helpers;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;

@@ -20,8 +20,8 @@ public interface FreeApi {
                                    @Query("cityname") String cityname,
                                   @Query("key") String key);
     //随机一首唐诗
-    @POST("/")
+    @POST("/recommendPoetry/")
     Observable<ResponseBody> getTangPoetry();
-    @POST("/")
+    @POST("/recommendPoetry/")
     Call<ResponseBody> getTangPoetry2();
 }

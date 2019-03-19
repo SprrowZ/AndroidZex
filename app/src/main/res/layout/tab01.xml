@@ -21,7 +21,7 @@
             tools:text="和卢明府送郑十三还京兼寄之什"
             />
         <TextView
-            android:id="@+id/authors"
+            android:id="@+id/poetry_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_14"

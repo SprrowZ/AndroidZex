@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.common.bigimg.ImageActivity;
@@ -45,7 +46,12 @@ public class YLJFragment extends BaseFragment {
 //    DistortionViews portrait;
 //    @BindView(R.id.iv1)
 //    ImageView iv1;
-
+@BindView(R.id.poetry_title)
+    TextView poetryTitle;
+@BindView(R.id.poetry_content)
+   TextView poepryContent;
+@BindView(R.id.poetry_author)
+   TextView poepryAuthor;
     @Override
     protected int getLayoutResId() {
         return R.layout.tab01;
@@ -54,7 +60,7 @@ public class YLJFragment extends BaseFragment {
     @Override
     protected void initData() {
         setBarTitle("秦时明月");
-   //     initEvent();
+        //     initEvent();
         EventBus.getDefault().register(this);
     }
 
@@ -76,11 +82,22 @@ public class YLJFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-   EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
-@Subscribe(threadMode = ThreadMode.MAIN)
-    public void setPoetry(TangBean bean){
 
-}
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void setPoetry(TangBean bean) {
+         TangBean.ResultBean result=bean.getResult();
+         String title=result.getTitle();
+         String author=result.getAuthors();
+         String content=result.getContent();
+         poetryTitle.setText(title);
+         poepryAuthor.setText(author);
+         //内容
+         String[] contentSplit= content.split("\\|");
+         for (int i=0;i<contentSplit.length;i++){
+             Log.i(TAG, "setPoetry: "+contentSplit[i]);
+         }
+    }
 
 }

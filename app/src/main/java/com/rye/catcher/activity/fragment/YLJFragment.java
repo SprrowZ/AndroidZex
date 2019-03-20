@@ -85,7 +85,7 @@ public class YLJFragment extends BaseFragment {
         EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
     public void setPoetry(TangBean bean) {
          TangBean.ResultBean result=bean.getResult();
          String title=result.getTitle();
@@ -95,9 +95,17 @@ public class YLJFragment extends BaseFragment {
          poepryAuthor.setText(author);
          //内容
          String[] contentSplit= content.split("\\|");
+         StringBuilder sb=new StringBuilder();
          for (int i=0;i<contentSplit.length;i++){
              Log.i(TAG, "setPoetry: "+contentSplit[i]);
+             if (i!=contentSplit.length-1){
+                 sb.append(contentSplit[i]+"\n\n");
+             }else {
+                 sb.append(contentSplit[i]+"\n");
+             }
+
          }
+         poepryContent.setText(sb);
     }
 
 }

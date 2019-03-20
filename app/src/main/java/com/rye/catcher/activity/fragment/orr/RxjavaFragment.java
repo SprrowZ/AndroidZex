@@ -63,6 +63,7 @@ public class RxjavaFragment extends BaseFragment {
     private List<String> dataList;
 
     private String[] dataArr;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_rxjava;
@@ -115,8 +116,10 @@ public class RxjavaFragment extends BaseFragment {
                 filter();
                 break;
             case 9:
+                testBackpressure();
                 break;
             case 10:
+                testBackpressure2();
                 break;
             case 11:
                 break;
@@ -124,9 +127,9 @@ public class RxjavaFragment extends BaseFragment {
     }
 
     private void fakeData() {
-        dataArr=new String[]{"create","consumer","just","from","interval","map","FlatMap"
-                ,"zip","filter"};
-        dataList=Arrays.asList(dataArr);
+        dataArr = new String[]{"create", "consumer", "just", "from", "interval", "map", "FlatMap"
+                , "zip", "filter", "testBackpressure", "testBackpressure2"};
+        dataList = Arrays.asList(dataArr);
     }
 
     private void create() {
@@ -164,7 +167,7 @@ public class RxjavaFragment extends BaseFragment {
                         stringBuffer.append(s + "\n");
                         i++;//第几个事件
                         if (i == 2) {
-                           setResult();
+                            setResult();
                             mDisposable.dispose();//阻断,dls上线！
                         }
                     }
@@ -194,24 +197,23 @@ public class RxjavaFragment extends BaseFragment {
     }
 
 
-
     /**
      * 一次性发送数据
      */
-    private void just(){
-        String[] arr=new String[]{"1","2","3","4","5"};
-        List list= Arrays.asList(arr);
+    private void just() {
+        String[] arr = new String[]{"1", "2", "3", "4", "5"};
+        List list = Arrays.asList(arr);
         Observable.just(list)
                 .subscribe(new Consumer<List>() {
                     @Override
                     public void accept(List list) throws Exception {
-                      for (int i=0;i<list.size();i++){
-                          if (i==0){
-                              stringBuffer.append("接收到的数据为："+"\n");
-                          }
-                          stringBuffer.append(list.get(i)+"\n");
-                          Log.i("just", "accept: "+list.get(i));
-                      }
+                        for (int i = 0; i < list.size(); i++) {
+                            if (i == 0) {
+                                stringBuffer.append("接收到的数据为：" + "\n");
+                            }
+                            stringBuffer.append(list.get(i) + "\n");
+                            Log.i("just", "accept: " + list.get(i));
+                        }
                     }
                 });
         setResult();
@@ -220,20 +222,21 @@ public class RxjavaFragment extends BaseFragment {
     /**
      * 一批次发送数组或Collection
      */
-    private void from(){
-        String[] arr=new String[]{"1","2","3","4","5"};
-        List list= Arrays.asList(arr);
+    private void from() {
+        String[] arr = new String[]{"1", "2", "3", "4", "5"};
+        List list = Arrays.asList(arr);
         Observable.fromIterable(list)
                 .subscribe(new Consumer<String>() {
-                    int i=0;
+                    int i = 0;
+
                     @Override
                     public void accept(String string) throws Exception {
-                        if (i==0){
-                            stringBuffer.append("接收到的数据为："+"\n");
+                        if (i == 0) {
+                            stringBuffer.append("接收到的数据为：" + "\n");
                         }
-                        stringBuffer.append(string+"\n");
+                        stringBuffer.append(string + "\n");
                         i++;
-                        Log.i(TAG, "accept: "+string);
+                        Log.i(TAG, "accept: " + string);
                     }
                 });
         setResult();
@@ -243,13 +246,13 @@ public class RxjavaFragment extends BaseFragment {
      * 返回一个每隔指定的时间间隔就发射一个序号的 Observable 对象，
      * 可用来做倒计时心跳包等操作，无限发送，除非调用dispose()可以终止
      */
-    private void interval(){
-        Observable.interval(1,2, TimeUnit.SECONDS)
+    private void interval() {
+        Observable.interval(1, 2, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread()) //多余操作，其实本来就在主线程中
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        Log.i(TAG, "accept: "+aLong);
+                        Log.i(TAG, "accept: " + aLong);
                     }
                 });
     }
@@ -259,35 +262,36 @@ public class RxjavaFragment extends BaseFragment {
      */
     private void map() {
 
-        Observable<Integer> observable= Observable.create(emitter -> {
-            int[] arr=new int[3];
-            arr[0]=111;
-            arr[1]=222;
-            arr[2]=333;
-            for (int i=0;i<arr.length;i++){
+        Observable<Integer> observable = Observable.create(emitter -> {
+            int[] arr = new int[3];
+            arr[0] = 111;
+            arr[1] = 222;
+            arr[2] = 333;
+            for (int i = 0; i < arr.length; i++) {
                 emitter.onNext(arr[i]);
-                if (i==0){
-                    stringBuffer.append("上游发送的数据："+"\n");
+                if (i == 0) {
+                    stringBuffer.append("上游发送的数据：" + "\n");
                 }
-                stringBuffer.append(arr[i]+"\n");
+                stringBuffer.append(arr[i] + "\n");
             }
             emitter.onComplete();
         });
 
-        Observer observer=new Observer<String>() {
-            int i=0;
+        Observer observer = new Observer<String>() {
+            int i = 0;
             Disposable disposable;
+
             @Override
             public void onSubscribe(Disposable d) {
-                disposable=d;
+                disposable = d;
             }
 
             @Override
             public void onNext(String o) {
-                if (i==0){
-                    stringBuffer.append("接收到的数据为："+"\n");
+                if (i == 0) {
+                    stringBuffer.append("接收到的数据为：" + "\n");
                 }
-                stringBuffer.append(o+"\n");
+                stringBuffer.append(o + "\n");
                 i++;
             }
 
@@ -298,45 +302,46 @@ public class RxjavaFragment extends BaseFragment {
 
             @Override
             public void onComplete() {
-               setResult();
+                setResult();
             }
         };
 
         observable.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(integer -> "ZZG-DATA："+integer).subscribe(observer);
+                .map(integer -> "ZZG-DATA：" + integer).subscribe(observer);
 
     }
 
     /**
      *
      */
-    private void flatMap(){
-        String[] arr=new String[]{"1","2","3","4","5"};
-        List list= Arrays.asList(arr);
+    private void flatMap() {
+        String[] arr = new String[]{"1", "2", "3", "4", "5"};
+        List list = Arrays.asList(arr);
         Observable.fromIterable(list) //取List的地方可以进行耗时操作
-                .flatMap(new Function<String,ObservableSource<String>>() {
+                .flatMap(new Function<String, ObservableSource<String>>() {
                     @Override
                     public ObservableSource<String> apply(String str) throws Exception {
-                        List list2=new ArrayList();
-                        list2.add("I am value:"+str);
-                        return Observable.fromIterable(list2).delay(2,TimeUnit.SECONDS);
+                        List list2 = new ArrayList();
+                        list2.add("I am value:" + str);
+                        return Observable.fromIterable(list2).delay(2, TimeUnit.SECONDS);
                     }
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
-                    int i=0;
+                    int i = 0;
+
                     @Override
                     public void accept(String str) throws Exception {
-                        if (i==0){
-                            stringBuffer.append("接收到的数据为："+"\n");
+                        if (i == 0) {
+                            stringBuffer.append("接收到的数据为：" + "\n");
                         }
-                        stringBuffer.append(str+"\n");
+                        stringBuffer.append(str + "\n");
                         i++;
-                        if (i==5){
-                           setResult();
+                        if (i == 5) {
+                            setResult();
                         }
-                        Log.i(TAG, "accept: "+str);
+                        Log.i(TAG, "accept: " + str);
                     }
                 });
 
@@ -346,113 +351,117 @@ public class RxjavaFragment extends BaseFragment {
     /**
      * 打包，使用一个指定的函数将多个Observable发射的数据组合在一起，然后将这个函数的结果作为单项数据发射*
      */
-    private void zip(){
-         Observable.zip(getRyeObservable(), getCatcherObservable(), new BiFunction<String, Integer, String>() {
-             @Override
-             public String apply(String s, Integer integer) {
-                 String zips="组合数据为："+s+integer;
-                 return zips;
-             }
-         }).subscribeOn(Schedulers.io())
-                 .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe(new Observer<String>() {
-                     int i=0;
-                     @Override
-                     public void onSubscribe(Disposable d) {
+    private void zip() {
+        Observable.zip(getRyeObservable(), getCatcherObservable(), new BiFunction<String, Integer, String>() {
+            @Override
+            public String apply(String s, Integer integer) {
+                String zips = "组合数据为：" + s + integer;
+                return zips;
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    int i = 0;
 
-                     }
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-                     @Override
-                     public void onNext(String s) {
-                         if (i==0){
-                             stringBuffer.append("接收到的数组为："+"\n");
-                         }
-                         i++;
-                         stringBuffer.append(s+"\n");
-                         Log.i(TAG, "accept: "+s);
-                     }
+                    }
 
-                     @Override
-                     public void onError(Throwable e) {
+                    @Override
+                    public void onNext(String s) {
+                        if (i == 0) {
+                            stringBuffer.append("接收到的数组为：" + "\n");
+                        }
+                        i++;
+                        stringBuffer.append(s + "\n");
+                        Log.i(TAG, "accept: " + s);
+                    }
 
-                     }
+                    @Override
+                    public void onError(Throwable e) {
 
-                     @Override
-                     public void onComplete() {
-                       setResult();
-                     }
-                 });
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        setResult();
+                    }
+                });
 
 
     }
 
     /**
      * zip用
+     *
      * @return
      */
-    private Observable<String> getRyeObservable(){
-        String[] arr=new String[]{"1","2","3","4","5"};
+    private Observable<String> getRyeObservable() {
+        String[] arr = new String[]{"1", "2", "3", "4", "5"};
         return Observable.fromArray(arr);
     }
 
     /**
      * zip用
+     *
      * @return
      */
-    private Observable<Integer> getCatcherObservable(){
+    private Observable<Integer> getCatcherObservable() {
         return Observable.create(emitter -> {
-         if (!emitter.isDisposed()){
-             emitter.onNext(11);
-             emitter.onNext(22);
-             emitter.onNext(33);
-             emitter.onComplete();
-         }
+            if (!emitter.isDisposed()) {
+                emitter.onNext(11);
+                emitter.onNext(22);
+                emitter.onNext(33);
+                emitter.onComplete();
+            }
         });
     }
 
     /**
      * 过滤操作
      */
-    private void filter(){
-        String[] arr=new String[]{"1","2","3","4","5"};
-        List list= Arrays.asList(arr);
+    private void filter() {
+        String[] arr = new String[]{"1", "2", "3", "4", "5"};
+        List list = Arrays.asList(arr);
         Observable.fromIterable(list)
                 .filter(new Predicate<String>() {
                     @Override
                     public boolean test(String o) throws Exception {
-                        if (Integer.parseInt(o)>3){
+                        if (Integer.parseInt(o) > 3) {
                             return true;
                         }
                         return false;
                     }
                 }).subscribe(new Consumer<String>() {
-                    int i=0;
+            int i = 0;
+
             @Override
             public void accept(String str) throws Exception {
-                if (i==0){
-                    stringBuffer.append("接收到的数据为："+"\n");
+                if (i == 0) {
+                    stringBuffer.append("接收到的数据为：" + "\n");
                 }
-                stringBuffer.append(str+"\n");
+                stringBuffer.append(str + "\n");
                 i++;
-                Log.i(TAG, "accept: "+str);
+                Log.i(TAG, "accept: " + str);
             }
         });
-       setResult();
+        setResult();
     }
 
 
-    private void  doOnNext(){
-        String[] arr=new String[]{"1","2","3","4","5"};
-        List list= Arrays.asList(arr);
+    private void doOnNext() {
+        String[] arr = new String[]{"1", "2", "3", "4", "5"};
+        List list = Arrays.asList(arr);
         Observable.fromIterable(list).doOnNext(new Consumer<String>() {
             @Override
             public void accept(String str) throws Exception {
-                Log.i(TAG, "doOnNext:... "+str);
+                Log.i(TAG, "doOnNext:... " + str);
             }
         }).doAfterNext(new Consumer<String>() {
             @Override
             public void accept(String str) throws Exception {
-                Log.i(TAG, "doAfterNext:... "+str);
+                Log.i(TAG, "doAfterNext:... " + str);
             }
         }).doFinally(new Action() {
             @Override
@@ -466,10 +475,43 @@ public class RxjavaFragment extends BaseFragment {
             }
         });
     }
-    private void setResult(){
-        result.setText(stringBuffer);
-        stringBuffer.delete(0,stringBuffer.length());
+
+    /**
+     * 背压测试------------同线程
+     */
+    private void testBackpressure() {
+        Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            while (true) {
+                emitter.onNext("Zzz...");
+            }
+        }).subscribe(s -> {
+            Thread.sleep(2000);
+            Log.i(TAG, "accept: " + s);
+        });
     }
+
+    /**
+     * 背压测试--------异步线程
+     */
+    private void testBackpressure2() {
+        Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            while (true) {
+                emitter.onNext("Zzz...");
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    Thread.sleep(2000);
+                    Log.i(TAG, "acceptZZZ: " + s);
+                });
+    }
+
+
+    private void setResult() {
+        result.setText(stringBuffer);
+        stringBuffer.delete(0, stringBuffer.length());
+    }
+
     private void initEvent() {
 
     }

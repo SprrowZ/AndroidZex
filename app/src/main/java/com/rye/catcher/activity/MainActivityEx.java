@@ -90,7 +90,6 @@ BottomNavigationView bottom;
          AmapAPI.getInstance().initLocation(this,mapHandler);
         FileUtils.writeUserLog(TAG+"onCreate:");
         Log.i(TAG, "onCrate: ...");
-        tangObservable();
         bottom.setOnNavigationItemSelectedListener(item -> {
                item.setChecked(true);
             switch (item.getItemId()){
@@ -211,31 +210,7 @@ BottomNavigationView bottom;
     }
 
 
-    private void tangObservable(){
-        RetrofitManager.INSTANCE
-                .getClient(Constant.TANG_POETRY)
-                .create(FreeApi.class)
-                .getTangPoetry()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Function<ResponseBody, ObservableSource<TangBean>>() {
-                    @Override
-                    public ObservableSource<TangBean> apply(ResponseBody responseBody) throws Exception {
-                       String result=responseBody.string();
-                        Log.i(TAG, "tangObservable:"+result);
-                        JSONObject json=JSONObject.parseObject(result);
-                        TangBean bean=JSONObject.toJavaObject(json,TangBean.class);
-                        return Observable.just(bean);
-                    }
-                }).subscribe(new Consumer<TangBean>() {
-                    @Override
-                    public void accept(TangBean bean) throws Exception {
-                        Log.i(TAG, "acceptZZZ: "+ bean.toString());
-                        EventBus.getDefault().post(bean);
-                    }
-                });
 
-    }
 //
 //    /**
 //     * 天气结果处理

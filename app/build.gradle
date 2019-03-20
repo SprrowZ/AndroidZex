@@ -186,7 +186,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
     implementation 'com.github.GrenderG:Toasty:1.2.5'
-    implementation project(':pulltorefresh')
+
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVer"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVer"
     implementation 'org.greenrobot:eventbus:3.0.0'

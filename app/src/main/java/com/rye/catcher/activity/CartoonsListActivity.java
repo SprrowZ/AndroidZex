@@ -25,8 +25,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.BaseArrayAdapter;
 import com.rye.catcher.activity.adapter.GreenAdapter;
 import com.rye.catcher.project.catcher.eventbus.MessageEvent;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -46,7 +45,7 @@ public class CartoonsListActivity extends BaseActivity {
      * from CartoonsDoActivity
      */
     public static int  FROM_CARTOON=666;
-    private  PullToRefreshListView listView;
+//    private  PullToRefreshListView listView;
     private  EditText query;
     private DaoSession daoSession;
     private TB_CartoonsDao cartoonsDao;
@@ -63,7 +62,7 @@ public class CartoonsListActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.greendao_exone);
-        init();
+      //  init();
         initEvent();
     }
 
@@ -108,47 +107,47 @@ public class CartoonsListActivity extends BaseActivity {
             }
         };
 
-        listView.setOnItemClickListener(vsl);
-        //下拉监听回调
-        listView.setOnRefreshListener(refreshView -> {
-            //获取更新数据
-           new dataAsyncTask(CartoonsListActivity.this).execute();
-           if (listView.isRefreshing()){
-                listView.postDelayed(()->{
-                        listView.onRefreshComplete();
-                }, 500);
-            }
-        });
+//        listView.setOnItemClickListener(vsl);
+//        //下拉监听回调
+//        listView.setOnRefreshListener(refreshView -> {
+//            //获取更新数据
+//           new dataAsyncTask(CartoonsListActivity.this).execute();
+//           if (listView.isRefreshing()){
+//                listView.postDelayed(()->{
+//                        listView.onRefreshComplete();
+//                }, 500);
+//            }
+//        });
     }
 
-    private void init() {
-        setBarTitle("漫");
-        listView=findViewById(R.id.listView);
-        query=findViewById(R.id.search_bar);
-        listView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
-        daoSession= zApplication.getInstance().getDaoSession();
-        cartoonsDao=daoSession.getTB_CartoonsDao();
-        //查询数据进行适配
-        datalist=cartoonsDao.queryBuilder()
-                .limit(CartoonsListActivity.ITEM_COUNT)
-                .list();
-
-        if (adapter==null){
-            adapter=new GreenAdapter(this,datalist);
-            adapter.setService((BaseArrayAdapter.IService<TB_Cartoons>) (item, query) ->
-                    item.getNAME().contains(query)
-                    ||item.getHERO().contains(query)
-                    ||item.getHEROINE().contains(query));
-            listView.setAdapter(adapter);
-        }else{
-          adapter.notifyDataSetChanged();
-          if (query!=null){
-            adapter.getFilter().filter(query.getText());
-          }
-        }
-
-        listView.setAdapter(adapter);
-    }
+//    private void init() {
+//        setBarTitle("漫");
+//        listView=findViewById(R.id.listView);
+//        query=findViewById(R.id.search_bar);
+//        listView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
+//        daoSession= zApplication.getInstance().getDaoSession();
+//        cartoonsDao=daoSession.getTB_CartoonsDao();
+//        //查询数据进行适配
+//        datalist=cartoonsDao.queryBuilder()
+//                .limit(CartoonsListActivity.ITEM_COUNT)
+//                .list();
+//
+//        if (adapter==null){
+//            adapter=new GreenAdapter(this,datalist);
+//            adapter.setService((BaseArrayAdapter.IService<TB_Cartoons>) (item, query) ->
+//                    item.getNAME().contains(query)
+//                    ||item.getHERO().contains(query)
+//                    ||item.getHEROINE().contains(query));
+//            listView.setAdapter(adapter);
+//        }else{
+//          adapter.notifyDataSetChanged();
+//          if (query!=null){
+//            adapter.getFilter().filter(query.getText());
+//          }
+//        }
+//
+//        listView.setAdapter(adapter);
+//    }
     //AsyncTask 静态内部类
     private static class  dataAsyncTask extends AsyncTask<Void,Integer,List<TB_Cartoons>>{
           WeakReference<CartoonsListActivity> mActivity;
@@ -181,7 +180,7 @@ public class CartoonsListActivity extends BaseActivity {
                    if (cartoons==null||cartoons.size()==0){
                                TextView textView=new TextView(zActivity);
                                textView.setText("没有更多数据了");
-                       zActivity.listView.getRefreshableView().addFooterView(textView);//要getRefreshableView先。。
+                 //      zActivity.listView.getRefreshableView().addFooterView(textView);//要getRefreshableView先。。
                    }
              super.onPostExecute(cartoons);
          }

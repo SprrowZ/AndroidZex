@@ -310,7 +310,10 @@ public class OkhttpFragment extends BaseFragment {
         }
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-        Request request = new Request.Builder().url(URL + "postFile").post(requestBody).build();//拿到号码
+        Request request = new Request.Builder()
+                .url(URL + "postFile")
+                .post(requestBody)
+                .build();//拿到号码
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override

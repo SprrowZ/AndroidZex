@@ -63,42 +63,40 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by ZZG on 2018/8/12.
  */
 public class MainActivityEx extends BaseActivity {
-    private static  final  String TAG="MainActivityEx";
-     private long back_pressed;
-
-//    //地理位置
+    private static final String TAG = "MainActivityEx";
+    private long back_pressed;
+    //地理位置
     private AmapResult amapResult;
 
+    @BindView(R.id.design_bottom_sheet)
+    BottomNavigationView bottom;
+    private Fragment currentFragment;
+    private int currentPos = -1;
+    private final Handler mapHandler = new MapHandler(this);
 
-@BindView(R.id.design_bottom_sheet)
-BottomNavigationView bottom;
-     private  Fragment currentFragment;
-    private  int currentPos=-1;
-    private final  Handler mapHandler=new MapHandler(this);
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_exx);
-       ButterKnife.bind(this);
-      init();
+        ButterKnife.bind(this);
+        init();
     }
 
     private void init() {
 
         selectItem(0);
         //获取定位数据
-         AmapAPI.getInstance().initLocation(this,mapHandler);
-        FileUtils.writeUserLog(TAG+"onCreate:");
-        Log.i(TAG, "onCrate: ...");
+        AmapAPI.getInstance().initLocation(this, mapHandler);
+        FileUtils.writeUserLog(TAG + "onCreate:");
         bottom.setOnNavigationItemSelectedListener(item -> {
-               item.setChecked(true);
-            switch (item.getItemId()){
+            item.setChecked(true);
+            switch (item.getItemId()) {
                 case R.id.first:
                     selectItem(0);
                     break;
                 case R.id.second:
                     selectItem(1);
-                break;
+                    break;
                 case R.id.third:
                     selectItem(2);
                     break;
@@ -132,11 +130,13 @@ BottomNavigationView bottom;
         }
         transaction.commitAllowingStateLoss();
         //改变颜色值
-      //  setSelect(pos);
+        //  setSelect(pos);
     }
+
     private String getTag(int pos) {
         return "Zzg_" + pos;
     }
+
     private Fragment getFragment(int pos) {
         switch (pos) {
             case 0:
@@ -154,20 +154,21 @@ BottomNavigationView bottom;
         }
         return currentFragment;
     }
+
     /**
      * 获取天气信息
      */
     private void getWeather(AmapResult amapResult) {
-        if ("".equals(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME))){
+        if ("".equals(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME))) {
             Log.i(TAG, "getWeather: 字段为空");
-           KeyValueMgrZ.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
-           weatherThread();
-        }else{
-            boolean needRefreshWeather=!DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
-            Log.i(TAG, "getWeather: "+String.valueOf(needRefreshWeather));
-            if (needRefreshWeather){
+            KeyValueMgrZ.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
+            weatherThread();
+        } else {
+            boolean needRefreshWeather = !DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
+            Log.i(TAG, "getWeather: " + String.valueOf(needRefreshWeather));
+            if (needRefreshWeather) {
                 weatherThread();
-            }else {
+            } else {
                 Log.i(TAG, "getWeather: 未满一天");
             }
         }
@@ -176,23 +177,23 @@ BottomNavigationView bottom;
     /**
      * 天气请求Thread
      */
-    private void weatherThread(){
-        new Thread(()->{
-            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME,System.currentTimeMillis());
-            Retrofit retrofit=new Retrofit.Builder()
+    private void weatherThread() {
+        new Thread(() -> {
+            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
+            Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(Constant.JUHE_WEATHER)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(HttpLogger.getOkHttpClient())//增加日志拦截
                     .build();
-            FreeApi weatherApi=retrofit.create(FreeApi.class);
-            Call<ResponseBody> call= weatherApi.getWeather(1,amapResult.getCity(),Constant.JUHE_WEATHER_KEY);
+            FreeApi weatherApi = retrofit.create(FreeApi.class);
+            Call<ResponseBody> call = weatherApi.getWeather(1, amapResult.getCity(), Constant.JUHE_WEATHER_KEY);
             Log.i(TAG, "getWeather: weatherApi");
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     try {
-                        String result=response.body().string();//返回结果
-                        FileUtils.writeUserLog("getWeather-->onResponse:"+result);
+                        String result = response.body().string();//返回结果
+                        FileUtils.writeUserLog("getWeather-->onResponse:" + result);
                         dealWeather(result);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -203,39 +204,37 @@ BottomNavigationView bottom;
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     Log.i(TAG, "onFailure:weatherApi ");
-                    FileUtils.writeUserLog("getWeather-->onFailure"+t.toString());
+                    FileUtils.writeUserLog("getWeather-->onFailure" + t.toString());
                 }
             });
         }).start();
     }
 
 
-
-//
+    //
 //    /**
 //     * 天气结果处理
 //     *
 //     */
     private void dealWeather(String result) {
-        Log.i(TAG, "onResponse:weatherApi "+result);
-        JSONObject todayTemperature= null;
+        Log.i(TAG, "onResponse:weatherApi " + result);
+        JSONObject todayTemperature = null;
         //            com.alibaba.fastjson.JSONObject result2= com.alibaba.fastjson.JSONObject.parseObject(result)
 //            JuHeBean bean= JSON.toJavaObject(result2,JuHeBean.class);
-        todayTemperature =JSONObject.parseObject(result)
+        todayTemperature = JSONObject.parseObject(result)
                 .getJSONObject(WeatherBean.WEATHER_RESULT)
                 .getJSONObject(WeatherBean.WEATHER_TODAY);
-        if (todayTemperature!=null){
-            String temperature=todayTemperature.getString(WeatherBean.TEMPERATURE);
-            String weather=todayTemperature.getString(WeatherBean.WEATHER);
-            Log.i(TAG, "weatherApi: --->"+"temperature:"+temperature+"weather:"+weather);
-            Bean bean=new Bean();
-            bean.set(WeatherBean.TEMPERATURE,temperature);
-            bean.set(WeatherBean.WEATHER,weather);
+        if (todayTemperature != null) {
+            String temperature = todayTemperature.getString(WeatherBean.TEMPERATURE);
+            String weather = todayTemperature.getString(WeatherBean.WEATHER);
+            Log.i(TAG, "weatherApi: --->" + "temperature:" + temperature + "weather:" + weather);
+            Bean bean = new Bean();
+            bean.set(WeatherBean.TEMPERATURE, temperature);
+            bean.set(WeatherBean.WEATHER, weather);
             //发送广播
             EventBus.getDefault().postSticky(bean);
         }
     }
-
 
 
 //
@@ -251,8 +250,8 @@ BottomNavigationView bottom;
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy: ...");
-        new Thread(()->{
-            FileUtils.writeUserLog(TAG+"onDestroy:");
+        new Thread(() -> {
+            FileUtils.writeUserLog(TAG + "onDestroy:");
         }).start();
 
     }
@@ -266,28 +265,31 @@ BottomNavigationView bottom;
         }
         back_pressed = System.currentTimeMillis();
     }
-//
+
+    //
 //    /**
 //     * handler内存泄露处理
 //     */
-    private static class MapHandler extends Handler{
+    private static class MapHandler extends Handler {
         WeakReference<MainActivityEx> mActivity;
-        public MapHandler(MainActivityEx mainActivityEx){
-            mActivity=new WeakReference<>(mainActivityEx);
+
+        public MapHandler(MainActivityEx mainActivityEx) {
+            mActivity = new WeakReference<>(mainActivityEx);
         }
+
         @Override
         public void handleMessage(Message msg) {
-            MainActivityEx activityEx=mActivity.get();
-            switch (msg.what){
+            MainActivityEx activityEx = mActivity.get();
+            switch (msg.what) {
                 case 1://返回一次定位结果
-                    activityEx.amapResult= (AmapResult) msg.obj;
+                    activityEx.amapResult = (AmapResult) msg.obj;
                     activityEx.getWeather(activityEx.amapResult);
-                    Log.i(TAG, "errorCode"+activityEx.amapResult.getErrorCode());
+                    Log.i(TAG, "errorCode" + activityEx.amapResult.getErrorCode());
                     break;
                 case 11://LastKnowLocation
-                    activityEx.amapResult= (AmapResult) msg.obj;
+                    activityEx.amapResult = (AmapResult) msg.obj;
                     activityEx.getWeather(activityEx.amapResult);
-                    Log.i(TAG, "LastKnowLocationCallback: "+activityEx.amapResult.getErrorCode());
+                    Log.i(TAG, "LastKnowLocationCallback: " + activityEx.amapResult.getErrorCode());
             }
             super.handleMessage(msg);
         }

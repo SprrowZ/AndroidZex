@@ -11,23 +11,24 @@ import android.widget.ImageView;
 import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.rye.catcher.BaseActivity;
-import com.rye.catcher.BuildConfig;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
+import com.rye.catcher.common.KeyValueMgrZ;
+import com.rye.catcher.project.dao.KeyValueMgr;
 import com.rye.catcher.sdks.beans.TangBean;
-import com.rye.catcher.sdks.gmap.AmapAPI;
+import com.rye.catcher.sdks.beans.WeatherBean;
+import com.rye.catcher.sdks.gmap.AmapManager;
 import com.rye.catcher.sdks.gmap.AmapResult;
+import com.rye.catcher.utils.DateUtils;
+import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.ExtraUtil.test.utils.RetrofitManager;
-import com.rye.catcher.utils.ToastUtils;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.WeakReference;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,8 +65,11 @@ public class SplashActivity extends BaseActivity {
         //安装申请权限
         mHandler=new JumpHandler(this);
         authority();
-        Glide.with(this).load(R.drawable.ling).into(image);
+        Glide.with(this)
+                .asDrawable()
+                .load(R.drawable.ling).into(image);
         tangObservable();
+      //  weatherObservable();
     }
 
     /**
@@ -96,6 +100,65 @@ public class SplashActivity extends BaseActivity {
         });
 
     }
+    private void weatherObservable(){
+        if ("".equals(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME))) {
+            KeyValueMgrZ.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
+            getWeather();
+            Log.i(TAG, "getWeather: 字段为空");
+        } else {
+            boolean needRefreshWeather = !DateUtils.isToday(Long.parseLong(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME)));
+            Log.i(TAG, "getWeather: " + String.valueOf(needRefreshWeather));
+            if (needRefreshWeather) {
+                getWeather();
+            } else {
+                Log.i(TAG, "getWeather: 未满一天");
+            }
+        }
+
+    }
+
+    /**
+     * 获取天气信息，Okhttp+Retrofit+Rxjava；
+     */
+    private void getWeather(){
+        KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
+        Observable.just(AmapManager.getInstance().initLocation(this))
+                  .flatMap((Function<AmapResult, ObservableSource<String>>) amapResult -> {
+                      Log.i(TAG, "apply: "+amapResult.toString());
+                     return RetrofitManager.INSTANCE
+                              .getClient(Constant.JUHE_WEATHER)
+                              .create(FreeApi.class)
+                              .getWeather2(1,amapResult.getCity(),Constant.JUHE_WEATHER_KEY)
+                              .flatMap((Function<ResponseBody, ObservableSource<String>>) responseBody -> {
+                                  String result= responseBody.string();
+                                  return Observable.just(result);
+                              });
+                  })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(result -> {
+                    Log.i(TAG, "accept: "+result);
+                    dealWeather(result);
+                });
+        }
+    private void dealWeather(String result) {
+        Log.i(TAG, "onResponse:weatherApi " + result);
+        JSONObject todayTemperature = null;
+        todayTemperature = JSONObject.parseObject(result)
+                .getJSONObject(WeatherBean.WEATHER_RESULT)
+                .getJSONObject(WeatherBean.WEATHER_TODAY);
+        if (todayTemperature != null) {
+            String temperature = todayTemperature.getString(WeatherBean.TEMPERATURE);
+            String weather = todayTemperature.getString(WeatherBean.WEATHER);
+            Log.i(TAG, "weatherApi: --->" + "temperature:" + temperature + "weather:" + weather);
+            Bean bean = new Bean();
+            bean.set(WeatherBean.TEMPERATURE, temperature);
+            bean.set(WeatherBean.WEATHER, weather);
+            //发送广播
+            EventBus.getDefault().postSticky(bean);
+        }
+    }
+
     private void authority() {
         PermissionUtils.requestPermission(this,"本地文件读写和手机状态需要此类权限,请去设置里授予权限",
                 false,data ->{
@@ -109,7 +172,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        AmapAPI.getInstance().destroyLocation();
+        AmapManager.getInstance().destroyLocation();
         super.onDestroy();
     }
 

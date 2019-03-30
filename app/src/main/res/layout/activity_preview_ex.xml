@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<com.rye.catcher.project.ctmviews.takephoto.CameraPreviewEx
+    android:id="@+id/cameraPreview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="@dimen/len_80"
+        android:layout_height="@dimen/len_80"
+        android:background="@color/red"
+        android:scaleType="fitXY"
+        />
+
+    <RelativeLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_80"
+        tools:background="@color/red"
+        android:layout_alignParentBottom="true"
+        >
+      <com.rye.catcher.project.ctmviews.DistortionViews
+          android:id="@+id/takePhoto"
+          android:layout_width="@dimen/len_60"
+          android:layout_height="@dimen/len_60"
+          app:Dtype="circle"
+          app:Dsrc="@drawable/take_photo"
+          android:scaleType="fitXY"
+          app:NeedBorder="true"
+          app:Bdistance="@dimen/len_4"
+          android:layout_centerInParent="true"
+          />
+    </RelativeLayout>
+</RelativeLayout>

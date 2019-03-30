@@ -18,6 +18,7 @@ import com.rye.catcher.zApplication;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,6 +77,34 @@ public class ImageUtils {
                 .load(url)
                 .apply(options)
                 .into(view);
+    }
+
+    /**
+     * 保存Bitmap到本地
+     * @param bitmap
+     * @param name
+     */
+    public void saveBitmap(final  Bitmap bitmap,String name){
+        File file=new File(SDHelper.getImageFolder(),name);
+        if (!file.exists()){
+        }else {
+            file.delete();
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileOutputStream fos=new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

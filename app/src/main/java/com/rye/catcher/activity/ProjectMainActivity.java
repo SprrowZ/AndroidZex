@@ -12,17 +12,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.SlideActivity;
+import com.rye.catcher.project.Ademos.MultiThreadDown;
 import com.rye.catcher.project.catcher.DelayHandleUtil;
+import com.rye.catcher.project.ctmviews.takephoto.CameraActivityEx;
 import com.rye.catcher.project.ctmviews.takephoto.TestPhotoActivity;
 import com.rye.catcher.project.dialog.TopDialog;
 import com.rye.catcher.project.Ademos.mvp.MvpActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
+import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.text.SimpleDateFormat;
@@ -42,22 +46,7 @@ public class ProjectMainActivity extends BaseActivity {
 
     private static final String TAG = "ProjectMainActivity";
     private static final String TAG2="LifeCycle-A";
-    @BindView(R.id.back)
-    ImageView back;
-    @BindView(R.id.tv_topbtntitle)
-    TextView tvTopbtntitle;
-    @BindView(R.id.back_parent)
-    LinearLayout backParent;
 
-
-    @BindView(R.id.title)
-    TextView title;
-
-
-    @BindView(R.id.right_image)
-    ImageView rightImage;
-    @BindView(R.id.right_text)
-    TextView rightText;
 
     @BindView(R.id.search_bar)
     TextView searchBar;
@@ -100,9 +89,17 @@ public class ProjectMainActivity extends BaseActivity {
     Button mvpDemo;
     @BindView(R.id.takePhoto)
     Button takePhoto;
+    @BindView(R.id.takePhotoEx)
+    Button takePhotoEx;
+    @BindView(R.id.multiThread)
+    Button multiThread;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
     private Timer timer;
     private TimerTask timerTask;
+
+    MultiThreadDown multiThreadDown;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,7 +149,8 @@ public class ProjectMainActivity extends BaseActivity {
             R.id.aidl, R.id.drawable, R.id.shape, R.id.slidingDemo,
             R.id.search_bar, R.id.recyclerView, R.id.dialogs, R.id.coor,
             R.id.viewDrag, R.id.batchLoading, R.id.siteProtection,
-            R.id.blueTooth,R.id.blueTooth2,R.id.mvpDemo,R.id.takePhoto})
+            R.id.blueTooth,R.id.blueTooth2,R.id.mvpDemo,R.id.takePhoto,
+            R.id.takePhotoEx,R.id.multiThread})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -221,6 +219,29 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
             case R.id.takePhoto:
                 startActivity(new Intent(this, TestPhotoActivity.class));
+                break;
+            case R.id.takePhotoEx:
+                startActivity(new Intent(this, CameraActivityEx.class));
+                break;
+            case R.id.multiThread:
+             multiThreadDown=new MultiThreadDown(MultiThreadDown.path, SDHelper.getAppExternal()+"Zzx.mp4",3);
+             multiThreadDown.setOnDownLoadListener(new MultiThreadDown.DownLoadListener() {
+                 @Override
+                 public void getProgress(int progress) {
+
+                 }
+
+                 @Override
+                 public void onComplete() {
+                     Toast.makeText(ProjectMainActivity.this,"下载完成",Toast.LENGTH_SHORT).show();
+                 }
+
+                 @Override
+                 public void onFailure() {
+
+                 }
+             });
+             multiThreadDown.downLoad();
                 break;
         }
     }

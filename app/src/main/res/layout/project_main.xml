@@ -163,6 +163,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="takePhoto" />
+            <Button
+                android:id="@+id/takePhotoEx"
+                style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="takePhotoEx" />
+
+            <Button
+                android:id="@+id/multiThread"
+                style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="multiThread" />
         </LinearLayout>
     </ScrollView>
 </merge>

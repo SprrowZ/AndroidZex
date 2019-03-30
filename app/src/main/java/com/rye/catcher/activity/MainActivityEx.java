@@ -24,20 +24,16 @@ import com.rye.catcher.activity.fragment.YLJFragment;
 import com.rye.catcher.common.KeyValueMgrZ;
 import com.rye.catcher.project.dao.KeyValueMgr;
 import com.rye.catcher.sdks.HttpLogger;
-import com.rye.catcher.sdks.beans.TangBean;
 import com.rye.catcher.sdks.beans.WeatherBean;
-import com.rye.catcher.sdks.gmap.AmapAPI;
 import com.rye.catcher.sdks.gmap.AmapResult;
 import com.rye.catcher.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
-import com.rye.catcher.utils.ExtraUtil.test.utils.RetrofitManager;
 import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.ToastUtils;
 
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONException;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -46,12 +42,6 @@ import butterknife.BindView;
 
 import butterknife.ButterKnife;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,7 +62,7 @@ public class MainActivityEx extends BaseActivity {
     BottomNavigationView bottom;
     private Fragment currentFragment;
     private int currentPos = -1;
-    private final Handler mapHandler = new MapHandler(this);
+   // private final Handler mapHandler = new MapHandler(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,8 +75,6 @@ public class MainActivityEx extends BaseActivity {
     private void init() {
 
         selectItem(0);
-        //获取定位数据
-        AmapAPI.getInstance().initLocation(this, mapHandler);
         FileUtils.writeUserLog(TAG + "onCreate:");
         bottom.setOnNavigationItemSelectedListener(item -> {
             item.setChecked(true);
@@ -270,28 +258,28 @@ public class MainActivityEx extends BaseActivity {
 //    /**
 //     * handler内存泄露处理
 //     */
-    private static class MapHandler extends Handler {
-        WeakReference<MainActivityEx> mActivity;
-
-        public MapHandler(MainActivityEx mainActivityEx) {
-            mActivity = new WeakReference<>(mainActivityEx);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            MainActivityEx activityEx = mActivity.get();
-            switch (msg.what) {
-                case 1://返回一次定位结果
-                    activityEx.amapResult = (AmapResult) msg.obj;
-                    activityEx.getWeather(activityEx.amapResult);
-                    Log.i(TAG, "errorCode" + activityEx.amapResult.getErrorCode());
-                    break;
-                case 11://LastKnowLocation
-                    activityEx.amapResult = (AmapResult) msg.obj;
-                    activityEx.getWeather(activityEx.amapResult);
-                    Log.i(TAG, "LastKnowLocationCallback: " + activityEx.amapResult.getErrorCode());
-            }
-            super.handleMessage(msg);
-        }
-    }
+//    private static class MapHandler extends Handler {
+//        WeakReference<MainActivityEx> mActivity;
+//
+//        public MapHandler(MainActivityEx mainActivityEx) {
+//            mActivity = new WeakReference<>(mainActivityEx);
+//        }
+//
+//        @Override
+//        public void handleMessage(Message msg) {
+//            MainActivityEx activityEx = mActivity.get();
+//            switch (msg.what) {
+//                case 1://返回一次定位结果
+//                    activityEx.amapResult = (AmapResult) msg.obj;
+//                    activityEx.getWeather(activityEx.amapResult);
+//                    Log.i(TAG, "errorCode" + activityEx.amapResult.getErrorCode());
+//                    break;
+//                case 11://LastKnowLocation
+//                    activityEx.amapResult = (AmapResult) msg.obj;
+//                    activityEx.getWeather(activityEx.amapResult);
+//                    Log.i(TAG, "LastKnowLocationCallback: " + activityEx.amapResult.getErrorCode());
+//            }
+//            super.handleMessage(msg);
+//        }
+//    }
 }

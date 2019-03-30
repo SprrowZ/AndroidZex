@@ -19,34 +19,28 @@ import java.util.Date;
 /**
  * Created by ZZG on 2018/9/7.
  */
-public class AmapAPI {
-    public static final String TAG="AmapAPI";
-    public static AmapAPI instance;
-    private static final Object lock = new Object();
+public class AmapManager {
+    public static final String TAG="AmapManager";
+    public static AmapManager instance;
     private static  AMapLocationClient locationClient = null;
     private static  AMapLocationClientOption locationOption = null;
     private static AmapResult amapResult;
-    private static Handler mapHandler;
-    public static AmapAPI getInstance() {
-        if (instance != null) {
-            return instance;
-        }
-        synchronized (lock) {
-            if (instance != null) {
-                return instance;
-            }
-            instance = new AmapAPI();
-        }
-        //拿到实例的时候就开启监听
-        return instance;
+    //private static Handler mapHandler;
+    //静态内部类单例模式
+    public static AmapManager getInstance(){
+        return  Singleton.INSTANCE;
     }
+    private static class Singleton{
+        private static final AmapManager INSTANCE=new AmapManager();
+    }
+
 
     /**
      * 默认连续定位
      * @param context
      */
-    public static void initLocation(Context context,Handler handler) {
-        mapHandler=handler;
+    public  AmapResult initLocation(Context context) {
+//        mapHandler=handler;
         amapResult=new AmapResult();
         locationClient = new AMapLocationClient(context);
         locationOption=getDefaultOption();
@@ -58,18 +52,26 @@ public class AmapAPI {
         //onLocationChanged方法可能不回调，这时候就用LastKnowLocation方法获取位置,目前是每次都调用
         //暂时没有解决方案
         AMapLocation  location=locationClient.getLastKnownLocation();
+//        if (location!=null){
+//            Log.i(TAG, "getLastKnownLocation: "+location.getCity());
+//            setLastKnowLocation(location);
+//            Message message=new Message();
+//            message.what=11;
+//            message.obj=amapResult;
+//            mapHandler.sendMessage(message);
+//        }else{
+//            locationClient.startLocation();//开启定位
+//        }
         if (location!=null){
-            Log.i(TAG, "getLastKnownLocation: "+location.getCity());
-            setLastKnowLocation(location);
-            Message message=new Message();
-            message.what=11;
-            message.obj=amapResult;
-            mapHandler.sendMessage(message);
+           setLastKnowLocation(location);
+           return amapResult;
         }else{
-            locationClient.startLocation();//开启定位
+            locationClient.startLocation();
         }
+        // TODO: 2019/3/25 暂时处理，如果没有上次位置信息就返回null
+        return null;
     }
-    private static void setLastKnowLocation(AMapLocation location){
+    private  void setLastKnowLocation(AMapLocation location){
         amapResult.setErrorCode(String.valueOf(location.getErrorCode()));
         amapResult.setLocationType(String.valueOf(location.getLocationType()));
         amapResult.setLongitude(String.valueOf(location.getLongitude()));
@@ -90,7 +92,7 @@ public class AmapAPI {
         amapResult.setTime(new Date(location.getTime()));
     }
 
-    public static  void  stopLocation(){
+    public   void  stopLocation(){
         // 停止定位
         if (locationClient!=null){
             locationClient.stopLocation();
@@ -131,7 +133,7 @@ public class AmapAPI {
     /**
      * 定位监听
      */
-    private static AMapLocationListener locationListener = new AMapLocationListener() {
+    private  AMapLocationListener locationListener = new AMapLocationListener() {
         @Override
         public void onLocationChanged(AMapLocation location) {
             Log.i(TAG, "onLocationChanged: ......");
@@ -170,13 +172,15 @@ public class AmapAPI {
                   amapResult.setNetWorkType(String.valueOf(location.getLocationQualityReport().getNetworkType()));
                   amapResult.setNetUseTime(String.valueOf(new Date(location.getLocationQualityReport().getNetUseTime())));
                  //数据回调
-                Message message=new Message();
-                message.what=1;
-                message.obj=amapResult;
-                mapHandler.sendMessage(message);
+//                Message message=new Message();
+//                message.what=1;
+//                message.obj=amapResult;
+//                mapHandler.sendMessage(message);
             } else {
                 ToastUtils.shortMsg("定位失败，loc is null");
             }
+            //
+         //   stopLocation();
         }
 
     };

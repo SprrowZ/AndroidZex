@@ -19,9 +19,13 @@ public interface FreeApi {
     Call<ResponseBody> getWeather( @Query("format") int format,
                                    @Query("cityname") String cityname,
                                   @Query("key") String key);
+    //
+    @GET("/weather/index")
+    Observable<ResponseBody> getWeather2(@Query("format") int format,
+                                         @Query("cityname") String cityname,
+                                         @Query("key") String key);
     //随机一首唐诗
     @POST("/recommendPoetry/")
     Observable<ResponseBody> getTangPoetry();
-    @POST("/recommendPoetry/")
-    Call<ResponseBody> getTangPoetry2();
+
 }

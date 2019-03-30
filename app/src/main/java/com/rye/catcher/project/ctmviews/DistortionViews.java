@@ -133,13 +133,13 @@ public class DistortionViews extends ImageView {
         bitmapShader.setLocalMatrix(matrix);
         mPaint.setShader(bitmapShader);
         float half=getWidth()/2;
-        if (type==0){
+        if (type==0){//圆形
              canvas.drawCircle(half,half,getWidth()/2- bDistance -bWidth,mPaint);
              //需要边框再绘制
              if (needBorder){
                  canvas.drawCircle(half,half,getWidth()/2-bWidth,zPaint);
              }
-        }else if (type==1){
+        }else if (type==1){//方形
             canvas.drawRoundRect(new RectF(bDistance +bWidth, bDistance +bWidth,
                     getWidth()- bDistance -bWidth, getHeight()- bDistance -bWidth),
                     radius,radius,mPaint);

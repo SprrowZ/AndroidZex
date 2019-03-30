@@ -31,7 +31,7 @@ public class CameraUtils {
     public static Camera openCamera() {
         Camera c = null;
         try {
-            c = Camera.open(); // attempt to get a Camera instance
+            c = Camera.open();// attempt to get a Camera instance,这里可以通过cameraId直接开启前置摄像头，1
         } catch (Exception e) {
             // Camera is not available (in use or does not exist)
         }

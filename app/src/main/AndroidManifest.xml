@@ -6,6 +6,7 @@
     <uses-feature
         android:name="android.hardware.bluetooth.le"
         android:required="true" />
+
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -83,9 +84,7 @@
         <activity
             android:name=".activity.MainActivityEx"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-
-            />
+            android:screenOrientation="portrait" />
         <activity android:name=".FirstActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -348,8 +347,7 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".activity.ORRActivity"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
         <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
         <activity android:name=".activity.BLEActivity" />
         <activity android:name=".project.Ademos.mvp.MvpActivity" />
@@ -357,10 +355,10 @@
         <activity
             android:name=".project.ctmviews.takephoto.CameraActivity2"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"  />
-        <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity">
-        </activity>
-        <activity android:name=".project.ctmviews.takephoto.CameraActivityEx"/>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity"></activity>
+        <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
+        <activity android:name=".activity.MultiActivity"></activity>
     </application>
 
 </manifest>

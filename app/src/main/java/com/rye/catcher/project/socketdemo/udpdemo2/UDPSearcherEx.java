@@ -49,19 +49,19 @@ public class UDPSearcherEx {
     private static void sendBroadcast() throws IOException {
         System.out.println("UDPSearcher sendBroadcast started!");
         //实际上就是声明一个提供者（接收者），不指定端口，让系统自动分配
-        DatagramSocket request=new DatagramSocket();
+        DatagramSocket client=new DatagramSocket();
 
 
         //发送的数据格式要统一
         String requestData=MessageCreator.buildWithPort(LISTEN_PORT);
         byte[] requestDataBytes=requestData.getBytes();
-        DatagramPacket requestPacket=new DatagramPacket(requestDataBytes,
+        DatagramPacket clientPacket=new DatagramPacket(requestDataBytes,
                 requestDataBytes.length);
         //使用广播地址
-        requestPacket.setAddress(InetAddress.getByName("255.255.255.255"));
-        requestPacket.setPort(20000);//provider的端口，searcher不需要指定自己端口，系统随机分配
-        request.send(requestPacket);//回送数据
-        request.close();
+        clientPacket.setAddress(InetAddress.getByName("255.255.255.255"));
+        clientPacket.setPort(20000);//provider的端口，searcher不需要指定自己端口，系统随机分配
+        client.send(clientPacket);//回送数据
+        client.close();
         System.out.println("UDPSearcherEx sendBroadcast finished!");
 
     }
@@ -94,7 +94,7 @@ public class UDPSearcherEx {
     private static class Listener extends Thread{
         //监听端口
         private final  int listenPort;
-        //????，通知外部已启动
+        //并发工具类，通知外部已启动
         private final CountDownLatch countDownLatch;
         //设备信息
         private final List<Device> devices=new ArrayList<>();

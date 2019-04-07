@@ -1,4 +1,4 @@
-package com.rye.catcher.project.socket.udpdemo2;
+package com.rye.catcher.project.socketdemo.udpdemo2;
 
 /**
  * socket口令，搜索者和设备间交互的统一口令

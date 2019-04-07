@@ -1,4 +1,4 @@
-package com.rye.catcher.project.socket.udpdemo2;
+package com.rye.catcher.project.socketdemo.udpdemo2;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -31,7 +31,7 @@ public class UDPSearcherEx {
     }
 
     /**
-     * 接收信息,CountDownLatch是什么鬼啊。。。
+     * 接收信息,CountDownLatch并发同步
      */
     private static Listener listen() throws InterruptedException {
          System.out.println("UDPSearcher start listen!");

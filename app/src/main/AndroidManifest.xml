@@ -105,7 +105,7 @@
             </intent-filter>
         </service>
         <service android:name=".project.services.DownLoadService" />
-        <service android:name=".project.services.IntentServiceEx" />
+        <!--<service android:name=".project.services.IntentServiceEx" />-->
 
         <activity
             android:name=".activity.CameraActivity"

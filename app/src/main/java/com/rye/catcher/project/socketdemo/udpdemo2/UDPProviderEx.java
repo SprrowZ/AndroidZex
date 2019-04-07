@@ -1,6 +1,4 @@
-package com.rye.catcher.project.socket.udpdemo2;
-
-import android.util.Log;
+package com.rye.catcher.project.socketdemo.udpdemo2;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

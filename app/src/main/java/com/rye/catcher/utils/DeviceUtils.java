@@ -5,16 +5,14 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.rye.catcher.zApplication;
+import com.rye.catcher.RyeCatcherApp;
 
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by jinyunyang on 15/3/6.
@@ -30,7 +28,7 @@ public class DeviceUtils {
     public static String getUUID(Context context) {
         // ANDROID_ID是设备第一次启动时产生和存储的64bit的一个数，当设备被wipe后该数重置
         if (context == null) {
-            context = zApplication.getInstance().getBaseContext();
+            context = RyeCatcherApp.getInstance().getBaseContext();
         }
 
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);

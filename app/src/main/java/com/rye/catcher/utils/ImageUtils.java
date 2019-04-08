@@ -12,8 +12,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.rye.catcher.R;
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.utils.ExtraUtil.MD5Encoder;
-import com.rye.catcher.zApplication;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -25,8 +25,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import javax.security.auth.login.LoginException;
 
 /**
  * Created by ZZG on 2018/7/31.
@@ -315,7 +313,7 @@ public class ImageUtils {
                 return bitmap;
             } else {
                 Log.i(TAG, "downloadImage: download Failed...");
-                Bitmap bitmap = BitmapFactory.decodeResource(zApplication.getContext().getResources(),
+                Bitmap bitmap = BitmapFactory.decodeResource(RyeCatcherApp.getContext().getResources(),
                         R.drawable.default_portrait);
                 return bitmap;
             }

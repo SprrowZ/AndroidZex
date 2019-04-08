@@ -1,4 +1,4 @@
-package com.rye.catcher.common;
+package com.rye.catcher.base;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -12,23 +12,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2015/12/25 0025.
+ * Created at 2019/4/8.
+ *
+ * @author Zzg
+ * @function:
  */
 public class ActivityManager {
     private List<Activity> activityList = new LinkedList<Activity>();
     private WeakReference<Activity> sCurrentActivityWeakRef;
-    private static ActivityManager instance;
-
     private ActivityManager() {
     }
 
     // 单例模式中获取唯一的MyApplication实例
     public static ActivityManager getInstance() {
-        if (null == instance) {
-            instance = new ActivityManager();
-        }
-        return instance;
+       return ActivityManagerSingleton.INSTANCE;
     }
+
+    private static class ActivityManagerSingleton{
+        private static final ActivityManager INSTANCE=new ActivityManager();
+    }
+
 
     // 添加Activity到容器中
     public void addActivity(Activity activity) {
@@ -36,7 +39,7 @@ public class ActivityManager {
     }
 
     // 遍历所有Activity并finish
-    public void exit2() {
+    public void exit() {
         for (Activity activity : activityList) {
             activity.finish();
         }
@@ -63,7 +66,7 @@ public class ActivityManager {
         for (int i = 0, size = activityList.size(); i < size; i++){
             act =  activityList.get(i);
             if(act.getClass() == cls){
-                 activityList.remove(i);
+                activityList.remove(i);
             }
         }
     }
@@ -76,7 +79,10 @@ public class ActivityManager {
         }
     }
 
-
+    /**
+     * 结束某个具体Activity
+     * @param cls
+     */
     public void finishActivity(Class<?> cls){
         Activity classActivity = null;
         for (Activity activity : activityList) {
@@ -89,7 +95,7 @@ public class ActivityManager {
     }
     //获取activity
     public <T extends Activity> T getLastActivity(){
-            return  (T)activityList.get(activityList.size()-1);
+        return  (T)activityList.get(activityList.size()-1);
 
     }
     public List<Activity> getActivityList() {
@@ -100,20 +106,7 @@ public class ActivityManager {
         this.activityList = activityList;
     }
 
-    /**
-     * 如有错误请用getNewCurrentActivity替代
-     */
-    public Activity getCurrentActivity() {
-        if (activityList == null || activityList.size() < 1) {
-            return null;
-        } else {
-            for (int i = activityList.size() - 1; i >= 0; i--) {
-                Activity activity = activityList.get(i);
-                return  activity;
-            }
-            return null;
-        }
-    }
+
 
 //    public WebView getWebViewInActivity(Activity mActivity) {
 //        if (mActivity instanceof MBOMultiWebViewActivity) {
@@ -140,6 +133,10 @@ public class ActivityManager {
 //            MBOMultiWebViewActivity activity = (MBOMultiWebViewActivity)getCurrentActivity();
 //            return activity.getWebview();
 //        }
+////        else if (getCurrentActivity() instanceof MBOWebViewActivity) {
+////            MBOWebViewActivity activity = (MBOWebViewActivity)getCurrentActivity();
+////            return activity.getWebview();
+////        }
 //        else if (getCurrentActivity() instanceof MBOPhoneHomePageActivity) {
 //            MBOPhoneHomePageActivity activity = (MBOPhoneHomePageActivity)getCurrentActivity();
 //            Fragment fragment = activity.getCurrentFragment();

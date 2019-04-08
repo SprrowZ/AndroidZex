@@ -36,7 +36,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config //签名不要忘了撒
-            manifestPlaceholders = ["appName": "RyeCatcher"] //manifest替换
+            manifestPlaceholders = ["appName": "RyeCatcherApp"] //manifest替换
             zipAlignEnabled true
         }
         debug {//默认安装的文件，可修改

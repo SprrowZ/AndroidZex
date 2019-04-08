@@ -35,7 +35,7 @@ public class CoordinatorActivity extends BaseActivity {
         ButterKnife.bind(this);
       //   toolbar.setNavigationIcon(R.drawable.mulu);
         toolbar.inflateMenu(R.menu.topbar_right);
-        collapsingToolbarLayout.setTitle("....RyeCatcher....");
+        collapsingToolbarLayout.setTitle("....RyeCatcherApp....");
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.red));
         collapsingToolbarLayout.setCollapsedTitleGravity(Gravity.CENTER);
         collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.soft12));

@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rye.catcher.BaseActivity;
-import com.rye.catcher.zApplication;
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
@@ -105,7 +105,7 @@ public class CartoonsDoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.greendao_cartoons_do);
         ButterKnife.bind(this);
-        daoSession = zApplication.getInstance().getDaoSession();
+        daoSession = RyeCatcherApp.getInstance().getDaoSession();
         cartoonsDao = daoSession.getTB_CartoonsDao();
         initEvent();
     }

@@ -4,9 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.rye.catcher.zApplication;
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.R;
-import com.rye.catcher.utils.ExtraUtil.LanguageHelper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class DateUtils {
     private static final long INTERVAL_IN_MILLISECONDS = 30000L;
@@ -599,19 +597,19 @@ public class DateUtils {
         String str = "";
         str = getWeek(date);
         if ("1".equals(str)) {
-            str = zApplication.getInstance().getString(R.string.Sunday);
+            str = RyeCatcherApp.getInstance().getString(R.string.Sunday);
         } else if ("2".equals(str)) {
-            str = zApplication.getInstance().getString(R.string.Monday);
+            str = RyeCatcherApp.getInstance().getString(R.string.Monday);
         } else if ("3".equals(str)) {
-            str = zApplication.getInstance().getString(R.string.Tuesday);
+            str = RyeCatcherApp.getInstance().getString(R.string.Tuesday);
         } else if ("4".equals(str)) {
-            str = zApplication.getInstance().getString(R.string.Wednesday);
+            str = RyeCatcherApp.getInstance().getString(R.string.Wednesday);
         } else if ("5".equals(str)) {
-            str = zApplication.getInstance().getString(R.string.Thursday);
+            str = RyeCatcherApp.getInstance().getString(R.string.Thursday);
         } else if ("6".equals(str)) {
-            str = zApplication.getInstance().getString(R.string.Friday);
+            str = RyeCatcherApp.getInstance().getString(R.string.Friday);
         } else if ("7".equals(str)) {
-            str = zApplication.getInstance().getString(R.string.Saturday);
+            str = RyeCatcherApp.getInstance().getString(R.string.Saturday);
         }
         return str;
     }
@@ -628,7 +626,7 @@ public class DateUtils {
     public static String timeAgo(long millis) {
         long diff = (new Date().getTime()) - millis;
 
-        Resources r = zApplication.getInstance().getBaseContext().getResources();
+        Resources r = RyeCatcherApp.getInstance().getBaseContext().getResources();
 
         String prefix = r.getString(R.string.time_ago_prefix);
         String suffix = r.getString(R.string.time_ago_suffix);

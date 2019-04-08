@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ProgressBar;
 
@@ -14,6 +15,7 @@ import com.rye.catcher.R;
  * Created by ZZG on 2018/8/12.
  */
 public class HorizontalProgress extends ProgressBar {
+    private final String TAG=this.getClass().getSimpleName();
     private static final int DEFAULT_TEXT_SIZE = 10;//sp
     private static final int DEFAULT_TEXT_COLOR = 0xFFFC00D1;
     private static final int DEFAULT_COLOR_UNREACH = 0XFFD3D6DA;//sp
@@ -66,7 +68,7 @@ public class HorizontalProgress extends ProgressBar {
                 -1);
         mTextOffset = (int) typedArray.getDimension(R.styleable.HorizontalProgress_progress_text_offset,
                 -1);
-        typedArray.recycle();//??????
+        typedArray.recycle();//
         mPaint.setTextSize(mTextSize);//指定Text高度
     }
 
@@ -91,8 +93,8 @@ public class HorizontalProgress extends ProgressBar {
             int textHeight = (int) (mPaint.descent() - mPaint.ascent());
             result = getPaddingTop() + getPaddingBottom() +//这两个必须加，别忘了
                     Math.max(Math.max(mReachHeight, mUnReachColor), Math.abs(textHeight));
-            if (mode == MeasureSpec.AT_MOST) {
-                result = Math.min(result, size);//最大也不能超过给的值
+            if (mode == MeasureSpec.AT_MOST) {//最大也不能超过给的值
+                result = Math.min(result, size);
             }
         }
         return result;
@@ -100,29 +102,38 @@ public class HorizontalProgress extends ProgressBar {
 
     @Override
     protected synchronized void onDraw(Canvas canvas) {
+        Log.i(TAG, "onDraw: ...");
         canvas.save();
         canvas.translate(getPaddingLeft(),getHeight()/2);//挪到正中间
         boolean noNeedUnReach=false;//不需要绘制右边
         //draw bar
         String text=getProgress()+"%";
+        //measureText返回文字宽度信息，getTextBounds可以获取宽和高
         int textWidth=(int)mPaint.measureText(text);
+        //获取当前进度
         float radio=getProgress()*1.0f/getMax();
+        //得到unReach未达长度
         float progressX=radio*mRealWidth;//也是文本绘制开始的地方
-        if (progressX+textWidth>mRealWidth){//已经到达了最右边
+        //已经到达了最右边
+        if (progressX+textWidth>mRealWidth){
             progressX=mRealWidth-textWidth;
+            //不需要再绘制右边
             noNeedUnReach=true;
         }
+
         float endX=progressX-mTextOffset/2;//reach结束的位置
+
         if (endX>0){
             mPaint.setColor(mReachColor);
             mPaint.setStrokeWidth(mReachHeight);
+            //已完成进度条位置
             canvas.drawLine(0,0,endX,0,mPaint);
         }
         //draw Text
         mPaint.setColor(mTextColor);
         int y=(int)(-(mPaint.descent()+mPaint.ascent())/2);//这个需要搞明白
         canvas.drawText(text,progressX,y,mPaint);
-        //draw unreach bar
+        //如果上面的没有到头，那么就需要绘制未完成进度条
         if (!noNeedUnReach){
             float start=progressX+mTextOffset/2+textWidth;
             mPaint.setColor(mUnReachColor);

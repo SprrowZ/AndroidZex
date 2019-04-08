@@ -42,7 +42,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
-        android:name=".zApplication"
+        android:name=".RyeCatcherApp"
         android:allowBackup="true"
         android:icon="@drawable/appicon"
         android:label="${appName}"

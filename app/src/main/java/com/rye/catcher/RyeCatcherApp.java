@@ -11,7 +11,8 @@ import android.util.Log;
 
 import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
-import com.rye.catcher.common.ActivityManager;
+import com.rye.catcher.base.ActivityManager;
+import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.utils.EchatAppUtil;
 
 import com.squareup.leakcanary.LeakCanary;
@@ -23,18 +24,22 @@ import org.greenrobot.greendao.database.Database;
  * Created by ZZG on 2018/3/22.
  */
 
-public class zApplication extends Application{
+public class RyeCatcherApp extends Application{
 
-    private static final String TAG="zApplication";
+    private static final String TAG="RyeCatcherApp";
 
 
     private static Context mContext;
     private DisplayMetrics displayMetrics;
-    private static zApplication instance=new zApplication();
+    private static RyeCatcherApp instance;
     private boolean DAO_INITED=false;
     private DaoSession daoSession;
     //前后台判断
     private int countActivity=0;
+
+    //全局Handler
+    private OverallHandler overallHandler=null;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -81,9 +86,11 @@ public class zApplication extends Application{
 
         //----------监听生命周期
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            //打开的Activity数量统计
+            private int activityCount = 0;
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+                ActivityManager.getInstance().setCurrentActivity(activity);
             }
 
             @Override
@@ -121,6 +128,11 @@ public class zApplication extends Application{
 
             }
         });
+
+        //----------全局Handler
+        if (overallHandler==null){
+            overallHandler=new OverallHandler(this);
+        }
     }
     public DaoSession getDaoSession() {//获取dao实例
         return daoSession;
@@ -133,8 +145,13 @@ public class zApplication extends Application{
             DAO_INITED = true;
         }
     }
-    public static zApplication getInstance() {
+    //单例
+    public static RyeCatcherApp getInstance() {
         return instance;
+    }
+    //获取全局Handler
+    public OverallHandler getHandler() {
+        return overallHandler;
     }
 
     /**
@@ -150,6 +167,8 @@ public class zApplication extends Application{
             return st;
         }
     }
+
+
 
 
 }

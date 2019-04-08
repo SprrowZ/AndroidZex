@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rye.catcher.BaseActivity;
-import com.rye.catcher.zApplication;
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
 import com.rye.catcher.GreenDaos.Base.TB_Character;
@@ -97,7 +97,7 @@ public class CharactersDoActivity extends BaseActivity {
     }
 
     private void initEvent() {
-        daoSession = zApplication.getInstance().getDaoSession();//获取session实例
+        daoSession = RyeCatcherApp.getInstance().getDaoSession();//获取session实例
         cartoonsDao = daoSession.getTB_CartoonsDao();
         characterDao = daoSession.getTB_CharacterDao();
         editCartoonName.addTextChangedListener(new TextWatcher() {

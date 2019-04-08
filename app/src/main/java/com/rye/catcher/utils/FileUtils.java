@@ -3,22 +3,17 @@ package com.rye.catcher.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.rye.catcher.GreenDaos.Base.TB_Character;
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.project.catcher.DelayHandleUtil;
-import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.ExtraUtil.IOUtils;
-import com.rye.catcher.zApplication;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -979,7 +974,7 @@ public class FileUtils {
     private static   StringBuffer stringBuffer=new StringBuffer();
     public static void writeUserLog(String content) {
         stringBuffer.append(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" +
-                "  版本号：" + zApplication.getInstance().getVersion() +
+                "  版本号：" + RyeCatcherApp.getInstance().getVersion() +
                 " 手机信息：" + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
         DelayHandleUtil.setDelay(DelayHandleUtil.DELAY_ACTION_UPDATE_MSG_STATUS, 0L, 2000, new DelayHandleUtil.HandleListener() {
             @Override

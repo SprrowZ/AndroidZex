@@ -10,8 +10,8 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.support.annotation.RequiresApi;
 
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.utils.ExtraUtil.Constant;
-import com.rye.catcher.zApplication;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -32,11 +32,11 @@ public class SDHelper {
     public static String storagePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
     public static String publicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator;
     //app私有存储
-    public static String external = zApplication.getInstance().getApplicationContext().getExternalFilesDir(null) + File.separator;
+    public static String external = RyeCatcherApp.getInstance().getApplicationContext().getExternalFilesDir(null) + File.separator;
     public static String privateData = Environment.getDataDirectory() + File.separator;
     public static String rootDirectory = Environment.getRootDirectory() + File.separator;
     //app私有缓存
-    public static String externalCache = zApplication.getInstance().getApplicationContext().getExternalCacheDir() + File.separator;
+    public static String externalCache = RyeCatcherApp.getInstance().getApplicationContext().getExternalCacheDir() + File.separator;
     /**
      * App专属目录
      *

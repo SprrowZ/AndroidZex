@@ -1,7 +1,7 @@
 package com.rye.catcher.utils;
 
 
-import com.rye.catcher.zApplication;
+import com.rye.catcher.RyeCatcherApp;
 
 import es.dmoral.toasty.Toasty;
 
@@ -18,7 +18,7 @@ public class ToastUtils {
             return;
         }
 
-        Toasty.custom(zApplication.getContext(),msg,
+        Toasty.custom(RyeCatcherApp.getContext(),msg,
                 0, 0, LENGTH_SHORT, false, false).show();
     }
 
@@ -26,19 +26,19 @@ public class ToastUtils {
         if (StringUtils.isEmpty(msg)) {
             return;
         }
-        Toasty.custom(zApplication.getContext(), msg,
+        Toasty.custom(RyeCatcherApp.getContext(), msg,
                0, 0, LENGTH_LONG, false, false).show();
     }
 
     public static void shortMsg(int resId) {
-        Toasty.custom(zApplication.getContext(),
-                zApplication.getContext().getString(resId),
+        Toasty.custom(RyeCatcherApp.getContext(),
+                RyeCatcherApp.getContext().getString(resId),
                 0, 0, LENGTH_SHORT, false, false).show();
     }
 
     public static void longMsg(int resId) {
-        Toasty.custom(zApplication.getContext(),
-                zApplication.getContext().getString(resId),
+        Toasty.custom(RyeCatcherApp.getContext(),
+                RyeCatcherApp.getContext().getString(resId),
                0, 0, LENGTH_LONG, false, false).show();
     }
 

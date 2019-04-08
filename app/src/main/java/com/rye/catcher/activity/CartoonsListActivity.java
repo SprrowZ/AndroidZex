@@ -1,6 +1,5 @@
 package com.rye.catcher.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,17 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.rye.catcher.BaseActivity;
-import com.rye.catcher.zApplication;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.BaseArrayAdapter;
 import com.rye.catcher.activity.adapter.GreenAdapter;
 import com.rye.catcher.project.catcher.eventbus.MessageEvent;
 
@@ -125,7 +121,7 @@ public class CartoonsListActivity extends BaseActivity {
 //        listView=findViewById(R.id.listView);
 //        query=findViewById(R.id.search_bar);
 //        listView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
-//        daoSession= zApplication.getInstance().getDaoSession();
+//        daoSession= RyeCatcherApp.getInstance().getDaoSession();
 //        cartoonsDao=daoSession.getTB_CartoonsDao();
 //        //查询数据进行适配
 //        datalist=cartoonsDao.queryBuilder()

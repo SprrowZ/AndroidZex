@@ -91,7 +91,8 @@ public class MainActivityEx extends BaseActivity {
             }
             return false;
         });
-
+    //开始注册系统广播
+        startScreenBroadcastReceiver();
 
     }
 

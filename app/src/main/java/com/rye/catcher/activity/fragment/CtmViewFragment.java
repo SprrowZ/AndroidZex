@@ -32,8 +32,7 @@ public class CtmViewFragment extends BaseFragment  {
     public static final String TELESCOPE="TELESCOPE";
     public static final String DISTORTIONVIEW="DISTORTIONVIEW";
     public static final String ORIGIN="ORIGIN";
-    private Unbinder unbinder;
-    private View view;
+
 
     @Override
     protected int getLayoutResId() {
@@ -115,6 +114,6 @@ public class CtmViewFragment extends BaseFragment  {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
+
     }
 }

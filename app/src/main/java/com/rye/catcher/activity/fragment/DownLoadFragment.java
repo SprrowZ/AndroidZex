@@ -9,7 +9,7 @@ import com.rye.catcher.R;
 public class DownLoadFragment extends BaseFragment {
     @Override
     protected int getLayoutResId() {
-        return R;
+        return R.layout.download_fragment;
     }
 
     @Override

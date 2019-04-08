@@ -3,38 +3,35 @@ package com.rye.catcher;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.utils.DialogUtil;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.StringUtils;
-import com.rye.catcher.utils.ToastUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -46,10 +43,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class BaseActivity extends AppCompatActivity {
-
+    private static final String TAG="BaseActivity";
     protected Map<BroadcastReceiver, Integer> receiverMap = new ConcurrentHashMap<>();
-
-
+    //监听系统广播
+    private ScreenBroadcastReceiver mScreenReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +56,9 @@ public class BaseActivity extends AppCompatActivity {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+        com.rye.catcher.base.ActivityManager.getInstance().addActivity(this);
+        //系统广播接受者
+        mScreenReceiver=new ScreenBroadcastReceiver();
     }
 
     /**
@@ -82,75 +82,8 @@ public class BaseActivity extends AppCompatActivity {
         TextView view = (TextView) findViewById(R.id.title);
         return view != null ? view.getText().toString() : "";
     }
-    /**
-     * 设置标题栏右侧文本
-     */
-    public void setBarRightText(String rightText, View.OnClickListener listener) {
-        TextView view = (TextView) findViewById(R.id.right_text);
-        ImageView img = (ImageView) findViewById(R.id.right_image);
-        if (view != null) {
-            view.setText(rightText);
-            img.setVisibility(View.GONE);
-            view.setVisibility(View.VISIBLE);
-
-            if (listener != null) {
-                view.setOnClickListener(listener);
-            }
-        }
-    }
-
-    public void hideRightDrawable() {
-        TextView view = (TextView) findViewById(R.id.right_text);
-        ImageView img = (ImageView) findViewById(R.id.right_image);
-        view.setVisibility(View.GONE);
-        img.setVisibility(View.GONE);
-    }
-
-    public void setBarRightText(int resId, View.OnClickListener listener) {
-        TextView view = (TextView) findViewById(R.id.right_text);
-        ImageView img = (ImageView) findViewById(R.id.right_image);
-        if (view != null) {
-            view.setText(resId);
-            img.setVisibility(View.GONE);
-            view.setVisibility(View.VISIBLE);
-
-            if (listener != null) {
-                view.setOnClickListener(listener);
-            }
-        }
-    }
 
 
-    /**
-     * 设置标题栏右侧图片
-     */
-    public void setBarRightDrawable(Drawable drawable, View.OnClickListener listener) {
-        ImageView view = (ImageView) findViewById(R.id.right_image);
-        TextView text = (TextView) findViewById(R.id.right_text);
-        if (view != null) {
-            view.setImageDrawable(drawable);
-            text.setVisibility(View.GONE);
-            view.setVisibility(View.VISIBLE);
-
-            if (listener != null) {
-                view.setOnClickListener(listener);
-            }
-        }
-    }
-
-    public void setBarRightDrawable(int resId, View.OnClickListener listener) {
-        ImageView view = (ImageView) findViewById(R.id.right_image);
-        TextView text = (TextView) findViewById(R.id.right_text);
-        if (view != null) {
-            view.setImageResource(resId);
-            text.setVisibility(View.GONE);
-            view.setVisibility(View.VISIBLE);
-
-            if (listener != null) {
-                view.setOnClickListener(listener);
-            }
-        }
-    }
 
 
     // Android 判断app是否在前台还是在后台运行，直接看代码，可直接使用。
@@ -270,33 +203,6 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 增加长时间的提示消息
-     *
-     * @param msg 提示消息
-     */
-    public void showLongMsg(final String msg) {
-        try {
-            runOnUiThread(()->{
-                    ToastUtils.longMsg(msg);
-            });
-        } catch (Exception ignored) {
-        }
-    }
-
-    /**
-     * 增加短时间的提示消息
-     *
-     * @param msg 提示消息
-     */
-    public void showShortMsg(final String msg) {
-        try {
-            runOnUiThread(()->{
-                    ToastUtils.shortMsg(msg);
-            });
-        } catch (Exception ignored) {
-        }
-    }
 
 
     @Override
@@ -343,6 +249,24 @@ public class BaseActivity extends AppCompatActivity {
         receiverMap.put(receiver, Constant.YES_INT);
     }
 
+    private static class  ScreenBroadcastReceiver extends BroadcastReceiver{
+        private OverallHandler handler;
+        @Override
+        public void onReceive(Context context, Intent intent) {
+          String action= intent.getAction();
+            if (Intent.ACTION_SCREEN_ON.equals(action)){//开屏广播
+                Log.i(TAG, "onReceive: 开屏....");
+
+            }else if (Intent.ACTION_SCREEN_OFF.equals(action)|| //息屏或按home键
+                    Intent.ACTION_CLOSE_SYSTEM_DIALOGS.equals(action)){
+                Log.i(TAG, "onReceive: 屏幕关闭或按Home键--"+action);
+                handler=RyeCatcherApp.getInstance().getHandler();
+                handler.sendEmptyMessageDelayed(OverallHandler.backgroundCode,200);
+                handler.sendEmptyMessageDelayed(OverallHandler.exit,OverallHandler.howlongtofinish);
+            }
+        }
+    }
+
 
     /**
      * 将图片转换成Base64编码的字符串
@@ -379,22 +303,7 @@ public class BaseActivity extends AppCompatActivity {
         return result;
     }
 
-    /**
-     * 记录所有活动的Activity
-     */
-    private static final List<BaseActivity> mActivities = new LinkedList<BaseActivity>();
-    /**
-     * 关闭所有Activity
-     */
-    public static void finishAll() {
-        List<BaseActivity> copy;
-        synchronized (mActivities) {
-            copy = new ArrayList<BaseActivity>(mActivities);
-        }
-        for (BaseActivity activity : copy) {
-            activity.finish();
-        }
-    }
+
 
 
 
@@ -451,6 +360,23 @@ public class BaseActivity extends AppCompatActivity {
         DialogUtil.closeLoadingDialog(context);
     }
 
+    /**
+     * 开始监听系统广播
+      */
+    public void startScreenBroadcastReceiver(){
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        //用户按键返回
+        intentFilter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        //屏幕开时广播
+        intentFilter.addAction(Intent.ACTION_USER_PRESENT);
+        this.registerReceiver(mScreenReceiver,intentFilter);
+    }
+
+    /**
+     * 判断是不是在主线程中
+     * @return
+     */
     public boolean isMainThread() {
         return Looper.getMainLooper() == Looper.myLooper();
     }

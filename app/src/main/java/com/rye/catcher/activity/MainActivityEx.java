@@ -239,10 +239,8 @@ public class MainActivityEx extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy: ...");
-        new Thread(() -> {
-            FileUtils.writeUserLog(TAG + "onDestroy:");
-        }).start();
-
+         FileUtils.writeUserLog(TAG + "onDestroy:");
+        stopScreenStateUpdate();
     }
 
     @Override

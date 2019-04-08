@@ -3,6 +3,7 @@ package com.rye.catcher.base;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Process;
 
 import java.lang.ref.WeakReference;
 
@@ -35,7 +36,11 @@ public class OverallHandler extends Handler {
         switch (msg.what){
             case backgroundCode:
             //退入到后台
-
+                break;
+            case exit:
+            ActivityManager.getInstance().exit();
+                Process.killProcess(Process.myPid());
+                System.exit(0);
                 break;
         }
     }

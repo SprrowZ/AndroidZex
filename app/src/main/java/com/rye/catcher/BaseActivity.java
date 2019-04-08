@@ -61,6 +61,13 @@ public class BaseActivity extends AppCompatActivity {
         mScreenReceiver=new ScreenBroadcastReceiver();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //在开屏的时候清掉所有,这样从后台到前台，就会把延迟的handler的处理去掉
+        RyeCatcherApp.getHandler().removeMessages(OverallHandler.exit);
+    }
+
     /**
      * 设置标题栏标题
      */
@@ -372,6 +379,12 @@ public class BaseActivity extends AppCompatActivity {
         intentFilter.addAction(Intent.ACTION_USER_PRESENT);
         this.registerReceiver(mScreenReceiver,intentFilter);
     }
+    /**
+     * 停止screen状态更新
+     */
+    public void stopScreenStateUpdate() {
+        this.unregisterReceiver(mScreenReceiver);
+    }
 
     /**
      * 判断是不是在主线程中
@@ -394,5 +407,6 @@ public class BaseActivity extends AppCompatActivity {
             timerTask.cancel();
             timer.cancel();
         }
+
     }
 }

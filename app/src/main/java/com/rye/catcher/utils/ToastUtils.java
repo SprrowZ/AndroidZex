@@ -17,8 +17,9 @@ public class ToastUtils {
         if (StringUtils.isEmpty(msg)) {
             return;
         }
-        Toasty.custom(zApplication.getContext(), msg,
-                null, 0, LENGTH_SHORT, false, false).show();
+
+        Toasty.custom(zApplication.getContext(),msg,
+                0, 0, LENGTH_SHORT, false, false).show();
     }
 
     public static void longMsg(String msg) {
@@ -26,19 +27,19 @@ public class ToastUtils {
             return;
         }
         Toasty.custom(zApplication.getContext(), msg,
-                null, 0, LENGTH_LONG, false, false).show();
+               0, 0, LENGTH_LONG, false, false).show();
     }
 
     public static void shortMsg(int resId) {
         Toasty.custom(zApplication.getContext(),
                 zApplication.getContext().getString(resId),
-                null, 0, LENGTH_SHORT, false, false).show();
+                0, 0, LENGTH_SHORT, false, false).show();
     }
 
     public static void longMsg(int resId) {
         Toasty.custom(zApplication.getContext(),
                 zApplication.getContext().getString(resId),
-                null, 0, LENGTH_LONG, false, false).show();
+               0, 0, LENGTH_LONG, false, false).show();
     }
 
 }

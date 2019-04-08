@@ -1,9 +1,8 @@
-package com.rye.catcher.project.socket.udpdemo1;
+package com.rye.catcher.project.socketdemo.udpdemo1;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
 /**
  * Created at 2019/3/6.

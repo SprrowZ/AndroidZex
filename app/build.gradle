@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion compileSdkVer
-    buildToolsVersion buildToolsVer
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.rye.catcher.zzg"
         minSdkVersion minSdkVer
@@ -141,7 +141,7 @@ android.applicationVariants.all { variant ->
             if (variant.buildType.name == "preview") {
                 outputFileName = "${rootProject.name}-${variant.buildType.name}" +
                         "-${variant.versionName}.apk"
-                variant.packageApplication.outputDirectory = new File("./../apk")
+                variant.packageApplicationProvider.get().outputDirectory = new File("./../apk")
             }
 
         } else {
@@ -154,7 +154,7 @@ android.applicationVariants.all { variant ->
             buildConfigField "String", "ip", "\"www.bilibili.com\""
             outputFileName = "${rootProject.name}-${variant.buildType.name}" +
                     "-${variant.versionName}.apk"
-            variant.packageApplication.outputDirectory = new File("./../apk")
+            variant.packageApplicationProvider.get().outputDirectory = new File("./../apk")
         }
     }
 }
@@ -162,6 +162,7 @@ android.applicationVariants.all { variant ->
 dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:27.1.1'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -185,7 +186,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
-    implementation 'com.github.GrenderG:Toasty:1.2.5'
+    implementation 'com.github.GrenderG:Toasty:1.4.1'
 
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVer"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVer"

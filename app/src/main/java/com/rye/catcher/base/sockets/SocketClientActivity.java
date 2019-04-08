@@ -69,7 +69,7 @@ public class SocketClientActivity extends BaseActivity {
                     reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     //给服务器发消息
                     writer=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                    //读取输入数据流
+                    //读取输入字符流
                     readerText=new BufferedReader(new InputStreamReader
                             (getStringStreamex(editText.getText().toString())));
                     String line = null;

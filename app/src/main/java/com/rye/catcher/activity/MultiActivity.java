@@ -44,6 +44,6 @@ private MultiPagerAdapter adapter;
         fragmentList.add(new RetrofitFragment());
         adapter=new MultiPagerAdapter(getSupportFragmentManager(),titleList,fragmentList);
         viewPager.setAdapter(adapter);
-        tableLayout.setup
+        tableLayout.setupWithViewPager(viewPager);
     }
 }

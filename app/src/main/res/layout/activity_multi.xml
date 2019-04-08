@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.rye.catcher.activity.MultiActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
  <android.support.design.widget.TabLayout
      android:id="@+id/tabLayout"

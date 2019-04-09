@@ -141,7 +141,7 @@ android.applicationVariants.all { variant ->
             if (variant.buildType.name == "preview") {
                 outputFileName = "${rootProject.name}-${variant.buildType.name}" +
                         "-${variant.versionName}.apk"
-                variant.packageApplicationProvider.get().outputDirectory = new File("./../apk")
+                variant.packageApplication.outputDirectory  = new File("./../apk")
             }
 
         } else {
@@ -154,7 +154,7 @@ android.applicationVariants.all { variant ->
             buildConfigField "String", "ip", "\"www.bilibili.com\""
             outputFileName = "${rootProject.name}-${variant.buildType.name}" +
                     "-${variant.versionName}.apk"
-            variant.packageApplicationProvider.get().outputDirectory = new File("./../apk")
+            variant.packageApplication.outputDirectory  = new File("./../apk")
         }
     }
 }

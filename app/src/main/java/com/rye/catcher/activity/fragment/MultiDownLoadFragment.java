@@ -1,5 +1,5 @@
 package com.rye.catcher.activity.fragment;
-
+import com.rye.catcher.R;
 /**
  * Created by 18041at 2019/4/8
  * Function:
@@ -7,7 +7,7 @@ package com.rye.catcher.activity.fragment;
 public class MultiDownLoadFragment extends BaseFragment {
     @Override
     protected int getLayoutResId() {
-        return ;
+        return R.layout.fragment_multi_download ;
     }
 
     @Override

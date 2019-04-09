@@ -1,9 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="@dimen/len_80"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/fileImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:src="@mipmap/star"
+            android:padding="@dimen/len_10"
+
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:paddingTop="@dimen/len_6"
+        android:paddingBottom="@dimen/len_6"
+        >
+
+        <TextView
+            android:id="@+id/fileName"
+            android:layout_width="@dimen/len_172"
+            android:layout_height="@dimen/len_32"
+            android:gravity="center"
+            android:textSize="@dimen/font_16"
+            android:textStyle="bold"
+            tools:text="@string/cancel"
+            />
+
+        <TextView
+            android:id="@+id/downLoaded"
+            android:layout_below="@+id/fileName"
+            android:layout_width="@dimen/len_172"
+            android:layout_height="@dimen/len_32"
+            android:gravity="center"
+            android:textSize="@dimen/font_12"
+            tools:text="224.00KB/471.53MB"
+            />
+
+        <TextView
+            android:id="@+id/rate"
+            android:layout_width="@dimen/len_52"
+            android:layout_height="@dimen/len_32"
+            android:layout_toRightOf="@+id/downLoaded"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/len_12"
+            android:layout_marginBottom="@dimen/len_4"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        >
+        <com.rye.catcher.project.ctmviews.RoundProgress
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/len_60"
+            app:progress_text_color="@color/black"
+            app:progress_reach_color="@color/soft17"
+            app:progress_unreach_color="@color/soft1"
+            android:progress="20"
+            />
+    </LinearLayout>
 
 </LinearLayout>

@@ -17,12 +17,9 @@ public class NetWorkThreadPool {
     public static final int SINGLE = 1;
     private static final int THREAD_POOL_SIZE=Runtime.getRuntime().availableProcessors()*2+1;
     private ExecutorService threadPool;
-    //静态内部类单例模式
-//    private static class SingleInstance{
-//        private static NetWorkThreadPool instatnce=new NetWorkThreadPool();
-//    }
+
     public NetWorkThreadPool getInstance(){
-        return singletonHolder.singleInstance;
+        return singletonHolder.mutiInstance;
     }
 
     private NetWorkThreadPool(int type) {

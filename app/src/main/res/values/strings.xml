@@ -73,4 +73,7 @@
     <string name="retrofit">Retrofit</string>
     <string name="orr">ORR</string>
     <string name="rxjava">Rxjava</string>
+    <string name="start">开始</string>
+    <string name="pause">暂停</string>
+    <string name="reStart">继续下载</string>
 </resources>

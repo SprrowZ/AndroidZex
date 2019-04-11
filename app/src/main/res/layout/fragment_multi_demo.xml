@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+ <TextView
+     android:id="@+id/start"
+     android:text="@string/start"
+    style="@style/btn_style_red"/>
+
+ <TextView
+     android:id="@+id/pause"
+     android:text="@string/pause"
+     style="@style/btn_style_red"/>
+ <TextView
+     android:id="@+id/reStart"
+     android:text="@string/reStart"
+     style="@style/btn_style_red" />
+
+
+</LinearLayout>

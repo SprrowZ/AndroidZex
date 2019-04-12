@@ -18,9 +18,12 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.utils.ImageUtils;
 import com.rye.catcher.utils.SDHelper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,6 +31,8 @@ public class TestPhotoActivity extends AppCompatActivity {
     private ImageView imageView;
 
     private static final int CAMERA_REQUEST_CODE=99;
+
+    private  Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +49,27 @@ public class TestPhotoActivity extends AppCompatActivity {
                 imageView.setImageBitmap(BitmapFactory.decodeFile(path));
             }
         }else if (requestCode==CAMERA_REQUEST_CODE&&resultCode==RESULT_OK){
-            if (data!=null){
-                imageView.setImageBitmap(BitmapFactory.decodeFile(getImagePath()));
+            if (uri!=null){
+                Bitmap bitmap = null;
+                try {
+                    InputStream inputStream=getContentResolver().openInputStream(uri);
+                    //压缩图片
+                     bitmap= ImageUtils.ratio(null,imageView.getMeasuredHeight(),imageView.getMeasuredWidth(),
+                            inputStream);
+                    if (data!=null){
+                        imageView.setImageBitmap(bitmap);
+                    }
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }finally {
+                   if (bitmap!=null&&!bitmap.isRecycled()){
+                       bitmap.recycle();
+                   }
+                }
+
             }
+
 
         }
     }
@@ -71,7 +94,7 @@ public class TestPhotoActivity extends AppCompatActivity {
         //拍照页面
          Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
          File file=new File(getImagePath());
-         Uri uri;
+
          //低于7.0用file://
          if (Build.VERSION.SDK_INT<Build.VERSION_CODES.N){
                uri=Uri.fromFile(file);

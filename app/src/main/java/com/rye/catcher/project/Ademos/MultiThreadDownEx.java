@@ -298,21 +298,5 @@ public class MultiThreadDownEx {
         }
     }
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-
-            if (mDownLoadListener != null) {
-                if (msg.what == SUCCESS) {
-                    mDownLoadListener.onComplete();
-                } else if (msg.what == FAILURE) {
-
-                    mDownLoadListener.onFailure();
-                } else {
-                    mDownLoadListener.getProgress(msg.what);
-                }
-            }
-        }
-    };
 }
 

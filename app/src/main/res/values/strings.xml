@@ -73,4 +73,11 @@
     <string name="retrofit">Retrofit</string>
     <string name="orr">ORR</string>
     <string name="rxjava">Rxjava</string>
+    <string name="animation">Animation</string>
+    <string name="somedome">SomeDemo</string>
+    <string name="camera">camera</string>
+    <string name="customView">customView</string>
+    <string name="javaMore">javaMore</string>
+    <string name="review">Review</string>
+    <string name="project">Project</string>
 </resources>

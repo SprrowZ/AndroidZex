@@ -19,7 +19,9 @@ android {
         preDexLibraries = false
         javaMaxHeapSize "4g"
     }
-
+    dataBinding{
+        enabled = true
+    }
     signingConfigs {
         config {
             storeFile file('../ryeCatcher.jks')

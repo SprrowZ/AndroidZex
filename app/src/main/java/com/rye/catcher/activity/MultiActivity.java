@@ -24,7 +24,7 @@ public class MultiActivity extends AppCompatActivity {
 @BindView(R.id.tabLayout)
 TabLayout tableLayout;
 @BindView(R.id.viewPager)
-    ViewPager viewPager;
+ViewPager viewPager;
 private String[]  titles=new String[]{"MultiHttp","MultiRe","ThreadPool"};
 private List<String> titleList;
 private List<Fragment> fragmentList;
@@ -45,5 +45,6 @@ private MultiPagerAdapter adapter;
         adapter=new MultiPagerAdapter(getSupportFragmentManager(),titleList,fragmentList);
         viewPager.setAdapter(adapter);
         tableLayout.setupWithViewPager(viewPager);
+
     }
 }

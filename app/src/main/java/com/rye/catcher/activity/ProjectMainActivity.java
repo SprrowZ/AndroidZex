@@ -28,6 +28,8 @@ import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
+import com.rye.catcher.utils.permission.PermissionUtils;
+import com.yanzhenjie.permission.Permission;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -218,7 +220,10 @@ public class ProjectMainActivity extends BaseActivity {
                 startActivity(new Intent(this, MvpActivity.class));
                 break;
             case R.id.takePhoto:
-                startActivity(new Intent(this, TestPhotoActivity.class));
+                PermissionUtils.requestPermission(this,"需要相机权限！",false,
+                        data -> {
+                            startActivity(new Intent(this, TestPhotoActivity.class));
+                        },1, Permission.CAMERA);
                 break;
             case R.id.takePhotoEx:
                 startActivity(new Intent(this, CameraActivityEx.class));

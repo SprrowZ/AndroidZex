@@ -53,7 +53,9 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="09f608d1c15c69d760761fec208845ab" />
-
+        <meta-data android:value="5cb3dc76570df3a6d200082e" android:name="UMENG_APPKEY"/>
+        <!--value的值填写渠道名称，例如yingyongbao。这里设置动态渠道变量-->
+        <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"

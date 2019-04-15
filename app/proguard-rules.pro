@@ -285,3 +285,14 @@ public static java.lang.String TABLENAME;
 -keep class com.amap.api.fence.**{*;}
 
 -keep class com.autonavi.aps.amapapi.model.**{*;}
+#————————————————————————友盟————————————————————————————————
+-keep class com.umeng.** {*;}
+
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}

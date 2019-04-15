@@ -26,6 +26,7 @@ import com.rye.catcher.utils.DialogUtil;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.StringUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -66,6 +67,8 @@ public class BaseActivity extends AppCompatActivity {
         super.onResume();
         //在开屏的时候清掉所有,这样从后台到前台，就会把延迟的handler的处理去掉
         RyeCatcherApp.getHandler().removeMessages(OverallHandler.exit);
+        //友盟Session统计
+        MobclickAgent.onResume(this);
     }
 
     /**
@@ -398,6 +401,13 @@ public class BaseActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //就多一个参数this
         PermissionsUtil.INSTANCE.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //友盟Session统计
+        MobclickAgent.onPause(this);
     }
 
     @Override

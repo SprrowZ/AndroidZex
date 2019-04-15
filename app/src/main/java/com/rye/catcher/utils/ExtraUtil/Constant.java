@@ -61,4 +61,9 @@ public class Constant {
      * 图片前缀
      */
     public static final String IMAGE_PREFIX="zAndroid-";
+    /**
+     * 友盟统计Key
+     */
+    public static final String UMENG_KEY= "5cb3dc76570df3a6d200082e";
+
 }

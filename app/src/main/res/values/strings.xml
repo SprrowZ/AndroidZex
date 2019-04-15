@@ -80,4 +80,8 @@
     <string name="javaMore">javaMore</string>
     <string name="review">Review</string>
     <string name="project">Project</string>
+    <string name="start">开始</string>
+    <string name="stop">停止</string>
+    <string name="pause">暂停</string>
+    <string name="reStart">重启</string>
 </resources>

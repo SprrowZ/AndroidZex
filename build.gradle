@@ -5,6 +5,11 @@ buildscript {
         jcenter()
         google()
         mavenCentral()
+        //UMeng
+        maven {
+            url 'https://dl.bintray.com/umsdk/release'
+        }
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'

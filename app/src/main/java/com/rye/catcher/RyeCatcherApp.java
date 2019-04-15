@@ -15,8 +15,10 @@ import com.rye.catcher.base.ActivityManager;
 import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.utils.EchatAppUtil;
 
+import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.umeng.commonsdk.UMConfigure;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -55,7 +57,8 @@ public class RyeCatcherApp extends Application{
             return;
         }
         LeakCanary.install(this);
-
+        //友盟统计
+        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
     }
                //GreenDao初始化
 

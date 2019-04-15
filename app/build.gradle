@@ -91,23 +91,27 @@ android {
     productFlavors {
         vip {
             dimension "money"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vip"]
             buildConfigField("boolean", "IS_VIP_VERSION", "true")
             minSdkVersion 16
         }
         free {
             dimension "money"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "free"]
             buildConfigField("boolean", "IS_VIP_VERSION", "false")
             minSdkVersion 16
         }
         baidu {
             manifestPlaceholders = [CHANNEL: "baidu"]
             dimension "channel"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
             buildConfigField("boolean", "IS_baidu_VERSION", "true")
             minSdkVersion 16
         }
         xiaomi {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
             buildConfigField("boolean", "IS_baidu_VERSION", "false")
             minSdkVersion 16
         }
@@ -208,6 +212,8 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
      //Optional, if you use support library fragments:
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
-
+   //UMeng
+    implementation 'com.umeng.sdk:common:latest.integration'
+    implementation 'com.umeng.sdk:analytics:latest.integration'
 
 }

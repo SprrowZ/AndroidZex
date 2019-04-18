@@ -40,10 +40,10 @@ public class AnimValueActivity extends BaseActivity implements View.OnClickListe
     }
     private void initView() {
 
-        btn1=findViewById(R.id.btn1);
-        btn2=findViewById(R.id.btn2);
-        btn3=findViewById(R.id.btn3);
-        btn4=findViewById(R.id.btn4);
+        btn1=findViewById(R.id.orr);
+        btn2=findViewById(R.id.javaMore);
+        btn3=findViewById(R.id.someDemo);
+        btn4=findViewById(R.id.retrofit);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
         content=findViewById(R.id.appName);
@@ -65,7 +65,7 @@ public class AnimValueActivity extends BaseActivity implements View.OnClickListe
         TextView tv=view1.findViewById(R.id.tv);
         this.tv=tv;
         switch (view.getId()){
-            case R.id.btn1:
+            case R.id.orr:
                 content.addView(view1);
                 btnStart.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -82,11 +82,11 @@ public class AnimValueActivity extends BaseActivity implements View.OnClickListe
                     }
                 });
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
                 break;
             case R.id.btn5:
                 break;

@@ -41,7 +41,7 @@ public class CameraActivity extends BaseActivity {
         transaction.add(R.id.linear1, cameraFragment);
         transaction.commit();
         //6.0权限适配
-        authority();
+    //    authority();
         memoryLeak();
     }
 

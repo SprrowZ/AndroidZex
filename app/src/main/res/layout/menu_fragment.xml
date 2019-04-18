@@ -15,25 +15,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/orr"
             android:text="长按显示menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
             android:text="Broadcast"
-            android:id="@+id/btn4"
+            android:id="@+id/retrofit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn2"
+        android:id="@+id/javaMore"
         android:text="暂定"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/btn3"
+        android:id="@+id/someDemo"
         android:text="暂定"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

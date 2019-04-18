@@ -21,7 +21,7 @@
         android:orientation="horizontal"
         >
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/orr"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             />
 
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/javaMore"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         android:orientation="horizontal"
         >
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/someDemo"
             android:text="FontView"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -61,7 +61,7 @@
             android:background="@drawable/btn_bk3"
             />
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/retrofit"
             android:text="CircleImageView"
             android:layout_width="0dp"
             android:layout_weight="1"

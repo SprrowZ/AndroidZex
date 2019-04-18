@@ -395,6 +395,7 @@ public class BaseActivity extends AppCompatActivity {
      */
     public boolean isMainThread() {
         return Looper.getMainLooper() == Looper.myLooper();
+
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

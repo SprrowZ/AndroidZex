@@ -23,7 +23,7 @@
                 android:orientation="horizontal"
                 >
                 <Button
-                    android:id="@+id/btn1"
+                    android:id="@+id/orr"
                     android:text="doGet"
                     android:textAllCaps="false"
                     android:layout_width="0dp"
@@ -33,7 +33,7 @@
                     android:layout_marginLeft="5dp"
                     />
                 <Button
-                    android:id="@+id/btn2"
+                    android:id="@+id/javaMore"
                     android:text="doPost"
                     android:textAllCaps="false"
                     android:layout_width="0dp"

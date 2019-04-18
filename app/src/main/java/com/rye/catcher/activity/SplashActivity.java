@@ -20,9 +20,12 @@ import com.rye.catcher.sdks.beans.WeatherBean;
 import com.rye.catcher.sdks.gmap.AmapManager;
 import com.rye.catcher.sdks.gmap.AmapResult;
 import com.rye.catcher.utils.DateUtils;
+import com.rye.catcher.utils.DeviceUtils;
+import com.rye.catcher.utils.EchatAppUtil;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.ExtraUtil.test.utils.RetrofitManager;
+import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
@@ -70,6 +73,11 @@ public class SplashActivity extends BaseActivity {
                 .load(R.drawable.ling).into(image);
         tangObservable();
       //  weatherObservable();
+
+        //获取设备尺寸信
+        int sw= DeviceUtils.getScreenSw(EchatAppUtil.getAppContext());
+        Log.i(TAG, "Size: "+sw);
+        FileUtils.writeUserLog("DEVICE-SIZE:"+sw);
     }
 
     /**

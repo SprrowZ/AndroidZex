@@ -21,7 +21,7 @@
         android:layout_marginRight="10dp"
         >
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/orr"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             />
 
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/javaMore"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
         android:layout_marginRight="10dp"
         >
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/someDemo"
             android:text="创建目录"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -66,7 +66,7 @@
             android:layout_marginRight="10dp"
             />
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/retrofit"
             android:text="私有文件"
             android:layout_width="0dp"
             android:layout_weight="1"

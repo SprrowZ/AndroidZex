@@ -18,7 +18,7 @@
                 android:layout_marginLeft="30dp"
                 >
                 <Button
-                    android:id="@+id/btn1"
+                    android:id="@+id/orr"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="callPhone"
@@ -27,12 +27,12 @@
                     android:background="@drawable/btn_bk1"
                     />
                 <Button
-                    android:id="@+id/btn2"
+                    android:id="@+id/javaMore"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="addView"
                     android:textAllCaps="false"
-                    android:layout_toRightOf="@+id/btn1"
+                    android:layout_toRightOf="@+id/orr"
                     android:singleLine="true"
                     android:background="@drawable/btn_bk1"
                     />
@@ -44,7 +44,7 @@
                 android:layout_marginLeft="30dp"
                 >
                 <Button
-                    android:id="@+id/btn3"
+                    android:id="@+id/someDemo"
                     android:text="removeView"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 >
 
                 <Button
-                    android:id="@+id/btn4"
+                    android:id="@+id/retrofit"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="timerLoop"

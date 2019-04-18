@@ -1,9 +1,14 @@
 package com.rye.catcher.utils;
 
+import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
+import android.graphics.Point;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.rye.catcher.RyeCatcherApp;
 
@@ -15,7 +20,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Created by jinyunyang on 15/3/6.
+ *
  *
  */
 public class DeviceUtils {
@@ -119,5 +124,75 @@ public class DeviceUtils {
 
         return "N/A";
     }
+/***********************************新增*****************************************/
+private static DisplayMetrics getDisplayMetrics(Context context){
+
+    DisplayMetrics metrics = new DisplayMetrics();
+    WindowManager manager = (WindowManager) context.getSystemService(Service.WINDOW_SERVICE);
+    if (manager != null) {
+      manager.getDefaultDisplay().getMetrics(metrics);
+    }
+    return metrics;
+}
+
+    /**
+     * 获取手机像素密度（DPI）
+     * @param context
+     * @return
+     */
+    public static float getDpi(Context context){
+   DisplayMetrics metrics= getDisplayMetrics(context);
+    return metrics.density*160;
+  }
+
+    /**
+     * 获取屏幕宽度
+     *
+     * @param context Context
+     * @return 屏幕宽度（px）
+     */
+    public static int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Point point = new Point();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            wm.getDefaultDisplay().getRealSize(point);
+        } else {
+            wm.getDefaultDisplay().getSize(point);
+        }
+        return point.x;
+    }
+
+    /**
+     * 获取屏幕高度
+     *
+     * @param context Context
+     * @return 屏幕高度（px）
+     */
+    public static int getScreenHeight(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Point point = new Point();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            wm.getDefaultDisplay().getRealSize(point);
+        } else {
+            wm.getDefaultDisplay().getSize(point);
+        }
+        return point.y;
+    }
+
+    /**
+     * 获取最小宽度sw（dp）
+     * @param context
+     * @return dp
+     */
+   public static  int getScreenSw(Context context){
+
+       int screenHeight=getScreenHeight(context);
+       int screenWidth=getScreenWidth(context);
+       int smallestWidthDP=screenHeight>screenWidth?screenWidth:screenHeight;
+       //跟getDpi里相较有点多余操作..
+       int sw= (int) (smallestWidthDP*160/getDpi(context));
+       return  sw;
+   }
+
 
 }

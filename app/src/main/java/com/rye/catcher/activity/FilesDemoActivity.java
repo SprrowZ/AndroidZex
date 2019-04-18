@@ -34,15 +34,15 @@ import butterknife.OnClick;
 public class FilesDemoActivity extends BaseActivity {
     @BindView(R.id.thistitle)
     TextView thistitle;
-    @BindView(R.id.btn1)
+    @BindView(R.id.orr)
     Button btn1;
-    @BindView(R.id.btn2)
+    @BindView(R.id.javaMore)
     Button btn2;
     @BindView(R.id.linear1)
     LinearLayout linear1;
-    @BindView(R.id.btn3)
+    @BindView(R.id.someDemo)
     Button btn3;
-    @BindView(R.id.btn4)
+    @BindView(R.id.retrofit)
     Button btn4;
     @BindView(R.id.linear2)
     LinearLayout linear2;
@@ -177,19 +177,19 @@ public class FilesDemoActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6, R.id.btn7, R.id.someting_new, R.id.animation, R.id.drawable, R.id.custom, R.id.project, R.id.submit})
+    @OnClick({R.id.orr, R.id.javaMore, R.id.someDemo, R.id.retrofit, R.id.btn5, R.id.btn6, R.id.btn7, R.id.someting_new, R.id.animation, R.id.drawable, R.id.custom, R.id.project, R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btn1:
+            case R.id.orr:
                 showPath();
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 createFile();
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
 
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
                 show();
                 break;
             case R.id.btn5:

@@ -69,7 +69,6 @@ public class CameraFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        imageView = view.findViewById(R.id.imageView);
         //获取文件位置
         mFilepath = Environment.getExternalStorageDirectory().getPath();
         mFilepath = mFilepath + "/" + "temp.png";

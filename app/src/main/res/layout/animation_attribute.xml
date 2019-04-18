@@ -10,7 +10,7 @@
     android:src="@mipmap/ic_launcher"
     />
     <Button
-        android:id="@+id/btn1"
+        android:id="@+id/orr"
         android:text="Move"
         android:textAllCaps="false"
         android:layout_width="wrap_content"

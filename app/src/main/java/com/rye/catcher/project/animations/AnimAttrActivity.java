@@ -22,7 +22,7 @@ public class AnimAttrActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.animation_attribute);
-        btn1=findViewById(R.id.btn1);
+        btn1=findViewById(R.id.orr);
         imageView=findViewById(R.id.imageView);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override

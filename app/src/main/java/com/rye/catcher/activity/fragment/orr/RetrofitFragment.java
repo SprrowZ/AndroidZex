@@ -1,14 +1,9 @@
 package com.rye.catcher.activity.fragment.orr;
 
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.BaseFragment;
@@ -24,9 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -62,19 +55,19 @@ public class RetrofitFragment extends BaseFragment {
 
 
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
+    @OnClick({R.id.orr, R.id.javaMore, R.id.someDemo, R.id.retrofit,
             R.id.btn5, R.id.btn6,R.id.btn7, R.id.btn8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btn1:
+            case R.id.orr:
                 postString();
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 uploadFile(view);
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                 downLoadFile(view);
-            case R.id.btn4:
+            case R.id.retrofit:
                 upLoadFileEx();//通过RequestBody
                 break;
         }

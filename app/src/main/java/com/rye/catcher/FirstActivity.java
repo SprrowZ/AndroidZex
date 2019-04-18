@@ -42,15 +42,15 @@ import butterknife.OnClick;
  */
 
 public class FirstActivity extends BaseActivity  {
-    @BindView(R.id.btn1)
+    @BindView(R.id.orr)
     Button btn1;
-    @BindView(R.id.btn2)
+    @BindView(R.id.javaMore)
     Button btn2;
-    @BindView(R.id.btn3)
+    @BindView(R.id.someDemo)
     Button btn3;
     @BindView(R.id.btn6)
     Button btn6;
-    @BindView(R.id.btn4)
+    @BindView(R.id.retrofit)
     Button btn4;
     @BindView(R.id.btn5)
     Button btn5;
@@ -166,21 +166,21 @@ public class FirstActivity extends BaseActivity  {
         }, 1000, 3000);
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn6, R.id.btn4, R.id.btn5, R.id.aa, R.id.bb, R.id.cc, R.id.dd, R.id.ee, R.id.ff})
+    @OnClick({R.id.orr, R.id.javaMore, R.id.someDemo, R.id.btn6, R.id.retrofit, R.id.btn5, R.id.aa, R.id.bb, R.id.cc, R.id.dd, R.id.ee, R.id.ff})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btn1:
+            case R.id.orr:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("tel:" + "10010"));
                 startActivity(intent);
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 linear = findViewById(R.id.linear);
                 LayoutInflater inflater = LayoutInflater.from(this);
                 View view1 = inflater.inflate(R.layout.tab01, null);
                 linear.addView(view1);
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                 linear.removeAllViews();
                 break;
             case R.id.btn6:
@@ -194,7 +194,7 @@ public class FirstActivity extends BaseActivity  {
                     }
                 }.start();
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
                 clickTest();
                 break;
             case R.id.btn5:

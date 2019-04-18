@@ -42,10 +42,10 @@ public class AnimMainActivity extends Activity implements View.OnClickListener{
 
     private void initView() {
         iv=findViewById(R.id.iv);
-        btn1=findViewById(R.id.btn1);
-        btn2=findViewById(R.id.btn2);
-        btn3=findViewById(R.id.btn3);
-        btn4=findViewById(R.id.btn4);
+        btn1=findViewById(R.id.orr);
+        btn2=findViewById(R.id.javaMore);
+        btn3=findViewById(R.id.someDemo);
+        btn4=findViewById(R.id.retrofit);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
         btn7=findViewById(R.id.btn7);
@@ -68,16 +68,16 @@ public class AnimMainActivity extends Activity implements View.OnClickListener{
     public void onClick(View view) {
         iv.setVisibility(View.VISIBLE);
         switch (view.getId()){
-            case R.id.btn1:
+            case R.id.orr:
                 //布局文件加载
       Animation alpha= AnimationUtils.loadAnimation(this,R.anim.alpha);
            iv.startAnimation(alpha);
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 Animation scale= AnimationUtils.loadAnimation(this,R.anim.scale);
                 iv.startAnimation(scale);
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                // Animation translate= AnimationUtils.loadAnimation(this,R.anim.translate);
                 //iv.startAnimation(translate);
                 TranslateAnimation translateAnimation=new TranslateAnimation(-200,100,-200,200);
@@ -87,7 +87,7 @@ public class AnimMainActivity extends Activity implements View.OnClickListener{
 
 
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
                 Animation rotate= AnimationUtils.loadAnimation(this,R.anim.rotate);
                 iv.startAnimation(rotate);
                 break;

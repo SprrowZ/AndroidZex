@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<item name="activity_main_ex" type="layout">@layout/activity_main_exx</item>
+    <item name="tab02" type="layout">@layout/tab02_small_size</item>
+    <bool name="has_two_panes">false</bool>
+</resources>

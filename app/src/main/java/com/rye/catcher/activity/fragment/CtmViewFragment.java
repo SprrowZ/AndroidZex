@@ -2,11 +2,7 @@ package com.rye.catcher.activity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.ctmactivity.CtmDDActivity;
@@ -20,9 +16,7 @@ import com.rye.catcher.project.ctmviews.Mypractice.Custom_Tenth;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by ZZG on 2018/3/6.
@@ -45,12 +39,12 @@ public class CtmViewFragment extends BaseFragment  {
     }
 
 
-    @OnClick({R.id.btn1,R.id.btn2,R.id.btn3,
-    R.id.btn4,R.id.btn5,R.id.btn6, R.id.btn7, R.id.btn8,R.id.btn9,R.id.btn10,
+    @OnClick({R.id.orr,R.id.javaMore,R.id.someDemo,
+    R.id.retrofit,R.id.btn5,R.id.btn6, R.id.btn7, R.id.btn8,R.id.btn9,R.id.btn10,
     R.id.btn11,R.id.btn12})
     public void onViewClicked(View view){
         switch (view.getId()){
-            case R.id.btn1:
+            case R.id.orr:
                 //通过广播控制Activity点击事件
                 View view1=View.inflate(getActivity(),R.layout.bcustom_setshadowlayer,null);
                 Intent intent=new Intent();
@@ -60,21 +54,21 @@ public class CtmViewFragment extends BaseFragment  {
                 intent.putExtras(bundle);
                 getActivity().sendBroadcast(intent);
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 Intent intent2=new Intent(getActivity(),CtmEighthActivity.class);
                 Bundle bundle2=new Bundle();
                 bundle2.putString(CtmViewFragment.ORIGIN,CtmViewFragment.TELESCOPE);
                 intent2.putExtras(bundle2);
                 startActivity(intent2);
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                 Intent intent1=new Intent(getActivity(),CtmEighthActivity.class);
                 Bundle bundle1=new Bundle();
                 bundle1.putString(CtmViewFragment.ORIGIN,CtmViewFragment.DISTORTIONVIEW);
                 intent1.putExtras(bundle1);
                 startActivity(intent1);
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
                 startActivity(new Intent(getActivity(), CtmNinethActivity.class));
                 break;
             case R.id.btn5:

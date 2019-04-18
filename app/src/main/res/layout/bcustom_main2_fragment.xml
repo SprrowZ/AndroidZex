@@ -8,7 +8,7 @@
      android:layout_width="match_parent"
      android:layout_height="wrap_content">
  <Button
-     android:id="@+id/btn1"
+     android:id="@+id/orr"
      android:text="ShadowLayer"
      android:layout_width="0dp"
      android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
      android:background="@drawable/btn_bk4"
      />
      <Button
-         android:id="@+id/btn2"
+         android:id="@+id/javaMore"
          android:text="Telescope"
          android:textAllCaps="false"
          android:layout_width="0dp"
@@ -26,7 +26,7 @@
          android:background="@drawable/btn_bk4"
          />
      <Button
-         android:id="@+id/btn3"
+         android:id="@+id/someDemo"
          android:text="DistortionView"
          android:textAllCaps="false"
          android:singleLine="true"
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/retrofit"
             android:text="ViewGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

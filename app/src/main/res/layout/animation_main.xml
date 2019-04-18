@@ -13,21 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
      <Button
-         android:id="@+id/btn1"
+         android:id="@+id/orr"
          android:text="Alpha"
          android:textAllCaps="false"
          android:layout_width="0dp"
          android:layout_weight="1"
          android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/javaMore"
             android:text="Scale"
             android:textAllCaps="false"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/someDemo"
             android:text="Translate"
             android:textAllCaps="false"
             android:layout_width="0dp"
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/retrofit"
             android:text="Rotate"
             android:textAllCaps="false"
             android:layout_width="0dp"

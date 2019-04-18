@@ -33,14 +33,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by ZZG on 2017/10/12.
  */
 
-public class SecondActivity extends BaseActivity   {
-    @BindView(R.id.btn1)
+public class RetrofitActivity extends BaseActivity   {
+    @BindView(R.id.orr)
     Button btn1;
-    @BindView(R.id.btn2)
+    @BindView(R.id.javaMore)
     Button btn2;
-    @BindView(R.id.btn3)
+    @BindView(R.id.someDemo)
     Button btn3;
-    @BindView(R.id.btn4)
+    @BindView(R.id.retrofit)
     Button btn4;
     @BindView(R.id.btn5)
     Button btn5;
@@ -74,19 +74,19 @@ public class SecondActivity extends BaseActivity   {
         transaction.commit();
     }
 
-    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6,R.id.btn7})
+    @OnClick({R.id.orr, R.id.javaMore, R.id.someDemo, R.id.retrofit, R.id.btn5, R.id.btn6,R.id.btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btn1:
+            case R.id.orr:
                 addView();
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 retrofitGet1();
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                 retrofitGet2();
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
                 retrofitGet3();
                 break;
             case R.id.btn5:

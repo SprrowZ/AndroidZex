@@ -67,7 +67,7 @@ public class MainActivityEx extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_exx);
+        setContentView(R.layout.activity_main_ex);
         ButterKnife.bind(this);
         init();
     }

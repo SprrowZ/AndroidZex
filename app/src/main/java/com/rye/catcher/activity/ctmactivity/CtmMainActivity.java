@@ -38,10 +38,10 @@ public class CtmMainActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bcustom_main);
-        btn1=findViewById(R.id.btn1);
-        btn2=findViewById(R.id.btn2);
-        btn3=findViewById(R.id.btn3);
-        btn4=findViewById(R.id.btn4);
+        btn1=findViewById(R.id.orr);
+        btn2=findViewById(R.id.javaMore);
+        btn3=findViewById(R.id.someDemo);
+        btn4=findViewById(R.id.retrofit);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
         btn7=findViewById(R.id.btn7);
@@ -75,19 +75,19 @@ public class CtmMainActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn1:
+            case R.id.orr:
                 Intent intent1=new Intent(this,CtmFirstActivity.class);
                 startActivity(intent1);
                 break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 Intent intent2=new Intent(this,CtmSecondActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                 Intent intent3=new Intent(this,CtmThirdActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
                 Intent intent4=new Intent(this,CtmFivthActivity.class);
                 startActivity(intent4);
                 break;

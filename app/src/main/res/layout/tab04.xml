@@ -6,6 +6,11 @@
         <variable
             name="settingName"
             type="com.rye.catcher.beans.binding.SettingBean" />
+
+        <variable
+            name="clickHandler"
+            type="com.rye.catcher.beans.binding.ClickHandler" />
+
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tops"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <ProgressBar
@@ -34,13 +39,16 @@
                 android:visibility="gone" />
 
             <Button
-                android:id="@+id/btn1"
+                android:id="@+id/orr"
                 style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
                 android:text="@{settingName.orr}" />
 
             <Button
-                android:id="@+id/btn2"
+                android:id="@+id/javaMore"
                 style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
+
                 android:text="@{settingName.javaMore}" />
 
         </LinearLayout>
@@ -52,19 +60,23 @@
             android:layout_below="@+id/linear1"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn3"
+                android:id="@+id/someDemo"
                 style="@style/btn_settings"
-                android:text="@{settingName.someDemo}" />
+                android:onClick="@{clickHandler::clickEvent}"
+                android:text="@{settingName.someDemo}"
+
+                />
 
             <Button
-                android:id="@+id/btn4"
+                android:id="@+id/retrofit"
                 style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
                 android:text="@{settingName.retrofit}" />
 
         </LinearLayout>
@@ -75,18 +87,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear2"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cameraOne"
+                android:id="@+id/camera"
                 style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
                 android:text="@{settingName.camera}" />
 
             <Button
                 android:id="@+id/review"
                 style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
                 android:text="@{settingName.review}" />
 
         </LinearLayout>
@@ -97,12 +111,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear3"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/animation"
                 style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
                 android:text="@{settingName.animation}" />
 
         </LinearLayout>
@@ -113,30 +128,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear4"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
             <Button
                 android:id="@+id/custom"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_bk_transparent"
-                android:text="@{settingName.customView}"
-                android:textAllCaps="false"
-                android:textColor="@color/soft7" />
+                style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
+                android:text="@{settingName.customView}" />
 
             <Button
                 android:id="@+id/project"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn_bk_transparent"
-                android:text="@{settingName.project}"
-                android:textAllCaps="false"
-                android:textColor="@color/soft7" />
+                style="@style/btn_settings"
+                android:onClick="@{clickHandler::clickEvent}"
+                android:text="@{settingName.project}" />
 
 
         </LinearLayout>

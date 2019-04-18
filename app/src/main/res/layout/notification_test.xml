@@ -9,7 +9,7 @@
         android:orientation="horizontal"
         >
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/orr"
             android:text="Send Notification"
             android:textAllCaps="false"
             android:layout_width="0dp"
@@ -19,7 +19,7 @@
             android:background="@drawable/btn_bk4"
             />
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/javaMore"
             android:text="Java回调"
             android:textAllCaps="false"
             android:layout_width="0dp"
@@ -29,7 +29,7 @@
             android:background="@drawable/btn_bk4"
             />
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/someDemo"
             android:text="Send Notification"
             android:textAllCaps="false"
             android:layout_width="0dp"

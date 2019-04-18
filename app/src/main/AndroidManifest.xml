@@ -96,7 +96,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity">
+        <activity android:name=".RetrofitActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -119,11 +119,11 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.review.KeepJava"
+            android:name=".project.review.KeepJavaActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.ReviewTest"
+            android:name=".project.ReviewActivity"
             android:clearTaskOnLaunch="true"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />

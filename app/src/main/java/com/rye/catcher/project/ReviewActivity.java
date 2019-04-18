@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.ctmactivity.CtmTopActivity;
 import com.rye.catcher.activity.AsyncMainActivity;
@@ -22,7 +23,7 @@ import com.rye.catcher.project.review.myAsyncTask_pg;
  * Created by ZZG on 2017/10/25.
  */
 
-public class ReviewTest extends Activity implements View.OnClickListener {
+public class ReviewActivity extends BaseActivity implements View.OnClickListener {
     private Button btn1;
     private Button btn2;
     private Button btn3;
@@ -43,10 +44,10 @@ public class ReviewTest extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
-        btn1=findViewById(R.id.btn1);
-        btn2=findViewById(R.id.btn2);
-        btn3=findViewById(R.id.btn3);
-        btn4=findViewById(R.id.btn4);
+        btn1=findViewById(R.id.orr);
+        btn2=findViewById(R.id.javaMore);
+        btn3=findViewById(R.id.someDemo);
+        btn4=findViewById(R.id.retrofit);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
         btn7=findViewById(R.id.btn7);
@@ -70,11 +71,11 @@ public class ReviewTest extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn1:
+            case R.id.orr:
                Intent intent1=new Intent(this, BaseAdapterTest.class);
                 startActivity(intent1);
             break;
-            case R.id.btn2:
+            case R.id.javaMore:
                 //获取屏幕宽高
                 WindowManager manager = this.getWindowManager();
                 DisplayMetrics outMetrics = new DisplayMetrics();
@@ -94,11 +95,11 @@ public class ReviewTest extends Activity implements View.OnClickListener {
                // mDialog.getWindow().setGravity(Gravity.BOTTOM);
                 mDialog.getWindow().setAttributes(paramss);
                 break;
-            case R.id.btn3:
+            case R.id.someDemo:
                 Intent intent2=new Intent(this, CtmTopActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.btn4:
+            case R.id.retrofit:
 
                 break;
             case R.id.btn5:

@@ -66,7 +66,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //在开屏的时候清掉所有,这样从后台到前台，就会把延迟的handler的处理去掉
-        RyeCatcherApp.getHandler().removeMessages(OverallHandler.exit);
+        RyeCatcherApp.getInstance().getHandler().removeMessages(OverallHandler.exit);
         //友盟Session统计
         MobclickAgent.onResume(this);
     }

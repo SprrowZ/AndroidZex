@@ -40,7 +40,7 @@ public class RyeCatcherApp extends Application{
     private int countActivity=0;
 
     //全局Handler
-    private static OverallHandler overallHandler=null;
+    private  OverallHandler overallHandler=null;
 
     @Override
     public void onCreate() {
@@ -153,7 +153,7 @@ public class RyeCatcherApp extends Application{
         return instance;
     }
     //获取全局Handler
-    public static OverallHandler getHandler() {
+    public   OverallHandler getHandler() {
         return overallHandler;
     }
 

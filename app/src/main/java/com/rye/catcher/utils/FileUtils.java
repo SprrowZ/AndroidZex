@@ -46,7 +46,7 @@ import java.util.List;
 public class FileUtils {
 
 
-    public final String TAG = "FileUtils";
+    private  static  final String TAG = "FileUtils";
     public final static String FILE_EXTENSION_SEPARATOR = ".";
     /**
      * URI类型：file
@@ -1064,9 +1064,11 @@ public class FileUtils {
         try {
             file = new File(filePath +File.separator+ fileName);
             if (!file.exists()) {
+                Log.i(TAG, "makeFilePath: "+file.exists());
                 file.createNewFile();
             }
         } catch (Exception e) {
+            Log.i(TAG, "makeFilePath: "+e.toString());
             e.printStackTrace();
         }
         return file;

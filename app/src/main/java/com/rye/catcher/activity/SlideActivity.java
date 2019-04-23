@@ -1,8 +1,11 @@
-package com.rye.catcher;
+package com.rye.catcher.activity;
 
 
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.rye.catcher.BaseActivity;
+import com.rye.catcher.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

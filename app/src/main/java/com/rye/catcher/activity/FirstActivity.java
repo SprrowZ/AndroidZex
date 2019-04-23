@@ -1,4 +1,4 @@
-package com.rye.catcher;
+package com.rye.catcher.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,10 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.rye.catcher.activity.CartoonsDoActivity;
-import com.rye.catcher.activity.CartoonsListActivity;
-import com.rye.catcher.activity.CharactersDoActivity;
-import com.rye.catcher.activity.WebViewActivity;
+import com.rye.catcher.BaseActivity;
+import com.rye.catcher.R;
 import com.rye.catcher.base.sockets.SocketClientActivity;
 
 import java.io.File;
@@ -41,7 +39,7 @@ import butterknife.OnClick;
  * Created by zzg on 2017/10/12.
  */
 
-public class FirstActivity extends BaseActivity  {
+public class FirstActivity extends BaseActivity {
     @BindView(R.id.orr)
     Button btn1;
     @BindView(R.id.javaMore)

@@ -1,11 +1,15 @@
 package com.rye.catcher.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
@@ -38,6 +42,7 @@ public class DeviceUtils {
 
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
+
     public static String getShortDeviceId() {
         String uuid = getUUID(null);
         if (uuid == null) {
@@ -109,7 +114,7 @@ public class DeviceUtils {
             fr = new FileReader(str1);
             localBufferedReader = new BufferedReader(fr, 8192);
             while ((str2 = localBufferedReader.readLine()) != null) {
-                if(str2.startsWith(MEM_TOTAL)) {
+                if (str2.startsWith(MEM_TOTAL)) {
                     String result = str2.substring(MEM_TOTAL.length());
                     result = result.trim();
                     return result;
@@ -124,26 +129,27 @@ public class DeviceUtils {
 
         return "N/A";
     }
-/***********************************新增*****************************************/
-private static DisplayMetrics getDisplayMetrics(Context context){
 
-    DisplayMetrics metrics = new DisplayMetrics();
-    WindowManager manager = (WindowManager) context.getSystemService(Service.WINDOW_SERVICE);
-    if (manager != null) {
-      manager.getDefaultDisplay().getMetrics(metrics);
+    /***********************************新增*****************************************/
+    private static DisplayMetrics getDisplayMetrics(Context context) {
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager manager = (WindowManager) context.getSystemService(Service.WINDOW_SERVICE);
+        if (manager != null) {
+            manager.getDefaultDisplay().getMetrics(metrics);
+        }
+        return metrics;
     }
-    return metrics;
-}
 
     /**
      * 获取手机像素密度（DPI）
      * @param context
      * @return
      */
-    public static float getDpi(Context context){
-   DisplayMetrics metrics= getDisplayMetrics(context);
-    return metrics.density*160;
-  }
+    public static float getDpi(Context context) {
+        DisplayMetrics metrics = getDisplayMetrics(context);
+        return metrics.density * 160;
+    }
 
     /**
      * 获取屏幕宽度
@@ -184,15 +190,90 @@ private static DisplayMetrics getDisplayMetrics(Context context){
      * @param context
      * @return dp
      */
-   public static  int getScreenSw(Context context){
+    public static int getScreenSw(Context context) {
 
-       int screenHeight=getScreenHeight(context);
-       int screenWidth=getScreenWidth(context);
-       int smallestWidthDP=screenHeight>screenWidth?screenWidth:screenHeight;
-       //跟getDpi里相较有点多余操作..
-       int sw= (int) (smallestWidthDP*160/getDpi(context));
-       return  sw;
+        int screenHeight = getScreenHeight(context);
+        int screenWidth = getScreenWidth(context);
+        int smallestWidthDP = screenHeight > screenWidth ? screenWidth : screenHeight;
+        //跟getDpi里相较有点多余操作..
+        int sw = (int) (smallestWidthDP * 160 / getDpi(context));
+        return sw;
+    }
+
+    /**
+     * 获取手机序列号，需要权限申请
+     * @param context
+     * @return
+     */
+    public static String getIMEI(Context context) {
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(
+                Context.TELEPHONY_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                String deviceId = tm.getImei();
+                return deviceId;
+            }
+
+       }
+       return "";
    }
+
+    /**
+     * 手机厂商
+     * @return
+     */
+   public static String getDeviceManufacturer(){
+        return Build.MANUFACTURER;
+   }
+
+    /**
+     * 手机品牌
+     * @return
+     */
+   public static String getDeviceBrand(){
+        return Build.BRAND;
+   }
+
+    /**
+     * 手机型号
+     * @return
+     */
+   public static String getDeviceModel(){
+        return Build.MODEL;
+   }
+
+    /**
+     * 手机主板名
+     * @return
+     */
+   public static String getDeviceBoard(){
+        return Build.BOARD;
+   }
+
+    /**
+     * 手机设备名
+     * @return
+     */
+   public static String getDeviceName2(){
+        return Build.DEVICE;
+    }
+
+    /**
+     * 手机ID
+     * @return
+     */
+    public static String getDeviceID(){
+        return Build.ID;
+    }
+
+
 
 
 }

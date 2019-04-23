@@ -53,9 +53,14 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="09f608d1c15c69d760761fec208845ab" />
-        <meta-data android:value="5cb3dc76570df3a6d200082e" android:name="UMENG_APPKEY"/>
-        <!--value的值填写渠道名称，例如yingyongbao。这里设置动态渠道变量-->
-        <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5cb3dc76570df3a6d200082e" />
+        <!-- value的值填写渠道名称，例如yingyongbao。这里设置动态渠道变量 -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -75,12 +80,13 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
-                <action android:name="android.media.action.IMAGE_CAPTURE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -91,7 +97,7 @@
             android:name=".activity.MainActivityEx"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity android:name=".FirstActivity">
+        <activity android:name=".activity.FirstActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -111,7 +117,7 @@
             </intent-filter>
         </service>
         <service android:name=".project.services.DownLoadService" />
-        <!--<service android:name=".project.services.IntentServiceEx" />-->
+        <!-- <service android:name=".project.services.IntentServiceEx" /> -->
 
         <activity
             android:name=".activity.CameraActivity"
@@ -328,7 +334,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".SlideActivity"
+            android:name=".activity.SlideActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -362,9 +368,10 @@
             android:name=".project.ctmviews.takephoto.CameraActivity2"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity"></activity>
+        <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
         <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
-        <activity android:name=".activity.MultiActivity"></activity>
+        <activity android:name=".activity.MultiActivity" />
+        <activity android:name=".activity.LeftDetailActivity"></activity>
     </application>
 
 </manifest>

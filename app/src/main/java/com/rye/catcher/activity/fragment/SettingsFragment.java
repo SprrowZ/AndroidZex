@@ -1,7 +1,5 @@
 package com.rye.catcher.activity.fragment;
 
-import android.Manifest;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,23 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rye.catcher.activity.CameraActivity;
-import com.rye.catcher.FirstActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.RetrofitActivity;
-import com.rye.catcher.activity.ORRActivity;
-import com.rye.catcher.activity.ProjectMainActivity;
-import com.rye.catcher.activity.ctmactivity.CtmMainActivity;
 import com.rye.catcher.beans.binding.ClickHandler;
 import com.rye.catcher.beans.binding.SettingBean;
 import com.rye.catcher.databinding.Tab04Binding;
-import com.rye.catcher.project.ReviewActivity;
-import com.rye.catcher.project.animations.AnimMainActivity;
-import com.rye.catcher.project.review.KeepJavaActivity;
-import com.rye.catcher.utils.PermissionsUtil;
-import com.rye.catcher.utils.ToastUtils;
-
-import butterknife.OnClick;
 
 /**
  * Created by zzg on 2017/10/10.

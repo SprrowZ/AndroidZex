@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.rye.catcher.FirstActivity;
+import com.rye.catcher.activity.FirstActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
 import com.rye.catcher.activity.CameraActivity;

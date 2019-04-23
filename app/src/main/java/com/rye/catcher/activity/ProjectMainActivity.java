@@ -2,21 +2,16 @@ package com.rye.catcher.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.SlideActivity;
 import com.rye.catcher.project.Ademos.MultiThreadDown;
 import com.rye.catcher.project.catcher.DelayHandleUtil;
 import com.rye.catcher.project.ctmviews.takephoto.CameraActivityEx;
@@ -27,7 +22,6 @@ import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
 import com.rye.catcher.utils.SDHelper;
-import com.rye.catcher.utils.ToastUtils;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 

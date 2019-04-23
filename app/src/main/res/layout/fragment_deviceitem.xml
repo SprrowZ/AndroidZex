@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data class="DeviceItemBinding">
+     <variable
+         name="device"
+         type="com.rye.catcher.beans.binding.DeviceBean"/>
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+ <TextView
+     android:id="@+id/title"
+     android:layout_width="0dp"
+     android:layout_height="match_parent"
+     android:layout_weight="1"
+     android:gravity="center"
+     android:textStyle="bold"
+     android:textSize="@dimen/font_24"
+     android:text="@{device.title}"
+     tools:text="@string/cancel"
+     />
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/font_20"
+        android:text="@{device.content}"
+        tools:text="@string/cancel"
+
+        />
+</LinearLayout>
+</layout>

@@ -18,7 +18,7 @@
         android:layout_marginLeft="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/my3"
+        android:src="@mipmap/my3"
         android:scaleType="fitXY"
         />
 </LinearLayout>

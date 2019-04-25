@@ -25,7 +25,7 @@ public class LeftDetailActivity extends BaseActivity {
 
     public static final String TYPE="type";
 
-    public static final int DEVICE_INFO=1;
+    public static final int DEVICE_INFO=0;
 
     private int type=-1;
     @Override

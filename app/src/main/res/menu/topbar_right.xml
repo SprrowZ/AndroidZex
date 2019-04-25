@@ -9,7 +9,7 @@
     android:iconTint="@color/white"
     />
 <item android:id="@+id/notification"
-    android:icon="@drawable/notification"
+    android:icon="@mipmap/notification"
     android:title="notification"
     app:showAsAction="ifRoom"
     android:iconTint="@color/white"
@@ -20,7 +20,7 @@
     app:showAsAction="never"
     />
 <item android:id="@+id/mulu"
-    android:icon="@drawable/mulu"
+    android:icon="@mipmap/mulu"
     android:title="mulu"
     app:showAsAction="never"
     />

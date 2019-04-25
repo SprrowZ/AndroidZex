@@ -13,49 +13,49 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/animation_b" />
+        android:src="@mipmap/animation_b" />
     <ImageView
         android:id="@+id/imageView_c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/animation_c" />
+        android:src="@mipmap/animation_c" />
     <ImageView
         android:id="@+id/imageView_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/animation_d" />
+        android:src="@mipmap/animation_d" />
     <ImageView
         android:id="@+id/imageView_e"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/animation_e" />
+        android:src="@mipmap/animation_e" />
     <ImageView
         android:id="@+id/imageView_f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/animation_f" />
+        android:src="@mipmap/animation_f" />
     <ImageView
         android:id="@+id/imageView_g"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/animation_g" />
+        android:src="@mipmap/animation_g" />
     <ImageView
         android:id="@+id/imageView_h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/animation_h" />
+        android:src="@mipmap/animation_h" />
 
     <ImageView
         android:id="@+id/imageView_a"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:src="@drawable/animation_a" />
+        android:src="@mipmap/animation_a" />
 </FrameLayout>
 
     <FrameLayout
@@ -75,37 +75,37 @@
         <Button
             android:id="@+id/item5"
             style="@style/MenuItemStyle"
-            android:background="@drawable/animation_f"
+            android:background="@mipmap/animation_f"
             />
 
         <Button
             android:id="@+id/item1"
             style="@style/MenuItemStyle"
-            android:background="@drawable/animation_e"
+            android:background="@mipmap/animation_e"
              />
 
         <Button
             android:id="@+id/item2"
             style="@style/MenuItemStyle"
-            android:background="@drawable/animation_d"
+            android:background="@mipmap/animation_d"
               />
 
         <Button
             android:id="@+id/item3"
             style="@style/MenuItemStyle"
-            android:background="@drawable/animation_c"
+            android:background="@mipmap/animation_c"
              />
 
         <Button
             android:id="@+id/item4"
             style="@style/MenuItemStyle"
-            android:background="@drawable/animation_b"
+            android:background="@mipmap/animation_b"
               />
 
         <Button
             android:id="@+id/menu"
             style="@style/MenuStyle"
-            android:background="@drawable/animation_a"
+            android:background="@mipmap/animation_a"
 
               />
 

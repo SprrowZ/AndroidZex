@@ -3,11 +3,11 @@
 <group >
     <item
         android:id="@+id/down1"
-        android:icon="@drawable/left_down"
+        android:icon="@mipmap/left_down"
         android:title="空山鸟语"/>
     <item
         android:id="@+id/down2"
-        android:icon="@drawable/left_giggle"
+        android:icon="@mipmap/left_giggle"
         android:title="Zzz"/>
 </group>
 </menu>

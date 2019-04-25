@@ -149,7 +149,7 @@ public class FirstActivity extends BaseActivity {
     private void clickTest() {
         iv1 = findViewById(R.id.iv1);
         //新建一个数组用来存储图片
-        final int[] imgs = {R.drawable.test1, R.drawable.test2, R.drawable.test3};
+        final int[] imgs = {R.mipmap.test1, R.mipmap.test2, R.mipmap.test3};
 
         timer = new Timer();//全局声明，在这里实例化，如果全局实例化就会取消掉timer，导致不能循环
         timer.schedule(new TimerTask() {

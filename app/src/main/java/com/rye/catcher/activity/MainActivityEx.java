@@ -1,20 +1,23 @@
 package com.rye.catcher.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 
 import com.alibaba.fastjson.JSONObject;
 import com.rye.catcher.BaseActivity;
+import com.rye.catcher.MainActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
 import com.rye.catcher.activity.fragment.LMFragment;
@@ -36,12 +39,12 @@ import com.rye.catcher.utils.ToastUtils;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 
 import butterknife.ButterKnife;
 
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,12 +57,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MainActivityEx extends BaseActivity {
     private static final String TAG = "MainActivityEx";
+
+    private static final int DEVICE_REQUEST_CODE=99;
     private long back_pressed;
     //地理位置
     private AmapResult amapResult;
 
     @BindView(R.id.design_bottom_sheet)
     BottomNavigationView bottom;
+    @BindView(R.id.design_navigation_view)
+    NavigationView design_navigation_view;
+
+    private View  headerLayout;
+
+   private  LinearLayout left_first;
+
     private Fragment currentFragment;
     private int currentPos = -1;
    // private final Handler mapHandler = new MapHandler(this);
@@ -91,10 +103,30 @@ public class MainActivityEx extends BaseActivity {
             }
             return false;
         });
-    //开始注册系统广播
+        //开始注册系统广播
         startScreenBroadcastReceiver();
 
+        //左侧
+        headerLayout=design_navigation_view.inflateHeaderView(R.layout.left_details);
+
+        left_first=headerLayout.findViewById(R.id.left_first);
+        //左侧第一个点击事件
+        left_first.setOnClickListener(v -> {
+            Intent intent=new Intent(MainActivityEx.this,
+                    LeftDetailActivity.class);
+            startActivityForResult(intent,DEVICE_REQUEST_CODE);
+        });
     }
+
+//    @OnClick({R.id.left_first,})
+//    public void onViewClicked(View view){
+//        switch (view.getId()){
+//            case R.id.left_first:
+//
+//                break;
+//
+//        }
+//    }
 
     /**
      * 获取当前Fragment

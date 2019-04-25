@@ -9,6 +9,6 @@
 <com.rye.catcher.project.ctmviews.Telescopes
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:Telesrc="@drawable/my2"
+    app:Telesrc="@mipmap/my2"
     />
 </LinearLayout>

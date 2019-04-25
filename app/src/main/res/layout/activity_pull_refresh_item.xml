@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:padding="@dimen/len_6"
         android:scaleType="fitXY"
-        android:src="@drawable/my6" />
+        android:src="@mipmap/my6" />
 
     <TextView
         android:id="@+id/description"

@@ -10,8 +10,9 @@
     </data>
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/len_80"
     android:orientation="horizontal"
+    android:background="@color/soft1"
     >
  <TextView
      android:id="@+id/title"
@@ -20,7 +21,7 @@
      android:layout_weight="1"
      android:gravity="center"
      android:textStyle="bold"
-     android:textSize="@dimen/font_24"
+     android:textSize="@dimen/font_18"
      android:text="@{device.title}"
      tools:text="@string/cancel"
      />
@@ -30,10 +31,16 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:textSize="@dimen/font_20"
+        android:textSize="@dimen/font_14"
         android:text="@{device.content}"
         tools:text="@string/cancel"
+        />
 
+    <View
+        android:layout_width="@dimen/len_2"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:layout_marginRight="@dimen/len_8"
         />
 </LinearLayout>
 </layout>

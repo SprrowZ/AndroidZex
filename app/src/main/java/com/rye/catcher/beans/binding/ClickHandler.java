@@ -14,7 +14,7 @@ import com.rye.catcher.activity.ProjectMainActivity;
 import com.rye.catcher.activity.ctmactivity.CtmMainActivity;
 import com.rye.catcher.project.ReviewActivity;
 import com.rye.catcher.project.animations.AnimMainActivity;
-import com.rye.catcher.project.review.KeepJavaActivity;
+import com.rye.catcher.activity.JetPackActivity;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
 
@@ -31,7 +31,7 @@ public class ClickHandler {
                 mContext.startActivity(new Intent(mContext, ORRActivity.class));
                 break;
             case R.id.javaMore:
-                mContext.startActivity(new Intent(mContext, KeepJavaActivity.class));
+                mContext.startActivity(new Intent(mContext, JetPackActivity.class));
                 break;
             case R.id.someDemo:
                 mContext.startActivity(new Intent(mContext, FirstActivity.class));

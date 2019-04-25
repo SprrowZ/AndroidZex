@@ -125,7 +125,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.review.KeepJavaActivity"
+            android:name=".activity.JetPackActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -371,7 +371,8 @@
         <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
         <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
         <activity android:name=".activity.MultiActivity" />
-        <activity android:name=".activity.LeftDetailActivity"></activity>
+        <activity android:name=".activity.LeftDetailActivity" />
+        <activity android:name=".activity.ViewModelActivity"></activity>
     </application>
 
 </manifest>

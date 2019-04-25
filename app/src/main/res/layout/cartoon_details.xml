@@ -17,7 +17,7 @@
         android:id="@+id/header_img"
         custom:Dtype="rectangle"
         custom:Dradius="20"
-        custom:Dsrc="@drawable/my3"
+        custom:Dsrc="@mipmap/my3"
         android:layout_width="160dp"
         android:layout_height="160dp"
         />

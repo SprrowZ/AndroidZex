@@ -25,14 +25,14 @@
             android:layout_above="@+id/url_lay"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
-            android:src="@drawable/animation_a"/>
+            android:src="@mipmap/animation_a"/>
 
         <LinearLayout
             android:id="@+id/url_lay"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/animation_a"
+            android:background="@mipmap/animation_a"
             android:orientation="horizontal">
 
             <View
@@ -49,7 +49,7 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="13dp"
-                android:src="@drawable/animation_c"/>
+                android:src="@mipmap/animation_c"/>
 
         </LinearLayout>
 

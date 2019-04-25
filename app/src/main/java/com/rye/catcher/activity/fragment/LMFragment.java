@@ -1,10 +1,13 @@
 package com.rye.catcher.activity.fragment;
 
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.project.review.ItemBean;
 import com.rye.catcher.project.review.MyAdapter;
+import com.rye.catcher.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,8 @@ public class LMFragment extends BaseFragment {
     List<ItemBean> itemBeanList;
     @BindView(R.id.listView)
     ListView listView;
+    @BindView(R.id.adaption)
+    TextView adaption;
     @Override
     protected int getLayoutResId() {
         return R.layout.tab02;
@@ -34,6 +39,14 @@ public class LMFragment extends BaseFragment {
             itemBeanList.add(new ItemBean(R.mipmap.ic_launcher,"Title...","Content..."));
         }
         listView.setAdapter(new MyAdapter(itemBeanList,getActivity()) );
+    if (adaption!=null&&adaption.getVisibility()== View.VISIBLE){//360dp设备
+
+    }else{
+        ToastUtils.shortMsg("非Small-Width:360dp");
+
+        getResources().getBoolean(R.bool.has_two_panes);
+    }
+
     }
 
 

@@ -21,7 +21,7 @@
         android:id="@+id/iv"
         android:layout_width="70dp"
         android:layout_height="match_parent"
-        android:src="@drawable/my1"
+        android:src="@mipmap/my1"
         android:scaleType="fitXY"
 
         />

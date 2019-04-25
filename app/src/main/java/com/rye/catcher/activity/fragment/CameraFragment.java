@@ -155,7 +155,7 @@ public class CameraFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+
     }
 
     @OnClick({R.id.btn_camera, R.id.btn_camera2, R.id.btn_camera3})

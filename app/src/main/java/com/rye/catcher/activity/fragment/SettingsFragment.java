@@ -46,7 +46,13 @@ public class SettingsFragment  extends Fragment {
         bean.setReview(getString(R.string.review));
         bean.setProject(getString(R.string.project));
         binding.setSettingName(bean);
-        binding.setClickHandler(new ClickHandler());
+         binding.setClickHandler(new ClickHandler());
+//        binding.camera.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                   bean.setCamera("22222!");
+//            }
+//        });
     }
 
 

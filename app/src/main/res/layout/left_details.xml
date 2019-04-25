@@ -14,7 +14,7 @@
    <com.rye.catcher.project.ctmviews.DistortionViews
        android:id="@+id/portrait"
        custom:Dtype="circle"
-       custom:Dsrc="@drawable/my1"
+       custom:Dsrc="@mipmap/my1"
        android:scaleType="center"
        android:layout_width="70dp"
        android:layout_height="70dp"
@@ -57,15 +57,17 @@
             android:paddingLeft="50dp"
             >
             <LinearLayout
-                android:id="@+id/first"
+                android:id="@+id/left_first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:descendantFocusability="beforeDescendants"
                 >
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/left_laugh"
+                    android:src="@mipmap/left_laugh"
                     android:layout_gravity="center"
+                    android:clickable="false"
                     />
                 <Button
                     android:layout_width="wrap_content"
@@ -74,6 +76,7 @@
                     android:textSize="16dp"
                     android:text="天行九歌"
                     android:background="@color/transparent"
+                    android:clickable="false"
                     />
             </LinearLayout>
             <LinearLayout
@@ -84,7 +87,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/left_giggle"
+                    android:src="@mipmap/left_giggle"
                     android:layout_gravity="center"
                     />
                 <Button
@@ -104,7 +107,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/left_proud"
+                    android:src="@mipmap/left_proud"
                     android:layout_gravity="center"
                     />
                 <Button
@@ -124,7 +127,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/left_surprise"
+                    android:src="@mipmap/left_surprise"
                     android:layout_gravity="center"
                     />
                 <Button
@@ -144,7 +147,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/left_down"
+                    android:src="@mipmap/left_down"
                     android:layout_gravity="center"
                     />
                 <Button

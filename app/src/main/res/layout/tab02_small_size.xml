@@ -6,11 +6,19 @@
     android:background="@color/white"
     >
 <include layout="@layout/activity_top_title"/>
+     <TextView
+         android:id="@+id/adaption"
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/len_20"
+         android:gravity="center"
+         android:text="@string/ror"
+         android:background="@color/soft1"
+         />
     <ImageView
         android:id="@+id/iv1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/my3"
+        android:src="@mipmap/my3"
         android:scaleType="fitXY"
         />
     <ListView

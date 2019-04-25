@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,19 +22,21 @@ import java.util.List;
  * @function: DeviceAdapter--DataBinding
  */
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder> {
+    private  final String TAG=this.getClass().getSimpleName();
     private Context mContext;
     private List<DeviceBean> dataList;
 
     public DeviceAdapter(Context context,List<DeviceBean> list){
        this.mContext=context;
         this.dataList=list;
+        Log.i(TAG, "DeviceAdapter:dataSize: "+list.size());
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
       DeviceItemBinding binding=  DataBindingUtil.inflate(LayoutInflater.from(mContext),
-              R.layout.fragment_deviceitem,viewGroup,
+              R.layout.fragment_device_item,viewGroup,
                 false);
       ViewHolder viewHolder=new ViewHolder(binding.getRoot());
         return viewHolder;

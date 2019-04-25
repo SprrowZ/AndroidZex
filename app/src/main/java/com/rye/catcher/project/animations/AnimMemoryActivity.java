@@ -25,9 +25,9 @@ public class AnimMemoryActivity extends BaseActivity {
     private List<ImageView> viewList=new ArrayList<ImageView>();
     private CommonPagerAdapter myadapter;
     //头部填一张，尾部填一张，实现无线循环
-    int [] ResId={R.drawable.my6,R.drawable.my1,R.drawable.my2,R.drawable.my3,
-            R.drawable.my4,R.drawable.my5,
-            R.drawable.my6,R.drawable.my1};
+    int [] ResId={R.mipmap.my6,R.mipmap.my1,R.mipmap.my2,R.mipmap.my3,
+            R.mipmap.my4,R.mipmap.my5,
+            R.mipmap.my6,R.mipmap.my1};
     private  int maxIndex=ResId.length-1;
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {

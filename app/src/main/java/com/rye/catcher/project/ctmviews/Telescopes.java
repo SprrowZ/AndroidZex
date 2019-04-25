@@ -61,7 +61,7 @@ public class Telescopes extends View {
             topBitmap=BitmapFactory.decodeResource(getResources(),bg);
         }else{
 //            topBitmap=Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);
-            topBitmap=BitmapFactory.decodeResource(getResources(),R.drawable.my6);
+            topBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.my6);
         }
 
     }

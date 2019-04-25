@@ -7,7 +7,7 @@ import es.dmoral.toasty.Toasty;
 
 /**
  * 提示消息
- * Created by jinyunyang on 15/3/31.
+ *
  */
 public class ToastUtils {
     public static final int LENGTH_SHORT = 2;
@@ -18,28 +18,24 @@ public class ToastUtils {
             return;
         }
 
-        Toasty.custom(RyeCatcherApp.getContext(),msg,
-                0, 0, LENGTH_SHORT, false, false).show();
+        Toasty.normal(RyeCatcherApp.getContext(),msg).show();
     }
 
     public static void longMsg(String msg) {
         if (StringUtils.isEmpty(msg)) {
             return;
         }
-        Toasty.custom(RyeCatcherApp.getContext(), msg,
-               0, 0, LENGTH_LONG, false, false).show();
+        Toasty.info(RyeCatcherApp.getContext(), msg,
+                LENGTH_LONG, true).show();
     }
 
     public static void shortMsg(int resId) {
-        Toasty.custom(RyeCatcherApp.getContext(),
-                RyeCatcherApp.getContext().getString(resId),
-                0, 0, LENGTH_SHORT, false, false).show();
+        Toasty.normal(RyeCatcherApp.getContext(),RyeCatcherApp.getContext().getString(resId)).show();
     }
 
     public static void longMsg(int resId) {
-        Toasty.custom(RyeCatcherApp.getContext(),
-                RyeCatcherApp.getContext().getString(resId),
-               0, 0, LENGTH_LONG, false, false).show();
+        Toasty.info(RyeCatcherApp.getContext(), RyeCatcherApp.getContext().getString(resId),
+                LENGTH_LONG, true).show();
     }
 
 }

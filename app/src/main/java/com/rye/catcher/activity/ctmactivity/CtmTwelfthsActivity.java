@@ -48,15 +48,15 @@ public class CtmTwelfthsActivity extends BaseActivity {
                 WaterFallLayout.LayoutParams.WRAP_CONTENT);
         ImageView imageView = new ImageView(this);
         if (num % IMG_COUNT == 0) {
-            imageView.setImageResource(R.drawable.my1);
+            imageView.setImageResource(R.mipmap.my1);
         } else if (num % IMG_COUNT == 1) {
-            imageView.setImageResource(R.drawable.my2);
+            imageView.setImageResource(R.mipmap.my2);
         } else if (num % IMG_COUNT == 2) {
-            imageView.setImageResource(R.drawable.my3);
+            imageView.setImageResource(R.mipmap.my3);
         } else if (num % IMG_COUNT == 3) {
-            imageView.setImageResource(R.drawable.my4);
+            imageView.setImageResource(R.mipmap.my4);
         } else if (num % IMG_COUNT == 4) {
-            imageView.setImageResource(R.drawable.my5);
+            imageView.setImageResource(R.mipmap.my5);
         }
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 

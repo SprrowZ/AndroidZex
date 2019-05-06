@@ -111,6 +111,8 @@ class CoderSon:Coder(){
           return "Coding..."
       }
   }
+ //内部类
+
 
 }
 
@@ -120,10 +122,32 @@ class CoderSon:Coder(){
 data class  Student(val name:String ){
    val sex:Boolean=true
 }
+class Outer{
+    val attribute:String by lazy {
+        "good"
+    }
+    class Inner{
+      fun hello(){
+
+      }
+    }
+    inner class Inner2{
+      fun hello(){
+          println(attribute)
+      }
+    }
+}
+
+    //主函数
+    fun main(args:Array<String>) {
+      //内部类??????为啥静态和非静态都一样呢
+
+    val inner:Outer.Inner
+    val  inner2:Outer.Inner2
 
 
-//主函数
-fun main(args:Array<String>) {
+
+    //
     val user=User()
     val speciality=Speciality("basketBall","none")
     //定义方法
@@ -141,4 +165,13 @@ fun main(args:Array<String>) {
     coder.doSomething("sleep~")
      CoderSon.doProgramming()
    doProgramming()
+    //when 代替java中的switch
+    val dataList: CharArray = charArrayOf('d','f')
+    val  index=0;
+    for (i in dataList){
+        when(dataList.get(index)){
+            'd'-> println("item is ${dataList.get(index)}")
+            'f'-> println("item is ${dataList.get(index)}")
+        }
+    }
 }

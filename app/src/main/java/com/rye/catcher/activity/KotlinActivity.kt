@@ -1,7 +1,9 @@
 package com.rye.catcher.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.CoordinatorLayout.Behavior.getTag
 import android.support.v4.app.Fragment
 import android.util.AttributeSet
@@ -10,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.rye.catcher.BaseActivity
+import com.rye.catcher.MainActivity
 import com.rye.catcher.R
 import com.rye.catcher.activity.fragment.LMFragment
 import com.rye.catcher.activity.fragment.SettingsFragment
@@ -28,6 +31,8 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
 
     private var container:RelativeLayout?=null
     private var title:TextView?=null
+
+    private var design_bottom_sheet:BottomNavigationView?=null
     private var currentPos=-1
     private var currentFragment:Fragment?=null
     private var fragmentList:MutableList<Fragment>?=null
@@ -37,15 +42,23 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
         init()
         test()
     }
-    fun init():Unit{
+    fun init()  {
 
         container=findViewById(R.id.container)
         title=findViewById(R.id.title)
+        design_bottom_sheet=findViewById(R.id.design_bottom_sheet)
         title?.text=getString(R.string.title)
 //        title?.setOnClickListener {
 //            ToastUtils.shortMsg("fine..${it.isActivated}")
 //        }
         title?.setOnClickListener(this)
+        design_bottom_sheet?.setOnNavigationItemSelectedListener {
+           when(it.itemId){
+               
+           }
+            true
+        }
+
         selectItem(0)
     }
     fun test(){
@@ -108,7 +121,11 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
     }
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.title->ToastUtils.shortMsg("Fine..${v.id.toString().substring(v.id.toString().lastIndexOf('.'))}")
+//            R.id.title->ToastUtils.shortMsg("Fine..${v.id.toString().substring(v.id.toString().lastIndexOf('.'))}")
+            R.id.title->{
+                val intent=Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

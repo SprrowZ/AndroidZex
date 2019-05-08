@@ -146,7 +146,7 @@ public class ProjectMainActivity extends BaseActivity {
             R.id.search_bar, R.id.recyclerView, R.id.dialogs, R.id.coor,
             R.id.viewDrag, R.id.batchLoading, R.id.siteProtection,
             R.id.blueTooth,R.id.blueTooth2,R.id.mvpDemo,R.id.takePhoto,
-            R.id.takePhotoEx,R.id.multiThread})
+            R.id.takePhotoEx,R.id.multiThread,R.id.kotlin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -241,6 +241,9 @@ public class ProjectMainActivity extends BaseActivity {
                  }
              });
              multiThreadDown.downLoad();
+                break;
+            case R.id.kotlin:
+                startActivity(new Intent(this,KotlinActivity.class));
                 break;
         }
     }

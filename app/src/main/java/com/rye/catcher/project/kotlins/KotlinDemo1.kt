@@ -1,7 +1,10 @@
 package com.rye.catcher.project.kotlins
 
+
+import android.util.Log
 import com.rye.catcher.project.kotlins.CoderSon.CO.doProgramming
 import java.util.*
+import java.util.logging.Logger
 
 /**
  *Created by 18041at 2019/5/3
@@ -146,7 +149,20 @@ class Outer{
       }
     }
 }
+fun testData(){
+    //数据操作处理
+    var userData=UserData()
+    var userInfo=UserData.UserInfo()
+    userInfo.age=24
+    userInfo.name="RyeCat"
+    userInfo.sex=true
+    userData.userInfo=userInfo
+    UserConfig.userData=userData
+    UserConfig.userData?.let {
+        println("userData:${it.userInfo?.name}")
+    }
 
+}
     //主函数
     fun main(args:Array<String>) {
       //内部类??????为啥静态和非静态都一样呢
@@ -155,7 +171,7 @@ class Outer{
     val  inner2:Outer.Inner2
 
 
-
+    Log.d("cc","gg")
     //
     val user=User()
     val speciality=Speciality("basketBall","none")
@@ -183,4 +199,6 @@ class Outer{
             'f'-> println("item is ${dataList.get(index)}")
         }
     }
+    //数据处理
+    testData()
 }

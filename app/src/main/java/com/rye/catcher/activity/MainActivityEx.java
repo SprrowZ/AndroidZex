@@ -1,7 +1,10 @@
 package com.rye.catcher.activity;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -26,6 +29,7 @@ import com.rye.catcher.activity.fragment.YLJFragment;
 
 import com.rye.catcher.common.KeyValueMgrZ;
 import com.rye.catcher.project.dao.KeyValueMgr;
+import com.rye.catcher.project.kotlins.BroadcastManager;
 import com.rye.catcher.sdks.HttpLogger;
 import com.rye.catcher.sdks.beans.WeatherBean;
 import com.rye.catcher.sdks.gmap.AmapResult;
@@ -75,6 +79,8 @@ public class MainActivityEx extends BaseActivity {
     private Fragment currentFragment;
     private int currentPos = -1;
    // private final Handler mapHandler = new MapHandler(this);
+  //本地广播demo
+   private LoginSuccessReceiver receiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,17 +122,23 @@ public class MainActivityEx extends BaseActivity {
                     LeftDetailActivity.class);
             startActivityForResult(intent,DEVICE_REQUEST_CODE);
         });
+        //注册kotlin本地广播
+         receiver=new LoginSuccessReceiver();
+         BroadcastManager.INSTANCE.registerLoginSuccessReceiver(receiver);
+
     }
 
-//    @OnClick({R.id.left_first,})
-//    public void onViewClicked(View view){
-//        switch (view.getId()){
-//            case R.id.left_first:
-//
-//                break;
-//
-//        }
-//    }
+
+    //应该单独抽出一个类
+    private class LoginSuccessReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "onReceive: "+intent.getAction()+","+intent.getStringExtra(BroadcastManager.BROADCAST_KEY));
+        }
+    }
+
+
 
     /**
      * 获取当前Fragment
@@ -272,7 +284,9 @@ public class MainActivityEx extends BaseActivity {
         super.onDestroy();
         Log.i(TAG, "onDestroy: ...");
          FileUtils.writeUserLog(TAG + "onDestroy:");
-        stopScreenStateUpdate();
+         stopScreenStateUpdate();
+         //局部广播案例
+         BroadcastManager.INSTANCE.unregisterReceiver(receiver);
     }
 
     @Override

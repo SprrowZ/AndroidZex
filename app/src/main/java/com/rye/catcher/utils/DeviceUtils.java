@@ -194,6 +194,7 @@ public class DeviceUtils {
 
         int screenHeight = getScreenHeight(context);
         int screenWidth = getScreenWidth(context);
+        Log.i("smallWidth", "getScreenSw: height->"+screenHeight+",width->"+screenWidth);
         int smallestWidthDP = screenHeight > screenWidth ? screenWidth : screenHeight;
         //跟getDpi里相较有点多余操作..
         int sw = (int) (smallestWidthDP * 160 / getDpi(context));

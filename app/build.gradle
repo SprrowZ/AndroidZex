@@ -106,6 +106,7 @@ android {
             manifestPlaceholders = [CHANNEL: "baidu"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+            manifestPlaceholders.put("Screen_Width_Size","392")
             buildConfigField("boolean", "IS_baidu_VERSION", "true")
             minSdkVersion 16
         }
@@ -113,6 +114,7 @@ android {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+            manifestPlaceholders.put("Screen_Width_Size","392")
             buildConfigField("boolean", "IS_baidu_VERSION", "false")
             minSdkVersion 16
         }
@@ -221,5 +223,6 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:1.1.0"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
+    //今日头条适配
+    implementation 'me.jessyan:autosize:1.1.2'
 }

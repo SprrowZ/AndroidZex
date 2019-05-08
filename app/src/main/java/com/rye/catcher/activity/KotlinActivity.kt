@@ -14,8 +14,7 @@ import com.rye.catcher.R
 import com.rye.catcher.activity.fragment.LMFragment
 import com.rye.catcher.activity.fragment.SettingsFragment
 import com.rye.catcher.activity.fragment.YLJFragment
-import com.rye.catcher.project.kotlins.KotlinDemo1
-import com.rye.catcher.project.kotlins.TEST_PROPERTY
+import com.rye.catcher.project.kotlins.*
 import com.rye.catcher.utils.ToastUtils
 
 /**
@@ -36,6 +35,7 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
         init()
+        test()
     }
     fun init():Unit{
 
@@ -53,6 +53,20 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
         KotlinDemo1.testProperty2
          println(TEST_PROPERTY)
         println(activityExProperty)
+        //发送登陆成功的广播
+        BroadcastManager.sendLoginSuccessBroadcast()
+        //数据操作处理
+        var userData=UserData()
+        var userInfo=UserData.UserInfo()
+        userInfo.age=24
+        userInfo.name="RyeCat"
+        userInfo.sex=true
+        userData.userInfo=userInfo
+        UserConfig.userData=userData
+        UserConfig.userData?.let {
+            println("userData:${it.userInfo?.name}")
+        }
+
     }
     /**
      * 获取当前Fragment

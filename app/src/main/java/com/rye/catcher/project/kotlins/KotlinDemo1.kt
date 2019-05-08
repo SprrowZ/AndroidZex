@@ -7,6 +7,15 @@ import java.util.*
  *Created by 18041at 2019/5/3
  *Function:
  */
+  const val TEST_PROPERTY="test"
+
+class KotlinDemo1 {
+   val testProperty:String?=null
+    companion object{
+        val testProperty2:String?=null
+    }
+}
+
 class User {
     //常量
     val height = 175

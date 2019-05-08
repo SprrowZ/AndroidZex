@@ -8,31 +8,52 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.rye.catcher.BaseActivity
 import com.rye.catcher.R
 import com.rye.catcher.activity.fragment.LMFragment
 import com.rye.catcher.activity.fragment.SettingsFragment
 import com.rye.catcher.activity.fragment.YLJFragment
+import com.rye.catcher.project.kotlins.KotlinDemo1
+import com.rye.catcher.project.kotlins.TEST_PROPERTY
+import com.rye.catcher.utils.ToastUtils
 
 /**
  *Created by 18041at 2019/5/6
  *Function:
  */
-class KotlinActivity :BaseActivity() {
+private const val activityExProperty:String ="OK"
+
+class KotlinActivity :BaseActivity() ,View.OnClickListener{
+
+
     private var container:RelativeLayout?=null
-    private var currentPos=-1;
+    private var title:TextView?=null
+    private var currentPos=-1
     private var currentFragment:Fragment?=null
     private var fragmentList:MutableList<Fragment>?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_kotlin)
         init()
     }
     fun init():Unit{
+
         container=findViewById(R.id.container)
-
+        title=findViewById(R.id.title)
+        title?.text=getString(R.string.title)
+//        title?.setOnClickListener {
+//            ToastUtils.shortMsg("fine..${it.isActivated}")
+//        }
+        title?.setOnClickListener(this)
+        selectItem(0)
     }
-
+    fun test(){
+        val demo: KotlinDemo1
+        KotlinDemo1.testProperty2
+         println(TEST_PROPERTY)
+        println(activityExProperty)
+    }
     /**
      * 获取当前Fragment
      */
@@ -71,5 +92,9 @@ class KotlinActivity :BaseActivity() {
         }
         return currentFragment
     }
-
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.title->ToastUtils.shortMsg("Fine..${v.id.toString().substring(v.id.toString().lastIndexOf('.'))}")
+        }
+    }
 }

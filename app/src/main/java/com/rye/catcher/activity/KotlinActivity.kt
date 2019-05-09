@@ -15,6 +15,7 @@ import com.rye.catcher.BaseActivity
 import com.rye.catcher.MainActivity
 import com.rye.catcher.R
 import com.rye.catcher.activity.fragment.LMFragment
+import com.rye.catcher.activity.fragment.LMFragmentKt
 import com.rye.catcher.activity.fragment.SettingsFragment
 import com.rye.catcher.activity.fragment.YLJFragment
 import com.rye.catcher.project.kotlins.*
@@ -114,7 +115,7 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
     private fun  getFragment(pos: Int): Fragment? {
         when(pos){
             0->currentFragment=YLJFragment()
-            1->currentFragment=LMFragment()
+            1->currentFragment=LMFragmentKt.getInstance()
             2->currentFragment=SettingsFragment()
         }
         return currentFragment

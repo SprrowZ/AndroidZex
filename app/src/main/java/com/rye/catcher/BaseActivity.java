@@ -57,7 +57,7 @@ public class BaseActivity extends AppCompatActivity {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //底部导航栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+         //   getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         com.rye.catcher.base.ActivityManager.getInstance().addActivity(this);
         //系统广播接受者

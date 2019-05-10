@@ -1,25 +1,21 @@
 package com.rye.catcher.activity
 
-import android.content.Context
-import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.support.annotation.RequiresApi
 import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.CoordinatorLayout.Behavior.getTag
 import android.support.v4.app.Fragment
-import android.util.AttributeSet
+import android.support.v4.widget.SwipeRefreshLayout
+import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
-import android.widget.TextView
 import com.rye.catcher.BaseActivity
-import com.rye.catcher.MainActivity
 import com.rye.catcher.R
-import com.rye.catcher.activity.fragment.LMFragment
-import com.rye.catcher.activity.fragment.LMFragmentKt
+import com.rye.catcher.activity.fragment.KotlinFragment
 import com.rye.catcher.activity.fragment.SettingsFragment
 import com.rye.catcher.activity.fragment.YLJFragment
 import com.rye.catcher.project.kotlins.*
-import com.rye.catcher.utils.ToastUtils
 
 /**
  *Created by 18041at 2019/5/6
@@ -31,36 +27,56 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
 
 
     private var container:RelativeLayout?=null
-    private var title:TextView?=null
+//    private var title:TextView?=null
 
     private var design_bottom_sheet:BottomNavigationView?=null
+
+    private lateinit var swipeRefreshLayout:SwipeRefreshLayout
+
     private var currentPos=-1
     private var currentFragment:Fragment?=null
     private var fragmentList:MutableList<Fragment>?=null
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
         init()
         test()
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     fun init()  {
-
         container=findViewById(R.id.container)
-        title=findViewById(R.id.title)
+//        title=findViewById(R.id.title)
         design_bottom_sheet=findViewById(R.id.design_bottom_sheet)
-        title?.text=getString(R.string.title)
+        swipeRefreshLayout=findViewById(R.id.swipeRefreshLayout)
+//        title?.text=getString(R.string.title)
 //        title?.setOnClickListener {
 //            ToastUtils.shortMsg("fine..${it.isActivated}")
 //        }
-        title?.setOnClickListener(this)
+//        title?.setOnClickListener(this)
         design_bottom_sheet?.setOnNavigationItemSelectedListener {
            when(it.itemId){
                
            }
             true
         }
+        //下拉刷新
+        swipeRefreshLayout.setColorSchemeColors(getColor(R.color.soft22))
 
-        selectItem(0)
+        swipeRefreshLayout.setOnRefreshListener {
+             val handler=Handler()
+             handler.postDelayed({
+                 Log.i("refresh","finished!")
+                 //随机切换item
+                 val pos=(0..2).random()
+                 Log.i("pos",pos.toString())
+                 selectItem(pos)
+                 //刷新状态更新
+                 swipeRefreshLayout.isRefreshing=false
+             },1000)
+        }
+        selectItem(1)
+
     }
     fun test(){
         val demo: KotlinDemo1
@@ -70,8 +86,8 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
         //发送登陆成功的广播
         BroadcastManager.sendLoginSuccessBroadcast()
         //数据操作处理
-        var userData=UserData()
-        var userInfo=UserData.UserInfo()
+        val userData=UserData()
+        val userInfo=UserData.UserInfo()
         userInfo.age=24
         userInfo.name="RyeCat"
         userInfo.sex=true
@@ -115,7 +131,7 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
     private fun  getFragment(pos: Int): Fragment? {
         when(pos){
             0->currentFragment=YLJFragment()
-            1->currentFragment=LMFragmentKt.getInstance()
+            1->currentFragment=KotlinFragment.getInstance("VALUE--001")
             2->currentFragment=SettingsFragment()
         }
         return currentFragment
@@ -123,10 +139,13 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
     override fun onClick(v: View?) {
         when(v?.id){
 //            R.id.title->ToastUtils.shortMsg("Fine..${v.id.toString().substring(v.id.toString().lastIndexOf('.'))}")
-            R.id.title->{
-                val intent=Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
+//            R.id.title->{
+//                val intent=Intent(this, MainActivity::class.java)
+//                startActivity(intent)
+//            }
+
         }
     }
 }
+
+

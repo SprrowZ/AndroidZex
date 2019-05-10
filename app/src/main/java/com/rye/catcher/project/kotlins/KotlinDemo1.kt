@@ -16,10 +16,20 @@ class KotlinDemo1 {
    val testProperty:String?=null
     companion object{
         val testProperty2:String?=null
+
+        @JvmStatic
+        fun  testFunction(){
+
+        }
+
+        fun test1(){
+
+        }
     }
 }
 
 class User {
+
     //常量
     val height = 175
     //变量

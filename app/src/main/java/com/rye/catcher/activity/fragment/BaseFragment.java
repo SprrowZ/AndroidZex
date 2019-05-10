@@ -37,6 +37,7 @@ public abstract class BaseFragment extends Fragment  {
 
    protected abstract  int getLayoutResId();
    protected abstract  void initData();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

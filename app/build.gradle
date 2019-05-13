@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+//kotlin注解
+apply plugin: 'kotlin-kapt'
 apply plugin: 'org.greenrobot.greendao'
-
+apply plugin: 'realm-android'
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion '28.0.3'

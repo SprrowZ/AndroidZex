@@ -102,7 +102,7 @@ class KotlinFragment:Fragment(),MediaPlayer.OnPreparedListener,MediaPlayer.OnCom
     override fun onCompletion(mp: MediaPlayer?) {
 
     }
-    
+
     //开始播放
    fun  start(){
        if (mediaPlayer!=null && hasPrepared){

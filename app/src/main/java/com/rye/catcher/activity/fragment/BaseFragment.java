@@ -34,15 +34,19 @@ import butterknife.Unbinder;
  */
 public abstract class BaseFragment extends Fragment  {
    private  Unbinder unbinder;
-
+   private View rootView;
    protected abstract  int getLayoutResId();
    protected abstract  void initData();
 
+    public  View getView(){//空指针？
+       return rootView;
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getLayoutResId()!=0){
-            return inflater.inflate(getLayoutResId(),container,false);
+            rootView=inflater.inflate(getLayoutResId(),container,false);
+            return rootView;
         }else {
             return super.onCreateView(inflater, container, savedInstanceState);
         }

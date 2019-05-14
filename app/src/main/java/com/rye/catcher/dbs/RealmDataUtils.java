@@ -1,16 +1,16 @@
 package com.rye.catcher.dbs;
 
-import android.util.Log;
-
 import com.rye.catcher.utils.FileUtils;
+
+import java.util.List;
 
 import io.realm.Realm;
 
 public class RealmDataUtils {
     private static final  String REALM_LOG="REALM_LOG:";
     //存在内存中
-    private static PersonUtils personUtils;
-    public RealmDataUtils getInstance(){
+    private static PersonDao personDao;
+    public static RealmDataUtils getInstance(){
 
         return SingtonInstance.INSTANCE;
     }
@@ -18,17 +18,17 @@ public class RealmDataUtils {
         private static  final  RealmDataUtils INSTANCE=new RealmDataUtils();
     }
 
-    public PersonUtils getPersonDb(){
-        if (personUtils==null){
-            personUtils=new PersonUtils();
+    public PersonDao getPersonDb(){
+        if (personDao ==null){
+            personDao =new PersonDao();
         }
-        return personUtils;
+        return personDao;
     }
 
     /**
      * person表操作
      */
-    public class PersonUtils{
+    public class PersonDao {
         /**
          * 插入操作
          * @param person
@@ -65,7 +65,10 @@ public class RealmDataUtils {
                 mRealm.close();
             }
         }
+       public List<Person>  find(){
 
+            return null;
+       }
 
 
     }

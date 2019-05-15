@@ -16,6 +16,8 @@ import java.util.HashMap;
  * @author Zzg
  */
 public class DialogUtil {
+    //私有构造器
+    private DialogUtil(){}
     private static final  String TAG="DialogUtil";
     /**
      * 创建默认dialog

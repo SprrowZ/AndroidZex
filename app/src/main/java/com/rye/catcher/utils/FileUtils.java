@@ -53,7 +53,7 @@ public class FileUtils {
      */
     public static final String URI_TYPE_FILE = "file";
 
-
+    //私有构造器
     private FileUtils() {
         throw new AssertionError();
     }

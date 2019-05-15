@@ -1,7 +1,7 @@
 package com.rye.catcher.utils
 const val crashHeader="UncaughtException:"
 
-//kotlin
+//kotlin，私有构造器
 class CrashHandler private constructor():Thread.UncaughtExceptionHandler {
     //静态内部类单例模式
     companion object{

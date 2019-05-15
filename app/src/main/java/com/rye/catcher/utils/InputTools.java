@@ -10,7 +10,8 @@ import android.widget.EditText;
  * Created by Administrator on 2015/10/15 0015.
  */
 public class InputTools {
-
+    //私有构造器
+      private InputTools(){}
     //强制显示或者关闭系统键盘
     public static void KeyBoard(final EditText txtSearchKey, final boolean openFlag) {
         InputMethodManager m = (InputMethodManager)

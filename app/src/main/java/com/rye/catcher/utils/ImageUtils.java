@@ -44,7 +44,7 @@ public class ImageUtils {
     public static ImageUtils getIntance() {
         return ImageUtil.INSTANCE;
     }
-
+    //私有构造器
     private ImageUtils() {
         //获取最大缓存空间
         int maxSize = (int) (Runtime.getRuntime().maxMemory() / 8);//前面的应该就是运存了

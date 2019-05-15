@@ -14,6 +14,7 @@ import java.util.List;
  */
 
 public class NetworkUtils {
+    //私有构造器
     private NetworkUtils() {
         throw new UnsupportedOperationException("u can't instance me...");
     }

@@ -14,6 +14,7 @@ import android.widget.TextView;
  */
 
 public class MeasureUtil {
+    private MeasureUtil(){}
     //**************************************获取屏幕长宽******************************
     public static int[] getScreenSize(Context context) {
         int[] a = new int[2];

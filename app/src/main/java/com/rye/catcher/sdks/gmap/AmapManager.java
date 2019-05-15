@@ -26,6 +26,8 @@ public class AmapManager {
     private static  AMapLocationClientOption locationOption = null;
     private static AmapResult amapResult;
     //private static Handler mapHandler;
+    //构造器私有化
+    private AmapManager(){}
     //静态内部类单例模式
     public static AmapManager getInstance(){
         return  Singleton.INSTANCE;

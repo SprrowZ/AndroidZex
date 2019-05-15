@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * <h2>字符串工具类，提供一些字符串相关的便捷方法</h2>
  */
 public class StringUtils {
-
+    //私有构造器
     private StringUtils() {
         throw new AssertionError();
     }

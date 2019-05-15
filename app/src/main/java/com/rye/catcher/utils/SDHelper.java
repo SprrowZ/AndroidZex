@@ -26,6 +26,8 @@ import java.io.IOException;
  */
 
 public class SDHelper {
+    //私有构造器
+    private SDHelper(){}
     //根存储
     public static String sdPath = Environment.getExternalStorageDirectory().getPath() + File.separator;
 

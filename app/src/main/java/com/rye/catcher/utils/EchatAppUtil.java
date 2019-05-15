@@ -8,6 +8,7 @@ import android.os.Handler;
  */
 
 public class EchatAppUtil {
+    private EchatAppUtil(){}
     public static String logout = "logoutsdk";
     private static Context context = null;
 

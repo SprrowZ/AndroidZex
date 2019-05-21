@@ -14,48 +14,43 @@
         app:layout_constraintTop_toTopOf="@+id/insert"
         tools:background="@color/soft27"
         />
+
     <TextView
         android:id="@+id/insert"
         style="@style/project_activity_btn"
         android:layout_width="@dimen/len_128"
         android:layout_height="@dimen/len_72"
-
         android:text="Insert"
-        app:layout_constraintBottom_toTopOf="@+id/update"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/update"
-        style="@style/project_activity_btn"
-        android:layout_width="@dimen/len_128"
-        android:layout_height="@dimen/len_72"
-        android:text="Update"
-        app:layout_constraintBottom_toTopOf="@+id/delete"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/delete"
         style="@style/project_activity_btn"
         android:layout_width="@dimen/len_128"
         android:layout_height="@dimen/len_72"
         android:text="Delete"
-        app:layout_constraintBottom_toTopOf="@+id/stop"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/insert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
     <TextView
-        android:id="@+id/search"
+        android:id="@+id/update"
         style="@style/project_activity_btn"
         android:layout_width="@dimen/len_128"
         android:layout_height="@dimen/len_72"
-        android:text="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Update"
+        app:layout_constraintTop_toBottomOf="@+id/insert"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/find"
+        style="@style/project_activity_btn"
+        android:layout_width="@dimen/len_128"
+        android:layout_height="@dimen/len_72"
+        android:text="Find"
+        app:layout_constraintLeft_toRightOf="@+id/insert"
+        app:layout_constraintTop_toBottomOf="@+id/delete"
+        tools:ignore="MissingConstraints" />
+
 </android.support.constraint.ConstraintLayout>

@@ -24,13 +24,17 @@ class RealmFragment:BaseFragment() {
         search=view!!.findViewById(R.id.search)
         personDb=RealmDataUtils.getInstance().personDb
 
+    }
+
+    override fun initEvent() {
         insert.setOnClickListener {
-         personDb.doInsertOrUpdate(virtualData())
+            personDb.doInsertOrUpdate(virtualData())
         }
 
         delete.setOnClickListener {
             personDb.doDelete(virtualData())
         }
+
 
 
     }
@@ -40,7 +44,6 @@ class RealmFragment:BaseFragment() {
         person.id=7
         person.name="RyeCatcher"
         person.job="Coder"
-        person.isSex=true
         person.home_address="HeNan"
         return person
     }

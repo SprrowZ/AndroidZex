@@ -512,9 +512,6 @@ public class RxjavaFragment extends BaseFragment {
         stringBuffer.delete(0, stringBuffer.length());
     }
 
-    private void initEvent() {
-
-    }
 
 
     /**

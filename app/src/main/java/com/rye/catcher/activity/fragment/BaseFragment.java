@@ -59,9 +59,12 @@ public abstract class BaseFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
         unbinder= ButterKnife.bind(this,view);
         initData();
+        initEvent();
     }
 
+    protected  void initEvent(){
 
+    }
 
 
     @Override

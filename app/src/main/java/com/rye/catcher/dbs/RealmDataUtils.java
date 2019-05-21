@@ -4,7 +4,9 @@ import com.rye.catcher.utils.FileUtils;
 
 import java.util.List;
 
+import io.realm.DynamicRealmObject;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class RealmDataUtils {
     private static final  String REALM_LOG="REALM_LOG:";
@@ -30,7 +32,7 @@ public class RealmDataUtils {
      */
     public class PersonDao {
         /**
-         * 插入操作
+         * 插入操作----------之1
          * @param person
          */
         public void doInsertOrUpdate(Person person){
@@ -46,8 +48,41 @@ public class RealmDataUtils {
                 FileUtils.writeUserLog(REALM_LOG+e.toString());
             }finally {
                 mRealm.close();
+
             }
         }
+
+        //插入操作---------之2
+        private void doInsertOrUpdate2(){
+
+            Realm mRealm=Realm.getDefaultInstance();
+            try{
+                mRealm.beginTransaction();
+                //存表
+                Person person=mRealm.createObject(Person.class);
+                person.setId((long) 777);
+                person.setJob("doWhat...");
+                mRealm.commitTransaction();
+            }catch (Exception e){
+                mRealm.cancelTransaction();
+                FileUtils.writeUserLog(REALM_LOG+e.toString());
+            }finally {
+                mRealm.close();
+            }
+        }
+        //插入操作---------之3
+        //使用事务块
+        private void doInsertOrUpdate3(Person person){
+            if (person==null) return;
+            Realm mRealm=Realm.getDefaultInstance();
+            mRealm.executeTransactionAsync(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                 realm.copyToRealm(person);
+                }
+            });
+        }
+
         public void doDelete(Person person){
             if (person==null) return;
             Realm mRealm=Realm.getDefaultInstance();
@@ -65,7 +100,7 @@ public class RealmDataUtils {
                 mRealm.close();
             }
         }
-       public List<Person>  find(){
+        public List<Person>  find( ){
 
             return null;
        }

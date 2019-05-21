@@ -13,6 +13,7 @@ import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.base.ActivityManager;
 import com.rye.catcher.base.OverallHandler;
+import com.rye.catcher.dbs.SchemasModule;
 import com.rye.catcher.utils.CrashHandler;
 import com.rye.catcher.utils.EchatAppUtil;
 
@@ -76,6 +77,7 @@ public class RyeCatcherApp extends Application{
         Realm.init(application);
         RealmConfiguration configuration=new RealmConfiguration.Builder()
                 .name("rye.realm")
+                .modules(new SchemasModule())
                 .schemaVersion(1)
                 .build();
         Realm.setDefaultConfiguration(configuration);

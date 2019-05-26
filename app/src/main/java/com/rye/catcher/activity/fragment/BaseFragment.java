@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.R;
 
+import com.rye.catcher.sdks.gmap.AmapManager;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.TypeFaceUtil;
 import com.squareup.leakcanary.LeakCanary;
@@ -34,14 +35,20 @@ import butterknife.Unbinder;
  */
 public abstract class BaseFragment extends Fragment  {
    private  Unbinder unbinder;
-
+   private View rootView;
    protected abstract  int getLayoutResId();
    protected abstract  void initData();
+
+
+    public  View getView(){//空指针？
+       return rootView;
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getLayoutResId()!=0){
-            return inflater.inflate(getLayoutResId(),container,false);
+            rootView=inflater.inflate(getLayoutResId(),container,false);
+            return rootView;
         }else {
             return super.onCreateView(inflater, container, savedInstanceState);
         }
@@ -52,9 +59,12 @@ public abstract class BaseFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
         unbinder= ButterKnife.bind(this,view);
         initData();
+        initEvent();
     }
 
+    protected  void initEvent(){
 
+    }
 
 
     @Override

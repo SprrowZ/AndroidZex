@@ -8,10 +8,15 @@ import android.graphics.Typeface;
  * Created by ZZG on 2018/7/29.
  */
 public class TypeFaceUtil {
-    public static TypeFaceUtil util = new TypeFaceUtil();
+    //私有构造器
+    private TypeFaceUtil(){}
 
     public  static  TypeFaceUtil getInstance() {
-        return util;
+        return Singleton.INSTANCE;
+    }
+
+    private static class Singleton{
+        private static final TypeFaceUtil INSTANCE=new TypeFaceUtil();
     }
 
     public Typeface tf(Activity activity) {

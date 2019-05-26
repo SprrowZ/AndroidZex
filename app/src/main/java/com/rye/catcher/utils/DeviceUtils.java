@@ -30,7 +30,8 @@ import java.io.IOException;
 public class DeviceUtils {
     private static String tag = "DeviceUtils";
     private static Boolean isRoot = null;
-
+    //私有构造器
+    private DeviceUtils(){}
     /**
      * @return 取得设备的UUID
      */

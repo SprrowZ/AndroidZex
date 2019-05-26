@@ -17,12 +17,12 @@ import java.util.List;
 
 /**
  * Created at 2018/11/29.
- *
+ *获取手机上包相关内容
  * @author Zzg
  */
 public class PackageUtils {
-
-
+    //私有构造器
+    private PackageUtils(){}
     /**
      * 静态内部类单例
      */

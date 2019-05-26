@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+//kotlin注解
+apply plugin: 'kotlin-kapt'
 apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion compileSdkVer
@@ -107,7 +109,7 @@ android {
             manifestPlaceholders = [CHANNEL: "baidu"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-            manifestPlaceholders.put("Screen_Width_Size", "392")
+            manifestPlaceholders.put("Screen_Width_Size","392")
             buildConfigField("boolean", "IS_baidu_VERSION", "true")
             minSdkVersion 16
         }
@@ -115,7 +117,7 @@ android {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-            manifestPlaceholders.put("Screen_Width_Size", "392")
+            manifestPlaceholders.put("Screen_Width_Size","392")
             buildConfigField("boolean", "IS_baidu_VERSION", "false")
             minSdkVersion 16
         }
@@ -200,12 +202,12 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.4.2'
 
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVer"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVer"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.ext.glideVer"
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterVer"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterVer"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterVer"
     //6.0权限适配，机型适配
     implementation 'com.yanzhenjie:permission:2.0.0-rc11'
     implementation 'com.alibaba:fastjson:1.2.49'
@@ -222,7 +224,7 @@ dependencies {
     implementation 'com.umeng.sdk:analytics:latest.integration'
     // ViewModel和LiveData依赖
     implementation "android.arch.lifecycle:extensions:1.1.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
+    kapt "android.arch.lifecycle:compiler:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //今日头条适配
     implementation 'me.jessyan:autosize:1.1.2'

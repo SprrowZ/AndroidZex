@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/insert"
+        tools:background="@color/soft27"
+        />
+
+    <TextView
+        android:id="@+id/insert"
+        style="@style/project_activity_btn"
+        android:layout_width="@dimen/len_128"
+        android:layout_height="@dimen/len_72"
+        android:text="Insert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/delete"
+        style="@style/project_activity_btn"
+        android:layout_width="@dimen/len_128"
+        android:layout_height="@dimen/len_72"
+        android:text="Delete"
+        app:layout_constraintLeft_toRightOf="@+id/insert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/update"
+        style="@style/project_activity_btn"
+        android:layout_width="@dimen/len_128"
+        android:layout_height="@dimen/len_72"
+        android:text="Update"
+        app:layout_constraintTop_toBottomOf="@+id/insert"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/find"
+        style="@style/project_activity_btn"
+        android:layout_width="@dimen/len_128"
+        android:layout_height="@dimen/len_72"
+        android:text="Find"
+        app:layout_constraintLeft_toRightOf="@+id/insert"
+        app:layout_constraintTop_toBottomOf="@+id/delete"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>

@@ -57,7 +57,7 @@ public class BaseActivity extends AppCompatActivity {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             //底部导航栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+         //   getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         com.rye.catcher.base.ActivityManager.getInstance().addActivity(this);
         //系统广播接受者
@@ -77,21 +77,21 @@ public class BaseActivity extends AppCompatActivity {
      * 设置标题栏标题
      */
     public void setBarTitle(String title) {
-        TextView view = (TextView) findViewById(R.id.title);
+        TextView view = findViewById(R.id.title);
         if (view != null) {
             view.setText(title);
         }
     }
 
     public void setBarTitle(int resId) {
-        TextView view = (TextView) findViewById(R.id.title);
+        TextView view = findViewById(R.id.title);
         if (view != null) {
             view.setText(resId);
         }
     }
 
     public String getBarTitle() {
-        TextView view = (TextView) findViewById(R.id.title);
+        TextView view = findViewById(R.id.title);
         return view != null ? view.getText().toString() : "";
     }
 

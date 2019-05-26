@@ -12,7 +12,8 @@ import es.dmoral.toasty.Toasty;
 public class ToastUtils {
     public static final int LENGTH_SHORT = 2;
     public static final int LENGTH_LONG = 4;
-
+    //私有构造器
+    private ToastUtils(){}
     public static void shortMsg(String msg) {
         if (StringUtils.isEmpty(msg)) {
             return;

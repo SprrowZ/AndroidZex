@@ -10,5 +10,13 @@
         <item name="android:windowDrawsSystemBarBackgrounds" tools:ignore="NewApi">false</item>
     </style>
 
+    <style name="SplashThemeImage" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@mipmap/my2</item>
+        <!--沉浸-->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
 
 </resources>

@@ -13,14 +13,21 @@ import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.base.ActivityManager;
 import com.rye.catcher.base.OverallHandler;
+import com.rye.catcher.dbs.SchemasModule;
+import com.rye.catcher.utils.CrashHandler;
 import com.rye.catcher.utils.EchatAppUtil;
 
 import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.catcher.utils.FileUtils;
+import com.rye.catcher.utils.ToastUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
 
 import org.greenrobot.greendao.database.Database;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by ZZG on 2018/3/22.
@@ -29,7 +36,7 @@ import org.greenrobot.greendao.database.Database;
 public class RyeCatcherApp extends Application{
 
     private static final String TAG="RyeCatcherApp";
-
+    private static final String LIFECYCLE_LOG="LIFECYCLE_LOG:";
 
     private static Context mContext;
     private DisplayMetrics displayMetrics;
@@ -59,9 +66,22 @@ public class RyeCatcherApp extends Application{
         LeakCanary.install(this);
         //友盟统计
         UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
+        //UnCaughtException
+        Thread.setDefaultUncaughtExceptionHandler(CrashHandler.Companion.getInstance());
+       //realm
+        initRealm(this);
     }
-               //GreenDao初始化
 
+    private void initRealm(Application application){
+        //Realm
+        Realm.init(application);
+        RealmConfiguration configuration=new RealmConfiguration.Builder()
+                .name("rye.realm")
+                .modules(new SchemasModule())
+                .schemaVersion(1)
+                .build();
+        Realm.setDefaultConfiguration(configuration);
+    }
     public static Context getContext() {
         return mContext;
     }
@@ -101,6 +121,7 @@ public class RyeCatcherApp extends Application{
               //如果为1，则说明从后台进入到前台
                 countActivity++;
                 Log.i(TAG, "onActivityStarted: "+countActivity);
+                FileUtils.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
             }
 
             @Override

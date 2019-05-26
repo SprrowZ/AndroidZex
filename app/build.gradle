@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion compileSdkVer
@@ -106,7 +107,7 @@ android {
             manifestPlaceholders = [CHANNEL: "baidu"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-            manifestPlaceholders.put("Screen_Width_Size","392")
+            manifestPlaceholders.put("Screen_Width_Size", "392")
             buildConfigField("boolean", "IS_baidu_VERSION", "true")
             minSdkVersion 16
         }
@@ -114,7 +115,7 @@ android {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-            manifestPlaceholders.put("Screen_Width_Size","392")
+            manifestPlaceholders.put("Screen_Width_Size", "392")
             buildConfigField("boolean", "IS_baidu_VERSION", "false")
             minSdkVersion 16
         }

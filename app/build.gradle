@@ -147,8 +147,6 @@ android.applicationVariants.all { variant ->
             resValue "string", "ip_in", "http://122.40.130.74:8088"
             resValue "string", "app_name", "寻梦测"
             resValue "string", "SCREENSHOT_ENANBLE", "1"
-            resValue "string", "SANDBOX_WHITELIST", "122.40.130.74;122.18.157.193;122.19.141.46;83."
-            resValue "string", "CAN_CHANGE_USER_CONFIG", "0"
             buildConfigField "String", "ip", "\"www.bilibili.com\""
             if (variant.buildType.name == "preview") {
                 outputFileName = "${rootProject.name}-${variant.buildType.name}" +
@@ -161,12 +159,14 @@ android.applicationVariants.all { variant ->
             resValue "string", "ip_in", "http://10.248.113.15:8081"
             resValue "string", "app_name", "寻梦"
             resValue "string", "SCREENSHOT_ENANBLE", "0"
-            resValue "string", "SANDBOX_WHITELIST", "10.248.113.15;cbms-web.icbc"
-            resValue "string", "CAN_CHANGE_USER_CONFIG", "1"
             buildConfigField "String", "ip", "\"www.bilibili.com\""
-            outputFileName = "${rootProject.name}-${variant.buildType.name}" +
-                    "-${variant.versionName}.apk"
-            variant.packageApplication.outputDirectory = new File("./../apk")
+            //release 包直接保存到当前项目的outputs文件夹下
+            def outputFile =output.outputFile
+            if (outputFile!=null && outputFile.name.equals("release")){
+                variant.getPackageApplication().outputDirectory=new File(project.rootDir.absolutePath+"/outputs")
+                outputFileName = "${rootProject.name}-${variant.versionName}+release.apk"
+             }
+
         }
     }
 

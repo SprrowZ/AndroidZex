@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'realm-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion compileSdkVer
@@ -109,7 +110,7 @@ android {
             manifestPlaceholders = [CHANNEL: "baidu"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-            manifestPlaceholders.put("Screen_Width_Size","392")
+            manifestPlaceholders.put("Screen_Width_Size", "392")
             buildConfigField("boolean", "IS_baidu_VERSION", "true")
             minSdkVersion 16
         }
@@ -117,7 +118,7 @@ android {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-            manifestPlaceholders.put("Screen_Width_Size","392")
+            manifestPlaceholders.put("Screen_Width_Size", "392")
             buildConfigField("boolean", "IS_baidu_VERSION", "false")
             minSdkVersion 16
         }
@@ -161,11 +162,11 @@ android.applicationVariants.all { variant ->
             resValue "string", "SCREENSHOT_ENANBLE", "0"
             buildConfigField "String", "ip", "\"www.bilibili.com\""
             //release 包直接保存到当前项目的outputs文件夹下
-            def outputFile =output.outputFile
-            if (outputFile!=null && outputFile.name.equals("release")){
-                variant.getPackageApplication().outputDirectory=new File(project.rootDir.absolutePath+"/outputs")
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.equals("release")) {
+                variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/outputs")
                 outputFileName = "${rootProject.name}-${variant.versionName}+release.apk"
-             }
+            }
 
         }
     }
@@ -173,37 +174,36 @@ android.applicationVariants.all { variant ->
 }
 
 dependencies {
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation deps.multidex
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation deps.support
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVer"
-    implementation "com.android.support:cardview-v7:$rootProject.ext.supportVer"
-    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportVer"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation "com.android.support:design:$rootProject.ext.supportVer"
+    implementation deps.appcompat
+    implementation deps.cardview
+    implementation deps.recyclerview
+    implementation deps.constraint
+    implementation deps.design
     testImplementation 'junit:junit:4.12'
     implementation files('libs/commons-io-2.4.jar')
-    implementation files('libs/IKAnalyzer2012_u6.jar')//sqlite全文检索；
-    implementation files('libs/lucene-core-3.6.0.jar')//sqlite全文检索；
+
     //Rxjava+Retrofit+Okhttp
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'org.greenrobot:greendao:3.2.0'
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okHttpVer"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okHttpVer"
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation deps.rxjava.rx
+    implementation deps.rxjava.rxandroid
+    implementation deps.greendao
+    implementation deps.okhttp3
+    implementation deps.okhttp3_inc
+    implementation deps.retrofit2
+    implementation deps.retrofit2_gson
+    implementation deps.retrofit2_adapter
 
-    implementation 'com.github.GrenderG:Toasty:1.4.2'
+    implementation deps.toasty
 
-    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVer"
-    kapt "com.github.bumptech.glide:compiler:$rootProject.ext.glideVer"
-    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation deps.glide.core
+    kapt deps.glide.compiler
+    implementation deps.eventbus
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterVer"
@@ -225,7 +225,7 @@ dependencies {
     // ViewModel和LiveData依赖
     implementation "android.arch.lifecycle:extensions:1.1.0"
     kapt "android.arch.lifecycle:compiler:1.1.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation deps.kotlin_jdk7
     //今日头条适配
     implementation 'me.jessyan:autosize:1.1.2'
 }

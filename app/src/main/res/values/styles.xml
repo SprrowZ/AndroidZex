@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -21,21 +22,24 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
-      <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
         <item name="android:screenOrientation">portrait</item>
     </style>
+
     <style name="SelfInformation">
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingBottom">6dp</item>
         <item name="android:paddingTop">6dp</item>
     </style>
+
     <style name="TitleSize">
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
     <style name="zToolbar" parent="Base.V7.Widget.AppCompat.Toolbar">
         <item name="android:minWidth">0dp</item>
         <item name="overlapAnchor">false</item>  <!--把该属性改为false即可使menu位置位于toolbar之下-->
@@ -66,6 +70,7 @@
         <item name="android:padding">10dp</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
     <style name="btn_style_red" parent="@style/btn_style_parent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -76,6 +81,7 @@
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_marginBottom">5dp</item>
     </style>
+
     <style name="btn_settings" parent="btn_style_parent">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -90,11 +96,12 @@
         <item name="android:layout_marginTop">@dimen/len_4</item>
         <item name="android:layout_marginBottom">@dimen/len_4</item>
     </style>
+
     <style name="tv_style_normal" parent="tv_style_parent">
         <item name="android:textSize">@dimen/len_16</item>
     </style>
 
-  <!--Project页面按钮-->
+    <!--Project页面按钮-->
     <style name="project_activity_btn" parent="btn_style_parent">
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:background">@drawable/edit_bg1</item>
@@ -103,6 +110,7 @@
         <item name="android:textColor">@color/black_alpha_112</item>
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="btn_unclikable" parent="btn_style_parent">
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:background">@color/gray_dividing</item>
@@ -139,9 +147,18 @@
         <item name="android:textColor">@color/soft12</item>
         <item name="android:textAllCaps">false</item>
     </style>
-   <!--TabLayout字体-->
+    <!--TabLayout字体-->
     <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/font_12</item>
         <item name="textAllCaps">false</item>
     </style>
+
+    <style name="AppTheme.Base.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Base.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.Base.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

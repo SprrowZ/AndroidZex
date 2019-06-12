@@ -2,8 +2,8 @@ package com.rye.catcher.activity.fragment
 
 import android.widget.TextView
 import com.rye.catcher.R
-import com.rye.catcher.dbs.Person
-import com.rye.catcher.dbs.RealmDataUtils
+import com.rye.catcher.base.dbs.Person
+import com.rye.catcher.base.dbs.RealmDataUtils
 
 //Realm
 class RealmFragment:BaseFragment() {

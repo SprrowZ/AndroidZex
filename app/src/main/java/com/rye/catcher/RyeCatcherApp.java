@@ -13,13 +13,11 @@ import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.base.ActivityManager;
 import com.rye.catcher.base.OverallHandler;
-import com.rye.catcher.dbs.SchemasModule;
+import com.rye.catcher.base.dbs.SchemasModule;
 import com.rye.catcher.utils.CrashHandler;
 import com.rye.catcher.utils.EchatAppUtil;
 
-import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.FileUtils;
-import com.rye.catcher.utils.ToastUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;

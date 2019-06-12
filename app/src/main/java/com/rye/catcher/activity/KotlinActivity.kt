@@ -15,7 +15,7 @@ import com.rye.catcher.R
 import com.rye.catcher.activity.fragment.KotlinFragment
 import com.rye.catcher.activity.fragment.SettingsFragment
 import com.rye.catcher.activity.fragment.YLJFragment
-import com.rye.catcher.project.kotlins.*
+import com.rye.catcher.demos.kotlins.*
 
 /**
  *Created by 18041at 2019/5/6

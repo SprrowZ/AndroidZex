@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.rye.catcher.R;
 
-import com.rye.catcher.sdks.gmap.AmapManager;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.TypeFaceUtil;
 import com.squareup.leakcanary.LeakCanary;

@@ -21,7 +21,6 @@ import android.widget.RelativeLayout;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.base.sockets.SocketClientActivity;
 
 import java.io.File;
 import java.io.FileInputStream;

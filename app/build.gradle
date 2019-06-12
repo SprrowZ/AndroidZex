@@ -189,43 +189,47 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation files('libs/commons-io-2.4.jar')
 
+    implementation deps.kotlin_jdk7
     //Rxjava+Retrofit+Okhttp
     implementation deps.rxjava.rx
     implementation deps.rxjava.rxandroid
     implementation deps.greendao
     implementation deps.okhttp3
     implementation deps.okhttp3_inc
-    implementation deps.retrofit2
-    implementation deps.retrofit2_gson
-    implementation deps.retrofit2_adapter
-
-    implementation deps.toasty
+    implementation deps.retrofit.core
+    implementation deps.retrofit.converter
+    implementation deps.retrofit.adapter
 
     implementation deps.glide.core
     kapt deps.glide.compiler
     implementation deps.eventbus
-    implementation 'com.tencent.bugly:crashreport:latest.release'
-    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
-    implementation "com.jakewharton:butterknife:$rootProject.ext.butterVer"
-    kapt "com.jakewharton:butterknife-compiler:$rootProject.ext.butterVer"
-    //6.0权限适配，机型适配
-    implementation 'com.yanzhenjie:permission:2.0.0-rc11'
-    implementation 'com.alibaba:fastjson:1.2.49'
-    implementation 'com.amap.api:location:latest.integration'
-    //一个loadingView库
-    implementation 'com.zyao89:zloading:1.2.0'
-    //Leakcanery
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+    implementation deps.bugly.core
+    implementation deps.bugly.native
+    implementation deps.butter.core
+    kapt deps.butter.compiler
+
+
+
+    implementation deps.toasty
+    implementation deps.permission
+    implementation deps.gson
+    implementation deps.fastjson
+    implementation deps.location
+
+    implementation deps.loading
+
+    debugImplementation deps.leak.debug
+    releaseImplementation deps.leak.release
     //Optional, if you use support library fragments:
-    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
+    debugImplementation deps.leak.support
     //UMeng
-    implementation 'com.umeng.sdk:common:latest.integration'
-    implementation 'com.umeng.sdk:analytics:latest.integration'
+    implementation deps.umeng.common
+    implementation deps.umeng.analytics
+
     // ViewModel和LiveData依赖
-    implementation "android.arch.lifecycle:extensions:1.1.0"
-    kapt "android.arch.lifecycle:compiler:1.1.0"
-    implementation deps.kotlin_jdk7
+    implementation deps.lifecycle.core
+    kapt deps.lifecycle.compiler
+
     //今日头条适配
-    implementation 'me.jessyan:autosize:1.1.2'
+    implementation deps.autosize
 }

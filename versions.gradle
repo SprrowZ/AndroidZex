@@ -41,11 +41,11 @@ version.fastjson='1.2.49'
 
 version.toasty='1.4.2'
 
-version.bugly='latest.release'
+version.bugly='latest.integration'
 
 version.permission='2.0.0-rc11'
 
-version.location='latest.integration'
+version.location='4.6.0'
 
 version.zloading='1.2.0'
 
@@ -80,22 +80,68 @@ deps.design="com.android.support:design:${version.support}"
 deps.greendao="org.greenrobot:greendao:${version.greendao}"
 deps.okhttp3="com.squareup.okhttp3:okhttp:${version.okhttp3}"
 deps.okhttp3_inc="com.squareup.okhttp3:logging-interceptor:${version.okhttp3}"
-deps.retrofit2="com.squareup.retrofit2:retrofit:${version.retrofit2}"
-deps.retrofit2_gson="com.squareup.retrofit2:converter-gson:${version.retrofit2_gson}"
-deps.retrofit2_adapter="com.squareup.retrofit2:adapter-rxjava2:${version.retrofit2_adapter}"
+
 deps.toasty="com.github.GrenderG:Toasty:${version.toasty}"
-deps.glide="com.github.bumptech.glide:glide:${version.glide}"
+
 deps.eventbus="org.greenrobot:eventbus:${version.eventbus}"
 
+deps.permission="com.yanzhenjie:permission:${version.permission}"
+
+deps.gson = "com.google.code.gson:gson:$version.gson"
+
+deps.fastjson="com.alibaba:fastjson:${version.fastjson}"
+
+deps.location="com.amap.api:location:${version.location}"
+
+deps.loading="com.zyao89:zloading:${version.zloading}"
+
+deps.autosize="me.jessyan:autosize:${version.autosize}"
+
+
+def retrofit=[:]
+retrofit.core="com.squareup.retrofit2:retrofit:${version.retrofit2}"
+retrofit.converter="com.squareup.retrofit2:converter-gson:${version.retrofit2_gson}"
+retrofit.adapter="com.squareup.retrofit2:adapter-rxjava2:${version.retrofit2_adapter}"
+deps.retrofit=retrofit
 
 
 def rxjava=[:]
 rxjava.rx="io.reactivex.rxjava2:rxandroid:${version.rxandroid}"
 rxjava.rxandroid="io.reactivex.rxjava2:rxandroid:${version.rxandroid}"
 deps.rxjava=rxjava
+
+
 def glide=[:]
 glide.core="com.github.bumptech.glide:glide:${version.glide}"
 glide.compiler="com.github.bumptech.glide:compiler:${version.glide}"
 deps.glide=glide
+
+
+def bugly=[:]
+bugly.core="com.tencent.bugly:crashreport:${version.bugly}"
+bugly.native="com.tencent.bugly:nativecrashreport:${version.bugly}"
+deps.bugly=bugly
+
+
+def butter=[:]
+butter.core="com.jakewharton:butterknife:${version.butter}"
+butter.compiler="com.jakewharton:butterknife-compiler:${version.butter}"
+deps.butter=butter
+
+def leak=[:]
+leak.debug="com.squareup.leakcanary:leakcanary-android:${version.leakcanary}"
+leak.release="com.squareup.leakcanary:leakcanary-android-no-op:${version.leakcanary}"
+leak.support="com.squareup.leakcanary:leakcanary-support-fragment:${version.leakcanary}"
+deps.leak=leak
+
+def umeng=[:]
+umeng.common="com.umeng.sdk:common:${version.umeng}"
+umeng.analytics="com.umeng.sdk:analytics:${version.umeng}"
+deps.umeng=umeng
+
+def lifecycle=[:]
+lifecycle.core="android.arch.lifecycle:extensions:${version.lifecycle}"
+lifecycle.compiler="android.arch.lifecycle:compiler:${version.lifecycle}"
+deps.lifecycle=lifecycle
 
 ext.deps=deps

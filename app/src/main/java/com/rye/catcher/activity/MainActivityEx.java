@@ -4,7 +4,6 @@ package com.rye.catcher.activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 
 import android.support.annotation.Nullable;
@@ -20,7 +19,6 @@ import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rye.catcher.BaseActivity;
-import com.rye.catcher.MainActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
 import com.rye.catcher.activity.fragment.LMFragment;
@@ -29,10 +27,10 @@ import com.rye.catcher.activity.fragment.YLJFragment;
 
 import com.rye.catcher.common.KeyValueMgrZ;
 import com.rye.catcher.project.dao.KeyValueMgr;
-import com.rye.catcher.project.kotlins.BroadcastManager;
-import com.rye.catcher.sdks.HttpLogger;
-import com.rye.catcher.sdks.beans.WeatherBean;
-import com.rye.catcher.sdks.gmap.AmapResult;
+import com.rye.catcher.demos.kotlins.BroadcastManager;
+import com.rye.catcher.base.sdks.HttpLogger;
+import com.rye.catcher.base.sdks.beans.WeatherBean;
+import com.rye.catcher.base.sdks.gmap.AmapResult;
 import com.rye.catcher.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Constant;
@@ -48,7 +46,6 @@ import butterknife.BindView;
 
 import butterknife.ButterKnife;
 
-import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;

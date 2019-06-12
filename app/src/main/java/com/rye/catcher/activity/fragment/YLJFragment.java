@@ -1,36 +1,16 @@
 package com.rye.catcher.activity.fragment;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.common.bigimg.ImageActivity;
-import com.rye.catcher.project.ctmviews.DistortionViews;
-import com.rye.catcher.sdks.beans.TangBean;
-import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.ExtraUtil.Constant;
-import com.rye.catcher.utils.ImageUtils;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.catcher.base.sdks.beans.TangBean;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by zzg on 2017/10/10.

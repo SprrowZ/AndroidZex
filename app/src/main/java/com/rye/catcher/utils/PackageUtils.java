@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import com.rye.catcher.BuildConfig;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AppBean;
-import com.rye.catcher.utils.ExtraUtil.Bean;
 
 import java.util.ArrayList;
 import java.util.List;

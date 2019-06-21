@@ -1,5 +1,6 @@
 package com.rye.catcher.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -83,6 +84,7 @@ public class SplashActivity extends BaseActivity {
     /**
      * Rxjava+Retrofit+Okhttp
      */
+    @SuppressLint("CheckResult")
     private void tangObservable(){
         RetrofitManager.INSTANCE
                 .getClient(Constant.TANG_POETRY)

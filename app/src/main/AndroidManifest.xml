@@ -40,10 +40,7 @@
         android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity
-            android:name=".activity.TestActivity"
-            android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme.Base.NoActionBar"></activity>
+
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -98,7 +95,7 @@
             android:name=".activity.MainActivityEx"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.FirstActivity">
+        <activity android:name=".activity.ZTActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -167,10 +164,6 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".project.animations.AnimMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.DrawableMainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity

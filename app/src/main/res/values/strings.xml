@@ -85,5 +85,4 @@
     <string name="pause">暂停</string>
     <string name="reStart">重启</string>
     <string name="title">title</string>
-    <string name="title_activity_test">TestActivity</string>
 </resources>

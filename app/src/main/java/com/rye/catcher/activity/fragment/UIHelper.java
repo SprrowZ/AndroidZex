@@ -77,8 +77,8 @@ public class UIHelper {
     /**
      * 获取Drawable
      */
-//    public static Drawable getDrawable(int drawable) {
-//        return ContextCompat.getDrawable(App.getContext(), drawable);
+//    public static Drawable getDrawable(int activity_test) {
+//        return ContextCompat.getDrawable(App.getContext(), activity_test);
 //    }
 //
 //    public static View inflaterLayout(Context context, @LayoutRes int layoutRes) {

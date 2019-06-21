@@ -68,8 +68,6 @@ deps.kotlin_plugin="org.jetbrains.kotlin:kotlin-gradle-plugin:$version.kotlin"
 deps.realm_plugin="io.realm:realm-gradle-plugin:$version.realm"
 
 //app gradle
-deps.kotlin_jdk7="org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version.kotlin"
-deps.multidex="com.android.support:multidex:$version.multidex"
 deps.support="com.android.support:support-v4:${version.support}"
 deps.appcompat="com.android.support:appcompat-v7:${version.support}"
 deps.cardview="com.android.support:cardview-v7:${version.support}"
@@ -77,9 +75,11 @@ deps.recyclerview="com.android.support:recyclerview-v7:${version.support}"
 deps.constraint="com.android.support.constraint:constraint-layout:${version.constraint}"
 deps.design="com.android.support:design:${version.support}"
 
+
+deps.kotlin_jdk7="org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version.kotlin"
+deps.multidex="com.android.support:multidex:$version.multidex"
+
 deps.greendao="org.greenrobot:greendao:${version.greendao}"
-deps.okhttp3="com.squareup.okhttp3:okhttp:${version.okhttp3}"
-deps.okhttp3_inc="com.squareup.okhttp3:logging-interceptor:${version.okhttp3}"
 
 deps.toasty="com.github.GrenderG:Toasty:${version.toasty}"
 
@@ -96,6 +96,12 @@ deps.location="com.amap.api:location:${version.location}"
 deps.loading="com.zyao89:zloading:${version.zloading}"
 
 deps.autosize="me.jessyan:autosize:${version.autosize}"
+
+
+def okhttp=[:]
+okhttp.core="com.squareup.okhttp3:okhttp:${version.okhttp3}"
+okhttp.interceptor="com.squareup.okhttp3:logging-interceptor:${version.okhttp3}"
+deps.okhttp=okhttp
 
 
 def retrofit=[:]

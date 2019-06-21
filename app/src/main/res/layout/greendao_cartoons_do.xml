@@ -124,7 +124,7 @@
                         <!--android:padding="5dp"-->
 
                         <!--android:minLines="4"-->
-                        <!--android:background="@drawable/bg_edittext_selector"-->
+                        <!--android:background="@activity_test/bg_edittext_selector"-->
                         <!--/>-->
                 <!--</LinearLayout>-->
 

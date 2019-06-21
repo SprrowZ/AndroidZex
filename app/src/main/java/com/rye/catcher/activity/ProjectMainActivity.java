@@ -171,11 +171,7 @@ public class ProjectMainActivity extends BaseActivity {
                 startActivity(new Intent(ProjectMainActivity.this,
                         AIDLActivity.class));
                 break;
-            case R.id.drawable:
-                Intent intent8 = new Intent(ProjectMainActivity.this,
-                        DrawableMainActivity.class);
-                startActivity(intent8);
-                break;
+
             case R.id.shape:
                 testHandler();
                 break;

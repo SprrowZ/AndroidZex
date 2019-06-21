@@ -56,7 +56,7 @@ public void setLeftScale(Activity activity,LinearLayout parent,EditText son){
 //        //1.创建AlertDialog
 //        dialog = new AlertDialog.Builder(activity).create();
 //        contentView = View.inflate(activity, Res, null);
-//        MeasureUtil.setLeftScale(activity,parent,son,R.drawable.icon_title_bar_edit_search);
+//        MeasureUtil.setLeftScale(activity,parent,son,R.activity_test.icon_title_bar_edit_search);
 //        dialog.setView(contentView);
 //        dialog.show();
 //

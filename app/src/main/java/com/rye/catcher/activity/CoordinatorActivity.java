@@ -33,7 +33,7 @@ public class CoordinatorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coordinator_layout_test);
         ButterKnife.bind(this);
-      //   toolbar.setNavigationIcon(R.drawable.mulu);
+      //   toolbar.setNavigationIcon(R.activity_test.mulu);
         toolbar.inflateMenu(R.menu.topbar_right);
         collapsingToolbarLayout.setTitle("....RyeCatcherApp....");
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.red));

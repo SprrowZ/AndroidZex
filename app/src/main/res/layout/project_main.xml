@@ -80,13 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="PackageManager/AIDL"
                 />
-            <Button
-                android:id="@+id/drawable"
-                style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Drawable"
-                />
+
             <Button
                 android:id="@+id/shape"
                 style="@style/btn_unclikable"

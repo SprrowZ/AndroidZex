@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.rye.catcher.activity.FirstActivity;
+import com.rye.catcher.activity.ZTActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
 import com.rye.catcher.activity.CameraActivity;
@@ -34,7 +34,7 @@ public class ClickHandler {
                 mContext.startActivity(new Intent(mContext, JetPackActivity.class));
                 break;
             case R.id.someDemo:
-                mContext.startActivity(new Intent(mContext, FirstActivity.class));
+                mContext.startActivity(new Intent(mContext, ZTActivity.class));
                 break;
             case R.id.retrofit:
                 mContext.startActivity(new Intent(mContext, RetrofitActivity.class));

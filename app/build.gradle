@@ -98,13 +98,13 @@ android {
             dimension "money"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vip"]
             buildConfigField("boolean", "IS_VIP_VERSION", "true")
-            minSdkVersion 16
+            minSdkVersion 19
         }
         free {
             dimension "money"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "free"]
             buildConfigField("boolean", "IS_VIP_VERSION", "false")
-            minSdkVersion 16
+            minSdkVersion 19
         }
         baidu {
             manifestPlaceholders = [CHANNEL: "baidu"]
@@ -112,7 +112,7 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
             manifestPlaceholders.put("Screen_Width_Size", "392")
             buildConfigField("boolean", "IS_baidu_VERSION", "true")
-            minSdkVersion 16
+            minSdkVersion 19
         }
         xiaomi {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
@@ -120,7 +120,7 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
             manifestPlaceholders.put("Screen_Width_Size", "392")
             buildConfigField("boolean", "IS_baidu_VERSION", "false")
-            minSdkVersion 16
+            minSdkVersion 19
         }
     }
 
@@ -181,6 +181,9 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //组件化开发
+    implementation project(':zzsdk')
+
     implementation deps.appcompat
     implementation deps.cardview
     implementation deps.recyclerview
@@ -194,8 +197,8 @@ dependencies {
     implementation deps.rxjava.rx
     implementation deps.rxjava.rxandroid
     implementation deps.greendao
-    implementation deps.okhttp3
-    implementation deps.okhttp3_inc
+    implementation deps.okhttp.core
+    implementation deps.okhttp.interceptor
     implementation deps.retrofit.core
     implementation deps.retrofit.converter
     implementation deps.retrofit.adapter

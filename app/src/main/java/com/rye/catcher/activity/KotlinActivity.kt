@@ -26,8 +26,6 @@ private const val activityExProperty:String ="OK"
 class KotlinActivity :BaseActivity() ,View.OnClickListener{
 
 
-    private var container:RelativeLayout?=null
-//    private var title:TextView?=null
 
     private var design_bottom_sheet:BottomNavigationView?=null
 
@@ -45,7 +43,7 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
     }
     @RequiresApi(Build.VERSION_CODES.M)
     fun init()  {
-        container=findViewById(R.id.container)
+
 //        title=findViewById(R.id.title)
         design_bottom_sheet=findViewById(R.id.design_bottom_sheet)
         swipeRefreshLayout=findViewById(R.id.swipeRefreshLayout)

@@ -1,0 +1,32 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rye.catcher.project.ctmviews.takephoto.CameraTwoFragment">
+
+    <com.rye.catcher.project.ctmviews.takephoto.AutoFitTextureView
+        android:id="@+id/textureView"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintHeight_percent="0.85"
+        tools:background="@color/black" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintTop_toBottomOf="@+id/textureView"
+        tools:background="@color/soft17">
+        <ImageView
+            android:id="@+id/takePhoto"
+            android:layout_width="wrap_content"
+            app:layout_constraintHeight_percent="0.7"
+            android:src="@drawable/take_photo"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

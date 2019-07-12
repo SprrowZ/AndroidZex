@@ -16,6 +16,7 @@
         app:tabBackground="@color/transparent"
         app:tabIndicatorColor="@color/transparent"
         app:tabSelectedTextColor="@color/soft19"
+
          android:background="@color/soft1"
         >
 

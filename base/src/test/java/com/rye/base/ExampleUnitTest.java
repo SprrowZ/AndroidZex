@@ -1,4 +1,4 @@
-package com.example.base;
+package com.rye.base;
 
 import org.junit.Test;
 

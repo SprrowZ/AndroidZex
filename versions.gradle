@@ -13,7 +13,8 @@ def version=[build:'3.3.1',support:'28.0.0',
              permission:'2.0.0-rc11',location:'4.6.0',
              zloading:'1.2.0',leakcanary:'1.6.1',
              umeng:'latest.integration',lifecycle:'1.1.0',
-             autosize:'1.1.2',kotlin_coroutines:'1.3.0-M1']
+             autosize:'1.1.2',kotlin_coroutines:'1.3.0-M1',
+             rxlifecycle:'2.1.0']
 
 
 
@@ -56,6 +57,8 @@ deps.loading="com.zyao89:zloading:${version.zloading}"
 deps.autosize="me.jessyan:autosize:${version.autosize}"
 
 deps.kotlin_coroutines="org.jetbrains.kotlinx:kotlinx-coroutines-core:${version.kotlin_coroutines}"
+
+deps.rxlifecycle="com.trello.rxlifecycle2:rxlifecycle-components:${version.rxlifecycle}"
 
 def okhttp=[:]
 okhttp.core="com.squareup.okhttp3:okhttp:${version.okhttp3}"
@@ -108,5 +111,6 @@ def lifecycle=[:]
 lifecycle.core="android.arch.lifecycle:extensions:${version.lifecycle}"
 lifecycle.compiler="android.arch.lifecycle:compiler:${version.lifecycle}"
 deps.lifecycle=lifecycle
+
 
 ext.deps=deps

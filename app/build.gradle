@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion compileSdkVer
-    buildToolsVersion '28.0.3'
+    buildToolsVersion buildToolsVer
     defaultConfig {
         applicationId "com.rye.catcher.zzg"
         minSdkVersion minSdkVer
@@ -55,80 +55,54 @@ android {
             debuggable true
             signingConfig signingConfigs.config
             manifestPlaceholders = ["appName": "麦田Z"]
-            applicationIdSuffix '.anyOATest' //applicationIdSuffix代表了默认的应用ID
+            applicationIdSuffix '.debug' //applicationIdSuffix代表了默认的应用ID
             versionNameSuffix '.' + today.format('MMdd')
             zipAlignEnabled false
         }
-
-        preview {
-            shrinkResources false //用来开启删除无用资源，也就是没有被引用的文件,和底下这个要配合使用，只有全为true两者才起作用
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            debuggable true
-            signingConfig signingConfigs.config
-            manifestPlaceholders = ["appName": "RyeCatcherP"]
-            applicationIdSuffix '.anyOATest'
+        //马甲包
+        majia.initWith(buildTypes.debug)
+        majia {
+            manifestPlaceholders = ["appName": "Rye-Majia"]
+            applicationIdSuffix '.majia'
             versionNameSuffix '.01'
-            zipAlignEnabled true
-            matchingFallbacks = ['debug', 'release']
-
+            //子module打包风格
+            matchingFallbacks=['majia','debug','release']
         }
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 
-    packagingOptions {//排除不想放入到apk文件里的文件
-        exclude 'META-INF/DEPENDENCIES.txt'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/dependencies.txt'
-        exclude 'META-INF/LGPL2.1'
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    flavorDimensions("money", "channel")
+    //多渠道暂时关闭
+//    flavorDimensions("money", "channel")
+    flavorDimensions("channel")
     productFlavors {
-        vip {
-            dimension "money"
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vip"]
-            buildConfigField("boolean", "IS_VIP_VERSION", "true")
-            minSdkVersion 19
-        }
-        free {
-            dimension "money"
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "free"]
-            buildConfigField("boolean", "IS_VIP_VERSION", "false")
-            minSdkVersion 19
-        }
-        baidu {
-            manifestPlaceholders = [CHANNEL: "baidu"]
-            dimension "channel"
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-            manifestPlaceholders.put("Screen_Width_Size", "392")
-            buildConfigField("boolean", "IS_baidu_VERSION", "true")
-            minSdkVersion 19
-        }
-        xiaomi {
+//        vip {
+//            dimension "money"
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vip"]
+//            buildConfigField("boolean", "IS_VIP_VERSION", "true")
+//            minSdkVersion 19
+//        }
+//        free {
+//            dimension "money"
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "free"]
+//            buildConfigField("boolean", "IS_VIP_VERSION", "false")
+//            minSdkVersion 19
+//        }
+
+         MI{
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
             manifestPlaceholders.put("Screen_Width_Size", "392")
             buildConfigField("boolean", "IS_baidu_VERSION", "false")
-            minSdkVersion 19
+            minSdkVersion MiminSdkVer
         }
+
     }
 
-    lintOptions {//貌似是用来屏蔽lint错误，拼写错误?
-        checkReleaseBuilds false
-        abortOnError false
-    }
 
     greendao {
         schemaVersion 1
@@ -144,9 +118,9 @@ repositories {
 android.applicationVariants.all { variant ->
 
     variant.outputs.all { output ->
-        if (variant.buildType.name == "debug" || variant.buildType.name == "preview") {
-            resValue "string", "ip_out", "http://114.255.225.50:8088"
-            resValue "string", "ip_in", "http://122.40.130.74:8088"
+        if (variant.buildType.name == "debug"
+                || variant.buildType.name == "preview") {
+
             resValue "string", "app_name", "寻梦测"
             resValue "string", "SCREENSHOT_ENANBLE", "1"
             buildConfigField "String", "ip", "\"www.bilibili.com\""
@@ -157,8 +131,7 @@ android.applicationVariants.all { variant ->
             }
 
         } else {
-            resValue "string", "ip_out", "https://140.206.54.50:8080"
-            resValue "string", "ip_in", "http://10.248.113.15:8081"
+
             resValue "string", "app_name", "寻梦"
             resValue "string", "SCREENSHOT_ENANBLE", "0"
             buildConfigField "String", "ip", "\"www.bilibili.com\""
@@ -188,7 +161,7 @@ dependencies {
     //组件化开发
     implementation project(':zzsdk')
     implementation project(':base')
-    implementation deps.appcompat
+
     implementation deps.cardview
     implementation deps.recyclerview
     implementation deps.constraint
@@ -196,20 +169,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation files('libs/commons-io-2.4.jar')
 
-    implementation deps.kotlin_jdk7
-    //Rxjava+Retrofit+Okhttp
-    implementation deps.rxjava.rx
-    implementation deps.rxjava.rxandroid
-    implementation deps.greendao
-    implementation deps.okhttp.core
-    implementation deps.okhttp.interceptor
-    implementation deps.retrofit.core
-    implementation deps.retrofit.converter
-    implementation deps.retrofit.adapter
-
     implementation deps.glide.core
     kapt deps.glide.compiler
-    implementation deps.eventbus
+
     implementation deps.bugly.core
     implementation deps.bugly.native
     implementation deps.butter.core
@@ -225,6 +187,7 @@ dependencies {
     implementation deps.loading
 
     debugImplementation deps.leak.debug
+    majiaImplementation deps.leak.debug
     releaseImplementation deps.leak.release
     //Optional, if you use support library fragments:
     debugImplementation deps.leak.support

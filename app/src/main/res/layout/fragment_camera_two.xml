@@ -8,25 +8,31 @@
     <com.rye.catcher.project.ctmviews.takephoto.AutoFitTextureView
         android:id="@+id/textureView"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintHeight_percent="0.85"
-        tools:background="@color/black" />
+        tools:background="@color/black"
+
+        />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintTop_toBottomOf="@+id/textureView"
-        tools:background="@color/soft17">
+        android:layout_height="0dp">
         <ImageView
             android:id="@+id/takePhoto"
             android:layout_width="wrap_content"
-            app:layout_constraintHeight_percent="0.7"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintHeight_percent="0.5"
             android:src="@drawable/take_photo"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+          />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

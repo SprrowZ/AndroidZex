@@ -60,7 +60,7 @@ public class AsyncAdapter extends BaseAdapter {
         String url=newsBeanList.get(position).newsIconUrl;
         viewHolder.iv_Icon.setTag(url);
        // NewsBean bean=newsBeanList.get(position);
-       // viewHolder.iv_Icon.setImageResource(R.mipmap.ic_launcher);
+       // viewHolder.iv_Icon.setImageResource(R.mipmap-hdpi.ic_launcher);
 //吧图片的url给imageview
 
         //底下这个是多线程加载

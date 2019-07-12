@@ -87,7 +87,7 @@
         android:id="@+id/iv"
         android:visibility="gone"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/appicon"
+        android:src="@mipmap/appicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <LinearLayout

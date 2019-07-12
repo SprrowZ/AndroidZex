@@ -1,12 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion compileSdkVer
+    buildToolsVersion buildToolsVer
 
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion MiminSdkVer
         targetSdkVersion targetSdkVer
         versionCode 1
         versionName "1.0"
@@ -31,4 +33,23 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    api deps.appcompat
+    //Rxjava+Retrofit+Okhttp
+    implementation deps.rxjava.rx
+    api deps.rxjava.rxandroid
+    api deps.greendao
+    api deps.okhttp.core
+    api deps.okhttp.interceptor
+    api deps.retrofit.core
+    api deps.retrofit.converter
+    api deps.retrofit.adapter
+
+    api deps.eventbus
+    api deps.kotlin_jdk7
+    api deps.rxlifecycle
+
+}
+repositories {
+    mavenCentral()
 }

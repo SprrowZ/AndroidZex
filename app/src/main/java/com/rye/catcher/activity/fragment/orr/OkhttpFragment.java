@@ -14,8 +14,9 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.OkHttpAdapter;
 import com.rye.catcher.activity.fragment.BaseFragment;
 import com.rye.catcher.project.helpers.SimpleItemDecoration;
-import com.rye.catcher.project.dao.ServiceContext;
 import com.rye.catcher.utils.DensityUtil;
+import com.rye.catcher.utils.DeviceUtils;
+import com.rye.catcher.utils.EchatAppUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
@@ -172,7 +173,7 @@ public class OkhttpFragment extends BaseFragment {
             Request request = new Request.Builder()
                     .get()
                     .url(URL + "login?userName=zzg&password=1234")
-                    .addHeader("S-ZZG-TOKEN", ServiceContext.getUUID())
+                    .addHeader("S-ZZG-TOKEN", DeviceUtils.getUUID(EchatAppUtil.getAppContext()))
                     .build();
             Response response= null;
             try {

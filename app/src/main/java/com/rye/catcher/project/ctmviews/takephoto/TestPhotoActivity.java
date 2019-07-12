@@ -86,7 +86,13 @@ public class TestPhotoActivity extends AppCompatActivity {
         }
         CameraActivity2.openCamera(this, type);
     }
-
+    private String getImagePath(){
+        Date data=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-DD%HH:mm:ss");
+        String dataStr=sdf.format(data);
+        String imagePath=SDHelper.getImageFolder()+dataStr+".png";
+        return imagePath;
+    }
     /**
      * 身份证
      */
@@ -106,13 +112,7 @@ public class TestPhotoActivity extends AppCompatActivity {
 
     }
 
-    private String getImagePath(){
-        Date data=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-DD%HH:mm:ss");
-        String dataStr=sdf.format(data);
-        String imagePath=SDHelper.getImageFolder()+dataStr+".png";
-        return imagePath;
-    }
+
 
     /**
      * 证件

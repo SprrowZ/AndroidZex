@@ -40,7 +40,8 @@
         android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-
+        <activity android:name=".project.ctmviews.takephoto.TestCameraActivity"></activity>
+        <activity android:name=".activity.KtCoroutineActivity" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

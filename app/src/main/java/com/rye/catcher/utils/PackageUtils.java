@@ -26,7 +26,7 @@ public class PackageUtils {
      * 静态内部类单例
      */
     private static class PackageHole{
-        private static PackageUtils instance=new PackageUtils();
+        private static final PackageUtils instance=new PackageUtils();
     }
 
     public static  PackageUtils instance(){

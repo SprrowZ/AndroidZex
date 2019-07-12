@@ -15,6 +15,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.project.Ademos.MultiThreadDown;
 import com.rye.catcher.project.catcher.DelayHandleUtil;
 import com.rye.catcher.project.ctmviews.takephoto.CameraActivityEx;
+import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
 import com.rye.catcher.project.ctmviews.takephoto.TestPhotoActivity;
 import com.rye.catcher.project.dialog.TopDialog;
 import com.rye.catcher.project.Ademos.mvp.MvpActivity;
@@ -33,6 +34,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 /**
  * Created by ZZG on 2017/11/13.
@@ -58,8 +60,6 @@ public class ProjectMainActivity extends BaseActivity {
     Button file;
     @BindView(R.id.aidl)
     Button aidl;
-    @BindView(R.id.drawable)
-    Button drawable;
     @BindView(R.id.shape)
     Button shape;
     @BindView(R.id.slidingDemo)
@@ -89,6 +89,8 @@ public class ProjectMainActivity extends BaseActivity {
     Button takePhotoEx;
     @BindView(R.id.multiThread)
     Button multiThread;
+    @BindView(R.id.kotlin)
+    Button kotlin;
     private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
     private Timer timer;
     private TimerTask timerTask;
@@ -140,13 +142,13 @@ public class ProjectMainActivity extends BaseActivity {
         Log.i(TAG2, "onResume: ....");
         setClock();
     }
-
+    @Optional
     @OnClick({R.id.service, R.id.intents, R.id.dbtest, R.id.file,
-            R.id.aidl, R.id.drawable, R.id.shape, R.id.slidingDemo,
+            R.id.aidl, R.id.shape, R.id.slidingDemo,
             R.id.search_bar, R.id.recyclerView, R.id.dialogs, R.id.coor,
             R.id.viewDrag, R.id.batchLoading, R.id.siteProtection,
             R.id.blueTooth,R.id.blueTooth2,R.id.mvpDemo,R.id.takePhoto,
-            R.id.takePhotoEx,R.id.multiThread,R.id.kotlin})
+            R.id.takePhotoEx,R.id.multiThread,R.id.kotlin,R.id.kotlin_coroutine})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.search_bar:
@@ -212,7 +214,7 @@ public class ProjectMainActivity extends BaseActivity {
             case R.id.takePhoto:
                 PermissionUtils.requestPermission(this,"需要相机权限！",false,
                         data -> {
-                            startActivity(new Intent(this, TestPhotoActivity.class));
+                            startActivity(new Intent(this, TestCameraActivity.class));
                         },1, Permission.CAMERA);
                 break;
             case R.id.takePhotoEx:
@@ -240,6 +242,9 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
             case R.id.kotlin:
                 startActivity(new Intent(this,KotlinActivity.class));
+                break;
+            case R.id.kotlin_coroutine:
+                startActivity(new Intent(this,KtCoroutineActivity.class));
                 break;
         }
     }

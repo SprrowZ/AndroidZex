@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.UserHandle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -100,6 +101,8 @@ public class LocalService extends Service {
         Log.d(TAG, "onUnbind: ...");
         return super.onUnbind(intent);
     }
+
+
 
     /**
      * onBind绑定方法需要返回一个IBinder，而Binder类又实现了IBinder接口

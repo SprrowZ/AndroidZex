@@ -95,6 +95,9 @@ public class DeviceInfoFragment extends Fragment {
        DeviceBean bean7=new DeviceBean();
              bean7.setTitle("最小宽度");
              bean7.setContent(String.valueOf(DeviceUtils.getScreenSw(getActivity())));
+       DeviceBean bean8=new DeviceBean();
+             bean8.setTitle("虚拟机");
+             bean8.setContent(DeviceUtils.getVirtualMachine());
        dataList.add(bean);
        dataList.add(bean1);
        dataList.add(bean2);
@@ -103,6 +106,7 @@ public class DeviceInfoFragment extends Fragment {
        dataList.add(bean5);
        dataList.add(bean6);
        dataList.add(bean7);
+       dataList.add(bean8);
        return dataList;
     }
 }

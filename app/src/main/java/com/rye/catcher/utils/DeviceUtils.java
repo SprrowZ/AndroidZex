@@ -275,7 +275,20 @@ public class DeviceUtils {
         return Build.ID;
     }
 
+    /**
+     * 判断当前手机是ART虚拟机还是Dalvik虚拟机
+     * @return
+     */
+    public static String getVirtualMachine(){
+        final String vmVersion = System.getProperty("java.vm.version");
+         String result="";
+        if (vmVersion.startsWith("2")){
+            result="ART虚拟机，版本号："+vmVersion;
+        }else{
+            result="Dalvik虚拟机，版本号："+vmVersion;
+        }
+        return result;
 
-
+    }
 
 }

@@ -176,6 +176,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Kotlin" />
+            <Button
+                android:id="@+id/kotlin_coroutine"
+                style="@style/project_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kotlin Coroutine" />
 
         </LinearLayout>
     </ScrollView>

@@ -75,4 +75,21 @@ class OkClient {
 
 
     }
+
+    class Builder{
+       private var url:String ? =null
+       private var method:String ?= null
+
+        fun setUrl(url:String):Builder{
+            this.url=url
+           return this
+        }
+        fun setMethod(method:String):Builder{
+            this.method=method
+            return this
+        }
+        fun build():OkClient{
+            return url?.let { method?.let { it1 -> OkClient(it, it1) } }!!
+        }
+    }
 }

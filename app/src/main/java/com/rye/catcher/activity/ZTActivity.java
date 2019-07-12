@@ -14,10 +14,13 @@ import com.catcher.zzsdk.okhttp.others.DisposeDataListener;
 import com.catcher.zzsdk.okhttp.request.CommonRequest;
 import com.catcher.zzsdk.okhttp.response.JsonCallback;
 import com.catcher.zzsdk.okhttp.response.NormalCallback;
+import com.google.gson.Gson;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 
 import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +34,7 @@ import okhttp3.Response;
  */
 
 public class ZTActivity extends BaseActivity {
-    private String url="https://api.github.com/";
+    private String url="http://apis.juhe.cn/ip/ipNew?ip=112.112.11.11&key=8aa56ea9bf3d4dfd2ce7e678061179b5";
     @BindView(R.id.aa)
     Button aa;
     @BindView(R.id.bb)
@@ -96,11 +99,12 @@ public class ZTActivity extends BaseActivity {
                         .get()
                         .url(url)
                         .build()
-                        .execute(new JsonCallback<String>() {
+                        .execute(new JsonCallback<BeanZ>() {
                             @Override
-                            public void onSuccess(String result) {
-                                Log.i("zzz","result:"+result);
+                            public void onSuccess(BeanZ result) {
+                                Log.i("zzz","result:"+result.toString());
                             }
+
                             @Override
                             public void onError(String error) {
 
@@ -112,4 +116,22 @@ public class ZTActivity extends BaseActivity {
 
 
     }
+    private void testGson(){
+        String json = "{\"nestedPojo\":{\"name\":\"dd\", \"value\":42}}";
+        String gson=new Gson().fromJson(json,String.class);
+        Log.i("zzz", "testGson: "+gson);
+    }
+
+}
+class BeanZ{
+    public Data result;
+    public String resultcode;
+    public String reason;
+    public String error_code;
+   class Data{
+       String Country;
+       String Province;
+       String City;
+       String Isp;
+   }
 }

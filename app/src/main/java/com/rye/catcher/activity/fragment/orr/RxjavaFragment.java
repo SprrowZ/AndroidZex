@@ -134,18 +134,15 @@ public class RxjavaFragment extends BaseFragment {
 
     private void create() {
         //上游
-        Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                emitter.onNext("1---秦时明月");
-                emitter.onNext("2---空山鸟语");
-                emitter.onNext("3---天行九歌");
-                emitter.onComplete();
-                stringBuffer.append("发送数据：" + "\n"
-                        + "1---秦时明月" + "\n" + "2---空山鸟语" + "\n" + "3---天行九歌" + "\n"
-                );
-                Log.i(TAG, "subscribe: .....");
-            }
+        Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            emitter.onNext("1---秦时明月");
+            emitter.onNext("2---空山鸟语");
+            emitter.onNext("3---天行九歌");
+            emitter.onComplete();
+            stringBuffer.append("发送数据：" + "\n"
+                    + "1---秦时明月" + "\n" + "2---空山鸟语" + "\n" + "3---天行九歌" + "\n"
+            );
+            Log.i(TAG, "subscribe: .....");
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {//通过subscribe连接下游

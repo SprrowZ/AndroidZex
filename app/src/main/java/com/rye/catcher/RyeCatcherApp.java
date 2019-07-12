@@ -55,6 +55,13 @@ public class RyeCatcherApp extends Application{
         init();
         //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
         EchatAppUtil.setContext(mContext);
+
+        //友盟统计
+        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
+        //UnCaughtException
+        Thread.setDefaultUncaughtExceptionHandler(CrashHandler.Companion.getInstance());
+       //realm
+        initRealm(this);
         //内存泄露检测LeakCanary
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -62,12 +69,6 @@ public class RyeCatcherApp extends Application{
             return;
         }
         LeakCanary.install(this);
-        //友盟统计
-        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
-        //UnCaughtException
-        Thread.setDefaultUncaughtExceptionHandler(CrashHandler.Companion.getInstance());
-       //realm
-        initRealm(this);
     }
 
     private void initRealm(Application application){

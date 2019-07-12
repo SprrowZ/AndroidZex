@@ -183,7 +183,7 @@ dependencies {
     })
     //组件化开发
     implementation project(':zzsdk')
-
+    implementation project(':base')
     implementation deps.appcompat
     implementation deps.cardview
     implementation deps.recyclerview

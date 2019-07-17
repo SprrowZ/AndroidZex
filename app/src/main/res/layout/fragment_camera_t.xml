@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.rye.catcher.project.ctmviews.takephoto.CameraTwoFragment">
-
     <com.rye.catcher.project.ctmviews.takephoto.AutoFitTextureView
-        android:id="@+id/texture"
+        android:id="@+id/textureView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
@@ -14,7 +13,6 @@
         tools:background="@color/black"
 
         />
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
@@ -33,6 +31,7 @@
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="parent"
             tools:ignore="MissingConstraints"
-          />
+            />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
+

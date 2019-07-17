@@ -21,8 +21,8 @@ class TestCameraActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        indictors = mutableListOf("Camera1", "Camera2")
-        fragmentList = mutableListOf(CameraOneFragment(), CameraTwoFragment())
+        indictors = mutableListOf("Camera1", "Camera2Practice.." )
+        fragmentList = mutableListOf(CameraOneFragment(),CameraTFragment() )
 
         adapter = CameraFragmentAdapter(supportFragmentManager, indictors, fragmentList)
         viewPager.adapter = adapter

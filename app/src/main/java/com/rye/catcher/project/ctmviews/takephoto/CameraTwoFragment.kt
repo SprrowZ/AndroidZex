@@ -27,8 +27,7 @@ import kotlin.Comparator
 import kotlin.collections.ArrayList
 import android.opengl.ETC1.getHeight
 import android.opengl.ETC1.getWidth
-
-
+import java.lang.Long.signum
 
 
 /**
@@ -100,7 +99,7 @@ class CameraTwoFragment : BaseFragment() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initData() {
-       textureView.surfaceTextureListener=mSurfaceTextureListener
+        texture.surfaceTextureListener=mSurfaceTextureListener
         takePhoto.setOnClickListener {
             captureStillPicture()
         }
@@ -166,14 +165,18 @@ class CameraTwoFragment : BaseFragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun createCameraPreviewSession(){
         try {
-            val texture=textureView.surfaceTexture
-            //缓冲区？
+            val texture=texture.surfaceTexture
+            //通过设置缓冲区去设置我们想要预览的大小
             texture.setDefaultBufferSize(previewSize.width,previewSize.height)
-            previewRequestBuilder=cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
+            //图像输出到了surface中
+            val surface= Surface(texture)
+            //设置预览
+            previewRequestBuilder=cameraDevice.createCaptureRequest(
+                    CameraDevice.TEMPLATE_PREVIEW)
             //?
             previewRequestBuilder.addTarget(Surface(texture))
             //创建CameraCaptureSession,十分重要，该对象负责管理处理预览请求和拍照请求
-            cameraDevice.createCaptureSession(Arrays.asList(textureView,imageReader.surface) as MutableList<Surface>,object:CameraCaptureSession.StateCallback(){
+            cameraDevice.createCaptureSession(Arrays.asList(texture,imageReader.surface) as MutableList<Surface>,object:CameraCaptureSession.StateCallback(){
                 override fun onConfigureFailed(p0: CameraCaptureSession) {
 
                 }
@@ -187,17 +190,17 @@ class CameraTwoFragment : BaseFragment() {
                     captureSession=captureSession1
 
                     try{
-                        // 设置自动对焦模式
+                        // 设置图像连续
                         previewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
                                 CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
-                        // 设置自动曝光模式
+                        // 设置闪光灯模式，在需要的时候打开
                         previewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
-                                CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH);
+                                CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)
                         // 开始显示相机预览
-                        previewRequest = previewRequestBuilder.build();
+                        previewRequest = previewRequestBuilder.build()
                         // 设置预览时连续捕获图像数据
                         captureSession.setRepeatingRequest(previewRequest,
-                                null, null)
+                                null,null)
                     }catch (e:java.lang.Exception){
 
                     }
@@ -276,12 +279,11 @@ class CameraTwoFragment : BaseFragment() {
     }
 
 }
-class CompareSizesByArea:Comparator<Size>{
+class CompareSizesByArea : java.util.Comparator<Size> {
+
+    // We cast here to ensure the multiplications won't overflow
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun compare(lhs: Size?, rhs: Size?): Int {
-        // 强转为long保证不会发生溢出
-        return java.lang.Long.signum(lhs?.getWidth() as Long * lhs.getHeight() -
-                rhs?.getWidth() as Long * rhs.getHeight())
-    }
+    override fun compare(lhs: Size, rhs: Size) =
+            signum(lhs.width.toLong() * lhs.height - rhs.width.toLong() * rhs.height)
 
 }

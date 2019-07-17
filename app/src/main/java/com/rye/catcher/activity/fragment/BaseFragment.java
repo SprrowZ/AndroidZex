@@ -36,7 +36,7 @@ public abstract class BaseFragment extends Fragment  {
    private  Unbinder unbinder;
    private View rootView;
    protected abstract  int getLayoutResId();
-   protected abstract  void initData();
+   protected abstract  void initData( );
 
 
     public  View getView(){//空指针？

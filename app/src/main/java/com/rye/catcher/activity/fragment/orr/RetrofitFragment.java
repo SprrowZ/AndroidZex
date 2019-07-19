@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.beans.MultiBean;
 import com.rye.catcher.beans.PostBean;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;

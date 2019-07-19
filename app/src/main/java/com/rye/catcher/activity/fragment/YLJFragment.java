@@ -3,6 +3,7 @@ package com.rye.catcher.activity.fragment;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.base.sdks.beans.TangBean;
 

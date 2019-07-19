@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.fragment;
+package com.rye.catcher;
 
 
 
@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rye.base.utils.TstPop;
 import com.rye.catcher.R;
 
 import com.rye.catcher.utils.PermissionsUtil;
@@ -93,15 +94,6 @@ public abstract class BaseFragment extends Fragment  {
         }
     }
 
-    public void setBarTitle(int resId) {
-        if(null == getView()){
-            return;
-        }
-        TextView view = (TextView) getView().findViewById(R.id.title);
-        if (view != null) {
-            view.setText(resId);
-        }
-    }
 
 
     @Override

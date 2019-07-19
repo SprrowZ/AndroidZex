@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.OkHttpAdapter;
-import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.project.helpers.SimpleItemDecoration;
 import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.DeviceUtils;

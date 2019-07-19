@@ -1,16 +1,10 @@
 package com.rye.catcher.project.ctmviews;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.BaseFragment;
 
 import butterknife.BindView;
 

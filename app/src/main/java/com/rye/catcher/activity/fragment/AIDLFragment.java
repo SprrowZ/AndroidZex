@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AIDLBean;
 

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AppBean;
 import com.rye.catcher.utils.DateUtils;

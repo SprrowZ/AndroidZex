@@ -1,7 +1,7 @@
 package com.rye.catcher.activity;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.BaseFragment;
 
 /**
  * Created at 2019/4/10.

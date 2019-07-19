@@ -15,18 +15,13 @@ import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray
 import android.view.*
-import com.rye.catcher.activity.fragment.BaseFragment
-import com.rye.catcher.utils.FileUtils
-import com.rye.catcher.utils.ImageUtils
+import com.rye.catcher.BaseFragment
 import com.rye.catcher.utils.SDHelper
 import kotlinx.android.synthetic.main.fragment_camera_two.*
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
-import kotlin.Comparator
 import kotlin.collections.ArrayList
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
 import java.lang.Long.signum
 
 

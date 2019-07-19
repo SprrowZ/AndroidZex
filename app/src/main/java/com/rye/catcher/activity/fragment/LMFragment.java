@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.project.review.ItemBean;
 import com.rye.catcher.project.review.MyAdapter;

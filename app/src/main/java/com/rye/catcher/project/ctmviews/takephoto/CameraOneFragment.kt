@@ -11,13 +11,11 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.text.TextUtils
-import android.view.View
 import com.rye.catcher.R
-import com.rye.catcher.activity.fragment.BaseFragment
+import com.rye.catcher.BaseFragment
 import com.rye.catcher.utils.ImageUtils
 import com.rye.catcher.utils.SDHelper
 import kotlinx.android.synthetic.main.fragment_camera_one.*

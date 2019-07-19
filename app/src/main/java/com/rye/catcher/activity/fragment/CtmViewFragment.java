@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.ctmactivity.CtmDDActivity;
 import com.rye.catcher.activity.ctmactivity.CtmPTRActivity;
@@ -22,7 +23,7 @@ import butterknife.OnClick;
  * Created by ZZG on 2018/3/6.
  */
 
-public class CtmViewFragment extends BaseFragment  {
+public class CtmViewFragment extends BaseFragment {
     public static final String TELESCOPE="TELESCOPE";
     public static final String DISTORTIONVIEW="DISTORTIONVIEW";
     public static final String ORIGIN="ORIGIN";

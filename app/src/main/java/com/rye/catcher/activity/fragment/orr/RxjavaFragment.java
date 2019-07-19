@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.RxjavaAdapter;
-import com.rye.catcher.activity.fragment.BaseFragment;
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.project.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.DeviceUtils;

@@ -8,7 +8,6 @@ import android.graphics.*
 import android.hardware.camera2.*
 import android.media.ImageReader
 import android.os.Build
-import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.support.annotation.RequiresApi
@@ -17,12 +16,11 @@ import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray
 import android.view.Surface
-import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import com.rye.base.utils.PopupEx
 import com.rye.catcher.R
-import com.rye.catcher.activity.fragment.BaseFragment
-import kotlinx.android.synthetic.main.fragment_camera_t.*
-import kotlinx.android.synthetic.main.fragment_camera_two.*
+import com.rye.catcher.BaseLazyFragment
 import java.lang.Exception
 import java.util.*
 
@@ -31,7 +29,7 @@ import java.util.*
  * A simple [Fragment] subclass.
  *
  */
-class CameraTFragment : BaseFragment() {
+class CameraTFragment : BaseLazyFragment() {
     //看来得手动findViewById才行
     private lateinit var textureView:AutoFitTextureView
     private lateinit var takePhoto:ImageView
@@ -210,12 +208,7 @@ class CameraTFragment : BaseFragment() {
         textureView =view!!.findViewById(R.id.textureView)
         takePhoto=view!!.findViewById(R.id.takePhoto)
         takePhoto.setOnClickListener {
-            //开启相机预览
-            if (textureView.isAvailable){
-                openCamera(textureView.width,textureView.height)
-            }else{
-                Log.i("camera","textureView is not available...")
-            }
+
         }
     }
 
@@ -322,17 +315,17 @@ class CameraTFragment : BaseFragment() {
    }
 
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)//暂时不做适配
-    override fun onResume() {
-        super.onResume()
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onFirstVisible() {
+        super.onFirstVisible()
         //初始化handler
         startBackgroundThread()
-        //开启相机预览
-        if (textureView.isAvailable){
-            openCamera(textureView.width,textureView.height)
-        }else{
-            Log.i("camera","textureView is not available...")
-        }
+        createPop()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onVisible() {
+        createPop()
     }
 
     /**
@@ -413,6 +406,9 @@ class CameraTFragment : BaseFragment() {
      */
     private val onImageAvailableListener = ImageReader.OnImageAvailableListener {
 //        backgroundHandler?.post(ImageSaver(it.acquireNextImage(), file))
+        val image= it.acquireNextImage()
+        Log.i("camera","imageInfo:imageFormat:${image.format},imageHeight:${image.height}," +
+                "imageWidth:${image.width}")
     }
 
     /**
@@ -626,6 +622,68 @@ class CameraTFragment : BaseFragment() {
         }
 
     }
+
+    /**
+     * pause的时候关闭相机
+     */
+    private fun closeCamera() {
+        if (::mCameraDevice.isInitialized){
+            try {
+                //cameraOpenCloseLock.acquire()
+                captureSession?.close()
+                captureSession = null
+                mCameraDevice?.close()
+
+                imageReader?.close()
+                imageReader = null
+            } catch (e: InterruptedException) {
+                throw RuntimeException("Interrupted while trying to lock camera closing.", e)
+            } finally {
+                //   cameraOpenCloseLock.release()
+            }
+        }
+
+    }
+    /**
+     * Stops the background thread and its [Handler].
+     */
+    private fun stopBackgroundThread() {
+        backgroundThread?.quitSafely()
+        try {
+            backgroundThread?.join()
+            backgroundThread = null
+            backgroundHandler = null
+        } catch (e: InterruptedException) {
+            Log.e("camera", e.toString())
+        }
+
+    }
+    override fun onPause() {
+        super.onPause()
+        closeCamera()
+        stopBackgroundThread()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        Log.i("HiddenChanged",hidden.toString())
+    }
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun createPop(){
+     val popupEx=PopupEx.Builder()
+             .setContextView(activity,R.layout.popup_camera)
+             .create()
+        popupEx.view.findViewById<TextView>(R.id.openCamera2)
+                .setOnClickListener {
+                    //开启相机预览
+                    if (textureView.isAvailable){
+                        openCamera(textureView.width,textureView.height)
+                    }else{
+                        Log.i("camera","textureView is not available...")
+                    }
+        }
+    }
+
     companion object{
         //图片方向设置
         private val ORIENTATIONS = SparseIntArray()

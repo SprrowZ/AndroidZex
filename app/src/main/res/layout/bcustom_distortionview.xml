@@ -44,7 +44,7 @@
                 />
             <com.rye.catcher.project.ctmviews.DistortionViews
                 app:Dtype="rectangle"
-                app:Dsrc="@mipmap/my1"
+                app:Dsrc="@mipmap/my4"
                 app:Dradius="120"
                 android:layout_marginTop="20dp"
                 android:layout_width="80dp"

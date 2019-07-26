@@ -28,7 +28,7 @@ public class SetXfermode2 extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(3);
         dstBmp= BitmapFactory.decodeResource(getResources(),R.drawable.bk);
-        srcBmp= BitmapFactory.decodeResource(getResources(),R.drawable.light);
+        srcBmp= BitmapFactory.decodeResource(getResources(),R.mipmap.my4);
     }
 
     @Override

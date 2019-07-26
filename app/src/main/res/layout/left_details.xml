@@ -14,7 +14,7 @@
    <com.rye.catcher.project.ctmviews.DistortionViews
        android:id="@+id/portrait"
        custom:Dtype="circle"
-       custom:Dsrc="@mipmap/my1"
+       custom:Dsrc="@mipmap/my4"
        android:scaleType="center"
        android:layout_width="70dp"
        android:layout_height="70dp"

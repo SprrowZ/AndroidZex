@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabTextColor="@color/soft27"
+        app:tabTextColor="@color/black"
         app:tabBackground="@color/transparent"
         app:tabIndicatorColor="@color/transparent"
-        app:tabSelectedTextColor="@color/soft19"
-
+        app:tabSelectedTextColor="@color/red"
+         app:tabTextAppearance="@style/TabLayoutTextStyle"
          android:background="@color/soft1"
         >
 

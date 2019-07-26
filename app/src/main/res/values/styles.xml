@@ -49,7 +49,7 @@
     <style name="SplashThemeImage" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@mipmap/my2</item>
+        <item name="android:windowBackground">@mipmap/a_bg</item>
     </style>
 
     <!--扇形按钮选择-->

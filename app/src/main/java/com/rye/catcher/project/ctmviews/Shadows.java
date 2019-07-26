@@ -40,7 +40,7 @@ public class Shadows extends View {
         setLayerType(LAYER_TYPE_SOFTWARE,null);
         //内发光
         mPaint.setMaskFilter(new BlurMaskFilter(50, BlurMaskFilter.Blur.INNER));
-        mBeautyBmp= BitmapFactory.decodeResource(getResources(), R.drawable.yanlingji);
+        mBeautyBmp= BitmapFactory.decodeResource(getResources(), R.mipmap.my4);
     }
 
     @Override

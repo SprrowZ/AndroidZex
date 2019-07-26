@@ -1,5 +1,6 @@
 package com.rye.base.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -34,29 +35,37 @@ public class PopupEx {
     private int mBackgroundColor = Color.TRANSPARENT;
     private int mWidth;
     private int mHeight;
-    private int mOffsetX=0;
-    private int mOffsetY=0;
+    private int mOffsetX = 0;
+    private int mOffsetY = 0;
 
-    //
-    private boolean focusable = true;
     //位置
-    private int mGravity=Gravity.BOTTOM;
+    private int mGravity = Gravity.BOTTOM;
     //根布局
     private View mView;
     //与ExitText混用
     private int mInputMethodMode = PopupWindow.INPUT_METHOD_FROM_FOCUSABLE;
     private int mSoftInputMode = WindowManager.LayoutParams.SOFT_INPUT_STATE_UNCHANGED;
-   //
+    //
     private View mAnchorView;
     private View mParentView;
-
-
-
-
-    public PopupEx(Context context, @LayoutRes int layout, int mBackgroundColor,
-                   boolean focusable, int gravity, int anim, int mWidth, int mHeight) {
+    //
+    private float alphaDim;
+    private boolean cancelOutside=false;
+    public PopupEx(Context context, @LayoutRes int layout, int backgroundColor,
+                    int gravity, int anim, int width, int height,
+                   View archorView,View parentView,float alpha,boolean cancelOutside) {
         this.mContext = context;
         this.mLayout = layout;
+        this.mBackgroundColor=backgroundColor;
+
+        this.mGravity=gravity;
+        this.anim=anim;
+        this.mWidth=width;
+        this.mHeight=height;
+        this.mAnchorView=archorView;
+        this.mParentView=parentView;
+        this.alphaDim=alpha;
+        this.cancelOutside=cancelOutside;
         init();
     }
 
@@ -66,22 +75,51 @@ public class PopupEx {
         if (anim != -1) {
             mPopupWindow.setAnimationStyle(anim);
         }
-        //设置背景色
-        mPopupWindow.setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
+        //设置背景色，设置了可点击外部不消失，不设置点击外部不消失
+      // mPopupWindow.setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
 
         setLocation();
-    }
-    private void setLocation(){
-        if (mParentView!=null){
-            mPopupWindow.showAtLocation(mParentView, mGravity, mOffsetX, mOffsetY);
-        }
-        if (mAnchorView!=null&&mParentView==null){
-            mPopupWindow.showAsDropDown(mAnchorView,mOffsetX,mOffsetY,mGravity);
-        }
-    }
-    private void showAtLocation(){
+        handleDim();
 
     }
+
+    /**
+     *设置位置
+     */
+    private void setLocation() {
+        if (mParentView != null) {
+            mPopupWindow.showAtLocation(mParentView, mGravity, mOffsetX, mOffsetY);
+            return;
+        }
+        if (mAnchorView != null) {
+            mPopupWindow.showAsDropDown(mAnchorView, mOffsetX, mOffsetY, mGravity);
+        }
+
+    }
+
+    /**
+     * 设置背景不透明度
+     */
+    private void handleDim(){
+        if (alphaDim!=0&&mContext!=null){
+            if (alphaDim>1) alphaDim=1;
+            WindowManager.LayoutParams lp=((Activity)mContext).getWindow().getAttributes();
+            lp.alpha=alphaDim;
+            ((Activity)mContext).getWindow().setAttributes(lp);
+            mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                @Override
+                public void onDismiss() {
+                  handleDismiss();
+                }
+            });
+        }
+
+    }
+   private void handleDismiss(){
+       WindowManager.LayoutParams lp=((Activity)mContext).getWindow().getAttributes();
+       lp.alpha=1.0f;
+       ((Activity)mContext).getWindow().setAttributes(lp);
+   }
 
     private void initView() {
         if (mPopupWindow == null) {
@@ -106,21 +144,20 @@ public class PopupEx {
             mPopupWindow.setHeight(WRAP_CONTENT);
         }
         // TODO: 2019/7/19 测量真实宽高再设置
-        mPopupWindow.setInputMethodMode(mInputMethodMode);
-        mPopupWindow.setSoftInputMode(mSoftInputMode);
+
     }
 
     private void unitedSettings() {
-        mPopupWindow.setFocusable(focusable);
-        //点击事件处理
+        //焦点给popup，防止点击穿透
+        mPopupWindow.setFocusable(true);
+        //todo 待处理与输入框之间的关系
+        mPopupWindow.setInputMethodMode(mInputMethodMode);
+        mPopupWindow.setSoftInputMode(mSoftInputMode);
+        //
+        mPopupWindow.setOutsideTouchable(true);
+//        //点击事件处理
         mPopupWindow.setTouchable(true);
-        mPopupWindow.setTouchInterceptor(new View.OnTouchListener() {
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
     }
 
     public View getView() {
@@ -130,7 +167,16 @@ public class PopupEx {
             throw new IllegalStateException("mView should be null ");
         }
     }
-
+    public boolean isShowing(){
+        if (mPopupWindow!=null && mPopupWindow.isShowing()){
+            return true;
+        }
+        return false;
+    }
+    public void dismiss(){
+        if (mPopupWindow==null) return;
+          mPopupWindow.dismiss();
+    }
     //
     public static final class Builder {
         private Context mContext;
@@ -140,11 +186,17 @@ public class PopupEx {
         int mBackgroundColor;
         private @AnimRes
         int mAnim;
-        private int mWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+        private int mWidth = ViewGroup.LayoutParams.MATCH_PARENT;
         private int mHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-        private boolean focusable = true;
+
         private int mGravity = Gravity.BOTTOM;
 
+        private View parentView;
+        private View archorView;
+
+        private float alphaDim;
+
+        private boolean outCancel;
         public Builder() {
 
         }
@@ -176,21 +228,7 @@ public class PopupEx {
             return this;
         }
 
-        /**
-         * 设置位置
-         *
-         * @param gravity
-         * @return
-         */
-        public Builder setGravity(int gravity) {
-            this.mGravity = gravity;
-            return this;
-        }
 
-        public Builder setFocusable(boolean focusable) {
-            this.focusable = focusable;
-            return this;
-        }
 
         public Builder setWidth(int width) {
             this.mWidth = width;
@@ -202,13 +240,37 @@ public class PopupEx {
             return this;
         }
 
-//        public Builder showAsDrowDown(View ){
+        public Builder setParentView(View parentView,int gravity) {
+            this.parentView = parentView;
+            this.mGravity=gravity;
+            return this;
+        }
+        public Builder setParentView(View parentView ) {
+            this.parentView = parentView;
+            return this;
+        }
+        public Builder setArchorView(View archorView,int gravity) {
+            this.archorView = archorView;
+            this.mGravity=gravity;
+            return this;
+        }
+        public Builder setDim(float alpha){
+            this.alphaDim=alpha;
+            return this;
+        }
+        public Builder outCancel(boolean cancel){
+            this.outCancel=cancel;
+            return this;
+        }
+//        public Builder showAsDrowDown(View archorView ){
+//             if (parentView!=null||archorView==null) return this;
 //
 //        }
 
         public PopupEx create() {
             return new PopupEx(mContext, mLayout, mBackgroundColor,
-                    focusable, mGravity, mAnim, mWidth, mHeight);
+                     mGravity, mAnim, mWidth, mHeight,
+                    archorView,parentView,alphaDim,outCancel);
         }
     }
 }

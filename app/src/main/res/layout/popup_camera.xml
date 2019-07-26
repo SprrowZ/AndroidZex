@@ -3,24 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/soft3">
+    android:background="@color/white"
+    android:layout_marginLeft="@dimen/len_4"
+    android:layout_marginRight="@dimen/len_4"
+    >
 
     <TextView
         android:id="@+id/openCamera2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/len_60"
         android:gravity="center"
         android:padding="@dimen/len_8"
         android:text="拍照"
-        android:textSize="@dimen/font_24"
+        android:textSize="@dimen/font_20"
         app:layout_constraintBottom_toTopOf="@id/line1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/transparent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_3"
         app:layout_constraintBottom_toTopOf="@+id/takeVideo"
         app:layout_constraintTop_toBottomOf="@+id/openCamera2">
 
@@ -29,12 +32,11 @@
     <TextView
         android:id="@+id/takeVideo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="@dimen/len_60"
         android:gravity="center"
         android:padding="@dimen/len_8"
         android:text="拍视频"
-        android:textSize="@dimen/font_24"
+        android:textSize="@dimen/font_20"
         app:layout_constraintTop_toBottomOf="@+id/line1" />
 
 

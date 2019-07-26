@@ -30,7 +30,7 @@ public class CtmDDActivity extends BaseActivity {
     private String headers[]={"城市","年龄","性别","星座"};
     private List<View> popViews=new ArrayList<>();
 
-    private  int[] imageIds={R.mipmap.my1,R.mipmap.my2,R.mipmap.my3,R.mipmap.my4};
+    private  int[] imageIds={R.mipmap.my5,R.mipmap.my2,R.mipmap.my3,R.mipmap.my4};
     DropDownAdapter cityAdapter;
     DropDownAdapter sexAdapter;
     DropDownAdapter ageAdapter;

@@ -33,6 +33,7 @@ import com.yanzhenjie.permission.Permission;
 import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,10 +50,6 @@ import okhttp3.ResponseBody;
  */
 public class SplashActivity extends BaseActivity {
     private static  final  String TAG="SplashActivity";
-    @BindView(R.id.image)
-     ImageView image;
-    private JumpHandler mHandler;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,11 +64,9 @@ public class SplashActivity extends BaseActivity {
 
     private void initEx() {
         //安装申请权限
-        mHandler=new JumpHandler(this);
+
         authority();
-        Glide.with(this)
-                .asDrawable()
-                .load(R.drawable.ling).into(image);
+
         tangObservable();
       //  weatherObservable();
 
@@ -92,22 +87,16 @@ public class SplashActivity extends BaseActivity {
                 .getTangPoetry()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Function<ResponseBody, ObservableSource<TangBean>>() {
-                    @Override
-                    public ObservableSource<TangBean> apply(ResponseBody responseBody) throws Exception {
-                        String result=responseBody.string();
-                        Log.i(TAG, "tangObservable:"+result);
-                        JSONObject json=JSONObject.parseObject(result);
-                        TangBean bean=JSONObject.toJavaObject(json,TangBean.class);
-                        return Observable.just(bean);
-                    }
-                }).subscribe(new Consumer<TangBean>() {
-            @Override
-            public void accept(TangBean bean) throws Exception {
-                Log.i(TAG, "acceptZZZ: "+ bean.toString());
-                EventBus.getDefault().postSticky(bean);
-            }
-        });
+                .flatMap((Function<ResponseBody, ObservableSource<TangBean>>) responseBody -> {
+                    String result=responseBody.string();
+                    Log.i(TAG, "tangObservable:"+result);
+                    JSONObject json=JSONObject.parseObject(result);
+                    TangBean bean=JSONObject.toJavaObject(json,TangBean.class);
+                    return Observable.just(bean);
+                }).subscribe(bean -> {
+                    Log.i(TAG, "acceptZZZ: "+ bean.toString());
+                    EventBus.getDefault().postSticky(bean);
+                });
 
     }
     private void weatherObservable(){
@@ -172,13 +161,19 @@ public class SplashActivity extends BaseActivity {
     private void authority() {
         PermissionUtils.requestPermission(this,"本地文件读写和手机状态需要此类权限,请去设置里授予权限",
                 false,data ->{
-                    Message message=mHandler.obtainMessage();
-                    message.what=1;
-                    mHandler.sendMessageDelayed(message,4000);
+                    openMain();
                 },0,
-                Permission.WRITE_EXTERNAL_STORAGE,Permission.CALL_PHONE,Permission.ACCESS_COARSE_LOCATION);
+                Permission.WRITE_EXTERNAL_STORAGE,Permission.ACCESS_COARSE_LOCATION);//CALL_PHONE先去掉
     }
 
+    private void openMain(){
+        Observable.timer(1000, TimeUnit.MILLISECONDS).subscribe(new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) throws Exception {
+                startActivityByAlpha(new Intent(SplashActivity.this,MainActivityEx.class));
+            }
+        });
+    }
 
     @Override
     protected void onDestroy() {
@@ -186,25 +181,5 @@ public class SplashActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    /**
-     * 静态内部类，弱引用防止内存泄露
-     */
-    private static class JumpHandler extends Handler{
-        private WeakReference<SplashActivity> weakReference;
-        public JumpHandler(SplashActivity activity){
-            weakReference=new WeakReference<>(activity);
-        }
 
-        @Override
-        public void handleMessage(Message msg) {
-            SplashActivity zActivity=weakReference.get();
-            switch (msg.what){
-                case 1:
-                    zActivity.startActivityByAlpha(new Intent(zActivity,MainActivityEx.class));
-                    zActivity.finish();
-                    break;
-            }
-            super.handleMessage(msg);
-        }
-    }
 }

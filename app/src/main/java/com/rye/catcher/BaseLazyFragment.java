@@ -15,6 +15,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.i(TAG,"onActivityCreated");
         initPrepare();
     }
 
@@ -54,6 +55,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        Log.i(TAG,"setUserVisibleHint");
         if (isVisibleToUser) {
             if (isFirstVisible) {
                 isFirstVisible = false;

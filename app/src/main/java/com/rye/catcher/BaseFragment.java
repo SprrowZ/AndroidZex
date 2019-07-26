@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.rye.base.utils.TstPop;
+
 import com.rye.catcher.R;
 
 import com.rye.catcher.utils.PermissionsUtil;

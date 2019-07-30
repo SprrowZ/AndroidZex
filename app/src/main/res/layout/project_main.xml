@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <include layout="@layout/activity_top_title" />
+    <include
+        android:id="@+id/title"
+        layout="@layout/activity_top_title" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,7 +30,9 @@
                 android:paddingBottom="7dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:paddingTop="7dp">
+                android:paddingTop="7dp"
+                android:visibility="gone"
+                >
 
                 <TextView
                     android:id="@+id/search_bar"
@@ -45,144 +52,102 @@
             <Button
                 android:id="@+id/service"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Service"
                 />
 
             <Button
                 android:id="@+id/intents"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="滑动冲突"
                 />
 
             <Button
                 android:id="@+id/dbtest"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="SQLite"
                 />
 
             <Button
                 android:id="@+id/file"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="FileStorage"
                 />
             <Button
                 android:id="@+id/aidl"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="PackageManager/AIDL"
                 />
 
             <Button
-                android:id="@+id/shape"
-                style="@style/btn_unclikable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Handler"
+                android:id="@+id/language"
+                style="@style/project_activity_btn"
+                android:text="Language"
 
                 />
             <Button
                 android:id="@+id/slidingDemo"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="SlidingDemo"
                 />
             <Button
                 android:id="@+id/recyclerView"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="RecycleView"
                 />
             <Button
                 android:id="@+id/dialogs"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="DialogEx" />
             <Button
                 android:id="@+id/coor"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="CoordinatorLayout" />
             <Button
                 android:id="@+id/viewDrag"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="ViewDragHelper" />
             <Button
                 android:id="@+id/batchLoading"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="ListView的分批加载" />
             <Button
                 android:id="@+id/siteProtection"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="现场保护" />
             <Button
                 android:id="@+id/blueTooth"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="蓝牙" />
             <Button
                 android:id="@+id/blueTooth2"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="低功耗蓝牙" />
             <Button
                 android:id="@+id/mvpDemo"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="MvpDemo" />
             <Button
                 android:id="@+id/takePhoto"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="takePhoto" />
             <Button
                 android:id="@+id/takePhotoEx"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="takePhotoEx" />
 
             <Button
                 android:id="@+id/multiThread"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="multiThread" />
             <Button
                 android:id="@+id/kotlin"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Kotlin" />
             <Button
                 android:id="@+id/kotlin_coroutine"
                 style="@style/project_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Kotlin Coroutine" />
 
         </LinearLayout>
     </ScrollView>
-</merge>
+</android.support.constraint.ConstraintLayout>

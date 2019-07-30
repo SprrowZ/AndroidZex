@@ -16,7 +16,7 @@ import com.rye.catcher.project.Ademos.MultiThreadDown;
 import com.rye.catcher.project.catcher.DelayHandleUtil;
 import com.rye.catcher.project.ctmviews.takephoto.CameraActivityEx;
 import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
-import com.rye.catcher.project.ctmviews.takephoto.TestPhotoActivity;
+
 import com.rye.catcher.project.dialog.TopDialog;
 import com.rye.catcher.project.Ademos.mvp.MvpActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
@@ -45,23 +45,23 @@ public class ProjectMainActivity extends BaseActivity {
     private static final String TAG = "ProjectMainActivity";
     private static final String TAG2="LifeCycle-A";
 
-
+    LinearLayout parent;
     @BindView(R.id.search_bar)
     TextView searchBar;
     @BindView(R.id.search)
     LinearLayout search;
-    @BindView(R.id.service)
-    Button popup;
     @BindView(R.id.intents)
     Button sliding;
+    @BindView(R.id.service)
+    Button popup;
     @BindView(R.id.dbtest)
     Button dbtest;
     @BindView(R.id.file)
     Button file;
     @BindView(R.id.aidl)
     Button aidl;
-    @BindView(R.id.shape)
-    Button shape;
+    @BindView(R.id.language)
+    Button language;
     @BindView(R.id.slidingDemo)
     Button slidingDemo;
     @BindView(R.id.recyclerView)
@@ -74,7 +74,7 @@ public class ProjectMainActivity extends BaseActivity {
     Button viewDrag;
     @BindView(R.id.batchLoading)
     Button batchLoading;
-    LinearLayout parent;
+
     @BindView(R.id.siteProtection)
     Button siteProtection;
     @BindView(R.id.blueTooth)
@@ -144,7 +144,7 @@ public class ProjectMainActivity extends BaseActivity {
     }
     @Optional
     @OnClick({R.id.service, R.id.intents, R.id.dbtest, R.id.file,
-            R.id.aidl, R.id.shape, R.id.slidingDemo,
+            R.id.aidl, R.id.language, R.id.slidingDemo,
             R.id.search_bar, R.id.recyclerView, R.id.dialogs, R.id.coor,
             R.id.viewDrag, R.id.batchLoading, R.id.siteProtection,
             R.id.blueTooth,R.id.blueTooth2,R.id.mvpDemo,R.id.takePhoto,
@@ -174,8 +174,8 @@ public class ProjectMainActivity extends BaseActivity {
                         AIDLActivity.class));
                 break;
 
-            case R.id.shape:
-                testHandler();
+            case R.id.language://切换语言
+
                 break;
             case R.id.slidingDemo:
                 Intent intent11 = new Intent(ProjectMainActivity.this,
@@ -249,34 +249,9 @@ public class ProjectMainActivity extends BaseActivity {
         }
     }
 
-    //
-    private void testHandler() {
-        Log.i(TAG, "testHandler: ...");
-        DelayHandleUtil.setDelay("zzg", 0L, 2000, new DelayHandleUtil.HandleListener() {
-            @Override
-            public void ReachTheTime() {
-                Log.i(TAG, "testHandler222: ...");
-            }
-        });
-    }
 
-    @Override
-    protected void onRestart() {
-        Log.i(TAG2, "onRestart: ...");
-        super.onRestart();
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(TAG2, "onPause: ...");
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(TAG2, "onStop: ...");
-    }
 
     @Override
     protected void onDestroy() {

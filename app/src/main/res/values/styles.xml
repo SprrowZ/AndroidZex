@@ -114,9 +114,11 @@
     <!--Project页面按钮-->
     <style name="project_activity_btn" parent="btn_style_parent">
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@drawable/edit_bg1</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:background">@drawable/project_btn_bk</item>
+        <item name="android:layout_marginRight">80dp</item>
+        <item name="android:layout_marginLeft">80dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black_alpha_112</item>
         <item name="android:textSize">16sp</item>
     </style>

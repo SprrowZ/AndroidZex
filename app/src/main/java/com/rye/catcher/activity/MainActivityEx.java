@@ -119,6 +119,9 @@ public class MainActivityEx extends BaseActivity {
                     LeftDetailActivity.class);
             startActivityForResult(intent,DEVICE_REQUEST_CODE);
         });
+        //第二个点击事件，切换语言
+
+
         //注册kotlin本地广播
          receiver=new LoginSuccessReceiver();
          BroadcastManager.INSTANCE.registerLoginSuccessReceiver(receiver);
@@ -267,13 +270,7 @@ public class MainActivityEx extends BaseActivity {
     }
 
 
-//
-//    @SuppressLint("MissingSuperCall")
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {//为了解决崩溃点击无效的问题
-//        // super.onSaveInstanceState(outState);
-//    }
-//
+   //
 
 
     @Override
@@ -296,32 +293,5 @@ public class MainActivityEx extends BaseActivity {
         back_pressed = System.currentTimeMillis();
     }
 
-    //
-//    /**
-//     * handler内存泄露处理
-//     */
-//    private static class MapHandler extends Handler {
-//        WeakReference<MainActivityEx> mActivity;
-//
-//        public MapHandler(MainActivityEx mainActivityEx) {
-//            mActivity = new WeakReference<>(mainActivityEx);
-//        }
-//
-//        @Override
-//        public void handleMessage(Message msg) {
-//            MainActivityEx activityEx = mActivity.get();
-//            switch (msg.what) {
-//                case 1://返回一次定位结果
-//                    activityEx.amapResult = (AmapResult) msg.obj;
-//                    activityEx.getWeather(activityEx.amapResult);
-//                    Log.i(TAG, "errorCode" + activityEx.amapResult.getErrorCode());
-//                    break;
-//                case 11://LastKnowLocation
-//                    activityEx.amapResult = (AmapResult) msg.obj;
-//                    activityEx.getWeather(activityEx.amapResult);
-//                    Log.i(TAG, "LastKnowLocationCallback: " + activityEx.amapResult.getErrorCode());
-//            }
-//            super.handleMessage(msg);
-//        }
-//    }
+
 }

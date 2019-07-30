@@ -68,7 +68,7 @@
     <string name="license_text">请将驾驶证放入框内，拍照查询</string>
     <string name="distinguishing">正在识别...</string>
     <string name="dis_error">无法识别该证件真伪，请重新拍摄查询</string>
-    <string name="ror">Rxjava-Re-Ok</string>
+    <string name="ror">雨夜思书</string>
     <string name="okhttp">Okhttp</string>
     <string name="retrofit">Retrofit</string>
     <string name="orr">ORR</string>

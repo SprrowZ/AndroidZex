@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.rye.catcher.base.NetChangeReceiver;
 import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.utils.DialogUtil;
 import com.rye.catcher.utils.ExtraUtil.Constant;
@@ -46,8 +48,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BaseActivity extends AppCompatActivity {
     private static final String TAG="BaseActivity";
     protected Map<BroadcastReceiver, Integer> receiverMap = new ConcurrentHashMap<>();
-    //监听系统广播
+    //监听屏幕系统广播
     private ScreenBroadcastReceiver mScreenReceiver;
+    //监听网络系统广播
+    private NetChangeReceiver  mNetReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +66,8 @@ public class BaseActivity extends AppCompatActivity {
         com.rye.catcher.base.ActivityManager.getInstance().addActivity(this);
         //系统广播接受者
         mScreenReceiver=new ScreenBroadcastReceiver();
+        //网络变化广播监听
+        monitorNet();
     }
 
     @Override
@@ -95,8 +101,15 @@ public class BaseActivity extends AppCompatActivity {
         return view != null ? view.getText().toString() : "";
     }
 
-
-
+    /*
+     全局监听网络变化
+     */
+    private void monitorNet(){
+        mNetReceiver=new NetChangeReceiver();
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(mNetReceiver,intentFilter);
+    }
 
     // Android 判断app是否在前台还是在后台运行，直接看代码，可直接使用。
     public static boolean isBackground(Context context) {
@@ -280,40 +293,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * 将图片转换成Base64编码的字符串
-     * @param path
-     * @return base64编码的字符串
-     */
-    public static String imageToBase64(String path){
-        if(StringUtils.isEmpty(path)){
-            return null;
-        }
-        InputStream is = null;
-        byte[] data = null;
-        String result = null;
-        try{
-            is = new FileInputStream(path);
-            //创建一个字符流大小的数组。
-            data = new byte[is.available()];
-            //写入数组
-            is.read(data);
-            //用默认的编码格式进行编码
-            result = Base64.encodeToString(data, Base64.DEFAULT);
-        }catch (IOException e){
-            e.printStackTrace();
-        }finally {
-            if(null !=is){
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
-        return result;
-    }
 
 
 
@@ -416,6 +395,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(mNetReceiver);
         if (timer!=null){//防止内存泄露
             timerTask.cancel();
             timer.cancel();

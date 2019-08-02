@@ -28,7 +28,7 @@
                android:layout_height="match_parent"
                android:text="PackageManager"
                android:layout_gravity="left|center_vertical"
-               style="@style/btn_style_red"
+               style="@style/project_activity_btn"
                />
 
            <TextView
@@ -37,7 +37,7 @@
                android:layout_height="match_parent"
                android:text="AIDL"
                android:layout_gravity="right|center_vertical"
-               style="@style/btn_style_red"
+               style="@style/project_activity_btn"
                />
 
        </LinearLayout>

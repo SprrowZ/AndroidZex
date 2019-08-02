@@ -8,16 +8,16 @@
  <TextView
      android:id="@+id/start"
      android:text="@string/start"
-    style="@style/btn_style_red"/>
+    style="@style/project_activity_btn"/>
 
  <TextView
      android:id="@+id/pause"
      android:text="@string/pause"
-     style="@style/btn_style_red"/>
+     style="@style/project_activity_btn"/>
  <TextView
      android:id="@+id/reStart"
      android:text="@string/reStart"
-     style="@style/btn_style_red" />
+     style="@style/project_activity_btn" />
 
 
 </LinearLayout>

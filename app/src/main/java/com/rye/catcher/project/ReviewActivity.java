@@ -1,6 +1,5 @@
 package com.rye.catcher.project;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +11,6 @@ import android.widget.Button;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.activity.ctmactivity.CtmTopActivity;
 import com.rye.catcher.activity.AsyncMainActivity;
 import com.rye.catcher.project.review.BaseAdapterTest;
 import com.rye.catcher.project.review.SpannableStringTest;

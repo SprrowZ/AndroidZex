@@ -22,11 +22,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.MutableMaprye.base.utils.LanguageUtil;
+import com.rye.base.common.LanguageConstants;
 import com.rye.catcher.base.NetChangeReceiver;
 import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.utils.DialogUtil;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.PermissionsUtil;
+import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -46,8 +49,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public class BaseActivity extends AppCompatActivity {
-    private static final String TAG="BaseActivity";
-    protected Map<BroadcastReceiver, Integer> receiverMap = new ConcurrentHashMap<>();
+    private static final String TAG=BaseActivity.class.getName();
+
     //监听屏幕系统广播
     private ScreenBroadcastReceiver mScreenReceiver;
     //监听网络系统广播
@@ -151,85 +154,6 @@ public class BaseActivity extends AppCompatActivity {
         finish();
     }
 
-
-    private ProgressDialog _loadingDlg = null;
-
-    protected final Object lock = new Object();
-
-    /**
-     * 显示装载中对话框
-     *
-     * @param msg 提示消息内容
-     */
-    public void showLoadingDlg(final String msg) {
-        runOnUiThread(()->{
-                synchronized (lock) {
-                    if (_loadingDlg == null) {
-                        _loadingDlg = new ProgressDialog(BaseActivity.this);
-                        _loadingDlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        _loadingDlg.setIcon(R.drawable.ajax_loader);
-                        _loadingDlg.setCancelable(true);
-                    }
-
-                    if (StringUtils.isNotEmpty(msg)) {
-                        _loadingDlg.setMessage(msg);
-                    } else {
-                        _loadingDlg.setMessage(getResources().getString(R.string.please_wait));
-                    }
-
-                    if (!_loadingDlg.isShowing()) {
-                        _loadingDlg.show();
-                    }
-                }
-        });
-    }
-
-    /**
-     * 显示装载中对话框
-     *
-     * @param msg           提示消息内容
-     * @param setCancelable 是否能取消
-     */
-    public void showLoadingDlg(final String msg, final boolean setCancelable) {
-        runOnUiThread(()->{
-                synchronized (lock) {
-                    if (_loadingDlg == null) {
-                        _loadingDlg = new ProgressDialog(BaseActivity.this);
-                        _loadingDlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        _loadingDlg.setIcon(R.drawable.ajax_loader);
-                        _loadingDlg.setCanceledOnTouchOutside(setCancelable);
-                    }
-
-                    if (StringUtils.isNotEmpty(msg)) {
-                        _loadingDlg.setMessage(msg);
-                    } else {
-                        _loadingDlg.setMessage(getResources().getString(R.string.please_wait));
-                    }
-
-                    if (!_loadingDlg.isShowing()) {
-                        _loadingDlg.show();
-                    }
-                }
-        });
-    }
-
-    /**
-     * 隐藏加载中对话框
-     */
-    public void cancelLoadingDlg() {
-        try {
-            runOnUiThread(()->{
-
-                    if (_loadingDlg != null) {
-                        _loadingDlg.cancel();
-                    }
-            });
-        } catch (Exception ignored) {
-        }
-    }
-
-
-
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
@@ -246,33 +170,7 @@ public class BaseActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.translate_to_right, R.anim.translate_to_right_hide);//activity间跳转动画
     }
 
-    /**
-     * 注册广播监听类
-     *
-     * @param action   监听事件类型
-     * @param receiver 监听类
-     */
-    protected void registerReceiver(String action, BroadcastReceiver receiver) {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(action);
-        super.registerReceiver(receiver, filter);
-        receiverMap.put(receiver, Constant.YES_INT);
-    }
 
-    /**
-     * 注册广播监听类
-     *
-     * @param action   监听事件类型g
-     * @param receiver 监听类
-     * @param priority 监听事件响应优先级
-     */
-    protected void registerReceiver(String action, BroadcastReceiver receiver, int priority) {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(action);
-        filter.setPriority(priority);
-        super.registerReceiver(receiver, filter);
-        receiverMap.put(receiver, Constant.YES_INT);
-    }
 
     private static class  ScreenBroadcastReceiver extends BroadcastReceiver{
         private OverallHandler handler;
@@ -390,6 +288,17 @@ public class BaseActivity extends AppCompatActivity {
         super.onPause();
         //友盟Session统计
         MobclickAgent.onPause(this);
+    }
+
+    /**
+     * 多国语言适配
+     * @param newBase
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        Log.i(TAG,"attachBaseContext");
+        super.attachBaseContext(LanguageUtil.Companion.attachBaseContext(
+                newBase, SharedPreManager.getValue(LanguageConstants.VALUE)));
     }
 
     @Override

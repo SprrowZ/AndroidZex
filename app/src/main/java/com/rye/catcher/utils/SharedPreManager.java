@@ -1,8 +1,9 @@
-package com.rye.catcher.common;
+package com.rye.catcher.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.utils.EchatAppUtil;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Zzg
  * @function: 使用SP存储配置信息，90K空间
  */
-public class KeyValueMgrZ {
+public class SharedPreManager {
    private static final String SP_NAME="Z-RYE-CATCHER";
     //内存缓存
    private static ConcurrentHashMap concurrentHashMap=new ConcurrentHashMap();
@@ -22,7 +23,7 @@ public class KeyValueMgrZ {
         if (concurrentHashMap.contains(key)){
             return (String) concurrentHashMap.get(key);
         }
-        SharedPreferences sp= EchatAppUtil.getAppContext()
+        SharedPreferences sp= RyeCatcherApp.getContext()
                 .getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         return sp.getString(key,"");
     }

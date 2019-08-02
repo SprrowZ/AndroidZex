@@ -1,67 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <data>
-
         <variable
             name="settingName"
             type="com.rye.catcher.beans.binding.SettingBean" />
-
         <variable
             name="clickHandler"
             type="com.rye.catcher.beans.binding.ClickHandler" />
-
     </data>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/my7">
-
+        android:background="@drawable/rotate_bk">
         <include
             android:id="@+id/tops"
             layout="@layout/activity_top_title" />
-
         <LinearLayout
             android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tops"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
-
             <Button
                 android:id="@+id/orr"
                 style="@style/btn_settings"
                 android:onClick="@{clickHandler::clickEvent}"
                 android:text="@{settingName.orr}" />
-
             <Button
                 android:id="@+id/javaMore"
                 style="@style/btn_settings"
                 android:onClick="@{clickHandler::clickEvent}"
-
                 android:text="@{settingName.javaMore}" />
-
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear1"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -80,15 +67,14 @@
                 android:text="@{settingName.retrofit}" />
 
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear2"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -104,15 +90,14 @@
                 android:text="@{settingName.review}" />
 
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear3"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp">
 
             <Button
                 android:id="@+id/animation"
@@ -121,15 +106,14 @@
                 android:text="@{settingName.animation}" />
 
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear4"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp">
 
             <Button
                 android:id="@+id/custom"
@@ -145,7 +129,6 @@
 
 
         </LinearLayout>
-
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"

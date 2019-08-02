@@ -25,7 +25,6 @@ import com.rye.catcher.activity.fragment.LMFragment;
 import com.rye.catcher.activity.fragment.SettingsFragment;
 import com.rye.catcher.activity.fragment.YLJFragment;
 
-import com.rye.catcher.common.KeyValueMgrZ;
 import com.rye.catcher.project.dao.KeyValueMgr;
 import com.rye.catcher.demos.kotlins.BroadcastManager;
 import com.rye.catcher.base.sdks.HttpLogger;
@@ -66,12 +65,13 @@ public class MainActivityEx extends BaseActivity {
 
     @BindView(R.id.design_bottom_sheet)
     BottomNavigationView bottom;
-    @BindView(R.id.design_navigation_view)
-    NavigationView design_navigation_view;
+    @BindView(R.id.design_nav_view)
+    NavigationView design_view;
 
     private View  headerLayout;
 
    private  LinearLayout left_first;
+   private LinearLayout left_second;
 
     private Fragment currentFragment;
     private int currentPos = -1;
@@ -110,7 +110,7 @@ public class MainActivityEx extends BaseActivity {
         startScreenBroadcastReceiver();
 
         //左侧
-        headerLayout=design_navigation_view.inflateHeaderView(R.layout.left_details);
+        headerLayout= design_view.inflateHeaderView(R.layout.left_details);
 
         left_first=headerLayout.findViewById(R.id.left_first);
         //左侧第一个点击事件
@@ -120,25 +120,16 @@ public class MainActivityEx extends BaseActivity {
             startActivityForResult(intent,DEVICE_REQUEST_CODE);
         });
         //第二个点击事件，切换语言
+        left_second=headerLayout.findViewById(R.id.left_second);
+        left_second.setOnClickListener(v ->{
 
+        });
 
-        //注册kotlin本地广播
+        //注册登录成功广播
          receiver=new LoginSuccessReceiver();
          BroadcastManager.INSTANCE.registerLoginSuccessReceiver(receiver);
 
     }
-
-
-    //应该单独抽出一个类
-    private class LoginSuccessReceiver extends BroadcastReceiver{
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "onReceive: "+intent.getAction()+","+intent.getStringExtra(BroadcastManager.BROADCAST_KEY));
-        }
-    }
-
-
 
     /**
      * 获取当前Fragment
@@ -165,11 +156,9 @@ public class MainActivityEx extends BaseActivity {
         //改变颜色值
         //  setSelect(pos);
     }
-
     private String getTag(int pos) {
         return "Zzg_" + pos;
     }
-
     private Fragment getFragment(int pos) {
         switch (pos) {
             case 0:
@@ -192,9 +181,9 @@ public class MainActivityEx extends BaseActivity {
      * 获取天气信息
      */
     private void getWeather(AmapResult amapResult) {
-        if ("".equals(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME))) {
+        if ("".equals(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME))) {
             Log.i(TAG, "getWeather: 字段为空");
-            KeyValueMgrZ.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
+            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
             weatherThread();
         } else {
             boolean needRefreshWeather = !DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
@@ -242,13 +231,10 @@ public class MainActivityEx extends BaseActivity {
             });
         }).start();
     }
-
-
-    //
-//    /**
-//     * 天气结果处理
-//     *
-//     */
+     /**
+      * 天气结果处理
+      *
+      */
     private void dealWeather(String result) {
         Log.i(TAG, "onResponse:weatherApi " + result);
         JSONObject todayTemperature = null;
@@ -269,10 +255,23 @@ public class MainActivityEx extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG,"onActivityResult");
+        if (resultCode==RESULT_OK){ //多语言适配
+         recreate();
+        }
+    }
 
-   //
+    //应该单独抽出一个类
+    private class LoginSuccessReceiver extends BroadcastReceiver{
 
-
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "onReceive: "+intent.getAction()+","+intent.getStringExtra(BroadcastManager.BROADCAST_KEY));
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

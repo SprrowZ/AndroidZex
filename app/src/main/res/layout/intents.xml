@@ -13,17 +13,17 @@
         <Button
             android:id="@+id/callPhone"
             android:text="callPhone"
-            style="@style/btn_style_red"
+            style="@style/project_activity_btn"
             />
         <Button
             android:id="@+id/sendSMS"
             android:text="sendSMS"
-            style="@style/btn_style_red"
+            style="@style/project_activity_btn"
             />
         <Button
             android:id="@+id/sendEmail"
             android:text="sendEmail"
-            style="@style/btn_style_red"
+            style="@style/project_activity_btn"
             />
     </LinearLayout>
 </LinearLayout>

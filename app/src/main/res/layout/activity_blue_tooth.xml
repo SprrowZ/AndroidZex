@@ -61,13 +61,13 @@
 
         <Button
             android:id="@+id/btn_paired_devices"
-            style="@style/btn_style_red"
+            style="@style/project_activity_btn"
             android:layout_above="@+id/btn_scan"
             android:text="已匹配过设备" />
 
         <Button
             android:id="@+id/btn_scan"
-            style="@style/btn_style_red"
+            style="@style/project_activity_btn"
             android:layout_alignParentBottom="true"
             android:text="扫描设备" />
     </LinearLayout>

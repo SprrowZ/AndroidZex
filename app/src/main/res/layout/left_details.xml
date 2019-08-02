@@ -74,13 +74,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="天行九歌"
+                    android:text="@string/left_first"
                     android:background="@color/transparent"
                     android:clickable="false"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
                     />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/second"
+                android:id="@+id/left_second"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
@@ -95,8 +97,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="秦时明月"
+                    android:text="@string/left_second"
+                    android:clickable="false"
                     android:background="@color/transparent"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
                     />
             </LinearLayout>
             <LinearLayout
@@ -115,8 +120,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="空山鸟语 "
+                    android:text="@string/left_third"
                     android:background="@color/transparent"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
                     />
             </LinearLayout>
             <LinearLayout
@@ -135,8 +142,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="空山幽谷"
+                    android:text="@string/left_fourth"
                     android:background="@color/transparent"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
                     />
             </LinearLayout>
             <LinearLayout
@@ -155,8 +164,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:textSize="16dp"
-                    android:text="鬼谷传人"
+                    android:text="@string/left_fivth"
                     android:background="@color/transparent"
+                    android:textAllCaps="false"
+                    android:singleLine="true"
                     />
             </LinearLayout>
         </LinearLayout>

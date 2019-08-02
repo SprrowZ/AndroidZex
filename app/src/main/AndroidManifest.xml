@@ -130,19 +130,7 @@
             android:name=".project.review.BaseAdapterTest"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".project.viewpager.helloActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Trans" />
-        <activity
-            android:name=".project.review.ViewPagerTest"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmTopActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+
         <activity
             android:name=".project.review.myAsyncTask"
             android:configChanges="keyboard|orientation|screenSize"
@@ -363,7 +351,7 @@
         <activity android:name=".activity.LeftDetailActivity" />
         <activity android:name=".activity.ViewModelActivity" />
         <activity android:name=".activity.KotlinActivity" />
-        <activity android:name=".activity.ctmactivity.AnimeActivity" />
+
         <activity android:name=".activity.AnimeActivity" />
     </application>
 

@@ -3,18 +3,13 @@ package com.rye.catcher.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bumptech.glide.Glide;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
-import com.rye.catcher.common.KeyValueMgrZ;
 import com.rye.catcher.project.dao.KeyValueMgr;
 import com.rye.catcher.base.sdks.beans.TangBean;
 import com.rye.catcher.base.sdks.beans.WeatherBean;
@@ -32,10 +27,8 @@ import com.yanzhenjie.permission.Permission;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -100,12 +93,12 @@ public class SplashActivity extends BaseActivity {
 
     }
     private void weatherObservable(){
-        if ("".equals(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME))) {
-            KeyValueMgrZ.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
+        if ("".equals(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME))) {
+            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
             getWeather();
             Log.i(TAG, "getWeather: 字段为空");
         } else {
-            boolean needRefreshWeather = !DateUtils.isToday(Long.parseLong(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME)));
+            boolean needRefreshWeather = !DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
             Log.i(TAG, "getWeather: " + String.valueOf(needRefreshWeather));
             if (needRefreshWeather) {
                 getWeather();

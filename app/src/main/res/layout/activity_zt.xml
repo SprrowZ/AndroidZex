@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/aa"
-        style="@style/btn_style_demo"
+        style="@style/btn_style_one"
         android:text="组件化OKhttp测试"
         app:layout_constraintBottom_toTopOf="@id/bb"
         app:layout_constraintTop_toTopOf="parent"
@@ -16,7 +16,7 @@
 
     <Button
         android:id="@+id/bb"
-        style="@style/btn_style_demo"
+        style="@style/btn_style_one"
         android:text="CartoonsInstance"
         app:layout_constraintBottom_toTopOf="@id/cc"
         app:layout_constraintTop_toBottomOf="@id/aa"
@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/cc"
-        style="@style/btn_style_demo"
+        style="@style/btn_style_one"
         android:text="Webview"
         app:layout_constraintBottom_toTopOf="@id/dd"
         app:layout_constraintTop_toBottomOf="@id/bb"
@@ -34,7 +34,7 @@
     <Button
         android:id="@+id/dd"
 
-        style="@style/btn_style_demo"
+        style="@style/btn_style_one"
         android:text="GActivity"
         app:layout_constraintBottom_toTopOf="@id/ee"
         app:layout_constraintTop_toBottomOf="@id/cc"
@@ -43,7 +43,7 @@
     <Button
         android:id="@+id/ee"
 
-        style="@style/btn_style_demo"
+        style="@style/btn_style_one"
 
         android:text="SocketT1"
         app:layout_constraintBottom_toTopOf="@id/ff"
@@ -52,7 +52,7 @@
 
     <Button
         android:id="@+id/ff"
-        style="@style/btn_style_demo"
+        style="@style/btn_style_one"
         android:text="CharacterInstance"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ee"

@@ -1,34 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="someting_new">Someting_new</string>
-    <string name="appName">寻夢</string>
-    <string name="shape">Shape图形</string>
-    <string name="ensure">确认</string>
-    <string name="cancel">取消</string>
+    <string name="someting_new">Lonely</string>
+    <string name="appName">FindDream</string>
+    <string name="shape">Shape</string>
+    <string name="ensure">enter</string>
+    <string name="cancel">cancel</string>
     <string name="Enter">Enter</string>
     <string name="exit">Exit</string>
     <string name="Exit">Exit</string>
-    <string name="dream">夢</string>
+    <string name="dream">Dream</string>
     <string name="password">0000</string>
     <string name="fbi_warning">FBI WARNING!</string>
     <string name="please_input_password">Please Input Password：</string>
     <string name="wenzi">文字</string>
-    <string name="please_wait">处理中，请稍候…</string>
+    <string name="please_wait">Please wait</string>
     <string name="Version_number_is_wrong">Version number is wrong</string>
     <string name="todo_auto_back" formatted="false">将于%d月%d日自动返回</string>
-    <string name="yesterday">昨天</string>
-    <string name="evening">"晚上 "</string>
-    <string name="early_morning">"凌晨 "</string>
-    <string name="pm">"下午 "</string>
-    <string name="am">"上午 "</string>
+    <string name="yesterday">yesterday</string>
+    <string name="evening">evening</string>
+    <string name="early_morning">early_morning</string>
+    <string name="pm">pm</string>
+    <string name="am">am</string>
 
-    <string name="Monday">星期一</string>
-    <string name="Tuesday">星期二</string>
-    <string name="Wednesday">星期三</string>
-    <string name="Thursday">星期四</string>
-    <string name="Friday">星期五</string>
-    <string name="Saturday">星期六</string>
-    <string name="Sunday">星期日</string>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
 
     <string name="time_ago_prefix" />
     <string name="time_ago_suffix">前</string>
@@ -48,12 +48,11 @@
     <string name="keeping">更新中...</string>
     <string name="add_data">添加数据</string>
     <string name="show_data">显示数据</string>
-    <string name="delete">删除</string>
-    <string name="alter">修改</string>
-    <string name="send">发送</string>
+    <string name="delete">delete</string>
+    <string name="alter">alter</string>
+    <string name="send">send</string>
     <string name="search">search</string>
     <string name="codeName">RyeCatcher</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_not_installed">请先安装应用！</string>
@@ -80,14 +79,15 @@
     <string name="javaMore">javaMore</string>
     <string name="review">Review</string>
     <string name="project">Project</string>
-    <string name="start">开始</string>
-    <string name="stop">停止</string>
-    <string name="pause">暂停</string>
-    <string name="reStart">重启</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+    <string name="pause">pause</string>
+    <string name="reStart">reStart</string>
     <string name="title">title</string>
-    <string name="left_first">天行九歌</string>
-    <string name="left_second">秦时明月</string>
-    <string name="left_third">空山鸟语</string>
-    <string name="left_fourth">百步穿杨</string>
-    <string name="left_fivth">纵横捭阖</string>
+
+    <string name="left_first">Stories of the Warring States Period </string>
+    <string name="left_second">The Moon of Qin Dynasty</string>
+    <string name="left_third">Bird Sing in Deserted </string>
+    <string name="left_fourth">Like Lightning</string>
+    <string name="left_fivth">Complex International Relations</string>
 </resources>

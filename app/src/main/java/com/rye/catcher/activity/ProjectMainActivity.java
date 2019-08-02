@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rye.base.common.LanguageConstants;
+import com.rye.base.utils.PopupEx;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.Ademos.MultiThreadDown;
@@ -23,6 +26,7 @@ import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.catcher.utils.MeasureUtil;
 import com.rye.catcher.utils.SDHelper;
+import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
@@ -42,7 +46,6 @@ import butterknife.Optional;
 
 public class ProjectMainActivity extends BaseActivity {
 
-    private static final String TAG = "ProjectMainActivity";
     private static final String TAG2="LifeCycle-A";
 
     LinearLayout parent;
@@ -103,7 +106,7 @@ public class ProjectMainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_main);
         ButterKnife.bind(this);
-        setBarTitle("Mix");
+        setBarTitle("-雨夜思书-");
         MeasureUtil.setLeftScale(this, search, searchBar, R.mipmap.icon_title_bar_edit_search);
         Log.i(TAG2, "onCreate: ...");
     }
@@ -218,7 +221,8 @@ public class ProjectMainActivity extends BaseActivity {
                         },1, Permission.CAMERA);
                 break;
             case R.id.takePhotoEx:
-                startActivity(new Intent(this, CameraActivityEx.class));
+               // startActivity(new Intent(this, CameraActivityEx.class));
+               changeLanguage(view);
                 break;
             case R.id.multiThread:
              multiThreadDown=new MultiThreadDown(MultiThreadDown.path, SDHelper.getAppExternal()+"Zzx.mp4",3);
@@ -248,7 +252,38 @@ public class ProjectMainActivity extends BaseActivity {
                 break;
         }
     }
+    /**
+     * 切语言
+     * @param view
+     */
+    private void changeLanguage(View view){
 
+        PopupEx popupEx= new PopupEx.Builder()
+                .setContextView(this,R.layout.popup_change_language)
+                .setDim(0.7F)
+                .setWidth(LinearLayout.LayoutParams.WRAP_CONTENT)
+                .setParentView(view, Gravity.CENTER)
+                .create();
+        popupEx.getView().findViewById(R.id.chinese).setOnClickListener(v -> {
+            popupEx.dismiss();
+            change(LanguageConstants.SIMPLIFIED_CHINESE);
+        });
+        popupEx.getView().findViewById(R.id.english).setOnClickListener(v -> {
+            popupEx.dismiss();
+            change(LanguageConstants.ENGLISH);
+
+        });
+
+    }
+    private void change(String language){
+        if (SharedPreManager.getValue(LanguageConstants.VALUE)
+                .equals(language)){
+            return;
+        }
+        SharedPreManager.saveValue(LanguageConstants.VALUE,language);
+        setResult(RESULT_OK);
+        finish();
+    }
 
 
 
@@ -256,7 +291,7 @@ public class ProjectMainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG2, "onDestroy: ...");
+        Log.i(TAG2, "onDestroy");
         if (timer!=null){
             timer.cancel();
         }

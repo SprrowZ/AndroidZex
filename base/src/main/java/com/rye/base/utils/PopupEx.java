@@ -69,6 +69,7 @@ public class PopupEx {
         init();
     }
 
+
     private void init() {
         initView();
         unitedSettings();
@@ -201,7 +202,7 @@ public class PopupEx {
 
         }
 
-        public Builder setContextView(Context context, @LayoutRes int layout) {
+        public   Builder setContextView(Context context, @LayoutRes int layout) {
             this.mContext = context;
             this.mLayout = layout;
             return this;

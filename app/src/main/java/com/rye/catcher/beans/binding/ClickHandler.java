@@ -1,6 +1,7 @@
 package com.rye.catcher.beans.binding;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -59,7 +60,7 @@ public class ClickHandler {
                 break;
             case R.id.project:
                 Intent intent9 = new Intent(mContext, ProjectMainActivity.class);
-                mContext.startActivity(intent9);
+                ((Activity)mContext).startActivityForResult(intent9,11);
                 break;
 
         }

@@ -94,8 +94,7 @@ public class ReviewActivity extends BaseActivity implements View.OnClickListener
                 mDialog.getWindow().setAttributes(paramss);
                 break;
             case R.id.someDemo:
-                Intent intent2=new Intent(this, CtmTopActivity.class);
-                startActivity(intent2);
+
                 break;
             case R.id.retrofit:
 

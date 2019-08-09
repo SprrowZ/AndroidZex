@@ -1,0 +1,48 @@
+//android{
+//
+//}
+
+
+//-----||-------------------------Demo-------------------------||-----------//
+this.project.afterEvaluate {//将task挂接到build生命周期后
+    def buildTask=project.tasks.getByName('clean')//
+    if (buildTask==null) throw GradleException('the build task is not found')
+    buildTask.doFirst {
+//           writeTask.execute()
+        println '---------clean --------'
+        tasks.testLife
+    }
+}
+
+task testLife{
+    doLast{
+        println '---********-------测试用gradle-----********---'
+        println "主项目信息:$rootProject.ext.compileSdkVer"
+    }
+}
+
+task writeTask{
+    doLast{
+        mustRunAfter "testLife"
+        println '---********---|----|测试用gradle|----|---********---'
+    }
+
+}
+task X{
+
+    doLast{
+        println 'X'
+    }
+}
+task Y{
+    mustRunAfter X
+    doLast{
+        println 'Y'
+    }
+}
+task Z{
+    mustRunAfter Y
+    doLast{
+        println 'Z'
+    }
+}

@@ -48,8 +48,12 @@ dependencies {
     api deps.eventbus
     api deps.kotlin_jdk7
     api deps.rxlifecycle
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 repositories {
     mavenCentral()
 }
+//repositories {
+//    mavenCentral()
+//}

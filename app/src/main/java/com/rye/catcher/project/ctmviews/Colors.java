@@ -16,7 +16,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.rye.catcher.R;
-import com.rye.catcher.utils.MeasureUtil;
+import com.rye.base.utils.MeasureUtil;
 
 /**
  * Created by Zzg on 2017/11/9.

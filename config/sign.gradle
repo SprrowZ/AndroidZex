@@ -1,0 +1,12 @@
+android{
+    signingConfigs {
+        config {
+            storeFile file("${signing_certificate}")
+            storePassword '123456'
+            keyAlias "${signing_keyAlias}"
+            keyPassword '123456'
+        }
+        //release{}   debug{}
+    }
+
+}

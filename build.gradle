@@ -33,6 +33,8 @@ allprojects {
         jcenter()
         mavenCentral()
     }
+
+
 }
 
 task clean(type: Delete) {
@@ -41,8 +43,8 @@ task clean(type: Delete) {
 }
 ext {//全局配置变量
     supportVer = '28.0.0'
-    compileSdkVer = 29
-    buildToolsVer = '29.0.1'
+    compileSdkVer = 28
+    buildToolsVer = '28.0.3'
     minSdkVer = 23
     targetSdkVer = 28
     MiminSdkVer = 19

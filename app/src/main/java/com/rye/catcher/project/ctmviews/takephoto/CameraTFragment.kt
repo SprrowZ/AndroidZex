@@ -43,20 +43,8 @@ class CameraTFragment : BaseFragment() {
     private lateinit var  mCameraDevice:CameraDevice
 
     //摄像头id，找到一个即可
-    private   var cameraId=CameraCharacteristics.LENS_FACING_BACK.toString()
+    private   var cameraId=CameraCharacteristics.LENS_FACING_FRONT.toString()
 
-//    private lateinit  var mCameraManager:CameraManager
-//    private var numberOfCameras:Int ?=null
-//    //前置摄像头
-//    private var faceFrontCameraId:Int ?=null
-//    private var faceFrontCameraOrientation:Int?=null
-//    private var frontCameraCharacteristics:CameraCharacteristics ?=null
-//    //默认不支持闪光灯
-//    private var frontFlashAvailable=false
-//   //后置摄像头
-//    private var faceBackCameraId:Int ?=null
-//    private var faceBackCameraOrientation:Int?=null
-//    private var backCameraCharacteristics:CameraCharacteristics ?=null
     //默认不支持闪光灯
     private var supportFlash=false
 
@@ -311,6 +299,7 @@ class CameraTFragment : BaseFragment() {
         //设置camera的显示范围
         configureTransform(width,height)
         val manager = activity?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+        Log.i("cameraId",cameraId)
         try {
              manager.openCamera(cameraId,stateCallback,backgroundHandler)
         }catch (e:Exception){
@@ -378,7 +367,7 @@ class CameraTFragment : BaseFragment() {
 
                 // 找出是否需要交换尺寸以获得相对于传感器坐标的预览尺寸
                 val displayRotation = activity!!.windowManager.defaultDisplay.rotation
-                sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)
+                sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
                 val swappedDimensions = areDimensionsSwapped(displayRotation)
 
                 val displaySize = Point()
@@ -460,10 +449,12 @@ class CameraTFragment : BaseFragment() {
             //设置预览
             previewRequestBuilder=mCameraDevice.createCaptureRequest(
                     CameraDevice.TEMPLATE_PREVIEW)
-            //?
+            //指定新创建的surface为本次request的输出目标，说明什么？
+            //说明每次构建新请求的时候，也要创建对应的surface！
             previewRequestBuilder.addTarget(surface)
             //创建CameraCaptureSession,十分重要，该对象负责管理处理预览请求和拍照请求
-            mCameraDevice.createCaptureSession(Arrays.asList(surface,imageReader?.surface) ,object:CameraCaptureSession.StateCallback(){
+            mCameraDevice.createCaptureSession(Arrays.asList(surface,imageReader?.surface) ,
+                    object:CameraCaptureSession.StateCallback(){
                 override fun onConfigureFailed(p0: CameraCaptureSession) {
 
                 }
@@ -534,8 +525,10 @@ class CameraTFragment : BaseFragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun lockFocus(){
         try {
+            //拍照前设置为自动对焦
             previewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
-                    CameraMetadata.CONTROL_AF_TRIGGER_START)
+            CameraMetadata.CONTROL_AF_TRIGGER_START)
+            //状态设置准备聚焦拍照，captureCallback需要
             state=STATE_WAITING_LOCK
             captureSession?.capture(previewRequestBuilder.build(),captureCallback,backgroundHandler)
         }catch(e:Exception){
@@ -554,7 +547,7 @@ class CameraTFragment : BaseFragment() {
             // 这个CaptureRequest.Builder 用来拍照
             val captureBuilder = mCameraDevice?.createCaptureRequest(
                     CameraDevice.TEMPLATE_STILL_CAPTURE)?.apply {
-                addTarget(imageReader?.surface)
+                addTarget(imageReader?.surface!!)
                 //设置拍照图片方向，方向出问题，来这设置
                 set(CaptureRequest.JPEG_ORIENTATION,
                         (ORIENTATIONS.get(rotation) + sensorOrientation + 270) % 360)

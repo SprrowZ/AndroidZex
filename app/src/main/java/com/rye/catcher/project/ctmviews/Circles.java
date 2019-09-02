@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.rye.catcher.utils.MeasureUtil;
+import com.rye.base.utils.MeasureUtil;
 
 /**
  * Created by ZZG on 2017/11/9.

@@ -16,15 +16,12 @@ import com.rye.base.utils.PopupEx;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.Ademos.MultiThreadDown;
-import com.rye.catcher.project.catcher.DelayHandleUtil;
-import com.rye.catcher.project.ctmviews.takephoto.CameraActivityEx;
 import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
 
-import com.rye.catcher.project.dialog.TopDialog;
 import com.rye.catcher.project.Ademos.mvp.MvpActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
-import com.rye.catcher.utils.MeasureUtil;
+import com.rye.base.utils.MeasureUtil;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
@@ -113,12 +110,12 @@ public class ProjectMainActivity extends BaseActivity {
 
 
     private void showDialog() {
-        TopDialog topDialog =
-                new TopDialog(ProjectMainActivity.this, R.layout.project_dialog_first);
-        parent = (LinearLayout) topDialog.findViewById(R.id.parent);
-        //设置drawleft的大小
-
-        topDialog.getWindow().setBackgroundDrawable(null);
+//        TopDialog topDialog =
+//                new TopDialog(ProjectMainActivity.this, R.layout.project_dialog_first);
+//        parent = (LinearLayout) topDialog.findViewById(R.id.parent);
+//        //设置drawleft的大小
+//
+//        topDialog.getWindow().setBackgroundDrawable(null);
     }
 
     private void startService() {

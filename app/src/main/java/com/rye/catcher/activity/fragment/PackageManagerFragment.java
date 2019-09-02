@@ -12,7 +12,7 @@ import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AppBean;
 import com.rye.catcher.utils.DateUtils;
-import com.rye.catcher.utils.DialogUtil;
+import com.rye.base.utils.DialogUtil;
 import com.rye.catcher.utils.ExtraUtil.Constant;
 import com.rye.catcher.utils.PackageUtils;
 import com.rye.catcher.utils.ToastUtils;
@@ -121,7 +121,7 @@ public class PackageManagerFragment extends BaseFragment {
             }
             getActivity().runOnUiThread(() -> {
                 content.setText(builder);
-                DialogUtil.closeLoadingDialog(getContext());
+                DialogUtil.closeDialog(getContext());
             });
         }).start();
     }

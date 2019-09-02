@@ -1,7 +1,6 @@
 package com.rye.catcher;
 
 import android.app.ActivityManager;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 
 import android.content.Context;
@@ -15,7 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,23 +24,16 @@ import com.MutableMaprye.base.utils.LanguageUtil;
 import com.rye.base.common.LanguageConstants;
 import com.rye.catcher.base.NetChangeReceiver;
 import com.rye.catcher.base.OverallHandler;
-import com.rye.catcher.utils.DialogUtil;
-import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.base.utils.DialogUtil;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.SharedPreManager;
-import com.rye.catcher.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by ZZG on 2017/10/23.
@@ -246,7 +237,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected  void cancelLoadingDlg(Context context){
-        DialogUtil.closeLoadingDialog(context);
+        DialogUtil.closeDialog(context);
     }
 
     /**

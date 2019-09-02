@@ -4,7 +4,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import com.rye.catcher.beans.AppBean;
-import com.rye.catcher.demos.annotations.TestGeneric;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

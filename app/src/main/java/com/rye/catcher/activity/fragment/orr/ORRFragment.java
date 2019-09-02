@@ -13,7 +13,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.BaseFragment;
 import com.rye.catcher.activity.fragment.orr.interfaces.DownLoadListener;
 import com.rye.catcher.project.ctmviews.HorizontalProgress;
-import com.rye.catcher.project.dialog.ctdialog.ExDialog;
+import com.rye.base.widget.dialog.ctdialog.ExDialog;
 import com.rye.catcher.project.services.DownLoadService;
 import com.rye.catcher.utils.ToastUtils;
 

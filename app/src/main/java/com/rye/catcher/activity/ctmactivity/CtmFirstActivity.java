@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.Circles;
-import com.rye.catcher.utils.MeasureUtil;
+import com.rye.base.utils.MeasureUtil;
 
 /**
  * Created by ZZG on 2017/11/9.

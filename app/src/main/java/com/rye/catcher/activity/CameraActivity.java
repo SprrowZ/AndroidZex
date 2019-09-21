@@ -15,7 +15,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.CameraFragment;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
-import com.rye.catcher.utils.ubean.Permissions;
+import com.rye.catcher.utils.permission.Permissions;
 
 import butterknife.BindView;
 

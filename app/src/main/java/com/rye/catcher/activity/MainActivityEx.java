@@ -30,10 +30,11 @@ import com.rye.catcher.demos.kotlins.BroadcastManager;
 import com.rye.catcher.base.sdks.HttpLogger;
 import com.rye.catcher.base.sdks.beans.WeatherBean;
 import com.rye.catcher.base.sdks.gmap.AmapResult;
-import com.rye.catcher.utils.DateUtils;
+import com.rye.base.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.ExtraUtil.Constant;
-import com.rye.catcher.utils.FileUtils;
+import com.rye.base.common.Constant;
+
+import com.rye.catcher.utils.FileUtil;
 import com.rye.catcher.utils.ToastUtils;
 
 
@@ -90,7 +91,7 @@ public class MainActivityEx extends BaseActivity {
     private void init() {
 
         selectItem(0);
-        FileUtils.writeUserLog(TAG + "onCreate:");
+        FileUtil.writeUserLog(TAG + "onCreate:");
         bottom.setOnNavigationItemSelectedListener(item -> {
             item.setChecked(true);
             switch (item.getItemId()) {
@@ -215,7 +216,7 @@ public class MainActivityEx extends BaseActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     try {
                         String result = response.body().string();//返回结果
-                        FileUtils.writeUserLog("getWeather-->onResponse:" + result);
+                        FileUtil.writeUserLog("getWeather-->onResponse:" + result);
                         dealWeather(result);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -226,7 +227,7 @@ public class MainActivityEx extends BaseActivity {
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     Log.i(TAG, "onFailure:weatherApi ");
-                    FileUtils.writeUserLog("getWeather-->onFailure" + t.toString());
+                    FileUtil.writeUserLog("getWeather-->onFailure" + t.toString());
                 }
             });
         }).start();
@@ -276,7 +277,7 @@ public class MainActivityEx extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy: ...");
-         FileUtils.writeUserLog(TAG + "onDestroy:");
+         FileUtil.writeUserLog(TAG + "onDestroy:");
          stopScreenStateUpdate();
          //局部广播案例
          BroadcastManager.INSTANCE.unregisterReceiver(receiver);

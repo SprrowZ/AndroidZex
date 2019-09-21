@@ -1,12 +1,5 @@
 package com.rye.catcher;
 
-import com.rye.catcher.utils.FileUtils;
-import com.rye.catcher.utils.SDHelper;
-
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

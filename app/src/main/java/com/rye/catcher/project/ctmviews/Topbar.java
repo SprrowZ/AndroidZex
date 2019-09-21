@@ -59,7 +59,7 @@ private Button leftButton,rightButton;
 //标题属性
         titleTextSize=ta.getDimension(R.styleable.Topbar_titleTextsize,0);
         titleTextColor=ta.getColor(R.styleable.Topbar_titleTextColor,0);
-        title=ta.getString(R.styleable.Topbar_title);
+  //      title=ta.getString(R.styleable.Topbar_title);
         //使用完回收
         ta.recycle();
         //处理所需要的控件
@@ -77,7 +77,7 @@ private Button leftButton,rightButton;
         //标题
         tvTitle.setTextColor(titleTextColor);
         tvTitle.setTextSize(titleTextSize);
-        tvTitle.setText(title);
+//        tvTitle.setText(title);
         tvTitle.setGravity(Gravity.CENTER);
         //设置一个总的背景色
         setBackgroundColor(0xFFF59563);

@@ -1,4 +1,4 @@
-package com.rye.catcher.utils;
+package com.rye.base.utils;
 
 
 import java.io.UnsupportedEncodingException;

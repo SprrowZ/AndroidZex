@@ -59,15 +59,15 @@
             android:name="design_height_in_dp"
             android:value="180" />
 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+<!--        <provider-->
+<!--            android:name="android.support.v4.content.FileProvider"-->
+<!--            android:authorities="${applicationId}.provider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/file_paths" />-->
+<!--        </provider>-->
 
         <service android:name="com.amap.api.location.APSService" />
 
@@ -115,10 +115,6 @@
         <activity
             android:name=".activity.CameraActivity"
             android:alwaysRetainTaskState="true"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.JetPackActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -349,7 +345,6 @@
         <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
         <activity android:name=".activity.MultiActivity" />
         <activity android:name=".activity.LeftDetailActivity" />
-        <activity android:name=".activity.ViewModelActivity" />
         <activity android:name=".activity.KotlinActivity" />
 
         <activity android:name=".activity.AnimeActivity" />

@@ -31,7 +31,7 @@ import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
-import com.rye.catcher.utils.ubean.Permissions;
+import com.rye.catcher.utils.permission.Permissions;
 
 import java.lang.ref.WeakReference;
 

@@ -30,9 +30,6 @@ android {
         preDexLibraries = false
         javaMaxHeapSize "4g"
     }
-    dataBinding {
-        enabled = true
-    }
 
     buildTypes {
         release {
@@ -214,9 +211,7 @@ dependencies {
     implementation deps.umeng.common
     implementation deps.umeng.analytics
 
-    // ViewModel和LiveData依赖
-    implementation deps.lifecycle.core
-    kapt deps.lifecycle.compiler
+
 
     //今日头条适配
     implementation deps.autosize

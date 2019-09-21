@@ -3,8 +3,8 @@ package com.rye.catcher.project.dao;
 
 
 import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.JsonUtils;
-import com.rye.catcher.utils.StringUtils;
+import com.rye.catcher.utils.Old_JsonUtils;
+import com.rye.base.utils.StringUtils;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class TableDef {
      * @param defJson 表结构定义JSON字符串。
      */
     public TableDef(String defJson) {
-        this.defBean = JsonUtils.toBean(defJson);
+        this.defBean = Old_JsonUtils.toBean(defJson);
         initCols();
     }
 
@@ -210,7 +210,7 @@ public class TableDef {
     public boolean isNeedIndex(){
         String value = this.defBean.getStr("indexs");
         if (StringUtils.isNotEmpty(value)) {
-            indexBean = JsonUtils.toBean(value);
+            indexBean = Old_JsonUtils.toBean(value);
             return true;
         }
         return false;

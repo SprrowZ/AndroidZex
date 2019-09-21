@@ -6,14 +6,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.rye.catcher.utils.EchatAppUtil;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.catcher.utils.Old_ApplicationUtil;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
@@ -85,7 +80,7 @@ public class MultiThreadDown {
     }
 
     public MultiThreadDown(String loadUrl, String filePath, int threadCount, DownLoadListener mDownLoadListener) {
-        this.mContext = EchatAppUtil.getAppContext();
+        this.mContext = Old_ApplicationUtil.getAppContext();
         this.loadUrl = loadUrl;
         this.filePath = filePath;
         this.threadCount = threadCount;

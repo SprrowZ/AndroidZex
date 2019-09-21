@@ -1,23 +1,20 @@
 package com.rye.catcher.activity;
 
-import android.app.Activity;
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.DeviceInfoFragment;
 import com.rye.catcher.activity.fragment.LMFragment;
 import com.rye.catcher.activity.fragment.SettingsFragment;
 
-import com.rye.catcher.databinding.ActivityLeftDetailBinding;
+
 
 public class LeftDetailActivity extends BaseActivity {
-    //databinding
-    ActivityLeftDetailBinding databinding;
+
 
     private Fragment currentFragment;
     private int currentPos = -1;
@@ -28,15 +25,14 @@ public class LeftDetailActivity extends BaseActivity {
     public static final int DEVICE_INFO=0;
 
     private int type=-1;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-       databinding= DataBindingUtil.setContentView(this,R.layout.activity_left_detail);
 
-       initEvent();
+    @Override
+    public int bindLayout() {
+        return R.layout.activity_left_detail;
     }
 
-    private void initEvent(){
+    @Override
+    public void initEvent() {
         //判断是哪个fragment
         type=getIntent().getIntExtra(TYPE,DEVICE_INFO);
         selectItem(type);
@@ -86,4 +82,6 @@ public class LeftDetailActivity extends BaseActivity {
         }
         return currentFragment;
     }
+
+
 }

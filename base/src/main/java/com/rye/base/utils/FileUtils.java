@@ -1,4 +1,4 @@
-package com.rye.catcher.utils;
+package com.rye.base.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,7 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
-import com.rye.catcher.GreenDaos.Base.TB_Character;
-import com.rye.catcher.RyeCatcherApp;
-import com.rye.catcher.project.catcher.DelayHandleUtil;
-import com.rye.catcher.utils.ExtraUtil.IOUtils;
+
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -719,7 +716,7 @@ public class FileUtils {
 
 
     /**
-     * 把Assets里的文件拷贝到sd卡上
+     * 把Assets里的文件拷贝到sd卡上----因为Assets获取不到文件路径，ORZ
      *
      * @param assetManager    AssetManager
      * @param fileName        Asset文件名
@@ -968,37 +965,7 @@ public class FileUtils {
         return result;
     }
 
-    /**
-     * 写入日志
-     */
-    private static   StringBuffer stringBuffer=new StringBuffer();
-    public static void writeUserLog(String content) {
-        stringBuffer.append(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" +
-                "  版本号：" + RyeCatcherApp.getInstance().getVersion() +
-                " 手机信息：" + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
-        DelayHandleUtil.setDelay(DelayHandleUtil.DELAY_ACTION_UPDATE_MSG_STATUS, 0L, 2000, new DelayHandleUtil.HandleListener() {
-            @Override
-            public void ReachTheTime() {
-                write();
-            }
-        });
-    }
-   private  static synchronized void write(){
-        if (stringBuffer.length()==0){
-            return;
-        }
-      File file = makeFilePath(SDHelper.getAppExternal() + "logs",
-              DateUtils.getCurrentTime(DateUtils.FORMAT_DATE1) + ".log");
-      try {
-          FileOutputStream outputStream = new FileOutputStream(file, true);
-          OutputStreamWriter out = new OutputStreamWriter(outputStream);
-          out.write(stringBuffer.toString());
-          out.close();
-          stringBuffer.setLength(0);
-      } catch (Exception e) {
 
-      }
-  }
 
     /**
      * 获取目录下所有文件(按时间排序)
@@ -1047,32 +1014,6 @@ public class FileUtils {
         return files;
     }
 
-    /**
-     * 写日志专用方法
-     *
-     * @param filePath
-     * @param fileName
-     * @return
-     */
-    public static File makeFilePath(String filePath, String fileName) {
-        File file = null;
-        makeDirs(filePath);
-        List<File> files = getFilesSortByTime(filePath, false);
-        if (files.size() == 20) {
-            files.get(0).delete();
-        }
-        try {
-            file = new File(filePath +File.separator+ fileName);
-            if (!file.exists()) {
-                Log.i(TAG, "makeFilePath: "+file.exists());
-                file.createNewFile();
-            }
-        } catch (Exception e) {
-            Log.i(TAG, "makeFilePath: "+e.toString());
-            e.printStackTrace();
-        }
-        return file;
-    }
 
     /**
      * 创建新文件
@@ -1113,17 +1054,7 @@ public class FileUtils {
         return  null;
     }
 
-    /**
-     * app私有目录下新建文件夹和文件，主要为txt文件
-     *
-     * @param dirName
-     * @param fileName
-     * @param content
-     * @throws IOException
-     */
-    public static void createNewFile(String dirName, String fileName, String content) {//主要用于txt文件
-        writeFile(SDHelper.getAppExternal() + dirName + File.separator + fileName, content);
-    }
+
     /**
      * 下载文件，可以是图片、文本文件等等，反正返回的都是流
      * @param url
@@ -1196,22 +1127,6 @@ public class FileUtils {
 
 
 
-    /**
-     * 保存图片到本地,如果已经存在相同名字的图片，则覆盖
-     * @param remotePath 网络地址
-     */
-    public static void saveImage(String remotePath,String imgName){
-         File  file=null;
-         //先判断本地有没有，没有再下载
-         file=new File(SDHelper.getImageFolder()+imgName);
-         InputStream inputStream=downloadFileI(remotePath);
-         if (inputStream==null){
-             Log.i("saveImage", "saveImage: error:"+remotePath);
-             FileUtils.writeUserLog("图片下载失败："+remotePath);
-             return;
-         }
-         writeFile(file,inputStream);
-    }
 
     /**
      * 返回当前文件夹文件数量
@@ -1368,20 +1283,20 @@ public class FileUtils {
        writer.close();
   }
 
-  public void writeFile(Object object,String dstFile){
-      //object可以传入实体类,必须是序列化的类,也就是该实体类implements Serializable
-      TB_Character character=new TB_Character();
-      character.setCARTOON_NAME("秦时明月");
-      character.setAGE(18);
-      try {
-          ObjectOutputStream outputStream=new ObjectOutputStream(new FileOutputStream(dstFile));
-          outputStream.writeObject(character);
-          outputStream.flush();
-          outputStream.close();
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
-  }
+//  public void writeFile(Object object,String dstFile){
+//      //object可以传入实体类,必须是序列化的类,也就是该实体类implements Serializable
+//      TB_Character character=new TB_Character();
+//      character.setCARTOON_NAME("秦时明月");
+//      character.setAGE(18);
+//      try {
+//          ObjectOutputStream outputStream=new ObjectOutputStream(new FileOutputStream(dstFile));
+//          outputStream.writeObject(character);
+//          outputStream.flush();
+//          outputStream.close();
+//      } catch (IOException e) {
+//          e.printStackTrace();
+//      }
+//  }
 
 }
 

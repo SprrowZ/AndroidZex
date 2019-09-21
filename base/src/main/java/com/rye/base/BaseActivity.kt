@@ -192,11 +192,6 @@ abstract class BaseActivity:AppCompatActivity(),IView {
      * 延迟关闭
      */
     fun finishDelayed(ms:Int){
-          rootLayout.postDelayed(object:Runnable{
-              override fun run() {
-              finish()
-              }
-
-          },ms.toLong())
+          rootLayout.postDelayed({ finish() },ms.toLong())
     }
 }

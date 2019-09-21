@@ -1,6 +1,6 @@
-package com.rye.catcher.utils;
+package com.rye.base.utils;
 
-public class TimeInfo
+public class TimeBean
 {
   private long startTime;
   private long endTime;

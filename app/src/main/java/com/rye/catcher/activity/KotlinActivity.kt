@@ -50,10 +50,10 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
         design_bottom_sheet=findViewById(R.id.design_bottom_sheet)
         swipeRefreshLayout=findViewById(R.id.swipeRefreshLayout)
 //        title?.text=getString(R.string.title)
-//        title?.setOnClickListener {
+//        title?.setOnItemClickListener {
 //            ToastUtils.shortMsg("fine..${it.isActivated}")
 //        }
-//        title?.setOnClickListener(this)
+//        title?.setOnItemClickListener(this)
         design_bottom_sheet?.setOnNavigationItemSelectedListener {
            when(it.itemId){
                

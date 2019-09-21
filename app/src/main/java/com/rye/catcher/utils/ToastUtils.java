@@ -1,6 +1,7 @@
 package com.rye.catcher.utils;
 
 
+import com.rye.base.utils.StringUtils;
 import com.rye.catcher.RyeCatcherApp;
 
 import es.dmoral.toasty.Toasty;

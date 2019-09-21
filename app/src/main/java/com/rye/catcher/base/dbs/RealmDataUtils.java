@@ -1,6 +1,8 @@
 package com.rye.catcher.base.dbs;
 
-import com.rye.catcher.utils.FileUtils;
+
+
+import com.rye.catcher.utils.FileUtil;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class RealmDataUtils {
                 mRealm.commitTransaction();
             }catch (Exception e){
                 mRealm.cancelTransaction();
-                FileUtils.writeUserLog(REALM_LOG+e.toString());
+                FileUtil.writeUserLog(REALM_LOG+e.toString());
             }finally {
                 mRealm.close();
 
@@ -63,7 +65,7 @@ public class RealmDataUtils {
                 mRealm.commitTransaction();
             }catch (Exception e){
                 mRealm.cancelTransaction();
-                FileUtils.writeUserLog(REALM_LOG+e.toString());
+                FileUtil.writeUserLog(REALM_LOG+e.toString());
             }finally {
                 mRealm.close();
             }

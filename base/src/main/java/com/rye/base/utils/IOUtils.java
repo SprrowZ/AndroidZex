@@ -1,4 +1,4 @@
-package com.rye.catcher.utils.ExtraUtil;
+package com.rye.base.utils;
 
 import java.io.Closeable;
 import java.io.File;

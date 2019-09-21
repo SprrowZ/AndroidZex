@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.DistortionViews;
-import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.ImageUtils;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.permission.PermissionUtils;

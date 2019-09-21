@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.R;
-import com.rye.catcher.utils.DateUtils;
+import com.rye.base.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.TypeFaceUtil;
 

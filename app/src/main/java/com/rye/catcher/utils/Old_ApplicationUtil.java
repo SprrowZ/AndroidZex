@@ -7,8 +7,8 @@ import android.os.Handler;
  *全局Context
  */
 
-public class EchatAppUtil {
-    private EchatAppUtil(){}
+public class Old_ApplicationUtil {
+    private Old_ApplicationUtil(){}
     public static String logout = "logoutsdk";
     private static Context context = null;
 

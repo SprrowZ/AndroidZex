@@ -50,7 +50,7 @@ public class YLJFragment extends BaseFragment {
 //
 //        ImageUtils.getIntance().displayImage(iv1, Constant.PORTRAIT_URL);
 //        //点击头像进大图
-//        portrait.setOnClickListener(data -> {
+//        portrait.setOnItemClickListener(data -> {
 //            Intent intent = new Intent(getActivity(), ImageActivity.class);
 //            ArrayList<String> imgList = new ArrayList<>();
 //            imgList.add(pLocal);

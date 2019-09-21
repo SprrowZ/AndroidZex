@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.support.v4.content.LocalBroadcastManager
-import com.rye.catcher.utils.EchatAppUtil
+import com.rye.catcher.utils.Old_ApplicationUtil
 
 /**
  *Created by 18041at 2019/5/7
@@ -16,10 +16,10 @@ object  BroadcastManager {
     const val BROADCAST_VALUE:String="value001"
     private lateinit var filter: IntentFilter
     fun registerReceiver (receiver:BroadcastReceiver,filter: IntentFilter){
-        LocalBroadcastManager.getInstance(EchatAppUtil.getAppContext()!!).registerReceiver(receiver,filter)
+        LocalBroadcastManager.getInstance(Old_ApplicationUtil.getAppContext()!!).registerReceiver(receiver,filter)
     }
     fun unregisterReceiver(receiver: BroadcastReceiver){
-        LocalBroadcastManager.getInstance(EchatAppUtil.getAppContext()!!).unregisterReceiver(receiver)
+        LocalBroadcastManager.getInstance(Old_ApplicationUtil.getAppContext()!!).unregisterReceiver(receiver)
     }
 
     /**
@@ -29,7 +29,7 @@ object  BroadcastManager {
         val intent=Intent()
         intent.setAction(BROADCAST_FLAG)
         intent.putExtra(BROADCAST_KEY, BROADCAST_VALUE)
-        LocalBroadcastManager.getInstance(EchatAppUtil.getAppContext()).sendBroadcast(intent)
+        LocalBroadcastManager.getInstance(Old_ApplicationUtil.getAppContext()).sendBroadcast(intent)
     }
 
     /**

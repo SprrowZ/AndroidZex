@@ -21,7 +21,7 @@ import com.bumptech.glide.Glide;
 import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 
-import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.base.common.Constant;
 
 import java.io.File;
 import java.io.FileNotFoundException;

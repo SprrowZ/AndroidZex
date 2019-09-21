@@ -1,19 +1,14 @@
 package com.rye.catcher.activity;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.utils.DateUtils;
-
-import org.greenrobot.eventbus.util.ErrorDialogManager;
+import com.rye.base.utils.DateUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,7 @@
 package com.rye.catcher.utils
+
+import com.rye.base.utils.FileUtils
+
 const val crashHeader="UncaughtException:"
 
 //kotlin，私有构造器
@@ -11,6 +14,6 @@ class CrashHandler private constructor():Thread.UncaughtExceptionHandler {
         val holder=CrashHandler()
     }
     override fun uncaughtException(t: Thread?, e: Throwable?) {
-        FileUtils.writeUserLog(crashHeader+t.hashCode()+",,"+e.toString())
+        FileUtil.writeUserLog(crashHeader+t.hashCode()+",,"+e.toString())
     }
 }

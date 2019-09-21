@@ -16,7 +16,7 @@ import com.rye.catcher.BaseFragment;
 import com.rye.base.widget.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.DeviceUtils;
-import com.rye.catcher.utils.EchatAppUtil;
+import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 
 import java.util.ArrayList;
@@ -560,7 +560,7 @@ public class RxjavaFragment extends BaseFragment {
         Request request = new Request.Builder()
                 .get()
                 .url(url)
-                .addHeader("X-ZZ-TOKEN", DeviceUtils.getUUID(EchatAppUtil.getAppContext()))
+                .addHeader("X-ZZ-TOKEN", DeviceUtils.getUUID(Old_ApplicationUtil.getAppContext()))
                 .build();
         try {
             Response response = client.newCall(request).execute();

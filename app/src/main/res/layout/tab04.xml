@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
-        <variable
-            name="settingName"
-            type="com.rye.catcher.beans.binding.SettingBean" />
-        <variable
-            name="clickHandler"
-            type="com.rye.catcher.beans.binding.ClickHandler" />
-    </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,13 +23,11 @@
             <Button
                 android:id="@+id/orr"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.orr}" />
+                android:text="@string/orr" />
             <Button
                 android:id="@+id/javaMore"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.javaMore}" />
+                android:text="@string/javaMore" />
         </LinearLayout>
     <LinearLayout
             android:id="@+id/linear2"
@@ -55,16 +44,12 @@
             <Button
                 android:id="@+id/someDemo"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.someDemo}"
-
+                android:text="@string/somedome"
                 />
-
             <Button
                 android:id="@+id/retrofit"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.retrofit}" />
+                android:text="@string/retrofit" />
 
         </LinearLayout>
     <LinearLayout
@@ -80,14 +65,11 @@
             <Button
                 android:id="@+id/camera"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.camera}" />
-
+                android:text="@string/camera" />
             <Button
                 android:id="@+id/review"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.review}" />
+                android:text="@string/review" />
 
         </LinearLayout>
     <LinearLayout
@@ -98,12 +80,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp">
-
             <Button
                 android:id="@+id/animation"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.animation}" />
+                android:text="@string/animation" />
 
         </LinearLayout>
     <LinearLayout
@@ -114,20 +94,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp">
-
             <Button
                 android:id="@+id/custom"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.customView}" />
-
+                android:text="@string/customView" />
             <Button
                 android:id="@+id/project"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.project}" />
-
-
+                android:text="@string/project" />
         </LinearLayout>
         <EditText
             android:id="@+id/editText"
@@ -135,4 +109,3 @@
             android:layout_height="wrap_content"
             android:visibility="gone" />
     </RelativeLayout>
-</layout>

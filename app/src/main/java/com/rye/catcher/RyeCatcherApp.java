@@ -15,9 +15,10 @@ import com.rye.catcher.base.ActivityManager;
 import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.base.dbs.SchemasModule;
 import com.rye.catcher.utils.CrashHandler;
-import com.rye.catcher.utils.EchatAppUtil;
+import com.rye.catcher.utils.FileUtil;
+import com.rye.catcher.utils.Old_ApplicationUtil;
 
-import com.rye.catcher.utils.FileUtils;
+import com.rye.base.utils.FileUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
@@ -54,7 +55,7 @@ public class RyeCatcherApp extends Application{
         mContext = getApplicationContext();
         init();
         //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
-        EchatAppUtil.setContext(mContext);
+        Old_ApplicationUtil.setContext(mContext);
 
         //友盟统计
         UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
@@ -120,7 +121,7 @@ public class RyeCatcherApp extends Application{
               //如果为1，则说明从后台进入到前台
                 countActivity++;
                 Log.i(TAG, "onActivityStarted: "+countActivity);
-                FileUtils.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
+                FileUtil.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
             }
 
             @Override

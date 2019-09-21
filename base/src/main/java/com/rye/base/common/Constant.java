@@ -1,4 +1,4 @@
-package com.rye.catcher.utils.ExtraUtil;
+package com.rye.base.common;
 
 /**
  * 全局变量

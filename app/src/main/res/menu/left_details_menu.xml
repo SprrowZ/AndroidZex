@@ -4,10 +4,10 @@
     <item
         android:id="@+id/down1"
         android:icon="@mipmap/left_down"
-        android:title="空山鸟语"/>
+        android:name="空山鸟语"/>
     <item
         android:id="@+id/down2"
         android:icon="@mipmap/left_giggle"
-        android:title="Zzz"/>
+        android:name="Zzz"/>
 </group>
 </menu>

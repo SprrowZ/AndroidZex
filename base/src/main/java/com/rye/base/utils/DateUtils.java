@@ -1,11 +1,11 @@
-package com.rye.catcher.utils;
+package com.rye.base.utils;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.rye.catcher.RyeCatcherApp;
-import com.rye.catcher.R;
+
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -406,13 +406,13 @@ public class DateUtils {
     }
 
     public static boolean isToday(long paramLong) {
-        TimeInfo localTimeInfo = getTodayStartAndEndTime();
+        TimeBean localTimeInfo = getTodayStartAndEndTime();
         return ((paramLong > localTimeInfo.getStartTime()) && (paramLong < localTimeInfo
                 .getEndTime()));
     }
 
     public static boolean isYesterday(long paramLong) {
-        TimeInfo localTimeInfo = getYesterdayStartAndEndTime();
+        TimeBean localTimeInfo = getYesterdayStartAndEndTime();
         return ((paramLong > localTimeInfo.getStartTime()) && (paramLong < localTimeInfo
                 .getEndTime()));
     }
@@ -528,7 +528,7 @@ public class DateUtils {
                 Integer.valueOf(k)});
     }
 
-    public static TimeInfo getYesterdayStartAndEndTime() {
+    public static TimeBean getYesterdayStartAndEndTime() {
         Calendar localCalendar1 = Calendar.getInstance();
         localCalendar1.add(5, -1);
         localCalendar1.set(11, 0);
@@ -545,13 +545,13 @@ public class DateUtils {
         localCalendar2.set(14, 999);
         Date localDate2 = localCalendar2.getTime();
         long l2 = localDate2.getTime();
-        TimeInfo localTimeInfo = new TimeInfo();
+        TimeBean localTimeInfo = new TimeBean();
         localTimeInfo.setStartTime(l1);
         localTimeInfo.setEndTime(l2);
         return localTimeInfo;
     }
 
-    public static TimeInfo getTodayStartAndEndTime() {
+    public static TimeBean getTodayStartAndEndTime() {
         Calendar localCalendar1 = Calendar.getInstance();
         localCalendar1.set(11, 0);
         localCalendar1.set(12, 0);
@@ -568,7 +568,7 @@ public class DateUtils {
         localCalendar2.set(14, 999);
         Date localDate2 = localCalendar2.getTime();
         long l2 = localDate2.getTime();
-        TimeInfo localTimeInfo = new TimeInfo();
+        TimeBean localTimeInfo = new TimeBean();
         localTimeInfo.setStartTime(l1);
         localTimeInfo.setEndTime(l2);
         return localTimeInfo;
@@ -597,19 +597,19 @@ public class DateUtils {
         String str = "";
         str = getWeek(date);
         if ("1".equals(str)) {
-            str = RyeCatcherApp.getInstance().getString(R.string.Sunday);
+            str = "星期日";
         } else if ("2".equals(str)) {
-            str = RyeCatcherApp.getInstance().getString(R.string.Monday);
+            str = "星期一";
         } else if ("3".equals(str)) {
-            str = RyeCatcherApp.getInstance().getString(R.string.Tuesday);
+            str = "星期二";
         } else if ("4".equals(str)) {
-            str = RyeCatcherApp.getInstance().getString(R.string.Wednesday);
+            str = "星期三";
         } else if ("5".equals(str)) {
-            str = RyeCatcherApp.getInstance().getString(R.string.Thursday);
+            str = "星期四";
         } else if ("6".equals(str)) {
-            str = RyeCatcherApp.getInstance().getString(R.string.Friday);
+            str = "星期五";
         } else if ("7".equals(str)) {
-            str = RyeCatcherApp.getInstance().getString(R.string.Saturday);
+            str = "星期六";
         }
         return str;
     }
@@ -618,65 +618,6 @@ public class DateUtils {
         return Long.toString(System.currentTimeMillis());
     }
 
-    public static String timeAgo(Date date) {
-        return timeAgo(date.getTime());
-    }
-
-    @SuppressLint("StringFormatInvalid")
-    public static String timeAgo(long millis) {
-        long diff = (new Date().getTime()) - millis;
-
-        Resources r = RyeCatcherApp.getInstance().getBaseContext().getResources();
-
-        String prefix = r.getString(R.string.time_ago_prefix);
-        String suffix = r.getString(R.string.time_ago_suffix);
-
-        double seconds = Math.abs(diff) / 1000;
-        double minutes = seconds / 60;
-        double hours = minutes / 60;
-        double days = hours / 24;
-        double years = days / 365;
-
-        String words;
-
-        if (seconds < 45) {
-            words = r.getString(R.string.time_ago_seconds, Math.round(seconds));
-        } else if (seconds < 90) {
-            words = r.getString(R.string.time_ago_minute, 1);
-        } else if (minutes < 45) {
-            words = r.getString(R.string.time_ago_minutes, Math.round(minutes));
-        } else if (minutes < 90) {
-            words = r.getString(R.string.time_ago_hour, 1);
-        } else if (hours < 24) {
-            words = r.getString(R.string.time_ago_hours, Math.round(hours));
-        } else if (hours < 42) {
-            words = r.getString(R.string.time_ago_day, 1);
-        } else if (days < 30) {
-            words = r.getString(R.string.time_ago_days, Math.round(days));
-        } else if (days < 45) {
-            words = r.getString(R.string.time_ago_month, 1);
-        } else if (days < 365) {
-            words = r.getString(R.string.time_ago_months, Math.round(days / 30));
-        } else if (years < 1.5) {
-            words = r.getString(R.string.time_ago_year, 1);
-        } else {
-            words = r.getString(R.string.time_ago_years, Math.round(years));
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        if (prefix != null && prefix.length() > 0) {
-            sb.append(prefix);
-        }
-
-        sb.append(words);
-
-        if (suffix != null && suffix.length() > 0) {
-            sb.append(suffix);
-        }
-
-        return sb.toString().trim();
-    }
 
 
     public static String getTime(Date date, SimpleDateFormat formatter) {

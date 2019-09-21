@@ -11,9 +11,9 @@ import android.widget.TextView;
 import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AppBean;
-import com.rye.catcher.utils.DateUtils;
+import com.rye.base.utils.DateUtils;
 import com.rye.base.utils.DialogUtil;
-import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.base.common.Constant;
 import com.rye.catcher.utils.PackageUtils;
 import com.rye.catcher.utils.ToastUtils;
 

@@ -12,7 +12,7 @@ def version=[build            : '3.4.2', support:'28.0.0',
              toasty           :'1.4.2', bugly:'latest.integration',
              permission       :'2.0.0-rc11', location:'4.6.0',
              zloading:'1.2.0', leakcanary:'1.6.1',
-             umeng:'latest.integration', lifecycle:'1.1.0',
+             umeng:'latest.integration',  
              autosize:'1.1.2', kotlin_coroutines:'1.3.0-M1',
              rxlifecycle:'2.1.0',constraint:'1.1.3']
 
@@ -110,10 +110,6 @@ umeng.common="com.umeng.sdk:common:${version.umeng}"
 umeng.analytics="com.umeng.sdk:analytics:${version.umeng}"
 deps.umeng=umeng
 
-def lifecycle=[:]
-lifecycle.core="android.arch.lifecycle:extensions:${version.lifecycle}"
-lifecycle.compiler="android.arch.lifecycle:compiler:${version.lifecycle}"
-deps.lifecycle=lifecycle
 
 
 ext.deps=deps

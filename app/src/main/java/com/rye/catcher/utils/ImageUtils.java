@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.rye.base.utils.FileUtils;
+import com.rye.base.utils.StringUtils;
 import com.rye.catcher.R;
 import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.utils.ExtraUtil.MD5Encoder;
@@ -196,10 +198,10 @@ public class ImageUtils {
         if (bitmap != null) {
             return bitmap;
         } else if (url != null) {
-            FileUtils.saveImage(url, imgName);//
+            FileUtil.saveImage(url, imgName);//
             return ratio(SDHelper.getImageFolder() + imgName, height, width, null);
         }
-        return BitmapFactory.decodeResource(EchatAppUtil.getAppContext().getResources(), R.drawable.default_img);
+        return BitmapFactory.decodeResource(Old_ApplicationUtil.getAppContext().getResources(), R.drawable.default_img);
     }
 
 

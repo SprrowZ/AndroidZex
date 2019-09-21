@@ -1,6 +1,6 @@
 package com.rye.catcher.utils;
 import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.base.common.Constant;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,12 +18,12 @@ import java.util.Map;
  *
  * @author Jerry Li
  */
-public class JsonUtils {
+public class Old_JsonUtils {
 
     /**
      * 私有构建体方法JsonUtils
      */
-    private JsonUtils() {
+    private Old_JsonUtils() {
     }
 
     /**

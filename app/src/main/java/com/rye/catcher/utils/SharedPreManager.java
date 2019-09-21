@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.rye.catcher.RyeCatcherApp;
-import com.rye.catcher.utils.EchatAppUtil;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,7 +30,7 @@ public class SharedPreManager {
         if (key==null){
             throw new IllegalStateException("key can not be null!");
         }
-        SharedPreferences sp=EchatAppUtil.getAppContext()
+        SharedPreferences sp= Old_ApplicationUtil.getAppContext()
                 .getSharedPreferences(SP_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
         editor.putString(key,String.valueOf(value));

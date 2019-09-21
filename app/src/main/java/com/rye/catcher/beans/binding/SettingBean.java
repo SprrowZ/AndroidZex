@@ -1,20 +1,14 @@
 package com.rye.catcher.beans.binding;
-
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
-
-import com.android.databinding.library.baseAdapters.BR;
-
 /**
  * Created by 18041at 2019/4/13
  * Function:
  */
-public class SettingBean extends BaseObservable {
+public class SettingBean    {
     private String orr;
     private String javaMore;
     private String someDemo;
     private String retrofit;
-    @Bindable
+
     private String camera;
 
     private String review;
@@ -60,7 +54,7 @@ public class SettingBean extends BaseObservable {
 
     public void setCamera(String camera) {
         this.camera = camera;
-       notifyPropertyChanged(BR.camera);
+
     }
 
     public String getReview() {

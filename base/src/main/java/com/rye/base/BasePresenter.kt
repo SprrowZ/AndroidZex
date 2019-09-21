@@ -22,7 +22,7 @@ import retrofit2.Response
  *Created By RyeCatcher
  * at 2019/8/13
  */
-class BasePresenter<T> {
+open class BasePresenter<T> {
     protected var TAG: String? = null
     protected var view: IView? = null
     protected var apiService: T? = null
@@ -31,7 +31,9 @@ class BasePresenter<T> {
         TAG = javaClass.simpleName
         apiService = ServiceGenerator.getService(service)
     }
+    constructor(){
 
+    }
     /**
      * Presenter绑定IView
      */

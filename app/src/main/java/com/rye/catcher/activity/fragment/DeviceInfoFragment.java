@@ -1,48 +1,50 @@
 package com.rye.catcher.activity.fragment;
 
 
-import android.databinding.DataBindingUtil;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.DeviceAdapter;
 import com.rye.catcher.beans.binding.DeviceBean;
-import com.rye.catcher.databinding.DeviceInfoBinding;
+
 import com.rye.catcher.utils.DeviceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 
 /**
  * Fragment用Butterknife，Adapter用DataBinding
  */
-public class DeviceInfoFragment extends Fragment {
+public class DeviceInfoFragment extends BaseFragment {
 
-    private DeviceInfoBinding binding;
+    @BindView(R.id.recycleView)
+    RecyclerView recyclerView;
+
     private DeviceAdapter adapter;
     private List<DeviceBean> dataList;
     public DeviceInfoFragment() {
         // Required empty public constructor
     }
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_device_info,container,false);
-        return binding.getRoot();
+    protected int getLayoutResId() {
+        return R.layout.fragment_device_info;
     }
-
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void initData() {
         adapter=new DeviceAdapter(getContext(),getDataList());
         //设置布局
         GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),2);
@@ -55,10 +57,8 @@ public class DeviceInfoFragment extends Fragment {
                 return 1;
             }
         });
-        binding.recyclerView.setLayoutManager(layoutManager);
-
-        binding.recyclerView.setAdapter(adapter);
-
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     /**

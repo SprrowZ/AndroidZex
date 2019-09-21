@@ -15,7 +15,7 @@
     custom:rightBackground="#3e3"
     custom:rightText="More"
     custom:rightTextColor="#FFFFFF"
-    custom:title="自定义标题"
+    custom:name="自定义标题"
     custom:titleTextColor="#123412"
     custom:titleTextsize="10sp"
     android:layout_alignParentTop="true"

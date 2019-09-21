@@ -8,9 +8,9 @@ import android.util.Log;
 
 import com.rye.catcher.activity.fragment.orr.interfaces.DownLoadListener;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
-import com.rye.catcher.utils.DateUtils;
+import com.rye.base.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
-import com.rye.catcher.utils.FileUtils;
+import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.SDHelper;
 
 import java.io.BufferedOutputStream;

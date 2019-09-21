@@ -1,4 +1,4 @@
-package com.rye.catcher.utils.ubean;
+package com.rye.catcher.utils.permission;
 
 
 import android.Manifest;

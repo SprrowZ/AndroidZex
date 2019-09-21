@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.activity.fragment.HttpT1Fragment;
 import com.rye.catcher.base.interfaces.GithubApi;
-import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.base.common.Constant;
 
 import java.io.IOException;
 import java.util.HashMap;

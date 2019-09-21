@@ -15,13 +15,14 @@ import com.rye.catcher.base.sdks.beans.TangBean;
 import com.rye.catcher.base.sdks.beans.WeatherBean;
 import com.rye.catcher.base.sdks.gmap.AmapManager;
 import com.rye.catcher.base.sdks.gmap.AmapResult;
-import com.rye.catcher.utils.DateUtils;
+import com.rye.base.utils.DateUtils;
 import com.rye.catcher.utils.DeviceUtils;
-import com.rye.catcher.utils.EchatAppUtil;
+import com.rye.catcher.utils.FileUtil;
+import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.base.common.Constant;
 import com.rye.catcher.utils.ExtraUtil.test.utils.RetrofitManager;
-import com.rye.catcher.utils.FileUtils;
+import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
@@ -64,9 +65,9 @@ public class SplashActivity extends BaseActivity {
       //  weatherObservable();
 
         //获取设备尺寸信
-        int sw= DeviceUtils.getScreenSw(EchatAppUtil.getAppContext());
+        int sw= DeviceUtils.getScreenSw(Old_ApplicationUtil.getAppContext());
         Log.i(TAG, "Size: "+sw);
-        FileUtils.writeUserLog("DEVICE-SIZE:"+sw);
+        FileUtil.writeUserLog("DEVICE-SIZE:"+sw);
     }
 
     /**

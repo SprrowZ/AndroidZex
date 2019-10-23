@@ -1,7 +1,7 @@
 package com.rye.catcher.project.ctmviews.Mypractice;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;

@@ -1,23 +1,18 @@
 package com.rye.appupdater;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.rye.appupdater.updater.AppUpdater;
 import com.rye.appupdater.updater.beans.DownloadBean;
 import com.rye.appupdater.updater.net.INetCallback;
-import com.rye.appupdater.updater.net.INetDownloadCallBack;
-import com.rye.appupdater.updater.net.INetManager;
 import com.rye.appupdater.updater.ui.UpdateVersionDialog;
 import com.rye.base.BaseActivity;
 import com.rye.base.R;
 import com.rye.base.utils.AppUtils;
-
-import java.io.File;
 
 // TODO: 2019/9/2  将其改造为MVP风格实现 
 public class UpdateActivity extends BaseActivity {

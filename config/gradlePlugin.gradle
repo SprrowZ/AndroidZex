@@ -1,0 +1,6 @@
+task renameFile{
+    File dstFile=file("../app/src/main/java/com/rye/catcher/BaseActivity.java")
+    println("************BaseActivity is exist:"+dstFile.exists()+"--path:"+dstFile.absolutePath)
+    dstFile.renameTo("../app/src/main/java/com/rye/catcher/BaseActivity.java")
+    println ("zzzzzz-----------:"+dstFile.canRead())
+}

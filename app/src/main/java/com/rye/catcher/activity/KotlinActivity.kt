@@ -3,10 +3,10 @@ package com.rye.catcher.activity
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.support.annotation.RequiresApi
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.annotation.RequiresApi
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
@@ -15,7 +15,8 @@ import com.rye.catcher.R
 import com.rye.catcher.activity.fragment.KotlinFragment
 import com.rye.catcher.activity.fragment.SettingsFragment
 import com.rye.catcher.activity.fragment.YLJFragment
-import com.rye.catcher.demos.kotlins.*
+
+import com.rye.catcher.project.helpers.kotlins.*
 
 /**
  *Created by 18041at 2019/5/6
@@ -29,12 +30,12 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
     private var container:RelativeLayout?=null
 //    private var title:TextView?=null
 
-    private var design_bottom_sheet:BottomNavigationView?=null
+    private var design_bottom_sheet: BottomNavigationView?=null
 
-    private lateinit var swipeRefreshLayout:SwipeRefreshLayout
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private var currentPos=-1
-    private var currentFragment:Fragment?=null
+    private var currentFragment: Fragment?=null
     private var fragmentList:MutableList<Fragment>?=null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,8 +87,8 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
         //发送登陆成功的广播
         BroadcastManager.sendLoginSuccessBroadcast()
         //数据操作处理
-        val userData=UserData()
-        val userInfo=UserData.UserInfo()
+        val userData= UserData()
+        val userInfo= UserData.UserInfo()
         userInfo.age=24
         userInfo.name="RyeCat"
         userInfo.sex=true

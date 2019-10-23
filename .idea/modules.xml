@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/zAndroid.iml" filepath="$PROJECT_DIR$/.idea/zAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zgstep/zgstep.iml" filepath="$PROJECT_DIR$/zgstep/zgstep.iml" />
       <module fileurl="file://$PROJECT_DIR$/zzsdk/zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/zzsdk.iml" />
     </modules>
   </component>

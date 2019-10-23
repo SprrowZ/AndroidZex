@@ -1,3 +1,4 @@
+
 // IMyAidlInterface.aidl
 package com.rye.catcher.activity;
 import com.rye.catcher.activity.PersonBean;
@@ -12,5 +13,6 @@ interface IMyAidlInterface {
 //    float aFloat,double aDouble,
 //    char aChar,
 //    String aString, in List<String> aList);
-List<PersonBean> add( in PersonBean  person);
+ // List<PersonBean> add( in PersonBean  person);
+
 }

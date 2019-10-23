@@ -3,7 +3,7 @@ package com.rye.catcher.project.SQLiteZ;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;

@@ -1,7 +1,7 @@
 package com.rye.catcher.beans.vm;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 /**
  * Created by 18041at 2019/4/28

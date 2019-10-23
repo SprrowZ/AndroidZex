@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/gray_dividing"
     tools:context="com.rye.catcher.activity.AIDLActivity">
-   <android.support.v7.widget.CardView
+   <androidx.cardview.widget.CardView
        android:layout_marginTop="@dimen/len_16"
        android:layout_marginBottom="@dimen/len_16"
        android:layout_marginLeft="@dimen/len_16"
@@ -42,7 +42,7 @@
 
        </LinearLayout>
 
-   </android.support.v7.widget.CardView>
+   </androidx.cardview.widget.CardView>
 
   <LinearLayout
       android:id="@+id/container"

@@ -1,14 +1,12 @@
 package com.rye.catcher.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rye.appupdater.UpdateActivity;
@@ -19,10 +17,12 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ProjectListAdapter;
 import com.rye.catcher.activity.presenter.ProjectPresenter;
 import com.rye.catcher.beans.ProjectBean;
-import com.rye.catcher.project.Ademos.MultiThreadDown;
+
 import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
 
-import com.rye.catcher.project.Ademos.mvp.MvpActivity;
+
+import com.rye.catcher.project.helpers.MultiThreadDown;
+import com.rye.catcher.project.mvp.MvpActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.catcher.utils.SDHelper;

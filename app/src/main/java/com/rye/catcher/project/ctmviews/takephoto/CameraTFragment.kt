@@ -10,8 +10,8 @@ import android.media.ImageReader
 import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
-import android.support.annotation.RequiresApi
-import android.support.v4.app.Fragment
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray

@@ -2,8 +2,8 @@ package com.rye.catcher.common.flowlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.text.TextUtilsCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.text.TextUtilsCompat;
 import android.util.AttributeSet;
 import android.util.LayoutDirection;
 import android.view.Gravity;

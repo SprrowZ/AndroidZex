@@ -8,8 +8,11 @@ apply plugin: 'realm-android'
 
 //自定义gradle
 apply from: '../config/other.gradle'
+apply from:'../config/gradlePlugin.gradle'
 
 apply from : '../config/sign.gradle'
+
+
 
 android {
     compileSdkVersion this.rootProject.compileSdkVer
@@ -170,13 +173,14 @@ dependencies {
     implementation deps.support
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
 
     //组件化开发
     implementation project(':zzsdk')
     implementation project(':base')
+    implementation project(path: ':zgstep')
 
     implementation deps.cardview
     implementation deps.recyclerview
@@ -219,4 +223,5 @@ dependencies {
     //kotlin 协程
     implementation deps.kotlin_coroutines
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 }

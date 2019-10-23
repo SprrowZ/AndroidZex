@@ -7,7 +7,7 @@
         <activity android:name="com.rye.appupdater.UpdateActivity"></activity>
         <provider
             android:authorities="${applicationId}.fileprovider"
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true"
             >

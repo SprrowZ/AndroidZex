@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-  <android.support.v7.widget.CardView
+  <androidx.cardview.widget.CardView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:cardCornerRadius="5dp"
@@ -79,5 +79,5 @@
 
        </LinearLayout>
      </LinearLayout>
-  </android.support.v7.widget.CardView>
+  </androidx.cardview.widget.CardView>
 </LinearLayout>

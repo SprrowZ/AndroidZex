@@ -3,11 +3,11 @@ package com.rye.base
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.CheckResult
-import android.support.annotation.IdRes
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.CheckResult
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import android.view.ViewGroup
 import com.MutableMaprye.base.utils.LanguageUtil
 import com.rye.base.common.LibConfig
@@ -161,7 +161,7 @@ abstract class BaseActivity:AppCompatActivity(),IView {
         return presenterHelper.getPresenter(clz)
     }
    //------------------------------Fragment------------------------
-    fun startFragment(fragment:Fragment,isOpenAnim:Boolean){
+    fun startFragment(fragment: Fragment, isOpenAnim:Boolean){
        if (getFragmentLauncher()!=null){
            var config: FragmentLauncher.TransitionConfig? =null
            if (isOpenAnim){
@@ -174,7 +174,7 @@ abstract class BaseActivity:AppCompatActivity(),IView {
        }
    }
 
-   fun startFragmentAndDestoryCurrent(fragment: Fragment,isOpenAnim:Boolean){
+   fun startFragmentAndDestoryCurrent(fragment: Fragment, isOpenAnim:Boolean){
        if (getFragmentLauncher()!=null){
            var config:FragmentLauncher.TransitionConfig?=null
            if (isOpenAnim){

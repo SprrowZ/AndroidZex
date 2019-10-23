@@ -6,12 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.Nullable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -26,11 +26,12 @@ import com.rye.catcher.activity.fragment.SettingsFragment;
 import com.rye.catcher.activity.fragment.YLJFragment;
 
 import com.rye.catcher.project.dao.KeyValueMgr;
-import com.rye.catcher.demos.kotlins.BroadcastManager;
+
 import com.rye.catcher.base.sdks.HttpLogger;
 import com.rye.catcher.base.sdks.beans.WeatherBean;
 import com.rye.catcher.base.sdks.gmap.AmapResult;
 import com.rye.base.utils.DateUtils;
+import com.rye.catcher.project.helpers.kotlins.BroadcastManager;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.base.common.Constant;
 

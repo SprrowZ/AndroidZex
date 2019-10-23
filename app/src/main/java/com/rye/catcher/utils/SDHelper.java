@@ -8,7 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 
 import com.rye.base.common.Constant;

@@ -2,10 +2,8 @@ package com.rye.catcher.base;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.webkit.WebView;
+import androidx.annotation.RequiresApi;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;

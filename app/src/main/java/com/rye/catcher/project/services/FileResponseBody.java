@@ -1,12 +1,11 @@
 package com.rye.catcher.project.services;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import java.io.IOException;
 
 import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okio.Buffer;
 import okio.BufferedSource;

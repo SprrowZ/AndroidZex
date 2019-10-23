@@ -3,7 +3,7 @@ package com.rye.catcher.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
@@ -22,7 +22,6 @@ import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.base.common.Constant;
 import com.rye.catcher.utils.ExtraUtil.test.utils.RetrofitManager;
-import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 

@@ -1,8 +1,10 @@
 package com.rye.catcher.project.helpers;
 
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
-import android.support.design.widget.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.rye.catcher.R;
+
 import android.widget.ImageView;
 
 /**
@@ -18,7 +20,7 @@ public class BottomNavigationViewHelper {
         try {
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                ImageView imageView = item.findViewById(android.support.design.R.id.icon);
+                ImageView imageView = item.findViewById(R.id.icon);
                 imageView.getLayoutParams().width = width;
                 imageView.getLayoutParams().height = height;
             }

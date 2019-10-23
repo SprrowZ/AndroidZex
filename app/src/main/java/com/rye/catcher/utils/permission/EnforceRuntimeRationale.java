@@ -16,7 +16,7 @@
 package com.rye.catcher.utils.permission;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 
 import com.yanzhenjie.permission.Permission;
 import com.yanzhenjie.permission.Rationale;

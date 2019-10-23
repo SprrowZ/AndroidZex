@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.rye.base.BaseApplication;
 import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.base.ActivityManager;
@@ -32,7 +33,7 @@ import io.realm.RealmConfiguration;
  * Created by ZZG on 2018/3/22.
  */
 
-public class RyeCatcherApp extends Application{
+public class RyeCatcherApp extends BaseApplication {
 
     private static final String TAG="RyeCatcherApp";
     private static final String LIFECYCLE_LOG="LIFECYCLE_LOG:";

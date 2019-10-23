@@ -2,7 +2,7 @@ package com.rye.catcher.project.services;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 /**

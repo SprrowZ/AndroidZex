@@ -335,8 +335,8 @@
             android:launchMode="singleTask" />
         <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
         <activity android:name=".activity.BLEActivity" />
-        <activity android:name=".project.Ademos.mvp.MvpActivity" />
-        <activity android:name=".project.Ademos.mvp.MvpBaseActivity" />
+        <activity android:name=".project.mvp.MvpActivity" />
+        <activity android:name=".project.mvp.MvpBaseActivity" />
         <activity
             android:name=".project.ctmviews.takephoto.CameraActivity2"
             android:screenOrientation="portrait"

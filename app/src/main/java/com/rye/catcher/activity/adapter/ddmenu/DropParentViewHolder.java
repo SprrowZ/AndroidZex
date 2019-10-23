@@ -1,6 +1,6 @@
 package com.rye.catcher.activity.adapter.ddmenu;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 /**

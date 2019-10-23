@@ -4,7 +4,7 @@ package com.rye.catcher.activity.fragment;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 

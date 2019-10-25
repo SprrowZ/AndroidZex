@@ -21,18 +21,18 @@ public static void main(String[] args) throws Exception {
 // printFields();
 // printDeclaredFields();
 // printMethods();
-// printDeclaredMethods();
+  printDeclaredMethods();
 // //操作私有方法
-// getPrivateMethod();
+  //getPrivateMethod();
 // //
 // modifyPrivateFields();
 
-    Foo<String> foo=new Foo<String>() {};
-    Type mySuperClass = foo.getClass().getGenericSuperclass();
-    Type type = ((ParameterizedType)mySuperClass).getActualTypeArguments()[0];
-    String className=type.getClass().getName();
-    System.out.println(type);
-    System.out.println(className);
+//    Foo<String> foo=new Foo<String>() {};
+//    Type mySuperClass = foo.getClass().getGenericSuperclass();
+//    Type type = ((ParameterizedType)mySuperClass).getActualTypeArguments()[0];
+//    String className=type.getClass().getName();
+//    System.out.println(type);
+//    System.out.println(className);
 }
 
     /**
@@ -218,6 +218,8 @@ public static void main(String[] args) throws Exception {
         }
 
     }
+
+
 
 }
 

@@ -41,7 +41,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ext {//全局配置变量
-    supportVer = '28.0.0'
+    supportVer = '29.0.0'
     compileSdkVer = 29
     buildToolsVer = '28.0.3'
     minSdkVer = 23

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#037BFF</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#EE3333</color>
+    <color name="title_bg">#ffffffff</color>
+    <color name="title_text_color">#ff363636</color>
+    <color name="full_transparent">#00000000</color>
+    <color name="container_bg">#ffeeeeee</color>
+
+    <color name="common_title_bg">#aa111213</color>
+    <color name="primary_title_text_color">#ffeeeeee</color>
+    <color name="contact_value">#0033ff</color>
+    <color name="blue_bg">#20b2ee</color>
+    <color name="userinfo_signture_background">#eeeeee</color>
+    <color name="bg">#50000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="comment_person">#546994</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="yellow_deep">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="line_spilt">#E3E3E3</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="item_pressed">#D9D9D9</color>
+    <color name="common_top_bar_blue">#4ebcd3</color>
+    <color name="btn_login_normal">#007086</color>
+    <color name="btn_login_pressed">#303744</color>
+    <color name="btn_logout_normal">#d33f3f</color>
+    <color name="btn_logout_pressed">#DA5A4D</color>
+    <color name="btn_register_normal">#2dafa3</color>
+    <color name="btn_register_pressed">#4ebcd3</color>
+    <color name="common_bottom_bar_normal_bg">#F8F8F8</color>
+    <color name="red_theme">#e97479</color>
+    <color name="common_bottom_bar_selected_bg">#DFDFDF</color>
+    <color name="common_botton_bar_blue">#2ea7e0</color>
+    <color name="common_botton_bar_gray">#909090</color>
+    <color name="text_col">#09BB07</color>
+    <color name="common_bg">#EBEBEB</color>
+    <color name="btn_pressed_green_solid">#B6DA53</color>
+    <color name="divider_list">#cccccc</color>
+    <color name="top_bar_normal_bg">#CCCCCC</color>
+    <color name="error_item_color">#F6EBE6</color>
+    <color name="bottom_bar_normal_bg">#2D2F31</color>
+    <color name="bottom_text_color_normal">#000000</color>
+    <color name="bottom_text_color_normal2">#000000</color>
+    <color name="btn_white_normal">#f7f8f8</color>
+    <color name="btn_white_pressed">#b5b5b6</color>
+    <color name="btn_green_noraml">#68C270</color>
+    <color name="btn_green_pressed">#6FCD78</color>
+    <color name="btn_gray_normal">#c0c0c0</color>
+    <color name="btn_gray_pressed_status">#b5b5b6</color>
+    <color name="btn_gray_pressed">#666667</color>
+    <color name="btn_blue_normal">#1e90ff</color>
+    <color name="top_right_text_color">#1e90ff</color>
+    <color name="btn_blue_pressed">#0066FF</color>
+    <color name="purple">#848484</color>
+    <color name="orange">#FFA500</color>
+    <color name="gray_pressed">#b5b5b6</color>
+    <color name="gray_normal">#666667</color>
+    <color name="grid_state_pressed">#1Affffff</color>
+    <color name="version_text_font">#838383</color>
+    <color name="about_text_gray">#666667</color>
+    <color name="grid_state_focused">#80000000</color>
+    <color name="xian_black_color">#E3E4Ed</color>
+    <color name="voip_interface_text_color">#bababa</color>
+    <color name="black_deep">#FF000000</color>
+    <color name="black_light">#394042</color>
+    <color name="gray_backgroud">#ececec</color>
+    <color name="green">#008000</color>
+    <color name="blank">#000000</color>
+    <color name="white_list">#F1F2F3</color>
+    <color name="hybird_bg">#EFEFF4</color>
+    <color name="gesture_background">#ff303237</color>
+    <color name="color_hei_8">#00000000</color>
+    <color name="transparent_background">#50000000</color>
+
+
+    <drawable name="trans">@color/color_hei_8</drawable>
+    <color name="header_bg">#E0E0E0</color>
+
+
+
+    <!--新加颜色-->
+    <color name="app_color_red">#DA5A4D</color>
+    <color name="last_msg_tv_color">#ffaaaaaa</color>
+    <color name="normal_text_color">#ff353535</color>
+    <color name="normal_color">#666667</color>
+    <color name="org_gray">#8e8e8e</color>
+    <color name="nickname_normal_color">#ff444444</color>
+    <color name="half_alpha_black">#7f000000</color>
+    <color name="half_alpha_white">#7fffffff</color>
+
+    <color name="blue7">#ffccddff</color>
+    <color name="red">#ffff0101</color>
+
+    <color name="red1">#C83838</color>
+    <color name="alpha_red">#A1D13839</color>
+    <color name="top_red">#C7000B</color>
+    <color name="light_red">#F6A8AF</color>
+
+
+    <color name="blue">#0033ff</color>
+    <color name="contact_text">#0a0a0a</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="gray_3">#333333</color>
+    <color name="gray_6">#666666</color>
+    <color name="gray_9">#999999</color>
+    <color name="gray_dividing">#ffcccccc</color>
+    <color name="gray_bg">#ffeeeeee</color>
+    <color name="green1">#33FF66</color>
+    <color name="green2">#33FF33</color>
+    <color name="green3">#66FF33</color>
+    <color name="green4">#99FF33</color>
+    <color name="yellow2">#CCFF33</color>
+    <color name="yellow1">#FFFF33</color>
+    <color name="yellow_alpha">#99FFFF33</color>
+    <color name="kouling7">#FFCC33</color>
+    <color name="kouling8">#FF9933</color>
+    <color name="kouling9">#FF6633</color>
+    <color name="kouling10">#FF3333</color>
+    <color name="select_bottom">#27cdf2</color>
+    <color name="bottom_gray">#ececec</color>
+    <!--soft color-->
+    <color name="soft1">#102ae0c8</color>
+    <color name="soft2">#a2e1d4</color>
+    <color name="soft3">#acf6ef</color>
+    <color name="soft4">#cbf5fb</color>
+    <color name="soft5">#e6e2c3</color>
+    <color name="soft6">#e3c887</color>
+    <color name="soft7">#fad8be</color>
+    <color name="soft8">#fbb8ac</color>
+    <color name="soft9">#fe6673</color>
+    <!--soft color2-->
+    <color name="soft10">#DC9FB4</color>
+    <color name="soft11">#E16B8C</color>
+    <color name="soft12">#558E354A</color>
+    <color name="fuckAlpha">#22b5b5b6</color>
+    <color name="soft13">#F8C3CD</color>
+    <color name="soft14">#F4A7B9</color>
+    <color name="soft15">#64363C</color>
+    <color name="soft16">#B5495B</color>
+    <color name="soft17">#D0104C</color>
+    <color name="soft18">#9F353A</color>
+    <color name="soft19">#CB1B45</color>
+    <color name="soft20">#D7C4BB</color>
+    <color name="soft21">#F19483</color>
+    <color name="soft22">#F17C67</color>
+    <color name="soft23">#E83015</color>
+    <color name="soft24">#CC543A</color>
+    <color name="soft25">#40F75C2F</color>
+    <color name="soft26">#FB966E</color>
+    <color name="soft27">#E2943B</color>
+    <!--新增-->
+    <color name="grayBottom">#ececec</color>
+    <color name="violetBottom">#583aca</color>
+    <!--Dialog-->
+    <color name="green_f">#ff66ccff</color>
+    <color name="gray_pure">#eeeeee</color>
+    <color name="orange_salmon">#A2EC5745</color>
+    <color name="time_color">#ff5a00</color>
+    <color name="red_f">#ff3c00</color>
+    <color name="red_deep">#ea2226</color>
+    <color name="btn_answer_pressed">#4ebcd3</color>
+    <color name="holo_blue_light">#ff33b5e5</color>
+    <color name="purple_p">#F49092</color>
+    <color name="praised_num">#ff5b0f</color>
+    <color name="light_black">#666666</color>
+    <color name="line_color">#505050</color>
+    <color name="light_gray">#ffececec</color>
+    <color name="preview_mock">#9a000000</color>
+    <color name="preview">#3fFFFFFF</color>
+    <color name="if_color">#eed0ab</color>
+
+
+
+   <color name="idy_search_tag_text_yellow">#FFAC2D</color>
+   <color name="idy_search_tag_bg_yellow">#FFD28C</color>
+   <color name="idy_search_tag_bg_gray">#EFEFEF</color>
+</resources>

@@ -11,8 +11,8 @@ import kotlin.collections.HashMap
  * 创建和缓存Presenter实例
  */
 class PresenterHoler {
-   private lateinit var presenterMap: HashMap<String,BasePresenter<*>>
-    private lateinit var view:IView
+   private  var presenterMap: HashMap<String,BasePresenter<*>>
+    private  var view:IView
     constructor(view:IView){
         this.view=view
         presenterMap= HashMap()

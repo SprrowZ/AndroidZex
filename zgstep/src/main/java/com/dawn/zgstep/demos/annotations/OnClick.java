@@ -1,18 +1,19 @@
 package com.dawn.zgstep.demos.annotations;
 
-import androidx.annotation.IdRes;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Created By RyeCatcher
- * at 2019/10/24
+ * at 2019/10/28
+ * 仿照ButterKnife--OnClick
  */
-@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface BindView {
-    @IdRes int value() default 0;
+@Target(ElementType.METHOD)
+public @interface OnClick {
+    int[]  value();
 }

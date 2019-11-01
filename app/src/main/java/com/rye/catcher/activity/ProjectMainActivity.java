@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+
 import com.rye.appupdater.UpdateActivity;
 import com.rye.base.BaseActivity;
 import com.rye.base.common.LanguageConstants;
@@ -33,7 +34,7 @@ import com.yanzhenjie.permission.Permission;
 import java.util.List;
 
 
-import butterknife.BindView;
+ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -128,7 +129,7 @@ public class ProjectMainActivity extends BaseActivity  implements ProjectListAda
                 break;
             case "testSlide":
                 Intent intent11 = new Intent(ProjectMainActivity.this,
-                        TestCoorActivity.class);
+                        ReflectActivity.class);
                 startActivity(intent11);
                 break;
             case "testRecycle":
@@ -151,9 +152,6 @@ public class ProjectMainActivity extends BaseActivity  implements ProjectListAda
             case "testBluetooth":
                 startActivity(new Intent(this, BlueToothActivity.class));
                 break;
-//            case R.id.blueTooth2:
-//                startActivity(new Intent(this,BLEActivity.class));
-//                break;
             case "testMvp":
                 startActivity(new Intent(this, MvpActivity.class));
                 break;

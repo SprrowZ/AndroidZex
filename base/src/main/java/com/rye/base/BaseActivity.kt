@@ -22,6 +22,9 @@ import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import java.lang.Exception
 
+/**
+ * BaseActivity ----包含mvp
+ */
 
 abstract class BaseActivity:AppCompatActivity(),IView {
 

@@ -141,7 +141,7 @@ class KotlinActivity :BaseActivity() ,View.OnClickListener{
         when(v?.id){
 //            R.id.title->ToastUtils.shortMsg("Fine..${v.id.toString().substring(v.id.toString().lastIndexOf('.'))}")
 //            R.id.title->{
-//                val intent=Intent(this, MainActivity::class.java)
+//                val intent=Intent(this, ZStepMainActivity::class.java)
 //                startActivity(intent)
 //            }
 

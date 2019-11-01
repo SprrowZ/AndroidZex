@@ -1,5 +1,8 @@
 package com.dawn.zgstep.demos;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created By RyeCatcher
  * at 2019/8/23
@@ -53,8 +56,9 @@ public class StrIntTest {
      System.out.println(a==c);//true---
 
 
-
     }
+
+
 
     static class StringBean{
         String name;

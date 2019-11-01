@@ -3,7 +3,7 @@ package com.dawn.zgstep.starts;
 
 import android.util.Log;
 
-import com.dawn.zgstep.demos.annotations.BindView;
+
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -16,8 +16,8 @@ import java.lang.reflect.Field;
 public class TestAnnotations {
 
   public  static final  String TAG="TestAnnotations";
-  @BindView(1)
-  private String name;
+//  @BindView(1)
+//  private String name;
 
   private String sex;
 

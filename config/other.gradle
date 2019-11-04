@@ -46,3 +46,71 @@ task Z{
         println 'Z'
     }
 }
+
+/**-------------------------------二段测试---------------------------------**/
+
+//------测试操作xml文件
+def getResPath(){
+    return 'app/src/main/res/'
+}
+//task getResPath{
+//    def resPath='app/src/main/res/'
+//    def resFile=new File(resPath)
+//    if(resFile.exists()){
+//        def files=resFile.list()
+//        files.each {
+//            println it
+//        }
+//
+//    }
+//    return resFile
+//}
+static def getRandomString() {
+    def str = 'abcdefghijklmnopqstuvwxzy'
+    def randomString = ''
+    for (int i = 0; i < 10; i++) {
+        def number = new Random().nextInt(26)
+        randomString += str.charAt(number)
+    }
+    randomString
+}
+
+def xmlReplace(mapPath, name, randomName) {
+    def tree = fileTree(mapPath)
+    tree.include '*.xml'
+    tree.each { File javaFile ->
+        def readerString = ''
+        def hasReplace = false
+        def path = javaFile.path
+        file(path).withReader('UTF-8') { reader ->
+            reader.eachLine {
+                def namePrefix = name.split("\\.").first()
+                if (it.indexOf("@layout/${namePrefix}\"") != -1) {
+                    it = it.replaceAll('@layout/' + namePrefix, '@layout/' + randomName)
+                    hasReplace = true
+                }
+                readerString <<= it
+                readerString << '\n'
+            }
+            if (hasReplace) {
+                file(path).withWriter('UTF-8') {
+                    within ->
+                        within.append(readerString)
+                }
+            }
+            return readerString
+        }
+    }
+}
+
+task operateXml{
+    println '>>>>>>>>>>>>>>>>>>>>>>--operateXml--<<<<<<<<<<<<<<<<<<<<<<<'
+    doLast{
+        FileTree tree=fileTree(dir:'src/main/res/layout')
+        tree.include '*.xml'
+        tree.each { File file->
+             def randomName=getRandomString()
+             xmlReplace(dir:'src/main/res/layout',file.name,randomName)
+        }
+    }
+}

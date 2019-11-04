@@ -1,6 +1,36 @@
-task renameFile{
-    File dstFile=file("../app/src/main/java/com/rye/catcher/BaseActivity.java")
-    println("************BaseActivity is exist:"+dstFile.exists()+"--path:"+dstFile.absolutePath)
-    dstFile.renameTo("../app/src/main/java/com/rye/catcher/BaseActivity.java")
-    println ("zzzzzz-----------:"+dstFile.canRead())
+
+def getPackageName(){
+    def appName = ''
+    def path = 'app/src/main/java/'
+    File appfile  = new File(path)
+    while (appfile.list().size() == 1){
+        appName = appName + '/' + appfile.list()[0]
+        appfile  = new File(path + appName + '/')
+    }
+    return appName
 }
+
+def getResPath(){
+    return 'app/src/main/res/'
+}
+
+static def getRandomString() {
+    def str = 'abcdefghijklmnopqstuvwxzy'
+    def randomString = ''
+    for (int i = 0; i < 10; i++) {
+        def number = new Random().nextInt(26)
+        randomString += str.charAt(number)
+    }
+    randomString
+}
+//--------copy
+task copy(type:Copy){
+//    from file('')
+//    to file('')
+}
+
+task renameXml{
+
+
+}
+

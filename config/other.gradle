@@ -67,77 +67,8 @@ static def getRandomString() {
     randomString
 }
 
-def xmlReplace(mapPath, name, randomName) {
-    def tree = fileTree(mapPath)
-    tree.include '*.xml'
-    tree.each { File javaFile ->
-        def readerString = ''
-        def hasReplace = false
-        def path = javaFile.path
-        file(path).withReader('UTF-8') { reader ->
-            reader.eachLine {
-                def namePrefix = name.split("\\.").first()
-                if (it.indexOf("@layout/${namePrefix}\"") != -1) {
-                    it = it.replaceAll('@layout/' + namePrefix, '@layout/' + randomName)
-                    hasReplace = true
-                }
-                readerString <<= it
-                readerString << '\n'
-            }
-            if (hasReplace) {
-                file(path).withWriter('UTF-8') {
-                    within ->
-                        within.append(readerString)
-                }
-            }
-            return readerString
-        }
-    }
-}
 
-//task xmls {
-//
-//        def beforeName = 'activity_top_title.xml'
-//        def afterName = getRandomString()
-//        xmlNameReplace(dir: 'src/main/res/layout', beforeName, afterName)
-//
-//}
 
-def xmlNameReplace(dirPath, beforeName, afterName) {//少不了两层遍历
-
-    FileTree tree = fileTree(dirPath)
-    tree.include '*.xml'
-    tree.each { File file ->
-        def appendString = new StringBuilder()
-        //取传入的文件的名字，而不是遍历中的文件名
-        def namePrefix = beforeName.split('\\.').first()
-        boolean hasReplace = false
-        file.withReader('UTF-8') { reader ->
-            reader.eachLine { line ->
-                if (line.indexOf("@layout/${namePrefix}\"") != -1) {
-                    line = line.replaceAll('@layout/' + namePrefix, "@layout/" + afterName)
-                    println("-------------@layout/$namePrefix has been replaced by $afterName")
-                    hasReplace = true
-                }
-                appendString.append(line + '\n')
-            }
-            if (hasReplace) {
-                file.withWriter('UTF-8') { writer ->
-                    appendString.eachLine {
-                        writer.writeLine(it)
-                    }
-                }
-            }
-
-        }
-        if (beforeName == file.name) {//遇到文件本身
-          def result=  file.renameTo(file.path.replaceAll(beforeName, afterName + '.xml'))
-            println("--------BeforeName:$beforeName and AfterName:${file.name},,,filePath:${file.path}")
-            println("replace:${file.path.replaceAll(beforeName, afterName + '.xml')},result:$result")
-        }
-
-    }
-}
 
 
 task xmlReplaceEx(){
@@ -160,6 +91,10 @@ task xmlReplaceEx(){
                            line= line.replaceAll(quoteXmlName,nameMap.get(quoteXmlName))//替换
                             //这个log有意思
                             println("-------------@layout/$quoteXmlName  has been replaced by ${nameMap.get(quoteXmlName)}")
+                        }else{//说明应该替换的@layout文件，还没有自己的随机序列值
+                             def shouldRandomName=getRandomString()
+                             nameMap.put(quoteXmlName,shouldRandomName)
+                            line=line.replaceAll(quoteXmlName,shouldRandomName)
                         }
 
                         if(quoteXmlName=="activity_top_title"){
@@ -181,15 +116,27 @@ task xmlReplaceEx(){
 
             }
 
-            if(nameMap.get(originName)==null){//文件未被重命名
+            if(nameMap.get(originName)==null){//文件未被重命名且未被分配随机名
                 file.renameTo(file.path.replaceAll(originName,randomName))
                 nameMap.put(originName,randomName)
                 println("$originName has been renamed to $randomName")
+            }else{//文件已被分配随机名
+                file.renameTo(file.path.replaceAll(originName,nameMap.get(originName)))
             }
 
         }
 
         xmlJavaReplace(nameMap)
+
+        //将重命名的文件前后名字---输出到文件中
+        File renameFile =file("/config/renameFile.txt")
+            renameFile.withWriter ('UTF-8'){ writer->
+                nameMap.each {
+                    writer.writeLine("$it.key ----------->>>>>>>>>>   $it.value")
+                }
+
+            }
+
     }
 
 }
@@ -209,7 +156,7 @@ def xmlJavaReplace(Map nameMap){//等所有XML文件替换完成后，再替换J
             reader.eachLine { line ->
                   if(line.indexOf("R.layout.")!=-1){//有布局文件
                       def xmlPrefix=''
-                      Pattern pattern=Pattern.compile("[[a-z]_]+")
+                      Pattern pattern=Pattern.compile("[[a-z0-9]_]+")
                       Matcher matcher=pattern.matcher(line.split("\\.")[2])
                       while(matcher.find()){
                          xmlPrefix= matcher.group(0)
@@ -225,7 +172,7 @@ def xmlJavaReplace(Map nameMap){//等所有XML文件替换完成后，再替换J
         }
 
         if(needReplace){
-            file.withWriter {writer->
+            file.withWriter('UTF-8') {writer->
                 overrideString.eachLine { line ->
                     writer.writeLine(line)
                 }

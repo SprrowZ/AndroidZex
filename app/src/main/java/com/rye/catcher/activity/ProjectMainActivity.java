@@ -52,7 +52,7 @@ public class ProjectMainActivity extends BaseActivity  implements ProjectListAda
 
     @Override
     public int bindLayout() {
-        return R.layout.project_main;
+        return R.layout.project_main ;
     }
 
     @Override

@@ -129,7 +129,11 @@ task xmlReplaceEx(){
         xmlJavaReplace(nameMap)
 
         //将重命名的文件前后名字---输出到文件中
-        File renameFile =file("/config/renameFile.txt")
+        File renameFile =new File(getRootDir().absolutePath+"/config/renameFile.txt")
+
+         if(!renameFile.exists()||renameFile.isDirectory()){
+             renameFile.createNewFile()
+         }
             renameFile.withWriter ('UTF-8'){ writer->
                 nameMap.each {
                     writer.writeLine("$it.key ----------->>>>>>>>>>   $it.value")

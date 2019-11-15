@@ -153,7 +153,7 @@ def xmlJavaReplace(Map nameMap){//等所有XML文件替换完成后，再替换J
             reader.eachLine { line ->
                   if(line.indexOf("R.layout.")!=-1){//有布局文件
                       def xmlPrefix=''
-                      Pattern pattern=Pattern.compile("[[a-z0-9]_]+")
+                      Pattern pattern=Pattern.compile("[a-z0-9_]+")
                       Matcher matcher=pattern.matcher(line.split("\\.")[2])
                       while(matcher.find()){
                          xmlPrefix= matcher.group(0)
@@ -169,7 +169,7 @@ def xmlJavaReplace(Map nameMap){//等所有XML文件替换完成后，再替换J
         }
 
         if(needReplace){
-            file.withWriter('UTF-8') {writer->
+            file.withWriter('UTF-8') { writer->
                 overrideString.eachLine { line ->
                     writer.writeLine(line)
                 }
@@ -199,10 +199,11 @@ def xmlLog(Map nameMap){
 }
 
 
-task operateXmlFile(){
-
+task operateXmlFile( ){
+    def nameMap =new HashMap()
+    nameMap.put("activity_main_exx","xfefsmlsg")
+    nameMap.put("tab02_small_size","sdfsdef")
     doLast{
-
 
         File sw360 =new File(this.getRootDir().absolutePath+"/app/src/main/res/values-sw360dp/layout.xml")
 
@@ -210,22 +211,56 @@ task operateXmlFile(){
 
         println("========================??"+sw360.exists()+","+sw375.exists())
 
-        def parser= new XmlParser()
-
-        def sw1=parser.parse(sw360)
-
-        def sw2=parser.parse(sw375)
-
-        def adjustMap=[:]
-        sw1.item.each{ item->
-            println("item:"+item.text())
-            if(item.text().indexOf("@layout")!=-1){
-                adjustMap.put(item.text().split("/")[1],"")
+        if(sw360.exists()){
+            def xmlName=''
+            def contentBuilder= new StringBuilder()
+            def needOverride=false
+            sw360.withReader { reader ->
+                reader.eachLine {line->
+                    if(line.indexOf('@layout/')!=-1){
+                        needOverride = true
+                        Pattern pattern = Pattern.compile("[a-z0-9_]+")
+                        Matcher matcher=pattern.matcher(line.split('/')[1])
+                        while(matcher.find()){ //这里有问题
+                            xmlName=matcher.group(0)
+                        }
+                        if(nameMap.containsKey(xmlName)){
+                            line=line.replaceAll(xmlName,nameMap.get(xmlName))
+                        }
+                        println("VVVVVVVVVVVVVVVVV----$xmlName")
+                    }
+                    contentBuilder.append(line+"\n")
+                }
             }
+
+
+            if(needOverride){
+                sw360.withWriter('UTF-8') {  writer ->
+                        contentBuilder.eachLine {line ->
+                            writer.writeLine(line)
+                        }
+                }
+            }
+
         }
-        if(adjustMap!=null){
-            println("oooo--"+adjustMap.size())
-        }
+//        def parser= new XmlParser()
+//
+//        def sw1=parser.parse(sw360)
+//
+//        def sw2=parser.parse(sw375)
+//
+//        def adjustMap=[:]
+//        sw1.item.each{ item->
+//            println("item:"+item.text())
+//            if(item.text().indexOf("@layout")!=-1){
+//                adjustMap.put(item.text().split("/")[1],"")
+//            }
+//        }
+//        if(adjustMap!=null){
+//            sw360.withWriter { writer->
+//
+//            }
+//        }
 
 
 

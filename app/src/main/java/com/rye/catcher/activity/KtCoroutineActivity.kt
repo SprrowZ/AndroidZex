@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.rye.catcher.BaseActivity
 import com.rye.catcher.R
-import kotlinx.android.synthetic.main.activity_zt.*
+import kotlinx.android.synthetic.main.activity_kt_coroutine.*
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*

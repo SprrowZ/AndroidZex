@@ -18,7 +18,8 @@ public class Somethings {
 //        }
 //         test2();
 
-        test3();
+    //    test3();
+        test4();
     }
 
     public static void test2(){
@@ -36,5 +37,14 @@ public class Somethings {
         String target="aaaaaaaa.bbbbbbb";
        String result= target.substring(0,target.indexOf("."))+target.substring(target.indexOf("."));
        System.out.println(result);
+    }
+
+    public static void test4(){
+        String target="AAABBB";
+        String target2=" AAA ";
+        target= target.replaceAll(" AAA","FFF");
+        target2=target2.replaceAll(" AAA"," C CC");
+        System.out.println(target);
+        System.out.println(target2);
     }
 }

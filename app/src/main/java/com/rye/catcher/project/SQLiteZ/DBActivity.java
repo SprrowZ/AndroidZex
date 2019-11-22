@@ -53,12 +53,12 @@ public class DBActivity extends BaseActivity {
         dbManager.closeDB();
     }
    public void add(View view){
-    ArrayList<Person> persons=new ArrayList<Person>();
-    Person person1=new Person("Ella",22,"lively girl");
-    Person person2 = new Person("Jenny", 22, "beautiful girl");
-    Person person3 = new Person("Jessica", 23, "sexy girl");
-    Person person4 = new Person("Kelly", 23, "hot baby");
-    Person person5 = new Person("Jane", 25, "a pretty woman");
+    ArrayList<Humans> persons=new ArrayList<Humans>();
+    Humans person1=new Humans("Ella",22,"lively girl");
+    Humans person2 = new Humans("Jenny", 22, "beautiful girl");
+    Humans person3 = new Humans("Jessica", 23, "sexy girl");
+    Humans person4 = new Humans("Kelly", 23, "hot baby");
+    Humans person5 = new Humans("Jane", 25, "a pretty woman");
 
     persons.add(person1);
     persons.add(person2);
@@ -71,7 +71,7 @@ public class DBActivity extends BaseActivity {
 
   public void update(View view){
     //将Jane的年龄改为30（更改的事数据库中的值，要查询才能刷新ListView中显示的结果）
-      Person person=new Person();
+      Humans person=new Humans();
       person.name="Jane";
       person.age=30;
       dbManager.updataAge(person);
@@ -80,14 +80,14 @@ public class DBActivity extends BaseActivity {
   public void delete(View view){
       //删除所有三十岁以上的人（此操作在update之后进行，Jane会被删除（因为她的年龄被改为30））
       //同样是查询才能查看更改结果
-      Person person=new Person();
+      Humans person=new Humans();
       person.age=30;
       dbManager.deleteOldPerson(person);
   }
   public void query(View view){
-      List<Person> persons=dbManager.query();
+      List<Humans> persons=dbManager.query();
       ArrayList<Map<String,String>> list=new ArrayList<Map<String,String>>();
-      for (Person person:persons){
+      for (Humans person:persons){
           HashMap<String,String> map=new HashMap<String, String>();
           map.put("name",person.name);
           map.put("info",person.age+"years old"+person.info);

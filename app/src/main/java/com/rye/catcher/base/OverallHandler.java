@@ -38,7 +38,7 @@ public class OverallHandler extends Handler {
             //退入到后台
                 break;
             case exit:
-            ActivityManager.getInstance().exit();
+
                 Process.killProcess(Process.myPid());
                 System.exit(0);
                 break;

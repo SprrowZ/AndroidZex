@@ -1,5 +1,3 @@
-
-
 //-----||-------------------------Demo-------------------------||-----------//
 this.project.afterEvaluate {//将task挂接到build生命周期后
     def buildTask = project.tasks.getByName('clean')//
@@ -62,78 +60,77 @@ static def getRandomString() {
 }
 
 
-task renameJavaFile(){
-    doLast{
-        def nameMap=new HashMap()
-        FileTree tree= fileTree(dir:'src/main/java')
+task renameJavaFile() {
+    doLast {
+        def nameMap = new HashMap()
+        FileTree tree = fileTree(dir: 'src/main/java')
         tree.include '**/*.java'
-        tree.each {File file->
-            def originName=file.name.split("\\.").first()
-            def afterName=getRandomString()
+        tree.each { File file ->
+            def originName = file.name.split("\\.").first()
+            def afterName = getRandomString()
             println("originName:${originName}----afterName:${afterName}")
-            nameMap.put(originName,afterName)
+            nameMap.put(originName, afterName)
         }
-        javaClassRename(dir:'src/main/java',nameMap)
+        javaClassRename(dir: 'src/main/java', nameMap)
     }
 
 }
 
 
-def javaClassRename(Map treePath,HashMap nameMap){
+def javaClassRename(Map treePath, HashMap nameMap) {
 
-    FileTree tree= fileTree(treePath)
+    FileTree tree = fileTree(treePath)
     tree.include '**/*.java'
     tree.each { File file ->
-        def prefix=file.name.split("\\.").first()
-        def stringBuilder=new StringBuilder()
-        file.withReader ('UTF-8'){reader->
+        def prefix = file.name.split("\\.").first()
+        def stringBuilder = new StringBuilder()
+        file.withReader('UTF-8') { reader ->
             //可以优化的，没有必要每次一行都遍历所有的nameMap内容；通过引用就能确定有哪些被引用，哪些没有
-            reader.eachLine { line->
-                nameMap.each { item->
-                    if(line.indexOf(" ${item.key}")!=-1){  //类定义
+            reader.eachLine { line ->
+                nameMap.each { item ->
+                    if (line.indexOf(" ${item.key}") != -1) {  //类定义
 
-                        line=line.replaceAll(" ${item.key}"," ${item.value}")
-
-                    }
-                    if(line.indexOf(".${item.key}")!=-1){ //依赖
-
-                        line=line.replaceAll(".${item.key}",".${item.value}")
+                        line = line.replaceAll(" ${item.key}", " ${item.value}")
 
                     }
-                    if(line.indexOf(" ${item.key}.")!=-1){//直接引用
+                    if (line.indexOf(".${item.key}") != -1) { //依赖
 
-                        line=line.replaceAll(" ${item.key}."," ${item.value}.")
+                        line = line.replaceAll(".${item.key}", ".${item.value}")
 
                     }
+                    if (line.indexOf(" ${item.key}.") != -1) {//直接引用
 
-                    if(line.indexOf("<${item.key}>")!=-1){//弱引用
-
-                         line=line.replaceAll("<${item.key}>","<${item.value}>")
+                        line = line.replaceAll(" ${item.key}.", " ${item.value}.")
 
                     }
 
-                    if(line.indexOf("${item.key}.class")!=null){//引用
+                    if (line.indexOf("<${item.key}>") != -1) {//弱引用
 
-                        line=line.replaceAll("${item.key}.class","${item.value}.class")
+                        line = line.replaceAll("<${item.key}>", "<${item.value}>")
+
                     }
 
-                    if(line.indexOf("(${item.key}.")!=-1){//引用
-                        line=line.replaceAll("\\(${item.key}.","\\(${item.value}.")
+                    if (line.indexOf("${item.key}.class") != null) {//引用
+
+                        line = line.replaceAll("${item.key}.class", "${item.value}.class")
+                    }
+
+                    if (line.indexOf("(${item.key}.") != -1) {//引用
+                        line = line.replaceAll("\\(${item.key}.", "\\(${item.value}.")
                     }
 
                 }
-                stringBuilder.append(line+"\n")
+                stringBuilder.append(line + "\n")
             }
         }
         //这中间可以做很多事情
-       file.withWriter ('UTF-8'){ writer ->
-           stringBuilder.eachLine {line->
-               writer.writeLine(line)
-           }
-       }
+        file.withWriter('UTF-8') { writer ->
+            stringBuilder.eachLine { line ->
+                writer.writeLine(line)
+            }
+        }
 
 
-
-        file.renameTo(file.path.replaceAll(prefix,nameMap.get(prefix)))
+        file.renameTo(file.path.replaceAll(prefix, nameMap.get(prefix)))
     }
 }

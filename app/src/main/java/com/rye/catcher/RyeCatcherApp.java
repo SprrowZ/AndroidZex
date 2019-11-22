@@ -12,7 +12,7 @@ import android.util.Log;
 import com.rye.base.BaseApplication;
 import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
-import com.rye.catcher.base.ActivityManager;
+
 import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.base.dbs.SchemasModule;
 import com.rye.catcher.utils.CrashHandler;
@@ -114,7 +114,7 @@ public class RyeCatcherApp extends BaseApplication {
             private int activityCount = 0;
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                ActivityManager.getInstance().setCurrentActivity(activity);
+
             }
 
             @Override
@@ -128,7 +128,7 @@ public class RyeCatcherApp extends BaseApplication {
             @Override
             public void onActivityResumed(Activity activity) {
                 Log.i(TAG, "onActivityResumed: "+activity.getLocalClassName());
-                ActivityManager.getInstance().setCurrentActivity(activity);
+
             }
 
             @Override

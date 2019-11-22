@@ -65,6 +65,7 @@ task renameJavaFile() {
         def nameMap = new HashMap()
         FileTree tree = fileTree(dir: 'src/main/java')
         tree.include '**/*.java'
+        tree.include '**/*.kt'
         tree.each { File file ->
             def originName = file.name.split("\\.").first()
             def afterName = getRandomString()
@@ -118,7 +119,10 @@ def javaClassRename(Map treePath, HashMap nameMap) {
                     if (line.indexOf("(${item.key}.") != -1) {//引用
                         line = line.replaceAll("\\(${item.key}.", "\\(${item.value}.")
                     }
+                    if(line.indexOf("${item.key}:") !=-1){//Realm实体类
 
+                        line =line.replaceAll("${item.key}:","${item.value}:")
+                    }
                 }
                 stringBuilder.append(line + "\n")
             }

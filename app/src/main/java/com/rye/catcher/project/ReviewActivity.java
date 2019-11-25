@@ -1,10 +1,9 @@
 package com.rye.catcher.project;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,7 +11,6 @@ import android.widget.Button;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.activity.ctmactivity.CtmTopActivity;
 import com.rye.catcher.activity.AsyncMainActivity;
 import com.rye.catcher.project.review.BaseAdapterTest;
 import com.rye.catcher.project.review.SpannableStringTest;
@@ -96,8 +94,7 @@ public class ReviewActivity extends BaseActivity implements View.OnClickListener
                 mDialog.getWindow().setAttributes(paramss);
                 break;
             case R.id.someDemo:
-                Intent intent2=new Intent(this, CtmTopActivity.class);
-                startActivity(intent2);
+
                 break;
             case R.id.retrofit:
 

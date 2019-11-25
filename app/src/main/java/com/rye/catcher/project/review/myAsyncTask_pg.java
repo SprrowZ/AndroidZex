@@ -3,7 +3,7 @@ package com.rye.catcher.project.review;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.ProgressBar;
 
 import com.rye.catcher.R;

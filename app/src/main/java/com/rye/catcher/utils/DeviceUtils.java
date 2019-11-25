@@ -1,14 +1,13 @@
 package com.rye.catcher.utils;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -275,6 +274,21 @@ public class DeviceUtils {
         return Build.ID;
     }
 
+    /**
+     * 判断当前手机是ART虚拟机还是Dalvik虚拟机
+     * @return
+     */
+    public static String getVirtualMachine(){
+        final String vmVersion = System.getProperty("java.vm.version");
+         String result="";
+        if (vmVersion.startsWith("2")){
+            result="ART虚拟机，版本号："+vmVersion;
+        }else{
+            result="Dalvik虚拟机，版本号："+vmVersion;
+        }
+        return result;
+
+    }
 
 
 

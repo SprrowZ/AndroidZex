@@ -1,11 +1,10 @@
 package com.rye.catcher.activity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,16 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.project.dialog.ctdialog.ExDialog;
-import com.rye.catcher.project.dialog.ctdialog.IDialog;
-import com.rye.catcher.project.dialog.ctdialog.manager.DialogWrapper;
-import com.rye.catcher.project.dialog.ctdialog.manager.ExDialogManager;
-import com.rye.catcher.utils.DialogUtil;
-import com.rye.catcher.utils.EchatAppUtil;
+import com.rye.base.widget.dialog.ctdialog.ExDialog;
+import com.rye.base.widget.dialog.ctdialog.IDialog;
+import com.rye.base.widget.dialog.ctdialog.manager.DialogWrapper;
+import com.rye.base.widget.dialog.ctdialog.manager.ExDialogManager;
+import com.rye.base.utils.DialogUtil;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.util.Timer;
@@ -133,7 +130,7 @@ public class CommonDialogActivity extends BaseActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                DialogUtil.closeLoadingDialog(CommonDialogActivity.this);
+                DialogUtil.closeDialog(CommonDialogActivity.this);
             }
         }, 3000);
     }

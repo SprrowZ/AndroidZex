@@ -1,0 +1,140 @@
+//-----||-------------------------Demo-------------------------||-----------//
+this.project.afterEvaluate {//将task挂接到build生命周期后
+    def buildTask = project.tasks.getByName('clean')//
+    if (buildTask == null) throw GradleException('the build task is not found')
+    buildTask.doFirst {
+//           writeTask.execute()
+        println '---------clean --------'
+        tasks.testLife
+    }
+}
+
+task testLife {
+    doLast {
+        println '---********-------测试用gradle-----********---'
+        println "主项目信息:$rootProject.ext.compileSdkVer"
+    }
+}
+
+task writeTask {
+    doLast {
+        mustRunAfter "testLife"
+        println '---********---|----|测试用gradle|----|---********---'
+    }
+
+}
+task X {
+
+    doLast {
+        println 'X'
+    }
+}
+task Y {
+    mustRunAfter X
+    doLast {
+        println 'Y'
+    }
+}
+task Z {
+    mustRunAfter Y
+    doLast {
+        println 'Z'
+    }
+}
+
+/**-------------------------------二段测试---------------------------------**/
+
+//------测试操作xml文件
+def getResPath() {
+    return 'app/src/main/res/'
+}
+
+static def getRandomString() {
+    def str = 'abcdefghijklmnopqstuvwxzy'
+    def randomString = ''
+    for (int i = 0; i < 10; i++) {
+        def number = new Random().nextInt(25)
+        randomString += str.charAt(number)
+    }
+    randomString
+}
+
+
+task renameJavaFile() {
+    doLast {
+        def nameMap = new HashMap()
+        FileTree tree = fileTree(dir: 'src/main/java')
+        tree.include '**/*.java'
+        tree.include '**/*.kt'
+        tree.each { File file ->
+            def originName = file.name.split("\\.").first()
+            def afterName = getRandomString()
+            println("originName:${originName}----afterName:${afterName}")
+            nameMap.put(originName, afterName)
+        }
+        javaClassRename(dir: 'src/main/java', nameMap)
+    }
+
+}
+
+
+def javaClassRename(Map treePath, HashMap nameMap) {
+
+    FileTree tree = fileTree(treePath)
+    tree.include '**/*.java'
+    tree.each { File file ->
+        def prefix = file.name.split("\\.").first()
+        def stringBuilder = new StringBuilder()
+        file.withReader('UTF-8') { reader ->
+            //可以优化的，没有必要每次一行都遍历所有的nameMap内容；通过引用就能确定有哪些被引用，哪些没有
+            reader.eachLine { line ->
+                nameMap.each { item ->
+                    if (line.indexOf(" ${item.key}") != -1) {  //类定义
+
+                        line = line.replaceAll(" ${item.key}", " ${item.value}")
+
+                    }
+                    if (line.indexOf(".${item.key}") != -1) { //依赖
+
+                        line = line.replaceAll(".${item.key}", ".${item.value}")
+
+                    }
+                    if (line.indexOf(" ${item.key}.") != -1) {//直接引用
+
+                        line = line.replaceAll(" ${item.key}.", " ${item.value}.")
+
+                    }
+
+                    if (line.indexOf("<${item.key}>") != -1) {//弱引用
+
+                        line = line.replaceAll("<${item.key}>", "<${item.value}>")
+
+                    }
+
+                    if (line.indexOf("${item.key}.class") != null) {//引用
+
+                        line = line.replaceAll("${item.key}.class", "${item.value}.class")
+                    }
+
+                    if (line.indexOf("(${item.key}.") != -1) {//引用
+                        line = line.replaceAll("\\(${item.key}.", "\\(${item.value}.")
+                    }
+                    if(line.indexOf("${item.key}:") !=-1){//Realm实体类
+
+                        line =line.replaceAll("${item.key}:","${item.value}:")
+                    }
+                }
+                stringBuilder.append(line + "\n")
+            }
+        }
+        //这中间可以做很多事情
+        file.withWriter('UTF-8') { writer ->
+            stringBuilder.eachLine { line ->
+                writer.writeLine(line)
+            }
+        }
+
+
+        file.renameTo(file.path.replaceAll(prefix, nameMap.get(prefix)))
+    }
+}

@@ -1,0 +1,21 @@
+package com.rye.base.ui
+
+import android.os.Bundle
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import java.lang.Exception
+
+abstract class BaseActivity : RxAppCompatActivity(){
+    val TAG=javaClass.name
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (getLayoutId()!=null && getLayoutId()!=0){
+            setContentView(getLayoutId())
+        }else{
+            throw Exception("layout cannot be null!")
+        }
+        initEvent()
+    }
+    abstract fun getLayoutId():Int
+    abstract fun initEvent()
+
+}

@@ -31,7 +31,7 @@
           android:layout_width="@dimen/len_60"
           android:layout_height="@dimen/len_60"
           app:Dtype="circle"
-          app:Dsrc="@drawable/take_photo"
+          app:Dsrc="@mipmap/take_photo"
           android:scaleType="fitXY"
           app:NeedBorder="true"
           app:Bdistance="@dimen/len_4"

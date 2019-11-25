@@ -82,7 +82,7 @@ public class BatchLoadingActivity extends Activity {
 
         @Override
         public void onScrollStateChanged(AbsListView view, int scrollState) {
-            Log.i("MainActivity", "onScrollStateChanged(scrollState="
+            Log.i("ZStepMainActivity", "onScrollStateChanged(scrollState="
                     + scrollState + ")");
         }
 

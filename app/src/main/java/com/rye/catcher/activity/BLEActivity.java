@@ -22,7 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,7 +31,7 @@ import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
-import com.rye.catcher.utils.ubean.Permissions;
+import com.rye.catcher.utils.permission.Permissions;
 
 import java.lang.ref.WeakReference;
 

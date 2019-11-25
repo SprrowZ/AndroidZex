@@ -20,10 +20,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.rye.catcher.utils.EchatAppUtil;
+import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.JsonUtils;
-import com.rye.catcher.utils.StringUtils;
+import com.rye.catcher.utils.Old_JsonUtils;
 
 import org.apache.commons.io.IOUtils;
 
@@ -98,7 +97,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     private static Map<String, TableDef> tables = null;
 
     private DbOpenHelper(String dbName) {
-        super(EchatAppUtil.getAppContext(), dbName, null, DATABASE_VERSION);
+        super(Old_ApplicationUtil.getAppContext(), dbName, null, DATABASE_VERSION);
         this.createTables(this.getWritableDatabase());
     }
 
@@ -148,7 +147,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         }
         synchronized (TAG) {
             if(tables == null) {
-                loadTableDefFile(EchatAppUtil.getAppContext());
+                loadTableDefFile(Old_ApplicationUtil.getAppContext());
             }
         }
         TableDef tableDef =  tables.get(tblName);
@@ -228,7 +227,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         closeDbs();
         String fileName = this.getDatabaseName();
         // 取得数据库文件名
-        File dbFile =  EchatAppUtil.getAppContext().getDatabasePath(fileName);
+        File dbFile =  Old_ApplicationUtil.getAppContext().getDatabasePath(fileName);
         if(dbFile == null) {
             return;
         }
@@ -423,7 +422,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         }
 
         String jsonString = writer.toString();
-        List<Bean> list = JsonUtils.toBeanList(jsonString);
+        List<Bean> list = Old_JsonUtils.toBeanList(jsonString);
 
         // 初始化表定义
         for (Bean bean : list) {

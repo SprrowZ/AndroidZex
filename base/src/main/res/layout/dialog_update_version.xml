@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:orientation="vertical"
+         android:layout_marginTop="@dimen/len_52"
+        android:padding="@dimen/len_16" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/font_24"
+            android:textStyle="bold"
+            tools:text="我是标题"
+            android:layout_marginBottom="@dimen/len_24"
+            />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/font_18"
+            tools:text="内容"
+            android:layout_marginBottom="@dimen/len_24"
+            />
+
+        <TextView
+            android:id="@+id/update"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingLeft="@dimen/len_16"
+            android:paddingRight="@dimen/len_16"
+            android:textSize="@dimen/font_24"
+            android:text="升级"
+            android:gravity="center"
+            android:background="@drawable/project_btn_bk"
+            android:padding="@dimen/len_8"
+            android:layout_marginRight="@dimen/len_36"
+            android:layout_marginLeft="@dimen/len_36"
+            android:layout_marginBottom="@dimen/len_24"
+            />
+    </LinearLayout>
+
+
+</FrameLayout>

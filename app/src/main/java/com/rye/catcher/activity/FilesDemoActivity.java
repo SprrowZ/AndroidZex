@@ -2,7 +2,7 @@ package com.rye.catcher.activity;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.utils.FileUtils;
+import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.SDHelper;
 
 import java.io.BufferedWriter;
@@ -140,10 +140,6 @@ public class FilesDemoActivity extends BaseActivity {
 
     }
 
-    private void createDirFile() {
-        FileUtils.createNewFile("天玄九变","虎啸山林"+".txt","青林");
-        Toast.makeText(this, "ojbk", Toast.LENGTH_SHORT).show();
-    }
 
 
 
@@ -195,7 +191,7 @@ public class FilesDemoActivity extends BaseActivity {
             case R.id.btn5:
                 break;
             case R.id.btn6:
-                createDirFile();
+
                 break;
             case R.id.btn7:
                 break;

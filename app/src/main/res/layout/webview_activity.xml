@@ -16,12 +16,12 @@
             android:id="@+id/back"
             android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:src="@drawable/back"
+            android:src="@drawable/back2"
             android:tint="@color/black"
             android:layout_alignParentLeft="true"
             />
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"

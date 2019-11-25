@@ -1,7 +1,5 @@
 package com.rye.catcher.base.interfaces;
 
-import com.rye.catcher.sdks.beans.TangBean;
-
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;

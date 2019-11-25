@@ -923,7 +923,7 @@ public class Lang {
 
 //	public static int getDrawableFromFileName(String name) {
 //		Context context = EChatApp.getInstance().getBaseContext();
-//		return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+//		return context.getResources().getIdentifier(name, "activity_test", context.getPackageName());
 //	}
 
     /**

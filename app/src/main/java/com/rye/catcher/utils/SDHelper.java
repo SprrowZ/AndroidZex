@@ -8,10 +8,11 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
+
+import com.rye.base.common.Constant;
 import com.rye.catcher.RyeCatcherApp;
-import com.rye.catcher.utils.ExtraUtil.Constant;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -29,12 +30,14 @@ public class SDHelper {
     //私有构造器
     private SDHelper(){}
     //根存储
+
     public static String sdPath = Environment.getExternalStorageDirectory().getPath() + File.separator;
 
     public static String storagePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
     public static String publicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator;
     //app私有存储
     public static String external = RyeCatcherApp.getInstance().getApplicationContext().getExternalFilesDir(null) + File.separator;
+
     public static String privateData = Environment.getDataDirectory() + File.separator;
     public static String rootDirectory = Environment.getRootDirectory() + File.separator;
     //app私有缓存

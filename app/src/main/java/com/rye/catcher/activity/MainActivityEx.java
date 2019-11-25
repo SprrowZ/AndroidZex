@@ -4,15 +4,14 @@ package com.rye.catcher.activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.Nullable;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,23 +19,23 @@ import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rye.catcher.BaseActivity;
-import com.rye.catcher.MainActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
 import com.rye.catcher.activity.fragment.LMFragment;
 import com.rye.catcher.activity.fragment.SettingsFragment;
 import com.rye.catcher.activity.fragment.YLJFragment;
 
-import com.rye.catcher.common.KeyValueMgrZ;
 import com.rye.catcher.project.dao.KeyValueMgr;
-import com.rye.catcher.project.kotlins.BroadcastManager;
-import com.rye.catcher.sdks.HttpLogger;
-import com.rye.catcher.sdks.beans.WeatherBean;
-import com.rye.catcher.sdks.gmap.AmapResult;
-import com.rye.catcher.utils.DateUtils;
+
+import com.rye.catcher.base.sdks.HttpLogger;
+import com.rye.catcher.base.sdks.beans.WeatherBean;
+import com.rye.catcher.base.sdks.gmap.AmapResult;
+import com.rye.base.utils.DateUtils;
+import com.rye.catcher.project.helpers.kotlins.BroadcastManager;
 import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.ExtraUtil.Constant;
-import com.rye.catcher.utils.FileUtils;
+import com.rye.base.common.Constant;
+
+import com.rye.catcher.utils.FileUtil;
 import com.rye.catcher.utils.ToastUtils;
 
 
@@ -48,7 +47,6 @@ import butterknife.BindView;
 
 import butterknife.ButterKnife;
 
-import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -69,12 +67,13 @@ public class MainActivityEx extends BaseActivity {
 
     @BindView(R.id.design_bottom_sheet)
     BottomNavigationView bottom;
-    @BindView(R.id.design_navigation_view)
-    NavigationView design_navigation_view;
+    @BindView(R.id.design_nav_view)
+    NavigationView design_view;
 
     private View  headerLayout;
 
    private  LinearLayout left_first;
+   private LinearLayout left_second;
 
     private Fragment currentFragment;
     private int currentPos = -1;
@@ -93,7 +92,7 @@ public class MainActivityEx extends BaseActivity {
     private void init() {
 
         selectItem(0);
-        FileUtils.writeUserLog(TAG + "onCreate:");
+        FileUtil.writeUserLog(TAG + "onCreate:");
         bottom.setOnNavigationItemSelectedListener(item -> {
             item.setChecked(true);
             switch (item.getItemId()) {
@@ -113,7 +112,7 @@ public class MainActivityEx extends BaseActivity {
         startScreenBroadcastReceiver();
 
         //左侧
-        headerLayout=design_navigation_view.inflateHeaderView(R.layout.left_details);
+        headerLayout= design_view.inflateHeaderView(R.layout.left_details);
 
         left_first=headerLayout.findViewById(R.id.left_first);
         //左侧第一个点击事件
@@ -122,23 +121,17 @@ public class MainActivityEx extends BaseActivity {
                     LeftDetailActivity.class);
             startActivityForResult(intent,DEVICE_REQUEST_CODE);
         });
-        //注册kotlin本地广播
+        //第二个点击事件，切换语言
+        left_second=headerLayout.findViewById(R.id.left_second);
+        left_second.setOnClickListener(v ->{
+
+        });
+
+        //注册登录成功广播
          receiver=new LoginSuccessReceiver();
          BroadcastManager.INSTANCE.registerLoginSuccessReceiver(receiver);
 
     }
-
-
-    //应该单独抽出一个类
-    private class LoginSuccessReceiver extends BroadcastReceiver{
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.i(TAG, "onReceive: "+intent.getAction()+","+intent.getStringExtra(BroadcastManager.BROADCAST_KEY));
-        }
-    }
-
-
 
     /**
      * 获取当前Fragment
@@ -165,11 +158,9 @@ public class MainActivityEx extends BaseActivity {
         //改变颜色值
         //  setSelect(pos);
     }
-
     private String getTag(int pos) {
         return "Zzg_" + pos;
     }
-
     private Fragment getFragment(int pos) {
         switch (pos) {
             case 0:
@@ -192,9 +183,9 @@ public class MainActivityEx extends BaseActivity {
      * 获取天气信息
      */
     private void getWeather(AmapResult amapResult) {
-        if ("".equals(KeyValueMgrZ.getValue(Constant.WEATHER_UPDATE_TIME))) {
+        if ("".equals(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME))) {
             Log.i(TAG, "getWeather: 字段为空");
-            KeyValueMgrZ.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
+            KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
             weatherThread();
         } else {
             boolean needRefreshWeather = !DateUtils.isToday(Long.parseLong(KeyValueMgr.getValue(Constant.WEATHER_UPDATE_TIME)));
@@ -226,7 +217,7 @@ public class MainActivityEx extends BaseActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     try {
                         String result = response.body().string();//返回结果
-                        FileUtils.writeUserLog("getWeather-->onResponse:" + result);
+                        FileUtil.writeUserLog("getWeather-->onResponse:" + result);
                         dealWeather(result);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -237,18 +228,15 @@ public class MainActivityEx extends BaseActivity {
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     Log.i(TAG, "onFailure:weatherApi ");
-                    FileUtils.writeUserLog("getWeather-->onFailure" + t.toString());
+                    FileUtil.writeUserLog("getWeather-->onFailure" + t.toString());
                 }
             });
         }).start();
     }
-
-
-    //
-//    /**
-//     * 天气结果处理
-//     *
-//     */
+     /**
+      * 天气结果处理
+      *
+      */
     private void dealWeather(String result) {
         Log.i(TAG, "onResponse:weatherApi " + result);
         JSONObject todayTemperature = null;
@@ -269,21 +257,28 @@ public class MainActivityEx extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG,"onActivityResult");
+        if (resultCode==RESULT_OK){ //多语言适配
+         recreate();
+        }
+    }
 
-//
-//    @SuppressLint("MissingSuperCall")
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {//为了解决崩溃点击无效的问题
-//        // super.onSaveInstanceState(outState);
-//    }
-//
+    //应该单独抽出一个类
+    private class LoginSuccessReceiver extends BroadcastReceiver{
 
-
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "onReceive: "+intent.getAction()+","+intent.getStringExtra(BroadcastManager.BROADCAST_KEY));
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy: ...");
-         FileUtils.writeUserLog(TAG + "onDestroy:");
+         FileUtil.writeUserLog(TAG + "onDestroy:");
          stopScreenStateUpdate();
          //局部广播案例
          BroadcastManager.INSTANCE.unregisterReceiver(receiver);
@@ -299,32 +294,5 @@ public class MainActivityEx extends BaseActivity {
         back_pressed = System.currentTimeMillis();
     }
 
-    //
-//    /**
-//     * handler内存泄露处理
-//     */
-//    private static class MapHandler extends Handler {
-//        WeakReference<MainActivityEx> mActivity;
-//
-//        public MapHandler(MainActivityEx mainActivityEx) {
-//            mActivity = new WeakReference<>(mainActivityEx);
-//        }
-//
-//        @Override
-//        public void handleMessage(Message msg) {
-//            MainActivityEx activityEx = mActivity.get();
-//            switch (msg.what) {
-//                case 1://返回一次定位结果
-//                    activityEx.amapResult = (AmapResult) msg.obj;
-//                    activityEx.getWeather(activityEx.amapResult);
-//                    Log.i(TAG, "errorCode" + activityEx.amapResult.getErrorCode());
-//                    break;
-//                case 11://LastKnowLocation
-//                    activityEx.amapResult = (AmapResult) msg.obj;
-//                    activityEx.getWeather(activityEx.amapResult);
-//                    Log.i(TAG, "LastKnowLocationCallback: " + activityEx.amapResult.getErrorCode());
-//            }
-//            super.handleMessage(msg);
-//        }
-//    }
+
 }

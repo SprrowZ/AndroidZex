@@ -2,7 +2,7 @@ package com.rye.catcher.project.ctmviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +15,8 @@ import android.widget.Scroller;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.DensityUtil;
 import com.zyao89.view.zloading.ZLoadingView;
+
+import java.util.Stack;
 
 /**
  * Created at 2019/1/11.

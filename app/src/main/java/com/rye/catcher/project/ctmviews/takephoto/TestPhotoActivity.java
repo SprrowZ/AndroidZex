@@ -8,10 +8,10 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -86,7 +86,13 @@ public class TestPhotoActivity extends AppCompatActivity {
         }
         CameraActivity2.openCamera(this, type);
     }
-
+    private String getImagePath(){
+        Date data=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-DD%HH:mm:ss");
+        String dataStr=sdf.format(data);
+        String imagePath=SDHelper.getImageFolder()+dataStr+".png";
+        return imagePath;
+    }
     /**
      * 身份证
      */
@@ -106,13 +112,7 @@ public class TestPhotoActivity extends AppCompatActivity {
 
     }
 
-    private String getImagePath(){
-        Date data=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yy-MM-DD%HH:mm:ss");
-        String dataStr=sdf.format(data);
-        String imagePath=SDHelper.getImageFolder()+dataStr+".png";
-        return imagePath;
-    }
+
 
     /**
      * 证件

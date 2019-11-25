@@ -4,7 +4,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,7 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.rye.catcher.R
 
-class KotlinFragment:Fragment(),MediaPlayer.OnPreparedListener,MediaPlayer.OnCompletionListener {
+class KotlinFragment: Fragment(),MediaPlayer.OnPreparedListener,MediaPlayer.OnCompletionListener {
 
 
     //播放器
@@ -130,7 +130,7 @@ class KotlinFragment:Fragment(),MediaPlayer.OnPreparedListener,MediaPlayer.OnCom
 
 
     companion object{
-        fun getInstance(value:String):Fragment {
+        fun getInstance(value:String): Fragment {
             val bundle =Bundle()
             bundle.putString("key",value)
             val fragment=KotlinFragment()

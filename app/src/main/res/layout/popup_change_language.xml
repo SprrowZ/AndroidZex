@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/popup_bk"
+    android:layout_marginLeft="@dimen/len_24"
+    android:layout_marginRight="@dimen/len_24"
+    >
+<TextView
+    android:id="@+id/chinese"
+    style="@style/popup_btn"
+    android:text="中文"
+    />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_3"/>
+<TextView
+    android:id="@+id/english"
+    style="@style/popup_btn"
+    android:text="English" />
+</LinearLayout>

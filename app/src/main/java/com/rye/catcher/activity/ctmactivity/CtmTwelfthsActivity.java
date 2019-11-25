@@ -1,7 +1,7 @@
 package com.rye.catcher.activity.ctmactivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -48,7 +48,7 @@ public class CtmTwelfthsActivity extends BaseActivity {
                 WaterFallLayout.LayoutParams.WRAP_CONTENT);
         ImageView imageView = new ImageView(this);
         if (num % IMG_COUNT == 0) {
-            imageView.setImageResource(R.mipmap.my1);
+            imageView.setImageResource(R.mipmap.my3);
         } else if (num % IMG_COUNT == 1) {
             imageView.setImageResource(R.mipmap.my2);
         } else if (num % IMG_COUNT == 2) {

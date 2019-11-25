@@ -1,5 +1,7 @@
 package com.rye.catcher.utils;
 
+import com.rye.base.utils.FileUtils;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,6 +15,6 @@ import static org.junit.Assert.*;
 public class FileUtilsTest {
 @Test
  public  void checkMethod1(){
-    assertNotEquals("预期时间",FileUtils.getFileName(SDHelper.getImageFolder()));
+    assertNotEquals("预期时间", FileUtils.getFileName(SDHelper.getImageFolder()));
 }
 }

@@ -3,9 +3,9 @@ package com.rye.catcher.activity;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 
@@ -33,7 +33,7 @@ public class CoordinatorActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coordinator_layout_test);
         ButterKnife.bind(this);
-      //   toolbar.setNavigationIcon(R.drawable.mulu);
+      //   toolbar.setNavigationIcon(R.activity_test.mulu);
         toolbar.inflateMenu(R.menu.topbar_right);
         collapsingToolbarLayout.setTitle("....RyeCatcherApp....");
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.red));

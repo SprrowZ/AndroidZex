@@ -1,3 +1,8 @@
-include ':app'
+include ':app', ':zgstep',
+        ':zzsdk',
+        ':base'
 
 
+if (hasProperty("isLoadRye")?isLoadTest.toBoolean():false){//测试代码
+    include(':RyeModule')
+}

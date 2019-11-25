@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
@@ -42,8 +45,8 @@ public class CtmMain2Activity extends BaseActivity {
         //注册广播，用来加载Progress
         EventBus.getDefault().register(this);
         bottomContainers = findViewById(R.id.bottomContainers);
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.fragmentContainer, fragment);
         ft.commit();
         //注册广播

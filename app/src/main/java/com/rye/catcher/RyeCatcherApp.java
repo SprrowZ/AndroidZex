@@ -9,17 +9,17 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.rye.base.BaseApplication;
 import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
-import com.rye.catcher.base.ActivityManager;
-import com.rye.catcher.base.OverallHandler;
-import com.rye.catcher.dbs.SchemasModule;
-import com.rye.catcher.utils.CrashHandler;
-import com.rye.catcher.utils.EchatAppUtil;
 
-import com.rye.catcher.utils.ExtraUtil.Constant;
-import com.rye.catcher.utils.FileUtils;
-import com.rye.catcher.utils.ToastUtils;
+import com.rye.catcher.base.OverallHandler;
+import com.rye.catcher.base.dbs.SchemasModule;
+import com.rye.catcher.utils.CrashHandler;
+import com.rye.catcher.utils.FileUtil;
+import com.rye.catcher.utils.Old_ApplicationUtil;
+
+import com.rye.base.utils.FileUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.commonsdk.UMConfigure;
@@ -33,7 +33,7 @@ import io.realm.RealmConfiguration;
  * Created by ZZG on 2018/3/22.
  */
 
-public class RyeCatcherApp extends Application{
+public class RyeCatcherApp extends BaseApplication {
 
     private static final String TAG="RyeCatcherApp";
     private static final String LIFECYCLE_LOG="LIFECYCLE_LOG:";
@@ -56,7 +56,14 @@ public class RyeCatcherApp extends Application{
         mContext = getApplicationContext();
         init();
         //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
-        EchatAppUtil.setContext(mContext);
+        Old_ApplicationUtil.setContext(mContext);
+
+        //友盟统计
+        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
+        //UnCaughtException
+        Thread.setDefaultUncaughtExceptionHandler(CrashHandler.Companion.getInstance());
+       //realm
+        initRealm(this);
         //内存泄露检测LeakCanary
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -64,12 +71,6 @@ public class RyeCatcherApp extends Application{
             return;
         }
         LeakCanary.install(this);
-        //友盟统计
-        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
-        //UnCaughtException
-        Thread.setDefaultUncaughtExceptionHandler(CrashHandler.Companion.getInstance());
-       //realm
-        initRealm(this);
     }
 
     private void initRealm(Application application){
@@ -113,7 +114,7 @@ public class RyeCatcherApp extends Application{
             private int activityCount = 0;
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                ActivityManager.getInstance().setCurrentActivity(activity);
+
             }
 
             @Override
@@ -121,13 +122,13 @@ public class RyeCatcherApp extends Application{
               //如果为1，则说明从后台进入到前台
                 countActivity++;
                 Log.i(TAG, "onActivityStarted: "+countActivity);
-                FileUtils.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
+                FileUtil.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
                 Log.i(TAG, "onActivityResumed: "+activity.getLocalClassName());
-                ActivityManager.getInstance().setCurrentActivity(activity);
+
             }
 
             @Override

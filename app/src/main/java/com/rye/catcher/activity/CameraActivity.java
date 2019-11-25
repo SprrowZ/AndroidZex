@@ -3,10 +3,10 @@ package com.rye.catcher.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.widget.LinearLayout;
 
 import com.rye.catcher.BaseActivity;
@@ -15,7 +15,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.CameraFragment;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
-import com.rye.catcher.utils.ubean.Permissions;
+import com.rye.catcher.utils.permission.Permissions;
 
 import butterknife.BindView;
 

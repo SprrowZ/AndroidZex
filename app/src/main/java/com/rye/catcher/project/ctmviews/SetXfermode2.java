@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -28,7 +28,7 @@ public class SetXfermode2 extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(3);
         dstBmp= BitmapFactory.decodeResource(getResources(),R.drawable.bk);
-        srcBmp= BitmapFactory.decodeResource(getResources(),R.drawable.light);
+        srcBmp= BitmapFactory.decodeResource(getResources(),R.mipmap.my4);
     }
 
     @Override

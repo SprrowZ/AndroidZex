@@ -2,7 +2,7 @@
 <resources>
     <!--第一个自定义View-->
     <declare-styleable name="Topbar">
-        <attr name="title" format="string"/>
+        <attr name="name" format="string"/>
         <attr name="titleTextsize" format="dimension"/>
         <attr name="titleTextColor" format="color"/>
         <attr name="leftTextColor" format="color"/>

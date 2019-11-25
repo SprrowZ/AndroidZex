@@ -1,291 +1,199 @@
 package com.rye.catcher.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.Log;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rye.catcher.BaseActivity;
+
+import com.rye.appupdater.UpdateActivity;
+import com.rye.base.BaseActivity;
+import com.rye.base.common.LanguageConstants;
+import com.rye.base.utils.PopupEx;
 import com.rye.catcher.R;
-import com.rye.catcher.project.Ademos.MultiThreadDown;
-import com.rye.catcher.project.catcher.DelayHandleUtil;
-import com.rye.catcher.project.ctmviews.takephoto.CameraActivityEx;
-import com.rye.catcher.project.ctmviews.takephoto.TestPhotoActivity;
-import com.rye.catcher.project.dialog.TopDialog;
-import com.rye.catcher.project.Ademos.mvp.MvpActivity;
+import com.rye.catcher.activity.adapter.ProjectListAdapter;
+import com.rye.catcher.activity.presenter.ProjectPresenter;
+import com.rye.catcher.beans.ProjectBean;
+
+import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
+
+
+import com.rye.catcher.project.helpers.MultiThreadDown;
+import com.rye.catcher.project.mvp.MvpActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
-import com.rye.catcher.utils.MeasureUtil;
 import com.rye.catcher.utils.SDHelper;
+import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.List;
 
-import butterknife.BindView;
+
+ import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by ZZG on 2017/11/13.
  */
 
-public class ProjectMainActivity extends BaseActivity {
+public class ProjectMainActivity extends BaseActivity  implements ProjectListAdapter.OnItemClickListener{
 
-    private static final String TAG = "ProjectMainActivity";
     private static final String TAG2="LifeCycle-A";
-
-
-    @BindView(R.id.search_bar)
-    TextView searchBar;
-    @BindView(R.id.search)
-    LinearLayout search;
-    @BindView(R.id.service)
-    Button popup;
-    @BindView(R.id.intents)
-    Button sliding;
-    @BindView(R.id.dbtest)
-    Button dbtest;
-    @BindView(R.id.file)
-    Button file;
-    @BindView(R.id.aidl)
-    Button aidl;
-    @BindView(R.id.drawable)
-    Button drawable;
-    @BindView(R.id.shape)
-    Button shape;
-    @BindView(R.id.slidingDemo)
-    Button slidingDemo;
-    @BindView(R.id.recyclerView)
-    Button recycleView;
-    @BindView(R.id.dialogs)
-    Button dialogs;
-    @BindView(R.id.coor)
-    Button coor;
-    @BindView(R.id.viewDrag)
-    Button viewDrag;
-    @BindView(R.id.batchLoading)
-    Button batchLoading;
-    LinearLayout parent;
-    @BindView(R.id.siteProtection)
-    Button siteProtection;
-    @BindView(R.id.blueTooth)
-    Button blueTooth;
-    @BindView(R.id.blueTooth2)
-    Button blueTooth2;
-    @BindView(R.id.mvpDemo)
-    Button mvpDemo;
-    @BindView(R.id.takePhoto)
-    Button takePhoto;
-    @BindView(R.id.takePhotoEx)
-    Button takePhotoEx;
-    @BindView(R.id.multiThread)
-    Button multiThread;
-    private SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-    private Timer timer;
-    private TimerTask timerTask;
-
+    //改为recycleView
+    @BindView(R.id.recycleView)
+    RecyclerView recycleView;
+    private List<ProjectBean> dataList;
     MultiThreadDown multiThreadDown;
 
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.project_main);
-        ButterKnife.bind(this);
-        setBarTitle("Mix");
-        MeasureUtil.setLeftScale(this, search, searchBar, R.mipmap.icon_title_bar_edit_search);
-        Log.i(TAG2, "onCreate: ...");
+    public int bindLayout() {
+        return R.layout.project_main ;
     }
 
-
-    private void showDialog() {
-        TopDialog topDialog =
-                new TopDialog(ProjectMainActivity.this, R.layout.project_dialog_first);
-        parent = (LinearLayout) topDialog.findViewById(R.id.parent);
-        //设置drawleft的大小
-
-        topDialog.getWindow().setBackgroundDrawable(null);
+    @Override
+    public void initEvent() {
+        ButterKnife.bind(this);
+        recycleView.setLayoutManager(new LinearLayoutManager(this));
+        //Mvp的目前操作，这个地方可以修改
+        dataList=getPresenter(ProjectPresenter.class).getDataList(this);
+        ProjectListAdapter adapter=new ProjectListAdapter(this,dataList);
+        //子Item点击事件
+        adapter.setOnItemClickListener(this);
+        recycleView.setAdapter(adapter);
     }
 
     private void startService() {
-        startActivityByAlpha(new Intent(this, ServiceMainActivity.class));
+        startActivity(new Intent(this, ServiceMainActivity.class));
     }
 
-    private void setClock() {
-        timer=new Timer();
-        timerTask=new TimerTask(){
-            @Override
-            public void run() {
-                final Date date = new Date();
-                runOnUiThread(() -> {
-                    sliding.setText(sdf.format(date));
-                });
-            }
-        };
-        timer.schedule(timerTask,0,1000);
+    /**
+     * 切语言
+     * @param view
+     */
+    private void changeLanguage(View view){
+
+        PopupEx popupEx= new PopupEx.Builder()
+                .setContextView(this,R.layout.popup_change_language)
+                .setDim(0.7F)
+                .setWidth(LinearLayout.LayoutParams.WRAP_CONTENT)
+                .setParentView(view, Gravity.CENTER)
+                .create();
+        popupEx.getView().findViewById(R.id.chinese).setOnClickListener(v -> {
+            popupEx.dismiss();
+            change(LanguageConstants.SIMPLIFIED_CHINESE);
+        });
+        popupEx.getView().findViewById(R.id.english).setOnClickListener(v -> {
+            popupEx.dismiss();
+            change(LanguageConstants.ENGLISH);
+
+        });
+
     }
+    private void change(String language){
+        if (SharedPreManager.getValue(LanguageConstants.VALUE)
+                .equals(language)){
+            return;
+        }
+        SharedPreManager.saveValue(LanguageConstants.VALUE,language);
+        setResult(RESULT_OK);
+        finish();
+    }
+
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(TAG2, "onResume: ....");
-        setClock();
-    }
-
-    @OnClick({R.id.service, R.id.intents, R.id.dbtest, R.id.file,
-            R.id.aidl, R.id.drawable, R.id.shape, R.id.slidingDemo,
-            R.id.search_bar, R.id.recyclerView, R.id.dialogs, R.id.coor,
-            R.id.viewDrag, R.id.batchLoading, R.id.siteProtection,
-            R.id.blueTooth,R.id.blueTooth2,R.id.mvpDemo,R.id.takePhoto,
-            R.id.takePhotoEx,R.id.multiThread,R.id.kotlin})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.search_bar:
-                showDialog();
-                break;
-            case R.id.service:
+    public void onItemClick(String action) {
+        switch (action) {
+            case "testService":
                 startService();
                 break;
-            case R.id.intents:
+            case "testIntents":
                 startActivity(new Intent(ProjectMainActivity.this,
                         IntentsActivity.class));
                 break;
-            case R.id.dbtest:
+            case "testSQLite":
                 startActivity(new Intent(ProjectMainActivity.this,
                         DBActivity.class));
                 break;
-            case R.id.file:
+            case "testFile":
                 startActivity(new Intent(ProjectMainActivity.this,
                         FilesDemoActivity.class));
                 break;
-            case R.id.aidl:
+            case "testAIDL":
                 startActivity(new Intent(ProjectMainActivity.this,
                         AIDLActivity.class));
                 break;
-            case R.id.drawable:
-                Intent intent8 = new Intent(ProjectMainActivity.this,
-                        DrawableMainActivity.class);
-                startActivity(intent8);
-                break;
-            case R.id.shape:
-                testHandler();
-                break;
-            case R.id.slidingDemo:
+            case "testSlide":
                 Intent intent11 = new Intent(ProjectMainActivity.this,
-                        TestCoorActivity.class);
+                        ReflectActivity.class);
                 startActivity(intent11);
                 break;
-            case R.id.recyclerView:
+            case "testRecycle":
                 Intent intent12 = new Intent(ProjectMainActivity.this,
                         RecycleDemoActivity.class);
                 startActivity(intent12);
                 break;
-            case R.id.dialogs:
+            case "testDialogEx":
                 startActivity(new Intent(this, CommonDialogActivity.class));
                 break;
-            case R.id.coor:
+            case "testCoor":
                 startActivity(new Intent(this, CoordinatorActivity.class));
                 break;
-            case R.id.viewDrag:
-                startActivity(new Intent(this, SlideActivity.class));
-                break;
-            case R.id.batchLoading:
+            case "batchLoading":
                 startActivity(new Intent(this, BatchLoadingActivity.class));
                 break;
-            case R.id.siteProtection:
+            case "testPreserve":
                 startActivity(new Intent(this, SiteProtectionActivity.class));
                 break;
-            case R.id.blueTooth:
+            case "testBluetooth":
                 startActivity(new Intent(this, BlueToothActivity.class));
                 break;
-            case R.id.blueTooth2:
-                startActivity(new Intent(this,BLEActivity.class));
-                break;
-            case R.id.mvpDemo:
+            case "testMvp":
                 startActivity(new Intent(this, MvpActivity.class));
                 break;
-            case R.id.takePhoto:
+            case "takePhoto":
                 PermissionUtils.requestPermission(this,"需要相机权限！",false,
                         data -> {
-                            startActivity(new Intent(this, TestPhotoActivity.class));
+                            startActivity(new Intent(this, TestCameraActivity.class));
                         },1, Permission.CAMERA);
                 break;
-            case R.id.takePhotoEx:
-                startActivity(new Intent(this, CameraActivityEx.class));
+            case "changeLanguage":
+                // startActivity(new Intent(this, CameraActivityEx.class));
+                changeLanguage(getContentView());
                 break;
-            case R.id.multiThread:
-             multiThreadDown=new MultiThreadDown(MultiThreadDown.path, SDHelper.getAppExternal()+"Zzx.mp4",3);
-             multiThreadDown.setOnDownLoadListener(new MultiThreadDown.DownLoadListener() {
-                 @Override
-                 public void getProgress(int progress) {
+            case "testMulti":
+                multiThreadDown=new MultiThreadDown(MultiThreadDown.path, SDHelper.getAppExternal()+"Zzx.mp4",3);
+                multiThreadDown.setOnDownLoadListener(new MultiThreadDown.DownLoadListener() {
+                    @Override
+                    public void getProgress(int progress) {
 
-                 }
+                    }
 
-                 @Override
-                 public void onComplete() {
-                     Toast.makeText(ProjectMainActivity.this,"下载完成",Toast.LENGTH_SHORT).show();
-                 }
+                    @Override
+                    public void onComplete() {
+                        Toast.makeText(ProjectMainActivity.this,"下载完成",Toast.LENGTH_SHORT).show();
+                    }
 
-                 @Override
-                 public void onFailure() {
+                    @Override
+                    public void onFailure() {
 
-                 }
-             });
-             multiThreadDown.downLoad();
+                    }
+                });
+                multiThreadDown.downLoad();
                 break;
-            case R.id.kotlin:
+            case "testKotlin":
                 startActivity(new Intent(this,KotlinActivity.class));
                 break;
-        }
-    }
-
-    //
-    private void testHandler() {
-        Log.i(TAG, "testHandler: ...");
-        DelayHandleUtil.setDelay("zzg", 0L, 2000, new DelayHandleUtil.HandleListener() {
-            @Override
-            public void ReachTheTime() {
-                Log.i(TAG, "testHandler222: ...");
-            }
-        });
-    }
-
-    @Override
-    protected void onRestart() {
-        Log.i(TAG2, "onRestart: ...");
-        super.onRestart();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(TAG2, "onPause: ...");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(TAG2, "onStop: ...");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG2, "onDestroy: ...");
-        if (timer!=null){
-            timer.cancel();
-        }
-        if (timerTask!=null){
-            timerTask.cancel();
+            case "ktCoroutine":
+                startActivity(new Intent(this,KtCoroutineActivity.class));
+                break;
+            case "testUpdate":
+                startActivity(new Intent(this, UpdateActivity.class));
+                break;
         }
     }
 }

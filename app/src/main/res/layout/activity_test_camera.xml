@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity">
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/black"
+        app:tabBackground="@color/transparent"
+        app:tabIndicatorColor="@color/transparent"
+        app:tabSelectedTextColor="@color/red"
+         app:tabTextAppearance="@style/TabLayoutTextStyle"
+         android:background="@color/soft1"
+        >
+
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+    </androidx.viewpager.widget.ViewPager>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

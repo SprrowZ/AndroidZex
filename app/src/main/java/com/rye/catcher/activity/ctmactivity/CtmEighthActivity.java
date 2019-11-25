@@ -1,13 +1,15 @@
 package com.rye.catcher.activity.ctmactivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.CtmViewFragment;
 import com.rye.catcher.activity.fragment.DistortionFragment;
 import com.rye.catcher.activity.fragment.TelescopeFragment;
+
+import java.util.HashMap;
 
 /**
  * Created by ZZG on 2018/3/8.
@@ -46,4 +48,7 @@ public class CtmEighthActivity extends BaseActivity {
                     .show(distortionFragment).commit();
         }
     }
+
+
+
 }

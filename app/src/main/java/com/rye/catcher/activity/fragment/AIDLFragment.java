@@ -1,15 +1,11 @@
 package com.rye.catcher.activity.fragment;
 
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rye.catcher.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AIDLBean;
 
@@ -18,8 +14,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 /**

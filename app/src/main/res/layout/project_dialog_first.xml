@@ -79,7 +79,7 @@
             <!--android:layout_marginTop="20dp"-->
             <!--android:layout_weight="1"-->
             <!--android:background="@color/white"-->
-            <!--android:drawableLeft="@drawable/vote_select"-->
+            <!--android:drawableLeft="@activity_test/vote_select"-->
             <!--android:drawableTint="@color/gray_3"-->
             <!--android:focusableInTouchMode="true"-->
             <!--android:gravity="center_vertical"-->

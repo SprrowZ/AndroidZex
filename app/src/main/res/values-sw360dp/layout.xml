@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-<item name="activity_main_ex" type="layout" tools:ignore="MissingDefaultResource">@layout/activity_main_exx</item>
+    <item name="activity_main_ex" type="layout" tools:ignore="MissingDefaultResource">@layout/activity_main_exx</item>
     <item name="tab02" type="layout" tools:ignore="MissingDefaultResource">@layout/tab02_small_size</item>
     <bool name="has_two_panes" tools:ignore="MissingDefaultResource">false</bool>
 </resources>

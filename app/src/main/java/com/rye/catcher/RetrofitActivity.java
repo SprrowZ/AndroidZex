@@ -2,9 +2,9 @@ package com.rye.catcher;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.activity.fragment.HttpT1Fragment;
 import com.rye.catcher.base.interfaces.GithubApi;
-import com.rye.catcher.utils.ExtraUtil.Constant;
+import com.rye.base.common.Constant;
 
 import java.io.IOException;
 import java.util.HashMap;

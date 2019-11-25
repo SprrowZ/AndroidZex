@@ -491,7 +491,7 @@ public class PhotoViewAttacher implements View.OnTouchListener,
 
     public void update() {
         if (mZoomEnabled) {
-            // Update the base matrix using the current drawable
+            // Update the base matrix using the current activity_test
             updateBaseMatrix(mImageView.getDrawable());
         } else {
             // Reset the Matrix...

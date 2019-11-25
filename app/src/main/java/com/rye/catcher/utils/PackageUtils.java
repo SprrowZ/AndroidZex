@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import com.rye.catcher.BuildConfig;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AppBean;
-import com.rye.catcher.utils.ExtraUtil.Bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class PackageUtils {
      * 静态内部类单例
      */
     private static class PackageHole{
-        private static PackageUtils instance=new PackageUtils();
+        private static final PackageUtils instance=new PackageUtils();
     }
 
     public static  PackageUtils instance(){

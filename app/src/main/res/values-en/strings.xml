@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="someting_new">Lonely</string>
+    <string name="appName">FindDream</string>
+    <string name="shape">Shape</string>
+    <string name="ensure">enter</string>
+    <string name="cancel">cancel</string>
+    <string name="Enter">Enter</string>
+    <string name="exit">Exit</string>
+    <string name="Exit">Exit</string>
+    <string name="dream">Dream</string>
+    <string name="password">0000</string>
+    <string name="fbi_warning">FBI WARNING!</string>
+    <string name="please_input_password">Please Input Password：</string>
+    <string name="wenzi">文字</string>
+    <string name="please_wait">Please wait</string>
+    <string name="Version_number_is_wrong">Version number is wrong</string>
+    <string name="todo_auto_back" formatted="false">将于%d月%d日自动返回</string>
+    <string name="yesterday">yesterday</string>
+    <string name="evening">evening</string>
+    <string name="early_morning">early_morning</string>
+    <string name="pm">pm</string>
+    <string name="am">am</string>
+
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+
+    <string name="time_ago_prefix" />
+    <string name="time_ago_suffix">前</string>
+    <string name="time_ago_seconds">1分钟</string>
+    <string name="time_ago_minute">1分钟</string>
+    <string name="time_ago_minutes" formatted="false">%d分钟</string>
+    <string name="time_ago_hour">1小时</string>
+    <string name="time_ago_hours" formatted="false">%d小时</string>
+    <string name="time_ago_day">1天</string>
+    <string name="time_ago_days" formatted="false">%d天</string>
+    <string name="time_ago_month">1月</string>
+    <string name="time_ago_months" formatted="false">%d月</string>
+    <string name="time_ago_year">一年</string>
+    <string name="time_ago_years" formatted="false">%d年</string>
+    <string name="detail">详情...</string>
+    <string name="end">完结撒花~</string>
+    <string name="keeping">更新中...</string>
+    <string name="add_data">添加数据</string>
+    <string name="show_data">显示数据</string>
+    <string name="delete">delete</string>
+    <string name="alter">alter</string>
+    <string name="send">send</string>
+    <string name="search">search</string>
+    <string name="codeName">RyeCatcher</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_not_installed">请先安装应用！</string>
+    <string name="touch_to_focus">触摸屏幕对焦</string>
+    <string name="if_id">查身份证</string>
+    <string name="if_card">查名片</string>
+    <string name="if_invoice">验发票</string>
+    <string name="if_license">查驾驶证</string>
+    <string name="id_text">请将查询身份证放入框内，拍照查询</string>
+    <string name="card_text">请将企业名片放入框内，拍照查询</string>
+    <string name="invoice_text">请将发票放入框内，拍照查询</string>
+    <string name="license_text">请将驾驶证放入框内，拍照查询</string>
+    <string name="distinguishing">正在识别...</string>
+    <string name="dis_error">无法识别该证件真伪，请重新拍摄查询</string>
+    <string name="ror">雨夜思书</string>
+    <string name="okhttp">Okhttp</string>
+    <string name="retrofit">Retrofit</string>
+    <string name="orr">ORR</string>
+    <string name="rxjava">Rxjava</string>
+    <string name="animation">Animation</string>
+    <string name="somedome">SomeDemo</string>
+    <string name="camera">camera</string>
+    <string name="customView">customView</string>
+    <string name="javaMore">javaMore</string>
+    <string name="review">Review</string>
+    <string name="project">Project</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+    <string name="pause">pause</string>
+    <string name="reStart">reStart</string>
+    <string name="name">name</string>
+
+    <string name="left_first">Stories of the Warring States Period </string>
+    <string name="left_second">The Moon of Qin Dynasty</string>
+    <string name="left_third">Bird Sing in Deserted </string>
+    <string name="left_fourth">Like Lightning</string>
+    <string name="left_fivth">Complex International Relations</string>
+</resources>

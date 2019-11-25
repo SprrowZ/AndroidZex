@@ -15,7 +15,7 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:textSize="16dp"
-    android:background="@drawable/edit_bg1"
+    android:background="@drawable/project_btn_bk"
     />
     <TextView
         android:id="@+id/received"
@@ -30,7 +30,7 @@
      android:layout_marginTop="50dp"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:background="@drawable/edit_bg1"
+     android:background="@drawable/project_btn_bk"
      />
 
 </LinearLayout>

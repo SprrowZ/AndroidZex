@@ -4,18 +4,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.OkHttpAdapter;
-import com.rye.catcher.activity.fragment.BaseFragment;
-import com.rye.catcher.helpers.SimpleItemDecoration;
-import com.rye.catcher.project.dao.ServiceContext;
+import com.rye.catcher.BaseFragment;
+import com.rye.catcher.project.helpers.SimpleItemDecoration;
 import com.rye.catcher.utils.DensityUtil;
+import com.rye.catcher.utils.DeviceUtils;
+import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
@@ -71,7 +72,7 @@ public class OkhttpFragment extends BaseFragment {
         return R.layout.fragment_okhttp;
     }
 
-    @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.M)
+    @androidx.annotation.RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initData() {
         //假数据
@@ -172,7 +173,7 @@ public class OkhttpFragment extends BaseFragment {
             Request request = new Request.Builder()
                     .get()
                     .url(URL + "login?userName=zzg&password=1234")
-                    .addHeader("S-ZZG-TOKEN", ServiceContext.getUUID())
+                    .addHeader("S-ZZG-TOKEN", DeviceUtils.getUUID(Old_ApplicationUtil.getAppContext()))
                     .build();
             Response response= null;
             try {

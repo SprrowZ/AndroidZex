@@ -41,7 +41,7 @@
             android:background="@drawable/btn_bk1"
             android:visibility="invisible"
             />
-        <!--  android:background="@drawable/input_box"-->
+        <!--  android:background="@activity_test/input_box"-->
 
     </LinearLayout>
     <LinearLayout
@@ -83,7 +83,7 @@
             android:textAllCaps="false"
             android:background="@drawable/btn_bk1"
             />
-        <!--  android:background="@drawable/input_box"-->
+        <!--  android:background="@activity_test/input_box"-->
 
     </LinearLayout>
     <LinearLayout
@@ -125,7 +125,7 @@
             android:background="@drawable/btn_bk1"
             android:visibility="invisible"
             />
-        <!--  android:background="@drawable/input_box"-->
+        <!--  android:background="@activity_test/input_box"-->
 
     </LinearLayout>
 </LinearLayout>

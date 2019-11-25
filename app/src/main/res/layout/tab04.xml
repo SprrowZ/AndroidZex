@@ -1,155 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-
-    <data>
-
-        <variable
-            name="settingName"
-            type="com.rye.catcher.beans.binding.SettingBean" />
-
-        <variable
-            name="clickHandler"
-            type="com.rye.catcher.beans.binding.ClickHandler" />
-
-    </data>
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/my7">
-
+        android:background="@drawable/rotate_bk">
         <include
             android:id="@+id/tops"
             layout="@layout/activity_top_title" />
-
         <LinearLayout
             android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tops"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
-
             <Button
                 android:id="@+id/orr"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.orr}" />
-
+                android:text="@string/orr" />
             <Button
                 android:id="@+id/javaMore"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-
-                android:text="@{settingName.javaMore}" />
-
+                android:text="@string/javaMore" />
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear1"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/someDemo"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.someDemo}"
-
+                android:text="@string/somedome"
                 />
-
             <Button
                 android:id="@+id/retrofit"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.retrofit}" />
+                android:text="@string/retrofit" />
 
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear2"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/camera"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.camera}" />
-
+                android:text="@string/camera" />
             <Button
                 android:id="@+id/review"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.review}" />
+                android:text="@string/review" />
 
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear3"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp">
             <Button
                 android:id="@+id/animation"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.animation}" />
+                android:text="@string/animation" />
 
         </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/linear5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear4"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp">
             <Button
                 android:id="@+id/custom"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.customView}" />
-
+                android:text="@string/customView" />
             <Button
                 android:id="@+id/project"
                 style="@style/btn_settings"
-                android:onClick="@{clickHandler::clickEvent}"
-                android:text="@{settingName.project}" />
-
-
+                android:text="@string/project" />
         </LinearLayout>
-
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
     </RelativeLayout>
-</layout>

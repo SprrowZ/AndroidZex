@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.ExtraUtil.Lang;
-import com.rye.catcher.utils.StringUtils;
+import com.rye.base.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

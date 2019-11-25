@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
 
-import com.rye.catcher.utils.EchatAppUtil;
-
 import java.io.IOException;
 import java.util.List;
 

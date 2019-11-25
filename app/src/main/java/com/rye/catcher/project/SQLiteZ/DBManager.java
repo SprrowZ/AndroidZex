@@ -26,11 +26,11 @@ public class DBManager {
     /**
      * add persons
      */
-public void add(List<Person> persons) {
+public void add(List<Humans> persons) {
 //采用事务处理，确保数据完整性
     db.beginTransaction();//开始事务
     try {
-        for (Person person : persons) {
+        for (Humans person : persons) {
             db.execSQL("INSERT INTO " + DatabaseHelper.PERSON_TABLE + " VALUES(null, ?, ?, ?)",
                     new Object[]{person.name, person.age, person.info});
             //带两个参数的execSQL()方法，采用占位符参数？，把参数值放在后面，顺序对应
@@ -44,22 +44,22 @@ public void add(List<Person> persons) {
     }
 
 }
-    public void updataAge(Person person){
+    public void updataAge(Humans person){
         ContentValues cv=new ContentValues();
         cv.put("age",person.age);
         db.update(DatabaseHelper.PERSON_TABLE,cv,"name = ?",new String[]{person.name});
     }
-    public void deleteOldPerson(Person person){
+    public void deleteOldPerson(Humans person){
 
     db.delete(DatabaseHelper.PERSON_TABLE,"age >= ?",
            new String[]{String.valueOf(person.age)});
     }
 
-    public List<Person> query(){
-        ArrayList<Person> persons=new ArrayList<Person>();
+    public List<Humans> query(){
+        ArrayList<Humans> persons=new ArrayList<Humans>();
         Cursor c=queryTheCursor();
         while(c.moveToNext()){
-            Person person=new Person();
+            Humans person=new Humans();
             person._id=c.getInt(c.getColumnIndex("_id"));
             person.name=c.getString(c.getColumnIndex("name"));
             person.age=c.getInt(c.getColumnIndex("age"));

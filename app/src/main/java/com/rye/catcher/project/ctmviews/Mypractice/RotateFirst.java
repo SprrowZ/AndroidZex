@@ -8,11 +8,11 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.RegionIterator;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.rye.catcher.utils.MeasureUtil;
+import com.rye.base.utils.MeasureUtil;
 
 /**
  * Created by ZZG on 2018/5/3.

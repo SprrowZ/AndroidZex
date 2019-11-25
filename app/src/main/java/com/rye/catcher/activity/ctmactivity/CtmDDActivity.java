@@ -1,10 +1,10 @@
 package com.rye.catcher.activity.ctmactivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -30,7 +30,7 @@ public class CtmDDActivity extends BaseActivity {
     private String headers[]={"城市","年龄","性别","星座"};
     private List<View> popViews=new ArrayList<>();
 
-    private  int[] imageIds={R.mipmap.my1,R.mipmap.my2,R.mipmap.my3,R.mipmap.my4};
+    private  int[] imageIds={R.mipmap.my5,R.mipmap.my2,R.mipmap.my3,R.mipmap.my4};
     DropDownAdapter cityAdapter;
     DropDownAdapter sexAdapter;
     DropDownAdapter ageAdapter;

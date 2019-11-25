@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.rye.catcher.activity.IDemoAIDL;
@@ -69,12 +69,12 @@ public class IRemoteService extends Service {
      * 自定义实体类传递
      */
       private final Binder iBinder=new IMyAidlInterface.Stub() {
-        @Override
-        public List<PersonBean> add(PersonBean person) throws RemoteException {
-            //传过来就加到persons列表中去
-            persons.add(person);
-            Log.i("zzg", "add: "+person.toString());
-            return persons;
-        }
+//        @Override
+//        public List<PersonBean> add(PersonBean person) throws RemoteException {
+//            //传过来就加到persons列表中去
+//            persons.add(person);
+//            Log.i("zzg", "add: "+person.toString());
+//            return persons;
+//        }
     };
 }

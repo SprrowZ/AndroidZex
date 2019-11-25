@@ -8,7 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -40,7 +40,7 @@ public class Shadows extends View {
         setLayerType(LAYER_TYPE_SOFTWARE,null);
         //内发光
         mPaint.setMaskFilter(new BlurMaskFilter(50, BlurMaskFilter.Blur.INNER));
-        mBeautyBmp= BitmapFactory.decodeResource(getResources(), R.drawable.yanlingji);
+        mBeautyBmp= BitmapFactory.decodeResource(getResources(), R.mipmap.my4);
     }
 
     @Override

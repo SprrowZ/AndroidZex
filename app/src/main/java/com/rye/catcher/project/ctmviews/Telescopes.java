@@ -48,7 +48,7 @@ public class Telescopes extends View {
 //        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 //        mPaint.setTextSize(30);
 
-       // topBitmap=BitmapFactory.decodeResource(getResources(),R.drawable.scenery);
+       // topBitmap=BitmapFactory.decodeResource(getResources(),R.activity_test.scenery);
         TypedArray typedArray=context.obtainStyledAttributes(attrs,R.styleable.Telescope);
         src=typedArray.getResourceId(R.styleable.Telescope_Telesrc,-1);
         if (src!=-1){
@@ -61,7 +61,7 @@ public class Telescopes extends View {
             topBitmap=BitmapFactory.decodeResource(getResources(),bg);
         }else{
 //            topBitmap=Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);
-            topBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.my6);
+            topBitmap=BitmapFactory.decodeResource(getResources(),R.mipmap.my5);
         }
 
     }

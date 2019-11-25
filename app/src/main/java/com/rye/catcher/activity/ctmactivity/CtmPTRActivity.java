@@ -1,27 +1,23 @@
 package com.rye.catcher.activity.ctmactivity;
 
-import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.PullToRefreshAdapter;
 import com.rye.catcher.beans.ImageBean;
 import com.rye.catcher.project.ctmviews.zPullToRefreshView;
-import com.rye.catcher.utils.ExtraUtil.Constant;
-import com.rye.catcher.utils.FileUtils;
+import com.rye.base.common.Constant;
+import com.rye.base.utils.FileUtils;
+import com.rye.catcher.utils.FileUtil;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
@@ -101,7 +97,7 @@ public class CtmPTRActivity extends BaseActivity {
                 List<ImageBean> imageList=addDatas();
                 for (int i=0;i<imageList.size();i++){
                     if (FileUtils.getDirSize(SDHelper.getImageFolder())<20){
-                        FileUtils.saveImage(imageList.get(i).getUrl(), Constant.IMAGE_PREFIX+i+".png");
+                        FileUtil.saveImage(imageList.get(i).getUrl(), Constant.IMAGE_PREFIX+i+".png");
                     }
                 }
             }

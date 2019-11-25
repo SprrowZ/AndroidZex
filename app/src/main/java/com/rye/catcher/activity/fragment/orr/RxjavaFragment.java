@@ -1,10 +1,10 @@
 package com.rye.catcher.activity.fragment.orr;
 
 
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -12,10 +12,11 @@ import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.RxjavaAdapter;
-import com.rye.catcher.activity.fragment.BaseFragment;
-import com.rye.catcher.project.dao.ServiceContext;
-import com.rye.catcher.project.dialog.ctdialog.ExDialog;
+import com.rye.catcher.BaseFragment;
+import com.rye.base.widget.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.DensityUtil;
+import com.rye.catcher.utils.DeviceUtils;
+import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
 
 import java.util.ArrayList;
@@ -134,18 +135,15 @@ public class RxjavaFragment extends BaseFragment {
 
     private void create() {
         //上游
-        Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                emitter.onNext("1---秦时明月");
-                emitter.onNext("2---空山鸟语");
-                emitter.onNext("3---天行九歌");
-                emitter.onComplete();
-                stringBuffer.append("发送数据：" + "\n"
-                        + "1---秦时明月" + "\n" + "2---空山鸟语" + "\n" + "3---天行九歌" + "\n"
-                );
-                Log.i(TAG, "subscribe: .....");
-            }
+        Observable.create((ObservableOnSubscribe<String>) emitter -> {
+            emitter.onNext("1---秦时明月");
+            emitter.onNext("2---空山鸟语");
+            emitter.onNext("3---天行九歌");
+            emitter.onComplete();
+            stringBuffer.append("发送数据：" + "\n"
+                    + "1---秦时明月" + "\n" + "2---空山鸟语" + "\n" + "3---天行九歌" + "\n"
+            );
+            Log.i(TAG, "subscribe: .....");
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {//通过subscribe连接下游
@@ -562,7 +560,7 @@ public class RxjavaFragment extends BaseFragment {
         Request request = new Request.Builder()
                 .get()
                 .url(url)
-                .addHeader("X-ZZ-TOKEN", ServiceContext.getUUID())
+                .addHeader("X-ZZ-TOKEN", DeviceUtils.getUUID(Old_ApplicationUtil.getAppContext()))
                 .build();
         try {
             Response response = client.newCall(request).execute();

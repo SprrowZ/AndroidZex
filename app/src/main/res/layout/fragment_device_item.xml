@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
-    <data class="DeviceItemBinding">
-     <variable
-         name="device"
-         type="com.rye.catcher.beans.binding.DeviceBean"/>
-    </data>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="@dimen/len_80"
@@ -15,14 +10,14 @@
     android:background="@color/soft1"
     >
  <TextView
-     android:id="@+id/title"
+     android:id="@+id/name"
      android:layout_width="0dp"
      android:layout_height="match_parent"
      android:layout_weight="1"
      android:gravity="center"
      android:textStyle="bold"
      android:textSize="@dimen/font_18"
-     android:text="@{device.title}"
+     android:text="@{device.name}"
      tools:text="@string/cancel"
      />
     <TextView
@@ -43,4 +38,4 @@
         android:layout_marginRight="@dimen/len_8"
         />
 </LinearLayout>
-</layout>
+</FrameLayout>

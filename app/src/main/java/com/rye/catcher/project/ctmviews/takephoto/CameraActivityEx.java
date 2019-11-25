@@ -7,7 +7,7 @@ import android.hardware.Camera;
 
 import android.media.ExifInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import android.util.Log;
 import android.view.View;
@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.DistortionViews;
-import com.rye.catcher.utils.FileUtils;
 import com.rye.catcher.utils.ImageUtils;
 import com.rye.catcher.utils.SDHelper;
 import com.rye.catcher.utils.permission.PermissionUtils;

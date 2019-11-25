@@ -2,7 +2,7 @@ package com.rye.catcher.utils.ExtraUtil;
 
 
 
-import com.rye.catcher.utils.JsonUtils;
+import com.rye.catcher.utils.Old_JsonUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -283,7 +283,7 @@ Bean extends ConcurrentHashMap<Object, Object> implements Serializable {
 
         if (object instanceof String) { //字符串
             try {
-                rtnBean = JsonUtils.toBean((String)object);
+                rtnBean = Old_JsonUtils.toBean((String)object);
             } catch (Exception ignored) {
                 rtnBean = new Bean();
             }
@@ -312,7 +312,7 @@ Bean extends ConcurrentHashMap<Object, Object> implements Serializable {
 
         if (object instanceof String) { //字符串，试图转换为BeanList
             try {
-                rtnList = (List<T>) JsonUtils.toBeanList((String) object);
+                rtnList = (List<T>) Old_JsonUtils.toBeanList((String) object);
             } catch (Exception ignored) {
                 rtnList = new ArrayList<>();
             }
@@ -487,7 +487,7 @@ Bean extends ConcurrentHashMap<Object, Object> implements Serializable {
 
     @Override
     public String toString() {
-        return JsonUtils.toJson(this);
+        return Old_JsonUtils.toJson(this);
     }
 
     /**

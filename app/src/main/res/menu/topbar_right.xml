@@ -4,24 +4,24 @@
     >
 <item android:id="@+id/action_search"
     android:icon="@drawable/search"
-    android:title="search"
+    android:name="search"
     app:showAsAction="ifRoom"
     android:iconTint="@color/white"
     />
 <item android:id="@+id/notification"
     android:icon="@mipmap/notification"
-    android:title="notification"
+    android:name="notification"
     app:showAsAction="ifRoom"
     android:iconTint="@color/white"
     />
 <item android:id="@+id/settings_about"
     android:icon="@drawable/ellipsis"
-    android:title="about"
+    android:name="about"
     app:showAsAction="never"
     />
 <item android:id="@+id/mulu"
     android:icon="@mipmap/mulu"
-    android:title="mulu"
+    android:name="mulu"
     app:showAsAction="never"
     />
 </menu>

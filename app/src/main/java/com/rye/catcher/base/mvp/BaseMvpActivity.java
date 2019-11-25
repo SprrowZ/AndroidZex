@@ -1,8 +1,7 @@
 package com.rye.catcher.base.mvp;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
+import androidx.annotation.Nullable;
 
 import com.rye.catcher.BaseActivity;
 

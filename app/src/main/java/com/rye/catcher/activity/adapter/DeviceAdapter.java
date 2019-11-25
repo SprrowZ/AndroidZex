@@ -1,19 +1,23 @@
 package com.rye.catcher.activity.adapter;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.beans.binding.DeviceBean;
-import com.rye.catcher.databinding.DeviceItemBinding;
+
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created at 2019/4/23.
@@ -25,27 +29,28 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
     private  final String TAG=this.getClass().getSimpleName();
     private Context mContext;
     private List<DeviceBean> dataList;
-
+    private LayoutInflater inflater;
     public DeviceAdapter(Context context,List<DeviceBean> list){
        this.mContext=context;
         this.dataList=list;
+        inflater=LayoutInflater.from(context);
         Log.i(TAG, "DeviceAdapter:dataSize: "+list.size());
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-      DeviceItemBinding binding=  DataBindingUtil.inflate(LayoutInflater.from(mContext),
-              R.layout.fragment_device_item,viewGroup,
+      View view=inflater.inflate(R.layout.fragment_device_item,viewGroup,
                 false);
-      ViewHolder viewHolder=new ViewHolder(binding.getRoot());
+      ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         //数据绑定
-        viewHolder.bind(dataList.get(i));
+         viewHolder.name.setText(dataList.get(i).getTitle());
+         viewHolder.content.setText(dataList.get(i).getContent());
     }
 
     @Override
@@ -54,14 +59,14 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        DeviceItemBinding dataBinding;
+        @BindView(R.id.name)
+        TextView name;
+        @BindView(R.id.content)
+        TextView content;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            dataBinding=DataBindingUtil.bind(itemView);
+            ButterKnife.bind(this,itemView);
         }
-        //绑定数据
-        public void bind(DeviceBean deviceBean){
-            dataBinding.setDevice(deviceBean);
-        }
+
     }
 }

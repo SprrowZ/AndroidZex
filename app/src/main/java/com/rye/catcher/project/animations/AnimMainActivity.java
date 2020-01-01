@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.rye.catcher.R;
+import com.rye.catcher.project.ctmviews.Rotate3dAnimation;
+import com.rye.catcher.project.ctmviews.RotateYAnimation;
 
 /**
  * Created by Zzg on 2017/11/5.
@@ -32,7 +34,7 @@ public class AnimMainActivity extends Activity implements View.OnClickListener{
     private ImageView iv;
     //Animation rotate1;
     Animation alpha1;
-
+   private boolean isIcon=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class AnimMainActivity extends Activity implements View.OnClickListener{
         iv=findViewById(R.id.iv);
         btn1=findViewById(R.id.orr);
         btn2=findViewById(R.id.javaMore);
-        btn3=findViewById(R.id.someDemo);
+        btn3=findViewById(R.id.translate);
         btn4=findViewById(R.id.retrofit);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
@@ -62,30 +64,24 @@ public class AnimMainActivity extends Activity implements View.OnClickListener{
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
         btn10.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-        iv.setVisibility(View.VISIBLE);
+
         switch (view.getId()){
             case R.id.orr:
                 //布局文件加载
-      Animation alpha= AnimationUtils.loadAnimation(this,R.anim.alpha);
+           Animation alpha= AnimationUtils.loadAnimation(this,R.anim.alpha);
            iv.startAnimation(alpha);
                 break;
             case R.id.javaMore:
                 Animation scale= AnimationUtils.loadAnimation(this,R.anim.scale);
                 iv.startAnimation(scale);
                 break;
-            case R.id.someDemo:
-               // Animation translate= AnimationUtils.loadAnimation(this,R.anim.translate);
-                //iv.startAnimation(translate);
-                TranslateAnimation translateAnimation=new TranslateAnimation(-200,100,-200,200);
-                translateAnimation.setDuration(2000);
-                translateAnimation.setRepeatCount(2);
-                iv.startAnimation(translateAnimation);
-
-
+            case R.id.translate:
+                threeDAnimation(iv);
                 break;
             case R.id.retrofit:
                 Animation rotate= AnimationUtils.loadAnimation(this,R.anim.rotate);
@@ -138,5 +134,40 @@ public class AnimMainActivity extends Activity implements View.OnClickListener{
             startActivity(new Intent(this,AnimValueActivity.class));
                 //overridePendingTransition(R.anim.alpha2,0);
         }
+    }
+
+    /**
+     * 3D绕Y轴旋转
+     * @param imageView
+     */
+    private void threeDAnimation(ImageView imageView){
+        RotateYAnimation animation=new RotateYAnimation();
+        animation.setRepeatCount(-1);
+        animation.setDuration(3000);
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                if (!isIcon){
+                    isIcon=true;
+                    imageView.setImageResource(R.drawable.icon_pressed2);
+                }else {
+                    isIcon=false;
+                   imageView.setImageResource(R.drawable.icon_pressed1);
+                }
+
+            }
+        });
+        imageView.startAnimation(animation);
     }
 }

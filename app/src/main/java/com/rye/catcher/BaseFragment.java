@@ -21,8 +21,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.TypeFaceUtil;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
+
 
 
 import butterknife.ButterKnife;
@@ -70,9 +69,9 @@ public abstract class BaseFragment extends Fragment  {
         super.onDestroy();
         unbinder.unbind();
         //LeakCanery检测内存泄露
-        RefWatcher refWatcher = LeakCanary.installedRefWatcher();
-        // We expect schrodingerCat to be gone soon (or not), let's watch it.
-        refWatcher.watch(this);
+//        RefWatcher refWatcher = LeakCanary.installedRefWatcher();
+//        // We expect schrodingerCat to be gone soon (or not), let's watch it.
+//        refWatcher.watch(this);
     }
 
 

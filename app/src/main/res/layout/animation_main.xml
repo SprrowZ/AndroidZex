@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/someDemo"
+            android:id="@+id/translate"
             android:text="Translate"
             android:textAllCaps="false"
             android:layout_width="0dp"
@@ -85,9 +85,9 @@
     </LinearLayout>
     <ImageView
         android:id="@+id/iv"
-        android:visibility="gone"
+
         android:layout_gravity="center_horizontal"
-        android:src="@mipmap/appicon"
+        android:src="@drawable/icon_pressed1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <LinearLayout

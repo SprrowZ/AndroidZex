@@ -40,7 +40,7 @@ public class CtmViewFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.orr,R.id.javaMore,R.id.someDemo,
+    @OnClick({R.id.orr,R.id.javaMore,R.id.translate,
     R.id.retrofit,R.id.btn5,R.id.btn6, R.id.btn7, R.id.btn8,R.id.btn9,R.id.btn10,
     R.id.btn11,R.id.btn12})
     public void onViewClicked(View view){
@@ -62,7 +62,7 @@ public class CtmViewFragment extends BaseFragment {
                 intent2.putExtras(bundle2);
                 startActivity(intent2);
                 break;
-            case R.id.someDemo:
+            case R.id.translate:
                 Intent intent1=new Intent(getActivity(),CtmEighthActivity.class);
                 Bundle bundle1=new Bundle();
                 bundle1.putString(CtmViewFragment.ORIGIN,CtmViewFragment.DISTORTIONVIEW);

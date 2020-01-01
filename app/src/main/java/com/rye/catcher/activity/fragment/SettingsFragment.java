@@ -35,9 +35,15 @@ public class SettingsFragment  extends BaseFragment {
 
     @Override
     protected void initData() {
-      mContext=getContext();
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        mContext=getContext();
     }
-    @OnClick({R.id.orr,R.id.javaMore,R.id.someDemo,R.id.retrofit,R.id.camera,
+    @OnClick({R.id.orr,R.id.javaMore,R.id.translate,R.id.retrofit,R.id.camera,
     R.id.review,R.id.animation,R.id.custom,R.id.project})
     public void onViewClicked(View view){
         switch (view.getId()){
@@ -47,7 +53,7 @@ public class SettingsFragment  extends BaseFragment {
             case R.id.javaMore:
 
                 break;
-            case R.id.someDemo:
+            case R.id.translate:
                 mContext.startActivity(new Intent(mContext, ZTActivity.class));
                 break;
             case R.id.retrofit:
@@ -72,8 +78,9 @@ public class SettingsFragment  extends BaseFragment {
                 mContext.startActivity(intent8);
                 break;
             case R.id.project:
-                Intent intent9 = new Intent(mContext, ProjectMainActivity.class);
-                ((Activity)mContext).startActivityForResult(intent9,11);
+
+           Intent intent9 = new Intent(mContext, ProjectMainActivity.class);
+               ((Activity)mContext).startActivityForResult(intent9,11);
                 break;
 
         }
@@ -96,4 +103,8 @@ public class SettingsFragment  extends BaseFragment {
             }
         };
     }
+
+
+
+
 }

@@ -205,15 +205,19 @@ dependencies {
     implementation deps.location
 
     implementation deps.loading
+         //LeakCanery暂时屏蔽，使用BlockCanery
+//    debugImplementation deps.leak.debug
+//    majiaImplementation deps.leak.debug
+//    releaseImplementation deps.leak.release
+//    //Optional, if you use support library fragments:
+//    debugImplementation deps.leak.support
 
-    debugImplementation deps.leak.debug
-    majiaImplementation deps.leak.debug
-    releaseImplementation deps.leak.release
-    //Optional, if you use support library fragments:
-    debugImplementation deps.leak.support
-    //UMeng
-    implementation deps.umeng.common
-    implementation deps.umeng.analytics
+    implementation deps.block.debug
+//    releaseImplementation deps.block.release
+
+//    //UMeng
+//    implementation deps.umeng.common
+//    implementation deps.umeng.analytics
 
 
 

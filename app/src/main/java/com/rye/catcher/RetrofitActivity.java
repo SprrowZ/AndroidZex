@@ -38,7 +38,7 @@ public class RetrofitActivity extends BaseActivity   {
     Button btn1;
     @BindView(R.id.javaMore)
     Button btn2;
-    @BindView(R.id.someDemo)
+    @BindView(R.id.translate)
     Button btn3;
     @BindView(R.id.retrofit)
     Button btn4;
@@ -74,7 +74,7 @@ public class RetrofitActivity extends BaseActivity   {
         transaction.commit();
     }
 
-    @OnClick({R.id.orr, R.id.javaMore, R.id.someDemo, R.id.retrofit, R.id.btn5, R.id.btn6,R.id.btn7})
+    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.retrofit, R.id.btn5, R.id.btn6,R.id.btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.orr:
@@ -83,7 +83,7 @@ public class RetrofitActivity extends BaseActivity   {
             case R.id.javaMore:
                 retrofitGet1();
                 break;
-            case R.id.someDemo:
+            case R.id.translate:
                 retrofitGet2();
                 break;
             case R.id.retrofit:

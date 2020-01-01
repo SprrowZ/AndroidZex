@@ -43,7 +43,7 @@
         >
 
         <Button
-            android:id="@+id/someDemo"
+            android:id="@+id/translate"
             android:text="待定"
             android:layout_width="0dp"
             android:layout_weight="1"

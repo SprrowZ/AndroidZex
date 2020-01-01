@@ -24,8 +24,8 @@ def version=[build            : '3.5.0', support:'28.0.0',
              zloading:'1.2.0', leakcanary:'1.6.1',
              umeng:'latest.integration',
              autosize:'1.1.2', kotlin_coroutines:'1.3.0-M1',
-             rxlifecycle:'2.1.0', constraint:'1.1.3']
-
+             rxlifecycle:'2.1.0', constraint:'1.1.3',
+             blockedCanery:'1.5.0']
 
 
 
@@ -114,6 +114,12 @@ leak.debug="com.squareup.leakcanary:leakcanary-android:${version.leakcanary}"
 leak.release="com.squareup.leakcanary:leakcanary-android-no-op:${version.leakcanary}"
 leak.support="com.squareup.leakcanary:leakcanary-support-fragment:${version.leakcanary}"
 deps.leak=leak
+
+
+def block=[:]
+block.debug="com.github.markzhai:blockcanary-android:${version.blockedCanery}"
+//block.release="com.github.markzhai:blockcanary-no-op:${version.blockedCanery}"
+deps.block=block
 
 def umeng=[:]
 umeng.common="com.umeng.sdk:common:${version.umeng}"

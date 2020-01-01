@@ -40,7 +40,7 @@ public class CtmMainActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.bcustom_main);
         btn1=findViewById(R.id.orr);
         btn2=findViewById(R.id.javaMore);
-        btn3=findViewById(R.id.someDemo);
+        btn3=findViewById(R.id.translate);
         btn4=findViewById(R.id.retrofit);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
@@ -83,7 +83,7 @@ public class CtmMainActivity extends BaseActivity implements View.OnClickListene
                 Intent intent2=new Intent(this,CtmSecondActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.someDemo:
+            case R.id.translate:
                 Intent intent3=new Intent(this,CtmThirdActivity.class);
                 startActivity(intent3);
                 break;

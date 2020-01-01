@@ -27,7 +27,7 @@ import com.rye.catcher.base.OverallHandler;
 import com.rye.base.utils.DialogUtil;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.SharedPreManager;
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
 
 import java.lang.ref.WeakReference;
 
@@ -70,7 +70,7 @@ public class BaseActivity extends AppCompatActivity {
         //在开屏的时候清掉所有,这样从后台到前台，就会把延迟的handler的处理去掉
         RyeCatcherApp.getInstance().getHandler().removeMessages(OverallHandler.exit);
         //友盟Session统计
-        MobclickAgent.onResume(this);
+//        MobclickAgent.onResume(this);
     }
 
     /**
@@ -83,17 +83,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void setBarTitle(int resId) {
-        TextView view = findViewById(R.id.title);
-        if (view != null) {
-            view.setText(resId);
-        }
-    }
 
-    public String getBarTitle() {
-        TextView view = findViewById(R.id.title);
-        return view != null ? view.getText().toString() : "";
-    }
 
     /*
      全局监听网络变化
@@ -105,38 +95,6 @@ public class BaseActivity extends AppCompatActivity {
         registerReceiver(mNetReceiver,intentFilter);
     }
 
-    // Android 判断app是否在前台还是在后台运行，直接看代码，可直接使用。
-    public static boolean isBackground(Context context) {
-        ActivityManager activityManager = (ActivityManager) context
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
-                .getRunningAppProcesses();
-        if (appProcesses != null) {
-            for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
-                if (appProcess.processName.equals(context.getPackageName())) {
-                /*
-                BACKGROUND=400 EMPTY=500 FOREGROUND=100
-				GONE=1000 PERCEPTIBLE=130 SERVICE=300 ISIBLE=200
-				 */
-                    Log.i(context.getPackageName(), "此appimportace ="
-                            + appProcess.importance
-                            + ",context.getClass().getName()="
-                            + context.getClass().getName());
-                    if (appProcess.importance != ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                        Log.i(context.getPackageName(), "处于后台"
-                                + appProcess.processName);
-                        return true;
-                    } else {
-                        Log.i(context.getPackageName(), "处于前台"
-                                + appProcess.processName);
-                        return false;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
 
     /**
      * 返回
@@ -182,64 +140,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Exit();
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-
-    private static Boolean isExit = false;
-    private ZTask timerTask;
-    //双击两次退出应用
-    Timer timer;
-    private void Exit() {
-        if (isExit == false) {
-            timer = new Timer();
-            timerTask= new ZTask(BaseActivity.this);
-            timer.schedule(timerTask,2000);
-        } else {
-            finish();
-            System.exit(0);
-        }
-    }
-
-    /**
-     * timer内存泄露
-     */
-    private static class ZTask extends TimerTask{
-        private WeakReference<BaseActivity> weakReference;
-        public ZTask(BaseActivity activity){
-            weakReference=new WeakReference<>(activity);
-        }
-        @Override
-        public void run() {
-           weakReference.get().isExit=false;
-        }
-    }
-
-
-/*************************************新增********************************************/
-    /**
-     * Loading Dialog
-     * @param context
-     */
-    protected void showLoadingDlg(Context context){
-        DialogUtil.createLoadingDialog(context);
-    }
-
-    protected  void cancelLoadingDlg(Context context){
-        DialogUtil.closeDialog(context);
-    }
-
     /**
      * 开始监听系统广播
       */
@@ -278,7 +178,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         //友盟Session统计
-        MobclickAgent.onPause(this);
+//        MobclickAgent.onPause(this);
     }
 
     /**
@@ -296,10 +196,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mNetReceiver);
-        if (timer!=null){//防止内存泄露
-            timerTask.cancel();
-            timer.cancel();
-        }
 
     }
 }

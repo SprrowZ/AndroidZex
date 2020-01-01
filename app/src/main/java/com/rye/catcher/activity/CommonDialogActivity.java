@@ -133,6 +133,7 @@ public class CommonDialogActivity extends BaseActivity {
                 DialogUtil.closeDialog(CommonDialogActivity.this);
             }
         }, 3000);
+
     }
 
     /**
@@ -341,7 +342,7 @@ public class CommonDialogActivity extends BaseActivity {
         * @param position
         */
        @Override
-       public void onBindViewHolder( ShareHolder holder, int position) {
+       public void onBindViewHolder(ShareHolder holder, int position) {
          holder.ll_share.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {

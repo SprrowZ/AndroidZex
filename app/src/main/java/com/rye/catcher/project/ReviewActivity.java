@@ -44,7 +44,7 @@ public class ReviewActivity extends BaseActivity implements View.OnClickListener
     private void initView() {
         btn1=findViewById(R.id.orr);
         btn2=findViewById(R.id.javaMore);
-        btn3=findViewById(R.id.someDemo);
+        btn3=findViewById(R.id.translate);
         btn4=findViewById(R.id.retrofit);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
@@ -93,7 +93,7 @@ public class ReviewActivity extends BaseActivity implements View.OnClickListener
                // mDialog.getWindow().setGravity(Gravity.BOTTOM);
                 mDialog.getWindow().setAttributes(paramss);
                 break;
-            case R.id.someDemo:
+            case R.id.translate:
 
                 break;
             case R.id.retrofit:

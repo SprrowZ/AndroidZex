@@ -42,7 +42,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/someDemo"
+                android:id="@+id/translate"
                 style="@style/btn_settings"
                 android:text="@string/somedome"
                 />

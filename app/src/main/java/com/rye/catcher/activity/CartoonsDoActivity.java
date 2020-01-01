@@ -18,6 +18,7 @@ import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
 import com.rye.catcher.R;
+import com.rye.catcher.ThirdSdk;
 import com.rye.catcher.project.catcher.eventbus.MessageEvent;
 import com.rye.catcher.utils.ToastUtils;
 
@@ -105,7 +106,7 @@ public class CartoonsDoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.greendao_cartoons_do);
         ButterKnife.bind(this);
-        daoSession = RyeCatcherApp.getInstance().getDaoSession();
+        daoSession = ThirdSdk.getInstance().getDaoSession();
         cartoonsDao = daoSession.getTB_CartoonsDao();
         initEvent();
     }

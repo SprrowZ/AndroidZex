@@ -56,7 +56,7 @@
         android:layout_marginRight="10dp"
         >
         <Button
-            android:id="@+id/someDemo"
+            android:id="@+id/translate"
             android:text="创建目录"
             android:layout_width="0dp"
             android:layout_weight="1"

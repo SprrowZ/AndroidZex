@@ -40,7 +40,7 @@ public class FilesDemoActivity extends BaseActivity {
     Button btn2;
     @BindView(R.id.linear1)
     LinearLayout linear1;
-    @BindView(R.id.someDemo)
+    @BindView(R.id.translate)
     Button btn3;
     @BindView(R.id.retrofit)
     Button btn4;
@@ -173,7 +173,7 @@ public class FilesDemoActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.orr, R.id.javaMore, R.id.someDemo, R.id.retrofit, R.id.btn5, R.id.btn6, R.id.btn7, R.id.someting_new, R.id.animation, R.id.drawable, R.id.custom, R.id.project, R.id.submit})
+    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.retrofit, R.id.btn5, R.id.btn6, R.id.btn7, R.id.someting_new, R.id.animation, R.id.drawable, R.id.custom, R.id.project, R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.orr:
@@ -182,7 +182,7 @@ public class FilesDemoActivity extends BaseActivity {
             case R.id.javaMore:
                 createFile();
                 break;
-            case R.id.someDemo:
+            case R.id.translate:
 
                 break;
             case R.id.retrofit:

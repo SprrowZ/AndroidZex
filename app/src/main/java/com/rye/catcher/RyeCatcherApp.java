@@ -10,24 +10,13 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.rye.base.BaseApplication;
-import com.rye.catcher.GreenDaos.Base.DaoMaster;
-import com.rye.catcher.GreenDaos.Base.DaoSession;
+
 
 import com.rye.catcher.base.OverallHandler;
-import com.rye.catcher.base.dbs.SchemasModule;
-import com.rye.catcher.utils.CrashHandler;
+
 import com.rye.catcher.utils.FileUtil;
 import com.rye.catcher.utils.Old_ApplicationUtil;
 
-import com.rye.base.utils.FileUtils;
-import com.squareup.leakcanary.LeakCanary;
-import com.tencent.bugly.crashreport.CrashReport;
-import com.umeng.commonsdk.UMConfigure;
-
-import org.greenrobot.greendao.database.Database;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 /**
  * Created by ZZG on 2018/3/22.
@@ -39,10 +28,10 @@ public class RyeCatcherApp extends BaseApplication {
     private static final String LIFECYCLE_LOG="LIFECYCLE_LOG:";
 
     private static Context mContext;
-    private DisplayMetrics displayMetrics;
+
     private static RyeCatcherApp instance;
-    private boolean DAO_INITED=false;
-    private DaoSession daoSession;
+
+
     //前后台判断
     private int countActivity=0;
 
@@ -58,55 +47,16 @@ public class RyeCatcherApp extends BaseApplication {
         //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
         Old_ApplicationUtil.setContext(mContext);
 
-        //友盟统计
-        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
-        //UnCaughtException
-        Thread.setDefaultUncaughtExceptionHandler(CrashHandler.Companion.getInstance());
-       //realm
-        initRealm(this);
-        //内存泄露检测LeakCanary
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);
+         ThirdSdk.getInstance().initSdk(this);
     }
 
-    private void initRealm(Application application){
-        //Realm
-        Realm.init(application);
-        RealmConfiguration configuration=new RealmConfiguration.Builder()
-                .name("rye.realm")
-                .modules(new SchemasModule())
-                .schemaVersion(1)
-                .build();
-        Realm.setDefaultConfiguration(configuration);
-    }
+
     public static Context getContext() {
         return mContext;
     }
 
     private void init() {
-        //bugly
-        CrashReport.initCrashReport(getApplicationContext(), "8fdd156f75", false);
-        //第三个参数为SDK调试模式开关，调试模式的行为特性如下：
 
-        //输出详细的Bugly SDK的Log；
-        //每一条Crash都会被立即上报；
-        //自定义日志将会在Logcat中输出。
-        //建议在测试阶段建议设置成true，发布时设置为false。
-       // CrashReport.testJavaCrash();
-        if (displayMetrics == null) {
-            displayMetrics = getResources().getDisplayMetrics();
-        }
-        //初始化GreenDao
-        if (!DAO_INITED) {
-            DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "notes-db");
-            Database db = helper.getWritableDb();
-            daoSession = new DaoMaster(db).newSession();
-            DAO_INITED = true;
-        }
 
         //----------监听生命周期
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
@@ -159,17 +109,7 @@ public class RyeCatcherApp extends BaseApplication {
             overallHandler=new OverallHandler(this);
         }
     }
-    public DaoSession getDaoSession() {//获取dao实例
-        return daoSession;
-    }
-    public void  initDb(){
-        if (!DAO_INITED) {
-            DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "notes-db");
-            Database db = helper.getWritableDb();
-            daoSession = new DaoMaster(db).newSession();
-            DAO_INITED = true;
-        }
-    }
+
     //单例
     public static RyeCatcherApp getInstance() {
         return instance;

@@ -138,3 +138,30 @@ def javaClassRename(Map treePath, HashMap nameMap) {
         file.renameTo(file.path.replaceAll(prefix, nameMap.get(prefix)))
     }
 }
+
+task calProjectSize(){
+    doLast{
+        def lines=0,xmlLine=0
+        FileTree tree= fileTree(dir:"src/main/java")
+        tree.include '**/*.java'
+        tree.include '**/*.kt'
+        tree.each {File file->
+            file.withReader { reader->
+                reader.eachLine {
+                    lines++
+                }
+            }
+        }
+
+        FileTree tree2= fileTree(dir:"src/main/res/layout")
+        tree2.include '*.xml'
+        tree2.each {File file->
+            file.withReader { reader->
+                reader.eachLine {
+                    xmlLine++
+                }
+            }
+        }
+        println("MainModel代码总量：${xmlLine+lines}")
+    }
+}

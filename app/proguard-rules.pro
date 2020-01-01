@@ -242,7 +242,7 @@ public static java.lang.String TABLENAME;
 # Top-level functions that can only be used by Kotlin.
 -dontwarn retrofit2.-KotlinExtensions
 #-------------------------------Rxjava---------------------------------
-
+-dontwarn java.util.concurrent.Flow*
 #------------------------------Okhttp3---------------------------------
 -dontwarn com.squareup.okhttp.**
 -keep class com.squareup.okhttp.{*;}

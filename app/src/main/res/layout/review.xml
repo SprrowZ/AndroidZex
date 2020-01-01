@@ -28,7 +28,7 @@
         android:layout_marginLeft="5dp"
         />
     <Button
-        android:id="@+id/someDemo"
+        android:id="@+id/translate"
         android:text="自定义View"
         android:textAllCaps="false"
         android:layout_width="0dp"

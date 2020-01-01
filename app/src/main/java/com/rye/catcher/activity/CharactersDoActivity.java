@@ -20,6 +20,7 @@ import com.rye.catcher.GreenDaos.Base.TB_Character;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.GreenDaos.Base.TB_CharacterDao;
 import com.rye.catcher.R;
+import com.rye.catcher.ThirdSdk;
 
 import java.util.List;
 
@@ -97,7 +98,7 @@ public class CharactersDoActivity extends BaseActivity {
     }
 
     private void initEvent() {
-        daoSession = RyeCatcherApp.getInstance().getDaoSession();//获取session实例
+        daoSession = ThirdSdk.getInstance().getDaoSession();//获取session实例
         cartoonsDao = daoSession.getTB_CartoonsDao();
         characterDao = daoSession.getTB_CharacterDao();
         editCartoonName.addTextChangedListener(new TextWatcher() {

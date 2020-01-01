@@ -67,7 +67,7 @@ public class ZTActivity extends BaseActivity {
                 Log.e("COUNT_DOWN", millisUntilFinished +"...."+ time[0]);
                 if (time[0] %5==0){//每过五秒
                     Log.e("COUNT_DOWN", millisUntilFinished +"过了五秒");
-                }else if (time[0] %5==1){//每过六秒
+                }else if (time[0]!=1&&time[0] %5==1){//每过六秒
                     Log.e("COUNT_DOWN", millisUntilFinished +"过了六秒");
                 }
 

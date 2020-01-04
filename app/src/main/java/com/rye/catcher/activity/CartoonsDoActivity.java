@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rye.catcher.BaseActivity;
-import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
@@ -196,13 +195,6 @@ public class CartoonsDoActivity extends BaseActivity {
         }
     }
 
-    //为了测试EventBus，这里不通过Intent传递数据
-    private void jumpToList() {
-        EventBus.getDefault().postSticky(new MessageEvent("NewMessage"));
-        Intent intent = new Intent(CartoonsDoActivity.this, CartoonsListActivity.class);
-        startActivityForResult(intent, CartoonsListActivity.FROM_CARTOON);
-    }
-
     private void getTexts() {
         name = editName.getText().toString().trim();
         isend = editIsend.getText().toString().trim();
@@ -278,13 +270,6 @@ public class CartoonsDoActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CartoonsListActivity.FROM_CARTOON) {
-
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
     @OnClick({R.id.but_add_data, R.id.but_show_data, R.id.but_del_data, R.id.but_modify_data})
     public void onViewClicked(View view) {
@@ -293,7 +278,7 @@ public class CartoonsDoActivity extends BaseActivity {
                 insert();
                 break;
             case R.id.but_show_data:
-                jumpToList();
+
                 break;
             case R.id.but_del_data:
                 delete();

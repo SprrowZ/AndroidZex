@@ -93,7 +93,7 @@ public class ZTActivity extends BaseActivity {
                 startActivity(new Intent(ZTActivity.this, WebViewActivity.class));
                 break;
             case R.id.dd:
-                startActivity(new Intent(ZTActivity.this, CartoonsListActivity.class));
+                startActivity(new Intent(ZTActivity.this, TestAnimationActivity.class));
                 break;
             case R.id.ee:
                 startActivity(new Intent(ZTActivity.this, SocketClientActivity.class));

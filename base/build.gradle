@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
@@ -34,9 +34,10 @@ dependencies {
 
     implementation deps.support
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+    implementation deps.butter.core
+    kapt deps.butter.compiler
+
     api deps.constraint
     api deps.appcompat
     //Rxjava+Retrofit+Okhttp
@@ -58,7 +59,5 @@ dependencies {
 repositories {
     mavenCentral()
 }
-//repositories {
-//    mavenCentral()
-//}
+
 

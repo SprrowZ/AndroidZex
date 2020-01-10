@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,18 +35,14 @@ public class ZTActivity extends BaseActivity {
     Button bb;
     @BindView(R.id.cc)
     Button cc;
-    @BindView(R.id.dd)
-    Button dd;
+    @BindView(R.id.bili)
+    Button bili;
     @BindView(R.id.ee)
     Button ee;
     @BindView(R.id.ff)
     Button ff;
     @BindView(R.id.gg)
     Button gg;
-
-    private CountDownTimer countDownTimer;
-    private final int COUNT_NUM=5;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,30 +52,10 @@ public class ZTActivity extends BaseActivity {
     }
 
     private  void initData(){
-        final int[] time = {0};
-        countDownTimer=new CountDownTimer(COUNT_NUM*6000+300,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
 
-
-                time[0]++;
-                Log.e("COUNT_DOWN", millisUntilFinished +"...."+ time[0]);
-                if (time[0] %5==0){//每过五秒
-                    Log.e("COUNT_DOWN", millisUntilFinished +"过了五秒");
-                }else if (time[0]!=1&&time[0] %5==1){//每过六秒
-                    Log.e("COUNT_DOWN", millisUntilFinished +"过了六秒");
-                }
-
-            }
-
-            @Override
-            public void onFinish() {
-
-            }
-        };
     }
 
-    @OnClick({ R.id.aa, R.id.bb, R.id.cc, R.id.dd, R.id.ee, R.id.ff,R.id.gg})
+    @OnClick({ R.id.aa, R.id.bb, R.id.cc, R.id.bili, R.id.ee, R.id.ff,R.id.gg})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.aa:
@@ -92,8 +67,8 @@ public class ZTActivity extends BaseActivity {
             case R.id.cc:
                 startActivity(new Intent(ZTActivity.this, WebViewActivity.class));
                 break;
-            case R.id.dd:
-                startActivity(new Intent(ZTActivity.this, TestAnimationActivity.class));
+            case R.id.bili:
+                startActivity(new Intent(ZTActivity.this, BILIActivity.class));
                 break;
             case R.id.ee:
                 startActivity(new Intent(ZTActivity.this, SocketClientActivity.class));
@@ -102,15 +77,12 @@ public class ZTActivity extends BaseActivity {
                 startActivity(new Intent(ZTActivity.this, CharactersDoActivity.class));
                 break;
             case R.id.gg:
-                testCountDownTimer();
+
                 break;
 
         }
     }
 
-    private void testCountDownTimer(){
-        countDownTimer.start();
-    }
 
 
     private void testOKClient(){

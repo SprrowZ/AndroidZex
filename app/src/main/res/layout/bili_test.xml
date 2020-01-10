@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+    <FrameLayout
+        android:id="@+id/rotateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+
+        <ImageView
+            android:id="@+id/big"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="50dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/my3" />
+
+        <ImageView
+            android:id="@+id/small"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_pressed1"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/centerContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+        <ImageView
+            android:id="@+id/imageContent"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            tools:src="@mipmap/my5"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/showRotate"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/len_56"
+            android:layout_weight="1"
+            style="@style/btn_settings"
+            android:text="ShowRotate"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+        <Button
+            android:id="@+id/showBitmap"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/len_56"
+            android:layout_weight="1"
+            style="@style/btn_settings"
+            android:text="ShowBitmap"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

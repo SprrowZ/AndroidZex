@@ -8,6 +8,9 @@
     <color name="full_transparent">#00000000</color>
     <color name="container_bg">#ffeeeeee</color>
 
+
+    <color name="bili_main">#fb7299</color>
+
     <color name="common_title_bg">#aa111213</color>
     <color name="primary_title_text_color">#ffeeeeee</color>
     <color name="contact_value">#0033ff</color>

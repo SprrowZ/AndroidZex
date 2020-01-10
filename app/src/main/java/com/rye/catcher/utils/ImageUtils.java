@@ -3,6 +3,7 @@ package com.rye.catcher.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import androidx.collection.LruCache;
 import android.util.Base64;
@@ -237,6 +238,42 @@ public class ImageUtils {
 
         }
         return result;
+    }
+
+    public static Bitmap cropImage(Bitmap tmpBitmap, int reqWidth, int reqHeight) {
+        int x;
+        int y;
+        int width;
+        int height;
+        float currentRatio = (float) tmpBitmap.getWidth() / (float) tmpBitmap.getHeight();
+        float reqRatio = (float) reqWidth / (float) reqHeight;
+        float scale;
+        if (currentRatio > reqRatio) {
+            height = tmpBitmap.getHeight();
+            width = (int) (tmpBitmap.getHeight() * reqRatio);
+            x = (tmpBitmap.getWidth() - (int) (height * reqRatio)) / 2;
+            y = 0;
+            scale = (float) reqHeight / (float) height;
+        } else if (currentRatio < reqRatio) {
+            width = tmpBitmap.getWidth();
+            height = (int) (tmpBitmap.getWidth() / reqRatio);
+            x = 0;
+            y = (tmpBitmap.getHeight() - (int) (width / reqRatio)) / 2;
+            scale = (float) reqWidth / (float) width;
+        } else {
+            width = tmpBitmap.getWidth();
+            height = tmpBitmap.getHeight();
+            x = 0;
+            y = 0;
+            scale = (float) reqHeight / (float) height;
+        }
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale, scale);
+        Bitmap bitmap = Bitmap.createBitmap(tmpBitmap, x, y, width, height, matrix, false);
+        if (!tmpBitmap.equals(bitmap)) {
+            tmpBitmap.recycle();
+        }
+        return bitmap;
     }
 
 /********************************************LruCache--图片三级缓存**********************************************/

@@ -9,6 +9,11 @@
       <module fileurl="file://$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bproject-AndroidZex.iml" filepath="$PROJECT_DIR$/bproject-AndroidZex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/bproject-AndroidZex-app.iml" filepath="$PROJECT_DIR$/app/bproject-AndroidZex-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/bproject-AndroidZex-base.iml" filepath="$PROJECT_DIR$/base/bproject-AndroidZex-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zgstep/bproject-AndroidZex-zgstep.iml" filepath="$PROJECT_DIR$/zgstep/bproject-AndroidZex-zgstep.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zzsdk/bproject-AndroidZex-zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/bproject-AndroidZex-zzsdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/zAndroid.iml" filepath="$PROJECT_DIR$/.idea/zAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/zgstep/zgstep.iml" filepath="$PROJECT_DIR$/zgstep/zgstep.iml" />

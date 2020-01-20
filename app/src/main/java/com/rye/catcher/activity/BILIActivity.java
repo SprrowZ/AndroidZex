@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -238,7 +239,7 @@ public class BILIActivity extends BaseActivity {
         Paint backgroundPaint = new Paint();
         backgroundPaint.setColor(backgroundColor);
         //底部绘制Tag
-        RectF rectF = new RectF(0, bitmap.getHeight() - 135, bitmap.getWidth(), bitmap.getHeight());
+        RectF rectF = new RectF(0, bitmap.getHeight() - 100, bitmap.getWidth(), bitmap.getHeight());
      //   drawOneRoundRect(canvas, rectF, 30, 30, backgroundPaint);
         drawRect(canvas,rectF,backgroundPaint);
         drawTextCenter(text, canvas, rectF, textPaint);
@@ -255,6 +256,9 @@ public class BILIActivity extends BaseActivity {
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         float distance = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
         float baseline = rect.centerY() + distance;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            paint.setLetterSpacing(0.3f);
+        }
         canvas.drawText(text, rect.centerX(), baseline, paint);
     }
 

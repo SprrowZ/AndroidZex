@@ -1,4 +1,4 @@
-package com.dawn.zgstep.demos.javas;
+package com.dawn.zgstep.javas.others;
 
 /**
  * Created By RyeCatcher

@@ -8,4 +8,8 @@ import com.rye.catcher.base.mvp.BasePresenter;
  */
 public class AnimePresenter extends BasePresenter<AnimeView> {
 
+       public void getData(){
+           //......getData,return View
+          mView.showRealmData();
+       }
 }

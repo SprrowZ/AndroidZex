@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.rye.base.BaseActivity;
+import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.R;
 import com.rye.base.utils.MeasureUtil;
 
@@ -29,7 +29,7 @@ public class TopDialog {
      * 构造方法
      * @param activity Activity对象
      */
-    public TopDialog(BaseActivity activity, int layoutResId) {
+    public TopDialog(RxBaseActivity activity, int layoutResId) {
         //1.创建AlertDialog
         dialog = new AlertDialog.Builder(activity).create();
         dialog.show();
@@ -53,12 +53,12 @@ public void setLeftScale(Activity activity,LinearLayout parent,EditText son){
     MeasureUtil.setLeftScale(activity,parent,son, R.mipmap.icon_title_bar_edit_search);
     Toast.makeText(activity,"dddddd",Toast.LENGTH_LONG).show();
 }
-//    public CommonDialogActivity(BaseActivity activity, int Res,EditText son,LinearLayout parent) {
+//    public CommonDialogActivity(RxBaseActivity activity, int Res,EditText son,LinearLayout parent) {
 //        //1.创建AlertDialog
 //        dialog = new AlertDialog.Builder(activity).create();
 //        contentView = View.inflate(activity, Res, null);
 //        MeasureUtil.setLeftScale(activity,parent,son,R.activity_test.icon_title_bar_edit_search);
-//        dialog.setView(contentView);
+//        dialog.setViewRx(contentView);
 //        dialog.show();
 //
 //        //2.设置宽度

@@ -1,4 +1,4 @@
-package com.rye.base
+package com.rye.base.rxmvp
 
 
 import android.content.Context
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import android.view.ViewGroup
 import com.MutableMaprye.base.utils.LanguageUtil
+import com.rye.base.R
 import com.rye.base.common.LibConfig
 import com.rye.base.mvp.PresenterHoler
 import com.rye.base.utils.DialogUtil
@@ -23,10 +24,10 @@ import io.reactivex.subjects.BehaviorSubject
 import java.lang.Exception
 
 /**
- * BaseActivity ----包含mvp
+ * RxBaseActivity ----包含mvp
  */
 
-abstract class BaseActivity:AppCompatActivity(),IView {
+abstract class RxBaseActivity:AppCompatActivity(), RxIView {
 
 
     protected lateinit var TAG:String
@@ -160,7 +161,7 @@ abstract class BaseActivity:AppCompatActivity(),IView {
         return fragmentLauncher
     }
     //-----------------------------Presenter----------------------
-    fun <T :BasePresenter<*>> getPresenter(clz:Class<T>):T?{
+    fun <T : RxBasePresenter<*>> getPresenter(clz:Class<T>):T?{
         return presenterHelper.getPresenter(clz)
     }
    //------------------------------Fragment------------------------
@@ -169,8 +170,8 @@ abstract class BaseActivity:AppCompatActivity(),IView {
            var config: FragmentLauncher.TransitionConfig? =null
            if (isOpenAnim){
                config=FragmentLauncher.TransitionConfig(
-                       R.anim.slide_open_enter,R.anim.slide_open_exit,
-                       R.anim.slide_close_enter,R.anim.slide_close_exit
+                       R.anim.slide_open_enter, R.anim.slide_open_exit,
+                       R.anim.slide_close_enter, R.anim.slide_close_exit
                )
            }
            getFragmentLauncher().startFragment(fragment,config,isOpenAnim)
@@ -182,8 +183,8 @@ abstract class BaseActivity:AppCompatActivity(),IView {
            var config:FragmentLauncher.TransitionConfig?=null
            if (isOpenAnim){
                config=FragmentLauncher.TransitionConfig(
-                       R.anim.slide_open_enter,R.anim.slide_open_exit,
-                       R.anim.slide_close_enter,R.anim.slide_close_exit
+                       R.anim.slide_open_enter, R.anim.slide_open_exit,
+                       R.anim.slide_close_enter, R.anim.slide_close_exit
                )
            }
            getFragmentLauncher().startFragmentAndDestroyCurrent(fragment,config)

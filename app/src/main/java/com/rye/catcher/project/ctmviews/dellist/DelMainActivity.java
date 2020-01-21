@@ -53,5 +53,5 @@ public class DelMainActivity extends BaseActivity implements View.OnClickListene
     }
     }
 
-//    public void OnScroll(MyLinearLayout view) {
+//    public void OnScroll(MyLinearLayout viewRx) {
 //

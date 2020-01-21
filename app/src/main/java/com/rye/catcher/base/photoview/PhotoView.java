@@ -62,8 +62,8 @@ public class PhotoView extends AppCompatImageView {
     }
 
     /**
-     * Get the current {@link PhotoViewAttacher} for this view. Be wary of holding on to references
-     * to this attacher, as it has a reference to this view, which, if a reference is held in the
+     * Get the current {@link PhotoViewAttacher} for this viewRx. Be wary of holding on to references
+     * to this attacher, as it has a reference to this viewRx, which, if a reference is held in the
      * wrong place, can cause memory leaks.
      *
      * @return the attacher.

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.rye.base.BaseActivity;
+import com.rye.base.rxmvp.RxBaseActivity;
 
 
 /**
@@ -21,7 +21,7 @@ public class AnyViewDialog {
      *
      * @param activity Activity对象
      */
-    public AnyViewDialog(BaseActivity activity, int layoutId) {
+    public AnyViewDialog(RxBaseActivity activity, int layoutId) {
         //1.创建AlertDialog
         dialog = new AlertDialog.Builder(activity).create();//
         dialog.setCanceledOnTouchOutside(true);// 设置点击屏幕Dialog消失

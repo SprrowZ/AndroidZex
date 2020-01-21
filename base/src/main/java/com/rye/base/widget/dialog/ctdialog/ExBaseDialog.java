@@ -34,7 +34,7 @@ public abstract class ExBaseDialog extends DialogFragment {
           //xml
           view=inflater.inflate(getLayoutRes(),null,false);
       }else{
-          //view
+          //viewRx
           view=getDialogView();
       }
       return view;

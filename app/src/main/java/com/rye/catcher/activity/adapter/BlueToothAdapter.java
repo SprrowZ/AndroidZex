@@ -50,7 +50,7 @@ public class BlueToothAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.i(TAG, "getView: " + dataList.size());
+        Log.i(TAG, "getViewRx: " + dataList.size());
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();

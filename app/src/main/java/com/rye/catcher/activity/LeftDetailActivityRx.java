@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.rye.base.BaseActivity;
+import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.DeviceInfoFragment;
 import com.rye.catcher.activity.fragment.LMFragment;
@@ -13,7 +13,7 @@ import com.rye.catcher.activity.fragment.SettingsFragment;
 
 
 
-public class LeftDetailActivity extends BaseActivity {
+public class LeftDetailActivityRx extends RxBaseActivity {
 
 
     private Fragment currentFragment;

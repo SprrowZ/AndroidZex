@@ -1,4 +1,4 @@
-package com.rye.base
+package com.rye.base.rxmvp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import io.reactivex.subjects.BehaviorSubject
  *Created By RyeCatcher
  * at 2019/8/22
  */
-abstract class BaseFragment: Fragment(),IView {
+abstract class RxBaseFragment: Fragment(), RxIView {
     protected  lateinit var TAG:String
     protected  lateinit var mContentView:ViewGroup
     protected  lateinit var presenterHelper:PresenterHoler

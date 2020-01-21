@@ -10,13 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.rye.appupdater.UpdateActivity;
-import com.rye.base.BaseActivity;
+import com.rye.appupdater.UpdateActivityRx;
+import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;
 import com.rye.base.utils.PopupEx;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ProjectListAdapter;
-import com.rye.catcher.activity.presenter.ProjectPresenter;
+import com.rye.catcher.activity.presenter.ProjectPresenterRx;
 import com.rye.catcher.beans.ProjectBean;
 
 import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
  * Created by ZZG on 2017/11/13.
  */
 
-public class ProjectMainActivity extends BaseActivity  implements ProjectListAdapter.OnItemClickListener{
+public class ProjectMainActivityRx extends RxBaseActivity implements ProjectListAdapter.OnItemClickListener{
 
     private static final String TAG2="LifeCycle-A";
     //改为recycleView
@@ -60,7 +60,7 @@ public class ProjectMainActivity extends BaseActivity  implements ProjectListAda
         ButterKnife.bind(this);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
         //Mvp的目前操作，这个地方可以修改
-        dataList=getPresenter(ProjectPresenter.class).getDataList(this);
+        dataList=getPresenter(ProjectPresenterRx.class).getDataList(this);
         ProjectListAdapter adapter=new ProjectListAdapter(this,dataList);
         //子Item点击事件
         adapter.setOnItemClickListener(this);
@@ -112,28 +112,28 @@ public class ProjectMainActivity extends BaseActivity  implements ProjectListAda
                 startService();
                 break;
             case "testIntents":
-                startActivity(new Intent(ProjectMainActivity.this,
+                startActivity(new Intent(ProjectMainActivityRx.this,
                         IntentsActivity.class));
                 break;
             case "testSQLite":
-                startActivity(new Intent(ProjectMainActivity.this,
+                startActivity(new Intent(ProjectMainActivityRx.this,
                         DBActivity.class));
                 break;
             case "testFile":
-                startActivity(new Intent(ProjectMainActivity.this,
+                startActivity(new Intent(ProjectMainActivityRx.this,
                         FilesDemoActivity.class));
                 break;
             case "testAIDL":
-                startActivity(new Intent(ProjectMainActivity.this,
+                startActivity(new Intent(ProjectMainActivityRx.this,
                         AIDLActivity.class));
                 break;
             case "testSlide":
-                Intent intent11 = new Intent(ProjectMainActivity.this,
+                Intent intent11 = new Intent(ProjectMainActivityRx.this,
                         ReflectActivity.class);
                 startActivity(intent11);
                 break;
             case "testRecycle":
-                Intent intent12 = new Intent(ProjectMainActivity.this,
+                Intent intent12 = new Intent(ProjectMainActivityRx.this,
                         RecycleDemoActivity.class);
                 startActivity(intent12);
                 break;
@@ -175,7 +175,7 @@ public class ProjectMainActivity extends BaseActivity  implements ProjectListAda
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(ProjectMainActivity.this,"下载完成",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProjectMainActivityRx.this,"下载完成",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -192,7 +192,7 @@ public class ProjectMainActivity extends BaseActivity  implements ProjectListAda
                 startActivity(new Intent(this,KtCoroutineActivity.class));
                 break;
             case "testUpdate":
-                startActivity(new Intent(this, UpdateActivity.class));
+                startActivity(new Intent(this, UpdateActivityRx.class));
                 break;
         }
     }

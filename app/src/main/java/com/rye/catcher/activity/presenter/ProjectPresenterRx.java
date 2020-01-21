@@ -2,9 +2,8 @@ package com.rye.catcher.activity.presenter;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.os.Environment;
 
-import com.rye.base.BasePresenter;
+import com.rye.base.rxmvp.RxBasePresenter;
 import com.rye.base.utils.FileUtils;
 import com.rye.base.utils.GsonUtils;
 import com.rye.catcher.beans.ProjectBean;
@@ -22,13 +21,13 @@ import java.util.List;
  * Created By RyeCatcher
  * at 2019/9/3
  */
-public class ProjectPresenter extends BasePresenter  {
+public class ProjectPresenterRx extends RxBasePresenter {
 
 
-    public ProjectPresenter(@NotNull Class service) {
+    public ProjectPresenterRx(@NotNull Class service) {
         super(service);
     }
-    public ProjectPresenter(){
+    public ProjectPresenterRx(){
 
     }
     /**

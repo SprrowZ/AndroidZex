@@ -102,7 +102,7 @@ public class CommonDialogActivity extends BaseActivity {
                     @Override
                     public void onBuilderChildView(IDialog dialog, View view, int layoutRes) {
                         //dialog: IDialog
-                        //view： DialogView
+                        //viewRx： DialogView
                         //layoutRes :Dialog的资源文件 如果一个Activity里有多个dialog 可以通过layoutRes来区分
                         final EditText editText = view.findViewById(R.id.et_content);
                         Button btn_ok = view.findViewById(R.id.btn_ok);

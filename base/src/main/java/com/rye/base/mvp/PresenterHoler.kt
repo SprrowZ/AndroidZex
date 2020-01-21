@@ -1,8 +1,7 @@
 package com.rye.base.mvp
 
-import com.rye.base.BasePresenter
-import com.rye.base.IView
-import java.util.*
+import com.rye.base.rxmvp.RxBasePresenter
+import com.rye.base.rxmvp.RxIView
 import kotlin.collections.HashMap
 
 /**
@@ -11,26 +10,26 @@ import kotlin.collections.HashMap
  * 创建和缓存Presenter实例
  */
 class PresenterHoler {
-   private  var presenterMap: HashMap<String,BasePresenter<*>>
-    private  var view:IView
-    constructor(view:IView){
-        this.view=view
-        presenterMap= HashMap()
+   private  var presenterMapRx: HashMap<String, RxBasePresenter<*>>
+    private  var viewRx: RxIView
+    constructor(viewRx: RxIView){
+        this.viewRx=viewRx
+        presenterMapRx= HashMap()
     }
 
     /**
      * 获取一个指定类型的Presenter实例，没有则创建一个
      */
-    fun <P:BasePresenter<*>> getPresenter(clz:Class<P>): P? {
+    fun <P: RxBasePresenter<*>> getPresenter(clz:Class<P>): P? {
         var presenter: P? =null
-        if (presenterMap.containsKey(clz.name)){
-            presenter=presenterMap.get(clz.name) as P
+        if (presenterMapRx.containsKey(clz.name)){
+            presenter=presenterMapRx.get(clz.name) as P
         }else{
             try {
                 presenter=clz.newInstance()
                 //presenter绑定view， 是上面的不需要存了
-                presenter.bindView(view)
-                presenterMap.put(clz.name,presenter)
+                presenter.bindView(viewRx)
+                presenterMapRx.put(clz.name,presenter)
             }catch (e:InstantiationError){
                 e.printStackTrace()
             }catch (e:IllegalAccessException){
@@ -44,8 +43,8 @@ class PresenterHoler {
      * 清空presenter实例
      */
     fun onDestroy(){
-        for (key in presenterMap.keys){
-            presenterMap.get(key)?.onDestroy()
+        for (key in presenterMapRx.keys){
+            presenterMapRx.get(key)?.onDestroy()
         }
     }
 }

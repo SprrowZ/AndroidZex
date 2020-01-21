@@ -1,4 +1,4 @@
-package com.rye.base
+package com.rye.base.rxmvp
 
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.android.ActivityEvent
@@ -6,7 +6,7 @@ import com.trello.rxlifecycle2.android.ActivityEvent
 /**
  * 继承自RxLifecycle里的接口--解决内存泄漏
  */
-interface IView:LifecycleProvider<ActivityEvent>{
+interface RxIView:LifecycleProvider<ActivityEvent>{
     /**
      * 请求开始
       */

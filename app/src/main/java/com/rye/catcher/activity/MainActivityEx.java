@@ -118,7 +118,7 @@ public class MainActivityEx extends BaseActivity {
         //左侧第一个点击事件
         left_first.setOnClickListener(v -> {
             Intent intent=new Intent(MainActivityEx.this,
-                    LeftDetailActivity.class);
+                    LeftDetailActivityRx.class);
             startActivityForResult(intent,DEVICE_REQUEST_CODE);
         });
         //第二个点击事件，切换语言

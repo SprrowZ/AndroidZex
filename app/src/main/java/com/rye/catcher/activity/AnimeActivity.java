@@ -1,6 +1,6 @@
 package com.rye.catcher.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import com.rye.catcher.R;
@@ -26,18 +26,6 @@ public class AnimeActivity extends BaseMvpActivity<AnimeView,AnimePresenter> imp
 
     }
 
-    @Override
-    public void showLoading() {
 
-    }
 
-    @Override
-    public void cancelLoading() {
-
-    }
-
-    @Override
-    public void refreshView() {
-
-    }
 }

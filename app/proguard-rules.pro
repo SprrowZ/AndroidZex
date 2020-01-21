@@ -76,7 +76,7 @@
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
--keep public class * extends android.view.View
+-keep public class * extends android.viewRx.View
 -keep public class com.android.vending.licensing.ILicensingService
 
 
@@ -99,7 +99,7 @@
 # 保留在Activity中的方法参数是view的方法，
 # 这样以来我们在layout中写的onClick就不会被影响
 -keepclassmembers class * extends android.app.Activity{
-    public void *(android.view.View);
+    public void *(android.viewRx.View);
 }
 
 # 保留枚举类不被混淆
@@ -109,7 +109,7 @@
 }
 
 # 保留我们自定义控件（继承自View）不被混淆
--keep public class * extends android.view.View{
+-keep public class * extends android.viewRx.View{
     *** get*();
     void set*(***);
     public <init>(android.content.Context);

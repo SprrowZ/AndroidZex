@@ -10,12 +10,12 @@ import com.rye.appupdater.updater.AppUpdater;
 import com.rye.appupdater.updater.beans.DownloadBean;
 import com.rye.appupdater.updater.net.INetCallback;
 import com.rye.appupdater.updater.ui.UpdateVersionDialog;
-import com.rye.base.BaseActivity;
+import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.R;
 import com.rye.base.utils.AppUtils;
 
 // TODO: 2019/9/2  将其改造为MVP风格实现 
-public class UpdateActivity extends BaseActivity {
+public class UpdateActivityRx extends RxBaseActivity {
     private Button  btn;
     @Override
     public int bindLayout() {
@@ -39,7 +39,7 @@ public class UpdateActivity extends BaseActivity {
                   Log.i(TAG,response);
                   DownloadBean bean=DownloadBean.parse(response);
                   if (bean==null){
-                      Toast.makeText(UpdateActivity.this,"文件检测失败！",Toast.LENGTH_SHORT).show();
+                      Toast.makeText(UpdateActivityRx.this,"文件检测失败！",Toast.LENGTH_SHORT).show();
                       return;
                   }
                   //检测版本号
@@ -53,7 +53,7 @@ public class UpdateActivity extends BaseActivity {
                        Log.e(TAG,exception.toString());
                   }
                 //弹窗
-                  UpdateVersionDialog.show(UpdateActivity.this,bean);
+                  UpdateVersionDialog.show(UpdateActivityRx.this,bean);
 
 
 
@@ -64,7 +64,7 @@ public class UpdateActivity extends BaseActivity {
                   Log.e(TAG,"版本更新接口请求失败！");
                   throwable.printStackTrace();
               }
-          },UpdateActivity.this);
+          }, UpdateActivityRx.this);
       });
     }
 

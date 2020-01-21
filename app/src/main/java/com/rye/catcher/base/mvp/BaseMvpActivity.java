@@ -9,25 +9,46 @@ import com.rye.catcher.BaseActivity;
  * Created by 18041at 2019/5/26
  * Function:
  */
-public abstract class BaseMvpActivity<V extends BaseView,T extends BasePresenter<V>> extends BaseActivity {
-    public T presenter;
+public abstract class BaseMvpActivity<V extends BaseView,T extends BasePresenter<V>>
+        extends BaseActivity  implements BaseView{
+    public T mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter=initPresenter();
+        mPresenter =initPresenter();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.attach((V)this);
+        mPresenter.attach((V)this);
     }
 
     @Override
     protected void onDestroy() {
-        presenter.detach();
+        mPresenter.detach();
         super.onDestroy();
     }
 
     public abstract  T initPresenter();
+
+    @Override
+    public void showLoading() {
+        if (mPresenter.isViewAttached()){
+
+        }
+    }
+
+    @Override
+    public void cancelLoading() {
+
+    }
+
+    @Override
+    public void refreshView() {
+        if (mPresenter.isViewAttached()){
+
+        }
+    }
+
 }

@@ -1,7 +1,6 @@
-package com.rye.base
+package com.rye.base.rxmvp
 
 
-import android.annotation.SuppressLint
 import com.rye.base.impl.HttpObserver
 
 import com.rye.base.network.ServiceGenerator
@@ -22,9 +21,9 @@ import retrofit2.Response
  *Created By RyeCatcher
  * at 2019/8/13
  */
-open class BasePresenter<T> {
+open class RxBasePresenter<T> {
     protected var TAG: String? = null
-    protected var view: IView? = null
+    protected var viewRx: RxIView? = null
     protected var apiService: T? = null
 
     constructor(service: Class<T>) {
@@ -37,8 +36,8 @@ open class BasePresenter<T> {
     /**
      * Presenter绑定IView
      */
-    fun bindView(view: IView) {
-        this.view = view
+    fun bindView(viewRx: RxIView) {
+        this.viewRx = viewRx
     }
 
     /**
@@ -47,7 +46,7 @@ open class BasePresenter<T> {
     protected fun handleRequest(observable: Observable<T>, observer: Observer<T>) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(view?.bindToLifecycle())
+                .compose(viewRx?.bindToLifecycle())
                 .subscribe(observer)
     }
 
@@ -59,22 +58,22 @@ open class BasePresenter<T> {
     protected fun handleRequest(action: String, observable: Observable<T>) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(view?.bindToLifecycle())
+                .compose(viewRx?.bindToLifecycle())
                 .subscribe(object : HttpObserver<T>() {
                     override fun onStart() {
-                        view?.onHttpStart(action, true)
+                        viewRx?.onHttpStart(action, true)
                     }
 
                     override fun onSuccess(data: T?) {
-                        view?.onHttpSuccess(action, data.toString())
+                        viewRx?.onHttpSuccess(action, data.toString())
                     }
 
                     override fun onError(code: Int, msg: String) {
-                        view?.onHttpError(action, msg)
+                        viewRx?.onHttpError(action, msg)
                     }
 
                     override fun onFinish() {
-                        view?.onHttpFinish(action)
+                        viewRx?.onHttpFinish(action)
                     }
                 })
 
@@ -123,7 +122,7 @@ open class BasePresenter<T> {
     private fun  bindLifecycle(consumer: Consumer<Boolean>){
         Observable.just(true)
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(view?.bindToLifecycle())
+                .compose(viewRx?.bindToLifecycle())
                 .subscribe(consumer)
     }
 
@@ -135,7 +134,7 @@ open class BasePresenter<T> {
     }
 
     fun  onDestroy(){
-        view=null
+        viewRx=null
         apiService=null
     }
 

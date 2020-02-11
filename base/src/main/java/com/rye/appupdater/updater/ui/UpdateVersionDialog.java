@@ -42,6 +42,8 @@ public class UpdateVersionDialog extends DialogFragment {
         if (arguments!=null){
             mDownloadBean= (DownloadBean) arguments.getSerializable(KEY_DOWNLOAD_BEAN);
         }
+        //设置全屏透明Dialog
+        setStyle(STYLE_NORMAL,R.style.full_screen_dialog_fragment);
     }
      //绑定ui两种方法：oncreateView/onCreateDialog
 
@@ -57,8 +59,9 @@ public class UpdateVersionDialog extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        //设置全屏透明Dialog的第二种方式
+//        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
     }
 

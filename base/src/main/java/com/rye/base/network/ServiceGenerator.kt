@@ -1,5 +1,6 @@
 package com.rye.base.network
 
+import com.rye.base.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

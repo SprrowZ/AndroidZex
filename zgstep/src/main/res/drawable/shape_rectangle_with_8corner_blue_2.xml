@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2015-2016 BiliBili Inc.
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:angle="135"
+        android:endColor="#cc6A85B4"
+        android:startColor="#cc334970" />
+
+    <corners android:radius="8px" />
+
+</shape>

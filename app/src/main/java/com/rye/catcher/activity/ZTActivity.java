@@ -77,7 +77,7 @@ public class ZTActivity extends BaseActivity {
                 startActivity(new Intent(ZTActivity.this, CharactersDoActivity.class));
                 break;
             case R.id.gg:
-
+                startActivity(new Intent(ZTActivity.this,ProvinceListActivity.class));
                 break;
 
         }

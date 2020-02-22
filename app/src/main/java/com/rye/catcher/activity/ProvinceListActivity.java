@@ -2,27 +2,32 @@ package com.rye.catcher.activity;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
 
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ProvinceListAdapter;
-import com.rye.catcher.beans.recybean.DataModel;
+import com.rye.catcher.activity.adapter.ProvinceSecondAdapter;
+import com.rye.catcher.activity.adapter.ProvinceTitleAdapter;
+import com.rye.catcher.activity.interfaces.ChangeAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Zzg on 2018/8/20.
+ *
+ * 现在用于测试Adapter切换。相当于MainMyFragment
  */
-public class ProvinceListActivity extends BaseActivity {
+public class ProvinceListActivity extends BaseActivity implements ProvinceTitleAdapter.TitleClickListener {
    public static  final  String TAG="ProvinceListActivity";
    private  RecyclerView recyclerView;
-   private ProvinceListAdapter adapter;
-   private List<DataModel> dataList;
-   int colors[] ={R.color.soft1,R.color.soft2,R.color.soft3};
+
+   private RecyclerView titles;
+   private RecyclerView.Adapter mContentAdapter;
+   private ProvinceTitleAdapter mTitleAdapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,27 +37,38 @@ public class ProvinceListActivity extends BaseActivity {
 
     private void init() {
         setBarTitle("省份");
-        dataList=new ArrayList<>();
+
         recyclerView=findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL,false));
-        //        LinearLayoutManager manager=new LinearLayoutManager(this);
-//        manager.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(manager);
-        Log.i(TAG, "init: "+(int)2.7);
-        for (int i=0;i<20;i++){
-            int type=(int)((Math.random()*3)+1);
-            DataModel data=new DataModel();
-            data.avatarColor=colors[type-1];
-            data.type=type;
-            data.name="name:"+i;
-            data.content="content:"+i;
-            data.contentColor=colors[(type+1)%3];
+        titles=findViewById(R.id.titles);
+        //标题部分
+        titles.setLayoutManager(new GridLayoutManager(this,5));
+        mTitleAdapter=new ProvinceTitleAdapter(this);
+        titles.setAdapter(mTitleAdapter);
+
+
+    }
+
+    @Override
+    public void changeAdapter(int position) {
+
+        switch (position){
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                //内容部分
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                mContentAdapter =new ProvinceListAdapter(this);
+                recyclerView.setAdapter(mContentAdapter);
+                break;
+            case 4:
+                //内容部分
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                mContentAdapter =new ProvinceSecondAdapter(this);
+                recyclerView.setAdapter(mContentAdapter);
+
+                break;
         }
-        adapter=new ProvinceListAdapter(this,dataList);
-
-
-
 
     }
 }

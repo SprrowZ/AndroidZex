@@ -12,17 +12,25 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 
+import com.catcher.zzsdk.AutoCompletedEditTextStaticCursor;
 import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ImageUtils;
@@ -37,6 +45,8 @@ import butterknife.OnClick;
  * Created by Zzg on 2018/7/5.
  */
 public class BILIActivity extends BaseActivity {
+
+    private static final String TAG="BILIActivity";
 
     private static      int COUNT=5;
 
@@ -69,6 +79,13 @@ public class BILIActivity extends BaseActivity {
     Button showBitmap;
     @BindView(R.id.imageContent)
     ImageView imageContent;
+    @BindView(R.id.edit)
+    EditText mEdit;
+    @BindView(R.id.staticEditText)
+    AutoCompletedEditTextStaticCursor mStaticEdit;
+    @BindView(R.id.bottom)
+    LinearLayout bottom;
+
 
     ValueAnimator valueAnimator;
     Timer timer;
@@ -94,10 +111,56 @@ public class BILIActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
+        mStaticEdit.setCursorColor(getResources().getColor(R.color.red));
+        mStaticEdit.setCursorStroke(7);
+//     mEdit.requestFocus();
+////     mEdit.setFocusable(false);
 
+
+        centerContent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.i(TAG,"hasFocus:"+hasFocus);
+                if (hasFocus){
+
+                }
+            }
+        });
+        centerContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG,"OnClick:");
+            }
+        });
+
+       bottom.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Log.i(TAG,"bottom OnClick:");
+           }
+       });
+
+        bottom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.i(TAG,"bottom focusable:"+hasFocus);
+            }
+        });
 
     }
 
+    /**
+     *
+     * 设置EditText的hint字体的大小
+     */
+//    public static void  setEditTextHintSize(EditText editText,String hintText,int size){
+//        SpannableString ss = new SpannableString(hintText);//定义hint的值
+//        ForegroundColorSpan fcs = new ForegroundColorSpan(Color.parseColor("#fb7299"));//设置字体大小 true表示单位是sp
+//        AbsoluteSizeSpan ass=new AbsoluteSizeSpan(size,true);
+//        ss.setSpan(ass, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        ss.setSpan(fcs,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        editText.setHint(new SpannedString(ss));
+//    }
    @OnClick({R.id.showRotate,R.id.showBitmap})
     public void onViewClicked(View view){
         switch (view.getId()){
@@ -114,8 +177,8 @@ public class BILIActivity extends BaseActivity {
      * 显示循环Demo
      */
     private void startTimer(){
+        if (timer!=null) timer.cancel();
         if (rotateView.getVisibility()==View.VISIBLE){
-            if (timer!=null) timer.cancel();
             rotateView.setVisibility(View.GONE);
         }else{
             rotateView.setVisibility(View.VISIBLE);

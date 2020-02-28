@@ -63,7 +63,7 @@ public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapte
         viewHolder.avatar.setImageDrawable(mContext.getDrawable(dataModel.getAvatar()));
         viewHolder.province.setText(dataModel.getProvinceName());
         viewHolder.provincialCapital.setText(dataModel.getProvinceCapital());
-        viewHolder.population.setText(dataModel.getPopulation());
+        viewHolder.population.setText(String.valueOf(dataModel.getPopulation()));
 
     }
     //ViewHolder用来初始化控件

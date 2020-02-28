@@ -33,7 +33,7 @@
     <application
         android:name=".RyeCatcherApp"
         android:allowBackup="true"
-        android:icon="@mipmap/my3"
+        android:icon="@mipmap/appicon"
         android:label="${appName}"
         android:roundIcon="@drawable/appround"
         android:supportsRtl="true"

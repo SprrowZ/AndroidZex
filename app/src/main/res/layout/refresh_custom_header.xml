@@ -57,7 +57,7 @@
             />
 
     </RelativeLayout>
-<com.zyao89.view.zloading.ZLoadingView
+<com.zyao89.viewRx.zloading.ZLoadingView
     android:id="@+id/loadingView"
     android:visibility="gone"
     android:layout_width="match_parent"

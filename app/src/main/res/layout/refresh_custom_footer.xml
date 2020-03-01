@@ -6,7 +6,7 @@
     android:layout_height="@dimen/len_80"
 
     >
-    <com.zyao89.view.zloading.ZLoadingView
+    <com.zyao89.viewRx.zloading.ZLoadingView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:z_type="StarBuilder"

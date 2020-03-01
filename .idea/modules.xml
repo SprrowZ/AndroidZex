@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidZex.iml" filepath="$PROJECT_DIR$/AndroidZex.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/AndroidZex-app.iml" filepath="$PROJECT_DIR$/app/AndroidZex-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/base/AndroidZex-base.iml" filepath="$PROJECT_DIR$/base/AndroidZex-base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zgstep/AndroidZex-zgstep.iml" filepath="$PROJECT_DIR$/zgstep/AndroidZex-zgstep.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidZex.iml" filepath="$PROJECT_DIR$/AndroidZex.iml" group="AndroidZex" />
+      <module fileurl="file://$PROJECT_DIR$/app/AndroidZex-app.iml" filepath="$PROJECT_DIR$/app/AndroidZex-app.iml" group="AndroidZex/app" />
+      <module fileurl="file://$PROJECT_DIR$/base/AndroidZex-base.iml" filepath="$PROJECT_DIR$/base/AndroidZex-base.iml" group="AndroidZex/base" />
+      <module fileurl="file://$PROJECT_DIR$/zgstep/AndroidZex-zgstep.iml" filepath="$PROJECT_DIR$/zgstep/AndroidZex-zgstep.iml" group="AndroidZex/zgstep" />
+      <module fileurl="file://$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" group="AndroidZex/zzsdk" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/bproject-AndroidZex.iml" filepath="$PROJECT_DIR$/bproject-AndroidZex.iml" />

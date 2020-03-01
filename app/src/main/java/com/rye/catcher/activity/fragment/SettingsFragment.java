@@ -10,7 +10,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
 import com.rye.catcher.activity.CameraActivity;
 import com.rye.catcher.activity.ORRActivity;
-import com.rye.catcher.activity.ProjectMainActivity;
+import com.rye.catcher.activity.ProjectMainActivityRx;
 import com.rye.catcher.activity.ZTActivity;
 import com.rye.catcher.activity.ctmactivity.CtmMainActivity;
 
@@ -79,7 +79,7 @@ public class SettingsFragment  extends BaseFragment {
                 break;
             case R.id.project:
 
-           Intent intent9 = new Intent(mContext, ProjectMainActivity.class);
+           Intent intent9 = new Intent(mContext, ProjectMainActivityRx.class);
                ((Activity)mContext).startActivityForResult(intent9,11);
                 break;
 

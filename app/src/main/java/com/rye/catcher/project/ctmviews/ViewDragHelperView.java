@@ -43,7 +43,7 @@ public class ViewDragHelperView extends FrameLayout {
          */
         @Override
         public boolean tryCaptureView(@NonNull View child, int pointerId) {
-            //return capturedView=view;
+            //return capturedView=viewRx;
             return true;
         }
 

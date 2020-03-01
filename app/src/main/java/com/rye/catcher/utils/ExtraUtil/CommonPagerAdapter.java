@@ -46,10 +46,10 @@ public class CommonPagerAdapter extends PagerAdapter {
         Bitmap   bitmap=BitmapFactory.decodeResource(container.getResources(),ResId[position],options);
 
       //设置尺寸
-      // LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) view.getLayoutParams();
+      // LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) viewRx.getLayoutParams();
      // layoutParams.width= 500;
       // layoutParams.height= 500;
-       // view.setLayoutParams(layoutParams);
+       // viewRx.setLayoutParams(layoutParams);
         //加载bitmap
 
         view.setImageBitmap(bitmap);

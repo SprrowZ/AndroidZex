@@ -9,7 +9,20 @@ public abstract class BasePresenter<T extends BaseView> {
    public void attach(T mView){
        this.mView=mView;
    }
+
    public void  detach(){
        mView=null;
+   }
+
+    /**
+     * 在Presenter中调用View的接口时,一定要加以判断;如果View为空,就不要调用V层
+     * @return
+     */
+   public boolean isViewAttached(){
+       return mView!=null;
+   }
+
+   public T getView(){
+       return mView;
    }
 }

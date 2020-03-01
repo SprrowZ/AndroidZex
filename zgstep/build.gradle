@@ -40,6 +40,9 @@ dependencies {
     implementation deps.gson
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.parse.bolts:bolts-tasks:1.4.0'
+    implementation 'com.parse.bolts:bolts-applinks:1.4.0'
 }
 repositories {
     mavenCentral()

@@ -81,7 +81,7 @@ public class WebViewActivity extends Activity {
                 super.onReceivedError(view, errorCode, description, failingUrl);
                  view.loadUrl("file:///android_asset/error.html");//加载错误网页,其中file:///android_asset/，这个是固定的
 //                String data = "Page NO FOUND！";
-//                view.loadUrl("javascript:document.body.innerHTML=\"" + data + "\"");
+//                viewRx.loadUrl("javascript:document.body.innerHTML=\"" + data + "\"");
             }
 
             @Override

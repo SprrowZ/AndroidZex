@@ -1,13 +1,19 @@
 package com.rye.catcher.activity.adapter;
 
 import android.content.Context;
+
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dawn.zgstep.datas.FakeDatas;
+import com.dawn.zgstep.datas.ProvinceModel;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.recybean.DataModel;
 
@@ -19,21 +25,22 @@ import java.util.List;
  */
 public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapter.ProvinceViewHolder> {
     private LayoutInflater mLayoutInflater;
-    private List<DataModel> mList =new ArrayList<>();
-    private Context context;
-    public ProvinceListAdapter(Context context, List<DataModel> list){
-        this.context=context;
-        this.mList =list;
+    private List<ProvinceModel> mList ;
+    private Context mContext;
+    public ProvinceListAdapter(Context context){
+        this.mContext=context;
+        this.mList = FakeDatas.Companion.getProvinceLists();
         mLayoutInflater=LayoutInflater.from(context);
     }
-    public void addList(List<DataModel> list){
+
+
+    public void addList(List<ProvinceModel> list){
         mList.addAll(list);
     }
+
+
    //type,可写可不写，但是这个我觉得还是应该得写。这个得查查
-    @Override
-    public int getItemViewType(int position) {
-        return mList.get(position).type;
-    }
+
 
     //引入xml
     @Override
@@ -48,22 +55,28 @@ public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapte
         return mList.size();
     }
     //操作item的地方
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(ProvinceViewHolder viewHolder, int i) {
         //操作
-        DataModel dataModel= mList.get(i);
+        ProvinceModel dataModel= mList.get(i);
+        viewHolder.avatar.setImageDrawable(mContext.getDrawable(dataModel.getAvatar()));
+        viewHolder.province.setText(dataModel.getProvinceName());
+        viewHolder.provincialCapital.setText(dataModel.getProvinceCapital());
+        viewHolder.population.setText(String.valueOf(dataModel.getPopulation()));
+
     }
     //ViewHolder用来初始化控件
     class ProvinceViewHolder extends RecyclerView.ViewHolder{
-        ImageView image;
+        ImageView avatar;
         TextView province;
-        TextView provincial_captial;
+        TextView provincialCapital;
         TextView population;
         public ProvinceViewHolder(View itemView) {
             super(itemView);
-            image=itemView.findViewById(R.id.image);
+            avatar=itemView.findViewById(R.id.avatar);
             province=itemView.findViewById(R.id.province);
-            provincial_captial=itemView.findViewById(R.id.provincial_capital);
+            provincialCapital=itemView.findViewById(R.id.provincial_capital);
             population=itemView.findViewById(R.id.population);
         }
     }

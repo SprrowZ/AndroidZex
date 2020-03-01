@@ -88,8 +88,8 @@ public class ORRActivity extends BaseActivity {
 
 
 //    @OnClick({R.id.okhttp,R.id.retrofit,R.id.rxjava,R.id.orr})
-//    public void onViewClicked(View view){
-//        switch (view.getId()){
+//    public void onViewClicked(View viewRx){
+//        switch (viewRx.getId()){
 //            case R.id.okhttp:
 //                doSelect(0);
 //                break;

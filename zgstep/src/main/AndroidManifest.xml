@@ -3,7 +3,8 @@
     package="com.dawn.zgstep">
 
     <application>
-        <activity android:name=".test_activitys.ZStepMainActivity"></activity>
+        <activity android:name=".others.job1.JobOneActivity"></activity>
+        <activity android:name=".test_activitys.ZStepMainActivity" />
     </application>
 
 </manifest>

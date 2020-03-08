@@ -452,7 +452,7 @@ public class GuideView  extends RelativeLayout implements ViewTreeObserver.OnGlo
     /**
      * 定义GuideView相对于targetView的方位，共八种。不设置则默认在targetView下方
      */
-    enum Direction {
+    public enum Direction {
         LEFT, TOP, RIGHT, BOTTOM,
         LEFT_TOP, LEFT_BOTTOM,
         RIGHT_TOP, RIGHT_BOTTOM
@@ -461,7 +461,7 @@ public class GuideView  extends RelativeLayout implements ViewTreeObserver.OnGlo
     /**
      * 定义目标控件的形状，共3种。圆形，椭圆，带圆角的矩形（可以设置圆角大小），不设置则默认是圆形
      */
-    enum MyShape {
+   public enum MyShape {
         CIRCULAR, ELLIPSE, RECTANGULAR
     }
 

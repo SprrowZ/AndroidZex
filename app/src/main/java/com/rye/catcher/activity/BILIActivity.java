@@ -3,28 +3,25 @@ package com.rye.catcher.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.SpannedString;
-import android.text.style.AbsoluteSizeSpan;
-import android.text.style.ForegroundColorSpan;
+import android.transition.Slide;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
+
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -118,6 +115,8 @@ public class BILIActivity extends BaseActivity {
         return R.layout.bili_test;
     }
 
+
+
     @Override
     public void initEvent() {
         mStaticEdit.setCursorColor(getResources().getColor(R.color.red));
@@ -160,6 +159,26 @@ public class BILIActivity extends BaseActivity {
         showGuideView();
 
     }
+
+    @Override
+    public void beforeCreate(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().setEnterTransition(new Slide());
+//        }
+    }
+
+    public static void start(Context context){
+        Intent intent= new Intent(context,BILIActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           context.startActivity(intent, ActivityOptions.makeCustomAnimation(context,R.anim.slide_open_enter,
+                   R.anim.slide_close_exit).toBundle());
+//           context.startActivity(intent);
+
+        }
+    }
+
+
 
     /**
      *
@@ -378,5 +397,9 @@ public class BILIActivity extends BaseActivity {
                 .show();                // 必须调用，显示GuideView
      }
 
-
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,R.anim.slide_finish_exit);
+    }
 }

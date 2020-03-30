@@ -15,5 +15,11 @@
         <item name="android:textColor">@color/black_alpha_112</item>
         <item name="android:textSize">16sp</item>
     </style>
+   <!--全屏DialogFragment-->
+    <style name="full_screen_dialog_fragment" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
 
 </resources>

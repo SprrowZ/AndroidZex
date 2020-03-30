@@ -176,7 +176,11 @@
         <item name="textAllCaps">false</item>
     </style>
 
-
+    <style name="AnimationActivity" parent="AppTheme.Base" tools:ignore="NewApi">
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/activity_transition_come</item>
+        <item name="android:windowExitTransition">@transition/activity_transition_leave</item>
+    </style>
 
 
 

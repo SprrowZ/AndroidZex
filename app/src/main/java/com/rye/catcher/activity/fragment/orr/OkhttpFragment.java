@@ -78,11 +78,11 @@ public class OkhttpFragment extends BaseFragment {
         //假数据
         fakedata();
         adapter=new OkHttpAdapter(getActivity(),dataList);
-        GridLayoutManager manager=new GridLayoutManager(recyclerView.getContext(),3);
+        GridLayoutManager manager=new GridLayoutManager(recyclerView.getContext(),5);
 
         //item之间加分割线，也可以在item上画
-        recyclerView.addItemDecoration(new SimpleItemDecoration(DensityUtil.dip2px(getActivity(),1),
-                DensityUtil.dip2px(getActivity(),1),getActivity().getColor(R.color.soft12)));
+//        recyclerView.addItemDecoration(new SimpleItemDecoration(DensityUtil.dip2px(getActivity(),1),
+//                DensityUtil.dip2px(getActivity(),1),getActivity().getColor(R.color.soft12)));
         //一个item占多少列
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override

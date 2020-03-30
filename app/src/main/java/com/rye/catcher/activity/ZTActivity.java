@@ -15,6 +15,7 @@ import com.catcher.zzsdk.okhttp.others.DisposeDataListener;
 import com.catcher.zzsdk.okhttp.request.CommonRequest;
 import com.catcher.zzsdk.okhttp.response.JsonCallback;
 import com.catcher.zzsdk.okhttp.response.NormalCallback;
+import com.dawn.zgstep.others.job1.JobOneActivity;
 import com.google.gson.Gson;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
@@ -68,7 +69,7 @@ public class ZTActivity extends BaseActivity {
                 startActivity(new Intent(ZTActivity.this, WebViewActivity.class));
                 break;
             case R.id.bili:
-                startActivity(new Intent(ZTActivity.this, BILIActivity.class));
+                BILIActivity.start(this);
                 break;
             case R.id.ee:
                 startActivity(new Intent(ZTActivity.this, SocketClientActivity.class));
@@ -77,7 +78,7 @@ public class ZTActivity extends BaseActivity {
                 startActivity(new Intent(ZTActivity.this, CharactersDoActivity.class));
                 break;
             case R.id.gg:
-                startActivity(new Intent(ZTActivity.this,ProvinceListActivity.class));
+                startActivity(new Intent(ZTActivity.this, JobOneActivity.class));
                 break;
 
         }

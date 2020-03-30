@@ -3,6 +3,10 @@ package com.rye.catcher.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -20,25 +24,23 @@ import android.text.SpannedString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
+
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 
 import com.catcher.zzsdk.AutoCompletedEditTextStaticCursor;
-import com.dawn.zgstep.others.MaskView;
+import com.dawn.zgstep.others.GuideView;
 import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ImageUtils;
@@ -170,7 +172,30 @@ public class BILIActivity extends BaseActivity {
         rootView.postDelayed(()->{
             rootView.removeView(maskView);
         },5000);
+
+        showGuideView();
+
     }
+
+    @Override
+    public void beforeCreate(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            getWindow().setEnterTransition(new Slide());
+//        }
+    }
+
+    public static void start(Context context){
+        Intent intent= new Intent(context,BILIActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           context.startActivity(intent, ActivityOptions.makeCustomAnimation(context,R.anim.slide_open_enter,
+                   R.anim.slide_close_exit).toBundle());
+//           context.startActivity(intent);
+
+        }
+    }
+
+
 
 
     /**
@@ -376,4 +401,23 @@ public class BILIActivity extends BaseActivity {
     }
 
 
+    public void showGuideView() {
+        View maskView=LayoutInflater.from(this).inflate(R.layout.mask_demo1,null);
+
+        GuideView.Builder
+                .newInstance(this)      // 必须调用
+                .setTargetView(imageContent)    // 必须调用，设置需要Guide的View
+                .setCustomGuideView(maskView)  // 必须调用，设置GuideView，可以使任意View的实例，比如ImageView 或者TextView
+                // 设置GuideView 相对于TargetView的位置，有八种，不设置则默认在屏幕左上角,其余的可以显示在右上，右下等等
+                .setShape(GuideView.MyShape.RECTANGULAR)   // 设置显示形状，支持圆形，椭圆，矩形三种样式，矩形可以是圆角矩形，
+                .setBgColor(R.color.red)
+                .build()                // 必须调用，Buider模式，返回GuideView实例
+                .show();                // 必须调用，显示GuideView
+     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,R.anim.slide_finish_exit);
+    }
 }

@@ -8,13 +8,9 @@ import java.lang.Exception
 
 abstract class BaseActivity : RxAppCompatActivity() {
     val TAG = javaClass.name
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+         beforeCreate()
         if (getLayoutId() != null && getLayoutId() != 0) {
             setContentView(getLayoutId())
         } else {
@@ -34,5 +30,5 @@ abstract class BaseActivity : RxAppCompatActivity() {
 
     abstract fun initEvent()
 
-
+    open fun beforeCreate(){}
 }

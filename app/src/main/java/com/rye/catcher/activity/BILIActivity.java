@@ -21,6 +21,7 @@ import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -30,12 +31,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 
 import com.catcher.zzsdk.AutoCompletedEditTextStaticCursor;
+import com.dawn.zgstep.others.MaskView;
 import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ImageUtils;
@@ -46,7 +49,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 
 /**
  * Created by Zzg on 2018/7/5.
@@ -92,6 +95,11 @@ public class BILIActivity extends BaseActivity {
     AutoCompletedEditTextStaticCursor mStaticEdit;
     @BindView(R.id.bottom)
     LinearLayout bottom;
+    @BindView(R.id.maskView)
+    MaskView mMaskView;
+
+    @BindView(R.id.marquee)
+    TextView marquee;
 
 
     ValueAnimator valueAnimator;
@@ -122,7 +130,7 @@ public class BILIActivity extends BaseActivity {
         mStaticEdit.setCursorStroke(7);
 //     mEdit.requestFocus();
 ////     mEdit.setFocusable(false);
-
+        marquee.setSelected(true);
 
         centerContent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -140,21 +148,30 @@ public class BILIActivity extends BaseActivity {
             }
         });
 
-       bottom.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Log.i(TAG,"bottom OnClick:");
-           }
-       });
+       bottom.setOnClickListener(v -> Log.i(TAG,"bottom OnClick:"));
 
-        bottom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.i(TAG,"bottom focusable:"+hasFocus);
-            }
-        });
+        bottom.setOnFocusChangeListener((v, hasFocus) -> Log.i(TAG,"bottom focusable:"+hasFocus));
+
+
+       addMask();
 
     }
+
+    private void addMask(){
+        View maskView=LayoutInflater.from(this).inflate(R.layout.layout_mask,null);
+        TextView leadText=maskView.findViewById(R.id.lead_txt);
+        String lead="按【上键】可进入个人中心";
+        SpannableString ss=new SpannableString(lead);
+        ForegroundColorSpan span=new ForegroundColorSpan(Color.parseColor("#e97479"));
+        ss.setSpan(span,lead.indexOf("【"),lead.indexOf("】"),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        leadText.setText(ss);
+        FrameLayout rootView= (FrameLayout) getWindow().getDecorView();
+        rootView.addView(maskView);
+        rootView.postDelayed(()->{
+            rootView.removeView(maskView);
+        },5000);
+    }
+
 
     /**
      *

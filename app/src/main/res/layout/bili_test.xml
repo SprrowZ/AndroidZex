@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="false"
+    android:focusable="true"
 
     >
+
+    <com.dawn.zgstep.others.MaskView
+        android:id="@+id/maskView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <EditText
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:cursorVisible="true"
+        android:hint="我再背景。。。。。。"
+        android:maxLines="2"
         android:textColor="@color/pink_900"
         android:textColorHint="@color/gray_pressed"
-        android:maxLines="2"
-        android:hint="我再背景。。。。。。"
         android:visibility="gone"
 
         />
+
     <com.catcher.zzsdk.AutoCompletedEditTextStaticCursor
         android:id="@+id/staticEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minLines="1"
-        android:maxLines="2"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:ellipsize="end"
-        android:hint="我再背景。。。等着你等着你等着你等着你等着你等着你等着你等着你///你等着你等着你等着你你等着你等着你等着你你等着你等着你等着你"
         android:layout_alignParentTop="true"
         android:background="@color/red_50"
-        android:visibility="gone"
-        />
+        android:ellipsize="end"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="我再背景。。。等着你等着你等着你等着你等着你等着你等着你等着你///你等着你等着你等着你你等着你等着你等着你你等着你等着你等着你"
+        android:maxLines="2"
+        android:minLines="1"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/rotateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/big"
@@ -59,33 +64,46 @@
 
     </FrameLayout>
 
-<FrameLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-   android:focusable="true"
-    android:focusableInTouchMode="true"
-    >
-    <RelativeLayout
-        android:id="@+id/centerContent"
+    <TextView
+        android:id="@+id/marquee"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textSize="@dimen/font_24"
+        android:text="没有撤退可言！聆听，灭绝的，死寂吧！来！我来带你见识黑暗"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:ellipsize="marquee"
         android:focusable="true"
-        android:focusableInTouchMode="true"
-        >
 
-        <ImageView
-            android:id="@+id/imageContent"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:scaleType="fitXY"
-            android:background="@mipmap/my5" />
-    </RelativeLayout>
-
-</FrameLayout>
+        />
 
 
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <RelativeLayout
+            android:id="@+id/centerContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <ImageView
+                android:id="@+id/imageContent"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:background="@mipmap/my5"
+                android:scaleType="fitXY" />
+        </RelativeLayout>
+
+    </FrameLayout>
 
 
     <LinearLayout
@@ -93,25 +111,23 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
         android:background="@drawable/selector_main_my_history"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/showRotate"
 
-            android:duplicateParentState="true"
-            android:focusableInTouchMode="true"
             android:layout_width="0dp"
             android:layout_height="@dimen/len_56"
             android:layout_weight="1"
+            android:duplicateParentState="true"
+            android:focusableInTouchMode="true"
             android:text="ShowRotate"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/showBitmap"
@@ -122,8 +138,7 @@
             android:text="ShowBitmap"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
 
     </LinearLayout>

@@ -117,6 +117,7 @@ public class RecycleDemoActivity extends BaseActivity {
 
         adapter = new DemoAdapter(this);
         recyclerView.setAdapter(adapter);
+
         dataList = new ArrayList<>();
 
         Log.i(TAG, "init: " + (int) 2.7);

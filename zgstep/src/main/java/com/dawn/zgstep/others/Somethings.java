@@ -37,6 +37,10 @@ public class Somethings {
         test8();
     }
 
+
+
+
+
     public static void test2(){
         String target=".asyncloading_item,null);";
         Pattern pattern=Pattern.compile("[a-z0-9_]+");

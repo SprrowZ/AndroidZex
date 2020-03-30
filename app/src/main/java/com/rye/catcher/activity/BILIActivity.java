@@ -12,18 +12,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.SpannedString;
-import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -34,6 +33,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -41,6 +41,7 @@ import androidx.annotation.NonNull;
 
 import com.catcher.zzsdk.AutoCompletedEditTextStaticCursor;
 import com.dawn.zgstep.others.GuideView;
+import com.dawn.zgstep.others.MaskView;
 import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ImageUtils;
@@ -184,18 +185,6 @@ public class BILIActivity extends BaseActivity {
 //            getWindow().setEnterTransition(new Slide());
 //        }
     }
-
-    public static void start(Context context){
-        Intent intent= new Intent(context,BILIActivity.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-           context.startActivity(intent, ActivityOptions.makeCustomAnimation(context,R.anim.slide_open_enter,
-                   R.anim.slide_close_exit).toBundle());
-//           context.startActivity(intent);
-
-        }
-    }
-
-
 
 
     /**

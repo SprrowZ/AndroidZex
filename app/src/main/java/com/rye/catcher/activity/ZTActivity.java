@@ -69,7 +69,7 @@ public class ZTActivity extends BaseActivity {
                 startActivity(new Intent(ZTActivity.this, WebViewActivity.class));
                 break;
             case R.id.bili:
-                BILIActivity.start(this);
+           //     BILIActivity.start(this);
                 break;
             case R.id.ee:
                 startActivity(new Intent(ZTActivity.this, SocketClientActivity.class));

@@ -99,7 +99,7 @@ class BoltsMainKotlin :Activity(){
     fun  methodSeven() {
        Task.call(object:Callable<String>{
            override fun call(): String {
-               TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+               return "11"
            }
 
        }).continueWithTask(object : Continuation<String ,Task<String>> {
@@ -111,13 +111,66 @@ class BoltsMainKotlin :Activity(){
                })
            }
 
-       },Task.UI_THREAD_EXECUTOR).continueWithTask{
-            return@continueWithTask
-       }
+       },Task.UI_THREAD_EXECUTOR).continueWith(Continuation<String,Void> {
+           null
+       })
     }
 
+    /**
+     * onSuccess，只有上个任务执行成功才会执行下一步
+     */
     fun  methodEight() {
+      Task.callInBackground(object:Callable<String>{
+          override fun call(): String {
+              return "can go down ..."
+          }
+      }).onSuccess {
+          println("" +
+                  "haSaKei!")
+      }
+    }
 
+    /**
+     * 这里onSuccess不执行，出错了
+     */
+    fun methodNine() {
+        Task.callInBackground(object : Callable<Int> {
+            override fun call(): Int {
+                throw Exception("bilibili  .... biu ...")
+                return 11
+            }
+        }).onSuccess {
+            println(it.result)
+        }
+    }
+
+    /**
+     * continueWhile,开启循环任务，false结束循环
+     */
+    fun methonTen() {
+        var i = 0
+        Task.callInBackground {
+            println("wu wa wu wa")
+        }.continueWhile(object:Callable<Boolean>{
+            override fun call(): Boolean {
+                i++
+                if (i ==4){
+                    return  false
+                }
+                return true
+            }
+        }, Continuation<Void ,Task<Void>> {
+             println("----haskki")
+             null
+         })
+    }
+
+    /**
+     * TaskCompletionSource--自己实现Task
+     */
+    fun methodEleven() {
+        val myTask = TaskCompletionSource<String>()
+        myTask.trySetResult("fu...le...")
     }
 
 }

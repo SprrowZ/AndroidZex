@@ -4,9 +4,9 @@ ext.base=[:]
 
 def base_version=[:]
 
-base_version.targetSDK=28
+base_version.targetSDK = 28
 
-base_version.compileVersion=29
+base_version.compileVersion = 29
 
 
 

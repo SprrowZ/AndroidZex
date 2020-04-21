@@ -15,11 +15,11 @@ apply from : '../config/sign.gradle'
 
 
 android {
-    compileSdkVersion this.rootProject.compileSdkVer
-    buildToolsVersion this.rootProject.buildToolsVer
+    compileSdkVersion  rootProject.compileSdkVer
+    buildToolsVersion  rootProject.buildToolsVer
     defaultConfig {
         applicationId "com.rye.catcher.zzg"
-        minSdkVersion minSdkVer
+        minSdkVersion  rootProject.MiminSdkVer
         targetSdkVersion targetSdkVer
         versionCode 7
         versionName "1.0.7"

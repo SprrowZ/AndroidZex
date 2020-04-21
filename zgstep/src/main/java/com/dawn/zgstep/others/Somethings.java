@@ -1,14 +1,12 @@
 package com.dawn.zgstep.others;
 
-import android.os.CountDownTimer;
-
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import algorithms.ZLinkedList;
+import com.dawn.zgstep.algorithms.ZLinkedList;
 
 /**
  * Created By RyeCatcher

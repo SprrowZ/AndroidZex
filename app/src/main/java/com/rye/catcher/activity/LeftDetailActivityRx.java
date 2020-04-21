@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.rye.base.rxmvp.RxBaseActivity;
+import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.DeviceInfoFragment;
 import com.rye.catcher.activity.fragment.LMFragment;
@@ -13,7 +14,7 @@ import com.rye.catcher.activity.fragment.SettingsFragment;
 
 
 
-public class LeftDetailActivityRx extends RxBaseActivity {
+public class LeftDetailActivityRx extends BaseActivity {
 
 
     private Fragment currentFragment;
@@ -27,7 +28,7 @@ public class LeftDetailActivityRx extends RxBaseActivity {
     private int type=-1;
 
     @Override
-    public int bindLayout() {
+    public int getLayoutId() {
         return R.layout.activity_left_detail;
     }
 
@@ -82,6 +83,7 @@ public class LeftDetailActivityRx extends RxBaseActivity {
         }
         return currentFragment;
     }
+
 
 
 }

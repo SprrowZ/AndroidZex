@@ -1,16 +1,12 @@
-package com.rye.catcher.activity.adapter.recy.samedata;
+package com.rye.catcher.activity.adapter.recycler.samedata;
 
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dawn.zgstep.demos.annotations.BindView;
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModel;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelEx;
-
-import butterknife.ButterKnife;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModel;
 
 /**
  * Created at 2018/9/18.

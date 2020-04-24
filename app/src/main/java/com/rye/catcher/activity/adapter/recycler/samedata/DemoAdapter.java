@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.adapter.recy.samedata;
+package com.rye.catcher.activity.adapter.recycler.samedata;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModel;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelEx;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModel;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelEx;
 
 import java.util.ArrayList;
 import java.util.List;

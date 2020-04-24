@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.adapter.recy.recybean;
+package com.rye.catcher.activity.adapter.recycler.recybean;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
@@ -22,4 +22,18 @@ public class DataModel {
     @Nullable
     public String other;
 
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof DataModel){
+            if (((DataModel)obj).mBgUrl == this.mBgUrl && ((DataModel)obj).mContent == this.mContent ) {
+                return true;
+            }
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

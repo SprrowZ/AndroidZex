@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.adapter.recy.diffdata;
+package com.rye.catcher.activity.adapter.recycler.diffdata;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;

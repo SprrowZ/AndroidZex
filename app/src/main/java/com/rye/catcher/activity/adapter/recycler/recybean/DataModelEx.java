@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.adapter.recy.recybean;
+package com.rye.catcher.activity.adapter.recycler.recybean;
 
 /**
  * Created at 2018/9/16.

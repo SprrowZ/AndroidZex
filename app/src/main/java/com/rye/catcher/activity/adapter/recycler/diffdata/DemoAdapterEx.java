@@ -1,4 +1,4 @@
-package com.rye.catcher.activity.adapter.recy.diffdata;
+package com.rye.catcher.activity.adapter.recycler.diffdata;
 
 import android.content.Context;
 
@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelOne;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelThree;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelTwo;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelOne;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelThree;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelTwo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

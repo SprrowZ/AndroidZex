@@ -12,14 +12,14 @@ import android.view.View;
 
 import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recy.diffdata.DemoAdapterEx;
-import com.rye.catcher.activity.adapter.recy.diffdata.TitleAdapter;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModel;
-import com.rye.catcher.activity.adapter.recy.samedata.DemoAdapter;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelEx;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelOne;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelThree;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelTwo;
+import com.rye.catcher.activity.adapter.recycler.diffdata.DemoAdapterEx;
+import com.rye.catcher.activity.adapter.recycler.diffdata.TitleAdapter;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModel;
+import com.rye.catcher.activity.adapter.recycler.samedata.DemoAdapter;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelEx;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelOne;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelThree;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelTwo;
 
 import org.jetbrains.annotations.NotNull;
 

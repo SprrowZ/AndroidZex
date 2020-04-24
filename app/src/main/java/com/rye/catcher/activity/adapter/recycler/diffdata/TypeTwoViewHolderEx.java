@@ -1,11 +1,11 @@
-package com.rye.catcher.activity.adapter.recy.diffdata;
+package com.rye.catcher.activity.adapter.recycler.diffdata;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.activity.adapter.recy.recybean.DataModelTwo;
+import com.rye.catcher.activity.adapter.recycler.recybean.DataModelTwo;
 
 /**
  * Created at 2018/9/18.

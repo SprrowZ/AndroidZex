@@ -1,25 +1,47 @@
 package com.dawn.zgstep.test_activitys;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Build;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.dawn.zgstep.R;
-import com.dawn.zgstep.demos.annotations.BindView;
-import com.dawn.zgstep.demos.annotations.zButterKnife;
 
-public class ZStepMainActivity extends AppCompatActivity {
+import com.rye.base.ui.BaseActivity;
+import com.rye.base.utils.ToastHelper;
+
+public class ZStepMainActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "ZStepMainActivity";
+    TextView btn1;
+
+    TextView btn2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        zButterKnife.bind(this);
+    public int getLayoutId() {
+        return R.layout.activity_step;
     }
 
+    @Override
+    public void initWidget() {
+        btn1 = findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+    }
 
+    @Override
+    public void initEvent() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.btn1) {
+            Log.i(TAG, "BT1 Click ....");
+            ToastHelper.showToastShort(this, "嘚吧嘚吧的");
+        } else if (id == R.id.btn2) {
+            ToastHelper.showToastShort(this, "嘀哩嘀哩呛");
+            Log.i(TAG, "BT2 Click ....");
+        }
+    }
 }

@@ -43,12 +43,18 @@ dependencies {
     //Rxjava+Retrofit+Okhttp
     api deps.rxjava.rx
     api deps.rxjava.rxandroid
+
     api deps.greendao
+
     api deps.okhttp.core
     api deps.okhttp.interceptor
+
     api deps.retrofit.core
     api deps.retrofit.converter
     api deps.retrofit.adapter
+
+
+    api deps.recyclerview
 
     api deps.eventbus
     api deps.kotlin_jdk7

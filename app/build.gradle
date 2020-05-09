@@ -187,7 +187,7 @@ dependencies {
     implementation project(path: ':zgstep')
 
     implementation deps.cardview
-    implementation deps.recyclerview
+
     implementation deps.constraint
     implementation deps.design
     testImplementation 'junit:junit:4.12'

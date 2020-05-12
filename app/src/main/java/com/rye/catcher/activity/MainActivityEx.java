@@ -267,7 +267,7 @@ public class MainActivityEx extends BaseActivity {
     }
 
     //应该单独抽出一个类
-    private class LoginSuccessReceiver extends BroadcastReceiver{
+    private class LoginSuccessReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {

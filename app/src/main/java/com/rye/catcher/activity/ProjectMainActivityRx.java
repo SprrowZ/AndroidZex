@@ -4,6 +4,7 @@ import android.content.Intent;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -41,7 +42,8 @@ import butterknife.ButterKnife;
  * Created by ZZG on 2017/11/13.
  */
 
-public class ProjectMainActivityRx extends RxBaseActivity implements ProjectListAdapter.OnItemClickListener{
+public class ProjectMainActivityRx extends RxBaseActivity implements
+        ProjectListAdapter.OnItemClickListener,ReflectActivity.DataListener{
 
     private static final String TAG2="LifeCycle-A";
     //改为recycleView
@@ -195,5 +197,12 @@ public class ProjectMainActivityRx extends RxBaseActivity implements ProjectList
                 startActivity(new Intent(this, UpdateActivityRx.class));
                 break;
         }
+    }
+
+
+    @Override
+    public void dataLoad(String content) {
+        Log.i("ZZG","------DATA:"+content);
+        Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
     }
 }

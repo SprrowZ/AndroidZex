@@ -15,9 +15,7 @@ import android.widget.TextView;
 import com.dawn.zgstep.datas.FakeDatas;
 import com.dawn.zgstep.datas.ProvinceModel;
 import com.rye.catcher.R;
-import com.rye.catcher.beans.recybean.DataModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

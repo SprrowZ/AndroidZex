@@ -320,6 +320,8 @@
     <dimen name="len_156">156dp</dimen>
     <dimen name="len_16">16dp</dimen>
     <dimen name="len_172">172dp</dimen>
+    <dimen name="len_05">0.5dp</dimen>
+    <dimen name="len_1">1dp</dimen>
     <dimen name="len_2">2dp</dimen>
     <dimen name="len_20">20dp</dimen>
     <dimen name="len_210">210dp</dimen>

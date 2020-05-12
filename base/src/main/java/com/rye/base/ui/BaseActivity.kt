@@ -3,14 +3,16 @@ package com.rye.base.ui
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import butterknife.ButterKnife
+import com.rye.base.R
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import java.lang.Exception
+
 
 abstract class BaseActivity : RxAppCompatActivity() {
     val TAG = javaClass.name
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         beforeCreate()
+        setTheme(R.style.default_activity_theme)
+        beforeCreate()
         if (getLayoutId() != null && getLayoutId() != 0) {
             setContentView(getLayoutId())
         } else {
@@ -19,10 +21,12 @@ abstract class BaseActivity : RxAppCompatActivity() {
         //绑定
         ButterKnife.bind(this)
 
+        initWidget()
 
         initEvent()
-
     }
+
+    open fun initWidget() {}
 
     @LayoutRes
     abstract fun getLayoutId(): Int
@@ -30,5 +34,5 @@ abstract class BaseActivity : RxAppCompatActivity() {
 
     abstract fun initEvent()
 
-    open fun beforeCreate(){}
+    open fun beforeCreate() {}
 }

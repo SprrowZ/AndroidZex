@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="@dimen/len_100"
+    android:layout_height="@dimen/len_100"
+    android:background="@color/gray_bg"
+    >
+<TextView
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textSize="@dimen/font_24"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:textColor="@color/red"
+    tools:text="标题"/>
+</LinearLayout>

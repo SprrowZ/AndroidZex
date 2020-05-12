@@ -1,13 +1,20 @@
 package com.rye.catcher;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 
 import com.rye.base.BaseApplication;
 
@@ -31,6 +38,7 @@ public class RyeCatcherApp extends BaseApplication {
 
     private static RyeCatcherApp instance;
 
+    private static Paint mPaint;
 
     //前后台判断
     private int countActivity=0;
@@ -47,7 +55,7 @@ public class RyeCatcherApp extends BaseApplication {
         //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
         Old_ApplicationUtil.setContext(mContext);
 
-         ThirdSdk.getInstance().initSdk(this);
+        ThirdSdk.getInstance().initSdk(this);
     }
 
 
@@ -73,6 +81,7 @@ public class RyeCatcherApp extends BaseApplication {
                 countActivity++;
                 Log.i(TAG, "onActivityStarted: "+countActivity);
                 FileUtil.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
+                setGray(activity);
             }
 
             @Override
@@ -133,7 +142,16 @@ public class RyeCatcherApp extends BaseApplication {
         }
     }
 
-
+    @SuppressLint("ResourceAsColor")
+    private void setGray(Activity activity){
+        if (mPaint == null) {
+            mPaint = new Paint();
+        }
+         ColorMatrix colorMatrix = new ColorMatrix();
+         colorMatrix.setSaturation(0f);
+         mPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        activity.getWindow().getDecorView().setLayerType(View.LAYER_TYPE_HARDWARE,mPaint);
+    }
 
 
 }

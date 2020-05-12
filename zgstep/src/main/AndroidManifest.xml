@@ -5,6 +5,7 @@
     <application>
         <activity android:name=".others.job1.JobOneActivity"></activity>
         <activity android:name=".test_activitys.ZStepMainActivity" />
+        <activity android:name=".others.bolts.BoltsMainJava"/>
     </application>
 
 </manifest>

@@ -56,7 +56,6 @@ class KotlinView : View {//主从构造方法
  * 类的访问控制权限
  */
 open class Bird{
-
    open fun fly(){
         println("I can fly")
     }

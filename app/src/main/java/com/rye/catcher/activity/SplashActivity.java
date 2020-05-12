@@ -2,8 +2,11 @@ package com.rye.catcher.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.collection.SparseArrayCompat;
+
 import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
@@ -50,7 +53,9 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.app_splash);
         ButterKnife.bind(this);
         initEx();
-
+        SparseArrayCompat map =new SparseArrayCompat();
+        map.size();
+      Log.i("rrtt", Color.parseColor("#FF6186")+"\n" +Color.parseColor("#FAAB4B"));
     }
 
 

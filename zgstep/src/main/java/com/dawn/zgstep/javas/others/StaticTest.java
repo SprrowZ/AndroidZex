@@ -1,5 +1,7 @@
 package com.dawn.zgstep.javas.others;
 
+import com.dawn.zgstep.kotlins.ZZG;
+
 /**
  * Created By RyeCatcher
  * at 2019/10/10
@@ -15,7 +17,7 @@ class SonStatic extends  StaticTest{
 
 
     public static void doMethod1(){
-
+        ZZG.runOnMainThread();
     }
 
 }

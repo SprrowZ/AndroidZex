@@ -40,7 +40,7 @@ class ProvinceTitleAdapter(val clickListenter:TitleClickListener) : RecyclerView
         companion object {
             fun create(parent: ViewGroup): TitleHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val rootView= layoutInflater.inflate(R.layout.province_title_item, parent, false)
+                val rootView= layoutInflater.inflate(R.layout.recycler_common_title_item, parent, false)
                 return TitleHolder(rootView)
             }
         }

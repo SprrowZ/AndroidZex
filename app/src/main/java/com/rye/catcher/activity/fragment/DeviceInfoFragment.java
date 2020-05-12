@@ -26,7 +26,7 @@ import butterknife.BindView;
  */
 public class DeviceInfoFragment extends BaseFragment {
 
-    @BindView(R.id.recycleView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     private DeviceAdapter adapter;

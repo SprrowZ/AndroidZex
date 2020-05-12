@@ -1,6 +1,7 @@
 package com.dawn.zgstep.datas
 
 import com.dawn.zgstep.R
+import com.dawn.zgstep.kotlins.runOnMainThread
 
 class FakeDatas {
     /**
@@ -18,6 +19,8 @@ class FakeDatas {
                         1000)
                 dataList.add(data)
             }
+            //牛皮
+            runOnMainThread()
             return dataList
         }
     }

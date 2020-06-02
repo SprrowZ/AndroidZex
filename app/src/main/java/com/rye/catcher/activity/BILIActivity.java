@@ -53,15 +53,14 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
-
 /**
  * Created by Zzg on 2018/7/5.
  */
 public class BILIActivity extends BaseActivity {
 
-    private static final String TAG="BILIActivity";
+    private static final String TAG = "BILIActivity";
 
-    private static      int COUNT=5;
+    private static int COUNT = 5;
 
     public static final int REFERENCE_SQUARE_LENGTH = 600;
 
@@ -72,7 +71,7 @@ public class BILIActivity extends BaseActivity {
     static final int DEFAULT_TEXT_COLOR = Color.WHITE;
 
 
-    static final String DEFAULT_TEXT ="b站热门";
+    static final String DEFAULT_TEXT = "b站热门";
 
 
     @BindView(R.id.big)
@@ -107,11 +106,11 @@ public class BILIActivity extends BaseActivity {
 
     ValueAnimator valueAnimator;
     Timer timer;
-    Handler mHandler=new Handler(){
+    Handler mHandler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 1:
                     rotateAnimator(true);
                     break;
@@ -138,8 +137,8 @@ public class BILIActivity extends BaseActivity {
         centerContent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Log.i(TAG,"hasFocus:"+hasFocus);
-                if (hasFocus){
+                Log.i(TAG, "hasFocus:" + hasFocus);
+                if (hasFocus) {
 
                 }
             }
@@ -147,39 +146,39 @@ public class BILIActivity extends BaseActivity {
         centerContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG,"OnClick:");
+                Log.i(TAG, "OnClick:");
             }
         });
 
-       bottom.setOnClickListener(v -> Log.i(TAG,"bottom OnClick:"));
+        bottom.setOnClickListener(v -> Log.i(TAG, "bottom OnClick:"));
 
-        bottom.setOnFocusChangeListener((v, hasFocus) -> Log.i(TAG,"bottom focusable:"+hasFocus));
+        bottom.setOnFocusChangeListener((v, hasFocus) -> Log.i(TAG, "bottom focusable:" + hasFocus));
 
 
-       addMask();
+        addMask();
 
     }
 
-    private void addMask(){
-        View maskView=LayoutInflater.from(this).inflate(R.layout.layout_mask,null);
-        TextView leadText=maskView.findViewById(R.id.lead_txt);
-        String lead="按【上键】可进入个人中心";
-        SpannableString ss=new SpannableString(lead);
-        ForegroundColorSpan span=new ForegroundColorSpan(Color.parseColor("#e97479"));
-        ss.setSpan(span,lead.indexOf("【"),lead.indexOf("】"),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    private void addMask() {
+        View maskView = LayoutInflater.from(this).inflate(R.layout.layout_mask, null);
+        TextView leadText = maskView.findViewById(R.id.lead_txt);
+        String lead = "按【上键】可进入个人中心";
+        SpannableString ss = new SpannableString(lead);
+        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor("#e97479"));
+        ss.setSpan(span, lead.indexOf("【"), lead.indexOf("】"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         leadText.setText(ss);
-        FrameLayout rootView= (FrameLayout) getWindow().getDecorView();
+        FrameLayout rootView = (FrameLayout) getWindow().getDecorView();
         rootView.addView(maskView);
-        rootView.postDelayed(()->{
+        rootView.postDelayed(() -> {
             rootView.removeView(maskView);
-        },5000);
+        }, 5000);
 
         showGuideView();
 
     }
 
     @Override
-    public void beforeCreate(){
+    public void beforeCreate() {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            getWindow().setEnterTransition(new Slide());
@@ -188,7 +187,6 @@ public class BILIActivity extends BaseActivity {
 
 
     /**
-     *
      * 设置EditText的hint字体的大小
      */
 //    public static void  setEditTextHintSize(EditText editText,String hintText,int size){
@@ -199,9 +197,9 @@ public class BILIActivity extends BaseActivity {
 //        ss.setSpan(fcs,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        editText.setHint(new SpannedString(ss));
 //    }
-   @OnClick({R.id.showRotate,R.id.showBitmap})
-    public void onViewClicked(View view){
-        switch (view.getId()){
+    @OnClick({R.id.showRotate, R.id.showBitmap})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.showRotate:
                 startTimer();
                 break;
@@ -209,78 +207,70 @@ public class BILIActivity extends BaseActivity {
                 showBitmap();
                 break;
         }
-   }
-
-
-
-
-
-
+    }
 
 
     /**
      * 显示循环Demo
      */
-    private void startTimer(){
-        if (timer!=null) timer.cancel();
-        if (rotateView.getVisibility()==View.VISIBLE){
+    private void startTimer() {
+        if (timer != null) timer.cancel();
+        if (rotateView.getVisibility() == View.VISIBLE) {
             rotateView.setVisibility(View.GONE);
-        }else{
+        } else {
             rotateView.setVisibility(View.VISIBLE);
-            if (timer==null) timer=new Timer();
+            if (timer == null) timer = new Timer();
             timer.schedule(new TimerTask() {
-                int step=0;
+                int step = 0;
+
                 @Override
                 public void run() {
                     step++;
-                    if (step==5){
+                    if (step == 5) {
                         mHandler.sendEmptyMessage(1);
-                    }else if (step==6){
-                        step=0;
+                    } else if (step == 6) {
+                        step = 0;
                         COUNT--;
                         mHandler.sendEmptyMessage(2);
-                        if (COUNT==0){
+                        if (COUNT == 0) {
                             cancel();
                         }
                     }
                 }
-            },3000,1000);
+            }, 3000, 1000);
         }
 
 
+    }
 
-
-
-   }
-
-    private void rotateAnimator(boolean orientation){
+    private void rotateAnimator(boolean orientation) {
         final boolean[] hasDisapper = {false};
-        valueAnimator=ValueAnimator.ofFloat(0F,180F).setDuration(300);
+        valueAnimator = ValueAnimator.ofFloat(0F, 180F).setDuration(300);
 
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
 
-                 float value= (float) animation.getAnimatedValue();
-                  Log.i("zzz","--VALUE:"+value);
-                     if (Math.abs(value)>90&&!hasDisapper[0]){
-                         hasDisapper[0]=true;
-                         if (orientation) {//big--->small,大图消失，小图展现
-                             big.setVisibility(View.GONE);
-                             small.setVisibility(View.VISIBLE);
-                         }else{//small--->big
-                             small.setVisibility(View.GONE);
-                             big.setVisibility(View.VISIBLE);
-                         }
-                     }
-                     if (orientation){//big-->small
-                         small.setRotationY(-180-value);//small转完相当于转了360度，大图只转了180度，
-                         //所以需要将大图的状态置为360
-                         big.setRotationY(-value);
-                     }else{
-                         big.setRotationY(-180-value);
-                         small.setRotationY(-value);
-                     }
+                float value = (float) animation.getAnimatedValue();
+                Log.i("zzz", "--VALUE:" + value);
+                if (Math.abs(value) > 90 && !hasDisapper[0]) {
+                    hasDisapper[0] = true;
+                    if (orientation) {//big--->small,大图消失，小图展现
+                        big.setVisibility(View.GONE);
+                        small.setVisibility(View.VISIBLE);
+                    } else {//small--->big
+                        small.setVisibility(View.GONE);
+                        big.setVisibility(View.VISIBLE);
+                    }
+                }
+                if (orientation) {//big-->small
+                    small.setRotationY(-180 - value);//small转完相当于转了360度，大图只转了180度，
+                    //所以需要将大图的状态置为360
+                    big.setRotationY(-value);
+                } else {
+                    big.setRotationY(-180 - value);
+                    small.setRotationY(-value);
+                }
 
             }
         });
@@ -290,9 +280,9 @@ public class BILIActivity extends BaseActivity {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 //结束后，将旋转180度的，再转180度
-                if (orientation){//big-->small
+                if (orientation) {//big-->small
                     big.setRotationY(-180);
-                }else{
+                } else {
                     small.setRotationY(-180);
                 }
             }
@@ -306,37 +296,35 @@ public class BILIActivity extends BaseActivity {
         valueAnimator.start();
 
 
-
-
     }
 
     /**
      * 展示内容区域
      */
-    private void showBitmap(){
-        if (centerContent.getVisibility()==View.VISIBLE){
+    private void showBitmap() {
+        if (centerContent.getVisibility() == View.VISIBLE) {
             centerContent.setVisibility(View.GONE);
-        }else{
+        } else {
             centerContent.setVisibility(View.VISIBLE);
             dealBitmap();
         }
     }
 
-    private void dealBitmap(){
-        Bitmap originBitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.my3)
-                .copy(Bitmap.Config.ARGB_8888,true);//复制一份
+    private void dealBitmap() {
+        Bitmap originBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.my3)
+                .copy(Bitmap.Config.ARGB_8888, true);//复制一份
 
-       Bitmap  dealedBitmap= drawTag(originBitmap, DEFAULT_TEXT,DEFAULT_TEXT_COLOR,DEFAULT_BACKGROUND_COLOR);
-       imageContent.setImageBitmap(dealedBitmap);
+        Bitmap dealedBitmap = drawTag(originBitmap, DEFAULT_TEXT, DEFAULT_TEXT_COLOR, DEFAULT_BACKGROUND_COLOR);
+        imageContent.setImageBitmap(dealedBitmap);
 
     }
 
-    private Bitmap drawTag(Bitmap originBitmap,String text,int textColor,int backgroundColor){
+    private Bitmap drawTag(Bitmap originBitmap, String text, int textColor, int backgroundColor) {
 
-        Bitmap bitmap= ImageUtils.cropImage(originBitmap,REFERENCE_SQUARE_LENGTH,REFERENCE_SQUARE_LENGTH);
+        Bitmap bitmap = ImageUtils.cropImage(originBitmap, REFERENCE_SQUARE_LENGTH, REFERENCE_SQUARE_LENGTH);
 
-        Canvas canvas=new Canvas(bitmap);
-        canvas.drawBitmap(bitmap,0,0,null);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawBitmap(bitmap, 0, 0, null);
         //绘制字体
         Paint textPaint = new Paint();
         textPaint.setTextSize(100);
@@ -348,10 +336,10 @@ public class BILIActivity extends BaseActivity {
         backgroundPaint.setColor(backgroundColor);
         //底部绘制Tag
         RectF rectF = new RectF(0, bitmap.getHeight() - 100, bitmap.getWidth(), bitmap.getHeight());
-     //   drawOneRoundRect(canvas, rectF, 30, 30, backgroundPaint);
-        drawRect(canvas,rectF,backgroundPaint);
+        //   drawOneRoundRect(canvas, rectF, 30, 30, backgroundPaint);
+        drawRect(canvas, rectF, backgroundPaint);
         drawTextCenter(text, canvas, rectF, textPaint);
-        return  bitmap;
+        return bitmap;
     }
 
 
@@ -370,8 +358,8 @@ public class BILIActivity extends BaseActivity {
         canvas.drawText(text, rect.centerX(), baseline, paint);
     }
 
-    private static void drawRect(Canvas canvas,@NonNull RectF rectF,@NonNull Paint paint){
-        canvas.drawRect(rectF,paint);
+    private static void drawRect(Canvas canvas, @NonNull RectF rectF, @NonNull Paint paint) {
+        canvas.drawRect(rectF, paint);
     }
 
     /**
@@ -383,15 +371,16 @@ public class BILIActivity extends BaseActivity {
         canvas.drawRect(rect.left, rect.bottom - ry, rect.left + rx, rect.bottom, paint); //覆盖左下角
         canvas.drawRect(rect.right - rx, rect.top, rect.right, rect.top + ry, paint); //覆盖右上角
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (valueAnimator!=null) valueAnimator.cancel();
+        if (valueAnimator != null) valueAnimator.cancel();
     }
 
 
     public void showGuideView() {
-        View maskView=LayoutInflater.from(this).inflate(R.layout.mask_demo1,null);
+        View maskView = LayoutInflater.from(this).inflate(R.layout.mask_demo1, null);
 
         GuideView.Builder
                 .newInstance(this)      // 必须调用
@@ -402,11 +391,11 @@ public class BILIActivity extends BaseActivity {
                 .setBgColor(R.color.red)
                 .build()                // 必须调用，Buider模式，返回GuideView实例
                 .show();                // 必须调用，显示GuideView
-     }
+    }
 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0,R.anim.slide_finish_exit);
+        overridePendingTransition(0, R.anim.slide_finish_exit);
     }
 }

@@ -41,7 +41,7 @@ public class CtmViewFragment extends BaseFragment {
 
 
     @OnClick({R.id.orr,R.id.javaMore,R.id.translate,
-    R.id.retrofit,R.id.btn5,R.id.btn6, R.id.btn7, R.id.btn8,R.id.btn9,R.id.btn10,
+    R.id.rotate,R.id.btn5,R.id.btn6, R.id.btn7, R.id.btn8,R.id.btn9,R.id.btn10,
     R.id.btn11,R.id.btn12})
     public void onViewClicked(View view){
         switch (view.getId()){
@@ -69,7 +69,7 @@ public class CtmViewFragment extends BaseFragment {
                 intent1.putExtras(bundle1);
                 startActivity(intent1);
                 break;
-            case R.id.retrofit:
+            case R.id.rotate:
                 startActivity(new Intent(getActivity(), CtmNinethActivity.class));
                 break;
             case R.id.btn5:

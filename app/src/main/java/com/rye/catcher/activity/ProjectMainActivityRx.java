@@ -43,7 +43,7 @@ import butterknife.ButterKnife;
  */
 
 public class ProjectMainActivityRx extends RxBaseActivity implements
-        ProjectListAdapter.OnItemClickListener,ReflectActivity.DataListener{
+        ProjectListAdapter.OnItemClickListener, FilesDemoActivity.DataListener {
 
     private static final String TAG2="LifeCycle-A";
     //改为recycleView
@@ -67,6 +67,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         //子Item点击事件
         adapter.setOnItemClickListener(this);
         recycleView.setAdapter(adapter);
+        FilesDemoActivity.setListener(this);
     }
 
     private void startService() {
@@ -202,7 +203,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
 
     @Override
     public void dataLoad(String content) {
-        Log.i("ZZG","------DATA:"+content);
+        Log.i("RxZZG","------DATA:"+content);
         Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
     }
 }

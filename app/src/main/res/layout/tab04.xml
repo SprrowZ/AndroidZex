@@ -47,7 +47,7 @@
                 android:text="@string/somedome"
                 />
             <Button
-                android:id="@+id/retrofit"
+                android:id="@+id/rotate"
                 style="@style/btn_settings"
                 android:text="@string/retrofit" />
 

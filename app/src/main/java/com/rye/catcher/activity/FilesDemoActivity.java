@@ -1,8 +1,6 @@
 package com.rye.catcher.activity;
 
-import android.os.Bundle;
 import android.os.Environment;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rye.catcher.BaseActivity;
+
+import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.SDHelper;
@@ -24,7 +23,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -42,7 +40,7 @@ public class FilesDemoActivity extends BaseActivity {
     LinearLayout linear1;
     @BindView(R.id.translate)
     Button btn3;
-    @BindView(R.id.retrofit)
+    @BindView(R.id.rotate)
     Button btn4;
     @BindView(R.id.linear2)
     LinearLayout linear2;
@@ -85,15 +83,20 @@ public class FilesDemoActivity extends BaseActivity {
     @BindView(R.id.linear8)
     LinearLayout linear8;
 
+    private static DataListener dataListener;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.file_storage_test);
-        ButterKnife.bind(this);
+    public int getLayoutId() {
+        return R.layout.activity_file_test;
+    }
+
+    @Override
+    public void initEvent() {
 
     }
 
-
+    public static void setListener(DataListener listener){
+        dataListener=listener;
+    }
 
     private void show() {
         linear8.setVisibility(View.VISIBLE);
@@ -173,7 +176,10 @@ public class FilesDemoActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.retrofit, R.id.btn5, R.id.btn6, R.id.btn7, R.id.someting_new, R.id.animation, R.id.drawable, R.id.custom, R.id.project, R.id.submit})
+    @OnClick({R.id.orr, R.id.javaMore, R.id.translate,
+            R.id.rotate, R.id.btn5, R.id.btn6, R.id.btn7,
+            R.id.someting_new, R.id.animation, R.id.drawable,
+            R.id.custom, R.id.project, R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.orr:
@@ -185,7 +191,7 @@ public class FilesDemoActivity extends BaseActivity {
             case R.id.translate:
 
                 break;
-            case R.id.retrofit:
+            case R.id.rotate:
                 show();
                 break;
             case R.id.btn5:
@@ -194,6 +200,7 @@ public class FilesDemoActivity extends BaseActivity {
 
                 break;
             case R.id.btn7:
+                dataListener.dataLoad("content");
                 break;
             case R.id.someting_new:
                 break;
@@ -210,4 +217,8 @@ public class FilesDemoActivity extends BaseActivity {
                 break;
         }
     }
+    interface DataListener{
+        void dataLoad(String content);
+    }
+
 }

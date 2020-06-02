@@ -43,7 +43,7 @@ public class AnimValueActivity extends BaseActivity implements View.OnClickListe
         btn1=findViewById(R.id.orr);
         btn2=findViewById(R.id.javaMore);
         btn3=findViewById(R.id.translate);
-        btn4=findViewById(R.id.retrofit);
+        btn4=findViewById(R.id.rotate);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
         content=findViewById(R.id.appName);
@@ -86,7 +86,7 @@ public class AnimValueActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.translate:
                 break;
-            case R.id.retrofit:
+            case R.id.rotate:
                 break;
             case R.id.btn5:
                 break;

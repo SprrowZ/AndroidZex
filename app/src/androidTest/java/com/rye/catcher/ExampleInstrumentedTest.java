@@ -1,9 +1,13 @@
 package com.rye.catcher;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -19,4 +23,21 @@ public class ExampleInstrumentedTest {
 //
 //        assertEquals("com.example.myappsecond", appContext.getPackageName());
     }
+
+    @Test
+    public void testMaths(){
+        assertEquals(Math.rint(19.455),1.0,1.0);
+    }
+
+
+    @Test
+    public void testAnd(){
+        int j = 1,k=1;
+        boolean variable = false;
+        if (variable && ( ++k == 1)){
+
+        }
+        assertEquals(k,3);
+    }
+
 }

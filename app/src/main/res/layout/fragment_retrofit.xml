@@ -58,7 +58,7 @@
                         android:layout_marginLeft="5dp"
                         />
                     <Button
-                        android:id="@+id/retrofit"
+                        android:id="@+id/rotate"
                         android:text="uploadFileEx"
                         android:textAllCaps="false"
                         android:layout_width="0dp"

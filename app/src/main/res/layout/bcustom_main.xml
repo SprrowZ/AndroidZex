@@ -61,7 +61,7 @@
             android:background="@drawable/btn_bk3"
             />
         <Button
-            android:id="@+id/retrofit"
+            android:id="@+id/rotate"
             android:text="CircleImageView"
             android:layout_width="0dp"
             android:layout_weight="1"

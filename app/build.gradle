@@ -27,6 +27,7 @@ android {
         ndk {
             abiFilters  'armeabi-v7a', 'arm64-v8a',"x86"
         }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     dexOptions {
@@ -176,9 +177,15 @@ dependencies {
     //noinspection GradleCompatible
     implementation deps.support
 
+
+    //单元测试
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    //espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
 
 
     //组件化开发

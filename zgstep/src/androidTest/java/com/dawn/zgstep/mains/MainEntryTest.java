@@ -29,7 +29,7 @@ public class MainEntryTest { //JUnit4
 
    @Test
     public void testOnClick(){
-    // onView(withId(R.id.btn1)).perform(click());
-     onView(withId(R.id.btn2)).perform(typeText("3333"),closeSoftKeyboard());
+    onView(withId(R.id.btn1)).perform(click());
+    // onView(withId(R.id.btn2)).perform(typeText("3333"));
     }
 }

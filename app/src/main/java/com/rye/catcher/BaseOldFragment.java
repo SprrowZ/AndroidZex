@@ -30,7 +30,7 @@ import butterknife.Unbinder;
 /**
  * Created by zzg
  */
-public abstract class BaseFragment extends Fragment  {
+public abstract class BaseOldFragment extends Fragment  {
    private  Unbinder unbinder;
    private View rootView;
    protected abstract  int getLayoutResId();

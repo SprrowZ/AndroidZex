@@ -3,19 +3,17 @@ package com.rye.catcher.activity.ctmactivity;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.CtmViewFragment;
 import com.rye.catcher.activity.fragment.DistortionFragment;
 import com.rye.catcher.activity.fragment.TelescopeFragment;
 
-import java.util.HashMap;
-
 /**
  * Created by ZZG on 2018/3/8.
  */
 
-public class CtmEighthActivity extends BaseActivity {
+public class CtmEighthActivity extends BaseOldActivity {
     private String origin;
     private TelescopeFragment telescopeFragment;
     private DistortionFragment distortionFragment;

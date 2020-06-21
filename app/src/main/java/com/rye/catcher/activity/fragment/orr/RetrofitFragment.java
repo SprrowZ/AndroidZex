@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.rye.catcher.R;
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.beans.MultiBean;
 import com.rye.catcher.beans.PostBean;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RetrofitFragment extends BaseFragment {
+public class RetrofitFragment extends BaseOldFragment {
     private static  final String TAG="RetrofitFragment";
 
 

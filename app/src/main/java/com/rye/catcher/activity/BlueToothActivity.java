@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.BlueToothAdapter;
 import com.rye.catcher.beans.BTBean;
@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BlueToothActivity extends BaseActivity {
+public class BlueToothActivity extends BaseOldActivity {
     private static final String TAG="BlueToothActivity";
     private BluetoothAdapter adapter;
     private int REQUEST_BLUE_TOOTH=1;

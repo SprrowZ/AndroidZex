@@ -48,6 +48,6 @@ ext {//全局配置变量
     compileSdkVer = 29
     buildToolsVer = '28.0.3'
     minSdkVer = 23
-    targetSdkVer = 29
+    targetSdkVer = 28
     MiminSdkVer = 19
 }

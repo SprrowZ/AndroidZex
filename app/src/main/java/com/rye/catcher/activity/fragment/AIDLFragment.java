@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AIDLBean;
 
@@ -19,7 +19,7 @@ import butterknife.BindView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AIDLFragment extends BaseFragment {
+public class AIDLFragment extends BaseOldFragment {
     private static final String TAG="AIDLFragment";
     private static String fromClientParam;
 

@@ -6,14 +6,14 @@ import androidx.annotation.Nullable;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 /**
  * Created by Zzg on 2017/11/27.
  */
 
-public class CtmSixthActivity extends BaseActivity {
+public class CtmSixthActivity extends BaseOldActivity {
     private LinearLayout itemRoot;//父布局
     private int mlastX=0;//上次位置
     private final  int MAX_WIDTH=100;//100是删除按钮的宽度

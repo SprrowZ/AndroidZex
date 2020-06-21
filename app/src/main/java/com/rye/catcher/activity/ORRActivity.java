@@ -10,7 +10,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.FrameLayout;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ZviewPagerAdapter;
 import com.rye.catcher.activity.fragment.orr.ORRFragment;
@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ORRActivity extends BaseActivity {
+public class ORRActivity extends BaseOldActivity {
  private Fragment currentFragment;
  private int  currentPos=-1;
  @BindView(R.id.container)

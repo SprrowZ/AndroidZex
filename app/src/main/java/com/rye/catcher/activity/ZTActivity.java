@@ -17,7 +17,7 @@ import com.catcher.zzsdk.okhttp.response.JsonCallback;
 import com.catcher.zzsdk.okhttp.response.NormalCallback;
 import com.dawn.zgstep.others.job1.JobOneActivity;
 import com.google.gson.Gson;
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import butterknife.BindView;
@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * Created by zzg on 2017/10/12.
  */
 
-public class ZTActivity extends BaseActivity {
+public class ZTActivity extends BaseOldActivity {
     private String url="http://apis.juhe.cn/ip/ipNew?ip=112.112.11.11&key=8aa56ea9bf3d4dfd2ce7e678061179b5";
     @BindView(R.id.aa)
     Button aa;

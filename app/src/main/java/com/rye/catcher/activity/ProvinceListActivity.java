@@ -6,21 +6,18 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ProvinceListAdapter;
 import com.rye.catcher.activity.adapter.ProvinceSecondAdapter;
 import com.rye.catcher.activity.adapter.ProvinceTitleAdapter;
-import com.rye.catcher.activity.interfaces.ChangeAdapter;
-
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by Zzg on 2018/8/20.
  *
  * 现在用于测试Adapter切换。相当于MainMyFragment
  */
-public class ProvinceListActivity extends BaseActivity implements ProvinceTitleAdapter.TitleClickListener {
+public class ProvinceListActivity extends BaseOldActivity implements ProvinceTitleAdapter.TitleClickListener {
    public static  final  String TAG="ProvinceListActivity";
    private  RecyclerView recyclerView;
 

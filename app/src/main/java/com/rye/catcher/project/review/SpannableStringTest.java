@@ -18,14 +18,14 @@ import android.text.style.SuperscriptSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 /**
  * Created by ZZG on 2018/2/28.
  */
 
-public class SpannableStringTest extends BaseActivity {
+public class SpannableStringTest extends BaseOldActivity {
     private TextView tv1;private TextView tv2;
     private TextView tv3;private TextView tv4;
     private TextView tv5;private TextView tv6;

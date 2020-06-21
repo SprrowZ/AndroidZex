@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import com.rye.catcher.activity.adapter.ddmenu.DataSource;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CtmDDActivity extends BaseActivity {
+public class CtmDDActivity extends BaseOldActivity {
     DropDownMenu dropDownMenu;
     private String headers[]={"城市","年龄","性别","星座"};
     private List<View> popViews=new ArrayList<>();

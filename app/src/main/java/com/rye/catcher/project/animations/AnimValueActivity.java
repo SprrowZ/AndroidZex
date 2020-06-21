@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.base.utils.MeasureUtil;
 
@@ -19,7 +19,7 @@ import com.rye.base.utils.MeasureUtil;
  * Created by Zzg on 2017/12/3.
  */
 
-public class AnimValueActivity extends BaseActivity implements View.OnClickListener{
+public class AnimValueActivity extends BaseOldActivity implements View.OnClickListener{
     private Button btn1;
     private Button btn2;
     private Button btn3;

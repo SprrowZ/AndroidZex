@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.DensityUtil;
 
@@ -14,7 +14,7 @@ import com.rye.catcher.utils.DensityUtil;
  * Created by ZZG on 2017/12/1.
  */
 
-public class CtmSeventhActivity extends BaseActivity {
+public class CtmSeventhActivity extends BaseOldActivity {
     private LinearLayout root;
     private TextView del;
     int LastX=0;//全局声明，要不然每次都会更新为0

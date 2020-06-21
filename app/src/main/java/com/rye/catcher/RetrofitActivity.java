@@ -33,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by ZZG on 2017/10/12.
  */
 
-public class RetrofitActivity extends BaseActivity   {
+public class RetrofitActivity extends BaseOldActivity {
     @BindView(R.id.orr)
     Button btn1;
     @BindView(R.id.javaMore)

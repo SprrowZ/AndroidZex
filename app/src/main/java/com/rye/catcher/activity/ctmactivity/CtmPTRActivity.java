@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.PullToRefreshAdapter;
 import com.rye.catcher.beans.ImageBean;
@@ -33,7 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class CtmPTRActivity extends BaseActivity {
+public class CtmPTRActivity extends BaseOldActivity {
     private static  final  String TAG="CtmPTRActivity";
     private zPullToRefreshView pullToRefreshView;
     private DataHandler zHandler=new DataHandler(this);

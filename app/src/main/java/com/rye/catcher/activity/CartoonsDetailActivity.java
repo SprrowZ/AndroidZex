@@ -4,7 +4,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.DistortionViews;
 
@@ -15,7 +15,7 @@ import butterknife.OnClick;
 /**
  * Created by ZZG on 2018/8/19.
  */
-public class CartoonsDetailActivity extends BaseActivity {
+public class CartoonsDetailActivity extends BaseOldActivity {
     /**
      * 属性集合
      */

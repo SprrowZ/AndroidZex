@@ -2,13 +2,11 @@ package com.rye.catcher.activity.fragment;
 
 
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.DeviceAdapter;
 import com.rye.catcher.beans.binding.DeviceBean;
@@ -24,7 +22,7 @@ import butterknife.BindView;
 /**
  * Fragment用Butterknife，Adapter用DataBinding
  */
-public class DeviceInfoFragment extends BaseFragment {
+public class DeviceInfoFragment extends BaseOldFragment {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;

@@ -10,7 +10,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ToastUtils;
 
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  *
  * @author Zzg
  */
-public class CoordinatorActivity extends BaseActivity {
+public class CoordinatorActivity extends BaseOldActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.collapsingToolbar)

@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.SDHelper;
@@ -31,7 +31,7 @@ import butterknife.OnClick;
  * Created by ZZG on 2018/1/19.
  */
 
-public class FilesDemoActivity extends BaseActivity {
+public class FilesDemoActivity extends BaseOldActivity {
     @BindView(R.id.thistitle)
     TextView thistitle;
     @BindView(R.id.orr)

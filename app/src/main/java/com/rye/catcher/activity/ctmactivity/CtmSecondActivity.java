@@ -4,14 +4,14 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import android.view.WindowManager;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 /**
  * Created by Zzg on 2017/11/9.
  */
 
-public class CtmSecondActivity extends BaseActivity {
+public class CtmSecondActivity extends BaseOldActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

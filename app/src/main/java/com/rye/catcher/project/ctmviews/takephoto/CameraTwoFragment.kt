@@ -15,7 +15,7 @@ import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray
 import android.view.*
-import com.rye.catcher.BaseFragment
+import com.rye.catcher.BaseOldFragment
 import com.rye.catcher.utils.SDHelper
 import kotlinx.android.synthetic.main.fragment_camera_two.*
 import java.io.File
@@ -29,7 +29,7 @@ import java.lang.Long.signum
  * A simple [Fragment] subclass.
  *
  */
-class CameraTwoFragment : BaseFragment() {
+class CameraTwoFragment : BaseOldFragment() {
     private val ORIENTATIONS=SparseIntArray()
 
     init {

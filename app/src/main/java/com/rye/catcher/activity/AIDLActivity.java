@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.AIDLFragment;
 import com.rye.catcher.activity.fragment.PackageManagerFragment;
@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AIDLActivity extends BaseActivity{
+public class AIDLActivity extends BaseOldActivity {
     private Fragment currentFragment;
     private int currentPos=-1;
     @BindView(R.id.pm)

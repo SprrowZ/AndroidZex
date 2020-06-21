@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.RxjavaAdapter;
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.base.widget.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.DeviceUtils;
@@ -46,7 +46,7 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RxjavaFragment extends BaseFragment {
+public class RxjavaFragment extends BaseOldFragment {
 
     private static final String TAG = "RxjavaFragment";
 

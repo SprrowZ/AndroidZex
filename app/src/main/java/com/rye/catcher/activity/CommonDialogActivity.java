@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.base.widget.dialog.ctdialog.ExDialog;
 import com.rye.base.widget.dialog.ctdialog.IDialog;
@@ -33,7 +33,7 @@ import java.util.TimerTask;
  *
  * @author Zzg
  */
-public class CommonDialogActivity extends BaseActivity {
+public class CommonDialogActivity extends BaseOldActivity {
     private ExDialog dialog;
 
     @Override

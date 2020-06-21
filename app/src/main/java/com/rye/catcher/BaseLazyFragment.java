@@ -8,7 +8,7 @@ import android.util.Log;
  * at 2019/7/18
  * Fragment 懒加载
  */
-public abstract class BaseLazyFragment extends BaseFragment {
+public abstract class BaseLazyFragment extends BaseOldFragment {
     private static final String TAG = BaseLazyFragment.class.getSimpleName();
     private boolean isPrepared=false;
 

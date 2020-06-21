@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.rye.catcher.R;
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.activity.fragment.orr.interfaces.DownLoadListener;
 import com.rye.catcher.project.ctmviews.HorizontalProgress;
 import com.rye.base.widget.dialog.ctdialog.ExDialog;
@@ -26,7 +26,7 @@ import butterknife.OnClick;
 /**
 *
  */
-public class ORRFragment extends BaseFragment {
+public class ORRFragment extends BaseOldFragment {
     private static  final  String TAG="ORRFragment";
 
    @BindView(R.id.test1) Button test1;

@@ -1,6 +1,6 @@
 package com.rye.catcher.project;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 
 /**
  * Created By RyeCatcher
@@ -13,7 +13,7 @@ public class zReflect {
     }
 
     public static void getBaseMethods(){
-        Class baseActivity=new BaseActivity().getClass();
+        Class baseActivity=new BaseOldActivity().getClass();
 
 
     }

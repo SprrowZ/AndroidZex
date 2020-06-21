@@ -1,16 +1,15 @@
 package com.rye.catcher.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.rye.catcher.BaseActivity
+import com.rye.catcher.BaseOldActivity
 import com.rye.catcher.R
 import kotlinx.android.synthetic.main.activity_kt_coroutine.*
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class KtCoroutineActivity : BaseActivity() {
+class KtCoroutineActivity : BaseOldActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

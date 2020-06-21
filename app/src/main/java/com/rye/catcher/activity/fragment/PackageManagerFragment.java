@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.beans.AppBean;
 import com.rye.base.utils.DateUtils;
@@ -26,7 +26,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PackageManagerFragment extends BaseFragment {
+public class PackageManagerFragment extends BaseOldFragment {
 
     @BindView(R.id.tv1)
     TextView tv1;

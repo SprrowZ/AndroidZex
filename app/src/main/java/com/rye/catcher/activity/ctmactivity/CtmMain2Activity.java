@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.CtmViewFragment;
 import com.rye.catcher.project.catcher.eventbus.MessageEvent;
@@ -28,7 +28,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * Created by ZZG on 2018/3/6.
  */
 
-public class CtmMain2Activity extends BaseActivity {
+public class CtmMain2Activity extends BaseOldActivity {
     private RelativeLayout bottomContainers;
     private Context mContext;
     private CtmViewFragment fragment = new CtmViewFragment();

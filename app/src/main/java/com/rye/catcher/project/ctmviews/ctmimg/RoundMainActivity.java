@@ -3,14 +3,14 @@ package com.rye.catcher.project.ctmviews.ctmimg;
 import android.os.Bundle;
 import android.view.View;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 /**
  * Created by Zzg on 2017/12/1.
  */
 
-public class RoundMainActivity extends BaseActivity {
+public class RoundMainActivity extends BaseOldActivity {
     private RoundImageView mQiQiu;
     private RoundImageView mMeiNv ;
 

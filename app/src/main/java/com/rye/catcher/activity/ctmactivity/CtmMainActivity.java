@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.project.ctmviews.dellist.DelMainActivity;
 import com.rye.catcher.project.ctmviews.Mypractice.PracticeWave;
 import com.rye.catcher.R;
@@ -17,7 +17,7 @@ import com.rye.catcher.R;
  * Created by ZZG on 2017/11/9.
  */
 
-public class CtmMainActivity extends BaseActivity implements View.OnClickListener {
+public class CtmMainActivity extends BaseOldActivity implements View.OnClickListener {
     private Button btn1;
     private Button btn2;
     private Button btn3;

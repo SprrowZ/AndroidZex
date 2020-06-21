@@ -3,7 +3,7 @@ package com.rye.catcher.activity.fragment;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.base.sdks.beans.TangBean;
 
@@ -17,7 +17,7 @@ import butterknife.BindView;
  * Created by zzg on 2017/10/10.
  */
 
-public class YLJFragment extends BaseFragment {
+public class YLJFragment extends BaseOldFragment {
     private static final String TAG = "YLJFragment";
 
 

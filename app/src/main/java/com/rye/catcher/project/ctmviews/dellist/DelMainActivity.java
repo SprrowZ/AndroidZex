@@ -3,7 +3,7 @@ package com.rye.catcher.project.ctmviews.dellist;
 import android.os.Bundle;
 import android.view.View;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by ZZG on 2017/11/29.
  */
-public class DelMainActivity extends BaseActivity implements View.OnClickListener, ItemDelLinear.OnScrollListener {
+public class DelMainActivity extends BaseOldActivity implements View.OnClickListener, ItemDelLinear.OnScrollListener {
     //使用自定义ListView
     private DelListView listView;
    // private TextView del;

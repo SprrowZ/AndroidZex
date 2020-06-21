@@ -3,7 +3,7 @@ package com.rye.catcher.activity.ctmactivity;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.Circles;
 import com.rye.base.utils.MeasureUtil;
@@ -12,7 +12,7 @@ import com.rye.base.utils.MeasureUtil;
  * Created by ZZG on 2017/11/9.
  */
 
-public class CtmFirstActivity extends BaseActivity {
+public class CtmFirstActivity extends BaseOldActivity {
     //获取屏幕宽高,在onCreate外面， activity还未获取到，所以在这里定义肯定错误
    // int height=MeasureUtil.getHeight(this);
    // int width=MeasureUtil.getWidth(this);

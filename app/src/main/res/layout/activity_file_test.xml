@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/len_10"
     >
     <TextView
         android:layout_centerHorizontal="true"
@@ -66,7 +67,7 @@
             android:layout_marginRight="10dp"
             />
         <Button
-            android:id="@+id/retrofit"
+            android:id="@+id/rotate"
             android:text="私有文件"
             android:layout_width="0dp"
             android:layout_weight="1"

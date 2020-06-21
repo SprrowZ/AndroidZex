@@ -3,6 +3,7 @@ package com.rye.catcher.activity;
 import android.graphics.Rect;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.View;
 
 import com.rye.base.ui.BaseActivity;
 import com.rye.catcher.R;
+import com.rye.catcher.activity.adapter.recycler.diffcall.ZDiffCallback;
 import com.rye.catcher.activity.adapter.recycler.diffdata.DemoAdapterEx;
 import com.rye.catcher.activity.adapter.recycler.diffdata.TitleAdapter;
 import com.rye.catcher.activity.adapter.recycler.recybean.DataModel;
@@ -77,7 +79,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
         mContent.addItemDecoration(new RecyclerView.ItemDecoration() {//item之间设置间距
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                int pos =parent.getChildAdapterPosition(view);//当前pos
+                int pos = parent.getChildAdapterPosition(view);//当前pos
                 GridLayoutManager.LayoutParams layoutParams = (GridLayoutManager.LayoutParams) view.getLayoutParams();
                 int spanSize = layoutParams.getSpanSize();//根据spanSize进行间隔的处理，是1还是2
                 int spanIndex = layoutParams.getSpanIndex();
@@ -94,8 +96,8 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
         });
         mContent.setLayoutManager(gridLayoutManager);
 
-           initData();//数据格式相同
-     //    initDataEx();//数据格式不相同
+        initData();//数据格式相同
+        //    initDataEx();//数据格式不相同
         //标题
         initTitle();
     }
@@ -108,6 +110,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
         datas.add("一个更新");
         datas.add("部分插入");
         datas.add("部分删除");
+        datas.add("差量更新");
         mTitleAdapter.setDatas(datas);
         mTitleAdapter.setOnItemClickListener(this::onClick);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -124,7 +127,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
     }
 
     /**
-     *数据格式不相同
+     * 数据格式不相同
      */
     private void initDataEx() {
         mContentAdapterEx = new DemoAdapterEx(this);
@@ -169,7 +172,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
         mDataList = new ArrayList<>();
         Log.i(TAG, "init: " + (int) 2.7);
         for (int i = 0; i < 20; i++) {
-            DataModel model =new DataModel();
+            DataModel model = new DataModel();
             int type = (int) ((Math.random() * 3) + 1);
             if (i < 5 || i > 15 && i < 20) {
                 type = 1;
@@ -198,7 +201,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
     public List<DataModel> getNewData() { //只变了0~4，16~19之间的
         List<DataModel> datas = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            DataModel model =new DataModel();
+            DataModel model = new DataModel();
             int type = (int) ((Math.random() * 3) + 1);
             if (i < 5 || i > 15 && i < 20) {
                 type = 2;
@@ -225,8 +228,8 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
 
     public List<DataModel> getNewData2(int extraSize) {
         List<DataModel> datas = new ArrayList<>();
-        for (int i = 0; i < mContentAdapter.getItemCount()+extraSize; i++) {
-            DataModel model =new DataModel();
+        for (int i = 0; i < mContentAdapter.getItemCount() + extraSize; i++) {
+            DataModel model = new DataModel();
             int type = (int) ((Math.random() * 3) + 1);
             if (i < 5) {
                 model.mBgUrl = R.drawable.bg_one;
@@ -246,25 +249,26 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
 
     /**
      * 更新部分数据
+     *
      * @return
      */
-    public List<DataModel> updatePartData(){
+    public List<DataModel> updatePartData() {
 
         for (int i = 0; i < 3; i++) {
-            DataModel model =new DataModel();
-          //  int type = (int) ((Math.random() * 3) + 1);
+            DataModel model = new DataModel();
+            //  int type = (int) ((Math.random() * 3) + 1);
             model.mBgUrl = R.drawable.bg_three;
             model.mContent = "(๑•̀ㅂ•́)و✧";
             //不改变Type
             model.mType = mDataList.get(i).mType;
             mDataList.remove(i);
-            mDataList.add(i,model);
+            mDataList.add(i, model);
         }
         return mDataList;
     }
 
     public List<DataModel> updateSingleData() {
-        DataModel model =new DataModel();
+        DataModel model = new DataModel();
         //  int type = (int) ((Math.random() * 3) + 1);
 
         model.mBgUrl = R.drawable.bg_two;
@@ -272,7 +276,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
         //不改变Type
         model.mType = mDataList.get(0).mType;
         mDataList.remove(0);
-        mDataList.add(0,model);
+        mDataList.add(0, model);
         return mDataList;
     }
 
@@ -286,7 +290,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
                 break;
             case 1://部分更新 ----成功
                 mContentAdapter.addList(updatePartData());
-                mContentAdapter.notifyItemRanged(0,3);
+                mContentAdapter.notifyItemRanged(0, 3);
                 break;
             case 2://单个更新  --成功
                 mContentAdapter.addList(updateSingleData());
@@ -296,6 +300,44 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
                 mContentAdapter.addList(getNewData2(5));
                 mContentAdapter.notifyItemInserted(0);
                 break;
+            case 4:
+                break;
+            case 5:
+                diffUpdate();
+                break;
         }
+    }
+
+    private List<DataModel> diffData() {
+        List<DataModel> newList = new ArrayList<>();
+        for (int i = 0; i < mDataList.size(); i++) {
+            DataModel dataModel = new DataModel();
+            if (i < 5) {
+                dataModel.mBgUrl = R.drawable.bg_three;
+                dataModel.mContent = "I Giao~";
+            } else {
+                dataModel.mBgUrl = mDataList.get(i).mBgUrl;
+                dataModel.mContent = mDataList.get(i).mContent;
+            }
+            dataModel.mType = mDataList.get(i).mType;
+            newList.add(dataModel);
+        }
+//        DataModel dataModel = new DataModel();
+//        dataModel.mBgUrl = R.drawable.bg_three;
+//        dataModel.mContent = "Biu~~";
+//        dataModel.mType = 3 ;
+//        newList.add(0,dataModel);
+        return newList;
+    }
+
+    /**
+     * DiffUtil差量更新
+     */
+    private void diffUpdate() {
+        List<DataModel> newList= diffData();
+        ZDiffCallback diffCallback = new ZDiffCallback(newList,mDataList);
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(diffCallback);
+        result.dispatchUpdatesTo(mContentAdapter);
+        mContentAdapter.addList(newList);
     }
 }

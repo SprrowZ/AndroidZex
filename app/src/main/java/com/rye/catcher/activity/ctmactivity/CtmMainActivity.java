@@ -41,7 +41,7 @@ public class CtmMainActivity extends BaseOldActivity implements View.OnClickList
         btn1=findViewById(R.id.orr);
         btn2=findViewById(R.id.javaMore);
         btn3=findViewById(R.id.translate);
-        btn4=findViewById(R.id.retrofit);
+        btn4=findViewById(R.id.rotate);
         btn5=findViewById(R.id.btn5);
         btn6=findViewById(R.id.btn6);
         btn7=findViewById(R.id.btn7);
@@ -87,7 +87,7 @@ public class CtmMainActivity extends BaseOldActivity implements View.OnClickList
                 Intent intent3=new Intent(this,CtmThirdActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.retrofit:
+            case R.id.rotate:
                 Intent intent4=new Intent(this,CtmFivthActivity.class);
                 startActivity(intent4);
                 break;

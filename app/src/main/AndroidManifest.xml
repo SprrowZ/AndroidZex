@@ -264,7 +264,9 @@
         <activity
             android:name=".activity.WebViewActivity"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            />
         <activity
             android:name=".activity.CartoonsDoActivity"
             android:configChanges="keyboard|orientation|screenSize"

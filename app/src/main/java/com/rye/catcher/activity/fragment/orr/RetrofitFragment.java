@@ -55,7 +55,7 @@ public class RetrofitFragment extends BaseOldFragment {
 
 
 
-    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.retrofit,
+    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.rotate,
             R.id.btn5, R.id.btn6,R.id.btn7, R.id.btn8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -67,7 +67,7 @@ public class RetrofitFragment extends BaseOldFragment {
                 break;
             case R.id.translate:
                 downLoadFile(view);
-            case R.id.retrofit:
+            case R.id.rotate:
                 upLoadFileEx();//通过RequestBody
                 break;
         }

@@ -20,9 +20,6 @@ public class ReflectActivity extends BaseOldActivity {
     @BindView(R.id.btn1)
     Button btn1;
 
-   private static  DataListener dataListener;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +28,7 @@ public class ReflectActivity extends BaseOldActivity {
         initView();
     }
 
-    public static void setListener(DataListener listener){
-        dataListener=listener;
-    }
+
 
     private void initView(){
         btn1.setText("Hello MyWorld!");
@@ -42,11 +37,9 @@ public class ReflectActivity extends BaseOldActivity {
     @OnClick({R.id.btn1})
     private void click(){
         Toast.makeText(this,"xxxxxx--xxxxxx",Toast.LENGTH_SHORT).show();
-        dataListener.dataLoad("content");
+
     }
 
-    interface DataListener{
-        void dataLoad(String content);
-    }
+
 
 }

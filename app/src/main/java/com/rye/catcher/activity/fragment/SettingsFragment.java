@@ -43,7 +43,7 @@ public class SettingsFragment  extends BaseOldFragment {
 
         mContext=getContext();
     }
-    @OnClick({R.id.orr,R.id.javaMore,R.id.translate,R.id.retrofit,R.id.camera,
+    @OnClick({R.id.orr,R.id.javaMore,R.id.translate,R.id.rotate,R.id.camera,
     R.id.review,R.id.animation,R.id.custom,R.id.project})
     public void onViewClicked(View view){
         switch (view.getId()){
@@ -56,7 +56,7 @@ public class SettingsFragment  extends BaseOldFragment {
             case R.id.translate:
                 mContext.startActivity(new Intent(mContext, ZTActivity.class));
                 break;
-            case R.id.retrofit:
+            case R.id.rotate:
                 mContext.startActivity(new Intent(mContext, RetrofitActivity.class));
                 break;
             case R.id.camera:

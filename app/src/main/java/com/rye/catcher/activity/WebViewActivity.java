@@ -28,7 +28,7 @@ import com.rye.catcher.utils.NetworkUtils;
 public class WebViewActivity extends Activity {
     private WebView mWebView;
     private String URL;
-    private LinearLayout parent_view;
+
     private TextView titleView;
     private TextView right_text;
     private ImageView back;
@@ -39,13 +39,13 @@ public class WebViewActivity extends Activity {
         setContentView(R.layout.webview_activity);
         parent=findViewById(R.id.parent);
         mWebView=findViewById(R.id.webView);
-        titleView=findViewById(R.id.title);
+        titleView=findViewById(R.id.name);
         right_text=findViewById(R.id.right_text);
         back=findViewById(R.id.back);
         right_text.setVisibility(View.VISIBLE);
-        URL="https://www.imooc.com";
+        URL="https://activity.bilibili.com/preview/v/activity-OJsoNQA3i.html";
         WebSettings settings=mWebView.getSettings();
-        settings.setJavaScriptEnabled(true);
+     //   settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true);//缩放至屏幕大小
         settings.setDomStorageEnabled(true);//设置适应Html5 //重点是这个设置
        // settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);//优先使用缓存，存在个问题：

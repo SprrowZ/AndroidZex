@@ -67,14 +67,6 @@ public class DemoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    /**
-     * 更新一个
-     *
-     * @param pos
-     */
-    public void notifyItemChangedEx(int pos) {
-        notifyItemChanged(pos);
-    }
 
     /**
      * @param startPos
@@ -82,10 +74,6 @@ public class DemoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      */
     public void notifyItemRanged(int startPos, int itemCount) {
         notifyItemRangeChanged(startPos, itemCount);
-    }
-
-    public void notifyItemInserted(int startPos, int itemCount) {
-        notifyItemRangeInserted(startPos, itemCount);
     }
 
 

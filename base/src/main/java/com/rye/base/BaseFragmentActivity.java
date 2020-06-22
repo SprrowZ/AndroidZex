@@ -1,12 +1,8 @@
 package com.rye.base;
 
-import android.widget.FrameLayout;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.rye.base.interfaces.FragmentActions;
-import com.rye.base.ui.BaseActivity;
 
 import org.jetbrains.annotations.NotNull;
 

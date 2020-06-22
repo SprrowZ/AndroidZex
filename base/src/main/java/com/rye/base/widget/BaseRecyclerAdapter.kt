@@ -41,7 +41,7 @@ abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<BaseRecyclerAdapter
         companion object {
             fun create(parent: ViewGroup): BaseRecyclerHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val root = layoutInflater.inflate(R.layout.item_base_recycler, parent)
+                val root = layoutInflater.inflate(R.layout.item_base_recycler, parent,false)
                 return BaseRecyclerHolder(root)
             }
         }

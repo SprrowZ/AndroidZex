@@ -10,8 +10,8 @@ import com.rye.catcher.BaseFragment;
 import com.rye.catcher.beans.MultiBean;
 import com.rye.catcher.beans.PostBean;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
-import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
+import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.io.File;
@@ -81,7 +81,7 @@ public class RetrofitFragment extends BaseFragment {
             Retrofit retrofit =new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(OkHttpUtil.getInstance().getClient())
+                    .client(OkHttpManager.getInstance().getClient())
                     .build();
             zRetrofitApi serverApi=retrofit.create(zRetrofitApi.class);
             PostBean bean=new PostBean();
@@ -115,7 +115,7 @@ public class RetrofitFragment extends BaseFragment {
             Retrofit retrofit =new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(OkHttpUtil.getInstance().getClient())
+                    .client(OkHttpManager.getInstance().getClient())
                     .build();
 
             File file=new File(SDHelper.getImageFolder(),"portrait.png");
@@ -158,7 +158,7 @@ public class RetrofitFragment extends BaseFragment {
             Retrofit retrofit=new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(BASE_URL)
-                    .client(OkHttpUtil.getInstance().getClient())
+                    .client(OkHttpManager.getInstance().getClient())
                     .build();
             zRetrofitApi api=retrofit.create(zRetrofitApi.class);
             File file=new File(SDHelper.getImageFolder(),"zAndroid-1.png");
@@ -188,7 +188,7 @@ public class RetrofitFragment extends BaseFragment {
     private void downLoadFile(View view){
         new Thread(()->{
             Retrofit retrofit=new Retrofit.Builder()
-                    .client(OkHttpUtil.getInstance().getClient())
+                    .client(OkHttpManager.getInstance().getClient())
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
@@ -216,7 +216,7 @@ public class RetrofitFragment extends BaseFragment {
      */
     private void upLoadFilesWithParts(){
         Retrofit retrofit=new Retrofit.Builder()
-                .client(OkHttpUtil.getInstance().getClient())
+                .client(OkHttpManager.getInstance().getClient())
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

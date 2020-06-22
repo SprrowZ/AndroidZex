@@ -13,12 +13,10 @@ import android.widget.Toast;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.OkHttpAdapter;
 import com.rye.catcher.BaseFragment;
-import com.rye.catcher.project.helpers.SimpleItemDecoration;
-import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.DeviceUtils;
 import com.rye.catcher.utils.Old_ApplicationUtil;
-import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
+import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.io.File;
@@ -57,7 +55,7 @@ public class OkhttpFragment extends BaseFragment {
 
     private String URL = "http://192.168.43.231:8088/OkhttpServer/";
     //拿到对象
-    private final OkHttpClient okHttpClient = OkHttpUtil.getInstance().getClient();
+    private final OkHttpClient okHttpClient = OkHttpManager.getInstance().getClient();
 
     //向服务器传递字符串
     private static final  String  jsonString="{\"username\":\"zzg\",\"job\":\"coder\"}";

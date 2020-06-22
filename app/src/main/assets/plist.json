@@ -78,5 +78,9 @@
   {
     "name":"应用内更新",
     "action":"testUpdate"
+  },
+  {
+    "name":"ZgStep Main",
+    "action":"zgStep"
   }
 ]

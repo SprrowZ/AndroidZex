@@ -10,10 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.rye.base.ui.BaseActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.base.utils.FileUtils;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.base.utils.SDHelper;
 
 import java.io.BufferedWriter;
 import java.io.File;

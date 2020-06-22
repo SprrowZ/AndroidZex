@@ -17,7 +17,7 @@ import com.rye.base.widget.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.DensityUtil;
 import com.rye.catcher.utils.DeviceUtils;
 import com.rye.catcher.utils.Old_ApplicationUtil;
-import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
+import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +50,7 @@ public class RxjavaFragment extends BaseFragment {
 
     private static final String TAG = "RxjavaFragment";
 
-    private OkHttpClient client = OkHttpUtil.getInstance().getClient();
+    private OkHttpClient client = OkHttpManager.getInstance().getClient();
     private static final String url = "http://v.juhe.cn/weather/index?cityname=%E4%B8%8A%E6%B5%B7&dtype=&format=&key=3444d95f001d7765de768376c3a2d870";
 
     @BindView(R.id.recyclerView)

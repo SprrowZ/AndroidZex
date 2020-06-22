@@ -7,7 +7,7 @@ import com.rye.base.rxmvp.RxBasePresenter;
 import com.rye.base.utils.FileUtils;
 import com.rye.base.utils.GsonUtils;
 import com.rye.catcher.beans.ProjectBean;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.base.utils.SDHelper;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,21 +27,24 @@ public class ProjectPresenterRx extends RxBasePresenter {
     public ProjectPresenterRx(@NotNull Class service) {
         super(service);
     }
-    public ProjectPresenterRx(){
+
+    public ProjectPresenterRx() {
 
     }
+
     /**
      * 获取数据列表
+     *
      * @return
      */
-    public List<ProjectBean> getDataList(Context context){
-        AssetManager manager=context.getAssets();
-        String desPath= SDHelper.getAppExternal();
-        FileUtils.copyAssetToSDCard(manager,"plist.json",desPath+"plist.json");
-        File jsonFile=new File(desPath+"plist.json");
+    public List<ProjectBean> getDataList(Context context) {
+        AssetManager manager = context.getAssets();
+        String desPath = SDHelper.getAppExternal();
+        FileUtils.copyAssetToSDCard(manager, "plist.json", desPath + "plist.json");
+        File jsonFile = new File(desPath + "plist.json");
         try {
-            Reader reader=new FileReader(jsonFile);
-          return  GsonUtils.toList(reader,ProjectBean[].class);
+            Reader reader = new FileReader(jsonFile);
+            return GsonUtils.toList(reader, ProjectBean[].class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,14 +52,13 @@ public class ProjectPresenterRx extends RxBasePresenter {
         return null;
     }
 
-    public void setOnItemClickListener(){
+    public void setOnItemClickListener() {
 
     }
-    interface OnItemClick{
+
+    interface OnItemClick {
         void click();
     }
-
-
 
 
 }

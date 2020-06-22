@@ -17,7 +17,7 @@ import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.DistortionViews;
 import com.rye.catcher.utils.ImageUtils;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 

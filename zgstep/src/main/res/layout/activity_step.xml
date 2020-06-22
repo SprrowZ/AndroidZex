@@ -4,37 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".test_activitys.ZStepMainActivity"
+    android:clipChildren="false"
     android:orientation="vertical"
-    >
+    tools:context=".test_activitys.ZStepMainActivity">
+
     <TextView
         android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Espresso 测试按钮1"
-        android:gravity="center"
-        android:textSize="@dimen/font_24"
-        android:padding="@dimen/len_10"
         android:background="@drawable/btn_bottom_line"
-        />
+        android:gravity="center"
+        android:padding="@dimen/len_10"
+        android:text="Espresso 测试按钮1"
+        android:textSize="@dimen/font_24" />
+
     <TextView
         android:id="@+id/btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_bottom_line"
+        android:gravity="center"
+        android:padding="@dimen/len_10"
         android:text="Espresso 测试按钮2"
-        android:gravity="center"
-        android:textSize="@dimen/font_24"
-        android:padding="@dimen/len_10"
-        android:background="@drawable/btn_bottom_line"
-        />
-    <TextView
-        android:id="@+id/btn3"
-        android:layout_width="match_parent"
+        android:textSize="@dimen/font_24" />
+
+    <FrameLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Espresso 测试按钮3"
-        android:gravity="center"
-        android:textSize="@dimen/font_24"
-        android:padding="@dimen/len_10"
-        android:background="@drawable/btn_bottom_line"
-        />
+        android:layout_marginTop="@dimen/len_40"
+        android:background="@drawable/stack_bk"
+        >
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/my2"
+            android:scaleType="fitXY"
+            />
+    </FrameLayout>
 </LinearLayout>

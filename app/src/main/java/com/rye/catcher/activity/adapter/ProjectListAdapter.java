@@ -1,8 +1,10 @@
 package com.rye.catcher.activity.adapter;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,22 +28,24 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     private List<ProjectBean> dataList;
     private LayoutInflater mInflater;
     private OnItemClickListener onItemClickListener;
-    public ProjectListAdapter(Context context, List<ProjectBean> datas){
-        this.dataList=datas;
-        mInflater=LayoutInflater.from(context);
+
+    public ProjectListAdapter(Context context, List<ProjectBean> datas) {
+        this.dataList = datas;
+        mInflater = LayoutInflater.from(context);
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view =mInflater.inflate(R.layout.project_list_item,parent,false);
-        ViewHolder viewHolder=new ViewHolder(view);
+        View view = mInflater.inflate(R.layout.project_list_item, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-            viewHolder.item.setText(dataList.get(i).getName());
-            viewHolder.item.setOnClickListener(v -> onItemClickListener.onItemClick(dataList.get(i).getAction()));
+        viewHolder.item.setText(dataList.get(i).getName());
+        viewHolder.item.setOnClickListener(v -> onItemClickListener.onItemClick(dataList.get(i).getAction()));
     }
 
 
@@ -50,19 +54,22 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
         return dataList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-      @BindView(R.id.item) TextView item;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.item)
+        TextView item;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.onItemClickListener =listener;
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
-   public interface OnItemClickListener {
-        void onItemClick(String  action);
+
+    public interface OnItemClickListener {
+        void onItemClick(String action);
     }
 
 

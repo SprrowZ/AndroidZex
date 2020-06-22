@@ -18,7 +18,7 @@ import com.rye.catcher.project.ctmviews.zPullToRefreshView;
 import com.rye.base.common.Constant;
 import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.FileUtil;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.lang.ref.WeakReference;

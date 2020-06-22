@@ -17,7 +17,7 @@ import android.text.TextUtils
 import com.rye.catcher.R
 import com.rye.catcher.BaseFragment
 import com.rye.catcher.utils.ImageUtils
-import com.rye.catcher.utils.SDHelper
+import com.rye.base.utils.SDHelper
 import kotlinx.android.synthetic.main.fragment_camera_one.*
 import java.io.File
 import java.io.FileNotFoundException

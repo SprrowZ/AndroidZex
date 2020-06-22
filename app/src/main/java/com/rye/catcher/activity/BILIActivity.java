@@ -3,10 +3,6 @@ package com.rye.catcher.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,10 +15,7 @@ import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.transition.Slide;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -42,7 +35,7 @@ import androidx.annotation.NonNull;
 import com.catcher.zzsdk.AutoCompletedEditTextStaticCursor;
 import com.dawn.zgstep.others.GuideView;
 import com.dawn.zgstep.others.MaskView;
-import com.rye.base.ui.BaseActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ImageUtils;
 
@@ -153,7 +146,6 @@ public class BILIActivity extends BaseActivity {
         bottom.setOnClickListener(v -> Log.i(TAG, "bottom OnClick:"));
 
         bottom.setOnFocusChangeListener((v, hasFocus) -> Log.i(TAG, "bottom focusable:" + hasFocus));
-
 
         addMask();
 

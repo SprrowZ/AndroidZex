@@ -14,7 +14,7 @@ public enum RetrofitManager {
     INSTANCE;
    public Retrofit getClient(String baseUrl){
        Retrofit client=new Retrofit.Builder()
-               .client(OkHttpUtil.getInstance().getClient())
+               .client(OkHttpManager.getInstance().getClient())
                .addConverterFactory(GsonConverterFactory.create())
                .baseUrl(baseUrl)
                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

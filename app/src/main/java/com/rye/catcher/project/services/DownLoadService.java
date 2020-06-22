@@ -9,9 +9,9 @@ import android.util.Log;
 import com.rye.catcher.activity.fragment.orr.interfaces.DownLoadListener;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
 import com.rye.base.utils.DateUtils;
-import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpUtil;
+import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
 import com.rye.base.utils.FileUtils;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.base.utils.SDHelper;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -74,7 +74,7 @@ public class DownLoadService extends Service {
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(OkHttpUtil.getInstance().getDownloadClient())
+                .client(OkHttpManager.getInstance().getDownloadClient())
                 .build();
         zRetrofitApi api=retrofit.create(zRetrofitApi.class);
         listener.onStart();

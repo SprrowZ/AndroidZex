@@ -6,9 +6,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.dawn.zgstep.demos.annotations.BindView;
-import com.dawn.zgstep.demos.annotations.OnClick;
-import com.dawn.zgstep.demos.annotations.zButterKnife;
+import com.dawn.zgstep.others.demos.annotations.BindView;
+import com.dawn.zgstep.others.demos.annotations.OnClick;
+import com.dawn.zgstep.others.demos.annotations.zButterKnife;
 import com.rye.catcher.BaseActivity;
 import com.rye.catcher.R;
 

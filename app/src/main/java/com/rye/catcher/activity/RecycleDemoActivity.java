@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.rye.base.ui.BaseActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.recycler.diffcall.ZDiffCallback;
 import com.rye.catcher.activity.adapter.recycler.diffdata.DemoAdapterEx;

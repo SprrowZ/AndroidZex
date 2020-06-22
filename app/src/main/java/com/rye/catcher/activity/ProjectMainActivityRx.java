@@ -1,6 +1,7 @@
 package com.rye.catcher.activity;
 
 import android.content.Intent;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
+import com.dawn.zgstep.test_activitys.ZStepMainActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;
@@ -27,7 +29,7 @@ import com.rye.catcher.project.helpers.MultiThreadDown;
 import com.rye.catcher.project.mvp.MvpActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
@@ -35,7 +37,7 @@ import com.yanzhenjie.permission.Permission;
 import java.util.List;
 
 
- import butterknife.BindView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -45,7 +47,7 @@ import butterknife.ButterKnife;
 public class ProjectMainActivityRx extends RxBaseActivity implements
         ProjectListAdapter.OnItemClickListener, FilesDemoActivity.DataListener {
 
-    private static final String TAG2="LifeCycle-A";
+    private static final String TAG2 = "LifeCycle-A";
     //改为recycleView
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
@@ -54,7 +56,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
 
     @Override
     public int bindLayout() {
-        return R.layout.project_main ;
+        return R.layout.project_main;
     }
 
     @Override
@@ -62,8 +64,8 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         ButterKnife.bind(this);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
         //Mvp的目前操作，这个地方可以修改
-        dataList=getPresenter(ProjectPresenterRx.class).getDataList(this);
-        ProjectListAdapter adapter=new ProjectListAdapter(this,dataList);
+        dataList = getPresenter(ProjectPresenterRx.class).getDataList(this);
+        ProjectListAdapter adapter = new ProjectListAdapter(this, dataList);
         //子Item点击事件
         adapter.setOnItemClickListener(this);
         recycleView.setAdapter(adapter);
@@ -76,12 +78,13 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
 
     /**
      * 切语言
+     *
      * @param view
      */
-    private void changeLanguage(View view){
+    private void changeLanguage(View view) {
 
-        PopupEx popupEx= new PopupEx.Builder()
-                .setContextView(this,R.layout.popup_change_language)
+        PopupEx popupEx = new PopupEx.Builder()
+                .setContextView(this, R.layout.popup_change_language)
                 .setDim(0.7F)
                 .setWidth(LinearLayout.LayoutParams.WRAP_CONTENT)
                 .setParentView(view, Gravity.CENTER)
@@ -97,12 +100,13 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         });
 
     }
-    private void change(String language){
+
+    private void change(String language) {
         if (SharedPreManager.getValue(LanguageConstants.VALUE)
-                .equals(language)){
+                .equals(language)) {
             return;
         }
-        SharedPreManager.saveValue(LanguageConstants.VALUE,language);
+        SharedPreManager.saveValue(LanguageConstants.VALUE, language);
         setResult(RESULT_OK);
         finish();
     }
@@ -159,17 +163,17 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 startActivity(new Intent(this, MvpActivity.class));
                 break;
             case "takePhoto":
-                PermissionUtils.requestPermission(this,"需要相机权限！",false,
+                PermissionUtils.requestPermission(this, "需要相机权限！", false,
                         data -> {
                             startActivity(new Intent(this, TestCameraActivity.class));
-                        },1, Permission.CAMERA);
+                        }, 1, Permission.CAMERA);
                 break;
             case "changeLanguage":
                 // startActivity(new Intent(this, CameraActivityEx.class));
                 changeLanguage(getContentView());
                 break;
             case "testMulti":
-                multiThreadDown=new MultiThreadDown(MultiThreadDown.path, SDHelper.getAppExternal()+"Zzx.mp4",3);
+                multiThreadDown = new MultiThreadDown(MultiThreadDown.path, SDHelper.getAppExternal() + "Zzx.mp4", 3);
                 multiThreadDown.setOnDownLoadListener(new MultiThreadDown.DownLoadListener() {
                     @Override
                     public void getProgress(int progress) {
@@ -178,7 +182,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
 
                     @Override
                     public void onComplete() {
-                        Toast.makeText(ProjectMainActivityRx.this,"下载完成",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProjectMainActivityRx.this, "下载完成", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -189,13 +193,16 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 multiThreadDown.downLoad();
                 break;
             case "testKotlin":
-                startActivity(new Intent(this,KotlinActivity.class));
+                startActivity(new Intent(this, KotlinActivity.class));
                 break;
             case "ktCoroutine":
-                startActivity(new Intent(this,KtCoroutineActivity.class));
+                startActivity(new Intent(this, KtCoroutineActivity.class));
                 break;
             case "testUpdate":
                 startActivity(new Intent(this, UpdateActivityRx.class));
+                break;
+            case "zgStep":
+                ZStepMainActivity.start(this);
                 break;
         }
     }
@@ -203,7 +210,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
 
     @Override
     public void dataLoad(String content) {
-        Log.i("RxZZG","------DATA:"+content);
-        Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
+        Log.i("RxZZG", "------DATA:" + content);
+        Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
     }
 }

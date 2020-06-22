@@ -73,13 +73,10 @@ public class UpdateVersionDialog extends DialogFragment {
         title.setText(mDownloadBean.title);
         content.setText(mDownloadBean.content);
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //下载apk包
-                v.setEnabled(false);//下载的时候不要重复点击
-                downloadApk(v);
-            }
+        update.setOnClickListener(v -> {
+            //下载apk包
+            v.setEnabled(false);//下载的时候不要重复点击
+            downloadApk(v);
         });
     }
 

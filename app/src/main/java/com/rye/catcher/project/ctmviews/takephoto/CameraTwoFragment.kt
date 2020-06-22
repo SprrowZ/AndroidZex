@@ -16,7 +16,7 @@ import android.util.Size
 import android.util.SparseIntArray
 import android.view.*
 import com.rye.catcher.BaseFragment
-import com.rye.catcher.utils.SDHelper
+import com.rye.base.utils.SDHelper
 import kotlinx.android.synthetic.main.fragment_camera_two.*
 import java.io.File
 import java.io.FileOutputStream

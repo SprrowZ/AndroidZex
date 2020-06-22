@@ -389,18 +389,18 @@ public class FileUtils {
      * get file name from path, include suffix
      * <p>
      * <pre>
-     *      getFileName(null)               =   null
-     *      getFileName("")                 =   ""
-     *      getFileName("   ")              =   "   "
-     *      getFileName("a.mp3")            =   "a.mp3"
-     *      getFileName("a.b.rmvb")         =   "a.b.rmvb"
-     *      getFileName("abc")              =   "abc"
-     *      getFileName("c:\\")              =   ""
-     *      getFileName("c:\\a")             =   "a"
-     *      getFileName("c:\\a.b")           =   "a.b"
-     *      getFileName("c:a.txt\\a")        =   "a"
-     *      getFileName("/home/admin")      =   "admin"
-     *      getFileName("/home/admin/a.txt/b.mp3")  =   "b.mp3"
+     *      getPrefix(null)               =   null
+     *      getPrefix("")                 =   ""
+     *      getPrefix("   ")              =   "   "
+     *      getPrefix("a.mp3")            =   "a.mp3"
+     *      getPrefix("a.b.rmvb")         =   "a.b.rmvb"
+     *      getPrefix("abc")              =   "abc"
+     *      getPrefix("c:\\")              =   ""
+     *      getPrefix("c:\\a")             =   "a"
+     *      getPrefix("c:\\a.b")           =   "a.b"
+     *      getPrefix("c:a.txt\\a")        =   "a"
+     *      getPrefix("/home/admin")      =   "admin"
+     *      getPrefix("/home/admin/a.txt/b.mp3")  =   "b.mp3"
      * </pre>
      *
      * @param filePath 路径

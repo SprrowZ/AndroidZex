@@ -12,6 +12,6 @@ public class ExampleUnitTest {
 //    }
 //    @Test
 //    public  void checkMethod1(){
-//        assertNotEquals("预期时间", FileUtils.getFileName(SDHelper.getImageFolder()));
+//        assertNotEquals("预期时间", FileUtils.getPrefix(SDHelper.getImageFolder()));
 //    }
 }

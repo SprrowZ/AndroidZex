@@ -1,9 +1,8 @@
 package com.rye.catcher.project.ctmviews.takephoto
 
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.rye.base.ui.BaseActivity
+import com.rye.base.BaseActivity
 
 import com.rye.catcher.R
 

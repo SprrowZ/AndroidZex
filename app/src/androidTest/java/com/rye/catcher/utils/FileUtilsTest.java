@@ -1,6 +1,7 @@
 package com.rye.catcher.utils;
 
 import com.rye.base.utils.FileUtils;
+import com.rye.base.utils.SDHelper;
 
 import org.junit.Test;
 

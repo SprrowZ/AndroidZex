@@ -19,7 +19,7 @@ import android.widget.ImageView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ImageUtils;
-import com.rye.catcher.utils.SDHelper;
+import com.rye.base.utils.SDHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;

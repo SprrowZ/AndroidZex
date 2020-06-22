@@ -5,16 +5,50 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import androidx.annotation.Nullable;
+
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.rye.base.utils.MeasureUtil;
+import com.rye.catcher.R;
 
 /**
  * Created by ZZG on 2017/11/9.
  */
 
 public class Circles extends View implements Runnable{
+
+//    //获取屏幕宽高,在onCreate外面， activity还未获取到，所以在这里定义肯定错误
+//    // int height=MeasureUtil.getHeight(this);
+//    // int width=MeasureUtil.getWidth(this);
+//
+//    private Circles customView;
+//    private  int X;
+//    private  int Y;
+//
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+////获取屏幕宽高
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_ctm_first);
+//        customView=findViewById(R.id.circle);
+//        //随机位置
+//
+//        customView.setXY(5,5);
+//        new Thread(customView).start();
+//
+//    }
+
+
+
+
+
+
+
+
+
+
     private Paint mPaint;
     //圆的半径
     private int radiu;

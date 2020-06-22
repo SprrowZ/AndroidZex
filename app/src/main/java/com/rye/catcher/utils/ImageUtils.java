@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.rye.base.utils.SDHelper;
 import com.rye.base.utils.StringUtils;
 import com.rye.catcher.R;
 import com.rye.catcher.RyeCatcherApp;

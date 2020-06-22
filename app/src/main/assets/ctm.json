@@ -1,0 +1,34 @@
+[
+  {
+    "name":"Invalidate",
+    "action":"testInvalidate"
+  },
+  {
+    "name":"ColorMatrix",
+    "action":"testColorMatrix"
+  },
+  {
+    "name":"Paint-Fonts",
+    "action":"testFonts"
+  },
+  {
+    "name":"CircleImageView",
+    "action":"testCircle"
+  },
+  {
+    "name":"Right-Delete",
+    "action":"testDelete"
+  },
+  {
+    "name":"Right-Delete-Ex",
+    "action":"testDelete-Ex"
+  },
+  {
+    "name":"Right-Delete-My",
+    "action":"testDelete-My"
+  },
+  {
+    "name":"NextPage",
+    "action":"testNext"
+  }
+]

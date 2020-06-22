@@ -81,7 +81,7 @@ public class RyeCatcherApp extends BaseApplication {
                 countActivity++;
                 Log.i(TAG, "onActivityStarted: "+countActivity);
                 FileUtil.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
-                setGray(activity);
+             //   setGray(activity);
             }
 
             @Override

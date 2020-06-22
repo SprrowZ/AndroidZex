@@ -9,7 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.ExtraUtil.CommonPagerAdapter;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by ZZG on 2017/11/16.
  */
 
-public class AnimMemoryActivity extends BaseActivity {
+public class AnimMemoryActivity extends BaseOldActivity {
     private ViewPager viewPager;
     private List<ImageView> viewList=new ArrayList<ImageView>();
     private CommonPagerAdapter myadapter;

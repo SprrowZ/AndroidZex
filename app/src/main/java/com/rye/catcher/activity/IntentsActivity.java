@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * Created by ZZG on 2018/1/10.
  */
 
-public class IntentsActivity extends BaseActivity {
+public class IntentsActivity extends BaseOldActivity {
     private static boolean flag=true;
     private static final String TAG = "LivePreservationActivit";
     private static final String TAG2="LifeCycle-B";

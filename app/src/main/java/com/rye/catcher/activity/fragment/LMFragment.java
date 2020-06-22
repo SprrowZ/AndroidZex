@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.project.review.ItemBean;
 import com.rye.catcher.project.review.MyAdapter;
@@ -19,7 +19,7 @@ import butterknife.BindView;
  * Created by zzg on 2017/10/10.
  */
 
-public class LMFragment extends BaseFragment {
+public class LMFragment extends BaseOldFragment {
 
     List<ItemBean> itemBeanList;
     @BindView(R.id.listView)

@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import android.text.TextUtils
 import com.rye.catcher.R
-import com.rye.catcher.BaseFragment
+import com.rye.catcher.BaseOldFragment
 import com.rye.catcher.utils.ImageUtils
 import com.rye.base.utils.SDHelper
 import kotlinx.android.synthetic.main.fragment_camera_one.*
@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CameraOneFragment : BaseFragment() {
+class CameraOneFragment : BaseOldFragment() {
 
     private val CAMERA_REQUEST_CODE = 99
 

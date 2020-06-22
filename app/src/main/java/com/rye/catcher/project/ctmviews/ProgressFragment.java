@@ -4,14 +4,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.rye.catcher.R;
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 
 import butterknife.BindView;
 
 /**
  * Created by ZZG on 2018/8/12.
  */
-public class ProgressFragment extends BaseFragment {
+public class ProgressFragment extends BaseOldFragment {
     private static  final  String TAG="ProgressFragment";
 
 

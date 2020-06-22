@@ -12,8 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
-import com.rye.catcher.RyeCatcherApp;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
 import com.rye.catcher.GreenDaos.Base.TB_Character;
@@ -31,7 +30,7 @@ import butterknife.OnClick;
 /**
  * Created by ZZG on 2018/7/24.
  */
-public class CharactersDoActivity extends BaseActivity {
+public class CharactersDoActivity extends BaseOldActivity {
     @BindView(R.id.edit_name)
     EditText editName;
     @BindView(R.id.edit_sex)

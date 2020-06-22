@@ -3,14 +3,14 @@ package com.rye.catcher.base.mvp;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 
 /**
  * Created by 18041at 2019/5/26
  * Function:
  */
 public abstract class BaseMvpActivity<V extends BaseView,T extends BasePresenter<V>>
-        extends BaseActivity  implements BaseView{
+        extends BaseOldActivity implements BaseView{
     public T mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

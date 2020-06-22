@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 /**
  * Created by Zzg on 2017/11/19.
  */
 
-public class AnimAttrActivity extends BaseActivity {
+public class AnimAttrActivity extends BaseOldActivity {
     private Button btn1;
     private ImageView imageView;
     @Override

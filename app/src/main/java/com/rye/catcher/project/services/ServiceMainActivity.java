@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import butterknife.BindView;
@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * Created by Zzg on 2018/2/25.
  */
 
-public class ServiceMainActivity extends BaseActivity {
+public class ServiceMainActivity extends BaseOldActivity {
     public static final String TAG = "ServiceMainActivity";
     @BindView(R.id.startService)
     Button startService;

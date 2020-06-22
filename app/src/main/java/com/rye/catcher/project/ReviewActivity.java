@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.AsyncMainActivity;
 import com.rye.catcher.project.review.BaseAdapterTest;
@@ -21,7 +21,7 @@ import com.rye.catcher.project.review.myAsyncTask_pg;
  * Created by ZZG on 2017/10/25.
  */
 
-public class ReviewActivity extends BaseActivity implements View.OnClickListener {
+public class ReviewActivity extends BaseOldActivity implements View.OnClickListener {
     private Button btn1;
     private Button btn2;
     private Button btn3;

@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by ZZG on 2018/1/16.
  */
 
-public class DBActivity extends BaseActivity {
+public class DBActivity extends BaseOldActivity {
     private static final   String TAG="DBActivity";
     private DBManager dbManager;
     private ListView listView;

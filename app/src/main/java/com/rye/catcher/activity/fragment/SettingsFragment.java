@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
 import com.rye.catcher.activity.CameraActivity;
@@ -25,7 +25,7 @@ import butterknife.OnClick;
  * Created by zzg on 2017/10/10.
  */
 
-public class SettingsFragment  extends BaseFragment {
+public class SettingsFragment  extends BaseOldFragment {
 
     private Context mContext;
     @Override

@@ -10,7 +10,7 @@ import androidx.collection.SparseArrayCompat;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSONObject;
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
 import com.rye.catcher.project.dao.KeyValueMgr;
@@ -44,7 +44,7 @@ import okhttp3.ResponseBody;
 /**
  * Created by ZZG on 2018/9/7.
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseOldActivity {
     private static  final  String TAG="SplashActivity";
 
     @Override

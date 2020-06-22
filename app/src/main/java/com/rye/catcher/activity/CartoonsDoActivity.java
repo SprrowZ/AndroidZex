@@ -1,7 +1,6 @@
 package com.rye.catcher.activity;
 
 import android.animation.ObjectAnimator;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,16 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
 import com.rye.catcher.R;
 import com.rye.catcher.ThirdSdk;
-import com.rye.catcher.project.catcher.eventbus.MessageEvent;
 import com.rye.catcher.utils.ToastUtils;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.greendao.query.Query;
 
 import java.util.Date;
@@ -34,7 +31,7 @@ import butterknife.OnClick;
 /**
  * Created by Zzg on 2018/7/8.
  */
-public class CartoonsDoActivity extends BaseActivity {
+public class CartoonsDoActivity extends BaseOldActivity {
     @BindView(R.id.edit_name)
     EditText editName;
     @BindView(R.id.edit_isend)

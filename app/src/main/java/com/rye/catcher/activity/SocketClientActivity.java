@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import java.io.BufferedReader;
@@ -25,7 +25,7 @@ import java.net.UnknownHostException;
 /**
  * Created by ZZG on 2018/8/3.
  */
-public class SocketClientActivity extends BaseActivity {
+public class SocketClientActivity extends BaseOldActivity {
     private EditText editText;
     private TextView received;
     private Button   send;

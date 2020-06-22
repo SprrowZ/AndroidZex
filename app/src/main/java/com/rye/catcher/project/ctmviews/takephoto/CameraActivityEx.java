@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.DistortionViews;
 import com.rye.catcher.utils.ImageUtils;
@@ -35,7 +35,7 @@ import butterknife.OnClick;
  * @function: 自定义相机
  */
 
-public class CameraActivityEx extends BaseActivity {
+public class CameraActivityEx extends BaseOldActivity {
     private static  final String TAG=CameraActivityEx.class.getSimpleName();
 
     @BindView(R.id.cameraPreview)

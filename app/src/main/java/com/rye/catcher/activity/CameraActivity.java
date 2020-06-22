@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.widget.LinearLayout;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import com.rye.catcher.activity.fragment.CameraFragment;
@@ -23,7 +23,7 @@ import butterknife.BindView;
  * Created by ZZG on 2017/10/18.
  */
 
-public class CameraActivity extends BaseActivity {
+public class CameraActivity extends BaseOldActivity {
     @BindView(R.id.linear1)
     LinearLayout linear1;
     @BindView(R.id.linear2)

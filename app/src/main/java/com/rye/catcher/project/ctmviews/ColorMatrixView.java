@@ -22,7 +22,7 @@ import com.rye.base.utils.MeasureUtil;
  * Created by Zzg on 2017/11/9.
  */
 
-public class Colors extends View {
+public class ColorMatrixView extends View {
     private Paint mPaint;
     private Context mContext;
     private Bitmap bitmap;
@@ -30,11 +30,11 @@ public class Colors extends View {
     int x,y;
     //
     private int flag;
-    public Colors(Context context) {
+    public ColorMatrixView(Context context) {
         super(context);
     }
 
-    public Colors(Context context, @Nullable AttributeSet attrs) {
+    public ColorMatrixView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mContext=context;
 
@@ -76,6 +76,7 @@ public class Colors extends View {
                         flag+=1;
                         break;
                     case 3:
+                    case 4:
                         ColorMatrix colorMatrix3=new ColorMatrix(new float[]{
                                 0.393F, 0.769F, 0.189F, 0, 0,
                                 0.349F, 0.686F, 0.168F, 0, 0,
@@ -83,17 +84,6 @@ public class Colors extends View {
                                 0, 0, 0, 1, 0,
                         });
                         mPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix3));
-                        invalidate();
-                        flag+=1;
-                        break;
-                    case 4:
-                        ColorMatrix colorMatrix4=new ColorMatrix(new float[]{
-                                0.393F, 0.769F, 0.189F, 0, 0,
-                                0.349F, 0.686F, 0.168F, 0, 0,
-                                0.272F, 0.534F, 0.131F, 0, 0,
-                                0, 0, 0, 1, 0,
-                        });
-                        mPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix4));
                         invalidate();
                         flag+=1;
                         break;

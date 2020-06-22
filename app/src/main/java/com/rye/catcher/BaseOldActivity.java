@@ -1,6 +1,5 @@
 package com.rye.catcher;
 
-import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 
 import android.content.Context;
@@ -15,7 +14,6 @@ import androidx.annotation.Nullable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -24,23 +22,17 @@ import com.MutableMaprye.base.utils.LanguageUtil;
 import com.rye.base.common.LanguageConstants;
 import com.rye.catcher.base.NetChangeReceiver;
 import com.rye.catcher.base.OverallHandler;
-import com.rye.base.utils.DialogUtil;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.SharedPreManager;
 //import com.umeng.analytics.MobclickAgent;
 
-import java.lang.ref.WeakReference;
-
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by ZZG on 2017/10/23.
  */
 
-public class BaseActivity extends AppCompatActivity {
-    private static final String TAG=BaseActivity.class.getName();
+public class BaseOldActivity extends AppCompatActivity {
+    private static final String TAG= BaseOldActivity.class.getName();
 
     //监听屏幕系统广播
     private ScreenBroadcastReceiver mScreenReceiver;

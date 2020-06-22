@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 
 import com.rye.base.common.Constant;
@@ -36,7 +36,7 @@ import butterknife.Unbinder;
  * Created by ZZG on 2017/10/18
  */
 
-public class CameraFragment extends BaseFragment {
+public class CameraFragment extends BaseOldFragment {
     @BindView(R.id.text)
     TextView text;
     @BindView(R.id.btn_camera)

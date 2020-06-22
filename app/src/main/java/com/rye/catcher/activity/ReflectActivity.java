@@ -9,14 +9,15 @@ import androidx.annotation.Nullable;
 import com.dawn.zgstep.others.demos.annotations.BindView;
 import com.dawn.zgstep.others.demos.annotations.OnClick;
 import com.dawn.zgstep.others.demos.annotations.zButterKnife;
-import com.rye.catcher.BaseActivity;
+
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 /**
  * Created by ZZG on 2018/8/12.
  * 用于测试自定义注解--
  */
-public class ReflectActivity extends BaseActivity {
+public class ReflectActivity extends BaseOldActivity {
     @BindView(R.id.btn1)
     Button btn1;
 

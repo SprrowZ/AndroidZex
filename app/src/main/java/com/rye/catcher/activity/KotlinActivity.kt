@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.util.Log
 import android.view.View
-import android.widget.RelativeLayout
-import com.rye.catcher.BaseActivity
+import com.rye.catcher.BaseOldActivity
 import com.rye.catcher.R
 import com.rye.catcher.activity.fragment.KotlinFragment
 import com.rye.catcher.activity.fragment.SettingsFragment
@@ -24,7 +23,7 @@ import com.rye.catcher.project.helpers.kotlins.*
  */
 private const val activityExProperty:String ="OK"
 
-class KotlinActivity :BaseActivity() ,View.OnClickListener{
+class KotlinActivity : BaseOldActivity() ,View.OnClickListener{
 
 
 

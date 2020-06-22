@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by ZZG on 2017/11/20.
  */
 
-public class AnimExActivity extends BaseActivity implements View.OnClickListener{
+public class AnimExActivity extends BaseOldActivity implements View.OnClickListener{
     private int [] res={R.id.imageView_a,R.id.imageView_b,R.id.imageView_c,R.id.imageView_d,
             R.id.imageView_e,R.id.imageView_f,R.id.imageView_g,R.id.imageView_h};
 

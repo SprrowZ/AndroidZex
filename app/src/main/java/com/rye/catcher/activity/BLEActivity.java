@@ -27,7 +27,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
@@ -36,7 +36,7 @@ import com.rye.catcher.utils.permission.Permissions;
 import java.lang.ref.WeakReference;
 
 
-public class BLEActivity extends BaseActivity {
+public class BLEActivity extends BaseOldActivity {
   private static final  String TAG="BLEActivity";
   private static final  int BLE_DISCONNECTED = 0;
   private static final  int BLE_CONNECTING = 1;

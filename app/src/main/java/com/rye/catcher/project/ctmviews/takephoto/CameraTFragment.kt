@@ -15,16 +15,13 @@ import androidx.fragment.app.Fragment
 import android.util.Log
 import android.util.Size
 import android.util.SparseIntArray
-import android.view.Gravity
 import android.view.Surface
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.rye.base.utils.PopupEx
-import com.rye.catcher.BaseFragment
+import com.rye.catcher.BaseOldFragment
 import com.rye.catcher.R
-import com.rye.catcher.BaseLazyFragment
 import kotlinx.android.synthetic.main.fragment_camera_t.*
 import java.lang.Exception
 import java.util.*
@@ -34,7 +31,7 @@ import java.util.*
  * A simple [Fragment] subclass.
  *
  */
-class CameraTFragment : BaseFragment() {
+class CameraTFragment : BaseOldFragment() {
     //看来得手动findViewById才行
     private lateinit var textureView:AutoFitTextureView
     private lateinit var takePhoto:ImageView

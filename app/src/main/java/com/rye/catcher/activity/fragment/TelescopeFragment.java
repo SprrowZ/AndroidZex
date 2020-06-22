@@ -1,11 +1,11 @@
 package com.rye.catcher.activity.fragment;
 
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
 
 /**
  * Created by ZZG on 2018/8/10.
  */
-public class TelescopeFragment extends BaseFragment {
+public class TelescopeFragment extends BaseOldFragment {
 
 
     @Override

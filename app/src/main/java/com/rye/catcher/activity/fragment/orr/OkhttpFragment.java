@@ -12,7 +12,8 @@ import android.widget.Toast;
 
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.OkHttpAdapter;
-import com.rye.catcher.BaseFragment;
+import com.rye.catcher.BaseOldFragment;
+
 import com.rye.catcher.utils.DeviceUtils;
 import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
@@ -42,7 +43,7 @@ import okhttp3.Response;
 /**
  *
  */
-public class OkhttpFragment extends BaseFragment {
+public class OkhttpFragment extends BaseOldFragment {
     private static  final String TAG="OkhttpFragment";
 //    @BindView(R.id.tv1)
 //    TextView tv1;

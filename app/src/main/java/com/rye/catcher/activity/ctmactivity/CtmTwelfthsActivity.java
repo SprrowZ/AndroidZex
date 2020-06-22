@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.WaterFallLayout;
 
@@ -16,7 +16,7 @@ import java.util.Random;
  * Created by ZZG on 2018/4/26.
  */
 
-public class CtmTwelfthsActivity extends BaseActivity {
+public class CtmTwelfthsActivity extends BaseOldActivity {
     private static int IMG_COUNT = 5;
     private WaterFallLayout waterFallLayout;
     @Override

@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.rye.catcher.BaseActivity;
+import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.base.interfaces.FreeApi;
 import com.rye.catcher.activity.fragment.LMFragment;
@@ -57,7 +57,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by ZZG on 2018/8/12.
  */
-public class MainActivityEx extends BaseActivity {
+public class MainActivityEx extends BaseOldActivity {
     private static final String TAG = "MainActivityEx";
 
     private static final int DEVICE_REQUEST_CODE=99;

@@ -72,4 +72,16 @@ public class TestMethods {
         System.out.println("-----测试结束");
 
     }
+
+    @Test
+    public void testSplit(){
+        String url = "yst://com.xiaodianshi.tv.yst?type=3&isBangumi=1" +
+                "&seasonId=24583&epId=232280&progress=876&from=appName&resource=6";
+        int start = url.lastIndexOf("&");
+        int start2 = url.lastIndexOf("=");
+        String sub = url.substring(start2);
+        assertEquals(sub,"");
+    }
+
+
 }

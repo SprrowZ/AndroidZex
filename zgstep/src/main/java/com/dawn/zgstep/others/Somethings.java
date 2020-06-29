@@ -1,5 +1,7 @@
 package com.dawn.zgstep.others;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,7 +34,7 @@ public class Somethings {
   //      test5();
 //        test6();
   //      test7();
-        test8();
+        test9();
     }
 
 
@@ -114,7 +116,24 @@ public class Somethings {
     }
 
     public static void test8(){
+        String url = "yst://com.xiaodianshi.tv.yst?type=3&isBangumi=1" +
+                "&seasonId=24583&epId=232280&progress=876&from=appName&resource=6";
+        int start = url.lastIndexOf("&");
+        int start2 = url.lastIndexOf("=");
+        String sub = url.substring(start2+1);
+        String sub2 = url.substring(0,url.lastIndexOf("&"));
+        System.out.println(sub2);
 
+    }
 
+    public static void test9(){
+        String url = "yst%3A%2F%2Fcom.xiaodianshi.tv.yst%3Ftype%3D3%26isBangumi%3D0%26avId%3D841034100%26cId%3D0%26progress%3D0%26from%3Dxxx%26resource%3Drec%26stay%3D1%26position%3Dshortvideo_HOMECARD%26source%3Dxiaodu";
+        String result="";
+        try {
+            result =  URLDecoder.decode(url,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(result);
     }
 }

@@ -1,4 +1,4 @@
-package com.dawn.zgstep.javas.annotations;
+package com.dawn.zgstep.others.javas.annotations;
 
 
 import android.util.Log;
@@ -22,7 +22,7 @@ public class TestAnnotations {
   private String sex;
 
   public static void main(String[] args){
-      getAnnotations("com.dawn.zgstep.javas.annotations.TestAnnotations");
+      getAnnotations("TestAnnotations");
   }
 
   /**

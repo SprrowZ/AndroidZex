@@ -1,9 +1,5 @@
-package com.dawn.zgstep.javas.java8.instances.download;
+package com.dawn.zgstep.others.javas.java8.instances.download;
 
-import android.content.Context;
-import android.os.Environment;
-
-import java.io.File;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;

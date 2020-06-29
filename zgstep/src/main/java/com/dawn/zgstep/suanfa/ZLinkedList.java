@@ -1,4 +1,4 @@
-package com.dawn.zgstep.algorithms;
+package com.dawn.zgstep.suanfa;
 
 /**
  * java实现链表

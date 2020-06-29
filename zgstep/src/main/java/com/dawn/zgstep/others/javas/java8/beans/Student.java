@@ -1,4 +1,4 @@
-package com.dawn.zgstep.javas.java8.beans;
+package com.dawn.zgstep.others.javas.java8.beans;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package com.dawn.zgstep.javas.others;
+package com.dawn.zgstep.others.javas.others;
 
 import com.dawn.zgstep.kotlins.ZZG;
 

@@ -1,4 +1,4 @@
-package com.dawn.zgstep.algorithms;
+package com.dawn.zgstep.suanfa;
 
 public class TestB {
     public static void main(String[] args){

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/len_10"
+    android:background="@drawable/item_recycler_bg"
     >
 
     <TextView
@@ -13,7 +14,6 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="@dimen/font_24"
-        android:background="@drawable/btn_bk1"
         android:textColor="@color/black_alpha_160"
         tools:text="测试-文案" />
 </FrameLayout>

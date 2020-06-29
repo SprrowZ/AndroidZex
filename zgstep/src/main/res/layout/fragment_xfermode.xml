@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<com.dawn.zgstep.others.views.xfermode.XferViewOne
+<com.dawn.zgstep.others.views.xfermode.XferModeTwoView
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 </FrameLayout>

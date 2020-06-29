@@ -3,6 +3,7 @@ package com.rye.catcher.activity.ctmactivity;
 import android.content.Context;
 import android.content.Intent;
 import com.dawn.zgstep.ctm.CtmFirstActivity;
+import com.dawn.zgstep.test_activitys.SeniorUIActivity;
 import com.rye.base.BaseRecyclerActivity;
 import com.rye.base.beans.JsonBean;
 import com.rye.base.widget.BaseRecyclerAdapter;
@@ -78,6 +79,9 @@ public class CtmMainActivity extends BaseRecyclerActivity<JsonBean> {
                     break;
                 case "testDelete-My" :
                     startActivity(new Intent(context, CtmSeventhActivity.class));
+                    break;
+                case "testXferMode":
+                    SeniorUIActivity.start(context);
                     break;
                 case "testNext":
                     startActivity(new Intent(context, CtmMain2Activity.class));

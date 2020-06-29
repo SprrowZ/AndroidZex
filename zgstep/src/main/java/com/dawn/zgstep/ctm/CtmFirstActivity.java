@@ -11,7 +11,6 @@ import com.rye.base.BaseActivity;
 
 public class CtmFirstActivity  extends BaseActivity {
 
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_ctm_first;

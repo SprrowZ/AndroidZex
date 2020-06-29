@@ -28,6 +28,10 @@
     "action":"testDelete-My"
   },
   {
+    "name": "XferMode",
+    "action": "testXferMode"
+  },
+  {
     "name":"NextPage",
     "action":"testNext"
   }

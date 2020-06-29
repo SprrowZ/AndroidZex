@@ -1,4 +1,4 @@
-package com.dawn.zgstep.javas.java8;
+package com.dawn.zgstep.others.javas.java8;
 
 /**
  * 测试java8的双冒号用法

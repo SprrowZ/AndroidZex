@@ -4,8 +4,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.dawn.zgstep.javas.java8.DoubleColon;
-import com.dawn.zgstep.javas.java8.StreamInterface;
+import com.dawn.zgstep.others.javas.java8.DoubleColon;
+import com.dawn.zgstep.others.javas.java8.StreamInterface;
 
 import java.util.Arrays;
 import java.util.List;

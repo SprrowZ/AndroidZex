@@ -8,7 +8,7 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.dawn.zgstep.algorithms.ZLinkedList;
+import com.dawn.zgstep.suanfa.ZLinkedList;
 
 /**
  * Created By RyeCatcher

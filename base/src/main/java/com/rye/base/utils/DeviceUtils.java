@@ -1,4 +1,4 @@
-package com.rye.catcher.utils;
+package com.rye.base.utils;
 
 import android.Manifest;
 import android.app.Service;
@@ -7,15 +7,16 @@ import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Build;
 import android.provider.Settings;
+
 import androidx.core.app.ActivityCompat;
+
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.rye.catcher.RyeCatcherApp;
 
-import org.apache.commons.io.IOUtils;
+import com.rye.base.BaseApplication;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,27 +25,30 @@ import java.io.IOException;
 
 /**
  *
- *
  */
 public class DeviceUtils {
     private static String tag = "DeviceUtils";
     private static Boolean isRoot = null;
+    private static Context mContext;
+
     //私有构造器
-    private DeviceUtils(){}
+    private DeviceUtils() {
+    }
+
+    static {
+        mContext = BaseApplication.getInstance();
+    }
+
     /**
      * @return 取得设备的UUID
      */
-    public static String getUUID(Context context) {
+    public static String getUUID() {
         // ANDROID_ID是设备第一次启动时产生和存储的64bit的一个数，当设备被wipe后该数重置
-        if (context == null) {
-            context = RyeCatcherApp.getInstance().getBaseContext();
-        }
-
-        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        return Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     public static String getShortDeviceId() {
-        String uuid = getUUID(null);
+        String uuid = getUUID();
         if (uuid == null) {
             uuid = "";
         }
@@ -131,10 +135,10 @@ public class DeviceUtils {
     }
 
     /***********************************新增*****************************************/
-    private static DisplayMetrics getDisplayMetrics(Context context) {
+    private static DisplayMetrics getDisplayMetrics() {
 
         DisplayMetrics metrics = new DisplayMetrics();
-        WindowManager manager = (WindowManager) context.getSystemService(Service.WINDOW_SERVICE);
+        WindowManager manager = (WindowManager) mContext.getSystemService(Service.WINDOW_SERVICE);
         if (manager != null) {
             manager.getDefaultDisplay().getMetrics(metrics);
         }
@@ -143,22 +147,21 @@ public class DeviceUtils {
 
     /**
      * 获取手机像素密度（DPI）
-     * @param context
+     *
      * @return
      */
-    public static float getDpi(Context context) {
-        DisplayMetrics metrics = getDisplayMetrics(context);
+    public static float getDpi() {
+        DisplayMetrics metrics = getDisplayMetrics();
         return metrics.density * 160;
     }
 
     /**
      * 获取屏幕宽度
      *
-     * @param context Context
      * @return 屏幕宽度（px）
      */
-    public static int getScreenWidth(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    public static int getScreenWidth() {
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             wm.getDefaultDisplay().getRealSize(point);
@@ -171,11 +174,10 @@ public class DeviceUtils {
     /**
      * 获取屏幕高度
      *
-     * @param context Context
      * @return 屏幕高度（px）
      */
-    public static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    public static int getScreenHeight() {
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             wm.getDefaultDisplay().getRealSize(point);
@@ -187,30 +189,29 @@ public class DeviceUtils {
 
     /**
      * 获取最小宽度sw（dp）
-     * @param context
+     *
      * @return dp
      */
-    public static int getScreenSw(Context context) {
-
-        int screenHeight = getScreenHeight(context);
-        int screenWidth = getScreenWidth(context);
-        Log.i("smallWidth", "getScreenSw: height->"+screenHeight+",width->"+screenWidth);
+    public static int getScreenSw() {
+        int screenHeight = getScreenHeight();
+        int screenWidth = getScreenWidth();
+        Log.i("smallWidth", "getScreenSw: height->" + screenHeight + ",width->" + screenWidth);
         int smallestWidthDP = screenHeight > screenWidth ? screenWidth : screenHeight;
         //跟getDpi里相较有点多余操作..
-        int sw = (int) (smallestWidthDP * 160 / getDpi(context));
+        int sw = (int) (smallestWidthDP * 160 / getDpi());
         return sw;
     }
 
     /**
      * 获取手机序列号，需要权限申请
-     * @param context
+     *
      * @return
      */
-    public static String getIMEI(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(
+    public static String getIMEI() {
+        TelephonyManager tm = (TelephonyManager) mContext.getSystemService(
                 Context.TELEPHONY_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
@@ -222,74 +223,80 @@ public class DeviceUtils {
                 return deviceId;
             }
 
-       }
-       return "";
-   }
+        }
+        return "";
+    }
 
     /**
      * 手机厂商
+     *
      * @return
      */
-   public static String getDeviceManufacturer(){
+    public static String getDeviceManufacturer() {
         return Build.MANUFACTURER;
-   }
+    }
 
     /**
      * 手机品牌
+     *
      * @return
      */
-   public static String getDeviceBrand(){
+    public static String getDeviceBrand() {
         return Build.BRAND;
-   }
+    }
 
     /**
      * 手机型号
+     *
      * @return
      */
-   public static String getDeviceModel(){
+    public static String getDeviceModel() {
         return Build.MODEL;
-   }
+    }
 
     /**
      * 手机主板名
+     *
      * @return
      */
-   public static String getDeviceBoard(){
+    public static String getDeviceBoard() {
         return Build.BOARD;
-   }
+    }
 
     /**
      * 手机设备名
+     *
      * @return
      */
-   public static String getDeviceName2(){
+    public static String getDeviceName2() {
         return Build.DEVICE;
     }
 
     /**
      * 手机ID
+     *
      * @return
      */
-    public static String getDeviceID(){
+    public static String getDeviceID() {
         return Build.ID;
     }
 
     /**
      * 判断当前手机是ART虚拟机还是Dalvik虚拟机
+     *
      * @return
      */
-    public static String getVirtualMachine(){
+    public static String getVirtualMachine() {
         final String vmVersion = System.getProperty("java.vm.version");
-         String result="";
-        if (vmVersion.startsWith("2")){
-            result="ART虚拟机，版本号："+vmVersion;
-        }else{
-            result="Dalvik虚拟机，版本号："+vmVersion;
+        String result = "";
+        if (vmVersion.startsWith("2")) {
+            result = "ART虚拟机，版本号：" + vmVersion;
+        } else {
+            result = "Dalvik虚拟机，版本号：" + vmVersion;
         }
         return result;
 
     }
-
 
 
 }

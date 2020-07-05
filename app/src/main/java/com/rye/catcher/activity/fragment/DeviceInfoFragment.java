@@ -2,6 +2,8 @@ package com.rye.catcher.activity.fragment;
 
 
 
+import android.content.Context;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,8 +13,9 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.DeviceAdapter;
 import com.rye.catcher.beans.binding.DeviceBean;
 
-import com.rye.catcher.utils.DeviceUtils;
+import com.rye.base.utils.DeviceUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,15 +82,15 @@ public class DeviceInfoFragment extends BaseOldFragment {
              bean4.setContent(DeviceUtils.getDeviceID());
        DeviceBean bean5=new DeviceBean();
              bean5.setTitle("手机分辨率");
-             String resolvingPower=DeviceUtils.getScreenHeight(getActivity())
-                     +"x"+DeviceUtils.getScreenWidth(getActivity());
+             String resolvingPower=DeviceUtils.getScreenHeight()
+                     +"x"+DeviceUtils.getScreenWidth();
              bean5.setContent(resolvingPower);
        DeviceBean bean6=new DeviceBean();
              bean6.setTitle("DPI");
-             bean6.setContent(String.valueOf(DeviceUtils.getDpi(getActivity())));
+             bean6.setContent(String.valueOf(DeviceUtils.getDpi()));
        DeviceBean bean7=new DeviceBean();
              bean7.setTitle("最小宽度");
-             bean7.setContent(String.valueOf(DeviceUtils.getScreenSw(getActivity())));
+             bean7.setContent(String.valueOf(DeviceUtils.getScreenSw()));
        DeviceBean bean8=new DeviceBean();
              bean8.setTitle("虚拟机");
              bean8.setContent(DeviceUtils.getVirtualMachine());

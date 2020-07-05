@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/len_10"
     android:background="@drawable/item_recycler_bg"
+    android:id="@+id/root"
     >
 
     <TextView
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textSize="@dimen/font_24"
+        android:textSize="@dimen/font_22"
         android:textColor="@color/black_alpha_160"
+        android:singleLine="true"
         tools:text="测试-文案" />
 </FrameLayout>

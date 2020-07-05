@@ -3,6 +3,7 @@ package com.rye.catcher.utils;
 import android.util.Log;
 
 import com.rye.base.utils.DateUtils;
+import com.rye.base.utils.DeviceUtils;
 import com.rye.base.utils.FileUtils;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.RyeCatcherApp;

@@ -14,7 +14,7 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.OkHttpAdapter;
 import com.rye.catcher.BaseOldFragment;
 
-import com.rye.catcher.utils.DeviceUtils;
+import com.rye.base.utils.DeviceUtils;
 import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
 import com.rye.base.utils.SDHelper;
@@ -172,7 +172,7 @@ public class OkhttpFragment extends BaseOldFragment {
             Request request = new Request.Builder()
                     .get()
                     .url(URL + "login?userName=zzg&password=1234")
-                    .addHeader("S-ZZG-TOKEN", DeviceUtils.getUUID(Old_ApplicationUtil.getAppContext()))
+                    .addHeader("S-ZZG-TOKEN", DeviceUtils.getUUID())
                     .build();
             Response response= null;
             try {

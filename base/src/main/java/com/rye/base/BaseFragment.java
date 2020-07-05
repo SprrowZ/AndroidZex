@@ -17,20 +17,20 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         beforeInflateView();
-        mRoot = inflater.inflate(getLayoutId(), container,false);
+        mRoot = inflater.inflate(getLayoutId(), container, false);
         return mRoot;
     }
 
     protected abstract @LayoutRes
     int getLayoutId();
 
-    void beforeInflateView() {
+    public void beforeInflateView() {
     }
 
-    void initWidget() {
+    public void initWidget() {
     }
 
-    void initEvent() {
+    public void initEvent() {
     }
 
     @Override

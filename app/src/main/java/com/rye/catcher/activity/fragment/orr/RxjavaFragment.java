@@ -15,7 +15,7 @@ import com.rye.catcher.activity.adapter.RxjavaAdapter;
 import com.rye.catcher.BaseOldFragment;
 import com.rye.base.widget.dialog.ctdialog.ExDialog;
 import com.rye.catcher.utils.DensityUtil;
-import com.rye.catcher.utils.DeviceUtils;
+import com.rye.base.utils.DeviceUtils;
 import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
 
@@ -560,7 +560,7 @@ public class RxjavaFragment extends BaseOldFragment {
         Request request = new Request.Builder()
                 .get()
                 .url(url)
-                .addHeader("X-ZZ-TOKEN", DeviceUtils.getUUID(Old_ApplicationUtil.getAppContext()))
+                .addHeader("X-ZZ-TOKEN", DeviceUtils.getUUID())
                 .build();
         try {
             Response response = client.newCall(request).execute();

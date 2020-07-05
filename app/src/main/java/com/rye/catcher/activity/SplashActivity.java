@@ -19,7 +19,7 @@ import com.rye.catcher.base.sdks.beans.WeatherBean;
 import com.rye.catcher.base.sdks.gmap.AmapManager;
 import com.rye.catcher.base.sdks.gmap.AmapResult;
 import com.rye.base.utils.DateUtils;
-import com.rye.catcher.utils.DeviceUtils;
+import com.rye.base.utils.DeviceUtils;
 import com.rye.catcher.utils.FileUtil;
 import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.Bean;
@@ -69,7 +69,7 @@ public class SplashActivity extends BaseOldActivity {
       //  weatherObservable();
 
         //获取设备尺寸信
-        int sw= DeviceUtils.getScreenSw(Old_ApplicationUtil.getAppContext());
+        int sw= DeviceUtils.getScreenSw();
         Log.i(TAG, "Size: "+sw);
         FileUtil.writeUserLog("DEVICE-SIZE:"+sw);
     }

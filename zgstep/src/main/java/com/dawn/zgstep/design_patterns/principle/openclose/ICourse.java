@@ -1,4 +1,4 @@
-package com.dawn.zgstep.principle.openclose;
+package com.dawn.zgstep.design_patterns.principle.openclose;
 
 /**
  * Create by rye
@@ -11,5 +11,4 @@ public interface ICourse {
     Integer getId();
     String getName();
     Double getPrice();
-
 }

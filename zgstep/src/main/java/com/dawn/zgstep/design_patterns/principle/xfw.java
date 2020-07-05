@@ -1,4 +1,4 @@
-package com.dawn.zgstep.principle;
+package com.dawn.zgstep.design_patterns.principle;
 
 /**
  * Create by rye

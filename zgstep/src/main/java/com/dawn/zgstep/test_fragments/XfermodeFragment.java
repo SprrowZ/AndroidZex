@@ -25,20 +25,21 @@ public class XfermodeFragment  extends BaseFragment {
         List<String> dataList = new ArrayList<>();
         dataList.add("CLEAR");
         dataList.add("SRC");
-        dataList.add("DST");
-        dataList.add("SRC_OVER");
-        dataList.add("DST_OVER");
         dataList.add("SRC_IN");
-        dataList.add("DST_IN");
         dataList.add("SRC_OUT");
-        dataList.add("DST_OUT");
         dataList.add("SRC_ATOP");
+        dataList.add("SRC_OVER");
+        dataList.add("DST");
+        dataList.add("DST_IN");
+        dataList.add("DST_OUT");
         dataList.add("DST_ATOP");
+        dataList.add("DST_OVER");
         dataList.add("XOR");
         dataList.add("DARKEN");
         dataList.add("LIGHTEN");
         dataList.add("MULTIPLY");
         dataList.add("SCREEN");
+        //???
         dataList.add("ADD");
         dataList.add("OVERLAY");
         return dataList;

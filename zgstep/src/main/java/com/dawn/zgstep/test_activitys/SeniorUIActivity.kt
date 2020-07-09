@@ -1,19 +1,14 @@
 package com.dawn.zgstep.test_activitys
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dawn.zgstep.R
 import com.dawn.zgstep.test_activitys.adapters.SeniorUiAdapter
 import com.dawn.zgstep.test_fragments.XfermodeFragment
 import com.rye.base.BaseFragmentActivity
 import com.rye.base.utils.DeviceUtils
-import com.rye.base.widget.HolderType
 import com.rye.base.widget.OnItemClickListener
 
 class SeniorUIActivity : BaseFragmentActivity(), OnItemClickListener {
@@ -48,24 +43,64 @@ class SeniorUIActivity : BaseFragmentActivity(), OnItemClickListener {
         if (currentFragment is XfermodeFragment) {
             mAdapter = SeniorUiAdapter()
             mAdapter?.setData((currentFragment as XfermodeFragment).fakeDatas)
-            mAdapter?.setOnClickListener(this )
-            mRecycler?.layoutManager = GridLayoutManager(this,4)
+            mAdapter?.setOnClickListener(this)
+            mRecycler?.layoutManager = GridLayoutManager(this, 4)
             mRecycler?.adapter = mAdapter
         }
     }
 
-    override fun onClick(position:Int) {
-        if (currentFragment is XfermodeFragment){
-            when(position){
-                0->{
-                    (currentFragment as XfermodeFragment)?.xferModeTwoView.clearXferByLayer()
+    override fun onClick(position: Int) {
+        if (currentFragment is XfermodeFragment) {
+            val xferView = (currentFragment as XfermodeFragment)?.xferModeTwoView
+            when (position) {
+                0 -> {
+                    xferView.clearXferByLayer()
                 }
-                1->{}
-                2->{}
-                3->{}
-                4->{}
-                5->{}
-                6->{}
+                1 -> {
+                    xferView.src()
+                }
+                2 -> {
+                    xferView.srcIn()
+                }
+                3 -> {
+                    xferView.srcOut()
+                }
+                4 -> {
+                    xferView.srcAtop()
+                }
+                5 -> {
+                    xferView.srcOver()
+                }
+                6 -> {
+                    xferView.dst()
+                }
+                7 -> {
+                    xferView.dstIn()
+                }
+                8 -> {
+                    xferView.dstOut()
+                }
+                9 -> {
+                    xferView.dstAtop()
+                }
+                10 -> {
+                    xferView.dstOver()
+                }
+                11 -> {
+                    xferView.xor()
+                }
+                12 -> {
+                    xferView.darken()
+                }
+                13 -> {
+                    xferView.lighten()
+                }
+                14 -> {
+                    xferView.multiply()
+                }
+                15 -> {
+                    xferView.screen()
+                }
 
             }
         }

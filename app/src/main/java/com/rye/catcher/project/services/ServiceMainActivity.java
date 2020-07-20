@@ -3,25 +3,21 @@ package com.rye.catcher.project.services;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.Bundle;
+
 import android.os.IBinder;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by Zzg on 2018/2/25.
  */
 
-public class ServiceMainActivity extends BaseOldActivity {
+public class ServiceMainActivity extends BaseActivity {
     public static final String TAG = "ServiceMainActivity";
     @BindView(R.id.startService)
     Button startService;
@@ -59,14 +55,16 @@ public class ServiceMainActivity extends BaseOldActivity {
         }
     };
 
+    @Override
+    public int getLayoutId() {
+        return R.layout.service_main;
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.service_main);
-        ButterKnife.bind(this);
+    public void initEvent() {
 
     }
+
     @OnClick({R.id.startService, R.id.stopService, R.id.service,
             R.id.sService, R.id.bindService, R.id.unbindService,
             R.id.intentService})
@@ -100,4 +98,6 @@ public class ServiceMainActivity extends BaseOldActivity {
                 break;
         }
     }
+
+
 }

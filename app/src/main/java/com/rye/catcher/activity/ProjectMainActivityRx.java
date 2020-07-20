@@ -1,10 +1,12 @@
 package com.rye.catcher.activity;
 
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;
 import com.rye.base.utils.PopupEx;
+import com.rye.base.utils.ToastHelper;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ProjectListAdapter;
 import com.rye.catcher.activity.presenter.ProjectPresenterRx;
@@ -35,6 +38,7 @@ import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
+import java.util.Set;
 
 
 import butterknife.BindView;
@@ -48,6 +52,8 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         ProjectListAdapter.OnItemClickListener, FilesDemoActivity.DataListener {
 
     private static final String TAG2 = "LifeCycle-A";
+    private static final String PROJECT_MAIN_URI = "rye://com.rye.catcher?type=6&from=Xsite";
+
     //改为recycleView
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
@@ -58,6 +64,15 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
     public int bindLayout() {
         return R.layout.project_main;
     }
+
+    public static void startFromOutside(Context context) {
+        Intent intent = new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setData(Uri.parse(PROJECT_MAIN_URI));
+        context.startActivity(intent);
+    }
+
 
     @Override
     public void initEvent() {
@@ -70,11 +85,23 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         adapter.setOnItemClickListener(this);
         recycleView.setAdapter(adapter);
         FilesDemoActivity.setListener(this);
+        printOutsideParams();
     }
 
     private void startService() {
         startActivity(new Intent(this, ServiceMainActivity.class));
     }
+
+    private void printOutsideParams() {
+        //--------外部跳转
+        Set<String> params = getIntent().getData().getQueryParameterNames();
+        String query = getIntent().getData().getQuery();
+        for (String par : params) {
+            Log.i("Giao","paramName:" +par);
+        }
+        Log.i("Giao","query:"+query);
+    }
+
 
     /**
      * 切语言
@@ -193,7 +220,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 multiThreadDown.downLoad();
                 break;
             case "testKotlin":
-                startActivity(new Intent(this, KotlinActivity.class));
+                ToastHelper.showToastShort(this, "已删除");
                 break;
             case "ktCoroutine":
                 startActivity(new Intent(this, KtCoroutineActivity.class));

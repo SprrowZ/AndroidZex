@@ -89,7 +89,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivityEx"
+            android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.ZTActivity">
@@ -170,7 +170,22 @@
         <activity
             android:name=".activity.ProjectMainActivityRx"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask" >
+            <!--过滤其一 常规action、category-->
+            <intent-filter>
+                <action android:name="com.rye.catcher.external"/>
+                <action android:name="com.rye.catcher"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <!--过滤其二 uri跳转-->
+            <intent-filter>
+                <action android:name="com.rye.catcher.uri"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:host="com.rye.catcher"
+                      android:scheme="rye"/>
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".project.animations.AnimMemoryActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -199,10 +214,7 @@
             android:name=".activity.ctmactivity.CtmSeventhActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".project.ctmviews.ctmimg.RoundMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+
         <activity
             android:name=".project.animations.AnimValueActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -231,7 +243,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.review.SpannableStringTest"
+            android:name=".project.review.SpannableActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -349,7 +361,7 @@
         <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
         <activity android:name=".activity.MultiActivity" />
         <activity android:name=".activity.LeftDetailActivityRx" />
-        <activity android:name=".activity.KotlinActivity" />
+
 
         <activity android:name=".activity.AnimeActivity" />
     </application>

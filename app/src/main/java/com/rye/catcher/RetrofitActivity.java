@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.rye.base.BaseActivity;
 import com.rye.catcher.activity.fragment.HttpT1Fragment;
 import com.rye.catcher.base.interfaces.GithubApi;
 import com.rye.base.common.Constant;
@@ -33,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by ZZG on 2017/10/12.
  */
 
-public class RetrofitActivity extends BaseOldActivity {
+public class RetrofitActivity extends BaseActivity {
     @BindView(R.id.orr)
     Button btn1;
     @BindView(R.id.javaMore)
@@ -55,16 +56,15 @@ public class RetrofitActivity extends BaseOldActivity {
     @BindView(R.id.content1)
     TextView content1;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab04_second_activity);
-        ButterKnife.bind(this);
-        init();
+    public int getLayoutId() {
+        return R.layout.tab04_second_activity;
     }
 
-    private void init() {
-        setBarTitle("天玄九变");
+    @Override
+    public void initEvent() {
+
     }
+
 
     private void addView() {
         HttpT1Fragment fragment = new HttpT1Fragment();

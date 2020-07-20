@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.widget.LinearLayout;
 
+import com.rye.base.BaseActivity;
 import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 
@@ -23,7 +24,7 @@ import butterknife.BindView;
  * Created by ZZG on 2017/10/18.
  */
 
-public class CameraActivity extends BaseOldActivity {
+public class CameraActivity extends BaseActivity {
     @BindView(R.id.linear1)
     LinearLayout linear1;
     @BindView(R.id.linear2)
@@ -31,20 +32,23 @@ public class CameraActivity extends BaseOldActivity {
     private Fragment cameraFragment;
     //静态变量内存泄露
     private static CameraActivity activity;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.camera_activity);
+    public int getLayoutId() {
+        return R.layout.camera_activity;
+    }
+
+    @Override
+    public void initEvent() {
         FragmentManager fg = getSupportFragmentManager();
         FragmentTransaction transaction = fg.beginTransaction();
         cameraFragment = new CameraFragment();
         transaction.add(R.id.linear1, cameraFragment);
         transaction.commit();
         //6.0权限适配
-    //    authority();
+        //    authority();
         memoryLeak();
     }
-
     /**
      * 内存泄露检测
      */
@@ -73,4 +77,6 @@ public class CameraActivity extends BaseOldActivity {
             }
         }, Permissions.CAMERA);
     }
+
+
 }

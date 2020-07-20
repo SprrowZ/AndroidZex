@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="btn_style_parent">
         <item name="android:gravity">center</item>
         <item name="android:textAllCaps">false</item>
@@ -15,7 +16,7 @@
         <item name="android:textColor">@color/black_alpha_112</item>
         <item name="android:textSize">16sp</item>
     </style>
-   <!--全屏DialogFragment-->
+    <!--全屏DialogFragment-->
     <style name="full_screen_dialog_fragment" parent="Theme.AppCompat.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/transparent</item>

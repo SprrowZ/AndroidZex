@@ -9,7 +9,9 @@ import butterknife.ButterKnife
 
 
 abstract class BaseActivity : AppCompatActivity() {
-    val TAG = javaClass.name
+    companion object{
+        val TAG: String = javaClass.name
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,4 +47,7 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun initEvent()
 
     open fun beforeCreate() {}
+
+
+
 }

@@ -6,14 +6,11 @@ import android.graphics.Matrix;
 import android.hardware.Camera;
 
 import android.media.ExifInterface;
-import android.os.Bundle;
-import androidx.annotation.Nullable;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import com.rye.base.BaseActivity;
 
-import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.project.ctmviews.DistortionViews;
 import com.rye.catcher.utils.ImageUtils;
@@ -25,7 +22,6 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -35,8 +31,8 @@ import butterknife.OnClick;
  * @function: 自定义相机
  */
 
-public class CameraActivityEx extends BaseOldActivity {
-    private static  final String TAG=CameraActivityEx.class.getSimpleName();
+public class CameraActivityEx extends BaseActivity {
+    private static final String TAG = CameraActivityEx.class.getSimpleName();
 
     @BindView(R.id.cameraPreview)
     CameraPreviewEx cameraPreview;
@@ -44,21 +40,24 @@ public class CameraActivityEx extends BaseOldActivity {
     DistortionViews takePhoto;
     @BindView(R.id.iv)
     ImageView iv;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preview_ex);
-        ButterKnife.bind(this);
-        PermissionUtils.requestPermission(this,"请开启相机权限！",false,
-                action->{
+    public int getLayoutId() {
+        return R.layout.activity_preview_ex;
+    }
+
+    @Override
+    public void initEvent() {
+        PermissionUtils.requestPermission(this, "请开启相机权限！", false,
+                action -> {
                     init();
-                },0, Permission.CAMERA);
+                }, 0, Permission.CAMERA);
 
     }
 
-    @OnClick({R.id.cameraPreview,R.id.takePhoto})
-    public void onViewClicked(View view){
-        switch (view.getId()){
+    @OnClick({R.id.cameraPreview, R.id.takePhoto})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.cameraPreview:
                 cameraPreview.reAutoFocus();
                 break;
@@ -67,41 +66,40 @@ public class CameraActivityEx extends BaseOldActivity {
                 break;
         }
     }
-    private void init(){
+
+    private void init() {
 
 
     }
-   private void takePhotos(){
-       cameraPreview.takePhoto(new Camera.PictureCallback() {
-           @Override
-           public void onPictureTaken(byte[] data, Camera camera) {
-             //   camera.startPreview();
-               new Thread(new TakePhoto(data,camera,CameraActivityEx.this)).start();
-           }
-       });
-   }
-    private static class TakePhoto implements  Runnable{
+
+    private void takePhotos() {
+        cameraPreview.takePhoto((data, camera) -> {
+            //   camera.startPreview();
+            new Thread(new TakePhoto(data, camera, CameraActivityEx.this)).start();
+        });
+    }
+
+
+    private static class TakePhoto implements Runnable {
         private WeakReference<CameraActivityEx> weakReference;
         private byte[] data;
         private Camera camera;
-        public TakePhoto(final  byte[] data,Camera camera,CameraActivityEx activityEx){
-            this.data=data;
-            this.camera=camera;
-            weakReference=new WeakReference<>(activityEx);
+
+        public TakePhoto(final byte[] data, Camera camera, CameraActivityEx activityEx) {
+            this.data = data;
+            this.camera = camera;
+            weakReference = new WeakReference<>(activityEx);
         }
+
         @Override
         public void run() {
-           Bitmap bitmap= BitmapFactory.decodeByteArray(data,0,data.length);
-           weakReference.get().runOnUiThread(new Runnable() {
-               @Override
-               public void run() {
-                   weakReference.get().iv.setImageBitmap(bitmap);
-               }
-           });
+            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            weakReference.get().runOnUiThread(() ->
+                    weakReference.get().iv.setImageBitmap(bitmap));
 
-           ImageUtils.getIntance().saveBitmap(bitmap,"Z-TAKE.JPEG");
-           int angle=readPictureDegree(SDHelper.getImageFolder()+"Z-TAKE.JPEG");
-            Log.i(TAG, "run: "+angle);
+            ImageUtils.getIntance().saveBitmap(bitmap, "Z-TAKE.JPEG");
+            int angle = readPictureDegree(SDHelper.getImageFolder() + "Z-TAKE.JPEG");
+            Log.i(TAG, "run: " + angle);
         }
     }
 
@@ -135,7 +133,8 @@ public class CameraActivityEx extends BaseOldActivity {
 
     /**
      * 旋转图片
-     * @param angle 被旋转角度
+     *
+     * @param angle  被旋转角度
      * @param bitmap 图片对象
      * @return 旋转后的图片
      */

@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity {
         //uri模仿外部跳转
         left_second = headerLayout.findViewById(R.id.left_second);
         left_second.setOnClickListener(v -> {
-           ProjectMainActivityRx.start(this);
+           ProjectMainActivityRx.startFromOutside(this);
         });
     }
 

@@ -38,6 +38,7 @@ import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
+import java.util.Set;
 
 
 import butterknife.BindView;
@@ -51,7 +52,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         ProjectListAdapter.OnItemClickListener, FilesDemoActivity.DataListener {
 
     private static final String TAG2 = "LifeCycle-A";
-    private static final String PROJECT_MAIN_URI= "rye://com.rye.catcher?type=6&from=Xsite";
+    private static final String PROJECT_MAIN_URI = "rye://com.rye.catcher?type=6&from=Xsite";
 
     //改为recycleView
     @BindView(R.id.recycleView)
@@ -64,13 +65,14 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         return R.layout.project_main;
     }
 
-    public static void start(Context context){
-     Intent intent = new Intent();
-     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-     intent.setData(Uri.parse(PROJECT_MAIN_URI));
-     context.startActivity(intent);
+    public static void startFromOutside(Context context) {
+        Intent intent = new Intent();
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setData(Uri.parse(PROJECT_MAIN_URI));
+        context.startActivity(intent);
     }
+
 
     @Override
     public void initEvent() {
@@ -83,11 +85,23 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         adapter.setOnItemClickListener(this);
         recycleView.setAdapter(adapter);
         FilesDemoActivity.setListener(this);
+        printOutsideParams();
     }
 
     private void startService() {
         startActivity(new Intent(this, ServiceMainActivity.class));
     }
+
+    private void printOutsideParams() {
+        //--------外部跳转
+        Set<String> params = getIntent().getData().getQueryParameterNames();
+        String query = getIntent().getData().getQuery();
+        for (String par : params) {
+            Log.i("Giao","paramName:" +par);
+        }
+        Log.i("Giao","query:"+query);
+    }
+
 
     /**
      * 切语言
@@ -206,7 +220,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 multiThreadDown.downLoad();
                 break;
             case "testKotlin":
-                ToastHelper.showToastShort(this,"已删除");
+                ToastHelper.showToastShort(this, "已删除");
                 break;
             case "ktCoroutine":
                 startActivity(new Intent(this, KtCoroutineActivity.class));

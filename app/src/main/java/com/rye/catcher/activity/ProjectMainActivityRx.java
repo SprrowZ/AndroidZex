@@ -1,10 +1,12 @@
 package com.rye.catcher.activity;
 
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;
 import com.rye.base.utils.PopupEx;
+import com.rye.base.utils.ToastHelper;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ProjectListAdapter;
 import com.rye.catcher.activity.presenter.ProjectPresenterRx;
@@ -48,6 +51,8 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         ProjectListAdapter.OnItemClickListener, FilesDemoActivity.DataListener {
 
     private static final String TAG2 = "LifeCycle-A";
+    private static final String PROJECT_MAIN_URI= "rye://com.rye.catcher?type=6&from=Xsite";
+
     //改为recycleView
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
@@ -57,6 +62,14 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
     @Override
     public int bindLayout() {
         return R.layout.project_main;
+    }
+
+    public static void start(Context context){
+     Intent intent = new Intent();
+     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+     intent.setData(Uri.parse(PROJECT_MAIN_URI));
+     context.startActivity(intent);
     }
 
     @Override
@@ -193,7 +206,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 multiThreadDown.downLoad();
                 break;
             case "testKotlin":
-                startActivity(new Intent(this, KotlinActivity.class));
+                ToastHelper.showToastShort(this,"已删除");
                 break;
             case "ktCoroutine":
                 startActivity(new Intent(this, KtCoroutineActivity.class));

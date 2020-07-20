@@ -1,8 +1,5 @@
 package com.rye.catcher.activity;
 
-
-import android.os.Bundle;
-
 import com.rye.catcher.R;
 import com.rye.catcher.base.mvp.BaseMvpActivity;
 import com.rye.catcher.base.mvp.demos.AnimePresenter;
@@ -10,11 +7,7 @@ import com.rye.catcher.base.mvp.demos.AnimeView;
 
 public class AnimeActivity extends BaseMvpActivity<AnimeView,AnimePresenter> implements AnimeView {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anime2);
-    }
+
 
     @Override
     public AnimePresenter initPresenter() {
@@ -27,5 +20,13 @@ public class AnimeActivity extends BaseMvpActivity<AnimeView,AnimePresenter> imp
     }
 
 
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_anime2;
+    }
 
+    @Override
+    public void initEvent() {
+
+    }
 }

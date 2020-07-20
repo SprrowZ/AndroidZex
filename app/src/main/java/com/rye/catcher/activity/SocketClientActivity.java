@@ -1,16 +1,11 @@
 package com.rye.catcher.activity;
 
-import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
@@ -25,7 +20,7 @@ import java.net.UnknownHostException;
 /**
  * Created by ZZG on 2018/8/3.
  */
-public class SocketClientActivity extends BaseOldActivity {
+public class SocketClientActivity extends BaseActivity {
     private EditText editText;
     private TextView received;
     private Button   send;
@@ -37,22 +32,16 @@ public class SocketClientActivity extends BaseOldActivity {
     private BufferedReader reader=null;
     private BufferedWriter writer=null;
     private BufferedReader readerText=null;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.sockets_demo1);
-        initView();
-        initEvent();
+    public int getLayoutId() {
+        return R.layout.sockets_demo1;
     }
 
-    private void initEvent() {
-
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-             act();
-            }
-        });
+    @Override
+    public void initEvent() {
+        initView();
+        send.setOnClickListener(v -> act());
     }
 
     private void initView() {
@@ -148,4 +137,6 @@ public class SocketClientActivity extends BaseOldActivity {
         }
         return null;
     }
+
+
 }

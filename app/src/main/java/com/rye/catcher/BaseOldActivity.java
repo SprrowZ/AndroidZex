@@ -24,7 +24,7 @@ import com.rye.catcher.base.NetChangeReceiver;
 import com.rye.catcher.base.OverallHandler;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.SharedPreManager;
-//import com.umeng.analytics.MobclickAgent;
+
 
 
 /**

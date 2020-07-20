@@ -1,174 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:id="@+id/top_linear"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:background="@drawable/bottom_bk2"
-    >
-   <com.rye.catcher.project.ctmviews.DistortionViews
-       android:id="@+id/portrait"
-       custom:Dtype="circle"
-       custom:Dsrc="@mipmap/my4"
-       android:scaleType="center"
-       android:layout_width="70dp"
-       android:layout_height="70dp"
-       android:layout_gravity="bottom"
-       android:layout_marginLeft="20dp"
-       android:layout_marginBottom="@dimen/len_28"
-       />
-    <TextView
-        android:id="@+id/codeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center"
-        android:textSize="22dp"
-        android:textColor="@color/black_deep"
-        android:text="@string/codeName"
-        />
-    <LinearLayout
-        android:id="@+id/weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
+    <LinearLayout
+        android:id="@+id/top_linear"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/bottom_bk2"
+        android:orientation="horizontal">
+
+        <com.rye.catcher.project.ctmviews.DistortionViews
+            android:id="@+id/portrait"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="@dimen/len_28"
+            android:scaleType="center"
+            custom:Dsrc="@mipmap/my4"
+            custom:Dtype="circle" />
+
+        <TextView
+            android:id="@+id/codeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/codeName"
+            android:textColor="@color/black_deep"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:id="@+id/weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-<ScrollView
+
+    <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@+id/top_linear"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_marginTop="20dp">
+
         <LinearLayout
             android:id="@+id/center_linear"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="50dp"
-            >
+            android:orientation="vertical"
+            android:paddingLeft="50dp">
+
             <LinearLayout
                 android:id="@+id/left_first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:descendantFocusability="beforeDescendants"
-                >
+                android:descendantFocusability="beforeDescendants">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@mipmap/left_laugh"
                     android:layout_gravity="center"
                     android:clickable="false"
-                    />
+                    android:src="@mipmap/left_laugh" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textSize="16dp"
-                    android:text="@string/left_first"
-                    android:background="@color/transparent"
                     android:clickable="false"
-                    android:textAllCaps="false"
                     android:singleLine="true"
-                    />
+                    android:text="@string/left_first"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/left_second"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@mipmap/left_giggle"
                     android:layout_gravity="center"
-                    />
+                    android:src="@mipmap/left_giggle" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textSize="16dp"
-                    android:text="@string/left_second"
                     android:clickable="false"
-                    android:background="@color/transparent"
-                    android:textAllCaps="false"
                     android:singleLine="true"
-                    />
+                    android:text="@string/left_second"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/third"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@mipmap/left_proud"
                     android:layout_gravity="center"
-                    />
+                    android:src="@mipmap/left_proud" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textSize="16dp"
-                    android:text="@string/left_third"
-                    android:background="@color/transparent"
-                    android:textAllCaps="false"
                     android:singleLine="true"
-                    />
+                    android:text="@string/left_third"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/fourth"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@mipmap/left_surprise"
                     android:layout_gravity="center"
-                    />
+                    android:src="@mipmap/left_surprise" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textSize="16dp"
-                    android:text="@string/left_fourth"
-                    android:background="@color/transparent"
-                    android:textAllCaps="false"
                     android:singleLine="true"
-                    />
+                    android:text="@string/left_fourth"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/fivth"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@mipmap/left_down"
                     android:layout_gravity="center"
-                    />
+                    android:src="@mipmap/left_down" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textSize="16dp"
-                    android:text="@string/left_fivth"
-                    android:background="@color/transparent"
-                    android:textAllCaps="false"
                     android:singleLine="true"
-                    />
+                    android:text="@string/left_fivth"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
             </LinearLayout>
         </LinearLayout>
 

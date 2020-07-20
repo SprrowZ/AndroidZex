@@ -1,8 +1,7 @@
 package com.rye.catcher.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import androidx.annotation.Nullable;
+
 
 import android.util.Log;
 import android.view.View;
@@ -17,19 +16,17 @@ import com.catcher.zzsdk.okhttp.response.JsonCallback;
 import com.catcher.zzsdk.okhttp.response.NormalCallback;
 import com.dawn.zgstep.others.job1.JobOneActivity;
 import com.google.gson.Gson;
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by zzg on 2017/10/12.
  */
 
-public class ZTActivity extends BaseOldActivity {
-    private String url="http://apis.juhe.cn/ip/ipNew?ip=112.112.11.11&key=8aa56ea9bf3d4dfd2ce7e678061179b5";
+public class ZTActivity extends BaseActivity {
+    private static  final String url="http://apis.juhe.cn/ip/ipNew?ip=112.112.11.11&key=8aa56ea9bf3d4dfd2ce7e678061179b5";
     @BindView(R.id.aa)
     Button aa;
     @BindView(R.id.bb)
@@ -44,17 +41,19 @@ public class ZTActivity extends BaseOldActivity {
     Button ff;
     @BindView(R.id.gg)
     Button gg;
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zt);
-        ButterKnife.bind(this);
-        initData();
+    public int getLayoutId() {
+        return R.layout.activity_zt;
     }
 
-    private  void initData(){
+    @Override
+    public void initEvent() {
 
     }
+
+
 
     @OnClick({ R.id.aa, R.id.bb, R.id.cc, R.id.bili, R.id.ee, R.id.ff,R.id.gg})
     public void onViewClicked(View view) {
@@ -130,6 +129,7 @@ public class ZTActivity extends BaseOldActivity {
         String gson=new Gson().fromJson(json,String.class);
         Log.i("zzz", "testGson: "+gson);
     }
+
 
 }
 class BeanZ{

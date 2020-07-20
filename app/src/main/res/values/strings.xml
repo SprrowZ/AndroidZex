@@ -90,4 +90,5 @@
     <string name="left_third">空山鸟语</string>
     <string name="left_fourth">百步穿杨</string>
     <string name="left_fivth">纵横捭阖</string>
+    <string name="need_authority">本地文件读写和手机状态需要此类权限,请去设置里授予权限</string>
 </resources>

@@ -1,8 +1,5 @@
 package com.rye.catcher.activity;
 
-
-
-import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,16 +7,17 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
+
 import com.rye.catcher.R;
 import com.rye.catcher.activity.fragment.AIDLFragment;
 import com.rye.catcher.activity.fragment.PackageManagerFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import butterknife.OnClick;
 
-public class AIDLActivity extends BaseOldActivity {
+public class AIDLActivity extends BaseActivity {
     private Fragment currentFragment;
     private int currentPos=-1;
     @BindView(R.id.pm)
@@ -28,12 +26,17 @@ public class AIDLActivity extends BaseOldActivity {
     TextView aidl;
     @BindView(R.id.container)
     LinearLayout container;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aidl);
-        ButterKnife.bind(this);
+    public int getLayoutId() {
+        return R.layout.activity_aidl;
     }
+
+    @Override
+    public void initEvent() {
+
+    }
+
 
     @OnClick({R.id.pm,R.id.aidl})//一定要public
     public void onViewClicked(View view){
@@ -79,9 +82,6 @@ public class AIDLActivity extends BaseOldActivity {
      */
     private Fragment getFragment(int pos){
         switch (pos){
-            case 0:
-                currentFragment=new PackageManagerFragment();
-                break;
             case 1:
                 currentFragment=new AIDLFragment();
                 break;

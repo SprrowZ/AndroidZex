@@ -4,10 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.utils.ToastUtils;
 
-public class MvpBaseActivity extends BaseOldActivity implements  BaseView{
+public abstract class MvpBaseActivity extends BaseActivity implements  BaseView{
     private ProgressDialog mProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,4 +44,6 @@ public class MvpBaseActivity extends BaseOldActivity implements  BaseView{
     public Context getContext() {
         return this;
     }
+
+
 }

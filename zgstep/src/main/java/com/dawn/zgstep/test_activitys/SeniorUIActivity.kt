@@ -52,57 +52,7 @@ class SeniorUIActivity : BaseFragmentActivity(), OnItemClickListener {
     override fun onClick(position: Int) {
         if (currentFragment is XfermodeFragment) {
             val xferView = (currentFragment as XfermodeFragment)?.xferModeTwoView
-            when (position) {
-                0 -> {
-                    xferView.clearXferByLayer()
-                }
-                1 -> {
-                    xferView.src()
-                }
-                2 -> {
-                    xferView.srcIn()
-                }
-                3 -> {
-                    xferView.srcOut()
-                }
-                4 -> {
-                    xferView.srcAtop()
-                }
-                5 -> {
-                    xferView.srcOver()
-                }
-                6 -> {
-                    xferView.dst()
-                }
-                7 -> {
-                    xferView.dstIn()
-                }
-                8 -> {
-                    xferView.dstOut()
-                }
-                9 -> {
-                    xferView.dstAtop()
-                }
-                10 -> {
-                    xferView.dstOver()
-                }
-                11 -> {
-                    xferView.xor()
-                }
-                12 -> {
-                    xferView.darken()
-                }
-                13 -> {
-                    xferView.lighten()
-                }
-                14 -> {
-                    xferView.multiply()
-                }
-                15 -> {
-                    xferView.screen()
-                }
-
-            }
+            xferView.refresh(position)
         }
     }
 }

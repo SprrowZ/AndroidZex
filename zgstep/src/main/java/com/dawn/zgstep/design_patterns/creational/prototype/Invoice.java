@@ -79,7 +79,7 @@ public class Invoice implements Cloneable {
         this.invoiceDetail = invoiceDetail;
     }
 
-    static class InvoiceDetail{
+    static class InvoiceDetail implements Cloneable{
         //数量
         private int count;
         //单价
@@ -101,6 +101,11 @@ public class Invoice implements Cloneable {
                     ", unitPrice=" + unitPrice +
                     ", invoiceDate=" + invoiceDate +
                     '}';
+        }
+
+        @Override
+        protected InvoiceDetail clone() throws CloneNotSupportedException {
+            return (InvoiceDetail)super.clone();
         }
 
         public int getCount() {

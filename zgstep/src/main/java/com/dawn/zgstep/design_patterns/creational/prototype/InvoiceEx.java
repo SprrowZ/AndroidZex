@@ -2,6 +2,9 @@ package com.dawn.zgstep.design_patterns.creational.prototype;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+import com.rye.base.utils.GsonUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -74,9 +77,17 @@ public class InvoiceEx implements Cloneable {
     @Override
     protected InvoiceEx clone() throws CloneNotSupportedException {
         InvoiceEx ex = (InvoiceEx)super.clone();
-        ex.setPaperTypes(new ArrayList<>(getPaperTypes()));
+        //List<String>
+        ex.setPaperTypes(deepCopyList(getPaperTypes()));
+        //实体类
         ex.setDetail(getDetail().clone());
-        return (InvoiceEx) super.clone();
+        return ex;
+    }
+    private ArrayList<String> deepCopyList(List<String> sourceList){
+        Gson gson = new Gson();
+        String jsonTran = gson.toJson(sourceList);
+        ArrayList<String> deepCloneList = GsonUtils.jsonToArrayListPrimitive(jsonTran,String.class);
+        return deepCloneList;
     }
 
     @NonNull

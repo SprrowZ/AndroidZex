@@ -6,6 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.Reader;
@@ -131,6 +132,44 @@ public class GsonUtils {
             }.getType());
         }
         return map;
+    }
+
+    /**
+     * 深克隆使用   JsonPrimitive ：List<String>;List<八大基本类型及包装类>
+     * @param json
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> ArrayList<T> jsonToArrayListPrimitive(String json, Class<T> clazz) {
+        Type type = new TypeToken<ArrayList<JsonPrimitive>>() {
+        }.getType();
+        ArrayList<JsonPrimitive> jsonObjects = new Gson().fromJson(json, type);
+
+        ArrayList<T> arrayList = new ArrayList<>();
+        for (JsonPrimitive jsonObject : jsonObjects) {
+            arrayList.add(new Gson().fromJson(jsonObject, clazz));
+        }
+        return arrayList;
+    }
+
+    /**
+     *   JsonObject: List<Object>
+     * @param json
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> ArrayList<T> jsonToArrayListObject(String json, Class<T> clazz) {
+        Type type = new TypeToken<ArrayList<JsonObject>>() {
+        }.getType();
+        ArrayList<JsonObject> jsonObjects = new Gson().fromJson(json, type);
+
+        ArrayList<T> arrayList = new ArrayList<>();
+        for (JsonObject jsonObject : jsonObjects) {
+            arrayList.add(new Gson().fromJson(jsonObject, clazz));
+        }
+        return arrayList;
     }
 
 }

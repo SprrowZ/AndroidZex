@@ -57,7 +57,7 @@ public class TestMethods {
         assertTrue(true);
         Context context=   ApplicationProvider.getApplicationContext();
 
-        assertThat(mContext.getClass().getName(),is("12"));
+       // assertThat(mContext.getClass().getName(),is("12"));
 
     }
 
@@ -81,6 +81,11 @@ public class TestMethods {
         int start2 = url.lastIndexOf("=");
         String sub = url.substring(start2);
         assertEquals(sub,"");
+    }
+    @Test
+    public void testTextSize(){
+        String target22 = "abc  ";
+        assertEquals(target22.length(),5);
     }
 
 

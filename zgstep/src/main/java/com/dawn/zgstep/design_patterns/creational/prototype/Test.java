@@ -44,9 +44,10 @@ public class Test {
         //修改克隆，看是否会影响之前
         clones.setAmountOfMoney(25);
         //新增
-        paperTypes.add("拷贝纸");
-        paperTypes.add("油墨纸");
-        clones.setPaperTypes(paperTypes);
+        List<String> papers = clones.getPaperTypes();
+        papers.add("拷贝纸");
+        papers.add("油墨纸");
+        clones.setPaperTypes(papers);
         InvoiceEx.InvoiceExDetail detail2 = clones.getDetail();
         detail2.setCount(222);
         clones.setDetail(detail2);

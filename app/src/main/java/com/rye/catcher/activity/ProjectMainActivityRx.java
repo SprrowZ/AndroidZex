@@ -94,12 +94,14 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
 
     private void printOutsideParams() {
         //--------外部跳转
-        Set<String> params = getIntent().getData().getQueryParameterNames();
-        String query = getIntent().getData().getQuery();
+        Uri uri = getIntent().getData();
+        if (uri == null) return;
+        Set<String> params = uri.getQueryParameterNames();
+        String query = uri.getQuery();
         for (String par : params) {
-            Log.i("Giao","paramName:" +par);
+            Log.i("Giao", "paramName:" + par);
         }
-        Log.i("Giao","query:"+query);
+        Log.i("Giao", "query:" + query);
     }
 
 

@@ -10,8 +10,8 @@ import com.rye.base.BaseActivity;
  * Created by 18041at 2019/5/26
  * Function:
  */
-public abstract class BaseMvpActivity<V extends BaseView,T extends BasePresenter<V>>
-        extends BaseActivity implements BaseView{
+public abstract class JokerMvpActivity<V extends JokerBaseView,T extends JokerBasePresenter<V>>
+        extends BaseActivity implements JokerBaseView {
     public T mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

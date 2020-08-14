@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import com.MutableMaprye.base.utils.LanguageUtil
 import com.rye.base.R
 import com.rye.base.common.LibConfig
-import com.rye.base.mvp.PresenterHoler
 import com.rye.base.utils.DialogUtil
 import com.rye.base.utils.utils_context.FragmentLauncher
 import com.trello.rxlifecycle2.LifecycleTransformer

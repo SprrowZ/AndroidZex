@@ -1,6 +1,7 @@
-package com.rye.catcher.activity;
+package com.rye.catcher.activity.splash;
 import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
+import com.rye.catcher.activity.MainActivity;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
 

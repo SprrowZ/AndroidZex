@@ -57,6 +57,9 @@ dependencies {
 
     implementation deps.butter.core
 
+    api deps.kotlin_coroutines_core
+    api deps.kotlin_coroutines_android
+
 }
 repositories {
     mavenCentral()

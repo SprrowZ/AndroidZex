@@ -11,7 +11,7 @@ base_version.compileVersion = 28
 
 
 def version=[build            : '3.5.0', support:'28.0.0',
-             kotlin           :'1.3.31', okhttp3:'3.10.0',
+             kotlin           :'1.3.41', okhttp3:'3.10.0',
              rxjava           :'2.2.0', rxandroid:'2.1.0',
              retrofit2        :'2.4.0', retrofit2_gson:'2.0.2',
              retrofit2_adapter:'2.4.0', eventbus:'3.0.0',
@@ -28,13 +28,17 @@ def version=[build            : '3.5.0', support:'28.0.0',
              blockedCanery:'1.5.0']
 
 
+def deps = [:]
+deps.build_tools = "com.android.tools.build:gradle:$version.build"
+deps.greendao_plugin = "org.greenrobot:greendao-gradle-plugin:$version.greendao"
+//kt
+deps.kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version.kotlin"
+deps.kotlin_jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version.kotlin"
+deps.kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${version.kotlin_coroutines}"
+deps.kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${version.kotlin_coroutines}"
 
 
-def deps=[:]
-deps.build_tools="com.android.tools.build:gradle:$version.build"
-deps.greendao_plugin="org.greenrobot:greendao-gradle-plugin:$version.greendao"
-deps.kotlin_plugin="org.jetbrains.kotlin:kotlin-gradle-plugin:$version.kotlin"
-deps.realm_plugin="io.realm:realm-gradle-plugin:$version.realm"
+deps.realm_plugin = "io.realm:realm-gradle-plugin:$version.realm"
 //constrait
 deps.constrait="com.android.support.constraint:constraint-layout:$version.constraint"
 
@@ -69,7 +73,7 @@ deps.loading="com.zyao89:zloading:${version.zloading}"
 
 deps.autosize="me.jessyan:autosize:${version.autosize}"
 
-deps.kotlin_coroutines="org.jetbrains.kotlinx:kotlinx-coroutines-core:${version.kotlin_coroutines}"
+
 
 deps.rxlifecycle="com.trello.rxlifecycle2:rxlifecycle-components:${version.rxlifecycle}"
 

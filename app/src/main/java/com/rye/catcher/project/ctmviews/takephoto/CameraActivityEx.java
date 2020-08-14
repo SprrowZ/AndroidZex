@@ -49,9 +49,7 @@ public class CameraActivityEx extends BaseActivity {
     @Override
     public void initEvent() {
         PermissionUtils.requestPermission(this, "请开启相机权限！", false,
-                action -> {
-                    init();
-                }, 0, Permission.CAMERA);
+                action -> init(), 0, Permission.CAMERA);
 
     }
 

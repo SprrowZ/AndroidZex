@@ -9,11 +9,16 @@ import java.lang.ref.WeakReference
  */
 open class BasePresenter<V : BaseView> : BaseContract.IPresenter<V> {
     var mView: WeakReference<V>? = null
+
     override fun attachView(v: V) {
         mView = WeakReference(v)
     }
 
     override fun detachView() {
         mView = null
+    }
+
+    fun getView(): V? {
+        return mView?.get()
     }
 }

@@ -55,14 +55,14 @@ public class RetrofitFragment extends BaseOldFragment {
 
 
 
-    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.rotate,
-            R.id.btn5, R.id.btn6,R.id.btn7, R.id.btn8})
+    @OnClick({R.id.alpha, R.id.scale, R.id.translate, R.id.rotate,
+            R.id.animation_set_one, R.id.btn6,R.id.btn7, R.id.btn8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.orr:
+            case R.id.alpha:
                 postString();
                 break;
-            case R.id.javaMore:
+            case R.id.scale:
                 uploadFile(view);
                 break;
             case R.id.translate:

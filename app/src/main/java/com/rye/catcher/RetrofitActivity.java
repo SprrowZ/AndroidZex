@@ -1,8 +1,6 @@
 package com.rye.catcher;
 
 
-import android.os.Bundle;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.util.Log;
@@ -20,7 +18,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -35,15 +32,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitActivity extends BaseActivity {
-    @BindView(R.id.orr)
+    @BindView(R.id.alpha)
     Button btn1;
-    @BindView(R.id.javaMore)
+    @BindView(R.id.scale)
     Button btn2;
     @BindView(R.id.translate)
     Button btn3;
     @BindView(R.id.rotate)
     Button btn4;
-    @BindView(R.id.btn5)
+    @BindView(R.id.animation_set_one)
     Button btn5;
     @BindView(R.id.btn6)
     Button btn6;
@@ -74,13 +71,13 @@ public class RetrofitActivity extends BaseActivity {
         transaction.commit();
     }
 
-    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.rotate, R.id.btn5, R.id.btn6,R.id.btn7})
+    @OnClick({R.id.alpha, R.id.scale, R.id.translate, R.id.rotate, R.id.animation_set_one, R.id.btn6,R.id.btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.orr:
+            case R.id.alpha:
                 addView();
                 break;
-            case R.id.javaMore:
+            case R.id.scale:
                 retrofitGet1();
                 break;
             case R.id.translate:
@@ -89,7 +86,7 @@ public class RetrofitActivity extends BaseActivity {
             case R.id.rotate:
                 retrofitGet3();
                 break;
-            case R.id.btn5:
+            case R.id.animation_set_one:
                 retrofitGet4();
                 break;
             case R.id.btn6:

@@ -30,6 +30,7 @@ import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
 
 import com.rye.catcher.project.helpers.MultiThreadDown;
 import com.rye.catcher.project.mvp.MvpActivity;
+import com.rye.catcher.project.netdiagnosis.NetDiagnosisActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
 import com.rye.catcher.project.SQLiteZ.DBActivity;
 import com.rye.base.utils.SDHelper;
@@ -232,6 +233,9 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 break;
             case "zgStep":
                 ZStepMainActivity.start(this);
+                break;
+            case "diagnosis":
+                NetDiagnosisActivity.start(this);
                 break;
         }
     }

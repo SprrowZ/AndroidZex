@@ -17,22 +17,22 @@ import java.util.List;
  */
 public class DelAdapter extends BaseAdapter {
 
-    private Context mContext;
+
     private LayoutInflater mInflater;
     private List<DataHolder> mDataList = new ArrayList<DataHolder>();
     private View.OnClickListener mDelClickListener;
     //
     private ItemDelLinear.OnScrollListener mScrollListener;
+
     public DelAdapter(Context context, List<DataHolder> dataList, View.OnClickListener delClickListener, ItemDelLinear.OnScrollListener listener) {
-        mContext = context;
         mInflater = LayoutInflater.from(context);
         if (dataList != null && dataList.size() > 0) {
             mDataList.addAll(dataList);
         }
         //传进来监听器
-        mDelClickListener=delClickListener;
+        mDelClickListener = delClickListener;
         //
-        mScrollListener= listener;
+        mScrollListener = listener;
     }
 
     @Override
@@ -63,14 +63,16 @@ public class DelAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         DataHolder item = mDataList.get(position);
-        holder.title.setText(item.title);
+        if (holder != null) {
+            holder.title.setText(item.title);
+        }
         //可滑动的ListView添加
-        item.rootView = (ItemDelLinear)convertView.findViewById(R.id.lin_root);
-        item.rootView.scrollTo(0,0);
+        item.rootView = convertView.findViewById(R.id.lin_root);
+        item.rootView.scrollTo(0, 0);
         //
         item.rootView.setOnScrollListener(this.mScrollListener);
         //删除
-        TextView delTv = (TextView) convertView.findViewById(R.id.del);
+        TextView delTv = convertView.findViewById(R.id.del);
         delTv.setOnClickListener(this.mDelClickListener);
 
         return convertView;
@@ -85,7 +87,8 @@ public class DelAdapter extends BaseAdapter {
         //Item的父布局，因为滑动的是父布局
         public ItemDelLinear rootView;
     }
-    public void removeItem(int position){//删除Item
+
+    public void removeItem(int position) {//删除Item
         mDataList.remove(position);
         notifyDataSetChanged();
     }

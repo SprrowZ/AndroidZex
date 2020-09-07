@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 
 import com.rye.catcher.R;
-import com.rye.catcher.utils.DensityUtil;
+import com.rye.base.utils.DensityUtil;
 
 /**
  * Created by Zzg on 2018/8/15.

@@ -24,7 +24,7 @@
     </style>
 
     <style name="default_activity_theme" parent="Theme.AppCompat.NoActionBar">
-
+    <item name="android:colorBackground">@color/white</item>
     </style>
 
 </resources>

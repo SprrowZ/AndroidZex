@@ -1,7 +1,7 @@
 package com.rye.catcher.activity;
 import android.widget.Button;
 import android.widget.Toast;
-import com.dawn.zgstep.others.demos.annotations.BindView;
+import com.dawn.zgstep.others.demos.annotations.BindViewEx;
 import com.dawn.zgstep.others.demos.annotations.OnClick;
 import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
@@ -11,7 +11,7 @@ import com.rye.catcher.R;
  * 用于测试自定义注解--
  */
 public class ReflectActivity extends BaseActivity {
-    @BindView(R.id.btn1)
+    @BindViewEx(R.id.btn1)
     Button btn1;
 
     @OnClick({R.id.btn1})

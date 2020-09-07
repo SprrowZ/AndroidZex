@@ -22,7 +22,7 @@ class SplashActivityEx : BaseMvpActivity<SplashContract.ISplashView, SplashPrese
     }
 
     override fun initEvent() {
-        mPresenter?.applyAuthority(this)
+        presenter?.applyAuthority(this)
     }
 
     override fun jumpPage(): Action<MutableList<String>>? { //View回调

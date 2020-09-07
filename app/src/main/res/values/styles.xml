@@ -112,6 +112,21 @@
 
     </style>
 
+    <style name="ctm_btn_style">
+        <item name="android:background">@drawable/btn_bk4</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/font_24</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/len_10</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">@dimen/len_156</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:paddingTop">@dimen/len_8</item>
+        <item name="android:paddingBottom">@dimen/len_8</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
 
     <!--**************************************TextView**************************************-->
     <style name="tv_style_parent">

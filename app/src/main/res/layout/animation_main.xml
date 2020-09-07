@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/orr"
+            android:id="@+id/alpha"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,7 +24,7 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/javaMore"
+            android:id="@+id/scale"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,14 +54,14 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btn5"
+            android:id="@+id/animation_set_one"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="组合动画一" />
 
         <Button
-            android:id="@+id/btn6"
+            android:id="@+id/animation_set_two"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -74,14 +74,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn7"
+            android:id="@+id/animation_set_three"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="组合动画三" />
 
         <Button
-            android:id="@+id/btn8"
+            android:id="@+id/value_animator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

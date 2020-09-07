@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.rye.base.BaseFragment;
 import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
@@ -25,24 +26,21 @@ import butterknife.OnClick;
  * Created by zzg on 2017/10/10.
  */
 
-public class SettingsFragment  extends BaseOldFragment {
+public class SettingsFragment  extends BaseFragment {
 
     private Context mContext;
+
     @Override
-    protected int getLayoutResId() {
+    protected int getLayoutId() {
         return R.layout.tab04;
     }
 
     @Override
-    protected void initData() {
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
+    public void initEvent() {
+        super.initEvent();
         mContext=getContext();
     }
+
     @OnClick({R.id.orr,R.id.javaMore,R.id.translate,R.id.rotate,R.id.camera,
     R.id.review,R.id.animation,R.id.custom,R.id.project})
     public void onViewClicked(View view){
@@ -103,7 +101,6 @@ public class SettingsFragment  extends BaseOldFragment {
             }
         };
     }
-
 
 
 

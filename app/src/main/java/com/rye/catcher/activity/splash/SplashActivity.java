@@ -1,10 +1,10 @@
 package com.rye.catcher.activity.splash;
+
 import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.MainActivity;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.yanzhenjie.permission.Permission;
-
 
 
 import java.util.concurrent.TimeUnit;
@@ -29,14 +29,14 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void authority() {
-        PermissionUtils.requestPermission(this,getString(R.string.need_authority),
-                false,data ->{
+        PermissionUtils.requestPermission(this, getString(R.string.need_authority),
+                false, data -> {
                     openMain();
-                },0,
-                Permission.WRITE_EXTERNAL_STORAGE,Permission.ACCESS_COARSE_LOCATION);//CALL_PHONE先去掉
+                }, 0,
+                Permission.WRITE_EXTERNAL_STORAGE, Permission.ACCESS_COARSE_LOCATION);//CALL_PHONE先去掉
     }
 
-    private void openMain(){
+    private void openMain() {
         Observable.timer(1000, TimeUnit.MILLISECONDS).subscribe(aLong ->
                 MainActivity.start(SplashActivity.this));
     }

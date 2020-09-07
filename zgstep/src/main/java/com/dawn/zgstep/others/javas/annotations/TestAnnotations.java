@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 public class TestAnnotations {
 
   public  static final  String TAG="TestAnnotations";
-//  @BindView(1)
+//  @BindViewEx(1)
 //  private String name;
 
   private String sex;

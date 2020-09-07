@@ -41,11 +41,11 @@ public class ReviewActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void initEvent() {
-        btn1 = findViewById(R.id.orr);
-        btn2 = findViewById(R.id.javaMore);
+        btn1 = findViewById(R.id.alpha);
+        btn2 = findViewById(R.id.scale);
         btn3 = findViewById(R.id.translate);
         btn4 = findViewById(R.id.rotate);
-        btn5 = findViewById(R.id.btn5);
+        btn5 = findViewById(R.id.animation_set_one);
         btn6 = findViewById(R.id.btn6);
         btn7 = findViewById(R.id.btn7);
         btn8 = findViewById(R.id.btn8);
@@ -68,11 +68,11 @@ public class ReviewActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.orr:
+            case R.id.alpha:
                 Intent intent1 = new Intent(this, BaseAdapterTest.class);
                 startActivity(intent1);
                 break;
-            case R.id.javaMore:
+            case R.id.scale:
                 //获取屏幕宽高
                 WindowManager manager = this.getWindowManager();
                 DisplayMetrics outMetrics = new DisplayMetrics();
@@ -98,7 +98,7 @@ public class ReviewActivity extends BaseActivity implements View.OnClickListener
             case R.id.rotate:
 
                 break;
-            case R.id.btn5:
+            case R.id.animation_set_one:
                 Intent intent5 = new Intent(this, myAsyncTask.class);
                 startActivity(intent5);
                 break;

@@ -8,6 +8,7 @@ import com.rye.catcher.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by ZZG on 2017/11/29.
  */
@@ -26,23 +27,21 @@ public class DelMainActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void initEvent() {
-        listView =findViewById(R.id.listview);
+        listView = findViewById(R.id.listview);
         final List<DelAdapter.DataHolder> items = new ArrayList<DelAdapter.DataHolder>();
-        for(int i=0;i<20;i++){
+        for (int i = 0; i < 20; i++) {
             DelAdapter.DataHolder item = new DelAdapter.DataHolder();
-            item.title = "第"+i+"项";
+            item.title = "第" + i + "项";
             items.add(item);
         }
-        adapter = new DelAdapter(this,items,this,this);
+        adapter = new DelAdapter(this, items, this, this);
         listView.setAdapter(adapter);
     }
 
 
-
-
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.del){
+        if (v.getId() == R.id.del) {
             int position = listView.getPositionForView(v);
             adapter.removeItem(position);
         }
@@ -50,11 +49,11 @@ public class DelMainActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void OnScroll(ItemDelLinear var1) {
-        if(this.mLastScrollView != null) {
+        if (this.mLastScrollView != null) {
             this.mLastScrollView.smoothScrollTo(0, 0);
-         }
+        }
 
-       this.mLastScrollView =var1;
+        this.mLastScrollView = var1;
     }
 
 

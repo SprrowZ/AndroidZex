@@ -59,15 +59,15 @@
             android:name="design_height_in_dp"
             android:value="180" />
 
-<!--        <provider-->
-<!--            android:name="android.support.v4.content.FileProvider"-->
-<!--            android:authorities="${applicationId}.provider"-->
-<!--            android:exported="false"-->
-<!--            android:grantUriPermissions="true">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/file_paths" />-->
-<!--        </provider>-->
+        <!--        <provider-->
+        <!--            android:name="android.support.v4.content.FileProvider"-->
+        <!--            android:authorities="${applicationId}.provider"-->
+        <!--            android:exported="false"-->
+        <!--            android:grantUriPermissions="true">-->
+        <!--            <meta-data-->
+        <!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+        <!--                android:resource="@xml/file_paths" />-->
+        <!--        </provider>-->
 
         <service android:name="com.amap.api.location.APSService" />
 
@@ -156,33 +156,23 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.dawn.zgstep.ctm.CtmFirstActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmSecondActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmThirdActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".activity.ProjectMainActivityRx"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask">
             <!--过滤其一 常规action、category-->
             <intent-filter>
-                <action android:name="com.rye.catcher.external"/>
-                <action android:name="com.rye.catcher"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.rye.catcher.external" />
+                <action android:name="com.rye.catcher" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <!--过滤其二 uri跳转-->
             <intent-filter>
-                <action android:name="com.rye.catcher.uri"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:host="com.rye.catcher"
-                      android:scheme="rye"/>
+                <action android:name="com.rye.catcher.uri" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.rye.catcher"
+                    android:scheme="rye" />
             </intent-filter>
 
         </activity>
@@ -199,22 +189,9 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.ctmactivity.CtmFivthActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmSixthActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".project.ctmviews.dellist.DelMainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmSeventhActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-
         <activity
             android:name=".project.animations.AnimValueActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -247,27 +224,18 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.ctmactivity.CtmMain2Activity"
+            android:name=".activity.ctmactivity.CtmNextActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.ctmactivity.CtmEighthActivity"
+            android:name=".activity.ctmactivity.CtmFragmentActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
+
+
+
         <activity
-            android:name=".activity.ctmactivity.CtmNinethActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".project.ctmviews.Mypractice.Custom_Tenth"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmElevenActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmTwelfthsActivity"
+            android:name=".activity.ctmactivity.CtmWaterFallActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -277,8 +245,7 @@
             android:name=".activity.WebViewActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.CartoonsDoActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -287,9 +254,8 @@
             android:name=".activity.BILIActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AnimationActivity"
-            />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.CharactersDoActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -339,31 +305,47 @@
             android:name=".activity.BlueToothActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmDDActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+
         <activity
             android:name=".common.bigimg.ImageActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".activity.ORRActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
-        <activity android:name=".activity.BLEActivity" />
-        <activity android:name=".project.mvp.MvpActivity" />
-        <activity android:name=".project.mvp.MvpBaseActivity" />
+        <activity
+            android:name=".activity.ctmactivity.CtmPTRActivity" />
+
+        <activity
+            android:name=".activity.BLEActivity" />
+
+        <activity
+            android:name=".project.mvp.MvpActivity" />
+
+        <activity
+            android:name=".project.mvp.MvpBaseActivity" />
+
         <activity
             android:name=".project.ctmviews.takephoto.CameraActivity2"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
-        <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
-        <activity android:name=".activity.MultiActivity" />
-        <activity android:name=".activity.LeftDetailActivityRx" />
 
+        <activity
+            android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
 
-        <activity android:name=".activity.AnimeActivity" />
+        <activity
+            android:name=".project.ctmviews.takephoto.CameraActivityEx" />
+
+        <activity
+            android:name=".activity.MultiActivity" />
+
+        <activity
+            android:name=".activity.LeftDetailActivityRx" />
+
+        <activity
+            android:name=".activity.AnimeActivity" />
+
+        <activity
+            android:name=".project.netdiagnosis.NetDiagnosisActivity" />
     </application>
 
 </manifest>

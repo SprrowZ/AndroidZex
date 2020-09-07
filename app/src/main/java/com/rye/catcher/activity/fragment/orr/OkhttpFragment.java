@@ -45,9 +45,9 @@ import okhttp3.Response;
  */
 public class OkhttpFragment extends BaseOldFragment {
     private static  final String TAG="OkhttpFragment";
-//    @BindView(R.id.tv1)
+//    @BindViewEx(R.id.tv1)
 //    TextView tv1;
-//    @BindView(R.id.iv)
+//    @BindViewEx(R.id.iv)
 //    ImageView iv;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;

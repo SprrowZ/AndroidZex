@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,14 +46,14 @@ public class AnimMainActivity extends Activity implements View.OnClickListener {
 
     private void initView() {
         iv = findViewById(R.id.iv);
-        btn1 = findViewById(R.id.orr);
-        btn2 = findViewById(R.id.javaMore);
+        btn1 = findViewById(R.id.alpha);
+        btn2 = findViewById(R.id.scale);
         btn3 = findViewById(R.id.translate);
         btn4 = findViewById(R.id.rotate);
-        btn5 = findViewById(R.id.btn5);
-        btn6 = findViewById(R.id.btn6);
-        btn7 = findViewById(R.id.btn7);
-        btn8 = findViewById(R.id.btn8);
+        btn5 = findViewById(R.id.animation_set_one);
+        btn6 = findViewById(R.id.animation_set_two);
+        btn7 = findViewById(R.id.animation_set_three);
+        btn8 = findViewById(R.id.value_animator);
         btn9 = findViewById(R.id.btn9);
         btn10 = findViewById(R.id.btn10);
         btn1.setOnClickListener(this);
@@ -72,12 +73,12 @@ public class AnimMainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
 
         switch (view.getId()) {
-            case R.id.orr:
+            case R.id.alpha:
                 //布局文件加载
                 Animation alpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
                 iv.startAnimation(alpha);
                 break;
-            case R.id.javaMore:
+            case R.id.scale:
                 Animation scale = AnimationUtils.loadAnimation(this, R.anim.scale);
                 iv.startAnimation(scale);
                 break;
@@ -88,7 +89,7 @@ public class AnimMainActivity extends Activity implements View.OnClickListener {
                 Animation rotate = AnimationUtils.loadAnimation(this, R.anim.rotate);
                 iv.startAnimation(rotate);
                 break;
-            case R.id.btn5:
+            case R.id.animation_set_one:
                 alpha1 = AnimationUtils.loadAnimation(this, R.anim.scale);
                 iv.startAnimation(alpha1);
                 final Animation rotate1 = AnimationUtils.loadAnimation(this, R.anim.rotate);
@@ -110,18 +111,20 @@ public class AnimMainActivity extends Activity implements View.OnClickListener {
                 });
 
                 break;
-            case R.id.btn6:
+            case R.id.animation_set_two:
                 Animation alpha2 = AnimationUtils.loadAnimation(this, R.anim.alpha2);
                 iv.startAnimation(alpha2);
                 break;
-            case R.id.btn7:
+            case R.id.animation_set_three:
                 AlphaAnimation myAlpha = new AlphaAnimation(0.1f, 1.0f);
-                myAlpha.setDuration(3000);
-                myAlpha.setRepeatCount(10);
-                myAlpha.setRepeatMode(Animation.RESTART);
+                 myAlpha.setDuration(3000);
+//                myAlpha.setRepeatCount(10);
+//                myAlpha.setRepeatMode(Animation.RESTART);
+                Animation scale2 = AnimationUtils.loadAnimation(this, R.anim.scale);
+
                 iv.startAnimation(myAlpha);
                 break;
-            case R.id.btn8:
+            case R.id.value_animator:
                 Intent intent = new Intent(this, AnimAttrActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.rotate, R.anim.alpha);

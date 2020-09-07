@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dawn.zgstep.ctm.views.DropDownMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dropDownMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:dividerColor="@color/gray_dividing"
+    app:maskColor="@color/soft1"
+    app:menuBackgroundColor="@color/white"
+    app:menuSelectedIcon="@drawable/arrow_up"
+    app:menuTextSize="14sp"
+    app:menuUnSelectedIcon="@drawable/arrow_down"
+    app:textSelectedColor="@color/black"
+    app:textUnSelectedColor="@color/gray_9"
+    app:underlineColor="@color/gray_dividing">
+
+</com.dawn.zgstep.ctm.views.DropDownMenu>

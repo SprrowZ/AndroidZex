@@ -13,7 +13,7 @@ import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.R;
 import com.rye.base.utils.DateUtils;
 import com.rye.catcher.utils.ExtraUtil.Bean;
-import com.rye.catcher.utils.TypeFaceUtil;
+import com.rye.base.utils.TypeFaceUtil;
 
 import java.util.ArrayList;
 import java.util.List;

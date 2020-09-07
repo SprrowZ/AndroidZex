@@ -6,8 +6,8 @@ package com.rye.base.common
  * 一些公共的配置
  */
 class LibConfig {
-companion object{
-    //App语言，可以配置在Gradle里
-    const val LANGUAGE="zh"
-}
+    companion object {
+        //App语言，可以配置在Gradle里
+        const val LANGUAGE = "zh"
+    }
 }

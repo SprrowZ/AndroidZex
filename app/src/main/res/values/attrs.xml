@@ -98,18 +98,7 @@
     <declare-styleable name="RoundProgress">
         <attr name="radius" format="dimension"></attr>
     </declare-styleable>
-    <!--下滑菜单-->
-    <declare-styleable name="dropDownMenu">
-       <attr name="underlineColor" format="color"/>
-       <attr name="dividerColor" format="color"/>
-       <attr name="textSelectedColor" format="color"/>
-       <attr name="textUnSelectedColor" format="color"/>
-       <attr name="menuBackgroundColor" format="color"/>
-       <attr name="maskColor" format="color"/>
-       <attr name="menuTextSize" format="dimension"/>
-       <attr name="menuSelectedIcon" format="reference"/>
-       <attr name="menuUnSelectedIcon" format="reference"/>
-    </declare-styleable>
+
 
     <declare-styleable name="IDY_TagFlowLayout">
         <attr name="max_select" format="integer"></attr>
@@ -121,8 +110,12 @@
     </declare-styleable>
 
 
-
-
+    <declare-styleable name="NetEllipsisView">
+        <attr name="startColor" format="reference|color"/>
+        <attr name="transitColor" format="reference|color"/>
+        <attr name="errorColor" format="reference|color"/>
+        <attr name="dotRadius" format="dimension|float"/>
+    </declare-styleable>
 
 
 

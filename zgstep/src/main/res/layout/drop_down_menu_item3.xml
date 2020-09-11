@@ -11,7 +11,6 @@
         android:layout_height="match_parent"
         android:textSize="@dimen/font_24"
         android:gravity="center"
-        android:background="@drawable/drop_down_shape"
         tools:text="双子座"
         android:layout_margin="@dimen/len_2"
         />

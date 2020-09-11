@@ -2,22 +2,22 @@
 <resources>
     <!--第一个自定义View-->
     <declare-styleable name="Topbar">
-        <attr name="name" format="string"/>
-        <attr name="titleTextsize" format="dimension"/>
-        <attr name="titleTextColor" format="color"/>
-        <attr name="leftTextColor" format="color"/>
-        <attr name="leftBackground" format="reference|color"/>
-        <attr name="leftText" format="string"/>
-        <attr name="rightTextColor" format="color"/>
-        <attr name="rightBackground" format="reference|color"/>
-        <attr name="rightText" format="string"/>
+        <attr name="name" format="string" />
+        <attr name="titleTextsize" format="dimension" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="leftTextColor" format="color" />
+        <attr name="leftBackground" format="reference|color" />
+        <attr name="leftText" format="string" />
+        <attr name="rightTextColor" format="color" />
+        <attr name="rightBackground" format="reference|color" />
+        <attr name="rightText" format="string" />
     </declare-styleable>
-     <declare-styleable name="Timer">
-    <attr name="Timer_Background" format="color"/>
-    <attr name="Timer_Text" format="string"/>
-    <attr name="Timer_TextColor" format="color"/>
-    <attr name="Timer_TextSize" format="dimension"/>
-     </declare-styleable>
+    <declare-styleable name="Timer">
+        <attr name="Timer_Background" format="color" />
+        <attr name="Timer_Text" format="string" />
+        <attr name="Timer_TextColor" format="color" />
+        <attr name="Timer_TextSize" format="dimension" />
+    </declare-styleable>
     <!--自定义ImageView-->
     <attr name="borderRadius" format="dimension" />
     <attr name="type">
@@ -29,24 +29,13 @@
         <attr name="borderRadius" />
         <attr name="type" />
     </declare-styleable>
-    <!--变形的ImageView，这个不能有问题-->
-    <declare-styleable name="DisView">
-        <attr name="Dtype" format="enum">
-            <enum name="circle" value="0"></enum>
-            <enum name="rectangle" value="1"></enum>
-        </attr>
-        <attr name="Dradius" format="integer"/>
-        <attr name="Dsrc" format="reference"/>
-        <!--边框-->
-        <attr name="NeedBorder" format="boolean"/>
-        <attr name="Bdistance" format="dimension"/>
-        <attr name="Bwidth" format="dimension"/>
-        <attr name="Bcolor" format="color"/>
-    </declare-styleable>
+
+
+
     <!--望远镜-->
     <declare-styleable name="Telescope">
-      <attr name="Telesrc" format="reference"></attr>
-      <attr name="TeleBg" format="reference"></attr>
+        <attr name="Telesrc" format="reference"></attr>
+        <attr name="TeleBg" format="reference"></attr>
     </declare-styleable>
 
     <declare-styleable name="ptr">
@@ -111,20 +100,11 @@
 
 
     <declare-styleable name="NetEllipsisView">
-        <attr name="startColor" format="reference|color"/>
-        <attr name="transitColor" format="reference|color"/>
-        <attr name="errorColor" format="reference|color"/>
-        <attr name="dotRadius" format="dimension|float"/>
+        <attr name="startColor" format="reference|color" />
+        <attr name="transitColor" format="reference|color" />
+        <attr name="errorColor" format="reference|color" />
+        <attr name="dotRadius" format="dimension|float" />
     </declare-styleable>
-
-
-
-
-
-
-
-
-
 
 
 </resources>

@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     android:textSize="@dimen/font_24"
     android:gravity="center"
-    android:background="@drawable/drop_down_shape"
+
     tools:text="Are you Ok?"
     />
 </FrameLayout>

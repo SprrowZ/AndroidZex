@@ -2,14 +2,34 @@
 <resources>
     <!--下滑菜单-->
     <declare-styleable name="dropDownMenu">
-        <attr name="underlineColor" format="color"/>
-        <attr name="dividerColor" format="color"/>
-        <attr name="textSelectedColor" format="color"/>
-        <attr name="textUnSelectedColor" format="color"/>
-        <attr name="menuBackgroundColor" format="color"/>
-        <attr name="maskColor" format="color"/>
-        <attr name="menuTextSize" format="dimension"/>
-        <attr name="menuSelectedIcon" format="reference"/>
-        <attr name="menuUnSelectedIcon" format="reference"/>
+        <attr name="underlineColor" format="color" />
+        <attr name="dividerColor" format="color" />
+        <attr name="textSelectedColor" format="color" />
+        <attr name="textUnSelectedColor" format="color" />
+        <attr name="menuBackgroundColor" format="color" />
+        <attr name="maskColor" format="color" />
+        <attr name="menuTextSize" format="dimension" />
+        <attr name="menuSelectedIcon" format="reference" />
+        <attr name="menuUnSelectedIcon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ScanView">
+        <attr name="scan_src" format="reference" />
+        <attr name="scan_center_radius" format="dimension"/>
+    </declare-styleable>
+
+    <!--变形的ImageView，这个不能有问题-->
+    <declare-styleable name="DisView">
+        <attr name="shape_type" format="enum">
+            <enum name="circle" value="0"></enum>
+            <enum name="rectangle" value="1"></enum>
+        </attr>
+        <attr name="shape_radius" format="dimension" />
+        <attr name="shape_src" format="reference" />
+        <!--边框-->
+        <attr name="shape_need_border" format="boolean" />
+        <attr name="shape_border_distance" format="dimension" />
+        <attr name="shape_border_width" format="dimension" />
+        <attr name="shape_border_color" format="color" />
     </declare-styleable>
 </resources>

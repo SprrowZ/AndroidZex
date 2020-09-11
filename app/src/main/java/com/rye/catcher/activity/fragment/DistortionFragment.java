@@ -1,25 +1,14 @@
 package com.rye.catcher.activity.fragment;
 
-import android.view.View;
-
+import com.rye.base.BaseFragment;
 import com.rye.catcher.R;
-import com.rye.catcher.BaseOldFragment;
-
 /**
  * Created by ZZG on 2018/8/10.
  */
-public class DistortionFragment extends BaseOldFragment {
-    private View view;
+public class DistortionFragment extends BaseFragment {
 
     @Override
-    protected int getLayoutResId() {
+    protected int getLayoutId() {
         return R.layout.bcustom_distortionview;
     }
-
-    @Override
-    protected void initData() {
-
-    }
-
-
 }

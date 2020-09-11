@@ -1,7 +1,10 @@
 import android.net.wifi.WifiManager;
 
+import com.dawn.zgstep.design_patterns.structural.flyweight.BookFactory;
+
 import org.junit.Test;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +34,15 @@ public class RegexJavaTest {
     }
 
     public static void main(String[] args) {
-        testFirst();
+       // testFirst();
+        testFlyWeight();
+    }
+
+    public static void testFlyWeight(){
+        String[] bookNames =new String[]{"《时间简史》","《物种起源》","《麦田守望者》"};
+        for (int i =0;i<20;i++){
+            int pos = new Random().nextInt(3);
+            BookFactory.getBook(bookNames[pos]);
+        }
     }
 }

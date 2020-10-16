@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.rye.catcher.R;
-import com.rye.catcher.beans.ImageBean;
+import com.rye.catcher.agocode.beans.ImageBean;
 
 import java.util.List;
 

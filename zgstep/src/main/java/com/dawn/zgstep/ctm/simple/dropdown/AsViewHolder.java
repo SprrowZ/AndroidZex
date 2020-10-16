@@ -19,7 +19,7 @@ public class AsViewHolder extends DropParentViewHolder<DropBean> {
     TextView content;
     public AsViewHolder(View itemView) {
         super(itemView);
-        container=itemView.findViewById(R.id.container);
+        container=itemView.findViewById(R.id.base_container);
         content=itemView.findViewById(R.id.content);
     }
 

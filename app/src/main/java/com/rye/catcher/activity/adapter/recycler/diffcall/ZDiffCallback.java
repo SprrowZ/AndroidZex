@@ -1,5 +1,6 @@
 package com.rye.catcher.activity.adapter.recycler.diffcall;
 
+import com.rye.base.common.CommonDiffCallback;
 import com.rye.catcher.activity.adapter.recycler.recybean.DataModel;
 
 import java.util.List;

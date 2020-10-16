@@ -22,7 +22,7 @@ public class CityViewHolder extends DropParentViewHolder<DropBean> {
 
     public CityViewHolder(View itemView) {
         super(itemView);
-        container = itemView.findViewById(R.id.container);
+        container = itemView.findViewById(R.id.base_container);
         content = itemView.findViewById(R.id.content);
         tick = itemView.findViewById(R.id.tick);
     }

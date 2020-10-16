@@ -103,10 +103,10 @@ public abstract class BaseArrayAdapter<T> extends BaseAdapter implements Filtera
     public void insert(T object, int index) {
         synchronized (mLock) {
             if (mOriginalValues != null) {
-                Log.d(TAG, "insert:mOriginalValues");
+                Log.d(TAG, "insertBySqlite:mOriginalValues");
                 mOriginalValues.add(index, object);
             } else {
-                Log.d(TAG, "insert:mObjects");
+                Log.d(TAG, "insertBySqlite:mObjects");
                 mObjects.add(index, object);
             }
         }

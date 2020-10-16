@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.beans.BTBean;
+import com.rye.catcher.agocode.beans.BTBean;
 
 import java.util.ArrayList;
 

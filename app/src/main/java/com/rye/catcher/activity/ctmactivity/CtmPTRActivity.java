@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
@@ -15,10 +14,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.rye.base.BaseActivity;
-import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.PullToRefreshAdapter;
-import com.rye.catcher.beans.ImageBean;
+import com.rye.catcher.agocode.beans.ImageBean;
 import com.rye.catcher.project.ctmviews.zPullToRefreshView;
 import com.rye.base.common.Constant;
 import com.rye.base.utils.FileUtils;

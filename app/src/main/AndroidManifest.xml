@@ -112,33 +112,29 @@
             </intent-filter>
         </service>
         <service android:name=".project.services.DownLoadService" /> <!-- <service android:name=".project.services.IntentServiceEx" /> -->
+
+        <provider
+            android:name=".project.cprovider.CustomContentProvider"
+            android:authorities="com.rye.catcher"
+            android:exported="true" />
+
         <activity
             android:name=".activity.CameraActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.ReviewActivity"
+            android:name=".project.review.ReviewActivity"
             android:clearTaskOnLaunch="true"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.review.BaseAdapterTest"
+            android:name=".project.review.refresh.RefreshRecyActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
 
-        <activity
-            android:name=".project.review.myAsyncTask"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".project.review.myAsyncTask_pg"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.AsyncMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+
+
         <activity
             android:name=".project.animations.AnimShapeActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -176,6 +172,13 @@
             </intent-filter>
 
         </activity>
+
+        <provider
+            android:name=".project.review.search.RSearchSuggestionProvider"
+            android:authorities="com.rye.catcher.project.review.search.RSearchSuggestionProvider"
+            android:exported="false" />
+
+
         <activity
             android:name=".project.animations.AnimMemoryActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -201,7 +204,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.SQLiteZ.DBActivity"
+            android:name=".project.sqlite.DBActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -231,7 +234,6 @@
             android:name=".activity.ctmactivity.CtmFragmentActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-
 
 
         <activity
@@ -307,45 +309,34 @@
             android:launchMode="singleTask" />
 
         <activity
-            android:name=".common.bigimg.ImageActivity"
+            android:name=".agocode.bigimg.ImageActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".activity.ORRActivity"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmPTRActivity" />
+        <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
 
-        <activity
-            android:name=".activity.BLEActivity" />
+        <activity android:name=".activity.BLEActivity" />
 
-        <activity
-            android:name=".project.mvp.MvpActivity" />
+        <activity android:name=".project.mvp.MvpActivity" />
 
-        <activity
-            android:name=".project.mvp.MvpBaseActivity" />
+        <activity android:name=".project.mvp.MvpBaseActivity" />
 
         <activity
             android:name=".project.ctmviews.takephoto.CameraActivity2"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
-        <activity
-            android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
+        <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
 
-        <activity
-            android:name=".project.ctmviews.takephoto.CameraActivityEx" />
+        <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
 
-        <activity
-            android:name=".activity.MultiActivity" />
+        <activity android:name=".activity.MultiActivity" />
 
-        <activity
-            android:name=".activity.LeftDetailActivityRx" />
+        <activity android:name=".activity.LeftDetailActivityRx" />
 
-        <activity
-            android:name=".activity.AnimeActivity" />
 
-        <activity
-            android:name=".project.netdiagnosis.NetDiagnosisActivity" />
+        <activity android:name=".project.netdiagnosis.NetDiagnosisActivity" />
     </application>
 
 </manifest>

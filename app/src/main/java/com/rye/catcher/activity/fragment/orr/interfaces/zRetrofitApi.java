@@ -1,7 +1,7 @@
 package com.rye.catcher.activity.fragment.orr.interfaces;
 
-import com.rye.catcher.beans.MultiBean;
-import com.rye.catcher.beans.PostBean;
+import com.rye.catcher.agocode.beans.MultiBean;
+import com.rye.catcher.agocode.beans.PostBean;
 
 import java.util.List;
 

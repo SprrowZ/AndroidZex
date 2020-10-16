@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.BlueToothAdapter;
-import com.rye.catcher.beans.BTBean;
+import com.rye.catcher.agocode.beans.BTBean;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.util.ArrayList;

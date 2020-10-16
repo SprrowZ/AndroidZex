@@ -18,7 +18,7 @@ public class ConstellationViewHolder extends DropParentViewHolder<DropBean> {
     TextView content;
     public ConstellationViewHolder(View itemView) {
         super(itemView);
-        container=itemView.findViewById(R.id.container);
+        container=itemView.findViewById(R.id.base_container);
         content=itemView.findViewById(R.id.content);
     }
 

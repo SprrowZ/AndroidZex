@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.view.View;
 
 import com.rye.base.BaseFragment;
-import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
 import com.rye.catcher.activity.CameraActivity;
@@ -15,7 +14,7 @@ import com.rye.catcher.activity.ProjectMainActivityRx;
 import com.rye.catcher.activity.ZTActivity;
 import com.rye.catcher.activity.ctmactivity.CtmMainActivity;
 
-import com.rye.catcher.project.ReviewActivity;
+import com.rye.catcher.project.review.ReviewActivity;
 import com.rye.catcher.project.animations.AnimMainActivity;
 import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;

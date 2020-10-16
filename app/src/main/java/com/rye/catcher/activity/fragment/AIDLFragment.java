@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
-import com.rye.catcher.beans.AIDLBean;
+import com.rye.catcher.agocode.beans.AIDLBean;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

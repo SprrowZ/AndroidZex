@@ -1,7 +1,5 @@
 package com.rye.base
 
-import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
@@ -11,16 +9,7 @@ import butterknife.ButterKnife
 
 
 abstract class BaseActivity : AppCompatActivity() {
-    companion object {
-         val TAG: String = javaClass.name
 
-        @JvmStatic
-        open fun start(context: Context) {
-            val intent = Intent()
-            intent.setClass(context, javaClass)
-            context.startActivity(intent)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +24,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         beforeCreate()
-        if (getLayoutId() != null && getLayoutId() != 0) {
+        if (getLayoutId() != 0) {
             setContentView(getLayoutId())
         } else {
             throw IllegalArgumentException("layout cannot be null!")

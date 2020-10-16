@@ -30,8 +30,8 @@ public class SqlBean extends Bean {
 
     /**
      * 增加关系等过滤项
-     * @param key  字段 可带操作运算符, example: DATE >, NAME like, NAME !=  <br>
-     *                 可带关系运算符, example: OR NAME like,  AND NAME =   <br>
+     * @param key  字段 可带操作运算符, example: DATE >, TABLE_PGC_NAME like, TABLE_PGC_NAME !=  <br>
+     *                 可带关系运算符, example: OR TABLE_PGC_NAME like,  AND TABLE_PGC_NAME =   <br>
      * @param value 值
      * @return
      */

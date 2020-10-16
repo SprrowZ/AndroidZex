@@ -2,8 +2,6 @@ package com.rye.catcher.activity.fragment;
 
 
 
-import android.content.Context;
-
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.DeviceAdapter;
-import com.rye.catcher.beans.binding.DeviceBean;
+import com.rye.catcher.agocode.beans.binding.DeviceBean;
 
 import com.rye.base.utils.DeviceUtils;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.rye.catcher.BaseOldFragment;
 import com.rye.catcher.R;
-import com.rye.catcher.project.review.ItemBean;
-import com.rye.catcher.project.review.MyAdapter;
+import com.rye.catcher.project.review.refresh.ItemBean;
+import com.rye.catcher.project.review.refresh.RefreshAdapter;
 import com.rye.catcher.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class LMFragment extends BaseOldFragment {
         for (int i=0;i<20;i++){
             itemBeanList.add(new ItemBean(R.mipmap.ic_launcher,"Title...","Content..."));
         }
-        listView.setAdapter(new MyAdapter(itemBeanList,getActivity()) );
+        listView.setAdapter(new RefreshAdapter(itemBeanList,getActivity()) );
     if (adaption!=null&&adaption.getVisibility()== View.VISIBLE){//360dp设备
 
     }else{

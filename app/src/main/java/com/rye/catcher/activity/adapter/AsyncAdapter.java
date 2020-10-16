@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.R;
 import com.rye.catcher.project.ImageLoader;
-import com.rye.catcher.beans.NewsBean;
+import com.rye.catcher.agocode.beans.NewsBean;
 
 
 import java.util.List;

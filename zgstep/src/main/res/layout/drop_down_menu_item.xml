@@ -8,7 +8,7 @@
 
     android:layout_marginLeft="@dimen/len_10"
     android:layout_marginRight="@dimen/len_10"
-    android:id="@+id/container"
+    android:id="@+id/container_review"
     >
 <TextView
     android:id="@+id/content"

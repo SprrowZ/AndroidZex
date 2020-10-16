@@ -1,7 +1,5 @@
 package com.rye.catcher.base.sdks;
 
-import android.content.Context;
-
 import com.github.moduth.blockcanary.BlockCanaryContext;
 
 import java.io.File;

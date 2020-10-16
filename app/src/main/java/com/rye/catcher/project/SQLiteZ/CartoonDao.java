@@ -43,7 +43,7 @@ public class CartoonDao  {
             }
             db.setTransactionSuccessful();
         }catch (Exception e){
-            Log.d(TAG, "insert:exception： "+e.toString());
+            Log.d(TAG, "insertBySqlite:exception： "+e.toString());
         }finally {
             db.endTransaction();
         }

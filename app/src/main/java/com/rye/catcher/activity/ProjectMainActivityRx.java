@@ -23,7 +23,7 @@ import com.rye.base.utils.ToastHelper;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.ProjectListAdapter;
 import com.rye.catcher.activity.presenter.ProjectPresenterRx;
-import com.rye.catcher.beans.ProjectBean;
+import com.rye.catcher.agocode.beans.ProjectBean;
 
 import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
 
@@ -32,7 +32,7 @@ import com.rye.catcher.project.helpers.MultiThreadDown;
 import com.rye.catcher.project.mvp.MvpActivity;
 import com.rye.catcher.project.netdiagnosis.NetDiagnosisActivity;
 import com.rye.catcher.project.services.ServiceMainActivity;
-import com.rye.catcher.project.SQLiteZ.DBActivity;
+import com.rye.catcher.project.sqlite.DBActivity;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;

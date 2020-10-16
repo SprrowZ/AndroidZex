@@ -37,7 +37,7 @@ class SeniorUIActivity : BaseFragmentActivity(), OnItemClickListener {
     }
 
     override fun initEvent() {
-        super.initEvent()
+
         val xfermodeFragment = XfermodeFragment()
         addFragment(xfermodeFragment)
         if (currentFragment is XfermodeFragment) {

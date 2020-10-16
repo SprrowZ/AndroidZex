@@ -24,7 +24,7 @@ public class AIDLActivity extends BaseActivity {
     TextView pm;
     @BindView(R.id.aidl)
     TextView aidl;
-    @BindView(R.id.container)
+    @BindView(R.id.base_container)
     LinearLayout container;
 
     @Override
@@ -67,7 +67,7 @@ public class AIDLActivity extends BaseActivity {
             currentFragment=fragment;
             transaction.show(fragment);
         }else{
-            transaction.add(R.id.container,getFragment(pos),getTag(pos));
+            transaction.add(R.id.base_container,getFragment(pos),getTag(pos));
         }
         transaction.commitAllowingStateLoss();
     }

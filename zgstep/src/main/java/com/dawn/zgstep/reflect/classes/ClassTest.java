@@ -132,7 +132,7 @@ public class ClassTest {
     private static void testMethodUtil() {
         User user = new User("二狗", 18, "2223");
         //无参构造
-        String name = (String) MethodUtils.invokeMethod(user, "getName", null);
+        String name = (String) MethodUtils.invokeMethod(user, "getName", "");
         printInfo("getName:" + name,true);
         //有参
         MethodUtils.invokeMethod(user,"setName","大黄");

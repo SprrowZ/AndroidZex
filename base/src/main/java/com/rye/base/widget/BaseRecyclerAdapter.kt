@@ -35,7 +35,7 @@ abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<BaseRecyclerAdapter
     override fun onBindViewHolder(holder: BaseRecyclerHolder, position: Int) {
         bindHolder(holder, position)
         holder.root.setOnClickListener{
-            clickListener?.onClick(position)
+            clickListener?.onItemClick(position)
         }
     }
 
@@ -84,7 +84,7 @@ abstract class BaseRecyclerAdapter<T> : RecyclerView.Adapter<BaseRecyclerAdapter
 
 }
 interface  OnItemClickListener{
-    fun onClick(position: Int)
+    fun onItemClick(position: Int)
 }
 enum class HolderType(var type: Int) {
     HOLDER_TYPE_MATCH(1),

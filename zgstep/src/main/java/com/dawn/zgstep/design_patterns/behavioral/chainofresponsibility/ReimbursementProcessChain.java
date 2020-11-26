@@ -9,7 +9,7 @@ import java.util.List;
  * Create by rye
  * at 2020-08-01
  *
- * @description: 报销流程 --责任链
+ * @description: 报销流程 --责任链，实际上是个拦截器
  */
 public class ReimbursementProcessChain {
     private List<Filter> filters = new ArrayList<>();

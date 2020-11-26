@@ -29,6 +29,8 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--获取开机广播-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".RyeCatcherApp"
@@ -68,6 +70,19 @@
         <!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
         <!--                android:resource="@xml/file_paths" />-->
         <!--        </provider>-->
+
+        <receiver
+            android:name=".project.SelfStartingReceivers"
+            android:exported="false"
+            >
+            <intent-filter android:priority="900">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
 
         <service android:name="com.amap.api.location.APSService" />
 
@@ -132,7 +147,6 @@
             android:name=".project.review.refresh.RefreshRecyActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-
 
 
         <activity

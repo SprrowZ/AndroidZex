@@ -46,7 +46,7 @@ public class CtmFragmentAdapter extends RecyclerView.Adapter<CtmVH> {
     public void onBindViewHolder(@NonNull CtmVH holder, int position) {
         holder.mTitle.setText(mDataList.get(position).title);
         holder.mTitle.setOnClickListener(v -> {
-            Log.i(TAG, "onClick....");
+            Log.i(TAG, "onItemClick....");
             itemClickListener.onItemClick(position, v);
         });
     }

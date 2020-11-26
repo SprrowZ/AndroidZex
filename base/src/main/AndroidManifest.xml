@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rye.base">
     <!--安装包 O适配-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <application>
         <activity android:name="com.rye.appupdater.UpdateActivityRx"></activity>

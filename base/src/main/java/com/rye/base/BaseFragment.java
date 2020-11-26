@@ -38,6 +38,13 @@ public abstract class BaseFragment extends Fragment {
     public void initEvent() {
     }
 
+    public View getView() {
+        if (mRoot == null) {
+            throw new IllegalArgumentException("根布局不能为空~");
+        }
+        return mRoot;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

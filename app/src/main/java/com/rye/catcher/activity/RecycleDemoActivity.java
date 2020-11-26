@@ -176,7 +176,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
             int type = (int) ((Math.random() * 3) + 1);
             if (i < 5 || i > 15 && i < 20) {
                 type = 1;
-                model.mBgUrl = R.drawable.bg_one;
+                model.mBgUrl = R.drawable.appround;
                 model.mContent = "（づ￣3￣）づ╭❤～";
             }
             if (i >= 5 && i < 10) {
@@ -186,7 +186,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
             }
             if (i >= 10 && i <= 15) {
                 type = 3;
-                model.mBgUrl = R.drawable.bg_three;
+                model.mBgUrl = R.drawable.bottom;
                 model.mContent = "Σ( ° △ °|||)︴";
             }
 
@@ -205,7 +205,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
             int type = (int) ((Math.random() * 3) + 1);
             if (i < 5 || i > 15 && i < 20) {
                 type = 2;
-                model.mBgUrl = R.drawable.bg_one;
+                model.mBgUrl = R.drawable.appround;
                 model.mContent = "（づ￣3￣）づ╭❤～";
             }
             if (i >= 5 && i < 10) {
@@ -215,7 +215,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
             }
             if (i >= 10 && i <= 15) {
                 type = 3;
-                model.mBgUrl = R.drawable.bg_three;
+                model.mBgUrl = R.drawable.bottom;
                 model.mContent = "Σ( ° △ °|||)︴";
             }
 
@@ -232,7 +232,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
             DataModel model = new DataModel();
             int type = (int) ((Math.random() * 3) + 1);
             if (i < 5) {
-                model.mBgUrl = R.drawable.bg_one;
+                model.mBgUrl = R.drawable.appround;
                 model.mContent = "（づ￣3￣）づ╭❤～";
             }
             if (i >= 5) {
@@ -257,7 +257,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
         for (int i = 0; i < 3; i++) {
             DataModel model = new DataModel();
             //  int type = (int) ((Math.random() * 3) + 1);
-            model.mBgUrl = R.drawable.bg_three;
+            model.mBgUrl = R.drawable.bottom;
             model.mContent = "(๑•̀ㅂ•́)و✧";
             //不改变Type
             model.mType = mDataList.get(i).mType;
@@ -313,7 +313,7 @@ public class RecycleDemoActivity extends BaseActivity implements TitleAdapter.On
         for (int i = 0; i < mDataList.size(); i++) {
             DataModel dataModel = new DataModel();
             if (i < 5) {
-                dataModel.mBgUrl = R.drawable.bg_three;
+                dataModel.mBgUrl = R.drawable.bottom;
                 dataModel.mContent = "I Giao~";
             } else {
                 dataModel.mBgUrl = mDataList.get(i).mBgUrl;

@@ -64,6 +64,10 @@ public abstract class BaseFragmentActivity extends BaseActivity
 
     @Override
     public void replaceFragment(int containerId, Fragment fg) {
+        if (fg==null){
+            throw new IllegalArgumentException("Fragment 不能为空！");
+        }
+        if (mCurrentFragment == fg) return;
         mFragmentTransaction.replace(containerId, fg)
                 .commitAllowingStateLoss();
         mCurrentFragment = fg;

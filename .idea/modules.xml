@@ -7,8 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/base/AndroidZex-base.iml" filepath="$PROJECT_DIR$/base/AndroidZex-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/zgstep/AndroidZex-zgstep.iml" filepath="$PROJECT_DIR$/zgstep/AndroidZex-zgstep.iml" />
       <module fileurl="file://$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/AndroidZex-zzsdk.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Desktop-AndroidZex.iml" filepath="$PROJECT_DIR$/Desktop-AndroidZex.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/Desktop-AndroidZex-app.iml" filepath="$PROJECT_DIR$/app/Desktop-AndroidZex-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" group="AndroidZex/base" />
       <module fileurl="file://$PROJECT_DIR$/bproject-AndroidZex.iml" filepath="$PROJECT_DIR$/bproject-AndroidZex.iml" />
@@ -17,6 +15,8 @@
       <module fileurl="file://$PROJECT_DIR$/zgstep/bproject-AndroidZex-zgstep.iml" filepath="$PROJECT_DIR$/zgstep/bproject-AndroidZex-zgstep.iml" />
       <module fileurl="file://$PROJECT_DIR$/zzsdk/bproject-AndroidZex-zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/bproject-AndroidZex-zzsdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects-AndroidZex.iml" filepath="$PROJECT_DIR$/projects-AndroidZex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/projects-AndroidZex-app.iml" filepath="$PROJECT_DIR$/app/projects-AndroidZex-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/zAndroid.iml" filepath="$PROJECT_DIR$/.idea/zAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/zgstep/zgstep.iml" filepath="$PROJECT_DIR$/zgstep/zgstep.iml" group="AndroidZex/zgstep" />
       <module fileurl="file://$PROJECT_DIR$/zzsdk/zzsdk.iml" filepath="$PROJECT_DIR$/zzsdk/zzsdk.iml" group="AndroidZex/zzsdk" />

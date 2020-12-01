@@ -7,8 +7,8 @@ import android.view.View;
 
 import com.rye.catcher.R;
 import com.rye.catcher.BaseOldFragment;
-import com.rye.catcher.beans.MultiBean;
-import com.rye.catcher.beans.PostBean;
+import com.rye.catcher.agocode.beans.MultiBean;
+import com.rye.catcher.agocode.beans.PostBean;
 import com.rye.catcher.activity.fragment.orr.interfaces.zRetrofitApi;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
 import com.rye.base.utils.SDHelper;
@@ -55,19 +55,18 @@ public class RetrofitFragment extends BaseOldFragment {
 
 
 
-    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.rotate,
-            R.id.btn5, R.id.btn6,R.id.btn7, R.id.btn8})
+    @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn6,R.id.btn7, R.id.btn8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.orr:
+            case R.id.btn1:
                 postString();
                 break;
-            case R.id.javaMore:
+            case R.id.btn2:
                 uploadFile(view);
                 break;
-            case R.id.translate:
+            case R.id.btn3:
                 downLoadFile(view);
-            case R.id.rotate:
+            case R.id.btn4:
                 upLoadFileEx();//通过RequestBody
                 break;
         }

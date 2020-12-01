@@ -7,7 +7,7 @@
 <!--<com.example.myappsecond.Custom_View.Mypractice.PracticeFont-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent" />-->
-    <com.rye.catcher.project.ctmviews.Mypractice.PracticeWave
+    <com.dawn.zgstep.ctm.simple.practice.PracticeWave
         android:id="@+id/wave"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

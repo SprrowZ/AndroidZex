@@ -1,86 +1,90 @@
 [
   {
-    "name":"Service",
-    "action":"testService"
+    "name": "Service",
+    "action": "testService"
   },
   {
-    "name":"Intents",
-    "action":"testIntents"
+    "name": "Intents",
+    "action": "testIntents"
   },
   {
-    "name":"SQLite",
-    "action":"testSQLite"
+    "name": "SQLite",
+    "action": "testSQLite"
   },
   {
-    "name":"FileStorage",
-    "action":"testFile"
+    "name": "FileStorage",
+    "action": "testFile"
   },
   {
-    "name":"PackageManager/AIDL",
-    "action":"testAIDL"
+    "name": "PackageManager/AIDL",
+    "action": "testAIDL"
   },
   {
-    "name":"SlideDemo",
-    "action":"testSlide"
+    "name": "SlideDemo",
+    "action": "testSlide"
   },
   {
-    "name":"RecycleView",
-    "action":"testRecycle"
+    "name": "RecycleView",
+    "action": "testRecycle"
   },
   {
-    "name":"DialogEx",
-    "action":"testDialogEx"
+    "name": "DialogEx",
+    "action": "testDialogEx"
   },
   {
-    "name":"CoordinatorLayout",
-    "action":"testCoor"
+    "name": "CoordinatorLayout",
+    "action": "testCoor"
   },
   {
-    "name":"ViewDragHelper",
-    "action":"testViewDrag"
+    "name": "ViewDragHelper",
+    "action": "testViewDrag"
   },
   {
-    "name":"批量加载",
-    "action":"batchLoading"
+    "name": "批量加载",
+    "action": "batchLoading"
   },
   {
-    "name":"现场保护",
-    "action":"testPreserve"
+    "name": "现场保护",
+    "action": "testPreserve"
   },
   {
-    "name":"蓝牙",
-    "action":"testBluetooth"
+    "name": "蓝牙",
+    "action": "testBluetooth"
   },
   {
-    "name":"MvpDemo",
-    "action":"testMvp"
+    "name": "MvpDemo",
+    "action": "testMvp"
   },
   {
-    "name":"takePhoto",
-    "action":"takePhoto"
+    "name": "takePhoto",
+    "action": "takePhoto"
   },
   {
-    "name":"changeLanguage",
-    "action":"changeLanguage"
+    "name": "changeLanguage",
+    "action": "changeLanguage"
   },
   {
-    "name":"多线程下载",
-    "action":"testMulti"
+    "name": "多线程下载",
+    "action": "testMulti"
   },
   {
-    "name":"Kotlin",
-    "action":"testKotlin"
+    "name": "Kotlin",
+    "action": "testKotlin"
   },
   {
-    "name":"Kotlin协程",
-    "action":"ktCoroutine"
+    "name": "Kotlin协程",
+    "action": "ktCoroutine"
   },
   {
-    "name":"应用内更新",
-    "action":"testUpdate"
+    "name": "应用内更新",
+    "action": "testUpdate"
   },
   {
-    "name":"ZgStep Main",
-    "action":"zgStep"
+    "name": "ZgStep Main",
+    "action": "zgStep"
+  },
+  {
+    "name": "NetWork Diagnosis",
+    "action": "diagnosis"
   }
 ]

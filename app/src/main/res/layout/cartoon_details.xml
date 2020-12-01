@@ -1,188 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="220dp"
-    android:gravity="center"
-    android:background="@drawable/bottom_bk2"
-    android:orientation="vertical"
-    >
-    <com.rye.catcher.project.ctmviews.DistortionViews
-        android:id="@+id/header_img"
-        custom:Dtype="rectangle"
-        custom:Dradius="20"
-        custom:Dsrc="@mipmap/my3"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        />
-    <TextView
-        android:id="@+id/top_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="22dp"
-        android:text="南家三姐妹"
-        android:fontFamily="@font/myfont"
-        />
-</LinearLayout>
-<LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:orientation="horizontal"
-     >
-<LinearLayout
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="3"
-    android:layout_marginLeft="5dp"
-    android:orientation="vertical"
-    android:paddingTop="20dp"
-    >
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="漫名："
-        android:fontFamily="@font/myfont"
-        />
-    <TextView
-        android:id="@+id/cartoon_name"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:singleLine="true"
-        android:fontFamily="@font/myfont"
-        />
-</LinearLayout>
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="15dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="主演："
-            android:fontFamily="@font/myfont"
-            />
-        <TextView
-            android:id="@+id/cartoon_hero"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:singleLine="true"
-            android:fontFamily="@font/myfont"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="15dp"
-        >
+        android:layout_height="220dp"
+        android:background="@drawable/bottom_bk2"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.dawn.zgstep.ctm.views.CircleRectView
+            android:id="@+id/header_img"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            custom:shape_radius="@dimen/len_8"
+            custom:shape_src="@mipmap/my3"
+            custom:shape_type="rectangle" />
 
         <TextView
+            android:id="@+id/top_name"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="导演："
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/myfont"
-            />
-        <TextView
-            android:id="@+id/cartoon_director"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:singleLine="true"
-            android:fontFamily="@font/myfont"
-            />
+            android:text="南家三姐妹"
+            android:textSize="22dp" />
     </LinearLayout>
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:layout_marginTop="15dp"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="撒花："
-        android:fontFamily="@font/myfont"
-        />
-    <TextView
-        android:id="@+id/cartoon_is_end"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:singleLine="true"
-        android:fontFamily="@font/myfont"
-        />
-</LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="15dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="演员表："
-            android:fontFamily="@font/myfont"
-            />
-        <TextView
-            android:id="@+id/cartoon_actors"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/myfont"
-            />
-    </LinearLayout>
-</LinearLayout>
- <LinearLayout
-     android:layout_width="0dp"
-     android:layout_height="match_parent"
-     android:layout_weight="2"
-     android:orientation="vertical"
-     >
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="20dp"
-    android:textStyle="bold"
-    android:text="详情:"
-    android:layout_marginTop="20dp"
-    android:fontFamily="@font/myfont"
-    />
-<TextView
-    android:id="@+id/details"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:textSize="16dp"
-    android:fontFamily="@font/myfont"
-    />
- </LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
- </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:text="漫名："
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cartoon_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:text="主演："
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cartoon_hero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:text="导演："
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cartoon_director"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:text="撒花："
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cartoon_is_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont"
+                    android:text="演员表："
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cartoon_actors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/myfont" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/myfont"
+                android:text="详情:"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/myfont"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

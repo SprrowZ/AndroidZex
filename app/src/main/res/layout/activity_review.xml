@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_refresh"
+        android:layout_width="@dimen/len_100"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_10"
+        android:layout_marginTop="@dimen/len_20"
+        android:background="@drawable/shape_rectangle_unclickable"
+        android:clickable="false"
+        android:singleLine="true"
+        android:text="Refresh RecyclerView"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_span"
+        android:layout_width="@dimen/len_100"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_20"
+        android:layout_marginTop="@dimen/len_20"
+        android:background="@drawable/shape_rectangle_clickable"
+        android:singleLine="true"
+        android:text="SpannableString"
+
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_refresh"
+        app:layout_constraintLeft_toRightOf="@+id/btn_refresh" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="@dimen/len_100"
+
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_10"
+        android:layout_marginTop="@dimen/len_20"
+        android:background="@drawable/shape_rectangle_clickable"
+        android:text="SearchView"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_refresh" />
+
+    <Button
+        android:id="@+id/btn_sqlite"
+        android:layout_width="@dimen/len_100"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/len_20"
+        android:layout_marginTop="@dimen/len_20"
+        android:background="@drawable/shape_rectangle_clickable"
+        android:singleLine="true"
+        android:text="SQLite"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toRightOf="@id/btn_search"
+        app:layout_constraintTop_toBottomOf="@+id/btn_span" />
+
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_1"
+        android:background="@color/soft2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <FrameLayout
+        android:id="@+id/container_review"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line"
+        tools:background="@color/soft13" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

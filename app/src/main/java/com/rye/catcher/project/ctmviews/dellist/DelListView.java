@@ -10,6 +10,7 @@ import android.widget.ListView;
  */
 public class DelListView extends ListView {
     private ItemDelLinear mCurView;
+
     public DelListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -18,18 +19,17 @@ public class DelListView extends ListView {
     public boolean onTouchEvent(MotionEvent event) {
         int x = (int) event.getX();
         int y = (int) event.getY();
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
                 //我们想知道当前点击了哪一行
                 int position = pointToPosition(x, y);
                 if (position != INVALID_POSITION) {
                     DelAdapter.DataHolder data = (DelAdapter.DataHolder) getItemAtPosition(position);
-                    mCurView = (ItemDelLinear) data.rootView;
+                    mCurView = data.rootView;
                 }
             }
             default:
-                if (mCurView != null){
+                if (mCurView != null) {
                     mCurView.disPatchTouchEvent(event);
                 }
                 return super.onTouchEvent(event);

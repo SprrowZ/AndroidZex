@@ -23,7 +23,7 @@ public class AmapManager {
     private static  AMapLocationClient locationClient = null;
     private static  AMapLocationClientOption locationOption = null;
     private static AmapResult amapResult;
-    //private static Handler mapHandler;
+    //private static Filter mapHandler;
     //构造器私有化
     private AmapManager(){}
     //静态内部类单例模式

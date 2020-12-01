@@ -14,9 +14,8 @@ import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.RxjavaAdapter;
 import com.rye.catcher.BaseOldFragment;
 import com.rye.base.widget.dialog.ctdialog.ExDialog;
-import com.rye.catcher.utils.DensityUtil;
+import com.rye.base.utils.DensityUtil;
 import com.rye.base.utils.DeviceUtils;
-import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
 
 import java.util.ArrayList;

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.beans.ProjectBean;
+import com.rye.catcher.agocode.beans.ProjectBean;
 
 import java.util.List;
 

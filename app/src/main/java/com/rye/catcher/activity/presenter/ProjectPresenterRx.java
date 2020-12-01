@@ -6,7 +6,7 @@ import android.content.res.AssetManager;
 import com.rye.base.rxmvp.RxBasePresenter;
 import com.rye.base.utils.FileUtils;
 import com.rye.base.utils.GsonUtils;
-import com.rye.catcher.beans.ProjectBean;
+import com.rye.catcher.agocode.beans.ProjectBean;
 import com.rye.base.utils.SDHelper;
 
 import org.jetbrains.annotations.NotNull;

@@ -236,7 +236,7 @@ dependencies {
     implementation deps.autosize
 
     //kotlin 协程
-    implementation deps.kotlin_coroutines
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }

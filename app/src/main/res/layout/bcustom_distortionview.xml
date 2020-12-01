@@ -1,56 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-            <com.rye.catcher.project.ctmviews.DistortionViews
-                app:Dtype="circle"
-                app:Dsrc="@drawable/rectange"
+            android:orientation="vertical">
+
+            <com.dawn.zgstep.ctm.views.CircleRectView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                app:NeedBorder="true"
-                app:Bdistance="@dimen/len_4"
-                app:Bwidth="4dp"
-                />
-            <com.rye.catcher.project.ctmviews.DistortionViews
-                app:Dtype="rectangle"
-                app:Dsrc="@drawable/rectange"
-                app:Dradius="40"
-                android:layout_marginTop="20dp"
+                app:shape_border_distance="@dimen/len_4"
+                app:shape_border_width="@dimen/len_4"
+                app:shape_need_border="true"
+                app:shape_src="@drawable/rectange"
+                app:shape_type="circle" />
+
+            <com.dawn.zgstep.ctm.views.CircleRectView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
-                app:NeedBorder="true"
-                />
-            <com.rye.catcher.project.ctmviews.DistortionViews
-                app:Dtype="rectangle"
-                app:Dsrc="@mipmap/my2"
-                app:Dradius="80"
                 android:layout_marginTop="20dp"
+                app:shape_need_border="true"
+                app:shape_radius="@dimen/len_8"
+                app:shape_src="@drawable/rectange"
+                app:shape_type="rectangle" />
+
+            <com.dawn.zgstep.ctm.views.CircleRectView
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginLeft="20dp"
-                />
-            <com.rye.catcher.project.ctmviews.DistortionViews
-                app:Dtype="rectangle"
-                app:Dsrc="@mipmap/my4"
-                app:Dradius="120"
                 android:layout_marginTop="20dp"
+                app:shape_radius="@dimen/len_16"
+                app:shape_src="@mipmap/my2"
+                app:shape_type="rectangle" />
+
+            <com.dawn.zgstep.ctm.views.CircleRectView
                 android:layout_width="80dp"
                 android:layout_height="120dp"
                 android:layout_marginLeft="20dp"
-                />
+                android:layout_marginTop="20dp"
+                app:shape_radius="@dimen/len_24"
+                app:shape_src="@mipmap/my4"
+                app:shape_type="rectangle" />
         </LinearLayout>
 
     </ScrollView>

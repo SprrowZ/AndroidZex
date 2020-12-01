@@ -1,6 +1,7 @@
 package com.rye.base.utils;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -22,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
 /**
  *
@@ -298,5 +300,45 @@ public class DeviceUtils {
 
     }
 
+    /**
+     * 获取一个设备 单个应用可用的最大内存
+     *
+     * @return
+     */
+    public static String getMaxMemory(WeakReference<Context> wrf) {
+        Context context = wrf.get();
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        int maxMemory = activityManager.getMemoryClass();
+        return maxMemory + "m";
+    }
 
+    /**
+     * 获取一个设备 剩余可用内存
+     *
+     * @return
+     */
+    public static String getDeviceActiveMemory() {
+        long maxMemory = Runtime.getRuntime().freeMemory();
+        return maxMemory / (8 * 1024 * 1024) + "MB";
+    }
+
+    /**
+     * 获取一个设备 最大内存
+     *
+     * @return
+     */
+    public static String getDeviceMaxMemory() {
+        long maxMemory = Runtime.getRuntime().maxMemory();
+        return maxMemory / (8 * 1024 * 1024) + "MB";
+    }
+
+    /**
+     * 获取一个设备已经使用的内存
+     *
+     * @return
+     */
+    public static String getDeviceTotalMemory() {
+        long maxMemory = Runtime.getRuntime().totalMemory();
+        return maxMemory / (8 * 1024 * 1024) + "MB";
+    }
 }

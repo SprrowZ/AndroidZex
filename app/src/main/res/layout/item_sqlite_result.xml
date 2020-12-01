@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/font_14"
+        android:textStyle="bold"
+        tools:text="001" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxWidth="@dimen/len_100"
+        android:padding="@dimen/len_6"
+        android:singleLine="true"
+        android:text="SQLite"
+        android:textAllCaps="false"
+        android:textColor="@color/grey_900"
+        android:textSize="@dimen/font_12" />
+
+    <TextView
+        android:id="@+id/tv_nation"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/font_12"
+        tools:text="日本" />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/font_12"
+        tools:text="0991" />
+</LinearLayout>

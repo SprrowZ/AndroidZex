@@ -3,7 +3,6 @@ package com.rye.base.rxmvp
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.ViewGroup
-import com.rye.base.mvp.PresenterHoler
 import com.trello.rxlifecycle2.android.ActivityEvent
 import io.reactivex.subjects.BehaviorSubject
 
@@ -14,7 +13,7 @@ import io.reactivex.subjects.BehaviorSubject
 abstract class RxBaseFragment: Fragment(), RxIView {
     protected  lateinit var TAG:String
     protected  lateinit var mContentView:ViewGroup
-    protected  lateinit var presenterHelper:PresenterHoler
+    protected  lateinit var presenterHelper: PresenterHoler
     /**
      * Rx lifecycle
      */
@@ -27,7 +26,7 @@ abstract class RxBaseFragment: Fragment(), RxIView {
 
         lifecycleSubject.onNext(ActivityEvent.CREATE)
 
-        presenterHelper=PresenterHoler(this)
+        presenterHelper= PresenterHoler(this)
 
     }
 

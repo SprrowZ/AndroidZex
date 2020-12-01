@@ -29,6 +29,8 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--获取开机广播-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".RyeCatcherApp"
@@ -59,20 +61,33 @@
             android:name="design_height_in_dp"
             android:value="180" />
 
-<!--        <provider-->
-<!--            android:name="android.support.v4.content.FileProvider"-->
-<!--            android:authorities="${applicationId}.provider"-->
-<!--            android:exported="false"-->
-<!--            android:grantUriPermissions="true">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/file_paths" />-->
-<!--        </provider>-->
+        <!--        <provider-->
+        <!--            android:name="android.support.v4.content.FileProvider"-->
+        <!--            android:authorities="${applicationId}.provider"-->
+        <!--            android:exported="false"-->
+        <!--            android:grantUriPermissions="true">-->
+        <!--            <meta-data-->
+        <!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+        <!--                android:resource="@xml/file_paths" />-->
+        <!--        </provider>-->
+
+        <receiver
+            android:name=".project.SelfStartingReceivers"
+            android:exported="false"
+            >
+            <intent-filter android:priority="900">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
 
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activity.splash.SplashActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -112,33 +127,28 @@
             </intent-filter>
         </service>
         <service android:name=".project.services.DownLoadService" /> <!-- <service android:name=".project.services.IntentServiceEx" /> -->
+
+        <provider
+            android:name=".project.cprovider.CustomContentProvider"
+            android:authorities="com.rye.catcher"
+            android:exported="true" />
+
         <activity
             android:name=".activity.CameraActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.ReviewActivity"
+            android:name=".project.review.ReviewActivity"
             android:clearTaskOnLaunch="true"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.review.BaseAdapterTest"
+            android:name=".project.review.refresh.RefreshRecyActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
 
-        <activity
-            android:name=".project.review.myAsyncTask"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".project.review.myAsyncTask_pg"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.AsyncMainActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+
         <activity
             android:name=".project.animations.AnimShapeActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -156,36 +166,33 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.dawn.zgstep.ctm.CtmFirstActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmSecondActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmThirdActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".activity.ProjectMainActivityRx"
             android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask">
             <!--过滤其一 常规action、category-->
             <intent-filter>
-                <action android:name="com.rye.catcher.external"/>
-                <action android:name="com.rye.catcher"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.rye.catcher.external" />
+                <action android:name="com.rye.catcher" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <!--过滤其二 uri跳转-->
             <intent-filter>
-                <action android:name="com.rye.catcher.uri"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:host="com.rye.catcher"
-                      android:scheme="rye"/>
+                <action android:name="com.rye.catcher.uri" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.rye.catcher"
+                    android:scheme="rye" />
             </intent-filter>
 
         </activity>
+
+        <provider
+            android:name=".project.review.search.RSearchSuggestionProvider"
+            android:authorities="com.rye.catcher.project.review.search.RSearchSuggestionProvider"
+            android:exported="false" />
+
+
         <activity
             android:name=".project.animations.AnimMemoryActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -199,22 +206,9 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.ctmactivity.CtmFivthActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmSixthActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".project.ctmviews.dellist.DelMainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmSeventhActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-
         <activity
             android:name=".project.animations.AnimValueActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -224,7 +218,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".project.SQLiteZ.DBActivity"
+            android:name=".project.sqlite.DBActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -247,27 +241,17 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.ctmactivity.CtmMain2Activity"
+            android:name=".activity.ctmactivity.CtmNextActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
-            android:name=".activity.ctmactivity.CtmEighthActivity"
+            android:name=".activity.ctmactivity.CtmFragmentActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
+
+
         <activity
-            android:name=".activity.ctmactivity.CtmNinethActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".project.ctmviews.Mypractice.Custom_Tenth"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmElevenActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".activity.ctmactivity.CtmTwelfthsActivity"
+            android:name=".activity.ctmactivity.CtmWaterFallActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
@@ -277,8 +261,7 @@
             android:name=".activity.WebViewActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.CartoonsDoActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -287,9 +270,8 @@
             android:name=".activity.BILIActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AnimationActivity"
-            />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.CharactersDoActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -339,31 +321,36 @@
             android:name=".activity.BlueToothActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
+
         <activity
-            android:name=".activity.ctmactivity.CtmDDActivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".common.bigimg.ImageActivity"
+            android:name=".agocode.bigimg.ImageActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".activity.ORRActivity"
             android:launchMode="singleTask" />
         <activity android:name=".activity.ctmactivity.CtmPTRActivity" />
+
         <activity android:name=".activity.BLEActivity" />
+
         <activity android:name=".project.mvp.MvpActivity" />
+
         <activity android:name=".project.mvp.MvpBaseActivity" />
+
         <activity
             android:name=".project.ctmviews.takephoto.CameraActivity2"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
         <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
+
         <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
+
         <activity android:name=".activity.MultiActivity" />
+
         <activity android:name=".activity.LeftDetailActivityRx" />
 
 
-        <activity android:name=".activity.AnimeActivity" />
+        <activity android:name=".project.netdiagnosis.NetDiagnosisActivity" />
     </application>
 
 </manifest>

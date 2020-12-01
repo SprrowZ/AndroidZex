@@ -2,8 +2,10 @@ package com.rye.catcher.activity.ctmactivity;
 
 import android.content.Context;
 import android.content.Intent;
-import com.dawn.zgstep.ctm.CtmFirstActivity;
-import com.dawn.zgstep.test_activitys.SeniorUIActivity;
+
+import com.dawn.zgstep.ctm.fragments.CtmColorMatrixFragment;
+import com.dawn.zgstep.ctm.fragments.CtmFontViewFragment;
+import com.dawn.zgstep.test_activitys.DemoActivity;
 import com.rye.base.BaseRecyclerActivity;
 import com.rye.base.beans.JsonBean;
 import com.rye.base.widget.BaseRecyclerAdapter;
@@ -55,36 +57,20 @@ public class CtmMainActivity extends BaseRecyclerActivity<JsonBean> {
 
         private void onClick(String action,Context context) {
             switch (action) {
-                case "testInvalidate":
-                    Intent intent1 = new Intent(context, CtmFirstActivity.class);
-                    startActivity(intent1);
-                    break;
                 case "testColorMatrix":
-                    Intent intent2 = new Intent(context, CtmSecondActivity.class);
-                    startActivity(intent2);
+                    CtmFragmentActivity.start(context, CtmColorMatrixFragment.class.getName());
                     break;
                 case "testFonts":
-                    Intent intent3 = new Intent(context, CtmThirdActivity.class);
-                    startActivity(intent3);
-                    break;
-                case "testCircle":
-                    Intent intent4 = new Intent(context, CtmFivthActivity.class);
-                    startActivity(intent4);
-                    break;
-                case "testDelete":
-                    startActivity(new Intent(context, CtmSixthActivity.class));
+                    CtmFragmentActivity.start(context, CtmFontViewFragment.class.getName());
                     break;
                 case "testDelete-Ex":
                     startActivity(new Intent(context, DelMainActivity.class));
                     break;
-                case "testDelete-My" :
-                    startActivity(new Intent(context, CtmSeventhActivity.class));
-                    break;
                 case "testXferMode":
-                    SeniorUIActivity.start(context);
+                    DemoActivity.start(context);
                     break;
                 case "testNext":
-                    startActivity(new Intent(context, CtmMain2Activity.class));
+                    startActivity(new Intent(context, CtmNextActivity.class));
                     break;
             }
         }

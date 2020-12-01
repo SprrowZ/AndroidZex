@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rye.catcher.R;
-import com.rye.catcher.beans.binding.DeviceBean;
+import com.rye.catcher.agocode.beans.binding.DeviceBean;
 
 
 import java.util.List;

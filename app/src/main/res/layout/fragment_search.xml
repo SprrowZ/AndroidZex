@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <LinearLayout
+        android:id="@+id/container_review"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/len_20"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="@color/gray_9" />
+
+        <include
+            android:id="@+id/search"
+            layout="@layout/item_review_search" />
+
+        <TextView
+            android:id="@+id/recent_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/len_16"
+            android:textColor="@color/gray_9"
+            android:textSize="@dimen/font_16"
+            tools:text="@string/add_data" />
+    </LinearLayout>
+</FrameLayout>

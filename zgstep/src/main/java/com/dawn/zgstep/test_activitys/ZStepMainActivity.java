@@ -6,8 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.dawn.zgstep.R;
 
+import com.dawn.zgstep.mvvm.model.ConfigViewModel;
 import com.rye.base.BaseActivity;
 import com.rye.base.utils.ToastHelper;
 
@@ -37,7 +41,7 @@ public class ZStepMainActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void initEvent() {
-
+          new ViewModelProvider(this).get(ConfigViewModel.class);
     }
 
     @Override

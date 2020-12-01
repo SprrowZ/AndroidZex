@@ -256,7 +256,7 @@ public class CartoonsDoActivity extends BaseOldActivity {
             cartoons1.setIS_END(Boolean.valueOf(isend));
             cartoons1.setHERO(hero);
             cartoons1.setHEROINE(heroine);
-//               insert();
+//               insertBySqlite();
             cartoonsDao.update(cartoons1);
             String newdata = "名字： " + cartoons1.getNAME() + "  完结？" + cartoons1.getIS_END()
                     + "\n" + "男主角：" + cartoons1.getHERO() + "女主角：" + cartoons1.getHEROINE();

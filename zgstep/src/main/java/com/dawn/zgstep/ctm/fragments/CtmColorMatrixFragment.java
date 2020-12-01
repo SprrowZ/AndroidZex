@@ -1,0 +1,17 @@
+package com.dawn.zgstep.ctm.fragments;
+
+import com.dawn.zgstep.R;
+import com.rye.base.BaseFragment;
+
+/**
+ * Create by rye
+ * at 2020-09-07
+ *
+ * @description:
+ */
+public class CtmColorMatrixFragment extends BaseFragment {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_ctm_color;
+    }
+}

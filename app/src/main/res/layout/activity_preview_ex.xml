@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-<com.rye.catcher.project.ctmviews.takephoto.CameraPreviewEx
-    android:id="@+id/cameraPreview"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent">
+
+    <com.rye.catcher.project.ctmviews.takephoto.CameraPreviewEx
+        android:id="@+id/cameraPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="@dimen/len_80"
         android:layout_height="@dimen/len_80"
         android:background="@color/red"
-        android:scaleType="fitXY"
-        />
+        android:scaleType="fitXY" />
 
     <RelativeLayout
         android:id="@+id/bottomContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_80"
-        tools:background="@color/red"
         android:layout_alignParentBottom="true"
-        >
-      <com.rye.catcher.project.ctmviews.DistortionViews
-          android:id="@+id/takePhoto"
-          android:layout_width="@dimen/len_60"
-          android:layout_height="@dimen/len_60"
-          app:Dtype="circle"
-          app:Dsrc="@mipmap/take_photo"
-          android:scaleType="fitXY"
-          app:NeedBorder="true"
-          app:Bdistance="@dimen/len_4"
-          android:layout_centerInParent="true"
-          />
+        tools:background="@color/red">
+
+        <com.dawn.zgstep.ctm.views.CircleRectView
+            android:id="@+id/takePhoto"
+            android:layout_width="@dimen/len_60"
+            android:layout_height="@dimen/len_60"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            app:shape_border_distance="@dimen/len_4"
+            app:shape_need_border="true"
+            app:shape_src="@mipmap/take_photo"
+            app:shape_type="circle" />
     </RelativeLayout>
 </RelativeLayout>

@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.rye.base.BaseActivity;
 
 import com.rye.catcher.R;
-import com.rye.catcher.project.ctmviews.DistortionViews;
+import com.dawn.zgstep.ctm.views.CircleRectView;
 import com.rye.catcher.utils.ImageUtils;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.permission.PermissionUtils;
@@ -37,7 +37,7 @@ public class CameraActivityEx extends BaseActivity {
     @BindView(R.id.cameraPreview)
     CameraPreviewEx cameraPreview;
     @BindView(R.id.takePhoto)
-    DistortionViews takePhoto;
+    CircleRectView takePhoto;
     @BindView(R.id.iv)
     ImageView iv;
 
@@ -49,9 +49,7 @@ public class CameraActivityEx extends BaseActivity {
     @Override
     public void initEvent() {
         PermissionUtils.requestPermission(this, "请开启相机权限！", false,
-                action -> {
-                    init();
-                }, 0, Permission.CAMERA);
+                action -> init(), 0, Permission.CAMERA);
 
     }
 

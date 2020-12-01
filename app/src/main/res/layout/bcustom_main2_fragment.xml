@@ -1,132 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
- <LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content">
- <Button
-     android:id="@+id/orr"
-     android:text="ShadowLayer"
-     android:layout_width="0dp"
-     android:layout_height="wrap_content"
-     android:layout_weight="1"
-     android:textAllCaps="false"
-     android:background="@drawable/btn_bk4"
-     />
-     <Button
-         android:id="@+id/javaMore"
-         android:text="Telescope"
-         android:textAllCaps="false"
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         android:background="@drawable/btn_bk4"
-         />
-     <Button
-         android:id="@+id/translate"
-         android:text="DistortionView"
-         android:textAllCaps="false"
-         android:singleLine="true"
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:layout_weight="1"
-         android:background="@drawable/btn_bk4"
-         />
- </LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/orr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bk4"
+            android:text="ShadowLayer"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/javaMore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bk4"
+            android:text="Telescope"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/translate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bk4"
+            android:singleLine="true"
+            android:text="DistortionView"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/rotate"
-            android:text="ViewGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_bk4"
-            android:textAllCaps="false"
-            />
+            android:text="ViewGroup"
+            android:textAllCaps="false" />
+
         <Button
             android:id="@+id/btn5"
-            android:text="ViewGroupEx"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_bk4"
-            android:textAllCaps="false"
-            />
+            android:text="ViewGroupEx"
+            android:textAllCaps="false" />
+
         <Button
             android:id="@+id/btn6"
-            android:text="GradientEx"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAllCaps="false"
             android:background="@drawable/btn_bk4"
-            />
+            android:text="GradientEx"
+            android:textAllCaps="false" />
     </LinearLayout>
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/btn7"
-        android:text="WaterFallLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/btn_bk4"
-        android:textAllCaps="false"
-        />
-    <Button
-        android:id="@+id/btn8"
-        android:text="太極"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/btn_bk4"
-        android:textAllCaps="false"
-        />
-    <Button
-        android:id="@+id/btn9"
-        android:text="ProgressBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAllCaps="false"
-        android:background="@drawable/btn_bk4"
-        />
-</LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bk4"
+            android:text="WaterFallLayout"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bk4"
+            android:text="太極"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bk4"
+            android:text="ProgressBar"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/btn10"
-            android:text="DropDownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_bk4"
-            android:textAllCaps="false"
-            />
+            android:text="DropDownMenu"
+            android:textAllCaps="false" />
+
         <Button
             android:id="@+id/btn11"
-            android:text="zPTR"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_bk4"
-            android:textAllCaps="false"
-            />
+            android:text="zPTR"
+            android:textAllCaps="false" />
+
         <Button
             android:id="@+id/btn12"
-            android:text="Wait..."
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAllCaps="false"
             android:background="@drawable/btn_bk4"
-            />
+            android:text="Wait..."
+            android:textAllCaps="false" />
     </LinearLayout>
 </LinearLayout>

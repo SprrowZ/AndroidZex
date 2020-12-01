@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/len_36"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_review"
+    >
+<TextView
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textSize="@dimen/font_24"
+    android:gravity="center"
+
+    tools:text="Are you Ok?"
+    />
+</FrameLayout>

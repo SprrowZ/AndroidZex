@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.rye.catcher.BaseOldActivity;
 import com.rye.catcher.R;
-import com.rye.catcher.project.ctmviews.DistortionViews;
+import com.dawn.zgstep.ctm.views.CircleRectView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +35,7 @@ public class CartoonsDetailActivity extends BaseOldActivity {
     private String plot;
     private String startTime;
     @BindView(R.id.header_img)
-    DistortionViews headerImg;
+    CircleRectView headerImg;
     @BindView(R.id.top_name)
     TextView topName;
     @BindView(R.id.cartoon_name)

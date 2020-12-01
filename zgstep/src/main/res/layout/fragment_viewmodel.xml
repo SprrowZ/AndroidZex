@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey_500"
+    >
+
+    <TextView
+        android:id="@+id/tv_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Null.."
+        android:layout_marginTop="@dimen/len_224"
+        android:textAllCaps="false"
+        android:textSize="@dimen/font_18" />
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/len_20"
+        android:hint="输入内容，改变data"
+        android:textSize="@dimen/font_14" />
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/len_6"
+        android:text="确认"
+        android:textAllCaps="false"
+        android:textSize="@dimen/font_16" />
+
+
+</LinearLayout>

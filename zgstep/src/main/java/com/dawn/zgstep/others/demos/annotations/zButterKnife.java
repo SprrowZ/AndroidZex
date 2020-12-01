@@ -27,7 +27,7 @@ public class zButterKnife {
         Field[] fields=  instance.getDeclaredFields();
         for (Field field:fields){
             Log.i(TAG,field.getName());
-           BindView bindView= field.getAnnotation(BindView.class);
+           BindViewEx bindView= field.getAnnotation(BindViewEx.class);
            if (bindView!=null){//说明有注解
                int id=bindView.value();
                Log.i(TAG,field.getName()+"has Annotation..");

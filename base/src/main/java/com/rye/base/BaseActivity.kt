@@ -9,9 +9,8 @@ import butterknife.ButterKnife
 
 
 abstract class BaseActivity : AppCompatActivity() {
-    companion object{
-        val TAG: String = javaClass.name
-    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,7 +24,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         beforeCreate()
-        if (getLayoutId() != null && getLayoutId() != 0) {
+        if (getLayoutId() != 0) {
             setContentView(getLayoutId())
         } else {
             throw IllegalArgumentException("layout cannot be null!")
@@ -47,7 +46,6 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun initEvent()
 
     open fun beforeCreate() {}
-
 
 
 }

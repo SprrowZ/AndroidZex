@@ -1,7 +1,6 @@
 package com.dawn.zgstep.test_fragments;
 
 import com.dawn.zgstep.R;
-import com.dawn.zgstep.others.demos.annotations.BindView;
 import com.dawn.zgstep.others.views.xfermode.XferModeTwoView;
 import com.rye.base.BaseFragment;
 

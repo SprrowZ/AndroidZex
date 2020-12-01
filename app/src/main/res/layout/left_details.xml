@@ -12,7 +12,7 @@
         android:background="@drawable/bottom_bk2"
         android:orientation="horizontal">
 
-        <com.rye.catcher.project.ctmviews.DistortionViews
+        <com.dawn.zgstep.ctm.views.CircleRectView
             android:id="@+id/portrait"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -20,8 +20,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="@dimen/len_28"
             android:scaleType="center"
-            custom:Dsrc="@mipmap/my4"
-            custom:Dtype="circle" />
+            custom:shape_src="@mipmap/my4"
+            custom:shape_type="circle" />
 
         <TextView
             android:id="@+id/codeName"

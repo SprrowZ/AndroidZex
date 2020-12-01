@@ -334,7 +334,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
                     //创建虚拟表
                     db.execSQL(tblDef.getCreateVirtualTableTblSql());
                     Log.i("sql====",tblDef.getCreateVirtualTableTblSql());
-                    //拷贝数据 insert into 虚拟表 select * from 真实表
+                    //拷贝数据 insertBySqlite into 虚拟表 select * from 真实表
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -345,7 +345,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
                                 dao.saveToVirtualTable(bean);
                             }
 //不能使用导入表了，因为虚拟表要符号化数据
-//                            db.execSQL("insert into "+tblDef.getName()+TableDef._virtual+
+//                            db.execSQL("insertBySqlite into "+tblDef.getName()+TableDef._virtual+
 //                                    " select * from "+tblDef.getName());
                         }
                     }).start();

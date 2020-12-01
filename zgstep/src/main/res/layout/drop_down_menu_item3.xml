@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/len_52"
+    android:id="@+id/container_review"
+    >
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/font_24"
+        android:gravity="center"
+        tools:text="双子座"
+        android:layout_margin="@dimen/len_2"
+        />
+</FrameLayout>

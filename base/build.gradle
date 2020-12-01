@@ -60,6 +60,11 @@ dependencies {
     api deps.eventbus
     api deps.kotlin_jdk7
     api deps.rxlifecycle
+
+    api deps.viewmodel
+    //可以不依赖的
+    api deps.livedata
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }

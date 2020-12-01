@@ -36,7 +36,7 @@ abstract class HttpObserver<T>:Observer<T> {
            if (isHttpError(msg.toString())){
                onError(Error.HTTP_ERROR,"NO INTERNET CONNECTION")
            }else if(throwable is HttpException){
-             val exception=throwable as HttpException
+             val exception=throwable
                if (!isCanHandle(exception)){
                    val body=exception.response().errorBody()?.string()
                     val responseErrorBody=Gson().fromJson(body,ResponseErrorBody::class.java)

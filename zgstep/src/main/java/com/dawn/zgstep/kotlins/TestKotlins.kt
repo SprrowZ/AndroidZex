@@ -71,6 +71,7 @@ object TestKotlins {
             println("mapKey:$it")
         }
     }
+
     /**扁平化参数处理*/
     fun testFlatten() {
         val dataList = listOf(listOf(1, 2, 3), listOf("2", "3", "4"))
@@ -82,7 +83,7 @@ object TestKotlins {
 
     fun testFlatMap() {
         val dataList = listOf(getFakeDatas(), getFakeDatas())
-        val resultList =dataList.flatMap {
+        val resultList = dataList.flatMap {
             it.map { it1 ->
                 it1.name
             }
@@ -92,8 +93,23 @@ object TestKotlins {
         }
     }
 
+    //引用传递
+    val apple = Fruit("red", "apple")
+    fun testModify(apple: Fruit) {
+        apple.name = "banana"
+        println(apple)
+    }
 
+    //值传递
+    var number = 1
+    fun testNumber(num: Int) {
+        number++
+        println(num)
+    }
 
+    fun testHigh(predicate: (Int, Int) -> Int) {
+        println(predicate)
+    }
 }
 
 data class Fruit(val color: String, var name: String)
@@ -105,8 +121,19 @@ fun main() {
     //  TestKotlins.testFilter()
     //  TestKotlins.testCount()
     //   TestKotlins.testGroupBy()
-  //  TestKotlins.testFlatten()
-    TestKotlins.testFlatMap()
+    //  TestKotlins.testFlatten()
+    // TestKotlins.testFlatMap()
+//    TestKotlins.testModify(TestKotlins.apple)
+//    println(TestKotlins.apple)
+//
+//    TestKotlins.testNumber(TestKotlins.number)
+//    println(TestKotlins.number)
+
 }
+
+fun test222(num1: Int, num2: Int): Int {
+    return num1 + num2
+}
+
 
 

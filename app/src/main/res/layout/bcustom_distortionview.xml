@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.dawn.zgstep.ctm.views.CircleRectView
+            <com.dawn.zgstep.ui.ctm.views.CircleRectView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 app:shape_border_distance="@dimen/len_4"
@@ -23,7 +23,7 @@
                 app:shape_src="@drawable/rectange"
                 app:shape_type="circle" />
 
-            <com.dawn.zgstep.ctm.views.CircleRectView
+            <com.dawn.zgstep.ui.ctm.views.CircleRectView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
@@ -33,7 +33,7 @@
                 app:shape_src="@drawable/rectange"
                 app:shape_type="rectangle" />
 
-            <com.dawn.zgstep.ctm.views.CircleRectView
+            <com.dawn.zgstep.ui.ctm.views.CircleRectView
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginLeft="20dp"
@@ -42,7 +42,7 @@
                 app:shape_src="@mipmap/my2"
                 app:shape_type="rectangle" />
 
-            <com.dawn.zgstep.ctm.views.CircleRectView
+            <com.dawn.zgstep.ui.ctm.views.CircleRectView
                 android:layout_width="80dp"
                 android:layout_height="120dp"
                 android:layout_marginLeft="20dp"

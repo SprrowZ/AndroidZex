@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.dawn.zgstep.test_activitys.ZStepMainActivity;
+import com.dawn.zgstep.ui.activity.ZStepMainActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;

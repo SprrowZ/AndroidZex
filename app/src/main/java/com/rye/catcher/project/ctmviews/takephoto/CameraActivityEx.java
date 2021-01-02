@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.rye.base.BaseActivity;
 
 import com.rye.catcher.R;
-import com.dawn.zgstep.ctm.views.CircleRectView;
+import com.dawn.zgstep.ui.ctm.views.CircleRectView;
 import com.rye.catcher.utils.ImageUtils;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.permission.PermissionUtils;

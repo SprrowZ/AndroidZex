@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.dawn.zgstep.ctm.views.DropDownMenu xmlns:android="http://schemas.android.com/apk/res/android"
+<com.dawn.zgstep.ui.ctm.views.DropDownMenu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dropDownMenu"
     android:layout_width="match_parent"
@@ -14,4 +14,4 @@
     app:textUnSelectedColor="@color/gray_9"
     app:underlineColor="@color/gray_dividing">
 
-</com.dawn.zgstep.ctm.views.DropDownMenu>
+</com.dawn.zgstep.ui.ctm.views.DropDownMenu>

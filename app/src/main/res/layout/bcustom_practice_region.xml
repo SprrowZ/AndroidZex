@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
-    <com.dawn.zgstep.ctm.simple.practice.PracticeFiger
+    <com.dawn.zgstep.ui.ctm.simple.practice.PracticeFiger
         android:id="@+id/figer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

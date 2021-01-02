@@ -14,7 +14,7 @@
     <!--android:id="@+id/telescope"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent" />-->
-<com.dawn.zgstep.ctm.simple.practice.RotateFirst
+<com.dawn.zgstep.ui.ctm.simple.practice.RotateFirst
     android:id="@+id/rotatefirst"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

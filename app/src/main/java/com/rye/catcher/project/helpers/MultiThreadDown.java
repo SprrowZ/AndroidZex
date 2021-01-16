@@ -5,9 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-
-import com.rye.catcher.utils.Old_ApplicationUtil;
-
+import com.rye.catcher.RyeCatcherApp;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.lang.ref.WeakReference;
@@ -80,7 +78,7 @@ public class MultiThreadDown {
     }
 
     public MultiThreadDown(String loadUrl, String filePath, int threadCount, DownLoadListener mDownLoadListener) {
-        this.mContext = Old_ApplicationUtil.getAppContext();
+        this.mContext = RyeCatcherApp.getContext();
         this.loadUrl = loadUrl;
         this.filePath = filePath;
         this.threadCount = threadCount;

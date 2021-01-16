@@ -15,7 +15,6 @@ import com.rye.catcher.activity.adapter.OkHttpAdapter;
 import com.rye.catcher.BaseOldFragment;
 
 import com.rye.base.utils.DeviceUtils;
-import com.rye.catcher.utils.Old_ApplicationUtil;
 import com.rye.catcher.utils.ExtraUtil.test.utils.OkHttpManager;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.ToastUtils;

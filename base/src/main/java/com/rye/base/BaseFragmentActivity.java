@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 public abstract class BaseFragmentActivity extends BaseActivity
         implements FragmentActions {
     protected Fragment mCurrentFragment;
-    protected FragmentTransaction mFragmentTransaction;
 
     @Override
     public int getLayoutId() {
@@ -20,7 +19,10 @@ public abstract class BaseFragmentActivity extends BaseActivity
     @Override
     public void beforeCreate() {
         super.beforeCreate();
-        mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+    }
+    private  FragmentTransaction getFragmentTransaction(){
+       return  getSupportFragmentManager().beginTransaction();
     }
 
     @Override
@@ -32,13 +34,13 @@ public abstract class BaseFragmentActivity extends BaseActivity
     public void addFragment(@NotNull Fragment fg) {
         if (fg == mCurrentFragment) return;
         mCurrentFragment = fg;
-        mFragmentTransaction.add(R.id.base_container, fg)
+        getFragmentTransaction().add(R.id.base_container, fg)
                 .commitAllowingStateLoss();
     }
 
     @Override
     public void removeFragment(@NotNull Fragment fg) {
-        mFragmentTransaction.remove(fg)
+        getFragmentTransaction().remove(fg)
                 .commitAllowingStateLoss();
         mCurrentFragment = null;
     }
@@ -46,14 +48,14 @@ public abstract class BaseFragmentActivity extends BaseActivity
     @Override
     public void hideFragment() {
         if (mCurrentFragment == null) return;
-        mFragmentTransaction.hide(mCurrentFragment)
+        getFragmentTransaction().hide(mCurrentFragment)
                 .commitAllowingStateLoss();
     }
 
     @Override
     public void showFragment() {
         if (mCurrentFragment == null) return;
-        mFragmentTransaction.hide(mCurrentFragment)
+        getFragmentTransaction().hide(mCurrentFragment)
                 .commitAllowingStateLoss();
     }
 
@@ -68,7 +70,7 @@ public abstract class BaseFragmentActivity extends BaseActivity
             throw new IllegalArgumentException("Fragment 不能为空！");
         }
         if (mCurrentFragment == fg) return;
-        mFragmentTransaction.replace(containerId, fg)
+        getFragmentTransaction().replace(containerId, fg)
                 .commitAllowingStateLoss();
         mCurrentFragment = fg;
     }

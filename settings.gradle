@@ -1,3 +1,4 @@
+include ':pluginz'
 include ':app', ':zgstep',
         ':zzsdk',
         ':base'

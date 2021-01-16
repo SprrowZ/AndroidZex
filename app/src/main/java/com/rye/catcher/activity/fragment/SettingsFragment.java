@@ -1,10 +1,12 @@
 package com.rye.catcher.activity.fragment;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.dawn.zgstep.ui.activity.DemoActivity;
 import com.rye.base.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
@@ -25,7 +27,7 @@ import butterknife.OnClick;
  * Created by zzg on 2017/10/10.
  */
 
-public class SettingsFragment  extends BaseFragment {
+public class SettingsFragment extends BaseFragment {
 
     private Context mContext;
 
@@ -37,13 +39,13 @@ public class SettingsFragment  extends BaseFragment {
     @Override
     public void initEvent() {
         super.initEvent();
-        mContext=getContext();
+        mContext = getContext();
     }
 
-    @OnClick({R.id.orr,R.id.javaMore,R.id.translate,R.id.rotate,R.id.camera,
-    R.id.review,R.id.animation,R.id.custom,R.id.project})
-    public void onViewClicked(View view){
-        switch (view.getId()){
+    @OnClick({R.id.orr, R.id.javaMore, R.id.translate, R.id.rotate, R.id.camera,
+            R.id.review, R.id.animation, R.id.custom, R.id.project, R.id.fragments})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.orr:
                 mContext.startActivity(new Intent(mContext, ORRActivity.class));
                 break;
@@ -70,18 +72,22 @@ public class SettingsFragment  extends BaseFragment {
                 Intent intent7 = new Intent(mContext, AnimMainActivity.class);
                 mContext.startActivity(intent7);
                 break;
+            case R.id.fragments:
+                DemoActivity.start(mContext);
+                break;
             case R.id.custom:
                 Intent intent8 = new Intent(mContext, CtmMainActivity.class);
                 mContext.startActivity(intent8);
                 break;
             case R.id.project:
 
-           Intent intent9 = new Intent(mContext, ProjectMainActivityRx.class);
-               ((Activity)mContext).startActivityForResult(intent9,11);
+                Intent intent9 = new Intent(mContext, ProjectMainActivityRx.class);
+                ((Activity) mContext).startActivityForResult(intent9, 11);
                 break;
 
         }
     }
+
     private void authority() {
         //申请权限
         String[] permissions = new String[]{Manifest.permission.CAMERA,
@@ -89,18 +95,17 @@ public class SettingsFragment  extends BaseFragment {
         PermissionsUtil.showSystemSetting = false;//是否支持显示系统设置权限设置窗口跳转
         PermissionsUtil.IPermissionsResult permissionsResult =
                 new PermissionsUtil.IPermissionsResult() {
-            @Override
-            public void passPermissons() {
-                ToastUtils.shortMsg("权限申请成功");
-            }
+                    @Override
+                    public void passPermissons() {
+                        ToastUtils.shortMsg("权限申请成功");
+                    }
 
-            @Override
-            public void forbitPermissons() {
-                ToastUtils.shortMsg("权限申请失败");
-            }
-        };
+                    @Override
+                    public void forbitPermissons() {
+                        ToastUtils.shortMsg("权限申请失败");
+                    }
+                };
     }
-
 
 
 }

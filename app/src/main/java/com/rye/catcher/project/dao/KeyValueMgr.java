@@ -3,7 +3,7 @@ package com.rye.catcher.project.dao;
 import android.content.Context;
 
 
-import com.rye.catcher.utils.Old_ApplicationUtil;
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.base.utils.StringUtils;
 
@@ -29,7 +29,7 @@ public class KeyValueMgr {
     /** 常用联系人**/
 
     private static Context getContext() {
-        return Old_ApplicationUtil.getAppContext();
+        return RyeCatcherApp.getContext();
     }
     /**
      * 获取登录人信息

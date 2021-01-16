@@ -30,7 +30,7 @@ public class SharedPreManager {
         if (key==null){
             throw new IllegalStateException("key can not be null!");
         }
-        SharedPreferences sp= Old_ApplicationUtil.getAppContext()
+        SharedPreferences sp= RyeCatcherApp.getContext()
                 .getSharedPreferences(SP_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
         editor.putString(key,String.valueOf(value));

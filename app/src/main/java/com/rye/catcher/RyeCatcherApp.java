@@ -2,27 +2,23 @@ package com.rye.catcher;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
+import com.dawn.zgstep.pluggable.LoadUtil;
 import com.rye.base.BaseApplication;
 
 
 import com.rye.catcher.base.OverallHandler;
 
 import com.rye.catcher.utils.FileUtil;
-import com.rye.catcher.utils.Old_ApplicationUtil;
 
 
 /**
@@ -31,8 +27,8 @@ import com.rye.catcher.utils.Old_ApplicationUtil;
 
 public class RyeCatcherApp extends BaseApplication {
 
-    private static final String TAG="RyeCatcherApp";
-    private static final String LIFECYCLE_LOG="LIFECYCLE_LOG:";
+    private static final String TAG = "zApplication";
+    private static final String LIFECYCLE_LOG = "LIFECYCLE_LOG:";
 
     private static Context mContext;
 
@@ -41,10 +37,10 @@ public class RyeCatcherApp extends BaseApplication {
     private static Paint mPaint;
 
     //前后台判断
-    private int countActivity=0;
+    private int countActivity = 0;
 
     //全局Handler
-    private  OverallHandler overallHandler=null;
+    private OverallHandler overallHandler = null;
 
     @Override
     public void onCreate() {
@@ -52,10 +48,9 @@ public class RyeCatcherApp extends BaseApplication {
         instance = this;//赋值
         mContext = getApplicationContext();
         init();
-        //如果不赋值，那么EchatAppUtil获取的context永远为空...数据库那里会崩掉
-        Old_ApplicationUtil.setContext(mContext);
-
         ThirdSdk.getInstance().initSdk(this);
+        //插件，加载plugin dex
+        LoadUtil.loadClass(this);
     }
 
 
@@ -70,6 +65,7 @@ public class RyeCatcherApp extends BaseApplication {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             //打开的Activity数量统计
             private int activityCount = 0;
+
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
 
@@ -77,16 +73,16 @@ public class RyeCatcherApp extends BaseApplication {
 
             @Override
             public void onActivityStarted(Activity activity) {
-              //如果为1，则说明从后台进入到前台
+                //如果为1，则说明从后台进入到前台
                 countActivity++;
-                Log.i(TAG, "onActivityStarted: "+countActivity);
-                FileUtil.writeUserLog(LIFECYCLE_LOG+activity.getLocalClassName());
-             //   setGray(activity);
+                Log.i(TAG, "onActivityStarted: " + countActivity);
+                FileUtil.writeUserLog(LIFECYCLE_LOG + activity.getLocalClassName());
+                //   setGray(activity);
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
-                Log.i(TAG, "onActivityResumed: "+activity.getLocalClassName());
+                Log.i(TAG, "onActivityResumed: " + activity.getLocalClassName());
 
             }
 
@@ -97,9 +93,9 @@ public class RyeCatcherApp extends BaseApplication {
 
             @Override
             public void onActivityStopped(Activity activity) {
-               countActivity--;
-               //如果为0，说明程序已经运行在后台
-                Log.i(TAG, "onActivityStopped: "+countActivity);
+                countActivity--;
+                //如果为0，说明程序已经运行在后台
+                Log.i(TAG, "onActivityStopped: " + countActivity);
             }
 
             @Override
@@ -114,8 +110,8 @@ public class RyeCatcherApp extends BaseApplication {
         });
 
         //----------全局Handler
-        if (overallHandler==null){
-            overallHandler=new OverallHandler(this);
+        if (overallHandler == null) {
+            overallHandler = new OverallHandler(this);
         }
     }
 
@@ -123,8 +119,9 @@ public class RyeCatcherApp extends BaseApplication {
     public static RyeCatcherApp getInstance() {
         return instance;
     }
+
     //获取全局Handler
-    public   OverallHandler getHandler() {
+    public OverallHandler getHandler() {
         return overallHandler;
     }
 
@@ -143,14 +140,14 @@ public class RyeCatcherApp extends BaseApplication {
     }
 
     @SuppressLint("ResourceAsColor")
-    private void setGray(Activity activity){
+    private void setGray(Activity activity) {
         if (mPaint == null) {
             mPaint = new Paint();
         }
-         ColorMatrix colorMatrix = new ColorMatrix();
-         colorMatrix.setSaturation(0f);
-         mPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        activity.getWindow().getDecorView().setLayerType(View.LAYER_TYPE_HARDWARE,mPaint);
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(0f);
+        mPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        activity.getWindow().getDecorView().setLayerType(View.LAYER_TYPE_HARDWARE, mPaint);
     }
 
 

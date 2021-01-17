@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:orientation="vertical"
-    tools:context=".test_activitys.ZStepMainActivity">
+    tools:context=".ui.activity.ZStepMainActivity">
 
     <TextView
         android:id="@+id/btn1"

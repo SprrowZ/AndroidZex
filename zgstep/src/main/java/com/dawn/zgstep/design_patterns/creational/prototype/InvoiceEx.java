@@ -14,7 +14,7 @@ import java.util.List;
  * Create by rye
  * at 2020-07-21
  *
- * @description:
+ * @description: 深拷贝
  */
 public class InvoiceEx implements Cloneable {
     private String invoiceHeader;

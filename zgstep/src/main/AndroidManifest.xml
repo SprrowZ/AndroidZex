@@ -3,9 +3,9 @@
     package="com.dawn.zgstep">
 
     <application>
-        <activity android:name=".test_activitys.DemoActivity"></activity>
+        <activity android:name=".ui.activity.DemoActivity"></activity>
         <activity android:name=".others.job1.JobOneActivity" />
-        <activity android:name=".test_activitys.ZStepMainActivity" />
+        <activity android:name=".ui.activity.ZStepMainActivity" />
         <activity android:name=".others.bolts.BoltsMainJava" />
     </application>
 

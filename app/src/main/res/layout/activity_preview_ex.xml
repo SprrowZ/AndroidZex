@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         tools:background="@color/red">
 
-        <com.dawn.zgstep.ctm.views.CircleRectView
+        <com.dawn.zgstep.ui.ctm.views.CircleRectView
             android:id="@+id/takePhoto"
             android:layout_width="@dimen/len_60"
             android:layout_height="@dimen/len_60"

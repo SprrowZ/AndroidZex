@@ -8,10 +8,10 @@ import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dawn.zgstep.ctm.fragments.CtmDropDownFragment;
-import com.dawn.zgstep.ctm.fragments.CtmScanFragment;
-import com.dawn.zgstep.ctm.fragments.CtmValueAnimatorFragment;
-import com.dawn.zgstep.ctm.fragments.TestCanvasFragment;
+import com.dawn.zgstep.ui.ctm.fragments.CtmDropDownFragment;
+import com.dawn.zgstep.ui.ctm.fragments.CtmScanFragment;
+import com.dawn.zgstep.ui.ctm.fragments.CtmValueAnimatorFragment;
+import com.dawn.zgstep.ui.ctm.fragments.TestCanvasFragment;
 import com.rye.base.BaseFragment;
 import com.rye.base.interfaces.OnItemClickListener;
 import com.rye.catcher.R;

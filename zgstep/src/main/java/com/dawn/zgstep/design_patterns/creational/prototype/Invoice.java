@@ -2,6 +2,9 @@ package com.dawn.zgstep.design_patterns.creational.prototype;
 
 import java.util.Date;
 
+/**
+ * 浅拷贝；对象只拷贝了内存空间，没有真的新建一个对象。
+ */
 public class Invoice implements Cloneable {
     //发票头
     private String invoiceHeader;

@@ -3,9 +3,9 @@ package com.rye.catcher.activity.ctmactivity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.dawn.zgstep.ctm.fragments.CtmColorMatrixFragment;
-import com.dawn.zgstep.ctm.fragments.CtmFontViewFragment;
-import com.dawn.zgstep.test_activitys.DemoActivity;
+import com.dawn.zgstep.ui.ctm.fragments.CtmColorMatrixFragment;
+import com.dawn.zgstep.ui.ctm.fragments.CtmFontViewFragment;
+import com.dawn.zgstep.ui.activity.DemoActivity;
 import com.rye.base.BaseRecyclerActivity;
 import com.rye.base.beans.JsonBean;
 import com.rye.base.widget.BaseRecyclerAdapter;

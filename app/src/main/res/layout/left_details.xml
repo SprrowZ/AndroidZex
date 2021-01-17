@@ -12,7 +12,7 @@
         android:background="@drawable/bottom_bk2"
         android:orientation="horizontal">
 
-        <com.dawn.zgstep.ctm.views.CircleRectView
+        <com.dawn.zgstep.ui.ctm.views.CircleRectView
             android:id="@+id/portrait"
             android:layout_width="70dp"
             android:layout_height="70dp"

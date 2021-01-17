@@ -1,27 +1,14 @@
 package com.dawn.zgstep.others.tests;
 
+import java.util.List;
+
 public class MainJavaEnter {
 
 
-    public static void main(String[] args){
-       testAnnotation();
-
+    public static void main(String[] args) {
+        //  testAnnotation();
+        testClass();
     }
-
-
-    private static void testMothod() {
-//        if (badgeType == 1) {
-//            return Color.parseColor("#23ADE5");
-//        } else if (badgeType == 2) {
-//            return Color.parseColor("#FAAB4B");
-//        } else {
-//            return Color.parseColor("#FF6186");
-//        }
-
-
-    // Color.parseColor("#23ADE5");
-    }
-
 
 
     private static void testAnnotation() {
@@ -37,10 +24,24 @@ public class MainJavaEnter {
 
         System.out.println(Enlist.woollen);
 
-        Mango mango =new Mango("小李");
+        Mango mango = new Mango("小李");
 
         Mango.Companion.dealSth("American");
 
+    }
+
+    private static void testClass() {
+
+    }
+
+    static class Test1 {
+        List<? extends Object> dataList;
+
+
+    }
+
+    interface ITest {
+//        <? extends Object> creteProduct();
     }
 
 }

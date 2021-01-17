@@ -1,7 +1,6 @@
-package com.dawn.zgstep.mvvm.model
+package com.dawn.zgstep.jetpack
 
 
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.*
 
 /**

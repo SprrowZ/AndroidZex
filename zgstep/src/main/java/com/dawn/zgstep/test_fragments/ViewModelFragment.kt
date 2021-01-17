@@ -1,11 +1,14 @@
 package com.dawn.zgstep.test_fragments
 
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.dawn.zgstep.R
-import com.dawn.zgstep.mvvm.model.ConfigViewModel
+import com.dawn.zgstep.jetpack.ConfigViewModel
+import com.dawn.zgstep.jetpack.TimerViewModel
 import com.rye.base.BaseFragment
 
 /**
@@ -41,5 +44,12 @@ class ViewModelFragment :BaseFragment() {
         tvConfirm?.setOnClickListener{
              repository.setTheme(etInput?.text.toString())
         }
+    }
+
+    private fun testViewModel(){
+        val timerModel = ViewModelProvider(this).get(TimerViewModel::class.java)
+        timerModel.addCurrentSecondObserver(this, Observer<Int> {
+            Log.i("Rye","dataChange:$it")
+        })
     }
 }

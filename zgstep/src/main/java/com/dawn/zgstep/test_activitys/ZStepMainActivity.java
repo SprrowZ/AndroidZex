@@ -6,12 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dawn.zgstep.R;
 
-import com.dawn.zgstep.mvvm.model.ConfigViewModel;
+import com.dawn.zgstep.jetpack.ConfigViewModel;
 import com.rye.base.BaseActivity;
 import com.rye.base.utils.ToastHelper;
 

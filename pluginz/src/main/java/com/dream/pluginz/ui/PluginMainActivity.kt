@@ -1,4 +1,4 @@
-package com.dream.pluginz
+package com.dream.pluginz.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

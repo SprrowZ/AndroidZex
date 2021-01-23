@@ -19,12 +19,12 @@ public class Platte<T extends ExtendSuper.Fruit> {
   public static void main(String args[]){
 
   }
-    @RequiresApi(api = Build.VERSION_CODES.P)
+//    @RequiresApi(api = Build.VERSION_CODES.P)
     public void testGeneric(){
         Class c=this.getClass();
         Type type= c.getGenericSuperclass();
-        String typeName=type.getTypeName();
-        System.out.println(typeName);
+    //    String typeName=type.getTypeName();
+    //    System.out.println(typeName);
     }
 
 

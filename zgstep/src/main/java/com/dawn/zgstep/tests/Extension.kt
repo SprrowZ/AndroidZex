@@ -1,4 +1,4 @@
-package com.dawn.zgstep.kotlins
+package com.dawn.zgstep.tests
 
 /**
  * Create by rye
@@ -12,9 +12,9 @@ fun MutableList<Int>.exchange(fromIndex:Int,toIndex:Int){
     this[toIndex] = tmp
 }
 
-fun TestKotlins.println(str:String){
-    println(str)
-}
+//fun TestKotlins.println(str:String){
+//    println(str)
+//}
 val TestKotlins.nickName :String
 get() = this.javaClass.name +".ORZ"
 
@@ -24,6 +24,6 @@ class Extendss{
         val list = mutableListOf<Int>(1,2)
         list.exchange(0,1)
 
-        TestKotlins.println("zg")
+//        TestKotlins.println("zg")
     }
 }

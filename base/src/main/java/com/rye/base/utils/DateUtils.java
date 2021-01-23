@@ -1,11 +1,9 @@
 package com.rye.base.utils;
 
-import android.annotation.SuppressLint;
-import android.content.res.Resources;
 import android.text.TextUtils;
 
 
-
+import com.rye.base.utils.utils_context.TimeBean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

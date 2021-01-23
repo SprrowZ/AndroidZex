@@ -1,4 +1,4 @@
-package com.dawn.zgstep.kotlins
+package com.dawn.zgstep.tests
 
 import com.dawn.zgstep.others.tests.TestStatic
 

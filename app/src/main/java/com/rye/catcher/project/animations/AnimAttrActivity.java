@@ -2,28 +2,34 @@ package com.rye.catcher.project.animations;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.os.Bundle;
-import androidx.annotation.Nullable;
+
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
+
 import com.rye.catcher.R;
 
 /**
  * Created by Zzg on 2017/11/19.
  */
 
-public class AnimAttrActivity extends BaseOldActivity {
+public class AnimAttrActivity extends BaseActivity {
     private Button btn1;
     private ImageView imageView;
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.animation_attribute);
-        btn1=findViewById(R.id.orr);
-        imageView=findViewById(R.id.imageView);
+    public int getLayoutId() {
+        return R.layout.animation_attribute;
+    }
+
+    @Override
+    public void initEvent() {
+        btn1 = findViewById(R.id.orr);
+        imageView = findViewById(R.id.imageView);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,19 +42,17 @@ public class AnimAttrActivity extends BaseOldActivity {
                 //PropertyValuesHolder p3=PropertyValuesHolder.ofFloat("translationY",0,200F);
                 //ObjectAnimator.ofPropertyValuesHolder(imageView,p1,p2,p3).setDuration(1000).start();
 
-                ObjectAnimator animator1=ObjectAnimator.ofFloat(imageView,"translationX",0F,200f);
-                ObjectAnimator animator2= ObjectAnimator.ofFloat(imageView,"translationY",0F,200f);
-                ObjectAnimator animator3= ObjectAnimator.ofFloat(imageView,"rotation",0F,720F);
-                AnimatorSet set=new AnimatorSet();
+                ObjectAnimator animator1 = ObjectAnimator.ofFloat(imageView, "translationX", 0F, 200f);
+                ObjectAnimator animator2 = ObjectAnimator.ofFloat(imageView, "translationY", 0F, 200f);
+                ObjectAnimator animator3 = ObjectAnimator.ofFloat(imageView, "rotation", 0F, 720F);
+                AnimatorSet set = new AnimatorSet();
                 //set.playTogether(animator1,animator2,animator3);
                 //set.play(animator1).with(animator2);
                 //set.play(animator3).after(animator1);
                 //set.play(animator1).before(animator3);
-                set.playSequentially(animator1,animator2,animator3);
+                set.playSequentially(animator1, animator2, animator3);
                 set.setDuration(1000);
                 set.start();
-
-
 
 
             }

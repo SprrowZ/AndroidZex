@@ -20,23 +20,23 @@ public class ToastUtils {
             return;
         }
 
-        Toasty.normal(RyeCatcherApp.getContext(),msg).show();
+        Toasty.normal(RyeCatcherApp.getInstance(),msg).show();
     }
 
     public static void longMsg(String msg) {
         if (StringUtils.isEmpty(msg)) {
             return;
         }
-        Toasty.info(RyeCatcherApp.getContext(), msg,
+        Toasty.info(RyeCatcherApp.getInstance(), msg,
                 LENGTH_LONG, true).show();
     }
 
     public static void shortMsg(int resId) {
-        Toasty.normal(RyeCatcherApp.getContext(),RyeCatcherApp.getContext().getString(resId)).show();
+        Toasty.normal(RyeCatcherApp.getInstance(),RyeCatcherApp.getInstance().getString(resId)).show();
     }
 
     public static void longMsg(int resId) {
-        Toasty.info(RyeCatcherApp.getContext(), RyeCatcherApp.getContext().getString(resId),
+        Toasty.info(RyeCatcherApp.getInstance(), RyeCatcherApp.getInstance().getString(resId),
                 LENGTH_LONG, true).show();
     }
 

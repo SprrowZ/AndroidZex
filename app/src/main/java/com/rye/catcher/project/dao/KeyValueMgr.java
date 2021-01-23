@@ -29,7 +29,7 @@ public class KeyValueMgr {
     /** 常用联系人**/
 
     private static Context getContext() {
-        return RyeCatcherApp.getContext();
+        return RyeCatcherApp.getInstance();
     }
     /**
      * 获取登录人信息

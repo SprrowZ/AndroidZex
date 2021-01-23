@@ -3,9 +3,7 @@ package com.rye.catcher.project.animations;
 import android.animation.IntEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 
 import android.view.View;
 import android.view.animation.BounceInterpolator;
@@ -13,7 +11,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
+
 import com.rye.catcher.R;
 import com.rye.base.utils.MeasureUtil;
 
@@ -21,7 +20,7 @@ import com.rye.base.utils.MeasureUtil;
  * Created by Zzg on 2017/12/3.
  */
 
-public class AnimValueActivity extends BaseOldActivity implements View.OnClickListener {
+public class AnimValueActivity extends BaseActivity implements View.OnClickListener {
     private Button btn1;
     private Button btn2;
     private Button btn3;
@@ -34,10 +33,14 @@ public class AnimValueActivity extends BaseOldActivity implements View.OnClickLi
 
     TextView tv;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.animation_valueanimator);
+    public int getLayoutId() {
+        return R.layout.animation_valueanimator;
+    }
+
+    @Override
+    public void initEvent() {
         initView();
     }
 
@@ -133,6 +136,5 @@ public class AnimValueActivity extends BaseOldActivity implements View.OnClickLi
         ob.start();
         return ob;
     }
-
 
 }

@@ -78,7 +78,7 @@ public class MultiThreadDown {
     }
 
     public MultiThreadDown(String loadUrl, String filePath, int threadCount, DownLoadListener mDownLoadListener) {
-        this.mContext = RyeCatcherApp.getContext();
+        this.mContext = RyeCatcherApp.getInstance();
         this.loadUrl = loadUrl;
         this.filePath = filePath;
         this.threadCount = threadCount;

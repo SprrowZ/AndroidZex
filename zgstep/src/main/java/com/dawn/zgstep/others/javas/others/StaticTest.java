@@ -1,6 +1,6 @@
 package com.dawn.zgstep.others.javas.others;
 
-import com.dawn.zgstep.kotlins.ZZG;
+import com.dawn.zgstep.tests.ZZG;
 
 /**
  * Created By RyeCatcher

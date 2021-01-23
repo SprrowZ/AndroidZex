@@ -1,5 +1,7 @@
 package com.dawn.zgstep.ui.fragment
 
+import android.content.ComponentName
+import android.content.Intent
 import android.util.Log
 import android.widget.TextView
 import com.dawn.zgstep.R
@@ -47,6 +49,11 @@ class ClassLoaderFragment : BaseFragment() {
 
         mHookActivity?.setOnClickListener {
             HookUtil.testHookAms(activity)
+
+            val intent = Intent()
+            intent.component  = ComponentName("com.dawn.zgstep.ui.activity",
+                    "com.dawn.zgstep.ui.activity.ProxyActivity")
+            activity?.startActivity(intent)
         }
     }
 

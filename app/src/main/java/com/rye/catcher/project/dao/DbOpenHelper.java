@@ -97,7 +97,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     private static Map<String, TableDef> tables = null;
 
     private DbOpenHelper(String dbName) {
-        super(RyeCatcherApp.getContext(), dbName, null, DATABASE_VERSION);
+        super(RyeCatcherApp.getInstance(), dbName, null, DATABASE_VERSION);
         this.createTables(this.getWritableDatabase());
     }
 
@@ -147,7 +147,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         }
         synchronized (TAG) {
             if(tables == null) {
-                loadTableDefFile(RyeCatcherApp.getContext());
+                loadTableDefFile(RyeCatcherApp.getInstance());
             }
         }
         TableDef tableDef =  tables.get(tblName);
@@ -227,7 +227,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         closeDbs();
         String fileName = this.getDatabaseName();
         // 取得数据库文件名
-        File dbFile =  RyeCatcherApp.getContext().getDatabasePath(fileName);
+        File dbFile =  RyeCatcherApp.getInstance().getDatabasePath(fileName);
         if(dbFile == null) {
             return;
         }

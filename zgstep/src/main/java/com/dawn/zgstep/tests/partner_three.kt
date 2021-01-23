@@ -1,8 +1,6 @@
-package com.dawn.zgstep.kotlins
+package com.dawn.zgstep.tests
 
 import android.content.Context
-import android.os.Parcel
-import android.os.Parcelable
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View

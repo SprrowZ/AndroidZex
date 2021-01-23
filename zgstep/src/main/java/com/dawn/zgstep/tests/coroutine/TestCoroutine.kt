@@ -1,7 +1,6 @@
-package com.dawn.zgstep.kotlins.coroutine
+package com.dawn.zgstep.tests.coroutine
 
 import kotlinx.coroutines.*
-import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 /**

@@ -178,7 +178,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 startActivity(new Intent(this, CommonDialogActivity.class));
                 break;
             case "testCoor":
-                startActivity(new Intent(this, CoordinatorActivity.class));
+                ToastHelper.showToastShort(this,"已经被干掉了！");
                 break;
             case "batchLoading":
                 startActivity(new Intent(this, BatchLoadingActivity.class));

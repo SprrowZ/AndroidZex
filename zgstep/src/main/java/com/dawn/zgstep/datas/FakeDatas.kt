@@ -1,7 +1,7 @@
 package com.dawn.zgstep.datas
 
 import com.dawn.zgstep.R
-import com.dawn.zgstep.kotlins.runOnMainThread
+import com.dawn.zgstep.tests.runOnMainThread
 
 class FakeDatas {
     /**

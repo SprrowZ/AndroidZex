@@ -1,10 +1,9 @@
 package com.rye.catcher.activity;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.dawn.zgstep.ui.ctm.views.CircleRectView;
 
@@ -15,7 +14,7 @@ import butterknife.OnClick;
 /**
  * Created by ZZG on 2018/8/19.
  */
-public class CartoonsDetailActivity extends BaseOldActivity {
+public class CartoonsDetailActivity extends BaseActivity {
     /**
      * 属性集合
      */
@@ -51,10 +50,14 @@ public class CartoonsDetailActivity extends BaseOldActivity {
     @BindView(R.id.details)
     TextView details;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.cartoon_details);
+    public int getLayoutId() {
+        return R.layout.cartoon_details;
+    }
+
+    @Override
+    public void initEvent() {
         ButterKnife.bind(this);
         init();
     }

@@ -1,53 +1,61 @@
 package com.rye.catcher.activity
 
-import android.os.Bundle
+
 import android.util.Log
-import com.rye.catcher.BaseOldActivity
+import android.widget.Button
+import com.rye.base.BaseActivity
 import com.rye.catcher.R
-import kotlinx.android.synthetic.main.activity_kt_coroutine.*
+
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class KtCoroutineActivity : BaseOldActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kt_coroutine)
-        initEvent()
+class KtCoroutineActivity : BaseActivity() {
+    private var mLaunchBtn: Button?=null
+    private var mAsyncBtn:Button?=null
+    override fun getLayoutId(): Int {
+        return R.layout.activity_kt_coroutine
     }
-    private fun initEvent(){
-        aa.setOnClickListener{
+
+    override fun initWidget() {
+        super.initWidget()
+        mLaunchBtn = findViewById(R.id.aa)
+        mAsyncBtn = findViewById(R.id.bb)
+    }
+    override fun initEvent() {
+        mLaunchBtn?.setOnClickListener {
             testLaunch()
         }
-        bb.setOnClickListener{
+        mAsyncBtn?.setOnClickListener {
             testAsync()
         }
     }
-    fun testLaunch(){
+
+    fun testLaunch() {
         GlobalScope.launch(Dispatchers.IO) {
             //调度器指定在IO线程中运行
-            Log.i("zzz",Thread.currentThread().name)
-            val today=Date(System.currentTimeMillis())
-            val date=SimpleDateFormat("yyyy-MM-dd").format(today)
+            Log.i("zzz", Thread.currentThread().name)
+            val today = Date(System.currentTimeMillis())
+            val date = SimpleDateFormat("yyyy-MM-dd").format(today)
             delay(2000)
             //暂记问题---withContext里的代码不执行
-            withContext(Dispatchers.Main){
-                bb.text="kugou!"
-                Log.i("zzz",Thread.currentThread().name+"---time:$date")
-           }
+            withContext(Dispatchers.Main) {
+                mAsyncBtn?.text = "kugou!"
+                Log.i("zzz", Thread.currentThread().name + "---time:$date")
+            }
         }
     }
-    fun  testAsync(){
-         GlobalScope.launch {
-             Log.i("zzz","launch...")
-             var result=-1
-            val re= async {
-                 delay(10000)
-                 result=200
+
+    fun testAsync() {
+        GlobalScope.launch {
+            Log.i("zzz", "launch...")
+            var result = -1
+            val re = async {
+                delay(10000)
+                result = 200
                 return@async result
-             }
-             Log.i("zzz","result:${re.await()}")
-         }
+            }
+            Log.i("zzz", "result:${re.await()}")
+        }
     }
 }

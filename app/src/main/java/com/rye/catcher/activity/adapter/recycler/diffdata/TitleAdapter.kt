@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rye.catcher.R
-import kotlinx.android.synthetic.main.recycler_common_title_item.view.*
+
 
 class TitleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Runnable {
     var rootView: View? = null
-    var count : Int = -1
+    var count: Int = -1
     override fun run() {
         Log.i("ZZG", "------滴答滴答--Runnable")
-        count ++
+        count++
         if (count == 5) {
             rootView?.removeCallbacks(this)
         }
@@ -32,12 +32,14 @@ class TitleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Runnable {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        rootView = holder.itemView
-        holder.itemView.title.text = dataList?.get(position) ?: "--"
-        holder.itemView.setOnClickListener {
-            itemClickListener?.onClick(it, position)
+        if (holder is TitleHolder) {
+            holder.mTitle?.text = dataList?.get(position) ?: "--"
+            holder.itemView.setOnClickListener {
+                itemClickListener?.onClick(it, position)
+            }
+            holder.itemView.post(this)
         }
-        holder.itemView.post(this)
+
     }
 
     fun setDatas(datas: List<String>) {

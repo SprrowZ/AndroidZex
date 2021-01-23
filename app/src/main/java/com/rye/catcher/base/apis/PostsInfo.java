@@ -1,4 +1,4 @@
-package com.rye.catcher.base.interfaces;
+package com.rye.catcher.base.apis;
 
 /**
  * Created by ZZG on 2018/8/24.

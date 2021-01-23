@@ -1,4 +1,4 @@
-package com.dawn.zgstep.kotlins.inaction.pattern03
+package com.dawn.zgstep.tests.inaction.pattern03
 
 /**
  * Create by rye

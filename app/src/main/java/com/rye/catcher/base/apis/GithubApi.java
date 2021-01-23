@@ -1,4 +1,4 @@
-package com.rye.catcher.base.interfaces;
+package com.rye.catcher.base.apis;
 
 import java.util.HashMap;
 

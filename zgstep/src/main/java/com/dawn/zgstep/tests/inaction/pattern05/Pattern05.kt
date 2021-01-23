@@ -1,4 +1,4 @@
-package com.dawn.zgstep.kotlins.inaction.pattern05
+package com.dawn.zgstep.tests.inaction.pattern05
 
 
 data class Person(val name: String, val age: Int)

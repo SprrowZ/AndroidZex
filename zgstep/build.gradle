@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-
-
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion this.rootProject.compileSdkVer
@@ -19,8 +17,8 @@ android {
         consumerProguardFiles 'consumer-rules.pro'
     }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
 //    buildTypes {
@@ -60,7 +58,8 @@ dependencies {
 
     api deps.kotlin_coroutines_core
     api deps.kotlin_coroutines_android
-
+    //注解处理器
+    kapt project(':router_compiler')
 }
 repositories {
     mavenCentral()

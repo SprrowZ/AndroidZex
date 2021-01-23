@@ -12,7 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
+
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
 import com.rye.catcher.GreenDaos.Base.TB_Character;
@@ -30,7 +31,7 @@ import butterknife.OnClick;
 /**
  * Created by ZZG on 2018/7/24.
  */
-public class CharactersDoActivity extends BaseOldActivity {
+public class CharactersDoActivity extends BaseActivity {
     @BindView(R.id.edit_name)
     EditText editName;
     @BindView(R.id.edit_sex)
@@ -89,14 +90,13 @@ public class CharactersDoActivity extends BaseOldActivity {
     };
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.greendao_characters_do);
-        ButterKnife.bind(this);
-        initEvent();
+    public int getLayoutId() {
+        return R.layout.greendao_characters_do;
     }
 
-    private void initEvent() {
+    public void initEvent() {
+        ButterKnife.bind(this);
+        initEvent();
         daoSession = ThirdSdk.getInstance().getDaoSession();//获取session实例
         cartoonsDao = daoSession.getTB_CartoonsDao();
         characterDao = daoSession.getTB_CharacterDao();

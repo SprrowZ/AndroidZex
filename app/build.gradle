@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'org.greenrobot.greendao'
@@ -193,6 +192,7 @@ dependencies {
     implementation project(':base')
     implementation project(path: ':zgstep')
 
+
     implementation deps.cardview
 
     implementation deps.constraint
@@ -238,5 +238,6 @@ dependencies {
     //kotlin 协程
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 
 }

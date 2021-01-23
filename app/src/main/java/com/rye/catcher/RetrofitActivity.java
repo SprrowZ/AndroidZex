@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.rye.base.BaseActivity;
 import com.rye.catcher.activity.fragment.HttpT1Fragment;
-import com.rye.catcher.base.interfaces.GithubApi;
+import com.rye.catcher.base.apis.GithubApi;
 import com.rye.base.common.Constant;
 
 import java.io.IOException;

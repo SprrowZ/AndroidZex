@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import com.rye.catcher.RyeCatcherApp;
-import com.rye.catcher.base.ThreadPoolManager;
+import com.rye.catcher.base.sdks.ThreadPoolManager;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.lang.ref.WeakReference;
@@ -79,7 +79,7 @@ public class MultiThreadDownEx {
     }
 
     public MultiThreadDownEx(String loadUrl, String filePath, int threadCount, DownLoadListener mDownLoadListener) {
-        this.mContext = RyeCatcherApp.getContext();
+        this.mContext = RyeCatcherApp.getInstance();
         this.loadUrl = loadUrl;
         this.filePath = filePath;
         this.threadCount = threadCount;

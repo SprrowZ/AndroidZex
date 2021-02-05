@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+//应用路由插件
+apply plugin : 'com.dream.gradle'
+
 android {
     compileSdkVersion this.rootProject.compileSdkVer
     buildToolsVersion this.rootProject.buildToolsVer
@@ -15,6 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -26,6 +30,12 @@ android {
 //
 //    }
 
+}
+
+kapt { //给注解处理器传递参数 对应java defaultConfig 中的 javaCompileOptions.annotationProcessorOptions
+    arguments {
+        arg("moduleName",project.getName())
+    }
 }
 
 dependencies {
@@ -57,9 +67,16 @@ dependencies {
     implementation deps.butter.core
 
     api deps.kotlin_coroutines_core
+
     api deps.kotlin_coroutines_android
+
+
     //注解处理器
+    implementation project(':router_annotation')
     kapt project(':router_compiler')
+
+    implementation project(':router_api')
+
 }
 repositories {
     mavenCentral()

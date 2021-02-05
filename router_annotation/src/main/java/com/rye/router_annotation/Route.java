@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
  * @description: 引用Router是不光需要引入Router module;
  * 还应该使用annotationProcessor 引入注解处理器，kotlin的是kapt
  */
-@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.CLASS)
+@Target(ElementType.TYPE)
 public @interface Route {
     String value();//todo  改造成数组!
 }

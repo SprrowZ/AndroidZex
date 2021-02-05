@@ -11,20 +11,22 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dawn.zgstep.R;
 
 import com.dawn.zgstep.mvvm.model.ConfigViewModel;
+
 import com.rye.base.BaseActivity;
 import com.rye.base.utils.ToastHelper;
+import com.rye.router_annotation.Route;
 
+@Route("/hello")
 public class ZStepMainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "ZStepMainActivity";
     TextView btn1;
-
     TextView btn2;
 
-
-    public static void start(Context context){
-        Intent intent = new Intent(context,ZStepMainActivity.class);
+    public static void start(Context context) {
+        Intent intent = new Intent(context, ZStepMainActivity.class);
         context.startActivity(intent);
     }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_step;
@@ -40,7 +42,7 @@ public class ZStepMainActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void initEvent() {
-          new ViewModelProvider(this).get(ConfigViewModel.class);
+        new ViewModelProvider(this).get(ConfigViewModel.class);
     }
 
     @Override

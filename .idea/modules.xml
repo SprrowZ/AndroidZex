@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidZex.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidZex.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidZex.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidZex.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/base/AndroidZex.base.iml" filepath="$PROJECT_DIR$/.idea/modules/base/AndroidZex.base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidZex.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidZex.buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/pluginz/AndroidZex.pluginz.iml" filepath="$PROJECT_DIR$/.idea/modules/pluginz/AndroidZex.pluginz.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/router_annotation/AndroidZex.router_annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/router_annotation/AndroidZex.router_annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/router_api/AndroidZex.router_api.iml" filepath="$PROJECT_DIR$/.idea/modules/router_api/AndroidZex.router_api.iml" />

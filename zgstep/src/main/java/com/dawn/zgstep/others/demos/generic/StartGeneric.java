@@ -14,7 +14,7 @@ import java.util.List;
 
 public class StartGeneric {
 
-    @RequiresApi(api = Build.VERSION_CODES.P)
+
     public static void main(String[] args){
     //    testMethod();
         testExtend();
@@ -35,11 +35,11 @@ public class StartGeneric {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.P)
+
     public static void testExtend(){
                Platte platte=new Platte<ExtendSuper.Apple>();
 
-               platte.testGeneric();
+            //   platte.testGeneric();
 
                List<? extends ExtendSuper.Fruit> genList=new ArrayList<ExtendSuper.Fruit>();
               // genList.set(new ExtendSuper.Fruit());

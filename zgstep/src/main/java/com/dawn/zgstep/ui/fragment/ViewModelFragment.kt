@@ -16,10 +16,10 @@ import com.rye.base.BaseFragment
  * at 2020-11-19
  * @description:
  */
-class ViewModelFragment :BaseFragment() {
-    private var tvData:TextView?=null
-    private var etInput:EditText?=null
-    private var tvConfirm:TextView?=null
+class ViewModelFragment : BaseFragment() {
+    private var tvData: TextView? = null
+    private var etInput: EditText? = null
+    private var tvConfirm: TextView? = null
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_viewmodel
@@ -27,7 +27,7 @@ class ViewModelFragment :BaseFragment() {
 
     override fun initWidget() {
         super.initWidget()
-        val repository =  ConfigViewModel.get(context as FragmentActivity).getConfigDataRepository()
+        val repository = ConfigViewModel.get(context as FragmentActivity).getConfigDataRepository()
 
         tvData = view?.findViewById(R.id.tv_data)
         etInput = view?.findViewById(R.id.et_input)
@@ -41,8 +41,8 @@ class ViewModelFragment :BaseFragment() {
 
 
 
-        tvConfirm?.setOnClickListener{
-             repository.setTheme(etInput?.text.toString())
+        tvConfirm?.setOnClickListener {
+            repository.setTheme(etInput?.text.toString())
         }
     }
 

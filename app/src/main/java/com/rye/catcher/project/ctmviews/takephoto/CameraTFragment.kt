@@ -19,10 +19,11 @@ import android.view.Surface
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.rye.base.BaseFragment
 import com.rye.base.utils.PopupEx
 import com.rye.catcher.BaseOldFragment
 import com.rye.catcher.R
-import kotlinx.android.synthetic.main.fragment_camera_t.*
 import java.lang.Exception
 import java.util.*
 
@@ -31,37 +32,46 @@ import java.util.*
  * A simple [Fragment] subclass.
  *
  */
-class CameraTFragment : BaseOldFragment() {
+class CameraTFragment : BaseFragment() {
     //看来得手动findViewById才行
-    private lateinit var textureView:AutoFitTextureView
-    private lateinit var takePhoto:ImageView
+    private lateinit var textureView: AutoFitTextureView
+    private lateinit var mReverseView: ImageView
+    private lateinit var takePhoto: ImageView
+    private lateinit var mBottomView: ConstraintLayout
 
 
-    private lateinit var  mCameraDevice:CameraDevice
+    private lateinit var mCameraDevice: CameraDevice
 
     //摄像头id，找到一个即可
-    private   var cameraId=CameraCharacteristics.LENS_FACING_FRONT.toString()
+    private var cameraId = CameraCharacteristics.LENS_FACING_FRONT.toString()
 
     //默认不支持闪光灯
-    private var supportFlash=false
+    private var supportFlash = false
 
     //拍照运行在子线程中，实际上运行在主线程即可，textureview并不会阻塞当前线程
     private var backgroundThread: HandlerThread? = null
     private var backgroundHandler: Handler? = null
+
     //ImageReader类允许应用程序直接访问呈现表面的图像数据 ----------------------?
     private var imageReader: ImageReader? = null
+
     //相机传感器
     private var sensorOrientation = 0
+
     //预览最大宽度
     private val MAX_PREVIEW_WIDTH = 1920
+
     //预览最大高度
     private val MAX_PREVIEW_HEIGHT = 1080
+
     //相机预览尺寸
     private lateinit var previewSize: Size
+
     /**
      *用于预览
      */
     private lateinit var previewRequestBuilder: CaptureRequest.Builder
+
     /**
      *  预览请求
      */
@@ -71,10 +81,12 @@ class CameraTFragment : BaseOldFragment() {
      * 会话
      */
     private var captureSession: CameraCaptureSession? = null
+
     /**
      * 相机状态：预览
      */
     private val STATE_PREVIEW = 0
+
     /**
      * 相同状态：准备聚焦
      */
@@ -103,20 +115,20 @@ class CameraTFragment : BaseOldFragment() {
 
     //callback
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private val stateCallback= object : CameraDevice.StateCallback() {
+    private val stateCallback = object : CameraDevice.StateCallback() {
         override fun onOpened(cameraDevice: CameraDevice) {
-           mCameraDevice=cameraDevice
+            mCameraDevice = cameraDevice
             //创建会话
             createCameraPreviewSession()
         }
 
         override fun onDisconnected(cameraDevice: CameraDevice) {
             cameraDevice.close()
-         }
+        }
 
         override fun onError(cameraDevice: CameraDevice, p1: Int) {
             cameraDevice.close()
-         }
+        }
 
     }
 
@@ -145,7 +157,7 @@ class CameraTFragment : BaseOldFragment() {
                     val aeState = result.get(CaptureResult.CONTROL_AE_STATE)
                     if (aeState == null || aeState != CaptureResult.CONTROL_AE_STATE_PRECAPTURE) {
                         state = STATE_PICTURE_TAKEN
-                  //      captureStillPicture()
+                        //      captureStillPicture()
                     }
                 }
             }
@@ -157,16 +169,16 @@ class CameraTFragment : BaseOldFragment() {
         private fun capturePicture(result: CaptureResult) {
             val afState = result.get(CaptureResult.CONTROL_AF_STATE)
             if (afState == null) {
-               captureStillPicture()
+                captureStillPicture()
             } else if (afState == CaptureResult.CONTROL_AF_STATE_FOCUSED_LOCKED
                     || afState == CaptureResult.CONTROL_AF_STATE_NOT_FOCUSED_LOCKED) {
                 // CONTROL_AE_STATE can be null on some devices
                 val aeState = result.get(CaptureResult.CONTROL_AE_STATE)
                 if (aeState == null || aeState == CaptureResult.CONTROL_AE_STATE_CONVERGED) {
                     state = STATE_PICTURE_TAKEN
-                  captureStillPicture()
+                    captureStillPicture()
                 } else {
-                   runPrecaptureSequence()
+                    runPrecaptureSequence()
                 }
             }
         }
@@ -185,18 +197,23 @@ class CameraTFragment : BaseOldFragment() {
 
     }
 
-    override fun getLayoutResId(): Int {
-         return  R.layout.fragment_camera_t
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_camera_t
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun initData() {
-        textureView =view!!.findViewById(R.id.textureView)
-        takePhoto=view!!.findViewById(R.id.takePhoto)
+    override fun initWidget() {
+        super.initWidget()
+        textureView = view!!.findViewById(R.id.textureView)
+        takePhoto = view!!.findViewById(R.id.takePhoto)
+        mBottomView = view!!.findViewById(R.id.bottom)
+        mReverseView = view!!.findViewById(R.id.reverse)
         takePhoto.setOnClickListener {
             takePicture()
         }
-        reverse.setOnClickListener {
+
+        mReverseView.setOnClickListener {
             switchCamera()
         }
     }
@@ -244,76 +261,78 @@ class CameraTFragment : BaseOldFragment() {
     /**
      * 是否支持Camera2，后期适配可用                =。=
      */
-   private  fun supportCamera2(mContext:Context):Boolean{
-      if (mContext==null) return false
-       //api小于21
-       if (Build.VERSION.SDK_INT< Build.VERSION_CODES.LOLLIPOP) return false
-       var support=true
-       try {
-          val manager=mContext.getSystemService(Context.CAMERA_SERVICE) as CameraManager
-          val idList= manager.cameraIdList
+    private fun supportCamera2(mContext: Context): Boolean {
+        if (mContext == null) return false
+        //api小于21
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return false
+        var support = true
+        try {
+            val manager = mContext.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+            val idList = manager.cameraIdList
 
-          if (idList.isEmpty() ){
-              support=false
-          }else{
-               for (id in idList){
-                   if (id==null || id.isEmpty()){
-                       support=false
-                       break
-                   }
-                   val characteristics=manager.getCameraCharacteristics(id)
-                   val supportLevel=characteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)
-                   if (supportLevel==CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY){//只支持camera1
-                       support=false
-                       break
-                   }
+            if (idList.isEmpty()) {
+                support = false
+            } else {
+                for (id in idList) {
+                    if (id == null || id.isEmpty()) {
+                        support = false
+                        break
+                    }
+                    val characteristics = manager.getCameraCharacteristics(id)
+                    val supportLevel = characteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)
+                    if (supportLevel == CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {//只支持camera1
+                        support = false
+                        break
+                    }
 
-               }
-          }
-       }catch (e:Exception){
+                }
+            }
+        } catch (e: Exception) {
 
-       }finally {
+        } finally {
 
-       }
-       return support
+        }
+        return support
     }
 
     /**
      * 初始化预览后台handler
      */
-    private fun startBackgroundThread(){
-        backgroundThread=HandlerThread("CameraBk").also { it.start() }
-        backgroundHandler=Handler(backgroundThread?.looper)
+    private fun startBackgroundThread() {
+        backgroundThread = HandlerThread("CameraBk").also { it.start() }
+        backgroundHandler = Handler(backgroundThread?.looper)
     }
+
     /**
      * 打开相机预览
      */
-   @SuppressLint("MissingPermission")//一定要记得申请权限
-   @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-   private  fun openCamera(width: Int, height: Int){
+    @SuppressLint("MissingPermission")//一定要记得申请权限
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun openCamera(width: Int, height: Int) {
         //设置camera输出
-        setUpCameraOutputs(width,height)
+        setUpCameraOutputs(width, height)
         //设置camera的显示范围
-        configureTransform(width,height)
+        configureTransform(width, height)
         val manager = activity?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
-        Log.i("cameraId",cameraId)
+        Log.i("cameraId", cameraId)
         try {
-             manager.openCamera(cameraId,stateCallback,backgroundHandler)
-        }catch (e:Exception){
+            manager.openCamera(cameraId, stateCallback, backgroundHandler)
+        } catch (e: Exception) {
 
         }
-   }
-   @SuppressLint("MissingPermission")
-   @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-   private fun switchCamera( ){
-          closeCamera()
-       cameraId = if (cameraId == "0"){
-           "1"
-       }else{
-           "0"
-       }
-       openCamera(textureView.width,textureView.height)
-   }
+    }
+
+    @SuppressLint("MissingPermission")
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun switchCamera() {
+        closeCamera()
+        cameraId = if (cameraId == "0") {
+            "1"
+        } else {
+            "0"
+        }
+        openCamera(textureView.width, textureView.height)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -323,7 +342,7 @@ class CameraTFragment : BaseOldFragment() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        if(isVisibleToUser){
+        if (isVisibleToUser) {
             createPop()
         }
     }
@@ -338,7 +357,7 @@ class CameraTFragment : BaseOldFragment() {
         val manager = activity!!.getSystemService(Context.CAMERA_SERVICE) as CameraManager
         try {
             for (camId in manager.cameraIdList) {
-                Log.i("cameraId",camId)
+                Log.i("cameraId", camId)
                 val characteristics = manager.getCameraCharacteristics(camId)
 
                 // We don't use a front facing camera in this sample.
@@ -347,9 +366,9 @@ class CameraTFragment : BaseOldFragment() {
 //                        cameraDirection == CameraCharacteristics.LENS_FACING_FRONT) {
 //                    continue
 //                }
-                  if (cameraDirection!=null && camId!=cameraId){
-                      continue
-                  }
+                if (cameraDirection != null && camId != cameraId) {
+                    continue
+                }
                 val map = characteristics.get(
                         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP) ?: continue
 
@@ -407,8 +426,8 @@ class CameraTFragment : BaseOldFragment() {
      */
     private val onImageAvailableListener = ImageReader.OnImageAvailableListener {
 //        backgroundHandler?.post(ImageSaver(it.acquireNextImage(), file))
-        val image= it.acquireNextImage()
-        Log.i("camera","imageInfo:imageFormat:${image.format},imageHeight:${image.height}," +
+        val image = it.acquireNextImage()
+        Log.i("camera", "imageInfo:imageFormat:${image.format},imageHeight:${image.height}," +
                 "imageWidth:${image.width}")
     }
 
@@ -436,53 +455,52 @@ class CameraTFragment : BaseOldFragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun createCameraPreviewSession(){
+    private fun createCameraPreviewSession() {
         try {
-            val texture=textureView.surfaceTexture
+            val texture = textureView.surfaceTexture
             //通过设置缓冲区去设置我们想要预览的大小
-            texture.setDefaultBufferSize(previewSize.width,previewSize.height)
+            texture.setDefaultBufferSize(previewSize.width, previewSize.height)
             //图像输出到了surface中
-            val surface= Surface(texture)
+            val surface = Surface(texture)
             //设置预览
-            previewRequestBuilder=mCameraDevice.createCaptureRequest(
+            previewRequestBuilder = mCameraDevice.createCaptureRequest(
                     CameraDevice.TEMPLATE_PREVIEW)
             //指定新创建的surface为本次request的输出目标，说明什么？
             //说明每次构建新请求的时候，也要创建对应的surface！
             previewRequestBuilder.addTarget(surface)
             //创建CameraCaptureSession,十分重要，该对象负责管理处理预览请求和拍照请求
-            mCameraDevice.createCaptureSession(Arrays.asList(surface,imageReader?.surface) ,
-                    object:CameraCaptureSession.StateCallback(){
-                override fun onConfigureFailed(p0: CameraCaptureSession) {
+            mCameraDevice.createCaptureSession(Arrays.asList(surface, imageReader?.surface),
+                    object : CameraCaptureSession.StateCallback() {
+                        override fun onConfigureFailed(p0: CameraCaptureSession) {
 
-                }
+                        }
 
-                override fun onConfigured(captureSession1: CameraCaptureSession) {
-                    // 如果摄像头为null，直接结束方法
-                    if (null == mCameraDevice)
-                    {
-                        return
-                    }
-                    captureSession=captureSession1
-                    try{
-                        // 设置图像连续
-                        previewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
-                                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
-                        // 设置闪光灯模式，在需要的时候打开
-                        previewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
-                                CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)
-                        // 开始显示相机预览
-                        previewRequest = previewRequestBuilder.build()
-                        // 设置预览时连续捕获图像数据
-                        captureSession?.setRepeatingRequest(previewRequest,
-                                null,backgroundHandler)
-                    }catch (e:Exception){
-                      Log.e("camera","preview error...")
-                    }
-                }
+                        override fun onConfigured(captureSession1: CameraCaptureSession) {
+                            // 如果摄像头为null，直接结束方法
+                            if (null == mCameraDevice) {
+                                return
+                            }
+                            captureSession = captureSession1
+                            try {
+                                // 设置图像连续
+                                previewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
+                                        CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
+                                // 设置闪光灯模式，在需要的时候打开
+                                previewRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE,
+                                        CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)
+                                // 开始显示相机预览
+                                previewRequest = previewRequestBuilder.build()
+                                // 设置预览时连续捕获图像数据
+                                captureSession?.setRepeatingRequest(previewRequest,
+                                        null, backgroundHandler)
+                            } catch (e: Exception) {
+                                Log.e("camera", "preview error...")
+                            }
+                        }
 
-            },null)
-        }catch (e:java.lang.Exception){
-            Log.e("camera","preview error...")
+                    }, null)
+        } catch (e: java.lang.Exception) {
+            Log.e("camera", "preview error...")
         }
     }
 
@@ -520,15 +538,15 @@ class CameraTFragment : BaseOldFragment() {
      * 锁定焦点后才能拍照
      */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun lockFocus(){
+    private fun lockFocus() {
         try {
             //拍照前设置为自动对焦
             previewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
-            CameraMetadata.CONTROL_AF_TRIGGER_START)
+                    CameraMetadata.CONTROL_AF_TRIGGER_START)
             //状态设置准备聚焦拍照，captureCallback需要
-            state=STATE_WAITING_LOCK
-            captureSession?.capture(previewRequestBuilder.build(),captureCallback,backgroundHandler)
-        }catch(e:Exception){
+            state = STATE_WAITING_LOCK
+            captureSession?.capture(previewRequestBuilder.build(), captureCallback, backgroundHandler)
+        } catch (e: Exception) {
 
         }
     }
@@ -560,7 +578,7 @@ class CameraTFragment : BaseOldFragment() {
                                                 request: CaptureRequest,
                                                 result: TotalCaptureResult) {
 
-                    Log.d("camera","拍照完成...")
+                    Log.d("camera", "拍照完成...")
                     unlockFocus()
                 }
             }
@@ -632,7 +650,7 @@ class CameraTFragment : BaseOldFragment() {
      * pause的时候关闭相机
      */
     private fun closeCamera() {
-        if (::mCameraDevice.isInitialized){
+        if (::mCameraDevice.isInitialized) {
             try {
                 //cameraOpenCloseLock.acquire()
                 captureSession?.close()
@@ -669,6 +687,7 @@ class CameraTFragment : BaseOldFragment() {
         }
 
     }
+
     override fun onPause() {
         super.onPause()
         closeCamera()
@@ -676,27 +695,27 @@ class CameraTFragment : BaseOldFragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun createPop(){
-     val popupEx=PopupEx.Builder()
-             .setContextView(activity,R.layout.popup_camera)
-             .setDim(0.8f)
-             .setParentView(textureView)
-             .outCancel(false)
-             .create()
+    private fun createPop() {
+        val popupEx = PopupEx.Builder()
+                .setContextView(activity, R.layout.popup_camera)
+                .setDim(0.8f)
+                .setParentView(textureView)
+                .outCancel(false)
+                .create()
         popupEx.view.findViewById<TextView>(R.id.openCamera2)
                 .setOnClickListener {
                     //开启相机预览
-                    if (textureView.isAvailable){
-                        openCamera(textureView.width,textureView.height)
-                    }else{
-                        Log.i("camera","textureView is not available...")
+                    if (textureView.isAvailable) {
+                        openCamera(textureView.width, textureView.height)
+                    } else {
+                        Log.i("camera", "textureView is not available...")
                     }
-            popupEx.dismiss()
-            bottom.visibility= View.VISIBLE
-        }
+                    popupEx.dismiss()
+                    mBottomView.visibility = View.VISIBLE
+                }
     }
 
-    companion object{
+    companion object {
         //图片方向设置
         private val ORIENTATIONS = SparseIntArray()
         private val FRAGMENT_DIALOG = "dialog"
@@ -707,10 +726,12 @@ class CameraTFragment : BaseOldFragment() {
             ORIENTATIONS.append(Surface.ROTATION_180, 270)
             ORIENTATIONS.append(Surface.ROTATION_270, 180)
         }
+
         /**
          * 选择合适的尺寸
          */
-       @JvmStatic @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        @JvmStatic
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         private fun chooseOptimalSize(
                 choices: Array<Size>,
                 textureViewWidth: Int,

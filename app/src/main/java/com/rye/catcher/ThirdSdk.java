@@ -3,6 +3,7 @@ package com.rye.catcher;
 import android.app.Application;
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import com.github.moduth.blockcanary.BlockCanary;
 import com.rye.catcher.GreenDaos.Base.DaoMaster;
@@ -20,16 +21,17 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 public class ThirdSdk {
-    private static ThirdSdk INSTANCE=null;
-    private boolean DAO_INITED=false;
+    private static ThirdSdk INSTANCE = null;
+    private boolean DAO_INITED = false;
     private DaoSession daoSession;
 
     private DisplayMetrics displayMetrics;
-    public static ThirdSdk getInstance(){
-        if (INSTANCE==null){
-            synchronized (ThirdSdk.class){
-                if (INSTANCE==null){
-                    INSTANCE=new ThirdSdk();
+
+    public static ThirdSdk getInstance() {
+        if (INSTANCE == null) {
+            synchronized (ThirdSdk.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new ThirdSdk();
                 }
             }
         }
@@ -37,7 +39,7 @@ public class ThirdSdk {
     }
 
 
-    public void initSdk(Application context){
+    public void initSdk(Application context) {
         //友盟统计
 //        UMConfigure.init(context,UMConfigure.DEVICE_TYPE_PHONE,"");
         //UnCaughtException
@@ -53,10 +55,10 @@ public class ThirdSdk {
         BlockCanary.install(context, new AppBlockCanaryContext()).start();
     }
 
-    private void initRealm(Application context){
+    private void initRealm(Application context) {
         //Realm
         Realm.init(context);
-        RealmConfiguration configuration=new RealmConfiguration.Builder()
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .name("rye.realm")
                 .modules(new SchemasModule())
                 .schemaVersion(1)
@@ -64,7 +66,7 @@ public class ThirdSdk {
         Realm.setDefaultConfiguration(configuration);
     }
 
-    private void initOther(Application context){
+    private void initOther(Application context) {
         //bugly
         CrashReport.initCrashReport(context, "8fdd156f75", false);
         //第三个参数为SDK调试模式开关，调试模式的行为特性如下：
@@ -88,6 +90,10 @@ public class ThirdSdk {
 
     public DaoSession getDaoSession() {//获取dao实例
         return daoSession;
+    }
+
+    private void printInfo(String msg) {
+        Log.e("Rye", "Hello,reflect friend! " + msg);
     }
 
 }

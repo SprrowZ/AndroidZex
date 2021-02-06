@@ -21,7 +21,8 @@ import java.util.List;
  * FileUtils 已经迁移至base模块，这里只保留一个写日志的方法
  */
 public class FileUtil {
-   private static final String TAG="userLog";
+    private static final String TAG = "userLog";
+
     /**
      * 写日志专用方法
      *
@@ -37,13 +38,13 @@ public class FileUtil {
             files.get(0).delete();
         }
         try {
-            file = new File(filePath +File.separator+ fileName);
+            file = new File(filePath + File.separator + fileName);
             if (!file.exists()) {
-                Log.i(TAG, "makeFilePath: "+file.exists());
+                Log.e(TAG, "makeFilePath: " + file.exists()+"filePath:"+file.getAbsolutePath());
                 file.createNewFile();
             }
         } catch (Exception e) {
-            Log.i(TAG, "makeFilePath: "+e.toString());
+            Log.i(TAG, "makeFilePath: " + e.toString());
             e.printStackTrace();
         }
         return file;
@@ -52,10 +53,10 @@ public class FileUtil {
     /**
      * 写入日志
      */
-    private static   StringBuffer stringBuffer=new StringBuffer();
+    private static StringBuffer stringBuffer = new StringBuffer();
+
     public static void writeUserLog(String content) {
         stringBuffer.append(DateUtils.getCurrentTime(DateUtils.FORMAT_DATETIME_MS) + "  统一认证号：" +
-                "  版本号：" + RyeCatcherApp.getInstance().getVersion() +
                 " 手机信息：" + DeviceUtils.getDeviceName() + DeviceUtils.getReleaseVersion() + content + "\r\n");
         DelayHandleUtil.setDelay(DelayHandleUtil.DELAY_ACTION_UPDATE_MSG_STATUS, 0L, 2000, new DelayHandleUtil.HandleListener() {
             @Override
@@ -64,8 +65,9 @@ public class FileUtil {
             }
         });
     }
-    private  static synchronized void write(){
-        if (stringBuffer.length()==0){
+
+    private static synchronized void write() {
+        if (stringBuffer.length() == 0) {
             return;
         }
         File file = makeFilePath(SDHelper.getAppExternal() + "logs",
@@ -84,18 +86,19 @@ public class FileUtil {
 
     /**
      * 保存图片到本地,如果已经存在相同名字的图片，则覆盖
+     *
      * @param remotePath 网络地址
      */
-    public static void saveImage(String remotePath,String imgName){
-        File  file=null;
+    public static void saveImage(String remotePath, String imgName) {
+        File file = null;
         //先判断本地有没有，没有再下载
-        file=new File(SDHelper.getImageFolder()+imgName);
-        InputStream inputStream=FileUtils.downloadFileI(remotePath);
-        if (inputStream==null){
-            Log.i("saveImage", "saveImage: error:"+remotePath);
-             writeUserLog("图片下载失败："+remotePath);
+        file = new File(SDHelper.getImageFolder() + imgName);
+        InputStream inputStream = FileUtils.downloadFileI(remotePath);
+        if (inputStream == null) {
+            Log.i("saveImage", "saveImage: error:" + remotePath);
+            writeUserLog("图片下载失败：" + remotePath);
             return;
         }
-        FileUtils.writeFile(file,inputStream);
+        FileUtils.writeFile(file, inputStream);
     }
 }

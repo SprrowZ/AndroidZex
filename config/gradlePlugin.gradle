@@ -1,18 +1,18 @@
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-def getPackageName(){
+def getPackageName() {
     def appName = ''
     def path = 'app/src/main/java/'
-    File appfile  = new File(path)
-    while (appfile.list().size() == 1){
+    File appfile = new File(path)
+    while (appfile.list().size() == 1) {
         appName = appName + '/' + appfile.list()[0]
-        appfile  = new File(path + appName + '/')
+        appfile = new File(path + appName + '/')
     }
     return appName
 }
 
-def getResPath(){
+def getResPath() {
     return 'app/src/main/res/'
 }
 
@@ -115,21 +115,22 @@ def xmlJavaReplace(Map nameMap) {//等所有XML文件替换完成后，再替换
                     println("IIIIIIIIIIII--${xmlPrefix}，${file.name},${nameMap.containsKey(xmlPrefix)},findTarget:${line.substring(line.lastIndexOf("."))}")
                     //将字符串劈成两半，只修改后半部分
                     if (nameMap.containsKey(xmlPrefix)) {
-                        def part1=line.substring(0,line.lastIndexOf("."))
-                        def part2=line.substring(line.lastIndexOf("."))
+                        def part1 = line.substring(0, line.lastIndexOf("."))
+                        def part2 = line.substring(line.lastIndexOf("."))
                         //只替换后半段的，也就是R.layout.之后的匹配目标
-                        part2=part2.replaceAll(xmlPrefix,nameMap.get(xmlPrefix))
-                        line =  part1+part2
+                        part2 = part2.replaceAll(xmlPrefix, nameMap.get(xmlPrefix))
+                        line = part1 + part2
                         needReplace = true
                     }
 
                 }
 
-                if(line.indexOf("kotlinx.android.synthetic.main")!=-1){//kt文件判断自动导入,所以java实际上不用判断的
+                if (line.indexOf("kotlinx.android.synthetic.main") != -1) {
+//kt文件判断自动导入,所以java实际上不用判断的
 
-                    def target= line.split("\\.")[4]
+                    def target = line.split("\\.")[4]
                     println("@@@@@@@@@@@@@@@------:${target},nameMap:${nameMap.get(target)},fileName:${file.name}")
-                    line = line.replaceAll(target,nameMap.get(target))
+                    line = line.replaceAll(target, nameMap.get(target))
                     needReplace = true
                 }
                 overrideString.append(line + "\n")
@@ -178,11 +179,11 @@ def renameSwXml(Map nameMap) {
 
     println("========================??" + sw360.exists() + "," + sw375.exists())
 
-    dealSwFile(sw360,nameMap)
-    dealSwFile(sw375,nameMap)
+    dealSwFile(sw360, nameMap)
+    dealSwFile(sw375, nameMap)
 }
 
-def dealSwFile(File file,Map nameMap) {
+def dealSwFile(File file, Map nameMap) {
     if (!file.exists()) {
         return
     }

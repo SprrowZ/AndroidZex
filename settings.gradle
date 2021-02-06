@@ -1,4 +1,10 @@
-include ':app', ':zgstep',
+include ':router_annotation'
+include ':router_api'
+include ':router_api'
+include ':router_compiler'
+include ':pluginz'
+include ':app',
+        ':zgstep',
         ':zzsdk',
         ':base'
 

@@ -1,0 +1,149 @@
+task testArray() { //列表 ,就是样子像数组而已
+    def array = [1, 2, 3, 4]
+    array.each {
+        //  println("each item is $it")
+    }
+}
+
+def hello(String name) {
+    //  println("Hello,$name")
+}
+
+hello("Jack")
+
+//------闭包
+def c = {
+    //  println('Hello Closure')
+}
+c()
+//有一个参数的时候，参数可以忽略，下面可以不加it
+def c2 = { it ->
+    //  println("Hello $it")
+}
+c2('Kugou')
+
+//多个参数，用逗号分隔开即可
+
+def c3 = { name1, name2, name3 ->
+    //  println("name1:$name1,name2:$name2,name3:$name3")
+}
+c3("i", 'am', 'ok')
+
+// 实现自定义DSL(闭包)
+/**
+ * 参照build.gradle 里的写法：
+ *{*     compileSdkVersion 27
+ *     defaultConfig {*         versionName "1.0"
+ *}*}*
+ *
+ */
+
+def myAndroid = {
+    compileVersion 27
+    defaultConfig {
+        versionName "1.0"
+    }
+}
+
+//##########  这个代理要理解！！！
+Android a = new Android()
+myAndroid.delegate = a
+myAndroid.call()
+
+//println("myAndroid:$a")
+
+
+class DefaultConfig {
+    private String versionName
+
+    def versionName(String versionName) {
+        this.versionName = versionName
+    }
+
+    @Override
+    String toString() {
+        return "DefaultConfig{version = $versionName}"
+    }
+}
+
+class Android {
+    private int compileSdkVersion
+    private DefaultConfig defaultConfig
+
+    Android() {
+        this.defaultConfig = new DefaultConfig()
+    }
+
+    def compileVersion(int compileVersion) {
+        this.compileSdkVersion = compileVersion
+    }
+
+    def defaultConfig(Closure closure) {
+        //将闭包与具体对象关联起来
+        closure.setDelegate(defaultConfig)
+        closure.call()
+    }
+
+    @Override
+    String toString() {
+        return "Android { compileSdkVersion  = $compileSdkVersion,defaultConfig:$defaultConfig"
+    }
+}
+
+//##  gradle生命周期回调
+gradle.addBuildListener(new BuildAdapter() {
+    @Override
+    void settingsEvaluated(Settings settings) {
+        super.settingsEvaluated(settings)
+        println("[life-cycle] 初始化阶段完成")
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        super.projectsEvaluated(gradle)
+        println("[life-cycle] 配置阶段完成")
+        gradle.rootProject.childProjects.each { name, p ->
+            // println("[子工程] 名称是 $name,路径是:${p.getProjectDir()}")
+        }
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        super.buildFinished(result)
+        println("[life-cycle] 构建结束")
+    }
+})
+
+task testLifeCycleTask() {
+    doLast {
+        println("[life-cycle] 我是task中的代码")
+    }
+}
+
+//--------------task 创建的各种方式
+
+//创建方式一： 任务名字 方式创建Task
+def customTask0 = task('customTask0')
+customTask0.doLast {
+    println("通过任务名字方式创建Task")
+}
+
+//创建方式二:  任务名字 + 一个配置Map 创建Task
+def customTask1 = task(group: 'RyeDemoTasks', 'customTask1')
+customTask1.doLast {
+    println("通过 任务名字 + 一个配置Map 创建Task")
+}
+//创建方式三:  任务名 + 闭包
+task customTask2(group: 'RyeDemoTasks', description: '任务名+闭包方式创建任务') {
+    println('带闭包的创建task')
+}
+
+//创建方式四: 通过TaskContainer创建任务
+// getTasks().create([name: "task2", group: "MyGroup", description: "这是task2描述", dependsOn: ["task1"]])
+tasks.create('customTask3') {
+    group 'RyeDemoTask'
+    description '通过TaskContainer创建任务'
+    doLast {
+        println('hello~')
+    }
+}

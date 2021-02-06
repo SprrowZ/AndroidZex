@@ -20,7 +20,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.rye.catcher.utils.Old_ApplicationUtil;
+import com.rye.catcher.RyeCatcherApp;
 import com.rye.catcher.utils.ExtraUtil.Bean;
 import com.rye.catcher.utils.Old_JsonUtils;
 
@@ -97,7 +97,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     private static Map<String, TableDef> tables = null;
 
     private DbOpenHelper(String dbName) {
-        super(Old_ApplicationUtil.getAppContext(), dbName, null, DATABASE_VERSION);
+        super(RyeCatcherApp.getInstance(), dbName, null, DATABASE_VERSION);
         this.createTables(this.getWritableDatabase());
     }
 
@@ -147,7 +147,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         }
         synchronized (TAG) {
             if(tables == null) {
-                loadTableDefFile(Old_ApplicationUtil.getAppContext());
+                loadTableDefFile(RyeCatcherApp.getInstance());
             }
         }
         TableDef tableDef =  tables.get(tblName);
@@ -227,7 +227,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         closeDbs();
         String fileName = this.getDatabaseName();
         // 取得数据库文件名
-        File dbFile =  Old_ApplicationUtil.getAppContext().getDatabasePath(fileName);
+        File dbFile =  RyeCatcherApp.getInstance().getDatabasePath(fileName);
         if(dbFile == null) {
             return;
         }

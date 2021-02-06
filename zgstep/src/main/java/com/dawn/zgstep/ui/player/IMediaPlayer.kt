@@ -18,6 +18,7 @@ import java.io.IOException
 interface IMediaPlayer {
     companion object {
         fun create(): IMediaPlayer {
+            //目前只有系统播放器
             return AndroidMediaPlayer()
         }
     }
@@ -35,7 +36,7 @@ interface IMediaPlayer {
     fun setDataSource(var1: FileDescriptor?)
 
     @Throws(IOException::class, IllegalArgumentException::class, SecurityException::class, IllegalStateException::class)
-    fun setDataSource(var1: String?)
+    fun setDataSource(url: String?)
 
     fun getDataSource(): String?
 

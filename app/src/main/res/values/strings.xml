@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="someting_new">Someting_new</string>
     <string name="appName">寻夢</string>
@@ -77,6 +77,7 @@
     <string name="somedome">SomeDemo</string>
     <string name="camera">camera</string>
     <string name="customView">customView</string>
+    <string name="fragments" tools:ignore="MissingTranslation">DemoFragments</string>
     <string name="javaMore">javaMore</string>
     <string name="review">Review</string>
     <string name="project">Project</string>
@@ -90,5 +91,5 @@
     <string name="left_third">空山鸟语</string>
     <string name="left_fourth">百步穿杨</string>
     <string name="left_fivth">纵横捭阖</string>
-    <string name="need_authority">本地文件读写和手机状态需要此类权限,请去设置里授予权限</string>
+    <string name="need_authority" translatable="false">本地文件读写和手机状态需要此类权限,请去设置里授予权限</string>
 </resources>

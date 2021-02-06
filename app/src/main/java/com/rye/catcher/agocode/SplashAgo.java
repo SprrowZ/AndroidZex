@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.rye.base.common.Constant;
 import com.rye.base.utils.DateUtils;
 import com.rye.catcher.RyeCatcherApp;
-import com.rye.catcher.base.interfaces.FreeApi;
+import com.rye.catcher.base.apis.FreeApi;
 import com.rye.catcher.base.sdks.beans.TangBean;
 import com.rye.catcher.base.sdks.beans.WeatherBean;
 import com.rye.catcher.base.sdks.gmap.AmapManager;
@@ -78,7 +78,7 @@ public class SplashAgo {
      */
     private void getWeather(){
         KeyValueMgr.saveValue(Constant.WEATHER_UPDATE_TIME, System.currentTimeMillis());
-        Observable.just(AmapManager.getInstance().initLocation(RyeCatcherApp.getContext()))
+        Observable.just(AmapManager.getInstance().initLocation(RyeCatcherApp.getInstance()))
                 .flatMap((Function<AmapResult, ObservableSource<String>>) amapResult -> {
                     Log.i(TAG, "apply: "+amapResult.toString());
                     return RetrofitManager.INSTANCE

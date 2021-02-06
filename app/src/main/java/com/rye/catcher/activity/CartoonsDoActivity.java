@@ -1,7 +1,6 @@
 package com.rye.catcher.activity;
 
 import android.animation.ObjectAnimator;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
@@ -11,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.rye.catcher.BaseOldActivity;
+import com.rye.base.BaseActivity;
 import com.rye.catcher.GreenDaos.Base.TB_Cartoons;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
 import com.rye.catcher.GreenDaos.Base.TB_CartoonsDao;
@@ -31,7 +30,7 @@ import butterknife.OnClick;
 /**
  * Created by Zzg on 2018/7/8.
  */
-public class CartoonsDoActivity extends BaseOldActivity {
+public class CartoonsDoActivity extends BaseActivity {
     @BindView(R.id.edit_name)
     EditText editName;
     @BindView(R.id.edit_isend)
@@ -97,19 +96,18 @@ public class CartoonsDoActivity extends BaseOldActivity {
         }
     };
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.greendao_cartoons_do);
+    public int getLayoutId() {
+        return R.layout.greendao_cartoons_do;
+    }
+
+    @Override
+    public void initEvent() {
         ButterKnife.bind(this);
         daoSession = ThirdSdk.getInstance().getDaoSession();
         cartoonsDao = daoSession.getTB_CartoonsDao();
         initEvent();
-    }
-
-
-
-    private void initEvent() {
         editId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -132,7 +130,6 @@ public class CartoonsDoActivity extends BaseOldActivity {
             }
         });
     }
-
 
 
     private void insert() {

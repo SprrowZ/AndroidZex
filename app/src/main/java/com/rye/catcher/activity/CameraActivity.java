@@ -1,16 +1,16 @@
 package com.rye.catcher.activity;
 
 
-import android.os.Bundle;
+
 import android.os.Handler;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.widget.LinearLayout;
 
 import com.rye.base.BaseActivity;
-import com.rye.catcher.BaseOldActivity;
+
 import com.rye.catcher.R;
 
 import com.rye.catcher.activity.fragment.CameraFragment;

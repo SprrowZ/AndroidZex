@@ -1,31 +1,30 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
-apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'realm-android'
-
+apply { //另一种写法
+    plugin 'org.greenrobot.greendao'
+    plugin 'realm-android'
+}
 //自定义gradle
 apply from: '../config/other.gradle'
-apply from:'../config/gradlePlugin.gradle'
+apply from: '../config/gradlePlugin.gradle'
 
-apply from : '../config/sign.gradle'
-
-
+apply from: '../config/sign.gradle'
+//测试groovy
+apply from:'../config/prac/practice1.gradle'
 
 android {
-    compileSdkVersion  rootProject.compileSdkVer
-    buildToolsVersion  rootProject.buildToolsVer
+    compileSdkVersion rootProject.compileSdkVer
+    buildToolsVersion rootProject.buildToolsVer
     defaultConfig {
         applicationId "com.rye.catcher.zzg"
-        minSdkVersion  rootProject.MiminSdkVer
+        minSdkVersion rootProject.MiminSdkVer
         targetSdkVersion targetSdkVer
         versionCode 7
         versionName "1.0.7"
         multiDexEnabled true
         ndk {
-            abiFilters  'armeabi-v7a', 'arm64-v8a',"x86"
+            abiFilters 'armeabi-v7a', 'arm64-v8a', "x86"
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,18 +62,18 @@ android {
             applicationIdSuffix '.majia'
             versionNameSuffix '.01'
             //子module打包风格
-            matchingFallbacks=['majia','debug','release']
+            matchingFallbacks = ['majia', 'debug', 'release']
         }
     }
     sourceSets {//修改资源文件的位置
         main {
             assets.srcDirs = ['src/main/assets', 'src/main/assets/']
-           // jniLibs.srcDirs=['libs']//将so文件保存在libs文件夹下
+            // jniLibs.srcDirs=['libs']//将so文件保存在libs文件夹下
         }
     }
     sourceSets {
-        main{
-            res.srcDirs=['src/main/res','src/main/res-base']//新增base Module的资源文件夹f
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-base']//新增base Module的资源文件夹f
         }
     }
 
@@ -96,7 +95,7 @@ android {
 //            minSdkVersion 19
 //        }
 
-         MI{
+        MI {
             manifestPlaceholders = [CHANNEL: "xiaomi"]
             dimension "channel"
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
@@ -133,10 +132,10 @@ repositories {
  */
 this.afterEvaluate {
     android.applicationVariants.all { variant ->
-        println("--variantName:${variant.name}, varinantBaseName:${variant.baseName}")
+      //  println("--variantName:${variant.name}, varinantBaseName:${variant.baseName}")
 
-        def task= variant.checkManifest
-        println('-------'+task.name)
+        def task = variant.checkManifest
+        //println('-------' + task.name)
 
         variant.outputs.all { output ->
             if (variant.buildType.name == "debug"
@@ -158,9 +157,9 @@ this.afterEvaluate {
                 buildConfigField "String", "ip", "\"www.bilibili.com\""
                 //release 包直接保存到当前项目的outputs文件夹下
                 def outputFile = output.outputFile
-                println "zzg---------${outputFile.name}"
+               // println "zzg---------${outputFile.name}"
                 if (outputFile != null && outputFile.name.endsWith("release.apk")) {
-                    println 'zzg------2'
+                   // println 'zzg------2'
                     variant.getPackageApplicationProvider().get().outputDirectory = new File(rootDir.absolutePath + '/outputs/')
                     outputFileName = "${rootProject.name}-${variant.buildType.name}-release.apk"
                 }
@@ -193,6 +192,7 @@ dependencies {
     implementation project(':base')
     implementation project(path: ':zgstep')
 
+
     implementation deps.cardview
 
     implementation deps.constraint
@@ -216,7 +216,7 @@ dependencies {
     implementation deps.location
 
     implementation deps.loading
-         //LeakCanery暂时屏蔽，使用BlockCanery
+    //LeakCanery暂时屏蔽，使用BlockCanery
 //    debugImplementation deps.leak.debug
 //    majiaImplementation deps.leak.debug
 //    releaseImplementation deps.leak.release
@@ -231,12 +231,12 @@ dependencies {
 //    implementation deps.umeng.analytics
 
 
-
     //今日头条适配
     implementation deps.autosize
 
     //kotlin 协程
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
 
 }

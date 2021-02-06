@@ -10,7 +10,8 @@ import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 
 import com.catcher.zzsdk.okhttp.client.OkClient;
 import com.catcher.zzsdk.okhttp.response.JsonCallback;
-import com.dawn.zgstep.others.job1.JobOneActivity;
+
+import com.rye.base.utils.ToastHelper;
 import com.rye.catcher.R;
 import butterknife.OnClick;
 
@@ -64,7 +65,7 @@ public class ZTActivity extends AppCompatActivity {
                 startActivity(new Intent(ZTActivity.this, CharactersDoActivity.class));
                 break;
             case R.id.gg:
-                startActivity(new Intent(ZTActivity.this, JobOneActivity.class));
+                ToastHelper.showToastShort(this,"呕吼，已经干掉了~");
                 break;
 
         }

@@ -202,7 +202,7 @@ public class ImageUtils {
             FileUtil.saveImage(url, imgName);//
             return ratio(SDHelper.getImageFolder() + imgName, height, width, null);
         }
-        return BitmapFactory.decodeResource(Old_ApplicationUtil.getAppContext().getResources(), R.drawable.default_img);
+        return BitmapFactory.decodeResource(RyeCatcherApp.getInstance().getResources(), R.drawable.default_img);
     }
 
 
@@ -389,7 +389,7 @@ public class ImageUtils {
                 return bitmap;
             } else {
                 Log.i(TAG, "downloadImage: download Failed...");
-                Bitmap bitmap = BitmapFactory.decodeResource(RyeCatcherApp.getContext().getResources(),
+                Bitmap bitmap = BitmapFactory.decodeResource(RyeCatcherApp.getInstance().getResources(),
                         R.drawable.default_portrait);
                 return bitmap;
             }

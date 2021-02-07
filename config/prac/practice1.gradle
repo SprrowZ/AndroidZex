@@ -135,7 +135,7 @@ customTask1.doLast {
 }
 //创建方式三:  任务名 + 闭包
 task customTask2(group: 'RyeDemoTasks', description: '任务名+闭包方式创建任务') {
-    println('带闭包的创建task')
+    //println('带闭包的创建task')
 }
 
 //创建方式四: 通过TaskContainer创建任务

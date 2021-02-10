@@ -10,13 +10,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.dawn.zgstep.R;
 
-import com.dawn.zgstep.mvvm.model.ConfigViewModel;
 
+import com.dawn.zgstep.jetpack.ConfigViewModel;
 import com.rye.base.BaseActivity;
 import com.rye.base.utils.ToastHelper;
 import com.rye.router_annotation.Route;
 
-@Route("/hello")
+@Route(
+        value = "router://page-type",
+        description = "step模块主页"
+)
 public class ZStepMainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "ZStepMainActivity";
     TextView btn1;

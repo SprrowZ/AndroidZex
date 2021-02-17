@@ -221,8 +221,8 @@ public class DeviceUtils {
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                String deviceId = tm.getImei();
-                return deviceId;
+//                String deviceId = tm.getImei();
+                return "deviceId";
             }
 
         }

@@ -34,7 +34,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!--防止屏幕变暗-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
     <application
         android:name=".RyeCatcherApp"
         android:allowBackup="true"

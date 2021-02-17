@@ -7,9 +7,18 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+apply from : '../config/maven-publish.gradle'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
     implementation project(':router_annotation')
     implementation "com.squareup:javapoet:1.13.0"
+
+    //引入autoService
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
 }

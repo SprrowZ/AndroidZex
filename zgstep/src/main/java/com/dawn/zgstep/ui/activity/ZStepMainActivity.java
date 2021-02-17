@@ -17,7 +17,7 @@ import com.rye.base.utils.ToastHelper;
 import com.rye.router_annotation.Route;
 
 @Route(
-        value = "router://page-type",
+        value = "router://page-step",
         description = "step模块主页"
 )
 public class ZStepMainActivity extends BaseActivity implements View.OnClickListener {

@@ -12,7 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/pluginz/zAndroid.AndroidZex.pluginz.iml" filepath="$PROJECT_DIR$/.idea/modules/pluginz/zAndroid.AndroidZex.pluginz.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/router_annotation/zAndroid.AndroidZex.router_annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/router_annotation/zAndroid.AndroidZex.router_annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/router_api/zAndroid.AndroidZex.router_api.iml" filepath="$PROJECT_DIR$/.idea/modules/router_api/zAndroid.AndroidZex.router_api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/router_compiler/zAndroid.AndroidZex.router_compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/router_compiler/zAndroid.AndroidZex.router_compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/router_compiler/zAndroid.AndroidZex.router_processor.iml" filepath="$PROJECT_DIR$/.idea/modules/router_compiler/zAndroid.AndroidZex.router_processor.iml" />
     </modules>
   </component>
 </project>

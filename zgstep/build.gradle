@@ -36,6 +36,10 @@ android {
 
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 kapt { //给注解处理器传递参数 对应java defaultConfig 中的 javaCompileOptions.annotationProcessorOptions
     arguments {
         arg("moduleName", project.getName())
@@ -77,9 +81,10 @@ dependencies {
 
     //注解处理器
     implementation project(':router_annotation')
-    kapt project(':router_compiler')
+    kapt project(':router_processor')
 
-    implementation project(':router_api')
+   // implementation project(':router_api')
+
 
 }
 repositories {

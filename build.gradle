@@ -40,6 +40,7 @@ task clean(type: Delete) {
     println '---------------执行删除操作build文件夹---------------'
     delete rootProject.buildDir
 }
+
 ext {//全局配置变量
     compileSdkVer = 28
     buildToolsVer = '28.0.3'

@@ -8,6 +8,11 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+apply from : '../config/maven-publish.gradle'
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 }

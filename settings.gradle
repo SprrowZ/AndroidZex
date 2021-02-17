@@ -1,7 +1,7 @@
 include ':router_annotation'
 include ':router_api'
 include ':router_api'
-include ':router_compiler'
+include ':router_processor'
 include ':pluginz'
 include ':app',
         ':zgstep',

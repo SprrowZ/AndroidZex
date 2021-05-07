@@ -4,7 +4,7 @@ package com.dawn.zgstep.design_patterns.behavioral.state;
  * Create by rye
  * at 2021/1/2
  *
- * @description:
+ * @description: 状态模式
  */
 public class LoginController implements ILoginController {
     private ILoginState mState;

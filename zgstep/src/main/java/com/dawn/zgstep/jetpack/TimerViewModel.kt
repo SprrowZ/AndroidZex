@@ -19,6 +19,9 @@ class TimerViewModel : ViewModel() {
     fun addCurrentSecondObserver(owner: LifecycleOwner, observer: Observer<Int>) {
         currentSecondModel.observe(owner, observer)
     }
+    fun testCoroutineScope(){
+
+    }
 
 //    fun removeCurrentSecondObserver(observer: Observer<Int>) {
 //        currentSecondModel.removeObserver(observer){}

@@ -7,6 +7,18 @@
     android:clipChildren="false"
     android:orientation="vertical"
     tools:context=".ui.activity.ZStepMainActivity">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bottom_line"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:padding="@dimen/len_10"
+        tools:text="Router传进来的标题"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_24" />
+
 
     <TextView
         android:id="@+id/btn1"
@@ -15,8 +27,9 @@
         android:background="@drawable/btn_bottom_line"
         android:gravity="center"
         android:padding="@dimen/len_10"
+        android:textColor="@color/black"
         android:text="Espresso 测试按钮1"
-        android:textSize="@dimen/font_24" />
+        android:textSize="@dimen/font_18" />
 
     <TextView
         android:id="@+id/btn2"
@@ -25,8 +38,9 @@
         android:background="@drawable/btn_bottom_line"
         android:gravity="center"
         android:padding="@dimen/len_10"
+        android:textColor="@color/black"
         android:text="Espresso 测试按钮2"
-        android:textSize="@dimen/font_24" />
+        android:textSize="@dimen/font_18" />
 
     <FrameLayout
         android:layout_width="300dp"

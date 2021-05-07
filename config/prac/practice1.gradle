@@ -147,3 +147,8 @@ tasks.create('customTask3') {
         println('hello~')
     }
 }
+tasks.register('hello2'){
+    doLast{
+        println 'HelloWorld!'
+    }
+}

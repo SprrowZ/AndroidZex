@@ -1,3 +1,4 @@
+include ':router_runtime'
 include ':router_annotation'
 include ':router_api'
 include ':router_api'
@@ -12,4 +13,10 @@ include ':router-gradle-plugin'
 
 if (hasProperty("isLoadRye")?isLoadTest.toBoolean():false){//测试代码
     include(':RyeModule')
+}
+/**
+ * 打印本次构建所有的任务
+ */
+gradle.taskGraph.beforeTask {task->
+    println("[all-task]"+task.name)
 }

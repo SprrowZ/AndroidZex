@@ -4,12 +4,20 @@ apply plugin: 'groovy'
 //声明仓库的地址
 repositories {
     jcenter()
+    google() //Transform所在仓库
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 
 //指定需要哪些第三方包
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.5.0' //生成Transform引入
 }
 
 //調用maven插件，用于发布

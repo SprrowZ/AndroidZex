@@ -12,7 +12,7 @@ public class MainJavaEnter {
 
 
     private static void testAnnotation() {
-        Rocker.INSTANCE.dealSth();
+        ListApis.INSTANCE.dealSth();
 
         Enlist.Companion.conspire();
 

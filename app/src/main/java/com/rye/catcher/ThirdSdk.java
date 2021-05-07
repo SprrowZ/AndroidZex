@@ -1,14 +1,14 @@
 package com.rye.catcher;
 
 import android.app.Application;
-import android.content.Context;
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.github.moduth.blockcanary.BlockCanary;
 import com.rye.catcher.GreenDaos.Base.DaoMaster;
 import com.rye.catcher.GreenDaos.Base.DaoSession;
-import com.rye.catcher.base.dbs.SchemasModule;
+
 import com.rye.catcher.base.sdks.AppBlockCanaryContext;
 import com.rye.catcher.utils.CrashHandler;
 
@@ -17,8 +17,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.greendao.database.Database;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
+
 
 public class ThirdSdk {
     private static ThirdSdk INSTANCE = null;
@@ -57,13 +56,13 @@ public class ThirdSdk {
 
     private void initRealm(Application context) {
         //Realm
-        Realm.init(context);
-        RealmConfiguration configuration = new RealmConfiguration.Builder()
-                .name("rye.realm")
-                .modules(new SchemasModule())
-                .schemaVersion(1)
-                .build();
-        Realm.setDefaultConfiguration(configuration);
+   //     Realm.init(context);
+//        RealmConfiguration configuration = new RealmConfiguration.Builder()
+//                .name("rye.realm")
+//                .modules(new SchemasModule())
+//                .schemaVersion(1)
+//                .build();
+//        Realm.setDefaultConfiguration(configuration);
     }
 
     private void initOther(Application context) {

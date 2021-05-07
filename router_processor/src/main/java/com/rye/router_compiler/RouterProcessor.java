@@ -2,6 +2,8 @@ package com.rye.router_compiler;
 
 
 import com.google.auto.service.AutoService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.rye.router_annotation.Route;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
@@ -13,6 +15,9 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.WildcardTypeName;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -49,15 +54,22 @@ import javax.tools.JavaFileObject;
 @SupportedOptions("moduleName")
 public class RouterProcessor extends AbstractProcessor {
     private static final String TAG = "RouterProcessor";
+    //gradle中kapt->arguments中配置的参数
     private String moduleName;
+    private String rootProjectDir;
     private Boolean hasCreatedFile = false;
+    //用来生成映射表文件
     private ArrayList<RouterValue> routerValues;
+    //用来生成json文件，方便查阅module内所有的路由信息
+    private JsonArray routeJsonArray;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
         Map<String, String> options = processingEnvironment.getOptions();
         moduleName = options.get("moduleName");
+        rootProjectDir = options.get("root_project_dir");
+//        System.out.println("rootDir:"+rootProjectDir);
     }
 
     /**
@@ -72,7 +84,6 @@ public class RouterProcessor extends AbstractProcessor {
         if (roundEnvironment.processingOver() || hasCreatedFile) {
             return false;
         }
-        System.out.println("-----------------buildClass..:" + roundEnvironment.processingOver());
         getAnnotationsInfo(set, roundEnvironment);
         //buildClassWithBuilder();
         //buildClassWithJavaPoet();
@@ -97,7 +108,7 @@ public class RouterProcessor extends AbstractProcessor {
             final String url = route.value();
             final String description = route.description();
             final String realPath = typeElement.getQualifiedName().toString();
-            saveRouterValues(url, realPath);
+            saveRouterValues(url, realPath, description);
             System.out.println(TAG + ">>> url:" + url + "\n description:" + description + "\nrealPath:" + realPath);
         }
         System.out.println(TAG + ">>> process finish");
@@ -170,11 +181,12 @@ public class RouterProcessor extends AbstractProcessor {
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .addCode(getCodeBlock(mapClassName))
                 .build();
-        TypeSpec routerMappingClass = TypeSpec.classBuilder("RouterMapping_"+System.currentTimeMillis())
+        TypeSpec routerMappingClass = TypeSpec.classBuilder("RouterMapping_" + System.currentTimeMillis())
                 .addMethod(get)
                 .addModifiers(Modifier.PUBLIC)
                 .build();
-        JavaFile file = JavaFile.builder("com.dawn.zgstep.mapping", routerMappingClass)
+        //这个包名和asm中的包名要一致
+        JavaFile file = JavaFile.builder("com.dawn.come.mapping", routerMappingClass)
                 .build();
         try {
             file.writeTo(processingEnv.getFiler());
@@ -184,20 +196,37 @@ public class RouterProcessor extends AbstractProcessor {
         } finally {
 
         }
-        System.out.println(file);
+        //存储映射信息到json文件中
+        saveRouteInfoToJsonFile();
 
+        System.out.println(file);
     }
 
-    private void saveRouterValues(String url, String realPath) {
+    private void saveRouterValues(String url, String realPath, String des) {
         if (routerValues == null) {
             routerValues = new ArrayList<>();
+        }
+        if (routeJsonArray == null) {
+            routeJsonArray = new JsonArray();
         }
         RouterValue routerValue = new RouterValue();
         routerValue.url = url;
         routerValue.realPath = realPath;
         routerValues.add(routerValue);
+        //存到json文件中
+        JsonObject item = new JsonObject();
+        item.addProperty("url", url);
+        item.addProperty("realPath", realPath);
+        item.addProperty("description", des);
+        routeJsonArray.add(item);
     }
 
+    /**
+     * 拼接mapping文件 中的每一列路由信息
+     *
+     * @param mapClassName
+     * @return
+     */
     private CodeBlock getCodeBlock(ClassName mapClassName) {
         CodeBlock.Builder contentBlock = CodeBlock.builder().addStatement("$T mapping = new $T()",
                 ParameterizedTypeName.get(mapClassName, ClassName.get(String.class),
@@ -208,4 +237,30 @@ public class RouterProcessor extends AbstractProcessor {
         return contentBlock.addStatement("return mapping").build();
     }
 
+    /**
+     * 将每一个module中的路由信息都存储到jsonFile中，
+     * 方便组内其他成员查阅；
+     * TODO 最好放到build文件夹中
+     */
+    private void saveRouteInfoToJsonFile() {
+        File rootDirFile = new File(rootProjectDir);
+        if (!rootDirFile.exists()) {
+            throw new RuntimeException("root_project_dir not exists!!");
+        }
+        File routeFileDir = new File(rootDirFile, "router_mapping");
+        if (!routeFileDir.exists()) {
+            routeFileDir.mkdirs();
+        }
+        File mappingFile = new File(routeFileDir, "mapping-" + System.currentTimeMillis() + ".json");
+        try {
+            //将jsonArray的内容写入到文件中
+            BufferedWriter out = new BufferedWriter(new FileWriter(mappingFile));
+            String jsonStr = routeJsonArray.toString();
+            out.write(jsonStr);
+            out.flush();
+            out.close();
+        } catch (Throwable throwable) {
+            throw new RuntimeException("Error while writing json", throwable);
+        }
+    }
 }

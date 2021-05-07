@@ -1,6 +1,7 @@
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 
 import androidx.test.core.app.ApplicationProvider;
@@ -32,7 +33,7 @@ public class TestMethods {
 
     private SharedPreferences mSharePreferences;
 
-    @Before
+ //   @Before
     public void doSth() {
         System.out.println("-----开始之前");
         ast++;
@@ -85,6 +86,8 @@ public class TestMethods {
         String target22 = "abc  ";
         assertEquals(target22.length(),5);
     }
+    @Test
+    public void testCAS(){
 
-
+    }
 }

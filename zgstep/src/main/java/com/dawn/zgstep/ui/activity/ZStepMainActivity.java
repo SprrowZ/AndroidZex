@@ -16,14 +16,16 @@ import com.rye.base.BaseActivity;
 import com.rye.base.utils.ToastHelper;
 import com.rye.router_annotation.Route;
 
+
 @Route(
-        value = "router://page-step",
+        value = "router://page/step",
         description = "step模块主页"
 )
 public class ZStepMainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "ZStepMainActivity";
-    TextView btn1;
-    TextView btn2;
+    private TextView title;
+    private TextView btn1;
+    private TextView btn2;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, ZStepMainActivity.class);
@@ -39,8 +41,10 @@ public class ZStepMainActivity extends BaseActivity implements View.OnClickListe
     public void initWidget() {
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
+        title = findViewById(R.id.title);
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
+        getTitleFromRouter();
     }
 
     @Override
@@ -59,4 +63,11 @@ public class ZStepMainActivity extends BaseActivity implements View.OnClickListe
             Log.i(TAG, "BT2 Click ....");
         }
     }
+
+
+    private void getTitleFromRouter(){
+        String titleName = getIntent().getStringExtra("stepTitle");
+        title.setText(titleName);
+    }
+
 }

@@ -45,7 +45,7 @@ public class NewPermission {
         return (flag & permission) == 0;
     }
 
-    //是否禁拥有某些权限
+    //是否只拥有某些权限
     public boolean isOnlyAllow(int permission) {
         return flag == permission;
     }

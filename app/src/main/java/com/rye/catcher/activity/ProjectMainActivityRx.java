@@ -12,9 +12,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-
-import com.dawn.zgstep.ui.activity.ZStepMainActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;
@@ -36,6 +33,8 @@ import com.rye.catcher.project.sqlite.DBActivity;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
+import com.rye.router.runtime.Router;
+import com.rye.router_annotation.Route;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
@@ -48,7 +47,10 @@ import butterknife.ButterKnife;
 /**
  * Created by ZZG on 2017/11/13.
  */
-
+@Route(
+        value = "router://page/project",
+        description = "各种Demo示例"
+)
 public class ProjectMainActivityRx extends RxBaseActivity implements
         ProjectListAdapter.OnItemClickListener, FilesDemoActivity.DataListener {
 
@@ -178,7 +180,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 startActivity(new Intent(this, CommonDialogActivity.class));
                 break;
             case "testCoor":
-                ToastHelper.showToastShort(this,"已经被干掉了！");
+                ToastHelper.showToastShort(this, "已经被干掉了！");
                 break;
             case "batchLoading":
                 startActivity(new Intent(this, BatchLoadingActivity.class));
@@ -232,7 +234,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 startActivity(new Intent(this, UpdateActivityRx.class));
                 break;
             case "zgStep":
-                ZStepMainActivity.start(this);
+                Router.routeTo(this, "router://page/step?stepTitle=Hi~");
                 break;
             case "diagnosis":
                 NetDiagnosisActivity.start(this);

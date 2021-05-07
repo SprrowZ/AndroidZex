@@ -3,9 +3,9 @@
     package="com.dawn.zgstep">
 
     <application>
-        <activity android:name=".ui.activity.ProxyActivity"></activity>
+        <activity android:name=".ui.activity.CoroutineDemoActivity"></activity>
+        <activity android:name=".ui.activity.ProxyActivity" />
         <activity android:name=".ui.activity.DemoActivity" />
-
         <activity android:name=".ui.activity.ZStepMainActivity" />
         <activity android:name=".others.bolts.BoltsMainJava" />
     </application>

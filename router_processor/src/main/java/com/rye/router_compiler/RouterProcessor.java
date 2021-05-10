@@ -63,6 +63,12 @@ public class RouterProcessor extends AbstractProcessor {
     //用来生成json文件，方便查阅module内所有的路由信息
     private JsonArray routeJsonArray;
 
+    /***
+     * init(ProcessingEnvironment env):每个Annotation Processor必须***
+     * 有一个空的构造函数 *。编译期间，init()会自动被注解处理工具调用，并
+     * 传入ProcessingEnvironment参数，通过该参数可以获取到很多有用的工具类: Elements , Types , Filer **等等
+     * @param processingEnvironment
+     */
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
@@ -81,6 +87,7 @@ public class RouterProcessor extends AbstractProcessor {
      */
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        //避免process多次调用
         if (roundEnvironment.processingOver() || hasCreatedFile) {
             return false;
         }
@@ -93,6 +100,7 @@ public class RouterProcessor extends AbstractProcessor {
 
 
     private Boolean getAnnotationsInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        //获取所有标记了@Route注解的类的信息
         Set<Element> allRouteElements = (Set<Element>) roundEnvironment.getElementsAnnotatedWith(Route.class);
         System.out.println(TAG + " all Route elements count:" + allRouteElements.size());
         if (allRouteElements.size() < 1) {
@@ -101,6 +109,7 @@ public class RouterProcessor extends AbstractProcessor {
         //遍历所有@Route注解信息，挨个获取注解信息
         for (Element element : allRouteElements) {
             final TypeElement typeElement = (TypeElement) element;
+            //在当前类上获取注解信息
             final Route route = typeElement.getAnnotation(Route.class);
             if (route == null) {
                 continue;

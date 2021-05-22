@@ -300,7 +300,7 @@ class CameraTFragment : BaseFragment() {
      */
     private fun startBackgroundThread() {
         backgroundThread = HandlerThread("CameraBk").also { it.start() }
-        backgroundHandler = Handler(backgroundThread?.looper)
+        backgroundHandler = Handler(backgroundThread!!.looper)
     }
 
     /**
@@ -459,7 +459,7 @@ class CameraTFragment : BaseFragment() {
         try {
             val texture = textureView.surfaceTexture
             //通过设置缓冲区去设置我们想要预览的大小
-            texture.setDefaultBufferSize(previewSize.width, previewSize.height)
+            texture!!.setDefaultBufferSize(previewSize.width, previewSize.height)
             //图像输出到了surface中
             val surface = Surface(texture)
             //设置预览

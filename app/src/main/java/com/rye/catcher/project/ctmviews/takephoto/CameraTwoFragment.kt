@@ -83,20 +83,20 @@ class CameraTwoFragment : BaseFragment() {
 
 
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-        override fun onSurfaceTextureAvailable(p0: SurfaceTexture?, width: Int, height: Int) {
+        override fun onSurfaceTextureAvailable(p0: SurfaceTexture, width: Int, height: Int) {
             // 当TextureView可用时，打开摄像头
             openCamera(width, height)
         }
 
-        override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture?, p1: Int, p2: Int) {
+        override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture, p1: Int, p2: Int) {
 
         }
 
-        override fun onSurfaceTextureUpdated(p0: SurfaceTexture?) {
+        override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {
 
         }
 
-        override fun onSurfaceTextureDestroyed(p0: SurfaceTexture?): Boolean {
+        override fun onSurfaceTextureDestroyed(p0: SurfaceTexture): Boolean {
             return true
         }
 

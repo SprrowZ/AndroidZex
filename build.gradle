@@ -42,9 +42,9 @@ task clean(type: Delete) {
 }
 
 ext {//全局配置变量
-    compileSdkVer = 28
-    buildToolsVer = '28.0.3'
+    compileSdkVer = 30
+    buildToolsVer = '30.0.1'
     minSdkVer = 23
-    targetSdkVer = 28
+    targetSdkVer = 30
     MiminSdkVer = 19
 }

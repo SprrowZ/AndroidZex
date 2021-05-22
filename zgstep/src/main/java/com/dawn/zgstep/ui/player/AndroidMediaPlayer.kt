@@ -77,11 +77,11 @@ class AndroidMediaPlayer : AbstractMediaPlayer {
     }
 
     override fun setDataSource(context: Context?, uri: Uri?) {
-        mMediaPlayer.setDataSource(context, uri)
+        mMediaPlayer.setDataSource(context!!, uri!!)
     }
 
     override fun setDataSource(context: Context?, uri: Uri?, var3: Map<String?, String?>?) {
-        mMediaPlayer.setDataSource(context, uri, var3)
+        mMediaPlayer.setDataSource(context!!, uri!!, var3)
     }
 
     override fun setDataSource(fileDescriptor: FileDescriptor?) {

@@ -16,7 +16,7 @@ buildscript {
     dependencies {
         classpath deps.build_tools
 
-        classpath deps.greendao_plugin
+       // classpath deps.greendao_plugin
 
         classpath deps.kotlin_plugin
 

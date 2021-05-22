@@ -40,7 +40,7 @@ class DefaultHeaderAddInterceptor implements Interceptor {
         }
 
         if (userRequest.header("Host") == null) {
-            requestBuilder.header("Host", Util.hostHeader(userRequest.url(), false));
+            requestBuilder.header("Host", Util.toHostHeader(userRequest.url(), false));
         }
 
         if (userRequest.header("Connection") == null) {

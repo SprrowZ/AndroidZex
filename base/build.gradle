@@ -48,7 +48,7 @@ dependencies {
     api deps.rxjava.rx
     api deps.rxjava.rxandroid
 
-    api deps.greendao
+   // api deps.greendao
 
     api deps.okhttp.core
     api deps.okhttp.interceptor

@@ -25,6 +25,7 @@ class Producer implements Runnable {
                 }
             }
             mStorage.dataSource.add(1);
+            mStorage.lock.notifyAll();
             System.out.println("当前缓冲队列大小：" + mStorage.dataSource.size());
         }
     }
@@ -39,15 +40,14 @@ class Consumer implements Runnable {
 
     @Override
     public void run() {
-        while (mStorage.dataSource.size() == 0) {
-            System.out.println("队列已空！");
+        while (true) {
             try {
                 mStorage.lock.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-       // mStorage.dataSource.remove();
+        // mStorage.dataSource.remove();
 
     }
 }

@@ -6,23 +6,23 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.github.moduth.blockcanary.BlockCanary;
-import com.rye.catcher.GreenDaos.Base.DaoMaster;
-import com.rye.catcher.GreenDaos.Base.DaoSession;
 
 import com.rye.catcher.base.sdks.AppBlockCanaryContext;
 import com.rye.catcher.utils.CrashHandler;
 
 import com.tencent.bugly.crashreport.CrashReport;
 //import com.umeng.commonsdk.UMConfigure;
+//import com.rye.catcher.GreenDaos.Base.DaoMaster;
+//import com.rye.catcher.GreenDaos.Base.DaoSession;
 
-import org.greenrobot.greendao.database.Database;
+//import org.greenrobot.greendao.database.Database;
 
 
 
 public class ThirdSdk {
     private static ThirdSdk INSTANCE = null;
     private boolean DAO_INITED = false;
-    private DaoSession daoSession;
+//    private DaoSession daoSession;
 
     private DisplayMetrics displayMetrics;
 
@@ -79,17 +79,17 @@ public class ThirdSdk {
             displayMetrics = context.getResources().getDisplayMetrics();
         }
         //初始化GreenDao
-        if (!DAO_INITED) {
-            DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, "notes-db");
-            Database db = helper.getWritableDb();
-            daoSession = new DaoMaster(db).newSession();
-            DAO_INITED = true;
-        }
+//        if (!DAO_INITED) {
+//            DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, "notes-db");
+//            Database db = helper.getWritableDb();
+//            daoSession = new DaoMaster(db).newSession();
+//            DAO_INITED = true;
+//        }
     }
 
-    public DaoSession getDaoSession() {//获取dao实例
-        return daoSession;
-    }
+//    public DaoSession getDaoSession() {//获取dao实例
+//        return daoSession;
+//    }
 
     private void printInfo(String msg) {
         Log.e("Rye", "Hello,reflect friend! " + msg);

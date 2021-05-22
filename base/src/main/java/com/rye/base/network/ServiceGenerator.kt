@@ -15,17 +15,17 @@ class ServiceGenerator {
         private var okHttpClient: OkHttpClient? = null
         private var serviceMap:MutableMap<String,Any>? =null
         private var logging:HttpLoggingInterceptor?= null
-        private val httpClientBuilder:OkHttpClient.Builder
+        private val httpClientBuilder:OkHttpClient.Builder = OkHttpClient.Builder()
+                .connectTimeout(TIME_OUT,TimeUnit.SECONDS)
+                .writeTimeout(TIME_OUT,TimeUnit.SECONDS)
+                .readTimeout(TIME_OUT,TimeUnit.SECONDS)
+                .addInterceptor(DefaultHeaderAddInterceptor())
+
         init {
-            httpClientBuilder=OkHttpClient.Builder()
-                    .connectTimeout(TIME_OUT,TimeUnit.SECONDS)
-                    .writeTimeout(TIME_OUT,TimeUnit.SECONDS)
-                    .readTimeout(TIME_OUT,TimeUnit.SECONDS)
-                    .addInterceptor(DefaultHeaderAddInterceptor())
-               if (BuildConfig.DEBUG){//重写一下
+            if (BuildConfig.DEBUG){//重写一下
                    logging=HttpLoggingInterceptor()
                    logging!!.level = HttpLoggingInterceptor.Level.BODY
-                   httpClientBuilder.addInterceptor(logging)
+                   httpClientBuilder.addInterceptor(logging!!)
                }
             okHttpClient= httpClientBuilder.build()
             serviceMap= mutableMapOf()

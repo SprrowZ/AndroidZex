@@ -15,9 +15,44 @@ fun <T : String> T.getViewTag(f: T.() -> Boolean) {
     }
 }
 
+//【中缀函数】
 infix fun String.appendEx(suffix: String): String {
     return this + suffix
 }
+
+//【接口扩展函数+泛型实化】
+interface IInline {
+
+}
+
+inline fun <reified T> IInline.appendObject() { //接口扩展加泛型实化
+    if (T::class.java == String.javaClass) {
+
+    }
+}
+
+//【闭包测试】
+class FunctionRecord {
+    var token: String? = null
+}
+
+class TestFunctionRecord {
+    private val functionList = mutableListOf<FunctionRecord>()
+
+    private fun visitFunctionWidget(action: (record: FunctionRecord) -> Unit) {
+        print("nothing...")
+        functionList.forEach {
+            action.invoke(it)
+        }
+    }
+
+    fun test() {
+        visitFunctionWidget {
+            print(it.token)
+        }
+    }
+}
+
 
 object RKtExtensionsTest {
 
@@ -32,6 +67,8 @@ object RKtExtensionsTest {
         val result = prefix appendEx suffix
         println(result)
     }
+
+
 }
 
 fun main(args: Array<String>) {

@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.rye.router'
 
 apply { //另一种写法
-    plugin 'org.greenrobot.greendao'
+   // plugin 'org.greenrobot.greendao'
    // plugin 'realm-android'
 }
 
@@ -115,11 +115,11 @@ android {
 
     }
 
-    greendao {
-        schemaVersion 1
-        daoPackage 'com.rye.catcher.GreenDaos.Base'
-        targetGenDir 'src/main/java'
-    }
+//    greendao {
+//        schemaVersion 1
+//        daoPackage 'com.rye.catcher.GreenDaos.Base'
+//        targetGenDir 'src/main/java'
+//    }
 
     lintOptions {
 

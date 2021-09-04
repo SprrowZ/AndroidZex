@@ -2,7 +2,7 @@
  * Copyright (c) 2015-2020 BiliBili Inc.
  */
 
-package com.dawn.zgstep.ui.player
+package com.dawn.zgstep.player
 
 import android.content.Context
 import android.os.Bundle

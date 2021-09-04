@@ -1,4 +1,4 @@
-package com.dawn.zgstep.ui.player
+package com.dawn.zgstep.player
 
 import android.content.Context
 import android.media.MediaPlayer

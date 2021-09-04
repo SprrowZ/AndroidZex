@@ -12,6 +12,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.dawn.zgstep.player.ui.DemoPlayerActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;
@@ -238,6 +240,9 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 break;
             case "diagnosis":
                 NetDiagnosisActivity.start(this);
+                break;
+            case "player_demo":
+                DemoPlayerActivity.start(this);
                 break;
         }
     }

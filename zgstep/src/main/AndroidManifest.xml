@@ -3,7 +3,8 @@
     package="com.dawn.zgstep">
 
     <application>
-        <activity android:name=".ui.activity.CoroutineDemoActivity"></activity>
+        <activity android:name=".player.ui.DemoPlayerActivity"></activity>
+        <activity android:name=".ui.activity.CoroutineDemoActivity" />
         <activity android:name=".ui.activity.ProxyActivity" />
         <activity android:name=".ui.activity.DemoActivity" />
         <activity android:name=".ui.activity.ZStepMainActivity" />

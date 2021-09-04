@@ -1,4 +1,4 @@
-package com.dawn.zgstep.ui.player
+package com.dawn.zgstep.player
 
 import android.annotation.TargetApi
 import android.content.Context
@@ -9,6 +9,7 @@ import android.view.Surface
 import android.view.SurfaceHolder
 import java.io.FileDescriptor
 import java.io.IOException
+import kotlin.jvm.Throws
 
 /**
  * Create by rye

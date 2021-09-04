@@ -86,5 +86,9 @@
   {
     "name": "NetWork Diagnosis",
     "action": "diagnosis"
+  },
+  {
+    "name": "PlayerDemo",
+    "action": "player_demo"
   }
 ]

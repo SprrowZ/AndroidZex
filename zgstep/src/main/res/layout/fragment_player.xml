@@ -3,12 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.player.PlayerFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".player.ui.PlayerFragment">
+    <SurfaceView
+        android:id="@+id/surface"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+        android:layout_height="300dp"/>
 </FrameLayout>

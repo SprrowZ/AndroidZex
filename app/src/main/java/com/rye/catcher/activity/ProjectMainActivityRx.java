@@ -34,7 +34,7 @@ import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.rye.router.runtime.Router;
-import com.rye.router_annotation.Route;
+//import com.rye.router_annotation.Route;
 import com.yanzhenjie.permission.Permission;
 
 import java.util.List;
@@ -47,10 +47,10 @@ import butterknife.ButterKnife;
 /**
  * Created by ZZG on 2017/11/13.
  */
-@Route(
-        value = "router://page/project",
-        description = "各种Demo示例"
-)
+//@Route(
+//        value = "router://page/project",
+//        description = "各种Demo示例"
+//)
 public class ProjectMainActivityRx extends RxBaseActivity implements
         ProjectListAdapter.OnItemClickListener, FilesDemoActivity.DataListener {
 

@@ -184,8 +184,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation deps.support
-    implementation files('/Users/zhaozhenguo/Desktop/sourceCode/tblivesdk-2.2.0.03121431-liveapp.aar')
-
 
     //单元测试
     testImplementation 'junit:junit:4.12'

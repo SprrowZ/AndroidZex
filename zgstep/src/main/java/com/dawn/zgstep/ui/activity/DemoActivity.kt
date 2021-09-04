@@ -14,12 +14,12 @@ import com.dawn.zgstep.ui.fragment.ViewModelFragment
 import com.dawn.zgstep.ui.fragment.XfermodeFragment
 import com.rye.base.BaseFragmentActivity
 import com.rye.base.widget.OnItemClickListener
-import com.rye.router_annotation.Route
+//import com.rye.router_annotation.Route
 
-@Route(
-        value = "router://page-demo",
-        description = "测试页面"
-)
+//@Route(
+//        value = "router://page-demo",
+//        description = "测试页面"
+//)
 class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
     private var mRecycler: RecyclerView? = null
     private var mAdapter: SeniorUiAdapter? = null

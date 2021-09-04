@@ -14,13 +14,13 @@ import com.dawn.zgstep.R;
 import com.dawn.zgstep.jetpack.ConfigViewModel;
 import com.rye.base.BaseActivity;
 import com.rye.base.utils.ToastHelper;
-import com.rye.router_annotation.Route;
+//import com.rye.router_annotation.Route;
 
 
-@Route(
-        value = "router://page/step",
-        description = "step模块主页"
-)
+//@Route(
+//        value = "router://page/step",
+//        description = "step模块主页"
+//)
 public class ZStepMainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "ZStepMainActivity";
     private TextView title;

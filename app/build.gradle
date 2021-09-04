@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'com.rye.router'
+//apply plugin: 'com.rye.router'
 
 apply { //另一种写法
    // plugin 'org.greenrobot.greendao'
@@ -19,9 +19,9 @@ apply from: '../config/sign.gradle'
 apply from:'../config/prac/practice1.gradle'
 
 
-router {
-    wikiDir getRootDir().absolutePath
-}
+//router {
+//    wikiDir getRootDir().absolutePath
+//}
 android {
     compileSdkVersion rootProject.compileSdkVer
     buildToolsVersion rootProject.buildToolsVer
@@ -184,6 +184,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation deps.support
+    implementation files('/Users/zhaozhenguo/Desktop/sourceCode/tblivesdk-2.2.0.03121431-liveapp.aar')
 
 
     //单元测试
@@ -249,8 +250,8 @@ dependencies {
 
 
     //注解处理器
-    implementation project(':router_annotation')
-    kapt project(':router_processor')
+//    implementation project(':router_annotation')
+//    kapt project(':router_processor')
     //router 运行时代码
     implementation project(':router_runtime')
 }

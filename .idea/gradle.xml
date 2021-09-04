@@ -16,9 +16,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/pluginz" />
             <option value="$PROJECT_DIR$/router-gradle-plugin" />
-            <option value="$PROJECT_DIR$/router_annotation" />
             <option value="$PROJECT_DIR$/router_api" />
-            <option value="$PROJECT_DIR$/router_processor" />
             <option value="$PROJECT_DIR$/router_runtime" />
             <option value="$PROJECT_DIR$/zgstep" />
             <option value="$PROJECT_DIR$/zzsdk" />

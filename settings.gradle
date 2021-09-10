@@ -20,3 +20,4 @@ if (hasProperty("isLoadRye")?isLoadTest.toBoolean():false){//测试代码
 gradle.taskGraph.beforeTask {task->
     println("[all-task]"+task.name)
 }
+include ':opengl'

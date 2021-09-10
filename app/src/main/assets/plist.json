@@ -90,5 +90,9 @@
   {
     "name": "PlayerDemo",
     "action": "player_demo"
+  },
+  {
+    "name": "OpenGL_Main",
+    "action": "opengl_main"
   }
 ]

@@ -1,6 +1,7 @@
 package com.rye.opengl;
 
 import android.opengl.GLES20;
+import android.util.Log;
 
 public class ShaderHelper {
     private static final String TAG = "ShaderHelper";
@@ -25,18 +26,26 @@ public class ShaderHelper {
         final int shaderObjectId = GLES20.glCreateShader(type);
         if (shaderObjectId == 0) {
             //出错
+            if (LoggerConfig.ON) {
+                Log.w(TAG, "Could not create new shader.");
+            }
             return 0;
         }
         //上传着色器源代码
         GLES20.glShaderSource(shaderObjectId, shaderCode);
         //编译着色器源代码
         GLES20.glCompileShader(shaderObjectId);
+
         final int[] compileStatus = new int[1];
         //获取着色器状态
         GLES20.glGetShaderiv(shaderObjectId, GLES20.GL_COMPILE_STATUS, compileStatus, 0);
         //---这里可以打log
         if (compileStatus[0] == 0) {//出错
             GLES20.glDeleteShader(shaderObjectId);
+            if (LoggerConfig.ON) {
+                Log.w(TAG, "Compilation of shader failed.");
+            }
+
             return 0;
         }
         return shaderObjectId;
@@ -53,6 +62,9 @@ public class ShaderHelper {
         //新建程序对象，记录程序对象ID
         final int programObjectId = GLES20.glCreateProgram();
         if (programObjectId == 0){ //创建OpenGL项目出错
+            if (LoggerConfig.ON) {
+                Log.w(TAG, "Could not create new program");
+            }
             return 0;
         }
         //将两个着色器附着在OpenGL程序上
@@ -60,9 +72,17 @@ public class ShaderHelper {
         GLES20.glAttachShader(programObjectId,fragmentShaderId);
         //将两个着色器链接起来
         GLES20.glLinkProgram(programObjectId);
+
         final int[] linkStatus = new int[1];
 
         GLES20.glGetProgramiv(programObjectId,GLES20.GL_LINK_STATUS,linkStatus,0);
+
+
+        if (LoggerConfig.ON) {
+            // 打印链接信息
+            Log.v(TAG, "Results of linking program:\n" + GLES20.glGetProgramInfoLog(programObjectId));
+        }
+
         if (linkStatus[0] == 0){//连接出错
             GLES20.glDeleteProgram(programObjectId);
             return 0 ;
@@ -82,7 +102,7 @@ public class ShaderHelper {
         int fragmentShader = compileFragmentShader(fragmentShaderSource);
         programObjectId = linkProgram(vertexShader,fragmentShader);
         //validateProgram
-        if (validateProgram(programObjectId)){
+        if (!validateProgram(programObjectId)){
             return 0;
         }
         return programObjectId;

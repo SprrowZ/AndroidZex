@@ -69,9 +69,6 @@ public class FirstRenderer  implements GLSurfaceView.Renderer {
         GLES20.glVertexAttribPointer(aPositionLocation,POSITION_COMPONENT_COUNT,
                 GLES20.GL_FLOAT,false,0,vertexData);
         GLES20.glEnableVertexAttribArray(aPositionLocation);
-        vertexData.position(0);
-        GLES20.glVertexAttribPointer(uColorLocation,COLOR_COMPONENT_COUNT,
-                GLES20.GL_FLOAT,false,0,vertexData);
     }
 
     @Override

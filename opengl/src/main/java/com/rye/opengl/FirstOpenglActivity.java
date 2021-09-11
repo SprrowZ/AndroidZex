@@ -64,6 +64,11 @@ public class FirstOpenglActivity extends AppCompatActivity {
         if (renderSet) {
             glSurfaceView.onResume();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
         if (renderSet) {
             glSurfaceView.onPause();
         }

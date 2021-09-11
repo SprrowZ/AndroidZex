@@ -3,6 +3,7 @@ package com.rye.opengl;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -16,15 +17,22 @@ public class FirstRenderer implements GLSurfaceView.Renderer {
     private static final int POSITION_COMPONENT_COUNT = 2;
     private static final int BYTES_PER_FLOAT = 4;
     private static final int COLOR_COMPONENT_COUNT = 3;
+    private static final int STRIDE = (POSITION_COMPONENT_COUNT + COLOR_COMPONENT_COUNT) * BYTES_PER_FLOAT;
     //private static final String U_COLOR = "u_Color";
     //private int uColorLocation;
     private static final String A_COLOR = "a_Color";
     private int aColorLocation;
-    private static final int STRIDE = (POSITION_COMPONENT_COUNT + COLOR_COMPONENT_COUNT) * BYTES_PER_FLOAT;
 
     private static final String A_POSITION = "a_Position";
     private int aPositionLocation;
 
+    private static final String U_MATRIX = "u_Matrix";
+    private int uMatrixLocation;
+    //投影矩阵
+    private final float[] projectionMatrix = new float[16];
+    private final float[] modelMatrix = new float[16];
+    //总矩阵
+    private final float[] uMatrix = new float[16];
 
     //记录四方形位置坐标
     float[] tableVerticesWithTriangles = { //两个点代表一个位置
@@ -37,18 +45,18 @@ public class FirstRenderer implements GLSurfaceView.Renderer {
 //            0.5f, -0.5f,
 //            0.5f, 0.5f,
             //三角扇
-            0, 0, 1f, 1f, 1f,
-            -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
-            0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
-            0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
-            -0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
-            -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+             0,     0,      1f,   1f,   1f,
+            -0.5f, -0.8f, 0.7f, 0.7f, 0.7f,
+             0.5f, -0.8f, 0.7f, 0.7f, 0.7f,
+             0.5f,  0.8f, 0.7f, 0.7f, 0.7f,
+            -0.5f,  0.8f, 0.7f, 0.7f, 0.7f,
+            -0.5f, -0.8f, 0.7f, 0.7f, 0.7f,
             //中间分界线
-            -0.5f, 0f, 1f, 0f, 0f,
-            0.5f, 0f, 1f, 0f, 0f,
+            -0.5f,    0f,   1f,   0f,   0f,
+             0.5f,    0f,   1f,   0f,   0f,
             //两个摇杆的质点位置
-            0f, -0.25f, 0f, 0f, 1f,
-            0f, 0.25f, 1f, 0f, 0f
+               0f,-0.4f,   0f,   0f,   1f,
+               0f, 0.4f,   1f,   0f,   0f
     };
 
     private final FloatBuffer vertexData =
@@ -77,6 +85,8 @@ public class FirstRenderer implements GLSurfaceView.Renderer {
        // uColorLocation = GLES20.glGetUniformLocation(programId, U_COLOR);
         aPositionLocation = GLES20.glGetAttribLocation(programId, A_POSITION);
         aColorLocation = GLES20.glGetAttribLocation(programId,A_COLOR);
+        uMatrixLocation = GLES20.glGetUniformLocation(programId,U_MATRIX);
+
         vertexData.position(0);
         //告诉OpenGL从哪里读取a_Position数据
         GLES20.glVertexAttribPointer(aPositionLocation, POSITION_COMPONENT_COUNT,
@@ -92,11 +102,26 @@ public class FirstRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         GLES20.glViewport(0, 0, width, height);
+//        final float aspectRatio = width > height ?
+//                (float)width / (float)height   :
+//                (float)height / (float)width ;
+//        if(width > height){
+//            Matrix.orthoM(projectionMatrix,0, -aspectRatio, aspectRatio,   -1f,1f,    -1f,1f);
+//        } else {
+//            Matrix.orthoM(projectionMatrix,0, -1f,1f,    -aspectRatio, aspectRatio,   -1f,1f);
+//        }
+        MatrixHelper.perspectiveM(projectionMatrix,45,(float) width/(float) height,1f,100f);
+        Matrix.setIdentityM(modelMatrix,0);
+        Matrix.translateM(modelMatrix, 0, 0f,0f,-2f);//平移
+        Matrix.rotateM(modelMatrix,0,-60f,1f,0f,0f);//旋转
+
+        Matrix.multiplyMM(uMatrix,0,  projectionMatrix,0,   modelMatrix,0);
     }
 
     @Override
     public void onDrawFrame(GL10 gl) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+        GLES20.glUniformMatrix4fv(uMatrixLocation,1,false,uMatrix,0);
 //        //##### 1.先画两个三角形
 //        //更新着色器中u_Color的值，uniform没有默认值，一个uniform在着色器中被定义vec4类型，
 //        //我们就需要提供所有四个分量的值，红绿蓝透明度

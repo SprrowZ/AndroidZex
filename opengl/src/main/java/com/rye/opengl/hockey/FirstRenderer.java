@@ -1,9 +1,11 @@
-package com.rye.opengl;
+package com.rye.opengl.hockey;
 
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
+
+import com.rye.opengl.R;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

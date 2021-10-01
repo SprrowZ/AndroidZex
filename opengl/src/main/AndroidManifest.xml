@@ -4,7 +4,10 @@
 
     <application>
         <activity
-            android:name=".FirstOpenglActivity"
+            android:name=".demos.ShapeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".hockey.FirstOpenglActivity"
             android:exported="true" />
     </application>
 

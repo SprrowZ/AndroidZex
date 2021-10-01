@@ -1,4 +1,4 @@
-package com.rye.opengl;
+package com.rye.opengl.hockey;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,6 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
 
 public class FirstOpenglActivity extends AppCompatActivity {
     private GLSurfaceView glSurfaceView;
@@ -43,7 +39,7 @@ public class FirstOpenglActivity extends AppCompatActivity {
     private void setRenderer() {
         if (isSupportEs2()) {
             glSurfaceView.setEGLContextClientVersion(2);
-            glSurfaceView.setRenderer(new FirstRenderer(this));
+            glSurfaceView.setRenderer(new SecondRenderer(this));
             renderSet = true;
         } else {
             Log.e("Rye", "not support opengl es 2.0");

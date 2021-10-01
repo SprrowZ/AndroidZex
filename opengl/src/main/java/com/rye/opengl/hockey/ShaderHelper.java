@@ -1,4 +1,4 @@
-package com.rye.opengl;
+package com.rye.opengl.hockey;
 
 import android.opengl.GLES20;
 import android.util.Log;

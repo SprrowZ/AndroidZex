@@ -6,7 +6,7 @@
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/kbogla for more book information.
  */
-package com.rye.opengl
+package com.rye.opengl.hockey
 
 object LoggerConfig {
     @JvmField

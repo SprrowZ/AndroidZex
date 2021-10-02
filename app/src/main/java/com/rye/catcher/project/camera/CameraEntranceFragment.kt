@@ -1,4 +1,4 @@
-package com.rye.catcher.project.ctmviews.takephoto
+package com.rye.catcher.project.camera
 
 
 import android.Manifest
@@ -27,11 +27,14 @@ import java.io.FileNotFoundException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-class CameraOneFragment : BaseFragment() {
+/**
+ * 调用系统相机
+ */
+class CameraEntranceFragment : BaseFragment() {
 
     companion object {
         private const val CAMERA_REQUEST_CODE = 99
+        private const val FILE_PROVIDER_PATH = "com.rye.catcher.zzg.provider"
     }
 
     private var uri: Uri? = null
@@ -66,38 +69,42 @@ class CameraOneFragment : BaseFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == CameraActivity2.REQUEST_CODE && resultCode == CameraActivity2.RESULT_CODE) {
+        if (requestCode == Camera1Activity.REQUEST_CODE && resultCode == Camera1Activity.RESULT_CODE) {
             //获取文件路径，显示图片
-            val path = CameraActivity2.getResult(data)
+            val path = Camera1Activity.getResult(data)
             if (!TextUtils.isEmpty(path)) {
                 mMainImgView?.setImageBitmap(BitmapFactory.decodeFile(path))
             }
         } else if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            if (uri != null) {
-                var bitmap: Bitmap? = null
-                try {
-                    val inputStream = activity!!.contentResolver.openInputStream(uri!!)
-                    //压缩图片
-                    bitmap = mMainImgView?.measuredHeight?.let {
-                        mMainImgView?.measuredWidth?.let { it1 ->
-                            ImageUtils.ratio(null, it, it1,
-                                    inputStream)
-                        }
-                    }
-                    if (data != null) {
-                        mMainImgView?.setImageBitmap(bitmap)
-                    }
+            showImage(data)
+        }
+    }
 
-                } catch (e: FileNotFoundException) {
-                    e.printStackTrace()
-                } finally {
-                    if (bitmap != null && !bitmap.isRecycled) {
-                        bitmap.recycle()
+    private fun showImage(data: Intent?) {
+        if (uri != null) {
+            var bitmap: Bitmap? = null
+            try {
+                val inputStream = activity!!.contentResolver.openInputStream(uri!!)
+                //压缩图片
+                bitmap = mMainImgView?.measuredHeight?.let {
+                    mMainImgView?.measuredWidth?.let { it1 ->
+                        ImageUtils.ratio(
+                            null, it, it1,
+                            inputStream
+                        )
                     }
                 }
+                if (data != null) {
+                    mMainImgView?.setImageBitmap(bitmap)
+                }
 
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            } finally {
+                if (bitmap != null && !bitmap.isRecycled) {
+                    bitmap.recycle()
+                }
             }
-
 
         }
     }
@@ -108,11 +115,22 @@ class CameraOneFragment : BaseFragment() {
      * @param type 拍摄证件类型
      */
     private fun takePhoto(type: Int) {
-        if (activity?.let { ContextCompat.checkSelfPermission(it, Manifest.permission.CAMERA) } != PackageManager.PERMISSION_GRANTED) {
-            activity?.let { ActivityCompat.requestPermissions(it, arrayOf(Manifest.permission.CAMERA), 0x12) }
+        if (activity?.let {
+                ContextCompat.checkSelfPermission(
+                    it,
+                    Manifest.permission.CAMERA
+                )
+            } != PackageManager.PERMISSION_GRANTED) {
+            activity?.let {
+                ActivityCompat.requestPermissions(
+                    it,
+                    arrayOf(Manifest.permission.CAMERA),
+                    0x12
+                )
+            }
             return
         }
-        CameraActivity2.openCamera(activity, type)
+        Camera1Activity.openCamera(activity, type)
     }
 
     private fun getImagePath(): String {
@@ -131,10 +149,10 @@ class CameraOneFragment : BaseFragment() {
         val file = File(getImagePath())
 
         //低于7.0用file://
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            uri = Uri.fromFile(file)
+        uri = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            Uri.fromFile(file)
         } else {
-            uri = activity?.let { FileProvider.getUriForFile(it, activity!!.getApplicationContext().getPackageName() + ".provider", file) }
+            activity?.let { FileProvider.getUriForFile(it, FILE_PROVIDER_PATH, file) }
         }
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
         startActivityForResult(intent, CAMERA_REQUEST_CODE)
@@ -145,22 +163,9 @@ class CameraOneFragment : BaseFragment() {
     /**
      * 证件
      */
-    fun takeCard() {
-        takePhoto(CameraActivity2.TYPE_CARD)
+    private fun takeCard() {
+        takePhoto(2)
     }
 
-    /**
-     * 发票
-     */
-    fun takeInvoice() {
-        takePhoto(CameraActivity2.TYPE_INVOICE)
-    }
-
-    /**
-     * 驾照
-     */
-    fun takeLicense() {
-        takePhoto(CameraActivity2.TYPE_LICENSE)
-    }
 
 }

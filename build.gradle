@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.4.21'
-    apply from: '/Users/zhaozhenguo/Desktop/demo/zAndroid/AndroidZex/config/versions.gradle'
+    apply from: '/Users/zhaozhenguo/Desktop/demo/AndroidZex/config/versions.gradle'
 
     repositories {
         google()
@@ -31,6 +31,37 @@ allprojects {
         maven { url "http://search.maven.org/#search%7Cga%7C1%7Cio.sentry" }
         jcenter()
         mavenCentral()
+    }
+}
+
+//列出所有包含有so文件的库信息
+tasks.whenTaskAdded { task ->
+    if (task.name=='mergeDebugNativeLibs') { //如果是有多个flavor，则用 mergeFlavorDebugNativeLibs的形式
+        task.doLast {
+            println("------------------- find so files start -------------------")
+            println("------------------- find so files start -------------------")
+            println("------------------- find so files start -------------------")
+
+            it.inputs.files.each { file ->
+                printDir(new File(file.absolutePath))
+            }
+
+            println("------------------- find so files end -------------------")
+            println("------------------- find so files end -------------------")
+            println("------------------- find so files end -------------------")
+        }
+    }
+}
+
+def printDir(File file) {
+    if (file != null) {
+        if (file.isDirectory()) {
+            file.listFiles().each {
+                printDir(it)
+            }
+        } else if (file.absolutePath.endsWith(".so")) {
+            println "find so file: $file.absolutePath"
+        }
     }
 }
 

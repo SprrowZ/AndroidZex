@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.rye.catcher.project.ctmviews.takephoto.CameraTwoFragment">
-    <com.rye.catcher.project.ctmviews.takephoto.AutoFitTextureView
+    <com.rye.catcher.project.camera.AutoFitTextureView
         android:id="@+id/textureView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

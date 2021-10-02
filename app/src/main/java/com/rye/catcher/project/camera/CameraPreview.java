@@ -1,10 +1,8 @@
-package com.rye.catcher.project.ctmviews.takephoto;
+package com.rye.catcher.project.camera;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.hardware.Camera;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -14,11 +12,8 @@ import android.view.SurfaceView;
 import java.util.List;
 
 /**
- * Created by smartown on 2018/2/24 11:46.
- * <br>
- * Desc:
- * <br>
- * 相机预览封装
+ *
+ * camera1 封装
  */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -27,13 +22,11 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private Camera camera;
 
     public CameraPreview(Context context) {
-        super(context);
-        init();
+        this(context,null);
     }
 
     public CameraPreview(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context,attrs,-1);
     }
 
     public CameraPreview(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -41,11 +34,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         init();
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CameraPreview(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init();
-    }
 
     private void init() {
         SurfaceHolder surfaceHolder = getHolder();

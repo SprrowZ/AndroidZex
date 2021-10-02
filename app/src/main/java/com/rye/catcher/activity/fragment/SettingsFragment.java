@@ -10,7 +10,6 @@ import com.dawn.zgstep.ui.activity.DemoActivity;
 import com.rye.base.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
-import com.rye.catcher.activity.CameraActivity;
 import com.rye.catcher.activity.ORRActivity;
 import com.rye.catcher.activity.ProjectMainActivityRx;
 import com.rye.catcher.activity.ZTActivity;
@@ -59,10 +58,7 @@ public class SettingsFragment extends BaseFragment {
                 mContext.startActivity(new Intent(mContext, RetrofitActivity.class));
                 break;
             case R.id.camera:
-                authority();
-                Intent intent = new Intent(mContext, CameraActivity.class);
-                intent.putExtra("info", "emmmm...");
-                mContext.startActivity(intent);
+                 //TODO 相机已收敛至ProjectMain
                 break;
             case R.id.review:
                 Intent intent5 = new Intent(mContext, ReviewActivity.class);

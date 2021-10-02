@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <com.rye.catcher.project.ctmviews.takephoto.CameraPreview
+    <com.rye.catcher.project.camera.CameraPreview
         android:id="@+id/camera_surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -17,105 +17,7 @@
         android:background="@color/black"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/idContainer"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/idImg"
-                android:layout_width="@dimen/len_40"
-                android:layout_height="@dimen/len_40"
-                android:src="@mipmap/if_id"
-                android:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/idText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top|center_horizontal"
-                android:text="@string/if_id"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_14" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/cardContainer"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/cardImg"
-                android:layout_width="@dimen/len_40"
-                android:layout_height="@dimen/len_40"
-                android:src="@mipmap/if_card"
-                android:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/cardText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top|center_horizontal"
-                android:text="@string/if_card"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_14" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/invoiceContainer"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/invoiceImg"
-                android:layout_width="@dimen/len_40"
-                android:layout_height="@dimen/len_40"
-                android:src="@mipmap/if_invoice"
-                android:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/invoiceText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top|center_horizontal"
-                android:text="@string/if_invoice"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_14" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/licenseContainer"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/licenseImg"
-                android:layout_width="@dimen/len_40"
-                android:layout_height="@dimen/len_40"
-                android:src="@mipmap/if_license"
-                android:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/licenseText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top|center_horizontal"
-                android:text="@string/if_license"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_14" />
-        </LinearLayout>
     </LinearLayout>
 
 
@@ -123,7 +25,6 @@
         android:id="@+id/camera_crop_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomContainer"
         android:layout_below="@+id/topContainer">
 
         <ImageView

@@ -1,10 +1,12 @@
 package com.rye.base.common;
 
+import com.rye.base.BuildConfig;
+
 /**
  * 全局变量
  */
 public class Constant {
-    public static  final String FILE_PROVIDER="com.rye.catcher.MyFileProvider";
+    public static  final String FILE_PROVIDER= "com.rye.catcher.zzg"+".provider";
     /**
      * 回车符
      */

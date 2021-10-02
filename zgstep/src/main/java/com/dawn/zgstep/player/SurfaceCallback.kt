@@ -18,6 +18,6 @@ class SurfaceCallback(private val playerController: PlayerController?) : Surface
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
-        playerController?.prepareSync()
+
     }
 }

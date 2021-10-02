@@ -24,7 +24,7 @@ import com.rye.catcher.activity.adapter.ProjectListAdapter;
 import com.rye.catcher.activity.presenter.ProjectPresenterRx;
 import com.rye.catcher.agocode.beans.ProjectBean;
 
-import com.rye.catcher.project.ctmviews.takephoto.TestCameraActivity;
+import com.rye.catcher.project.camera.CameraMainActivity;
 
 
 import com.rye.catcher.project.helpers.MultiThreadDown;
@@ -98,7 +98,6 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
     }
 
     private void printOutsideParams() {
-        //--------外部跳转
         Uri uri = getIntent().getData();
         if (uri == null) return;
         Set<String> params = uri.getQueryParameterNames();
@@ -199,7 +198,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
             case "takePhoto":
                 PermissionUtils.requestPermission(this, "需要相机权限！", false,
                         data -> {
-                            startActivity(new Intent(this, TestCameraActivity.class));
+                            startActivity(new Intent(this, CameraMainActivity.class));
                         }, 1, Permission.CAMERA);
                 break;
             case "changeLanguage":

@@ -34,7 +34,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!--防止屏幕变暗-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+
     <application
         android:name=".RyeCatcherApp"
         android:allowBackup="true"
@@ -45,7 +46,7 @@
         android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label">
-        <activity android:name=".project.ctmviews.takephoto.TestCameraActivity"></activity>
+        <activity android:name=".project.camera.CameraMainActivity"></activity>
         <activity android:name=".activity.KtCoroutineActivity" />
 
         <meta-data
@@ -64,20 +65,19 @@
             android:name="design_height_in_dp"
             android:value="180" />
 
-        <!--        <provider-->
-        <!--            android:name="android.support.v4.content.FileProvider"-->
-        <!--            android:authorities="${applicationId}.provider"-->
-        <!--            android:exported="false"-->
-        <!--            android:grantUriPermissions="true">-->
-        <!--            <meta-data-->
-        <!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-        <!--                android:resource="@xml/file_paths" />-->
-        <!--        </provider>-->
+        <provider
+            android:name=".base.MyFileProvider"
+            android:authorities="com.rye.catcher.zzg.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <receiver
             android:name=".project.SelfStartingReceivers"
-            android:exported="false"
-            >
+            android:exported="false">
             <intent-filter android:priority="900">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
@@ -85,7 +85,6 @@
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>
-
 
         <service android:name="com.amap.api.location.APSService" />
 
@@ -136,11 +135,7 @@
             android:authorities="com.rye.catcher"
             android:exported="true" />
 
-        <activity
-            android:name=".activity.CameraActivity"
-            android:alwaysRetainTaskState="true"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:launchMode="singleTask" />
+
         <activity
             android:name=".project.review.ReviewActivity"
             android:clearTaskOnLaunch="true"
@@ -331,13 +326,11 @@
         <activity android:name=".project.mvp.MvpBaseActivity" />
 
         <activity
-            android:name=".project.ctmviews.takephoto.CameraActivity2"
+            android:name=".project.camera.Camera1Activity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
-        <activity android:name=".project.ctmviews.takephoto.TestPhotoActivity" />
 
-        <activity android:name=".project.ctmviews.takephoto.CameraActivityEx" />
 
         <activity android:name=".activity.MultiActivity" />
 

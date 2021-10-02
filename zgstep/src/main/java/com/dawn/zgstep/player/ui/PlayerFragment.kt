@@ -38,4 +38,9 @@ class PlayerFragment : BaseFragment() {
                 VIDEO_URL_ONE
             ), mSurfaceView)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPlayerController.release()
+    }
 }

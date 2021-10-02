@@ -1,4 +1,4 @@
-package com.rye.catcher.project.ctmviews.takephoto
+package com.rye.catcher.project.camera
 
 import android.media.Image
 import android.util.Log
@@ -6,7 +6,6 @@ import android.util.Log
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.nio.ByteBuffer
 
 /**
  * Saves a JPEG [Image] into the specified [File].

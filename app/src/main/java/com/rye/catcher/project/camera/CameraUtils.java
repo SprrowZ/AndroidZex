@@ -1,4 +1,4 @@
-package com.rye.catcher.project.ctmviews.takephoto;
+package com.rye.catcher.project.camera;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

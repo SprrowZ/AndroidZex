@@ -16,8 +16,20 @@ class PlayerController : IPlayerController {
         if (mMediaPlayer == null) {
             mMediaPlayer = IMediaPlayer.create()
         }
-        mMediaPlayer?.setDataSource(videoDetail.url)
         setHolder(surfaceView)
+        mMediaPlayer?.apply {
+            setDataSource(videoDetail.url)
+            prepareAsync()
+            setOnPreparedListener(object : IMediaPlayer.OnPreparedListener {
+                override fun onPrepared(var1: IMediaPlayer?) {
+                    mMediaPlayer?.start()
+                }
+            })
+        }
+    }
+
+    override fun start() {
+        mMediaPlayer?.start()
     }
 
     private fun setHolder(surfaceView: SurfaceView?) {
@@ -59,6 +71,7 @@ interface IPlayerController {
     fun release()
     fun setDisplay(holder: SurfaceHolder?)
     fun prepareSync()
+    fun start()
 
     companion object {
         fun create(): IPlayerController {

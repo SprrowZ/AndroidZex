@@ -35,6 +35,7 @@ import com.rye.catcher.project.sqlite.DBActivity;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
+import com.rye.opengl.demos.ShapeActivity;
 import com.rye.router.runtime.Router;
 //import com.rye.router_annotation.Route;
 import com.yanzhenjie.permission.Permission;
@@ -242,6 +243,10 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 break;
             case "player_demo":
                 DemoPlayerActivity.start(this);
+                break;
+            case "opengl_main":
+                //FirstOpenglActivity.start(this);
+                ShapeActivity.start(this);
                 break;
         }
     }

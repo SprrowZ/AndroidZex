@@ -34,37 +34,6 @@ allprojects {
     }
 }
 
-//列出所有包含有so文件的库信息
-tasks.whenTaskAdded { task ->
-    if (task.name=='mergeDebugNativeLibs') { //如果是有多个flavor，则用 mergeFlavorDebugNativeLibs的形式
-        task.doLast {
-            println("------------------- find so files start -------------------")
-            println("------------------- find so files start -------------------")
-            println("------------------- find so files start -------------------")
-
-            it.inputs.files.each { file ->
-                printDir(new File(file.absolutePath))
-            }
-
-            println("------------------- find so files end -------------------")
-            println("------------------- find so files end -------------------")
-            println("------------------- find so files end -------------------")
-        }
-    }
-}
-
-def printDir(File file) {
-    if (file != null) {
-        if (file.isDirectory()) {
-            file.listFiles().each {
-                printDir(it)
-            }
-        } else if (file.absolutePath.endsWith(".so")) {
-            println "find so file: $file.absolutePath"
-        }
-    }
-}
-
 task clean(type: Delete) {
     println '---------------执行删除操作build文件夹---------------'
     delete rootProject.buildDir

@@ -10,11 +10,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="100dp"
+        android:background="@color/soft3"
+        />
     <FrameLayout
         android:id="@+id/container_shape"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:background="@color/soft2"
         />
 </LinearLayout>

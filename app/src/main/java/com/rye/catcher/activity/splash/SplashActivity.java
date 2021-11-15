@@ -3,7 +3,9 @@ package com.rye.catcher.activity.splash;
 import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.MainActivity;
+import com.rye.catcher.utils.PermissionsUtil;
 import com.rye.catcher.utils.permission.PermissionUtils;
+import com.rye.catcher.utils.permission.Permissions;
 import com.yanzhenjie.permission.Permission;
 
 
@@ -29,16 +31,17 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void authority() {
-        PermissionUtils.requestPermission(this, getString(R.string.need_authority),
-                false, data -> {
-                    openMain();
-                }, 0,
-                Permission.WRITE_EXTERNAL_STORAGE, Permission.ACCESS_COARSE_LOCATION);//CALL_PHONE先去掉
+        PermissionsUtil.INSTANCE.checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
+            @Override
+            public void passPermissons() {
+                MainActivity.start(SplashActivity.this);
+            }
+
+            @Override
+            public void forbitPermissons() {}
+        }, Permission.WRITE_EXTERNAL_STORAGE,Permission.ACCESS_COARSE_LOCATION);
     }
 
-    private void openMain() {
-        Observable.timer(1000, TimeUnit.MILLISECONDS).subscribe(aLong ->
-                MainActivity.start(SplashActivity.this));
-    }
+
 
 }

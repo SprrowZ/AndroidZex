@@ -3,51 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rye.catcher.project.ctmviews.takephoto.CameraTwoFragment">
-    <com.rye.catcher.project.camera.AutoFitTextureView
+    android:background="@color/black">
+
+    <TextureView
         android:id="@+id/textureView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom"
-        app:layout_constraintHeight_percent="0.88"
-        tools:background="@color/black"
+        app:layout_constraintHeight_percent="0.78"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        />
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottom"
-        android:layout_width="match_parent"
-        app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintTop_toBottomOf="@+id/textureView"
-        android:layout_height="0dp"
-        android:background="@color/black"
-        android:visibility="gone"
-        >
-        <ImageView
+
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@color/red"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/takePhoto"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintHeight_percent="0.7"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
         android:src="@mipmap/take_photo"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        />
-        <ImageView
-            android:id="@+id/reverse"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintHeight_percent="0.5"
-            android:src="@mipmap/photo_reverse"
-            app:layout_constraintLeft_toRightOf="@+id/takePhoto"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            tools:ignore="MissingConstraints"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/reverse"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/photo_reverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintLeft_toRightOf="@id/takePhoto"
+        app:layout_constraintRight_toRightOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

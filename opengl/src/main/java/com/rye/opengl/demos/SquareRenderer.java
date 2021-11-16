@@ -3,6 +3,7 @@ package com.rye.opengl.demos;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
 import android.util.Log;
 
 import com.rye.opengl.R;
@@ -50,6 +51,8 @@ public class SquareRenderer implements GLSurfaceView.Renderer {
     private static final int STRIDE = BYTE_SIZE * POSITION_OFFSET;
     private final int COORD_COUNT = positionArray.length / POSITION_OFFSET;
 
+    float[] mProjection = new float[16];
+
     private FloatBuffer vertexData = ByteBuffer.allocateDirect(positionArray.length * BYTE_SIZE)
             .order(ByteOrder.nativeOrder())
             .asFloatBuffer();
@@ -59,7 +62,7 @@ public class SquareRenderer implements GLSurfaceView.Renderer {
             .asShortBuffer();
 
     private int loadShader(int shaderResource, int type) {
-       int shader =  GLES20.glCreateShader(type);
+        int shader = GLES20.glCreateShader(type);
         GLES20.glShaderSource(shader, readTextFileFromResource(mContext, shaderResource));
         GLES20.glCompileShader(shader);
         //判断着色器是否有问题
@@ -117,10 +120,10 @@ public class SquareRenderer implements GLSurfaceView.Renderer {
     private void checkLinkStatus() {
         int[] linkStatus = new int[1];
         GLES20.glGetProgramiv(mProgram, GLES20.GL_LINK_STATUS, linkStatus, 0);
-        if(linkStatus[0]!= GLES20.GL_TRUE){
-            Log.e("Rye","Could not link program:"+ GLES20.glGetProgramInfoLog(mProgram));
+        if (linkStatus[0] != GLES20.GL_TRUE) {
+            Log.e("Rye", "Could not link program:" + GLES20.glGetProgramInfoLog(mProgram));
             GLES20.glDeleteProgram(mProgram);
-            mProgram=0;
+            mProgram = 0;
         }
     }
 
@@ -131,7 +134,15 @@ public class SquareRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-
+        GLES20.glViewport(0, 0, width, height);
+        float ratio = width > height ? (float) width / height : (float) height / width;
+        if (width > height) {//横屏
+            //left、right比较大一些
+            Matrix.orthoM(mProjection, 0, -ratio, ratio, -1, 1, 0, 5);
+        } else {//竖屏
+            //bottom、height要大一些
+            Matrix.orthoM(mProjection, 0, -1, 1, -ratio, ratio, 0, 5);
+        }
     }
 
     @Override

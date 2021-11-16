@@ -8,9 +8,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_first_opengl.xml" value="0.23697916666666666" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_shape.xml" value="0.22291666666666668" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_triangle.xml" value="0.1" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/recycler_item_shape.xml" value="0.240625" />
+        <entry key="app/src/main/res/layout/activity_camera_main.xml" value="0.14076690211907164" />
+        <entry key="app/src/main/res/layout/fragment_camera2.xml" value="0.161231884057971" />
+        <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
+        <entry key="opengl/src/main/res/layout/recycler_item_shape.xml" value="0.2921875" />
       </map>
     </option>
   </component>

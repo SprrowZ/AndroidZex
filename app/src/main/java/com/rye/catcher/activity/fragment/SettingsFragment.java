@@ -58,7 +58,7 @@ public class SettingsFragment extends BaseFragment {
                 mContext.startActivity(new Intent(mContext, RetrofitActivity.class));
                 break;
             case R.id.camera:
-                 //TODO 相机已收敛至ProjectMain
+                ToastUtils.shortMsg("相机已收敛至ProjectMain");
                 break;
             case R.id.review:
                 Intent intent5 = new Intent(mContext, ReviewActivity.class);

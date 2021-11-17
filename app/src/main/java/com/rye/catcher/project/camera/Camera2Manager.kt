@@ -30,11 +30,13 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
         private const val TAG = "Camera2Manager"
         private const val PREVIEW_WIDTH = 720
         private const val PREVIEW_HEIGHT = 1280
+        private const val CAMERA_ID_BACK = "0"
+        private const val CAMERA_ID_FRONT = "1"
 
     }
 
     private lateinit var mCameraManager: CameraManager
-    private var mCameraCallback:ICameraEventCallback?=null
+    private var mCameraCallback: ICameraEventCallback? = null
 
     //默认使用后置摄像头
     private var mCameraFacing = CameraCharacteristics.LENS_FACING_BACK
@@ -56,7 +58,7 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
     private var mBackgroundHandler: Handler? = null
     private val mBackgroundThread = HandlerThread("CameraThread")
 
-    private var mCameraId = "0"
+    private var mCameraId = CAMERA_ID_BACK
 
     private var mCameraDevice: CameraDevice? = null
     private var mCameraCaptureSession: CameraCaptureSession? = null
@@ -130,7 +132,7 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
                 2
             )
         mImageReader?.setOnImageAvailableListener(onImageAvailableListener, mBackgroundHandler)
-        mCameraId = cameraId
+        //mCameraId = cameraId
         return true
     }
 
@@ -264,8 +266,21 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
 
         mImageReader?.close()
         mImageReader = null
+    }
 
-        canExchangeCamera = false
+    fun switchCamera() {
+        toggleCameraId()
+        releaseCamera()
+        //mBackgroundThread?.quitSafely()
+        openCamera()
+    }
+
+   private fun toggleCameraId() {
+        if (mCameraId == CAMERA_ID_BACK) {
+            mCameraId = CAMERA_ID_FRONT
+        } else if (mCameraId == CAMERA_ID_FRONT) {
+            mCameraId = CAMERA_ID_BACK
+        }
     }
 
 
@@ -367,7 +382,7 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
     }
 }
 
-interface ICameraEventCallback{
-    fun onOpenError(errorMsg:String){}
+interface ICameraEventCallback {
+    fun onOpenError(errorMsg: String) {}
     fun onCaptureImg(byteArray: ByteArray)
 }

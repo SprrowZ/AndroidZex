@@ -47,6 +47,7 @@ class Camera2Fragment : BaseFragment() {
 
         mReverseView.setOnClickListener {
             //switchCamera()
+            mCameraManager?.switchCamera()
         }
         initManager()
     }

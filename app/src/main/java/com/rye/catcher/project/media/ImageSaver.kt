@@ -1,4 +1,4 @@
-package com.rye.catcher.project.camera
+package com.rye.catcher.project.media
 
 import android.media.Image
 import android.util.Log

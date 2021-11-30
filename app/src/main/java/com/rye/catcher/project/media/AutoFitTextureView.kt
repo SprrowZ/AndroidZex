@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rye.catcher.project.camera
+package com.rye.catcher.project.media
 
 import android.content.Context
 import android.util.AttributeSet

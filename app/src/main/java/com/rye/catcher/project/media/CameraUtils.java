@@ -1,4 +1,4 @@
-package com.rye.catcher.project.camera;
+package com.rye.catcher.project.media;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

@@ -1,4 +1,4 @@
-package com.rye.catcher.project.camera;
+package com.rye.catcher.project.media;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

@@ -35,6 +35,7 @@ public abstract class BaseFragment extends Fragment {
     public void initWidget() {
     }
 
+
     public void initEvent() {
     }
 

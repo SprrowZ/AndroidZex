@@ -1,4 +1,4 @@
-package com.rye.catcher.project.camera
+package com.rye.catcher.project.media
 
 
 import android.content.Context
@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout
 import com.rye.base.BaseActivity
 
 import com.rye.catcher.R
+import com.rye.catcher.project.media.record.MediaRecorderFragment
 import com.rye.catcher.utils.PermissionsUtil
 import com.rye.catcher.utils.PermissionsUtil.IPermissionsResult
 import com.rye.catcher.utils.ToastUtils
@@ -43,8 +44,9 @@ class CameraMainActivity : BaseActivity() {
 
     override fun initEvent() {
         checkAuthority()
-        indictors = mutableListOf("Camera1", "Camera2Practice..")
-        fragmentList = mutableListOf(CameraEntranceFragment(), Camera2Fragment())
+        indictors = mutableListOf("Camera1", "Camera2", "MediaRecorder")
+        fragmentList =
+            mutableListOf(CameraEntranceFragment(), Camera2Fragment(), MediaRecorderFragment())
 
         adapter = CameraFragmentAdapter(supportFragmentManager, indictors, fragmentList)
         mViewPager?.adapter = adapter
@@ -62,7 +64,7 @@ class CameraMainActivity : BaseActivity() {
             override fun forbitPermissons() {
                 ToastUtils.shortMsg("权限申请失败")
             }
-        }, Permissions.CAMERA)
+        }, Permissions.CAMERA,Permissions.RECORD_AUDIO)
     }
 
 }

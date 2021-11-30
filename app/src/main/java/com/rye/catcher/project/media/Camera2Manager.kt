@@ -1,10 +1,9 @@
-package com.rye.catcher.project.camera
+package com.rye.catcher.project.media
 
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.ImageFormat
-import android.graphics.SurfaceTexture
+import android.graphics.*
 import android.hardware.camera2.*
 import android.media.ImageReader
 import android.os.Build
@@ -16,6 +15,7 @@ import android.view.Surface
 import android.view.TextureView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import com.rye.catcher.utils.ImageUtils
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -52,19 +52,17 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
     //默认预览、存储尺寸
     private var mPreviewSize = Size(PREVIEW_WIDTH, PREVIEW_HEIGHT)
 
-
     private var mImageReader: ImageReader? = null
 
     private var mBackgroundHandler: Handler? = null
+
     private val mBackgroundThread = HandlerThread("CameraThread")
 
     private var mCameraId = CAMERA_ID_BACK
 
     private var mCameraDevice: CameraDevice? = null
-    private var mCameraCaptureSession: CameraCaptureSession? = null
 
-    private var canTakePic = true //是否可以拍照
-    private var canExchangeCamera = false //是否可以切换摄像头
+    private var mCameraCaptureSession: CameraCaptureSession? = null
 
     private var mCreateCaptureRequest: CaptureRequest.Builder? = null
 
@@ -149,7 +147,7 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
         byteBuffer.get(byteArray)
         image.close()//必不可缺！！
         //TODO 保存图片数据， byteArray
-        mCameraCallback?.onCaptureImg(byteArray)
+        mCameraCallback?.onCaptureImg(createBitmapWithRotate(byteArray))
     }
 
     private val mDeviceStateCallback = object : CameraDevice.StateCallback() {
@@ -221,8 +219,6 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
             result: TotalCaptureResult
         ) {
             super.onCaptureCompleted(session, request, result)
-            canExchangeCamera = true
-            canTakePic = true
         }
 
         override fun onCaptureFailed(
@@ -239,7 +235,7 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
      * 拍照
      */
     fun capture() {
-        if (mCameraDevice == null || !mTextureView.isAvailable || !canTakePic) return
+        if (mCameraDevice == null || !mTextureView.isAvailable) return
         mCameraDevice?.apply {
             val captureRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
             captureRequestBuilder.addTarget(mImageReader!!.surface)
@@ -252,6 +248,8 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
                 CaptureRequest.CONTROL_AE_MODE,
                 CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH
             )
+            //这个方法是否可用，是依赖于底层的，也就是说，底层没有做相应的处理的话，设置之后才有效果，
+            // 如果底层没有做相应的处理，是没有作用。（如三星手机/小米mix2是没有做相应的处理的）
             captureRequestBuilder.set(CaptureRequest.JPEG_ORIENTATION, mCameraSensorOrientation)
             mCameraCaptureSession?.capture(captureRequestBuilder.build(), null, mBackgroundHandler)
         }
@@ -275,7 +273,11 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
         openCamera()
     }
 
-   private fun toggleCameraId() {
+    fun toggleFlashLamp() {
+
+    }
+
+    private fun toggleCameraId() {
         if (mCameraId == CAMERA_ID_BACK) {
             mCameraId = CAMERA_ID_FRONT
         } else if (mCameraId == CAMERA_ID_FRONT) {
@@ -294,6 +296,19 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
             return false
         }
         return true
+    }
+
+    /**
+     * 获取图片原始角度，机型不相同
+     */
+    private fun createBitmapWithRotate(byteArray: ByteArray): Bitmap {
+        val degree = ImageUtils.getNaturalOrientation(byteArray)
+        Log.e(TAG, "picture naturalOrientation:$degree")
+        val origin = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size, null)
+        if (degree == 0) return origin
+        val matrix = Matrix()
+        matrix.postRotate(degree.toFloat())
+        return Bitmap.createBitmap(origin, 0, 0, origin.width, origin.height, matrix, true)
     }
 
     /**
@@ -384,5 +399,5 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
 
 interface ICameraEventCallback {
     fun onOpenError(errorMsg: String) {}
-    fun onCaptureImg(byteArray: ByteArray)
+    fun onCaptureImg(bitmap: Bitmap)
 }

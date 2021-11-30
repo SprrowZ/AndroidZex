@@ -39,8 +39,12 @@ public class FileUtil {
         }
         try {
             file = new File(filePath + File.separator + fileName);
+            File parentFile = new File(filePath);
+            if (!parentFile.exists()) {
+                parentFile.mkdir();
+            }
             if (!file.exists()) {
-                Log.e(TAG, "makeFilePath: " + file.exists()+"filePath:"+file.getAbsolutePath());
+                Log.e(TAG, "makeFilePath: " + file.exists() + "filePath:" + file.getAbsolutePath());
                 file.createNewFile();
             }
         } catch (Exception e) {

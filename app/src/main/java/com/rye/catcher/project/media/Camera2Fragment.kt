@@ -1,13 +1,12 @@
-package com.rye.catcher.project.camera
+package com.rye.catcher.project.media
 
 import android.content.Context
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
 import android.hardware.camera2.*
 import android.os.Build
 import androidx.annotation.RequiresApi
 import android.view.TextureView
 import android.widget.ImageView
-import com.dawn.zgstep.tests.runOnMainThread
 import com.rye.base.BaseFragment
 import com.rye.base.utils.Handler_
 import com.rye.catcher.R
@@ -59,10 +58,8 @@ class Camera2Fragment : BaseFragment() {
     }
 
     private val mCameraCallback = object : ICameraEventCallback {
-        override fun onCaptureImg(byteArray: ByteArray) {
-            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size, null)
-
-            Handler_.getInstance().post{
+        override fun onCaptureImg(bitmap: Bitmap) {
+            Handler_.getInstance().post {
                 mPictureView.setImageBitmap(bitmap)
             }
         }

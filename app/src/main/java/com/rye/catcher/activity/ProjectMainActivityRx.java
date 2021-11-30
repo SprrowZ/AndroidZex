@@ -24,7 +24,7 @@ import com.rye.catcher.activity.adapter.ProjectListAdapter;
 import com.rye.catcher.activity.presenter.ProjectPresenterRx;
 import com.rye.catcher.agocode.beans.ProjectBean;
 
-import com.rye.catcher.project.camera.CameraMainActivity;
+import com.rye.catcher.project.media.CameraMainActivity;
 
 
 import com.rye.catcher.project.helpers.MultiThreadDown;

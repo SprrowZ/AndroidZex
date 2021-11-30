@@ -73,9 +73,9 @@ dependencies {
    // implementation 'com.parse.bolts:bolts-applinks:1.4.0'
          //尝试不同的依赖引用方式
     implementation group:'com.parse.bolts' ,name:'bolts-tasks',version:'1.4.0'
-    implementation (group:'com.parse.bolts',name: 'bolts-applinks',version:'1.4.0'){
-       changing = true
-    }
+//    implementation (group:'com.parse.bolts',name: 'bolts-applinks',version:'1.4.0'){
+//       changing = true
+//    }
 
     implementation deps.recyclerview
 

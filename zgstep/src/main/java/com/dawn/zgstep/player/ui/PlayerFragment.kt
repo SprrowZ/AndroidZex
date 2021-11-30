@@ -1,10 +1,12 @@
 package com.dawn.zgstep.player.ui
 
 import android.view.SurfaceView
+import androidx.recyclerview.widget.RecyclerView
 import com.dawn.zgstep.R
 import com.dawn.zgstep.player.IPlayerController
 import com.dawn.zgstep.player.VideoDetail
 import com.rye.base.BaseFragment
+import com.rye.base.utils.SDHelper
 
 /**
  * |详情参考Video.md
@@ -12,6 +14,7 @@ import com.rye.base.BaseFragment
 class PlayerFragment : BaseFragment() {
     private var mSurfaceView: SurfaceView? = null
     private lateinit var mPlayerController: IPlayerController
+    private var mRecycler:RecyclerView?=null
 
     companion object {
         private const val VIDEO_URL_ONE = "https://media.w3.org/2010/05/sintel/trailer.mp4" //50s
@@ -26,7 +29,7 @@ class PlayerFragment : BaseFragment() {
     override fun initWidget() {
         super.initWidget()
         mSurfaceView = view?.findViewById(R.id.surface)
-
+        mRecycler = view?.findViewById(R.id.video_recycler)
     }
 
     override fun initEvent() {
@@ -35,10 +38,13 @@ class PlayerFragment : BaseFragment() {
             IPlayerController.create()
         mPlayerController.goPlay(
             VideoDetail(
-                VIDEO_URL_ONE
+                getLocalVideoFilePath()
             ), mSurfaceView)
     }
 
+    private fun getLocalVideoFilePath():String{
+        return SDHelper.external +"1736812285.mp4"
+    }
     override fun onDestroy() {
         super.onDestroy()
         mPlayerController.release()

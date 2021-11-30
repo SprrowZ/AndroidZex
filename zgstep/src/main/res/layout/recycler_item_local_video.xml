@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp"
+    android:background="@color/green">
 
+    <ImageView
+        android:id="@+id/video_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/bk" />
+
+    <TextView
+        android:id="@+id/video_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_52"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/video_item_bottom_gradient"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_14"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="Hellosdfsdsdfsf啊" />
+
+    <TextView
+        android:id="@+id/video_duration"
+        android:layout_width="80dp"
+        android:layout_height="@dimen/len_52"
+        android:background="@drawable/video_item_bottom_gradient"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="03:52" />
 </androidx.constraintlayout.widget.ConstraintLayout>

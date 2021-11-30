@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import com.rye.catcher.RyeCatcherApp;
-import com.rye.catcher.base.sdks.ThreadPoolManager;
+import com.rye.base.utils.ThreadPoolManager;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.lang.ref.WeakReference;

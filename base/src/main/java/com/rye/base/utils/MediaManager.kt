@@ -29,7 +29,7 @@ object MediaManager {
             if (!FileUtils.isFileExist(videoPath)) continue;
             video.apply {
                 path = videoPath
-                id = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media._ID))
+                id = cursor.getLong(cursor.getColumnIndex(MediaStore.Video.Media._ID))
                 name =
                     cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
                 //分辨率
@@ -50,7 +50,7 @@ object MediaManager {
     /**
      * 获取视频缩略图
      */
-    fun getVideoThumbnail(id:Long):Bitmap{
+    fun getVideoThumbnail(id:Long):Bitmap {
         val options = BitmapFactory.Options()
         options.inDither = false
         options.inPreferredConfig = Bitmap.Config.ARGB_8888
@@ -59,7 +59,7 @@ object MediaManager {
 }
 
 class MediaVideo {
-    var id: String? = null
+    var id: Long? = null
     var path: String? = null
     var name: String? = null
     var resolution: String? = null

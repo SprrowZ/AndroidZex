@@ -1,4 +1,4 @@
-package com.rye.catcher.base.sdks;
+package com.rye.base.utils;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;

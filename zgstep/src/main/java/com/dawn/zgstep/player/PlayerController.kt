@@ -27,16 +27,28 @@ class PlayerController : IPlayerController {
             })
         }
     }
+    override fun goPlayAudio(url: String) {
+        if (mMediaPlayer == null) {
+            mMediaPlayer = IMediaPlayer.create()
+        }
+        mMediaPlayer?.apply {
+            setDataSource(url)
+            prepareAsync()
+            setOnPreparedListener(object : IMediaPlayer.OnPreparedListener {
+                override fun onPrepared(var1: IMediaPlayer?) {
+                    mMediaPlayer?.start()
+                }
 
+            })
+        }
+    }
     override fun start() {
         mMediaPlayer?.start()
     }
 
     private fun setHolder(surfaceView: SurfaceView?) {
         mSurfaceHolder = surfaceView?.holder
-
         mSurfaceHolder?.apply {
-            setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS)
             addCallback(SurfaceCallback(this@PlayerController))
         }
     }
@@ -72,6 +84,7 @@ interface IPlayerController {
     fun setDisplay(holder: SurfaceHolder?)
     fun prepareSync()
     fun start()
+    fun goPlayAudio(url: String)
 
     companion object {
         fun create(): IPlayerController {

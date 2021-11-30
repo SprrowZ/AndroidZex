@@ -9,7 +9,7 @@ import android.view.SurfaceHolder
  */
 class SurfaceCallback(private val playerController: PlayerController?) : SurfaceHolder.Callback {
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-        playerController?.setDisplay(holder)
+
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {
@@ -18,6 +18,6 @@ class SurfaceCallback(private val playerController: PlayerController?) : Surface
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
-
+        playerController?.setDisplay(holder)
     }
 }

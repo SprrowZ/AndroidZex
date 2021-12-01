@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <View
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/start_pause"
+        app:layout_constraintVertical_weight="1"
+        tools:background="@color/red" />
+
+    <ImageView
+        android:id="@+id/start_pause"
+        android:layout_width="@dimen/len_32"
+        android:layout_height="@dimen/len_32"
+        android:layout_marginLeft="@dimen/len_10"
+        android:layout_marginBottom="@dimen/font_10"
+        android:scaleType="fitXY"
+        android:src="@drawable/video_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/len_32"
+        android:layout_marginLeft="@dimen/len_10"
+        android:layout_marginBottom="@dimen/len_10"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/start_pause"
+        tools:text="00:30" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/len_32"
+        android:layout_marginLeft="@dimen/len_10"
+        android:layout_marginRight="@dimen/len_10"
+        android:layout_marginBottom="@dimen/len_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+
+        app:layout_constraintLeft_toRightOf="@id/tv_progress"
+        app:layout_constraintRight_toLeftOf="@id/tv_duration" />
+
+    <ImageView
+        android:id="@+id/fullscreen"
+        android:layout_width="@dimen/len_32"
+        android:layout_height="@dimen/len_32"
+        android:layout_marginRight="@dimen/len_10"
+        android:layout_marginBottom="@dimen/len_10"
+        android:src="@drawable/video_fullscreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/len_32"
+        android:layout_marginRight="@dimen/len_10"
+        android:layout_marginBottom="@dimen/len_10"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/fullscreen"
+        tools:text="15:30" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

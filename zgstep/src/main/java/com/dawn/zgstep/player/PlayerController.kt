@@ -2,6 +2,8 @@ package com.dawn.zgstep.player
 
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.ViewGroup
+import android.widget.FrameLayout
 
 /**
  * Create by rye
@@ -11,13 +13,18 @@ import android.view.SurfaceView
 class PlayerController : IPlayerController {
 
     private var mMediaPlayer: IMediaPlayer? = null
-    private var mSurfaceHolder: SurfaceHolder? = null
-    override fun goPlay(videoDetail: VideoDetail, surfaceView: SurfaceView?) {
+
+
+    /**
+     * 播放视频
+     */
+    override fun goPlay(videoDetail: VideoDetail) {
         if (mMediaPlayer == null) {
             mMediaPlayer = IMediaPlayer.create()
         }
-        setHolder(surfaceView)
+        setSurface(videoDetail)
         mMediaPlayer?.apply {
+            reset()
             setDataSource(videoDetail.url)
             prepareAsync()
             setOnPreparedListener(object : IMediaPlayer.OnPreparedListener {
@@ -27,6 +34,25 @@ class PlayerController : IPlayerController {
             })
         }
     }
+
+    //TODO 抽离播放容器逻辑
+    private fun setSurface(videoDetail: VideoDetail) {
+        val container = videoDetail.container ?: return
+        val videoContainer = container.getChildAt(0)
+        if (videoContainer != null) return
+        //SurfaceView
+        val surfaceView = SurfaceView(container.context)
+        surfaceView.layoutParams = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        container.addView(surfaceView, 0)
+        setHolder(surfaceView)
+    }
+
+    /**
+     * 播放音频
+     */
     override fun goPlayAudio(url: String) {
         if (mMediaPlayer == null) {
             mMediaPlayer = IMediaPlayer.create()
@@ -42,13 +68,13 @@ class PlayerController : IPlayerController {
             })
         }
     }
+
     override fun start() {
         mMediaPlayer?.start()
     }
 
     private fun setHolder(surfaceView: SurfaceView?) {
-        mSurfaceHolder = surfaceView?.holder
-        mSurfaceHolder?.apply {
+        surfaceView?.holder?.apply {
             addCallback(SurfaceCallback(this@PlayerController))
         }
     }
@@ -57,8 +83,14 @@ class PlayerController : IPlayerController {
         mMediaPlayer?.prepareAsync()
     }
 
+    override fun getMediaPlayer(): IMediaPlayer? {
+        return mMediaPlayer
+    }
+
     override fun pause() {
-        mMediaPlayer?.pause()
+        if (mMediaPlayer?.isPlaying() == true) {
+            mMediaPlayer?.pause()
+        }
     }
 
     override fun replay() {
@@ -77,7 +109,7 @@ class PlayerController : IPlayerController {
 }
 
 interface IPlayerController {
-    fun goPlay(videoDetail: VideoDetail, surfaceView: SurfaceView?)
+    fun goPlay(videoDetail: VideoDetail)
     fun pause()
     fun replay()
     fun release()
@@ -85,6 +117,7 @@ interface IPlayerController {
     fun prepareSync()
     fun start()
     fun goPlayAudio(url: String)
+    fun getMediaPlayer():IMediaPlayer?
 
     companion object {
         fun create(): IPlayerController {
@@ -93,4 +126,10 @@ interface IPlayerController {
     }
 }
 
-data class VideoDetail(val url: String)
+
+class VideoDetail {
+    var container: FrameLayout? = null
+    var url: String? = null
+    var name: String? = null
+    var duration: Long? = null
+}

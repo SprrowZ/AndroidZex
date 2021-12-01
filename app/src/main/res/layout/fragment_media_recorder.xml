@@ -54,7 +54,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:src="@drawable/play_video"
+            android:src="@drawable/video_play"
             android:visibility="gone"
             tools:visibility="visible" />
     </FrameLayout>

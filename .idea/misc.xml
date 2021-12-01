@@ -14,10 +14,13 @@
         <entry key="app/src/main/res/layout/activity_camera_main.xml" value="0.14076690211907164" />
         <entry key="app/src/main/res/layout/fragment_camera2.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/fragment_media_recorder.xml" value="0.1279011099899092" />
+        <entry key="app/src/main/res/layout/review_asynctask.xml" value="0.2644927536231884" />
         <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
         <entry key="opengl/src/main/res/layout/recycler_item_shape.xml" value="0.2921875" />
         <entry key="zgstep/src/main/res/drawable/video_item_bottom_gradient.xml" value="0.18518518518518517" />
-        <entry key="zgstep/src/main/res/layout/fragment_player.xml" value="0.335" />
+        <entry key="zgstep/src/main/res/layout/fragment_local_video.xml" value="0.1" />
+        <entry key="zgstep/src/main/res/layout/fragment_player.xml" value="0.1" />
+        <entry key="zgstep/src/main/res/layout/player_control_layer.xml" value="0.25" />
         <entry key="zgstep/src/main/res/layout/recycler_item_local_video.xml" value="0.1793478260869565" />
       </map>
     </option>

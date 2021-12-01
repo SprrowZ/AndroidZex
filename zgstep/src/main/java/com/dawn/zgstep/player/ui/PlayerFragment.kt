@@ -1,31 +1,19 @@
 package com.dawn.zgstep.player.ui
 
-import android.graphics.Rect
-import android.util.Log
 import android.view.SurfaceView
-import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.FrameLayout
 import com.dawn.zgstep.R
 import com.dawn.zgstep.player.IPlayerController
 import com.dawn.zgstep.player.VideoDetail
-import com.dawn.zgstep.player.ui.other.IVideoItemClickCallback
-import com.dawn.zgstep.player.ui.other.VideoAdapter
 import com.rye.base.BaseFragment
-import com.rye.base.utils.DensityUtil
-import com.rye.base.utils.MediaManager
-import com.rye.base.utils.MediaVideo
 import com.rye.base.utils.SDHelper
 
 /**
  * |详情参考Video.md
  */
-class PlayerFragment : BaseFragment(), IVideoItemClickCallback {
-    private var mSurfaceView: SurfaceView? = null
+class PlayerFragment : BaseFragment() {
+    private var mContainer: FrameLayout? = null
     private lateinit var mPlayerController: IPlayerController
-    private var mRecycler: RecyclerView? = null
-    private var mVideoAdapter: VideoAdapter? = null
-    private var mLayoutManager: GridLayoutManager? = null
 
     companion object {
         private const val VIDEO_URL_ONE = "https://media.w3.org/2010/05/sintel/trailer.mp4" //50s
@@ -41,47 +29,22 @@ class PlayerFragment : BaseFragment(), IVideoItemClickCallback {
 
     override fun initWidget() {
         super.initWidget()
-        mSurfaceView = view?.findViewById(R.id.surface)
-        mRecycler = view?.findViewById(R.id.video_recycler)
-        mLayoutManager = GridLayoutManager(context, 2)
-        mRecycler?.addItemDecoration(itemDecoration)
-        mRecycler?.layoutManager = mLayoutManager
-        mVideoAdapter = VideoAdapter(this)
+        mContainer = view?.findViewById(R.id.video_container)
 
-        mRecycler?.adapter = mVideoAdapter
-
-        MediaManager.getVideoFiles()?.let { mVideoAdapter?.setData(it) }
     }
 
     override fun initEvent() {
         super.initEvent()
         mPlayerController =
             IPlayerController.create()
-        mPlayerController.goPlay(
-            VideoDetail(
-                VIDEO_URL_ONE
-            ), mSurfaceView
-        )
+        val videoDetail = VideoDetail().run {
+            url = VIDEO_URL_ONE
+            container = mContainer
+            this
+        }
+        mPlayerController.goPlay(videoDetail)
     }
 
-    private val itemDecoration = object : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(
-            outRect: Rect,
-            view: View,
-            parent: RecyclerView,
-            state: RecyclerView.State
-        ) {
-            super.getItemOffsets(outRect, view, parent, state)
-            val context = view.context
-            val currentPos = parent.getChildAdapterPosition(view)
-            outRect.left = if (currentPos % 2 == 0) {
-                0
-            } else {
-                DensityUtil.dip2px(context, 10f)
-            }
-            outRect.bottom = DensityUtil.dip2px(context, 10f)
-        }
-    }
 
     private fun getLocalVideoFilePath(): String {
         return SDHelper.external + "1736812285.mp4"
@@ -92,7 +55,5 @@ class PlayerFragment : BaseFragment(), IVideoItemClickCallback {
         mPlayerController.release()
     }
 
-    override fun onItemClick(item: View, data: MediaVideo?) {
-        Log.i("RRye", "onItemClick,dataName:${data?.name}")
-    }
+
 }

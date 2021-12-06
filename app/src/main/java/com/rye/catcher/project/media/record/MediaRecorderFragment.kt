@@ -3,6 +3,7 @@ package com.rye.catcher.project.media.record
 import android.util.Log
 import android.view.SurfaceView
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.dawn.zgstep.player.IPlayerController
@@ -24,7 +25,7 @@ class MediaRecorderFragment : BaseFragment() {
     private var mPlayerController: IPlayerController? = null
     private var mIsRecordingAudio = false
     private var mIsRecordingVideo = false
-    private var mSurfaceView: SurfaceView? = null
+    private var mPlayerContainer: FrameLayout? = null
     override fun getLayoutId(): Int {
         return R.layout.fragment_media_recorder
     }
@@ -35,7 +36,7 @@ class MediaRecorderFragment : BaseFragment() {
             mRecordAudio = findViewById(R.id.record_audio)
             mRecordVideo = findViewById(R.id.record_video)
             mAudioIcon = findViewById(R.id.audio_icon)
-            mSurfaceView = findViewById(R.id.surface_view)
+            mPlayerContainer = findViewById(R.id.player_container)
             mVideoIcon = findViewById(R.id.video_icon)
         }
 
@@ -65,7 +66,7 @@ class MediaRecorderFragment : BaseFragment() {
     }
 
     private fun toggleRecordVideo() {
-        mSurfaceView?.visibility = View.VISIBLE
+        mPlayerContainer?.visibility = View.VISIBLE
         mAudioIcon?.visibility = View.GONE
         if (mIsRecordingVideo) {
             mIsRecordingVideo = false
@@ -75,13 +76,14 @@ class MediaRecorderFragment : BaseFragment() {
         } else {
             mIsRecordingVideo = true
             mRecordVideo?.text = "录制视频中..."
-            mSurfaceView?.holder?.let { mMediaRecorderManager?.recordVideo(it) }
+            //TODO
+            //mSurfaceView?.holder?.let { mMediaRecorderManager?.recordVideo(it) }
             mVideoIcon?.visibility = View.GONE
         }
     }
 
     private fun toggleRecordAudio() {
-        mSurfaceView?.visibility = View.GONE
+        mPlayerContainer?.visibility = View.GONE
         mVideoIcon?.visibility = View.GONE
         if (mIsRecordingAudio) {
             mIsRecordingAudio = false
@@ -106,14 +108,19 @@ class MediaRecorderFragment : BaseFragment() {
     }
 
     private fun playRecordVideo() {
-        mSurfaceView?.visibility = View.VISIBLE
+        mPlayerContainer?.visibility = View.VISIBLE
         val videoPath = mMediaRecorderManager?.getVideoPath()
         if (videoPath == null) {
             Log.e("RRye", "videoPath is Null..")
             return
         }
        // mMediaRecorderManager?.removeVideoSurfaceCallback(mSurfaceView?.holder)
-       mPlayerController?.goPlay(VideoDetail(videoPath), mSurfaceView)
+        val video = VideoDetail().run {
+            url = videoPath
+            container = mPlayerContainer
+            this
+        }
+       mPlayerController?.goPlay(video)
     }
 
 

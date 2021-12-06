@@ -30,7 +30,6 @@ class PlayerFragment : BaseFragment() {
     override fun initWidget() {
         super.initWidget()
         mContainer = view?.findViewById(R.id.video_container)
-
     }
 
     override fun initEvent() {

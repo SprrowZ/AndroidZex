@@ -34,8 +34,8 @@
         android:layout_height="500dp"
         android:background="@color/soft12">
 
-        <SurfaceView
-            android:id="@+id/surface_view"
+        <FrameLayout
+            android:id="@+id/player_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
              />

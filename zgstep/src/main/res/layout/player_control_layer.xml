@@ -7,13 +7,24 @@
 
     >
 
-    <View
-        android:id="@+id/space"
+    <FrameLayout
+        android:id="@+id/space_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/start_pause"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_weight="1"
-        tools:background="@color/red" />
+        tools:background="@color/green">
+
+        <View
+            android:id="@+id/space"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            tools:background="@color/red" />
+
+    </FrameLayout>
+
 
     <ImageView
         android:id="@+id/start_pause"

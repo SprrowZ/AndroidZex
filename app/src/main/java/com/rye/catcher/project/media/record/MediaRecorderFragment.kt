@@ -1,13 +1,12 @@
 package com.rye.catcher.project.media.record
 
 import android.util.Log
-import android.view.SurfaceView
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.dawn.zgstep.player.IPlayerController
 import com.dawn.zgstep.player.VideoDetail
+import com.dawn.zgstep.player.base.IPlayerController
 import com.rye.base.BaseFragment
 import com.rye.catcher.R
 

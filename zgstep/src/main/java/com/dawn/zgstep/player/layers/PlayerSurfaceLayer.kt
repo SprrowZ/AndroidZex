@@ -3,10 +3,9 @@ package com.dawn.zgstep.player.layers
 import android.content.Context
 import android.util.AttributeSet
 import android.view.SurfaceView
-import android.view.TextureView
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.dawn.zgstep.player.IPlayerController
+import com.dawn.zgstep.player.base.IPlayerController
 
 /**
  * Create by  [Rye]
@@ -28,26 +27,35 @@ class PlayerSurfaceLayer @JvmOverloads constructor(
     }
 
     init {
+        initSurface()
+    }
+
+    private fun setHolder(surfaceView: SurfaceView?) {
+        surfaceView?.holder?.apply {
+            addCallback(SurfaceCallback(mPlayerController))
+        }
+    }
+
+    fun setSurfaceType(surfaceType: SurfaceType) {
+        this.mSurfaceType = surfaceType
+    }
+
+    private fun initSurface() {
+        when (mSurfaceType) {
+            SurfaceType.SurfaceView -> getSurfaceView()
+            SurfaceType.TextureView -> getTextureView()
+        }
+    }
+
+    private fun getSurfaceView() {
         //SurfaceView
         val surfaceView = SurfaceView(context)
         surfaceView.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        addView(surfaceView, 0)
         setHolder(surfaceView)
-    }
-
-    fun setSurfaceType() {
-
-    }
-
-    private fun initSurface() {
-
-    }
-
-    private fun getSurfaceView() {
-
+        addView(surfaceView, 0)
     }
 
     private fun getTextureView() {

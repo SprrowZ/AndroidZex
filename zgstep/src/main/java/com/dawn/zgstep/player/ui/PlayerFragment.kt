@@ -1,10 +1,8 @@
 package com.dawn.zgstep.player.ui
-
-import android.view.SurfaceView
 import android.widget.FrameLayout
 import com.dawn.zgstep.R
-import com.dawn.zgstep.player.IPlayerController
 import com.dawn.zgstep.player.VideoDetail
+import com.dawn.zgstep.player.base.IPlayerController
 import com.rye.base.BaseFragment
 import com.rye.base.utils.SDHelper
 

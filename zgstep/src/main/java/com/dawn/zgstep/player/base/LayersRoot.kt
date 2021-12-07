@@ -2,8 +2,10 @@ package com.dawn.zgstep.player.base
 
 import android.content.Context
 import android.widget.FrameLayout
-import com.dawn.zgstep.player.IPlayerController
 import com.dawn.zgstep.player.layers.PlayerControlLayer
+import com.dawn.zgstep.player.layers.PlayerSurfaceLayer
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Create by  [Rye]
@@ -12,33 +14,63 @@ import com.dawn.zgstep.player.layers.PlayerControlLayer
  *
  * 视图分层处理,这应该是一个ViewGroup,每一个层级都addView
  */
-class LayersRoot(private val mPlayerController: IPlayerController):ILayerMessage {
-    private var mTopContainer: FrameLayout? = null
+class LayersRoot(
+    private val mPlayerController: IPlayerController,
+    private val mTopContainer: FrameLayout
+):ILayerRoot {
+
+    private var mLayerMessageList = Collections.synchronizedList(ArrayList<ILayerObserver>())
 
     companion object {
         private const val CONTROL_LAYER_INDEX = 1
         private const val SURFACE_LAYER_INDEX = 0
+        fun create(mPlayerController: IPlayerController, mTopContainer: FrameLayout): LayersRoot {
+            return LayersRoot(mPlayerController, mTopContainer)
+        }
     }
 
     private val mContext: Context?
         get() {
-            return mTopContainer?.context
+            return mTopContainer.context
         }
+
+    init {
+        initViewLayers()
+    }
 
     private fun initViewLayers() {
         val con = mContext ?: return
+        if (filterOperation()) return
+        val surfaceLayer = PlayerSurfaceLayer.create(con, mPlayerController)
+        mTopContainer.addView(surfaceLayer, SURFACE_LAYER_INDEX) //不能跳index！
+
         val controlLayer = PlayerControlLayer.create(con, mPlayerController)
-        mTopContainer?.addView(controlLayer, CONTROL_LAYER_INDEX)
-
+        mTopContainer.addView(controlLayer, CONTROL_LAYER_INDEX)
 
     }
 
-    override fun onActive(container: FrameLayout) {
-        mTopContainer = container
+    private fun filterOperation(): Boolean {
+        return mTopContainer.getChildAt(0) != null
     }
+
+
+    private fun notifyViewChanged(container: FrameLayout) {
+        mLayerMessageList.forEach {
+            it.onActive(container)
+        }
+    }
+
+    fun registerContainerObserver(observer: ILayerObserver) {
+        if (mLayerMessageList.contains(observer)) return
+        mLayerMessageList.add(observer)
+    }
+
+
+}
+interface ILayerRoot {
 
 }
 
-interface ILayerMessage {
+interface ILayerObserver {
     fun onActive(container: FrameLayout)
 }

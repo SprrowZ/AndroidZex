@@ -13,7 +13,7 @@ import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import com.dawn.zgstep.R
 import com.dawn.zgstep.player.IMediaPlayer
-import com.dawn.zgstep.player.IPlayerController
+import com.dawn.zgstep.player.base.IPlayerController
 import com.dawn.zgstep.player.base.IVideoLayer
 
 /**
@@ -37,7 +37,7 @@ class PlayerControlLayer @JvmOverloads constructor(
     private var mTvProgress: TextView? = null
     private var mProgressBar: ProgressBar? = null
     private var mTvDuration: TextView? = null
-    private var mFullScreen: TextView? = null
+    private var mFullScreen: ImageView? = null
 
     companion object {
         fun create(context: Context, playController: IPlayerController): PlayerControlLayer {

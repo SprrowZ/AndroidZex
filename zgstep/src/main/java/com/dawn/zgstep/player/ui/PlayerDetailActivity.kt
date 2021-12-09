@@ -10,7 +10,7 @@ import com.rye.base.BaseActivity
 /**
  * 视频测试Activity
  */
-class DemoPlayerActivity : BaseActivity() {
+class PlayerDetailActivity : BaseActivity() {
     private var mPlayerContainer: FrameLayout? = null
     private var currentFragment: Fragment? = null
     private var currentPos = -1
@@ -19,7 +19,7 @@ class DemoPlayerActivity : BaseActivity() {
     companion object {
         @JvmStatic
         fun start(context: Context) {
-            val intent = Intent(context, DemoPlayerActivity::class.java)
+            val intent = Intent(context, PlayerDetailActivity::class.java)
             context.startActivity(intent)
         }
     }

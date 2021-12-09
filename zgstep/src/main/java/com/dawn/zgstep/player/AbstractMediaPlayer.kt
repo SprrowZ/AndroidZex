@@ -72,7 +72,7 @@ abstract class AbstractMediaPlayer : IMediaPlayer {
         this.mPlayerClockChangedListener = listener
     }
 
-    open fun resetListeners() {
+    open fun releaseListeners() {
         this.mOnPreparedListener = null
         this.mOnBufferingUpdateListener = null
         this.mOnCompletionListener = null

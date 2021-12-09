@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/review_asynctask.xml" value="0.2644927536231884" />
         <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
         <entry key="opengl/src/main/res/layout/recycler_item_shape.xml" value="0.2921875" />
+        <entry key="zgstep/src/main/res/drawable/player_progress_shape.xml" value="0.26197916666666665" />
         <entry key="zgstep/src/main/res/drawable/video_item_bottom_gradient.xml" value="0.18518518518518517" />
         <entry key="zgstep/src/main/res/layout/fragment_local_video.xml" value="0.1" />
         <entry key="zgstep/src/main/res/layout/fragment_player.xml" value="0.1" />

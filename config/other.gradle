@@ -165,3 +165,36 @@ task calProjectSize(){
         println("MainModel代码总量：${xmlLine+lines}")
     }
 }
+
+/**
+ * 输出编译过程中所有执行的task
+ */
+project.afterEvaluate(new Action<Project>() {
+    @Override
+    public void execute(Project project) {
+        Map<Project, Set<Task>> allTasks = project.getAllTasks(true);
+        for (Map.Entry<Project, Set<Task>> projectSetEntry : allTasks.entrySet()) {
+            Set<Task> value = projectSetEntry.getValue();
+            for (Task task : value) {
+                try {
+                    System.out.println("----------------------------------");
+                    System.out.println("执行任务名："+task.getName());
+//                    for (Object o : task.getDependsOn()) {
+//                        System.out.println("dependOn--> " + o.toString());
+//                    }
+
+//                    for (File file : task.getInputs().getFiles().getFiles()) {
+//                        System.out.println("input--> " + file.getAbsolutePath());
+//                    }
+//
+//                    for (File file : task.getOutputs().getFiles().getFiles()) {
+//                        System.out.println("output--> " + file.getAbsolutePath());
+//                    }
+//                    System.out.println("----------------------------------");
+                } catch (Exception e) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+});

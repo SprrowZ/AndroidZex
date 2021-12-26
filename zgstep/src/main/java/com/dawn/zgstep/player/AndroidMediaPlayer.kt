@@ -58,7 +58,13 @@ class AndroidMediaPlayer : AbstractMediaPlayer {
         notifyOnError(what, extra)
     }
     private val mInfoListener = MediaPlayer.OnInfoListener { _, what, extra ->
-        notifyOnInfo(what, extra, null)
+        val whatStandard = when(what) {
+            MediaPlayer.MEDIA_INFO_BUFFERING_START -> PlayerInfoState.MEDIA_INFO_BUFFERING_START
+            MediaPlayer.MEDIA_INFO_BUFFERING_END -> PlayerInfoState.MEDIA_INFO_BUFFERING_END
+            MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START ->PlayerInfoState.MEDIA_INFO_VIDEO_RENDERING_START
+            else -> PlayerInfoState.MEDIA_INFO_UNKNOWN
+        }
+        notifyOnInfo(whatStandard.state, extra, null)
     }
 
 
@@ -162,13 +168,14 @@ class AndroidMediaPlayer : AbstractMediaPlayer {
     override fun getCurrentPosition(): Long {
         return if (mIsPrepared) {
             try {
-                mMediaPlayer.currentPosition
+                val real = mMediaPlayer.currentPosition
+                return real.toLong()
             } catch (e: Exception) {
                 Log.e(TAG, "getCurrentPosition error :$e")
-                0
-            } as Long
+                0L
+            }
         } else {
-            -1
+            -1L
         }
     }
 

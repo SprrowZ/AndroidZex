@@ -114,7 +114,6 @@ abstract class AbstractMediaPlayer : IMediaPlayer {
         } catch (var5: NullPointerException) {
             return false
         }
-
         return true
     }
 
@@ -125,4 +124,10 @@ abstract class AbstractMediaPlayer : IMediaPlayer {
 //    override fun setDataSource(mediaDataSource: IMediaPlayer.IMediaDataSource) {
 //        throw UnsupportedOperationException()
 //    }
+}
+enum class PlayerInfoState(val state:Int) {
+    MEDIA_INFO_VIDEO_RENDERING_START(10000),
+    MEDIA_INFO_BUFFERING_START(10001),
+    MEDIA_INFO_BUFFERING_END(10002),
+    MEDIA_INFO_UNKNOWN(10003)
 }

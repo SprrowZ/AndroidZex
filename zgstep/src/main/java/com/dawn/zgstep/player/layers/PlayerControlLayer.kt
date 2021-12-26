@@ -11,6 +11,7 @@ import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import com.dawn.zgstep.R
 import com.dawn.zgstep.player.IMediaPlayer
+import com.dawn.zgstep.player.assist.DemoLife
 import com.dawn.zgstep.player.base.IPlayerController
 import com.dawn.zgstep.player.base.IVideoLayer
 import java.util.*
@@ -27,8 +28,6 @@ class PlayerControlLayer @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : FrameLayout(context, attrs, defStyle), IVideoLayer {
-
-
     private var mRoot: View? = null
     private var mSpaceLayout: View? = null
     private var mSpace: View? = null
@@ -43,6 +42,42 @@ class PlayerControlLayer @JvmOverloads constructor(
             return PlayerControlLayer(playController, context)
         }
     }
+
+    private val mMediaPlayer: IMediaPlayer?
+        get() {
+            return mPlayerController.getMediaService()?.getMediaPlayer()
+        }
+
+    private val isPlaying: Boolean
+        get() {
+            return mMediaPlayer?.isPlaying() == true
+        }
+
+    private val mDuration: Long?
+        get() {
+            return mMediaPlayer?.getDuration()
+        }
+
+    private val mOnPreparedListener = object : IMediaPlayer.OnPreparedListener {
+        override fun onPrepared(mp: IMediaPlayer?) {
+            Log.e("RRye", "onPrepared..duration:$mDuration")
+            mTvDuration?.text = stringForTime(mDuration)
+        }
+    }
+
+    private val mProgressListener = object : IMediaPlayer.OnProgressListener {
+        override fun onProgress(duration: Long, progress: Long) {
+            mTvProgress?.text = stringForTime(progress)
+            if (mTvDuration?.text.isNullOrEmpty()) {
+                mTvDuration?.text = stringForTime(duration)
+            }
+            if (duration == 0L) return
+            val barProgress = (progress.toFloat() / duration * 100).toInt()
+            mProgressBar?.progress = barProgress
+            Log.i("RRye", "duration:$duration,progress:$progress,barProgress:$barProgress")
+        }
+    }
+
 
     init {
         mRoot = LayoutInflater.from(context).inflate(getLayoutRes(), this, false)
@@ -61,30 +96,10 @@ class PlayerControlLayer @JvmOverloads constructor(
             mTvDuration = findViewById(R.id.tv_duration)
             mFullScreen = findViewById(R.id.fullscreen)
         }
+        val life = DemoLife()
+        Log.e("RRye", "life ok!$life")
     }
 
-    private val mMediaPlayer: IMediaPlayer?
-        get() {
-            return mPlayerController.getMediaPlayer()
-        }
-
-    private val isPlaying: Boolean
-        get() {
-            return mMediaPlayer?.isPlaying() == true
-        }
-
-    private val mDuration: Long?
-        get() {
-            return mMediaPlayer?.getDuration()
-        }
-
-    private val mOnPreparedListener = object : IMediaPlayer.OnPreparedListener {
-        override fun onPrepared(var1: IMediaPlayer?) {
-            Log.e("RRye", "onPrepared..")
-            mTvDuration?.text = stringForTime(mDuration?.toInt())
-        }
-
-    }
 
     private fun initEvent() {
         mSpaceLayout?.setOnClickListener {
@@ -96,6 +111,22 @@ class PlayerControlLayer @JvmOverloads constructor(
         mFullScreen?.setOnClickListener {
 
         }
+        mProgressBar?.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+//                  seekBar?.progress?.let {
+//                    mMediaPlayer?.seekTo(it.toLong())
+//                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+
+        })
         registerListener()
     }
 
@@ -123,12 +154,14 @@ class PlayerControlLayer @JvmOverloads constructor(
 
     private fun registerListener() {
         mMediaPlayer?.setOnPreparedListener(mOnPreparedListener)
+        Log.i("RRye", "mProgressListener:$mProgressListener")
+        mPlayerController.getMediaService()?.registerOnProgressListener(mProgressListener)
     }
 
     /**
      * 格式化时间
      */
-    fun stringForTime(timeMs: Int?): String {
+    fun stringForTime(timeMs: Long?): String {
         timeMs ?: return "null"
         val totalSeconds = timeMs / 1000
         val seconds = totalSeconds % 60
@@ -140,6 +173,7 @@ class PlayerControlLayer @JvmOverloads constructor(
             String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
         }
     }
+
 
     @LayoutRes
     private fun getLayoutRes(): Int {

@@ -103,7 +103,11 @@ class MediaRecorderFragment : BaseFragment() {
             Log.e("RRye", "audioPath is Null..")
             return
         }
-        mPlayerController?.goPlayAudio(audioPath)
+        val audioDetail = VideoDetail().run {
+            this.url = audioPath
+            this
+        }
+        mPlayerController?.goPlayAudio(audioDetail)
     }
 
     private fun playRecordVideo() {
@@ -113,13 +117,13 @@ class MediaRecorderFragment : BaseFragment() {
             Log.e("RRye", "videoPath is Null..")
             return
         }
-       // mMediaRecorderManager?.removeVideoSurfaceCallback(mSurfaceView?.holder)
+        // mMediaRecorderManager?.removeVideoSurfaceCallback(mSurfaceView?.holder)
         val video = VideoDetail().run {
             url = videoPath
             container = mPlayerContainer
             this
         }
-       mPlayerController?.goPlay(video)
+        mPlayerController?.goPlay(video)
     }
 
 

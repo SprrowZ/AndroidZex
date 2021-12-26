@@ -18,8 +18,8 @@
 
         <View
             android:id="@+id/space"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             tools:background="@color/red"
             android:backgroundTint="@color/white"
@@ -30,9 +30,9 @@
 
     <ImageView
         android:id="@+id/start_pause"
-        android:layout_width="@dimen/len_32"
-        android:layout_height="@dimen/len_32"
-        android:layout_marginLeft="@dimen/len_10"
+        android:layout_width="@dimen/len_20"
+        android:layout_height="@dimen/len_20"
+        android:layout_marginLeft="@dimen/len_16"
         android:layout_marginBottom="@dimen/font_10"
         android:scaleType="fitXY"
         android:src="@drawable/video_play"
@@ -43,11 +43,11 @@
     <TextView
         android:id="@+id/tv_progress"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/len_32"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/len_10"
         android:layout_marginBottom="@dimen/len_10"
         android:gravity="center_vertical"
-        android:textSize="@dimen/font_20"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/start_pause"
         tools:text="00:30" />
@@ -55,13 +55,12 @@
     <SeekBar
         android:id="@+id/progressbar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/len_10"
         android:layout_marginRight="@dimen/len_10"
-        android:layout_marginBottom="@dimen/len_10"
-        android:minHeight="6dp"
-        android:maxHeight="6dp"
+        android:minHeight="2dp"
+        android:maxHeight="2dp"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintBottom_toBottomOf="@id/tv_duration"
         android:progressDrawable="@drawable/player_progress_shape"
@@ -70,9 +69,9 @@
 
     <ImageView
         android:id="@+id/fullscreen"
-        android:layout_width="@dimen/len_32"
-        android:layout_height="@dimen/len_32"
-        android:layout_marginRight="@dimen/len_10"
+        android:layout_width="@dimen/len_20"
+        android:layout_height="@dimen/len_20"
+        android:layout_marginRight="@dimen/len_16"
         android:layout_marginBottom="@dimen/len_10"
         android:src="@drawable/video_fullscreen"
         android:tint="@color/white"
@@ -82,11 +81,11 @@
     <TextView
         android:id="@+id/tv_duration"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/len_32"
+        android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/len_10"
         android:layout_marginBottom="@dimen/len_10"
         android:gravity="center_vertical"
-        android:textSize="@dimen/font_20"
+        android:textSize="@dimen/font_14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/fullscreen"
         tools:text="15:30" />

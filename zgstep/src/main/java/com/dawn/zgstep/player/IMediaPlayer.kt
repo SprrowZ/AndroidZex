@@ -141,30 +141,33 @@ interface IMediaPlayer {
     }
 
     interface OnInfoListener {
-        fun onInfo(var1: IMediaPlayer?, var2: Int, var3: Int, var4: Bundle?): Boolean
+        fun onInfo(var1: IMediaPlayer?, what: Int, extra: Int, var4: Bundle?): Boolean
     }
 
     interface OnErrorListener {
-        fun onError(var1: IMediaPlayer?, var2: Int, var3: Int): Boolean
+        fun onError(var1: IMediaPlayer?, what: Int, extra: Int): Boolean
     }
 
     interface OnVideoSizeChangedListener {
-        fun onVideoSizeChanged(var1: IMediaPlayer?, var2: Int, var3: Int, var4: Int, var5: Int)
+        fun onVideoSizeChanged(mp: IMediaPlayer?, var2: Int, var3: Int, var4: Int, var5: Int)
     }
 
     interface OnSeekCompleteListener {
-        fun onSeekComplete(var1: IMediaPlayer?)
+        fun onSeekComplete(mp: IMediaPlayer?)
     }
 
     interface OnBufferingUpdateListener {
-        fun onBufferingUpdate(var1: IMediaPlayer?, var2: Int)
+        fun onBufferingUpdate(mp: IMediaPlayer?, var2: Int)
     }
 
     interface OnCompletionListener {
-        fun onCompletion(var1: IMediaPlayer?)
+        fun onCompletion(mp: IMediaPlayer?)
     }
 
     interface OnPreparedListener {
-        fun onPrepared(var1: IMediaPlayer?)
+        fun onPrepared(mp: IMediaPlayer?)
+    }
+    interface OnProgressListener {
+        fun onProgress(duration:Long,progress:Long)
     }
 }

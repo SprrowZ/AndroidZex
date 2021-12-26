@@ -1,6 +1,7 @@
 package com.dawn.zgstep.player.base
 
 import android.content.Context
+import android.view.View
 import android.widget.FrameLayout
 import com.dawn.zgstep.player.layers.PlayerControlLayer
 import com.dawn.zgstep.player.layers.PlayerSurfaceLayer
@@ -16,7 +17,7 @@ import kotlin.collections.ArrayList
  */
 class LayersRoot(
     private val mPlayerController: IPlayerController,
-    private val mTopContainer: FrameLayout
+    private val mRootContainer: FrameLayout
 ):ILayerRoot {
 
     private var mLayerMessageList = Collections.synchronizedList(ArrayList<ILayerObserver>())
@@ -31,7 +32,7 @@ class LayersRoot(
 
     private val mContext: Context?
         get() {
-            return mTopContainer.context
+            return mRootContainer.context
         }
 
     init {
@@ -42,15 +43,15 @@ class LayersRoot(
         val con = mContext ?: return
         if (filterOperation()) return
         val surfaceLayer = PlayerSurfaceLayer.create(con, mPlayerController)
-        mTopContainer.addView(surfaceLayer, SURFACE_LAYER_INDEX) //不能跳index！
+        mRootContainer.addView(surfaceLayer, SURFACE_LAYER_INDEX) //不能跳index！
 
         val controlLayer = PlayerControlLayer.create(con, mPlayerController)
-        mTopContainer.addView(controlLayer, CONTROL_LAYER_INDEX)
+        mRootContainer.addView(controlLayer, CONTROL_LAYER_INDEX)
 
     }
 
     private fun filterOperation(): Boolean {
-        return mTopContainer.getChildAt(0) != null
+        return mRootContainer.getChildAt(0) != null
     }
 
 
@@ -65,10 +66,13 @@ class LayersRoot(
         mLayerMessageList.add(observer)
     }
 
+    override fun getRootContainer(): View {
+        return mRootContainer
+    }
 
 }
 interface ILayerRoot {
-
+    fun getRootContainer():View
 }
 
 interface ILayerObserver {

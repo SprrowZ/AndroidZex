@@ -20,6 +20,6 @@ class SurfaceCallback(private val playerController: IPlayerController?) : Surfac
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
-        playerController?.setDisplay(holder)
+        playerController?.getMediaService()?.setDisplay(holder)
     }
 }

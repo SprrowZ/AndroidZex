@@ -1,9 +1,8 @@
 package com.dawn.zgstep.player.base
 
-import android.view.SurfaceHolder
-import com.dawn.zgstep.player.IMediaPlayer
 import com.dawn.zgstep.player.PlayerController
 import com.dawn.zgstep.player.VideoDetail
+import com.dawn.zgstep.player.service.IMediaService
 
 /**
  * Create by  [Rye]
@@ -12,17 +11,10 @@ import com.dawn.zgstep.player.VideoDetail
  */
 interface IPlayerController {
     fun goPlay(videoDetail: VideoDetail)
-    fun pause()
-    fun replay()
+    fun getMediaService():IMediaService?
     fun release()
-    fun setDisplay(holder: SurfaceHolder?)
-    fun prepareSync()
-    fun start()
-    fun goPlayAudio(url: String)
-    fun getMediaPlayer(): IMediaPlayer?
-
-    //监听
-
+    fun goPlayAudio(audioDetail: VideoDetail)
+    fun getContext()
 
     companion object {
         fun create(): IPlayerController {

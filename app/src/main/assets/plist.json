@@ -94,5 +94,9 @@
   {
     "name": "OpenGL_Main",
     "action": "opengl_main"
+  },
+  {
+    "name": "硬编解码",
+    "action": "mediaCodec"
   }
 ]

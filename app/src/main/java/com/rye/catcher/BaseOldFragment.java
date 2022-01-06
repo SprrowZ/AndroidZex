@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.rye.catcher.utils.PermissionsUtil;
+import com.rye.base.utils.PermissionsUtil;
 import com.rye.base.utils.TypeFaceUtil;
 
 

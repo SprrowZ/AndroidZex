@@ -19,7 +19,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
@@ -32,7 +31,7 @@ import android.widget.TextView;
 import com.rye.base.BaseActivity;
 
 import com.rye.catcher.R;
-import com.rye.catcher.utils.PermissionsUtil;
+import com.rye.base.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
 import com.rye.catcher.utils.permission.Permissions;
 

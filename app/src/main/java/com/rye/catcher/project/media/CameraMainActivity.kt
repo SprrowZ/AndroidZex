@@ -10,8 +10,8 @@ import com.rye.base.BaseActivity
 
 import com.rye.catcher.R
 import com.rye.catcher.project.media.record.MediaRecorderFragment
-import com.rye.catcher.utils.PermissionsUtil
-import com.rye.catcher.utils.PermissionsUtil.IPermissionsResult
+import com.rye.base.utils.PermissionsUtil
+import com.rye.base.utils.PermissionsUtil.IPermissionsResult
 import com.rye.catcher.utils.ToastUtils
 import com.rye.catcher.utils.permission.Permissions
 

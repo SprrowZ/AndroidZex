@@ -1,4 +1,4 @@
-package com.rye.catcher.utils;
+package com.rye.base.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;

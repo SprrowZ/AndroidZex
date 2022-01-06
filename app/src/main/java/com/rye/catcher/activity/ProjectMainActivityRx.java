@@ -248,6 +248,9 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 //FirstOpenglActivity.start(this);
                 ShapeActivity.start(this);
                 break;
+            case "mediaCodec":
+
+                break;
         }
     }
 

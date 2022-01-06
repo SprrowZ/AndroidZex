@@ -1,4 +1,4 @@
-package com.rye.catcher.project.media;
+package com.dawn.zgstep.player.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -28,19 +28,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.dawn.zgstep.R;
 import com.rye.base.media.CameraPreview;
-import com.rye.catcher.R;
-import com.rye.catcher.utils.ImageUtils;
-import com.rye.catcher.utils.permission.PermissionUtils;
-import com.yanzhenjie.permission.Permission;
+import com.rye.base.utils.PermissionsUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Permission;
+import java.security.Permissions;
 
 /**
  * 拍照界面
  */
-public class Camera1Activity extends Activity implements View.OnClickListener {
+public class MediaCodecActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "CameraActivity2";
 
     public final static int REQUEST_CODE = 0X13;
@@ -56,7 +56,7 @@ public class Camera1Activity extends Activity implements View.OnClickListener {
 
 
     public static void openCamera(Activity activity, int type) {
-        Intent intent = new Intent(activity, Camera1Activity.class);
+        Intent intent = new Intent(activity, MediaCodecActivity.class);
         intent.putExtra("type", type);
         activity.startActivityForResult(intent, REQUEST_CODE);
     }
@@ -189,13 +189,20 @@ public class Camera1Activity extends Activity implements View.OnClickListener {
      * 打开相册
      */
     private void pickPhotos() {
-        PermissionUtils.requestPermission(this, "需要相机权限！", false,
-                data -> {
-                    Intent intent = new Intent(
-                            Intent.ACTION_PICK);
-                    intent.setType("image/*");
-                    startActivityForResult(intent, CAMERA_REQUEST_CODE);
-                }, 0, Permission.CAMERA);
+        PermissionsUtil.INSTANCE.checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
+            @Override
+            public void passPermissons() {
+                Intent intent = new Intent(
+                        Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, CAMERA_REQUEST_CODE);
+            }
+
+            @Override
+            public void forbitPermissons() {
+
+            }
+        }, Permission.);
     }
 
     /**

@@ -3,16 +3,8 @@ package com.rye.catcher.activity.splash;
 import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.MainActivity;
-import com.rye.catcher.utils.PermissionsUtil;
-import com.rye.catcher.utils.permission.PermissionUtils;
-import com.rye.catcher.utils.permission.Permissions;
+import com.rye.base.utils.PermissionsUtil;
 import com.yanzhenjie.permission.Permission;
-
-
-import java.util.concurrent.TimeUnit;
-
-
-import io.reactivex.Observable;
 
 
 /**

@@ -17,7 +17,7 @@ import com.rye.catcher.activity.ctmactivity.CtmMainActivity;
 
 import com.rye.catcher.project.review.ReviewActivity;
 import com.rye.catcher.project.animations.AnimMainActivity;
-import com.rye.catcher.utils.PermissionsUtil;
+import com.rye.base.utils.PermissionsUtil;
 import com.rye.catcher.utils.ToastUtils;
 
 import butterknife.OnClick;

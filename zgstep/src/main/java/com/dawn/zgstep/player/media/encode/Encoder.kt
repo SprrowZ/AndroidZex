@@ -207,4 +207,5 @@ class MediaEncodeThread(private val mEncoder: Encoder) : Thread("encode") {
 
 interface EncodeCallback {
     fun videoEncodeFinish()
+    fun transitVideoData(data: ByteArray?){}
 }

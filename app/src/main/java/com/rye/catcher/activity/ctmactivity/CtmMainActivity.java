@@ -3,6 +3,7 @@ package com.rye.catcher.activity.ctmactivity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.dawn.zgstep.player.demos.DemoMediaActivity;
 import com.dawn.zgstep.ui.ctm.fragments.CtmColorMatrixFragment;
 import com.dawn.zgstep.ui.ctm.fragments.CtmFontViewFragment;
 import com.dawn.zgstep.ui.activity.DemoActivity;
@@ -70,7 +71,8 @@ public class CtmMainActivity extends BaseRecyclerActivity<JsonBean> {
                     DemoActivity.start(context);
                     break;
                 case "testNext":
-                    startActivity(new Intent(context, CtmNextActivity.class));
+                    //startActivity(new Intent(context, CtmNextActivity.class));
+                    DemoMediaActivity.start(context);
                     break;
             }
         }

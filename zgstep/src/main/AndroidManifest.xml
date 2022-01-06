@@ -9,6 +9,7 @@
         <activity android:name=".ui.activity.DemoActivity" />
         <activity android:name=".ui.activity.ZStepMainActivity" />
         <activity android:name=".others.bolts.BoltsMainJava" />
+        <activity android:name=".player.demos.DemoMediaActivity"/>
     </application>
 
 </manifest>

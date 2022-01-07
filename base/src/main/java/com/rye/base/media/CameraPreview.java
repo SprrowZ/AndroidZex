@@ -12,21 +12,21 @@ import android.view.SurfaceView;
 import java.util.List;
 
 /**
- *
  * camera1 封装
  */
-public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback {
+public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
     private static String TAG = CameraPreview.class.getName();
 
     private Camera camera;
+    private ICameraCallback mCameraCallback;
 
     public CameraPreview(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public CameraPreview(Context context, AttributeSet attrs) {
-        this(context,attrs,-1);
+        this(context, attrs, -1);
     }
 
     public CameraPreview(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -46,6 +46,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         camera = CameraUtils.openCamera();
         if (camera != null) {
             try {
+                //监听摄像数据
+                camera.setPreviewCallback(this);
                 camera.setPreviewDisplay(holder);
                 Camera.Parameters parameters = camera.getParameters();
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -87,16 +89,25 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                     camera = null;
                 }
             }
+            if (mCameraCallback != null) {
+                mCameraCallback.surfaceCreated(holder);
+            }
         }
     }
 
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
         //因为设置了固定屏幕方向，所以在实际使用中不会触发这个方法
+        if (mCameraCallback != null) {
+            mCameraCallback.surfaceChanged(holder, format, w, h);
+        }
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
         //回收释放资源
         release();
+        if (mCameraCallback != null) {
+            mCameraCallback.surfaceDestroyed(holder);
+        }
     }
 
     /**
@@ -127,6 +138,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private void release() {
         if (camera != null) {
             camera.stopPreview();
+            camera.setPreviewCallback(null);
             camera.release();
             camera = null;
         }
@@ -139,6 +151,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         if (camera != null) {
             camera.autoFocus(null);
         }
+    }
+
+    public void setCallback(ICameraCallback callback) {
+        this.mCameraCallback = callback;
     }
 
     /**
@@ -179,4 +195,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
+    @Override
+    public void onPreviewFrame(byte[] data, Camera camera) {
+
+    }
 }

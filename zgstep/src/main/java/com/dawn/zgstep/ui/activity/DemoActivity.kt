@@ -29,8 +29,6 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
     private var mClassLoader: TextView? = null
 
     companion object {
-
-
         @JvmStatic
         fun start(context: Context) {
             val intent = Intent(context, DemoActivity::class.java)

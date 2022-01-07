@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.dawn.zgstep.player.ui.codec.MediaCodecActivity;
 import com.dawn.zgstep.player.ui.PlayerDetailActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
@@ -249,7 +250,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 ShapeActivity.start(this);
                 break;
             case "mediaCodec":
-
+                MediaCodecActivity.jump(this,MediaCodecActivity.TYPE_LIVE);
                 break;
         }
     }

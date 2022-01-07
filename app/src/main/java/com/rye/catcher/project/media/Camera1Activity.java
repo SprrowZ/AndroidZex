@@ -72,7 +72,7 @@ public class Camera1Activity extends Activity implements View.OnClickListener {
     }
 
     private CameraPreview cameraPreview;
-    private View containerView;
+
     private ImageView cropView;
     private ImageView pickPhoto;
 
@@ -106,8 +106,6 @@ public class Camera1Activity extends Activity implements View.OnClickListener {
         //type表示是哪个被选中了
         type = getIntent().getIntExtra("type", 0);
         cameraPreview = findViewById(R.id.camera_surface);
-        //中间布局
-        containerView = findViewById(R.id.camera_crop_container);
         //裁剪布局
         cropView = findViewById(R.id.camera_crop);
 

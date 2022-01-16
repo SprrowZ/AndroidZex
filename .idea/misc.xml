@@ -8,11 +8,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/zResources/zAndroid/AndroidZex/app/src/main/res/layout/fragment_camera2.xml" value="0.22291666666666668" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/app/src/main/res/layout/fragment_camera_one.xml" value="0.20260416666666667" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_first_opengl.xml" value="0.23697916666666666" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_triangle.xml" value="0.1" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/recycler_item_shape.xml" value="0.240625" />
         <entry key="app/src/main/res/layout/activity_camera_main.xml" value="0.14076690211907164" />
+        <entry key="app/src/main/res/layout/activity_take_photo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_camera2.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/fragment_media_recorder.xml" value="0.1279011099899092" />
         <entry key="app/src/main/res/layout/review_asynctask.xml" value="0.2644927536231884" />
@@ -20,8 +20,13 @@
         <entry key="opengl/src/main/res/layout/recycler_item_shape.xml" value="0.2921875" />
         <entry key="zgstep/src/main/res/drawable/player_progress_shape.xml" value="0.26197916666666665" />
         <entry key="zgstep/src/main/res/drawable/video_item_bottom_gradient.xml" value="0.18518518518518517" />
+        <entry key="zgstep/src/main/res/layout/activity_demo_activity.xml" value="0.13647830474268416" />
+        <entry key="zgstep/src/main/res/layout/activity_mediacodec.xml" value="0.1" />
+        <entry key="zgstep/src/main/res/layout/activity_take_photo.xml" value="0.13799192734611504" />
+        <entry key="zgstep/src/main/res/layout/fragment_codec_live.xml" value="0.1475782038345106" />
         <entry key="zgstep/src/main/res/layout/fragment_local_video.xml" value="0.1" />
         <entry key="zgstep/src/main/res/layout/fragment_player.xml" value="0.1" />
+        <entry key="zgstep/src/main/res/layout/fragment_video_codec.xml" value="0.17074275362318841" />
         <entry key="zgstep/src/main/res/layout/player_control_layer.xml" value="0.335" />
         <entry key="zgstep/src/main/res/layout/recycler_item_local_video.xml" value="0.1793478260869565" />
       </map>

@@ -188,6 +188,9 @@ class Camera2Manager(private val mActivity: Activity, private val mTextureView: 
         //设置完captureRequest属性后才能设置target！！
         //给此次请求添加一个Surface对象作为图像的输出目标!!
         mCreateCaptureRequest?.addTarget(surface)
+        //TODO 【 重点，将ImageReader的surface也作为渲染目标，就会一直回调onImageAvailable 】
+        //mImageReader?.surface?.let { mCreateCaptureRequest?.addTarget(it) }
+
         //---创建CameraCaptureSession对象
         cameraDevice.createCaptureSession(
             arrayListOf(surface, mImageReader?.surface), mCaptureStateCallback,

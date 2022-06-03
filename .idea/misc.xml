@@ -16,7 +16,10 @@
         <entry key="app/src/main/res/layout/fragment_camera2.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/fragment_media_recorder.xml" value="0.1279011099899092" />
         <entry key="app/src/main/res/layout/review_asynctask.xml" value="0.2644927536231884" />
+        <entry key="opengl/src/main/res/layout/activity_course1_demo.xml" value="0.25905797101449274" />
         <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
+        <entry key="opengl/src/main/res/layout/activity_test_custom_surface_view.xml" value="0.12512613521695257" />
+        <entry key="opengl/src/main/res/layout/activity_test_texture_view.xml" value="0.10092592592592593" />
         <entry key="opengl/src/main/res/layout/recycler_item_shape.xml" value="0.2921875" />
         <entry key="zgstep/src/main/res/drawable/player_progress_shape.xml" value="0.26197916666666665" />
         <entry key="zgstep/src/main/res/drawable/video_item_bottom_gradient.xml" value="0.18518518518518517" />

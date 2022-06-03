@@ -4,6 +4,15 @@
 
     <application>
         <activity
+            android:name=".course_y.other.TestTextureViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".course_y.other.TestCustomSurfaceViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".course_y.other.TestEGLHelperActivity"
+            android:exported="false" />
+        <activity
             android:name=".demos.ShapeActivity"
             android:exported="true" />
         <activity

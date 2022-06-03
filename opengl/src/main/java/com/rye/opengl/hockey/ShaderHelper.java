@@ -15,7 +15,7 @@ public class ShaderHelper {
     }
 
     /**
-     * 编译着色器
+     * 创建、加载、编译着色器
      *
      * @param type
      * @param shaderCode
@@ -54,28 +54,29 @@ public class ShaderHelper {
 
     /**
      * 链接着色器到OpenGL的程序-->OpenGL程序链接顶点和片段着色器
+     *
      * @param vertexShaderId
      * @param fragmentShaderId
      * @return OpenGL程序ID
      */
-    public static  int linkProgram(int vertexShaderId,int fragmentShaderId){
+    public static int linkProgram(int vertexShaderId, int fragmentShaderId) {
         //新建程序对象，记录程序对象ID
         final int programObjectId = GLES20.glCreateProgram();
-        if (programObjectId == 0){ //创建OpenGL项目出错
+        if (programObjectId == 0) { //创建OpenGL项目出错
             if (LoggerConfig.ON) {
                 Log.w(TAG, "Could not create new program");
             }
             return 0;
         }
         //将两个着色器附着在OpenGL程序上
-        GLES20.glAttachShader(programObjectId,vertexShaderId);
-        GLES20.glAttachShader(programObjectId,fragmentShaderId);
+        GLES20.glAttachShader(programObjectId, vertexShaderId);
+        GLES20.glAttachShader(programObjectId, fragmentShaderId);
         //将两个着色器链接起来
         GLES20.glLinkProgram(programObjectId);
 
         final int[] linkStatus = new int[1];
 
-        GLES20.glGetProgramiv(programObjectId,GLES20.GL_LINK_STATUS,linkStatus,0);
+        GLES20.glGetProgramiv(programObjectId, GLES20.GL_LINK_STATUS, linkStatus, 0);
 
 
         if (LoggerConfig.ON) {
@@ -83,26 +84,27 @@ public class ShaderHelper {
             Log.v(TAG, "Results of linking program:\n" + GLES20.glGetProgramInfoLog(programObjectId));
         }
 
-        if (linkStatus[0] == 0){//连接出错
+        if (linkStatus[0] == 0) {//连接出错
             GLES20.glDeleteProgram(programObjectId);
-            return 0 ;
+            return 0;
         }
         return programObjectId;
     }
 
     /**
      * 链接着色器到OpenGL上，方便上层调用
+     *
      * @param vertexShaderSource
      * @param fragmentShaderSource
      * @return
      */
-    public static int buildProgram(String vertexShaderSource,String fragmentShaderSource){
+    public static int buildProgram(String vertexShaderSource, String fragmentShaderSource) {
         int programObjectId;
         int vertexShader = compileVertexShader(vertexShaderSource);
         int fragmentShader = compileFragmentShader(fragmentShaderSource);
-        programObjectId = linkProgram(vertexShader,fragmentShader);
+        programObjectId = linkProgram(vertexShader, fragmentShader);
         //validateProgram
-        if (!validateProgram(programObjectId)){
+        if (!validateProgram(programObjectId)) {
             return 0;
         }
         return programObjectId;
@@ -110,15 +112,16 @@ public class ShaderHelper {
 
     /**
      * 检测OpenGL程序状态是不是有效的
+     *
      * @param programObjectId
      * @return
      */
-    public static  boolean validateProgram(int programObjectId){
+    public static boolean validateProgram(int programObjectId) {
         GLES20.glValidateProgram(programObjectId);
         final int[] validateStatus = new int[1];
-        GLES20.glGetProgramiv(programObjectId,GLES20.GL_VALIDATE_STATUS,validateStatus,0);
+        GLES20.glGetProgramiv(programObjectId, GLES20.GL_VALIDATE_STATUS, validateStatus, 0);
         //输出状态信息
-        return validateStatus[0]!=GLES20.GL_FALSE;
+        return validateStatus[0] != GLES20.GL_FALSE;
     }
 
 

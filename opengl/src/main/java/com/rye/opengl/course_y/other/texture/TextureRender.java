@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
+import android.opengl.Matrix;
 import android.util.Log;
 
 import com.rye.opengl.R;
@@ -39,7 +40,11 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
             0f, 0f,
             1f, 0f,
             0f, 1f,
-            1f, 1f   //最后一次操作是将纹理坐标替换为FBO坐标，在FBO操作章节有图示
+            1f, 1f   //纹理坐标替换为FBO坐标，在FBO操作章节有图示
+//            0f, 1f,
+//            1f, 1f,
+//            0f, 0f,
+//            1f, 0f    //FBO和纹理坐标系原点不同
     };
     //为坐标分配本地内存地址（OpenGL没有虚拟机，直接绘制在本地内存中）
     private FloatBuffer vertexBuffer;
@@ -65,6 +70,11 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
 
     private FBORender fboRender;
 
+
+    private int mMatrix;//投影矩阵
+
+    private float[] matrix = new float[16];
+
     public TextureRender(Context context) {
         this.mContext = context;
         fboRender = new FBORender(context);
@@ -85,7 +95,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
     @Override
     public void onSurfaceCreated() {
         fboRender.onCreate();
-        String vertexSource = TextureResourceReader.readTextFileFromResource(mContext, R.raw.course_demo1_vertex_shader);
+        String vertexSource = TextureResourceReader.readTextFileFromResource(mContext, R.raw.course_demo1_vertex_shader_m);
         String fragmentSource = TextureResourceReader.readTextFileFromResource(mContext, R.raw.course_demo1_fragment_shader);
         program = ShaderHelper.buildProgram(vertexSource, fragmentSource);//创建program并绑定着色器
         //获取顶点着色器属性
@@ -93,7 +103,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         fPosition = GLES20.glGetAttribLocation(program, "f_Position");
         //纹理
         sampler2D = GLES20.glGetUniformLocation(program, "sTexture");
-
+        mMatrix = GLES20.glGetUniformLocation(program, "u_Matrix");//投影矩阵
 
         //----------VBO (跟纹理操作很像啊)
         int[] vbos = new int[1];
@@ -133,7 +143,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
 
-        //设置FBO缓存大小【必须放在绑定纹理之后，否则会黑屏】
+        //设置FBO缓存大小【必须放在绑定纹理之后，否则会黑屏】                         //TODO width和height自适应手机尺寸
         GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, 1080, 2122,/*尺寸应该跟手机尺寸一致**/
                 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
 
@@ -171,7 +181,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         loadBitmap(src);
 
         //里面也要解绑,纹理用完就解绑掉
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D,0);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
 
         return textureIds[0];
     }
@@ -186,17 +196,30 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
     @Override
     public void onSurfaceChanged(int width, int height) {
         GLES20.glViewport(0, 0, width, height);
-        fboRender.onChange(width,height);
+        fboRender.onChange(width, height);
+        //操作投影矩阵
+        if (width > height) {//横屏
+            //TODO 数值要根据图片尺寸来，不能写死,//左负右正
+            Matrix.orthoM(matrix, 0, -width / ((height / 1243f) * 700f), width / ((height / 1243f) * 700f), -1f, 1f, -1f, 1f); // height/1080 算出图片拉伸的比例,700是图片宽度
+        } else {
+            Matrix.orthoM(matrix, 0, -1, 1, -height / ((width / 700f) * 1243f), height / ((width / 700f) * 1243f), -1f, 1f); // height/1080 算出图片拉伸的比例,700是图片宽度
+        }
+        //因fbo与纹理坐标系不同，翻转图像
+        Matrix.rotateM(matrix,0,180,1,0,0);
     }
 
     @Override
     public void onDrawFrame() {
         //绑定FBO，后续操作都不在可见frame中操作，而是在fbo中了;必不可少
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,fboId);//此处fboId替换为0的话，就还会渲染到屏幕上
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);//此处fboId替换为0的话，就还会渲染到屏幕上
 
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
         GLES20.glUseProgram(program);
+        //正交矩阵,在useProgram之后就行
+        GLES20.glUniformMatrix4fv(mMatrix, 1, false, matrix, 0);
+
+
         //绑定纹理，不绑定也绘制不出来纹理呐
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, imgTextureId);//替换为source texture
 
@@ -220,8 +243,9 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glBindTexture(GLES20.GL_ARRAY_BUFFER, 0);
 
         //解绑FBO后，才能看到渲染出的纹理
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,0);
-        fboRender.onDraw(textureId);
+//        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,0);
+//        fboRender.onDraw(textureId);
 
     }
+
 }

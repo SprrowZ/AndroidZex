@@ -11,11 +11,13 @@
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_first_opengl.xml" value="0.23697916666666666" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_triangle.xml" value="0.1" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/recycler_item_shape.xml" value="0.240625" />
+        <entry key="app/src/main/res/drawable/rotate_bk.xml" value="0.11296296296296296" />
         <entry key="app/src/main/res/layout/activity_camera_main.xml" value="0.14076690211907164" />
         <entry key="app/src/main/res/layout/activity_take_photo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_camera2.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/fragment_media_recorder.xml" value="0.1279011099899092" />
         <entry key="app/src/main/res/layout/review_asynctask.xml" value="0.2644927536231884" />
+        <entry key="app/src/main/res/layout/tab04.xml" value="0.17447916666666666" />
         <entry key="opengl/src/main/res/layout/activity_course1_demo.xml" value="0.25905797101449274" />
         <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
         <entry key="opengl/src/main/res/layout/activity_test_custom_surface_view.xml" value="0.12512613521695257" />

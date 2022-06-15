@@ -45,10 +45,8 @@ public abstract class CustomEglSurfaceView extends SurfaceView implements Surfac
     }
 
     public void setSurfaceAndEglContext(Surface surface, EGLContext eglContext) {
-        if (surface != null && eglContext != null) {
-            this.mSurface = surface;
-            this.mEglContext = eglContext;
-        }
+        this.mSurface = surface;
+        this.mEglContext = eglContext;
     }
 
     public void setGLRender(CustomGLRender mGLRender) {

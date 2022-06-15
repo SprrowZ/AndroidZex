@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/ndkmodule" />
             <option value="$PROJECT_DIR$/opengl" />
             <option value="$PROJECT_DIR$/pluginz" />
             <option value="$PROJECT_DIR$/router-gradle-plugin" />

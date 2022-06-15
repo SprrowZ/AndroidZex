@@ -75,6 +75,9 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
 
     private float[] matrix = new float[16];
 
+    private OnRenderCreateListener mOnRenderCreateListener;
+
+
     public TextureRender(Context context) {
         this.mContext = context;
         fboRender = new FBORender(context);
@@ -160,7 +163,9 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
 
         //加载纹理图片Bitmap
 //        loadBitmap();  //绘制图片不要了，利用FBO将其他纹理内容绘制到此纹理上
-
+        if (mOnRenderCreateListener!=null){
+            mOnRenderCreateListener.onRenderCreate(textureId);//将FBO 纹理id返回给上层用于离屏渲染；
+        }
 
     }
 
@@ -248,4 +253,11 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
 
     }
 
+    public void setOnRenderCreateListener(OnRenderCreateListener mOnRenderCreateListener) {
+        this.mOnRenderCreateListener = mOnRenderCreateListener;
+    }
+
+    public interface  OnRenderCreateListener{
+        void onRenderCreate(int textureId);//离屏渲染的id；
+    }
 }

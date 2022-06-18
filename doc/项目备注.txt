@@ -1,0 +1,6 @@
+//nativelib 是直接用AS创建的android native library；
+native方法、CMakeList文件、cpp文件夹、build.gradle文件中两个 externalNativeBuild闭包 都是自动生成的；
+
+//nativelib2 是用最原始的方式自己一步步生成native library，更有借鉴意义
+
+

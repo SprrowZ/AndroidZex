@@ -21,4 +21,6 @@ gradle.taskGraph.beforeTask {task->
     println("[all-task]"+task.name)
 }
 include ':opengl'
-include ':ndkmodule'
+
+include ':nativelib'
+include ':nativelib2'

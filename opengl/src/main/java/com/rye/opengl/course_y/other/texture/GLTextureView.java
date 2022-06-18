@@ -2,9 +2,9 @@ package com.rye.opengl.course_y.other.texture;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.rye.opengl.course_y.CustomEglSurfaceView;
+import com.rye.opengl.course_y.other.texture.test.WlTextureRender;
 
 /**
  * Create by  [Rye]

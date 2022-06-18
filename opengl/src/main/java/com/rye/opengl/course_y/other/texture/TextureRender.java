@@ -107,7 +107,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         //纹理
         sampler2D = GLES20.glGetUniformLocation(program, "sTexture");
         mMatrix = GLES20.glGetUniformLocation(program, "u_Matrix");//投影矩阵
-
+        checkError("loadParams");
         //----------VBO (跟纹理操作很像啊)
         int[] vbos = new int[1];
         GLES20.glGenBuffers(1, vbos, 0);
@@ -121,13 +121,16 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glBufferSubData(GLES20.GL_ARRAY_BUFFER, 0, vertexData.length * 4, vertexBuffer);
         GLES20.glBufferSubData(GLES20.GL_ARRAY_BUFFER, vertexData.length * 4, fragmentData.length * 4, fragmentBuffer);
         //解绑
-        GLES20.glBindTexture(GLES20.GL_ARRAY_BUFFER, 0);
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        checkError("vbo-----");
 
         //----------FBO
         int[] fbos = new int[1];
-        GLES20.glGenFramebuffers(1, fbos, 0);
+        GLES20.glGenBuffers(1, fbos, 0);
         fboId = fbos[0];
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId);
+        checkError("FBO-----");
+
 
         //纹理操作----------
         int[] textureIds = new int[1];
@@ -145,7 +148,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
 
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
-
+        checkError("loadTexture-------");
         //设置FBO缓存大小【必须放在绑定纹理之后，否则会黑屏】                         //TODO width和height自适应手机尺寸
         GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, 1080, 2122,/*尺寸应该跟手机尺寸一致**/
                 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
@@ -159,11 +162,15 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         } else {
             Log.e("RRye", "fbo right");
         }
+
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
+        checkError("beforeLoadTexture");
         imgTextureId = loadTexture(R.mipmap.my2);
 
         //加载纹理图片Bitmap
 //        loadBitmap();  //绘制图片不要了，利用FBO将其他纹理内容绘制到此纹理上
-        if (mOnRenderCreateListener!=null){
+        if (mOnRenderCreateListener != null) {
             mOnRenderCreateListener.onRenderCreate(textureId);//将FBO 纹理id返回给上层用于离屏渲染；
         }
 
@@ -174,29 +181,21 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glGenTextures(1, textureIds, 0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureIds[0]);
 
-        // GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        // GLES20.glUniform1i(sampler2D,0);
-
-
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_REPEAT);
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_REPEAT);
 
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
-        loadBitmap(src);
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), src);
+        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
 
         //里面也要解绑,纹理用完就解绑掉
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
-
+        checkError("loadTexture");
         return textureIds[0];
     }
 
-    private void loadBitmap(int src) {
-        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), src);
-        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
-        bitmap.recycle();
-        bitmap = null;
-    }
+
 
     @Override
     public void onSurfaceChanged(int width, int height) {
@@ -210,14 +209,14 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
             Matrix.orthoM(matrix, 0, -1, 1, -height / ((width / 700f) * 1243f), height / ((width / 700f) * 1243f), -1f, 1f); // height/1080 算出图片拉伸的比例,700是图片宽度
         }
         //因fbo与纹理坐标系不同，翻转图像
-        Matrix.rotateM(matrix,0,180,1,0,0);
+        Matrix.rotateM(matrix, 0, 180, 1, 0, 0);
     }
 
     @Override
     public void onDrawFrame() {
         //绑定FBO，后续操作都不在可见frame中操作，而是在fbo中了;必不可少
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);//此处fboId替换为0的话，就还会渲染到屏幕上
-
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,fboId);//此处fboId替换为0的话，就还会渲染到屏幕上
+        checkError("after fbo");
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
         GLES20.glUseProgram(program);
@@ -239,25 +238,33 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glEnableVertexAttribArray(fPosition);
         GLES20.glVertexAttribPointer(fPosition, 2, GLES20.GL_FLOAT, false, 8/*一个位置占4位，说明用两个数据代表一个点*/,
                 vertexData.length * 4);
-
+        checkError("beforeDraw");
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);//这里可以改成3个试试，会有奇特现象；
         //纹理解绑，去掉也可以渲染出来
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
 
         //单个纹理可以不解绑，多个纹理必须解绑，否则会渲染之前纹理的图片
-        GLES20.glBindTexture(GLES20.GL_ARRAY_BUFFER, 0);
-
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        checkError("onDrawFrame");
         //解绑FBO后，才能看到渲染出的纹理
-//        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,0);
-//        fboRender.onDraw(textureId);
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,0);
+        fboRender.onDraw(textureId);
 
+
+    }
+    private void checkError(String params) {
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        int errorCode = GLES20.glGetError();
+        if (errorCode != 0) {
+            Log.i("RRye", "errorCode:" + errorCode+", params:"+params);
+        }
     }
 
     public void setOnRenderCreateListener(OnRenderCreateListener mOnRenderCreateListener) {
         this.mOnRenderCreateListener = mOnRenderCreateListener;
     }
 
-    public interface  OnRenderCreateListener{
+    public interface OnRenderCreateListener {
         void onRenderCreate(int textureId);//离屏渲染的id；
     }
 }

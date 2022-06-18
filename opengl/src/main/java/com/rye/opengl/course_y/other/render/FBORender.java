@@ -2,6 +2,7 @@ package com.rye.opengl.course_y.other.render;
 
 import android.content.Context;
 import android.opengl.GLES20;
+import android.util.Log;
 
 import com.rye.opengl.R;
 import com.rye.opengl.hockey.ShaderHelper;
@@ -74,6 +75,7 @@ public class FBORender {
         fPosition = GLES20.glGetAttribLocation(program, "f_Position");
         //纹理
         sampler2D = GLES20.glGetUniformLocation(program, "sTexture");
+        checkError("FBORender params....");
         //----------VBO
         int[] vbos = new int[1];
         GLES20.glGenBuffers(1, vbos, 0);
@@ -86,7 +88,16 @@ public class FBORender {
         GLES20.glBufferSubData(GLES20.GL_ARRAY_BUFFER, 0, vertexData.length * 4, vertexBuffer);
         GLES20.glBufferSubData(GLES20.GL_ARRAY_BUFFER, vertexData.length * 4, fragmentData.length * 4, fragmentBuffer);
 
-        GLES20.glBindTexture(GLES20.GL_ARRAY_BUFFER, 0);
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        checkError("FBORender....");
+    }
+
+    private void checkError(String params) {
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        int errorCode = GLES20.glGetError();
+        if (errorCode != 0) {
+            Log.i("RRye", "errorCode:" + errorCode+", params:"+params);
+        }
     }
 
     public void onChange(int width, int height) {
@@ -118,6 +129,6 @@ public class FBORender {
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
 
         //单个纹理可以不解绑，多个纹理必须解绑，否则会渲染之前纹理的图片
-        GLES20.glBindTexture(GLES20.GL_ARRAY_BUFFER, 0);
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
     }
 }

@@ -30,9 +30,9 @@ public class GLMultiplyTextureView extends CustomEglSurfaceView {
         setGLRender(glMultiplyRender);
     }
 
-    public void setTextureId(int textureId) {
+    public void setTextureId(int textureId,int index) {
         if (glMultiplyRender != null) {
-            glMultiplyRender.setTextureId(textureId);
+            glMultiplyRender.setTextureId(textureId,index);
         }
     }
 

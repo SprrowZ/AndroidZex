@@ -178,14 +178,12 @@ public abstract class CustomEglSurfaceView extends SurfaceView implements Surfac
         }
 
         private void onDraw() {
-            if (mCustomSurfaceWeakReference.get().mGLRender != null) {
+            if (mCustomSurfaceWeakReference.get().mGLRender != null && mEglHelper != null) {
                 mCustomSurfaceWeakReference.get().mGLRender.onDrawFrame();
                 if (!isStart) {//第一次需要手动调用一次，才会刷新//TODO 详解！！
                     mCustomSurfaceWeakReference.get().mGLRender.onDrawFrame();
                 }
-                if (mEglHelper != null) {
-                    mEglHelper.swapBuffers();
-                }
+                mEglHelper.swapBuffers();
             }
         }
 

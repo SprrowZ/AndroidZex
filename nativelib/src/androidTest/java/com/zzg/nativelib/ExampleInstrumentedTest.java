@@ -1,4 +1,4 @@
-package com.zzg.ndkmodule;
+package com.zzg.nativelib;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.zzg.ndkmodule.test", appContext.getPackageName());
+        assertEquals("com.zzg.nativelib.test", appContext.getPackageName());
     }
 }

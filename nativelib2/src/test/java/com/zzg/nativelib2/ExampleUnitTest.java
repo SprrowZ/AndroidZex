@@ -1,4 +1,4 @@
-package com.zzg.ndkmodule;
+package com.zzg.nativelib2;
 
 import org.junit.Test;
 

@@ -36,15 +36,15 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
     };
 
     //纹理坐标范围
-    private float[] fragmentData = { //点要和顶点坐标对应上！【顶点坐标范围为-1~1，纹理坐标范围为0~1】
-            0f, 0f,
-            1f, 0f,
-            0f, 1f,
-            1f, 1f   //纹理坐标替换为FBO坐标，在FBO操作章节有图示
-//            0f, 1f,
-//            1f, 1f,
+    private float[] fragmentData = { //上层为纹理坐标，下层为FBO坐标
 //            0f, 0f,
-//            1f, 0f    //FBO和纹理坐标系原点不同
+//            1f, 0f,
+//            0f, 1f,
+//            1f, 1f   //纹理坐标替换为FBO坐标，在FBO操作章节有图示
+            0f, 1f,
+            1f, 1f,
+            0f, 0f,
+            1f, 0f    //FBO和纹理坐标系原点不同
     };
     //为坐标分配本地内存地址（OpenGL没有虚拟机，直接绘制在本地内存中）
     private FloatBuffer vertexBuffer;
@@ -209,7 +209,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
             Matrix.orthoM(matrix, 0, -1, 1, -height / ((width / 700f) * 1243f), height / ((width / 700f) * 1243f), -1f, 1f); // height/1080 算出图片拉伸的比例,700是图片宽度
         }
         //因fbo与纹理坐标系不同，翻转图像
-        Matrix.rotateM(matrix, 0, 180, 1, 0, 0);
+       Matrix.rotateM(matrix, 0, 180, 1, 0, 0);
     }
 
     @Override

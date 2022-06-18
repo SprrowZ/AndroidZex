@@ -46,9 +46,8 @@ public class FBORender {
             0f, 0f,
             1f, 0f
     };
-    //为坐标分配本地内存地址（OpenGL没有虚拟机，直接绘制在本地内存中）
+
     private FloatBuffer vertexBuffer;
-    //为纹理坐标分配本地内存地址
     private FloatBuffer fragmentBuffer;
 
     public FBORender(Context context) {

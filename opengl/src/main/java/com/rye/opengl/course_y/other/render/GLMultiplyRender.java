@@ -1,7 +1,10 @@
 package com.rye.opengl.course_y.other.render;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
+import android.opengl.GLUtils;
 import android.util.Log;
 
 import com.rye.opengl.R;
@@ -34,12 +37,18 @@ public class GLMultiplyRender implements CustomEglSurfaceView.CustomGLRender {
 
     private int textureId;
 
+    private int imgTextureId;
+
     //顶点坐标范围
     private float[] vertexData = {
             -1f, -1f,
             1f, -1f,
             -1f, 1f,
-            1f, 1f
+            1f, 1f,
+            -0.25f, -0.25f,
+            0.25f, -0.25f,
+            0f, 0.15f
+
     };
 
 
@@ -110,7 +119,7 @@ public class GLMultiplyRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glBufferSubData(GLES20.GL_ARRAY_BUFFER, vertexData.length * 4, fragmentData.length * 4, fragmentBuffer);
         //绑定解绑
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
-
+        imgTextureId = loadTexture(R.mipmap.air_hockey_surface);
         checkError();
     }
 
@@ -132,11 +141,9 @@ public class GLMultiplyRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glClearColor(1f, 0f, 0f, 1f);
 
         GLES20.glUseProgram(program);
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId);
 
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
-
-
-        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId);
         checkError();
         GLES20.glEnableVertexAttribArray(vPosition);
         GLES20.glVertexAttribPointer(vPosition, 2, GLES20.GL_FLOAT, false, 8,
@@ -148,10 +155,41 @@ public class GLMultiplyRender implements CustomEglSurfaceView.CustomGLRender {
 
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
 
+        //绘制第二张图
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
+        checkError();
+        GLES20.glEnableVertexAttribArray(vPosition);
+        GLES20.glVertexAttribPointer(vPosition, 2, GLES20.GL_FLOAT, false, 8,
+                32);
+
+        GLES20.glEnableVertexAttribArray(fPosition);
+        GLES20.glVertexAttribPointer(fPosition, 2, GLES20.GL_FLOAT, false, 8,
+                vertexData.length * 4);
+
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 3);
+
+
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
         checkError();
     }
+    private int loadTexture(int src) {//source texture
+        int[] textureIds = new int[1];
+        GLES20.glGenTextures(1, textureIds, 0);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureIds[0]);
 
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_REPEAT);
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_REPEAT);
+
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), src);
+        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+
+        //里面也要解绑,纹理用完就解绑掉
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
+
+        return textureIds[0];
+    }
 
 }

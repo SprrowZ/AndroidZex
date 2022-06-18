@@ -32,7 +32,12 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
             -1f, -1f,
             1f, -1f,
             -1f, 1f, //前三个就是一个三角形
-            1f, 1f //最后差一个点;
+            1f, 1f, //最后差一个点;
+
+            -0.5f,-0.5f,
+            0.5f,-0.5f,
+            -0.5f,0.5f,
+            0.5f,0.5f
     };
 
     //纹理坐标范围
@@ -64,6 +69,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
     private int fboId;
 
     private int imgTextureId;
+    private int imgTextureId2;
 
     private int sampler2D;
 
@@ -167,7 +173,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
         checkError("beforeLoadTexture");
         imgTextureId = loadTexture(R.mipmap.my2);
-
+        imgTextureId2 = loadTexture(R.mipmap.my5);
         //加载纹理图片Bitmap
 //        loadBitmap();  //绘制图片不要了，利用FBO将其他纹理内容绘制到此纹理上
         if (mOnRenderCreateListener != null) {
@@ -223,12 +229,11 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         //正交矩阵,在useProgram之后就行
         GLES20.glUniformMatrix4fv(mMatrix, 1, false, matrix, 0);
 
-
-        //绑定纹理，不绑定也绘制不出来纹理呐
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, imgTextureId);//替换为source texture
-
         //绑定VBO
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId);
+        //-------------绘制第一张图片
+        //绑定纹理
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, imgTextureId);//替换为source texture
 
         //使顶点生效
         GLES20.glEnableVertexAttribArray(vPosition);
@@ -238,17 +243,37 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
         GLES20.glEnableVertexAttribArray(fPosition);
         GLES20.glVertexAttribPointer(fPosition, 2, GLES20.GL_FLOAT, false, 8/*一个位置占4位，说明用两个数据代表一个点*/,
                 vertexData.length * 4);
-        checkError("beforeDraw");
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);//这里可以改成3个试试，会有奇特现象；
+        //------------绘制第二张图片
+
+        drawOtherTexture();
         //纹理解绑，去掉也可以渲染出来
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
-
         //单个纹理可以不解绑，多个纹理必须解绑，否则会渲染之前纹理的图片
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
-        checkError("onDrawFrame");
+
         //解绑FBO后，才能看到渲染出的纹理
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,0);
         fboRender.onDraw(textureId);
+
+
+    }
+
+    private void drawOtherTexture() {
+
+        //绑定纹理
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, imgTextureId2);//替换为source texture
+
+        //使顶点生效
+        GLES20.glEnableVertexAttribArray(vPosition);
+        GLES20.glVertexAttribPointer(vPosition, 2, GLES20.GL_FLOAT, false, 8/*一个位置占4位，说明用两个数据代表一个点*/,
+                32);// 8*4；vertex前8个是第一个矩形，后8个才是我们第二个纹理的矩形
+
+        GLES20.glEnableVertexAttribArray(fPosition);
+        GLES20.glVertexAttribPointer(fPosition, 2, GLES20.GL_FLOAT, false, 8/*一个位置占4位，说明用两个数据代表一个点*/,
+                vertexData.length * 4);
+
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
 
 
     }

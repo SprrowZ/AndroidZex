@@ -11,6 +11,8 @@ include ':app',
 //用于发布的插件工程
 include ':router-gradle-plugin'
 
+include 'nativelib'
+
 if (hasProperty("isLoadRye")?isLoadTest.toBoolean():false){//测试代码
     include(':RyeModule')
 }
@@ -24,3 +26,4 @@ include ':opengl'
 
 include ':nativelib'
 
+include ':nativelib'

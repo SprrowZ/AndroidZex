@@ -1,4 +1,4 @@
-package com.zzg.nativelib;
+package com.ndk.nativelib;
 
 public class NativeLib {
 
@@ -12,4 +12,6 @@ public class NativeLib {
      * which is packaged with this application.
      */
     public native String stringFromJNI();
+
+    public native String stringFromJNI2();
 }

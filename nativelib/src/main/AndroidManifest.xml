@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zzg.nativelib">
+    package="com.ndk.nativelib">
+
+    <application>
+        <activity
+            android:name=".activities.NDKMainActivity"
+            android:exported="true" />
+    </application>
 
 </manifest>

@@ -6,6 +6,7 @@
 cmake_minimum_required(VERSION 3.10.2)
 
 # Declares and names the project.
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../jniLibs/${ANDROID_ABI})
 
 project("nativelib")
 

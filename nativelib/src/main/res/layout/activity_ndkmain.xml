@@ -16,4 +16,13 @@
     android:text="测试NDK方法1"
     android:textColor="#000000"
     />
+
+    <TextView
+        android:id="@+id/ndk_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="测试NDK方法1"
+        android:textColor="#000000"
+        />
 </LinearLayout>

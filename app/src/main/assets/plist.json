@@ -98,5 +98,9 @@
   {
     "name": "硬编解码",
     "action": "mediaCodec"
+  },
+  {
+    "name": "Ndk",
+    "action": "ndk_main"
   }
 ]

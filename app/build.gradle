@@ -132,6 +132,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+//    packagingOptions {//加上这些代码
+//        pickFirst 'lib/arm64-v8a/libnativelib.so'
+//
+//    }
+
 }
 
 
@@ -202,6 +207,7 @@ dependencies {
     implementation project(':base')
     implementation project(path: ':zgstep')
     implementation project(':opengl')
+    implementation project(':nativelib')
 
     implementation deps.cardview
 

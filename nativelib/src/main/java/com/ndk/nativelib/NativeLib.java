@@ -14,4 +14,6 @@ public class NativeLib {
     public native String stringFromJNI();
 
     public native String stringFromJNI2();
+
+    public native String stringFromJNI3();
 }

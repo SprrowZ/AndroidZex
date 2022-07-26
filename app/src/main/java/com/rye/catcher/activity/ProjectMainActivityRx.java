@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.dawn.zgstep.player.ui.codec.MediaCodecActivity;
 import com.dawn.zgstep.player.ui.PlayerDetailActivity;
+import com.ndk.nativelib.activities.NDKMainActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
 import com.rye.base.common.LanguageConstants;
@@ -255,6 +256,9 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 break;
             case "mediaCodec":
                 MediaCodecActivity.jump(this,MediaCodecActivity.TYPE_LIVE);
+                break;
+            case "ndk_main":
+                NDKMainActivity.jump(this);
                 break;
         }
     }

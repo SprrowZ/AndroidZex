@@ -4,25 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:paddingTop="10dp"
     tools:context=".activities.NDKMainActivity">
-<TextView
-    android:id="@+id/ndk_first"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="18sp"
-    android:text="测试NDK方法1"
-    android:textColor="#000000"
-    />
+
+    <TextView
+        android:id="@+id/ndk_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试NDK方法1"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/ndk_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="测试NDK方法1"
+        android:layout_marginTop="20dp"
+        android:background="#a2e1d4"
+        android:text="测试NDK方法2"
         android:textColor="#000000"
-        />
+        android:textSize="18sp" />
 </LinearLayout>

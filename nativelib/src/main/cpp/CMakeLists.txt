@@ -9,6 +9,7 @@ cmake_minimum_required(VERSION 3.10.2)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../jniLibs/${ANDROID_ABI})
 
 project("nativelib")
+#
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -16,13 +17,13 @@ project("nativelib")
 # Gradle automatically packages shared libraries with your APK.
 
 add_library( # Sets the name of the library.
-             nativelib
+             haha
 
              # Sets the library as a shared library.
              SHARED
 
              # Provides a relative path to your source file(s).
-             nativelib.cpp
+#             nativelib.cpp
 
              haha.cpp
         )
@@ -45,7 +46,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       nativelib
+                       haha
 
                        # Links the target library to the log library
                        # included in the NDK.

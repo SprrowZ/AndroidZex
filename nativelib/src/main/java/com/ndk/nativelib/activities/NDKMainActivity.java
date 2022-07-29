@@ -43,7 +43,7 @@ public class NDKMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nativeLib.stringFromJNI3();//调用native方法修改text属性
-                Toast.makeText(v.getContext(),text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(),nativeLib.getText(), Toast.LENGTH_SHORT).show();
             }
         });
     }

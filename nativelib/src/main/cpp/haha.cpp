@@ -25,7 +25,7 @@ Java_com_ndk_nativelib_NativeLib_stringFromJNI3( //通过JNI拿到相关信息
     //获取java类
     jclass jc = env->GetObjectClass(jo);
     //根据java类获得类中的属性
-    jfieldID idText = env->GetFieldID(jc, "text"/*java里定义的属性*/, "Ljava/lang/String"/*签名信息*/);
+    jfieldID idText = env->GetFieldID(jc, "text"/*java里定义的属性*/, "Ljava/lang/String;"/*签名信息*/);
 
     jstring resetStr = env->NewStringUTF("Well~Cool");
 

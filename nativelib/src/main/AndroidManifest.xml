@@ -6,6 +6,7 @@
         <activity
             android:name=".activities.NDKMainActivity"
             android:exported="true" />
+
     </application>
 
 </manifest>

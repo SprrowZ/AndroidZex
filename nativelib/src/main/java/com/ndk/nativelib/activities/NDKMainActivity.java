@@ -42,8 +42,11 @@ public class NDKMainActivity extends AppCompatActivity {
         mNdkSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nativeLib.stringFromJNI3();//调用native方法修改text属性
-                Toast.makeText(v.getContext(),nativeLib.getText(), Toast.LENGTH_SHORT).show();
+                nativeLib.stringFromJNI3();//调用native方法修改对象相关属性以及调用方法
+                NativeLib.stringFromJNI4();//调用static方法
+                String changedText = "text:"+nativeLib.getText()+",num:"+nativeLib.getNum()+",name:"
+                        +nativeLib.getName()+",静态num1:"+NativeLib.num1;
+                Toast.makeText(v.getContext(),changedText, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -12,4 +12,12 @@
         android:layout_height="300dp"
         android:layout_gravity="top" />
 
+    <Button
+        android:id="@+id/test_separate"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="测试多媒体提取"
+        android:background="@color/soft2"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

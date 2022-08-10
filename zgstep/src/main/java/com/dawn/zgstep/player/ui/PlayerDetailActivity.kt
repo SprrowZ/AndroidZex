@@ -35,7 +35,7 @@ class PlayerDetailActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        doSelect(0)
+        doSelect(1)
     }
 
     private fun doSelect(pos: Int) {
@@ -61,6 +61,7 @@ class PlayerDetailActivity : BaseActivity() {
     private fun getFragment(pos: Int): Fragment? {
         when (pos) {
             0 -> currentFragment = PlayerFragment()
+            1 -> currentFragment = LocalMediaFragment()
         }
         return currentFragment
     }

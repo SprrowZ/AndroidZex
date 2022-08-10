@@ -1,9 +1,12 @@
 package com.dawn.zgstep.player.ui
+import android.widget.Button
 import android.widget.FrameLayout
 import com.dawn.zgstep.R
 import com.dawn.zgstep.player.VideoDetail
 import com.dawn.zgstep.player.base.IPlayerController
 import com.rye.base.BaseFragment
+import com.rye.base.utils.AliThreadPool
+import com.rye.base.utils.Handler_
 import com.rye.base.utils.SDHelper
 
 /**
@@ -11,6 +14,7 @@ import com.rye.base.utils.SDHelper
  */
 class PlayerFragment : BaseFragment() {
     private var mContainer: FrameLayout? = null
+    private var mSeparateBtn:Button?=null
     private lateinit var mPlayerController: IPlayerController
 
     companion object {
@@ -28,6 +32,7 @@ class PlayerFragment : BaseFragment() {
     override fun initWidget() {
         super.initWidget()
         mContainer = view?.findViewById(R.id.video_container)
+        mSeparateBtn = view?.findViewById(R.id.test_separate)
     }
 
     override fun initEvent() {
@@ -40,6 +45,15 @@ class PlayerFragment : BaseFragment() {
             this
         }
         mPlayerController.goPlay(videoDetail)
+        mSeparateBtn?.setOnClickListener {
+
+            AliThreadPool.runInBackground {
+                VideoSeparate
+                    .create()
+                    .separate(context, VIDEO_URL_ONE)
+            }
+        }
+
     }
 
 

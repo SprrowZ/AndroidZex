@@ -22,12 +22,12 @@ public class MediaUtil {
 
     public static MediaExtractor createExtractor(String path) throws IOException {
         MediaExtractor extractor;
-        File inputFile = new File(path);   // must be an absolute path
-        if (!inputFile.canRead()) {
-            throw new FileNotFoundException("Unable to read " + inputFile);
-        }
+//        File inputFile = new File(path);   // must be an absolute path
+//        if (!inputFile.canRead()) {
+//            throw new FileNotFoundException("Unable to read " + inputFile);
+//        }
         extractor = new MediaExtractor();
-        extractor.setDataSource(inputFile.toString());
+        extractor.setDataSource(path);
         return extractor;
     }
 

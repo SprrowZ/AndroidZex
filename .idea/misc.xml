@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/layout/fragment_media_recorder.xml" value="0.1279011099899092" />
         <entry key="app/src/main/res/layout/review_asynctask.xml" value="0.2644927536231884" />
         <entry key="app/src/main/res/layout/tab04.xml" value="0.17447916666666666" />
+        <entry key="nativelib/src/main/res/layout/activity_ndkmain.xml" value="0.13645833333333332" />
         <entry key="opengl/src/main/res/layout/activity_course1_demo.xml" value="0.25905797101449274" />
         <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
         <entry key="opengl/src/main/res/layout/activity_test_custom_surface_view.xml" value="0.12512613521695257" />
@@ -28,10 +29,12 @@
         <entry key="zgstep/src/main/res/drawable/video_item_bottom_gradient.xml" value="0.18518518518518517" />
         <entry key="zgstep/src/main/res/layout/activity_demo_activity.xml" value="0.13647830474268416" />
         <entry key="zgstep/src/main/res/layout/activity_mediacodec.xml" value="0.1" />
+        <entry key="zgstep/src/main/res/layout/activity_player.xml" value="0.2630208333333333" />
         <entry key="zgstep/src/main/res/layout/activity_take_photo.xml" value="0.13799192734611504" />
         <entry key="zgstep/src/main/res/layout/fragment_codec_live.xml" value="0.1475782038345106" />
+        <entry key="zgstep/src/main/res/layout/fragment_local_media.xml" value="0.14945652173913043" />
         <entry key="zgstep/src/main/res/layout/fragment_local_video.xml" value="0.1" />
-        <entry key="zgstep/src/main/res/layout/fragment_player.xml" value="0.1" />
+        <entry key="zgstep/src/main/res/layout/fragment_player.xml" value="0.335" />
         <entry key="zgstep/src/main/res/layout/fragment_video_codec.xml" value="0.17074275362318841" />
         <entry key="zgstep/src/main/res/layout/player_control_layer.xml" value="0.335" />
         <entry key="zgstep/src/main/res/layout/recycler_item_local_video.xml" value="0.1793478260869565" />

@@ -17,6 +17,9 @@ class LocalMediaFragment : BaseFragment() {
     private var mTextureView: TextureView? = null
     private lateinit var mLocalMediaManager: LocalMediaManager
 
+    companion object {
+        const val VIDEO_URL = "https://cloud.video.taobao.com/play/u/933701333/p/2/e/6/t/1/360705200313.mp4"
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_local_media
@@ -30,14 +33,14 @@ class LocalMediaFragment : BaseFragment() {
 
     override fun initEvent() {
         super.initEvent()
-       mTextureView?.surfaceTextureListener = object :TextureView.SurfaceTextureListener{
+       mTextureView?.surfaceTextureListener = object :TextureView.SurfaceTextureListener {
            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
            override fun onSurfaceTextureAvailable(
                surface: SurfaceTexture,
                width: Int,
                height: Int
            ) {
-              mLocalMediaManager.setDataSource(getLocalVideoFilePath())
+              mLocalMediaManager.setDataSource(VIDEO_URL)
               mLocalMediaManager.prepare(surface)
               mLocalMediaManager.start()
            }

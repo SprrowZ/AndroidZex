@@ -42,16 +42,34 @@ public class AudioDecoder {
         if (TextUtils.isEmpty(path)) {
             throw new IllegalArgumentException();
         }
-        File file = new File(path);
-        if (!file.exists()) {
-            throw new FileNotFoundException();
-        }
+//        File file = new File(path);
+//        if (!file.exists()) {
+//            throw new FileNotFoundException();
+//        }
         if (mState != STATE_IDLE) {
             throw new IllegalStateException();
         }
         mPath = path;
         mState = STATE_INITIALIZED;
     }
+
+    public void setDataSource(String path,boolean net) throws IOException {
+        if (TextUtils.isEmpty(path)) {
+            throw new IllegalArgumentException();
+        }
+//        File file = new File(path);
+//        if (!file.exists()) {
+//            throw new FileNotFoundException();
+//        }
+        if (mState != STATE_IDLE) {
+            throw new IllegalStateException();
+        }
+        mPath = path;
+        mState = STATE_INITIALIZED;
+    }
+
+
+
 
     public void setListener(OnAudioDecodeListener listener) {
         this.mListener = listener;

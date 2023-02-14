@@ -3,7 +3,7 @@ package com.rye.opengl.hockey.data;
 import android.content.Context;
 import android.opengl.GLES20;
 
-import com.rye.opengl.hockey.ShaderHelper;
+import com.rye.opengl.utils.ShaderHelper;
 import com.rye.opengl.hockey.TextureResourceReader;
 
 public class ShaderProgram {

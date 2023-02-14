@@ -6,6 +6,7 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 
 import com.rye.opengl.R;
+import com.rye.opengl.utils.ShaderHelper;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

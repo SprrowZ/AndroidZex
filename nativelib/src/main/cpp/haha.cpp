@@ -1,5 +1,6 @@
 #include <jni.h>
 #include <string>
+//静态注册native方法
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_ndk_nativelib_NativeLib_stringFromJNI(

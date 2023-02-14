@@ -5,7 +5,7 @@ import android.opengl.GLES20;
 
 import com.rye.opengl.R;
 import com.rye.opengl.course_y.CustomEglSurfaceView;
-import com.rye.opengl.hockey.ShaderHelper;
+import com.rye.opengl.utils.ShaderHelper;
 import com.rye.opengl.hockey.TextureResourceReader;
 
 import java.nio.ByteBuffer;

@@ -11,7 +11,7 @@ import android.util.Log;
 import com.rye.opengl.R;
 import com.rye.opengl.course_y.CustomEglSurfaceView;
 import com.rye.opengl.course_y.other.render.FBORender;
-import com.rye.opengl.hockey.ShaderHelper;
+import com.rye.opengl.utils.ShaderHelper;
 import com.rye.opengl.hockey.TextureResourceReader;
 
 import java.nio.ByteBuffer;
@@ -259,7 +259,7 @@ public class TextureRender implements CustomEglSurfaceView.CustomGLRender {
 
     }
 
-    private void drawOtherTexture() {
+    private void drawOtherTexture() { //单Surface渲染多纹理
 
         //绑定纹理
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, imgTextureId2);//替换为source texture

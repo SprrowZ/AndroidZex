@@ -37,6 +37,7 @@ import com.rye.catcher.project.sqlite.DBActivity;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
+import com.rye.opengl.course_y.oes.TestOESActivity;
 import com.rye.opengl.course_y.other.TestCustomSurfaceViewActivity;
 import com.rye.opengl.course_y.other.TestTextureViewActivity;
 import com.rye.router.runtime.Router;
@@ -252,7 +253,8 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                // ShapeActivity.start(this); //OpenGL绘制形状
                 //TestEGLHelperActivity.start(this); //测试EGLHelper
                 //TestCustomSurfaceViewActivity.start(this);//测试自定义GLSurfaceView
-                TestTextureViewActivity.start(this);//测试纹理
+               // TestTextureViewActivity.start(this);//测试纹理
+                TestOESActivity.start(this);//测试摄像头预览
                 break;
             case "mediaCodec":
                 MediaCodecActivity.jump(this,MediaCodecActivity.TYPE_LIVE);

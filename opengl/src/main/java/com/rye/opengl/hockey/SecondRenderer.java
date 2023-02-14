@@ -10,6 +10,7 @@ import com.rye.opengl.hockey.data.ColorShaderProgram;
 import com.rye.opengl.hockey.data.Mallet;
 import com.rye.opengl.hockey.data.Table;
 import com.rye.opengl.hockey.data.TextureShaderProgram;
+import com.rye.opengl.utils.TextureHelper;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;

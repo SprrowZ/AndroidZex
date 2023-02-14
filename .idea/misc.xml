@@ -10,6 +10,8 @@
         <entry key="..\:/zResources/zAndroid/AndroidZex/app/src/main/res/layout/fragment_camera2.xml" value="0.22291666666666668" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/nativelib/src/main/res/layout/activity_ndkmain.xml" value="0.264" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_first_opengl.xml" value="0.23697916666666666" />
+        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_oescamera.xml" value="0.1" />
+        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_test_oesactivity.xml" value="0.1" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_triangle.xml" value="0.1" />
         <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/recycler_item_shape.xml" value="0.240625" />
         <entry key="app/src/main/res/drawable/rotate_bk.xml" value="0.11296296296296296" />

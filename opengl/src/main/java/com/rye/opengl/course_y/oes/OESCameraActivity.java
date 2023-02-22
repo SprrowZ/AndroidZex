@@ -1,7 +1,9 @@
 package com.rye.opengl.course_y.oes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.rye.opengl.R;
@@ -22,5 +24,11 @@ public class OESCameraActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         cameraView.onDestroy();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        cameraView.previewAngle(this);
     }
 }

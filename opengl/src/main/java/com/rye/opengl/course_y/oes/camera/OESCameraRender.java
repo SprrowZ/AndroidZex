@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
+import android.opengl.Matrix;
 import android.util.Log;
 
 import com.rye.opengl.R;
 import com.rye.opengl.course_y.CustomEglSurfaceView;
+import com.rye.opengl.course_y.DisplayUtil;
 import com.rye.opengl.hockey.TextureResourceReader;
 import com.rye.opengl.utils.ShaderHelper;
 
@@ -24,6 +26,14 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
     //纹理
     private int fboTextureId;
     private int cameraTextureId;
+    //矩阵
+    private int uMatrix;
+
+
+
+
+    private  float[] matrix = new float[16];//4个点，单点4字节
+
     private SurfaceTexture mSurfaceTexture;
     private OnSurfaceCreateListener mOnSurfaceCreateListener;
 
@@ -51,9 +61,18 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
     };
     private FloatBuffer fragmentBuffer;
 
+    private int screenHeight;
+    private int screenWidth;
+
+    private int width;
+    private int height;
 
     public OESCameraRender(Context context) {
         this.mContext = context;
+
+        screenHeight = DisplayUtil.getScreenHeight(context);
+        screenWidth = DisplayUtil.getScreenWidth(context);
+
         mCameraFboRender = new CameraFboRender(context);
         vertexBuffer = ByteBuffer.allocateDirect(vertexData.length * 4)
                 .order(ByteOrder.nativeOrder())
@@ -61,11 +80,16 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
                 .put(vertexData);
         vertexBuffer.position(0);
 
+
         fragmentBuffer = ByteBuffer.allocateDirect(fragmentData.length * 4)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer()
                 .put(fragmentData);
         fragmentBuffer.position(0);
+
+        Matrix.setIdentityM(matrix,0);//矩阵初始化
+
+
     }
 
     public void setOnSurfaceCreateListener(OnSurfaceCreateListener mOnSurfaceCreateListener) {
@@ -81,6 +105,7 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         //获取顶点着色器属性
         vPosition = GLES20.glGetAttribLocation(program, "v_Position");
         fPosition = GLES20.glGetAttribLocation(program, "f_Position");
+        uMatrix = GLES20.glGetUniformLocation(program,"u_Matrix");
         //----------VBO (跟纹理操作很像啊)
         int[] vbos = new int[1];
         GLES20.glGenBuffers(1, vbos, 0);
@@ -117,8 +142,8 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
         //checkError("loadTexture-------");
 
-        //设置FBO缓存大小【必须放在绑定纹理之后，否则会黑屏】                         //TODO width和height自适应手机尺寸
-        GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, 1080, 2122,/*尺寸应该跟手机尺寸一致**/
+        //设置FBO缓存大小【必须放在绑定纹理之后，否则会黑屏】
+        GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, screenWidth, screenHeight,/*尺寸应该跟手机尺寸一致**/
                 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
 
         //【将纹理绑定到FBO】
@@ -163,10 +188,25 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
             Log.i("RRye", "errorCode:" + errorCode+", params:"+params);
         }
     }
+
+    public void resetMatrix() {
+        Matrix.setIdentityM(matrix,0);
+    }
+
+    public void setAngle(float angle,float x,float y,float z) {
+        Matrix.rotateM(matrix,0,angle,x,y,z);
+    }
+
     @Override
     public void onSurfaceChanged(int width, int height) {
-          mCameraFboRender.onChange(width,height);
-          GLES20.glViewport(0,0,width,height);
+//          mCameraFboRender.onChange(width,height);
+//          GLES20.glViewport(0,0,width,height);
+
+//          Matrix.rotateM(matrix,0,90,0,0,1);//绕y轴旋转90度
+//        Matrix.rotateM(matrix,0,180,1,0,0);//绕x轴翻转180度
+        this.width = width;
+        this.height = height;
+        
     }
 
     @Override
@@ -176,6 +216,10 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         GLES20.glClearColor(1f,0f, 0f, 1f);
 
         GLES20.glUseProgram(program);
+
+        GLES20.glViewport(0,0,screenWidth,screenHeight);
+        //矩阵
+        GLES20.glUniformMatrix4fv(uMatrix,1,false,matrix,0);
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId);
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId);
 
@@ -192,6 +236,7 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
 
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
+        mCameraFboRender.onChange(width,height);//以实际窗口绘制
         mCameraFboRender.onDraw(fboTextureId);
 
 

@@ -99,7 +99,7 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
     @Override
     public void onSurfaceCreated() {
         mCameraFboRender.onCreate();
-        String vertexSource = TextureResourceReader.readTextFileFromResource(mContext, R.raw.oes_vertex_shader);
+        String vertexSource = TextureResourceReader.readTextFileFromResource(mContext, R.raw.oes_vertex_shader_screen);
         String fragmentSource = TextureResourceReader.readTextFileFromResource(mContext, R.raw.oes_fragment_shader);
         program = ShaderHelper.buildProgram(vertexSource, fragmentSource);//创建program并绑定着色器
         //获取顶点着色器属性

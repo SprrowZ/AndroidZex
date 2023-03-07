@@ -59,7 +59,7 @@ public class CameraFboRender {
 
     public void onCreate()
     {
-        String vertexSource = TextureResourceReader.readTextFileFromResource(context, R.raw.oes_vertex_shader_screen);
+        String vertexSource = TextureResourceReader.readTextFileFromResource(context, R.raw.oes_vertex_shader);
         String fragmentSource = TextureResourceReader.readTextFileFromResource(context, R.raw.oes_fbo_fragment_shader);
 
         program = ShaderHelper.buildProgram(vertexSource, fragmentSource);//创建program并绑定着色器

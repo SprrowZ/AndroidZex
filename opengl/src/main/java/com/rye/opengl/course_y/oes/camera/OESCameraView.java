@@ -14,7 +14,7 @@ public class OESCameraView extends CustomEglSurfaceView {
     private OESCameraRender mCameraRender;
     private OESCamera mCamera;
     private int cameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
-
+    private int mTextureId = -1;
     public OESCameraView(Context context) {
         this(context,null);
     }
@@ -35,8 +35,9 @@ public class OESCameraView extends CustomEglSurfaceView {
         previewAngle(context);
         mCameraRender.setOnSurfaceCreateListener(new OESCameraRender.OnSurfaceCreateListener() {
             @Override
-            public void onSurfaceCreated(SurfaceTexture surfaceTexture) {
-                mCamera.init(surfaceTexture, cameraId);
+            public void onSurfaceCreated(SurfaceTexture surfaceTexture,int tid) {
+                mTextureId = tid;
+                 mCamera.init(surfaceTexture, cameraId);
             }
         });
     }
@@ -89,6 +90,11 @@ public class OESCameraView extends CustomEglSurfaceView {
                 }
                 break;
         }
+
+    }
+
+    public int getTextureId() {
+        return mTextureId;
 
     }
 

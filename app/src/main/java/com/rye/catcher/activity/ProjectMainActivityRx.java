@@ -38,6 +38,7 @@ import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
 import com.rye.opengl.course_y.oes.TestOESActivity;
+import com.rye.opengl.course_y.oes.VideoActivity;
 import com.rye.opengl.course_y.other.TestCustomSurfaceViewActivity;
 import com.rye.opengl.course_y.other.TestTextureViewActivity;
 import com.rye.router.runtime.Router;
@@ -254,7 +255,8 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 //TestEGLHelperActivity.start(this); //测试EGLHelper
                 //TestCustomSurfaceViewActivity.start(this);//测试自定义GLSurfaceView
                // TestTextureViewActivity.start(this);//测试纹理
-                TestOESActivity.start(this);//测试摄像头预览
+                //TestOESActivity.start(this);//测试摄像头预览
+                VideoActivity.start(this); //测试视频录制
                 break;
             case "mediaCodec":
                 MediaCodecActivity.jump(this,MediaCodecActivity.TYPE_LIVE);

@@ -175,7 +175,7 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         mSurfaceTexture = new SurfaceTexture(cameraTextureId);
         mSurfaceTexture.setOnFrameAvailableListener(this);
         if (mOnSurfaceCreateListener!=null) {
-            mOnSurfaceCreateListener.onSurfaceCreated(mSurfaceTexture);
+            mOnSurfaceCreateListener.onSurfaceCreated(mSurfaceTexture,fboTextureId);
         }
 
         GLES20.glBindTexture(GLES11Ext.GL_TEXTURE_EXTERNAL_OES, 0);
@@ -214,7 +214,7 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         mSurfaceTexture.updateTexImage();
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glClearColor(1f,0f, 0f, 1f);
-
+        checkError("1111");
         GLES20.glUseProgram(program);
 
         GLES20.glViewport(0,0,screenWidth,screenHeight);
@@ -222,6 +222,7 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         GLES20.glUniformMatrix4fv(uMatrix,1,false,matrix,0);
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId);
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId);
+        checkError("2222");
 
         GLES20.glEnableVertexAttribArray(vPosition);
         GLES20.glVertexAttribPointer(vPosition, 2, GLES20.GL_FLOAT, false, 8,
@@ -230,16 +231,23 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
         GLES20.glEnableVertexAttribArray(fPosition);
         GLES20.glVertexAttribPointer(fPosition, 2, GLES20.GL_FLOAT, false, 8,
                 vertexData.length * 4);
+        checkError("3333");
 
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        checkError("4444");
 
         GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
         mCameraFboRender.onChange(width,height);//以实际窗口绘制
         mCameraFboRender.onDraw(fboTextureId);
+        checkError("5555");
 
 
+    }
+
+    public int getFboTextureId() { //提供给Encoder
+        return fboTextureId;
     }
 
     @Override
@@ -248,7 +256,7 @@ public class OESCameraRender implements CustomEglSurfaceView.CustomGLRender,Surf
     }
 
     public interface OnSurfaceCreateListener {
-        void onSurfaceCreated(SurfaceTexture surfaceTexture);
+        void onSurfaceCreated(SurfaceTexture surfaceTexture,int textureId);
     }
 
 }

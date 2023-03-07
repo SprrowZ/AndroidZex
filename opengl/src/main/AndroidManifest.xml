@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rye.opengl">
-<!--    <uses-permission android:name="android.permission.CAMERA"/>-->
+
     <application>
         <activity
+            android:name=".course_y.oes.VideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true" />
+        <activity
             android:name=".course_y.oes.OESCameraActivity"
-             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true" />
         <activity
             android:name=".course_y.oes.TestOESActivity"

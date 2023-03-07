@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
  * @description: SQLite测试类
  */
 public class SQLiteTest extends SQLiteOpenHelper {
-    private static final String TAG = "com.dawn.zgstep.db.SQLiteTest";
+    private static final String TAG = "SQLiteTest";
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "testrye.db";
     private SQLiteDatabase db;

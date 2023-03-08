@@ -1,18 +1,19 @@
-package com.rye.opengl.course_y.other.texture.test;
+package com.rye.opengl.course_y.oes.encodec;
 
 import android.content.Context;
 import android.opengl.GLES20;
 
 import com.rye.opengl.R;
-import com.rye.opengl.utils.ShaderHelper;
+import com.rye.opengl.course_y.CustomEglSurfaceView;
 import com.rye.opengl.hockey.TextureResourceReader;
+import com.rye.opengl.utils.ShaderHelper;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-public class FboRender {
-
+public class EncoderRender implements CustomEglSurfaceView.CustomGLRender {
+    //参照CameraFboRender
     private Context context;
 
     private float[] vertexData = {
@@ -38,10 +39,9 @@ public class FboRender {
     private int sampler;
 
     private int vboId;
-
-    public FboRender(Context context) {
+    public EncoderRender(Context context,int textureid) {
         this.context = context;
-
+        this.textureid = textureid;
         vertexBuffer = ByteBuffer.allocateDirect(vertexData.length * 4)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer()
@@ -53,13 +53,11 @@ public class FboRender {
                 .asFloatBuffer()
                 .put(fragmentData);
         fragmentBuffer.position(0);
-
     }
-
-    public void onCreate()
-    {
-        String vertexSource = TextureResourceReader.readTextFileFromResource(context, R.raw.course_demo1_vertex_shader);
-        String fragmentSource = TextureResourceReader.readTextFileFromResource(context, R.raw.course_demo1_fragment_shader);
+    @Override
+    public void onSurfaceCreated() {
+        String vertexSource = TextureResourceReader.readTextFileFromResource(context, R.raw.oes_vertex_shader_screen);
+        String fragmentSource = TextureResourceReader.readTextFileFromResource(context, R.raw.oes_fbo_fragment_shader);
 
         program = ShaderHelper.buildProgram(vertexSource, fragmentSource);//创建program并绑定着色器
 
@@ -78,19 +76,20 @@ public class FboRender {
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
     }
 
-    public void onChange(int width, int height)
-    {
+    @Override
+    public void onSurfaceChanged(int width, int height) {
         GLES20.glViewport(0, 0, width, height);
+
     }
 
-    public void onDraw(int textureId)
-    {
+    @Override
+    public void onDrawFrame() {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glClearColor(1f,0f, 0f, 1f);
 
         GLES20.glUseProgram(program);
 
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureid);
 
 
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId);

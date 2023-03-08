@@ -1,4 +1,4 @@
-package com.rye.opengl.hockey;
+package com.rye.opengl.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;

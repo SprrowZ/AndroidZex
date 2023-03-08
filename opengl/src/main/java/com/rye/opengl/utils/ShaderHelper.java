@@ -1,7 +1,9 @@
-package com.rye.opengl.hockey;
+package com.rye.opengl.utils;
 
 import android.opengl.GLES20;
 import android.util.Log;
+
+import com.rye.opengl.hockey.LoggerConfig;
 
 public class ShaderHelper {
     private static final String TAG = "ShaderHelper";

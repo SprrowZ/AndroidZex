@@ -1,17 +1,18 @@
-package com.rye.opengl.course_y.other.texture.test;
+package com.rye.opengl.course_y.oes.camera;
 
 import android.content.Context;
 import android.opengl.GLES20;
+import android.util.Log;
 
 import com.rye.opengl.R;
-import com.rye.opengl.utils.ShaderHelper;
 import com.rye.opengl.hockey.TextureResourceReader;
+import com.rye.opengl.utils.ShaderHelper;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-
-public class FboRender {
+//copy的FboRender
+public class CameraFboRender {
 
     private Context context;
 
@@ -39,7 +40,7 @@ public class FboRender {
 
     private int vboId;
 
-    public FboRender(Context context) {
+    public CameraFboRender(Context context) {
         this.context = context;
 
         vertexBuffer = ByteBuffer.allocateDirect(vertexData.length * 4)
@@ -58,8 +59,8 @@ public class FboRender {
 
     public void onCreate()
     {
-        String vertexSource = TextureResourceReader.readTextFileFromResource(context, R.raw.course_demo1_vertex_shader);
-        String fragmentSource = TextureResourceReader.readTextFileFromResource(context, R.raw.course_demo1_fragment_shader);
+        String vertexSource = TextureResourceReader.readTextFileFromResource(context, R.raw.oes_vertex_shader);
+        String fragmentSource = TextureResourceReader.readTextFileFromResource(context, R.raw.oes_fbo_fragment_shader);
 
         program = ShaderHelper.buildProgram(vertexSource, fragmentSource);//创建program并绑定着色器
 
@@ -92,7 +93,7 @@ public class FboRender {
 
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
 
-
+        checkError("66666");
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId);
 
         GLES20.glEnableVertexAttribArray(vPosition);
@@ -107,5 +108,14 @@ public class FboRender {
 
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        checkError("7777");
+    }
+
+    private void checkError(String params) {
+        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+        int errorCode = GLES20.glGetError();
+        if (errorCode != 0) {
+            Log.i("RRye", "errorCode:" + errorCode+", params:"+params);
+        }
     }
 }

@@ -4,6 +4,17 @@
 
     <application>
         <activity
+            android:name=".course_y.oes.VideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true" />
+        <activity
+            android:name=".course_y.oes.OESCameraActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true" />
+        <activity
+            android:name=".course_y.oes.TestOESActivity"
+            android:exported="true" />
+        <activity
             android:name=".course_y.other.TestTextureViewActivity"
             android:exported="false" />
         <activity

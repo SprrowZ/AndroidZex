@@ -5,6 +5,8 @@ import android.content.Intent
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.dawn.zgstep.R
+import com.dawn.zgstep.player.ui.demo.DemoExoFragment
+import com.dawn.zgstep.player.ui.demo.DemoMediaPlayerFragment
 import com.rye.base.BaseActivity
 
 /**
@@ -35,7 +37,7 @@ class PlayerDetailActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        doSelect(1)
+        doSelect(3)
     }
 
     private fun doSelect(pos: Int) {
@@ -60,8 +62,10 @@ class PlayerDetailActivity : BaseActivity() {
 
     private fun getFragment(pos: Int): Fragment? {
         when (pos) {
-            0 -> currentFragment = PlayerFragment()
-            1 -> currentFragment = LocalMediaFragment()
+            0 -> currentFragment = PlayerFragment() //封装播放器
+            1 -> currentFragment = LocalMediaFragment() //MediaExtractor
+            2-> currentFragment = DemoMediaPlayerFragment() //简易播放器
+            3->currentFragment = DemoExoFragment() //exo
         }
         return currentFragment
     }

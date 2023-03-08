@@ -6,6 +6,7 @@ import android.content.Intent;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.media.AudioTrack;
 import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.dawn.zgstep.player.ui.codec.MediaCodecActivity;
 import com.dawn.zgstep.player.ui.PlayerDetailActivity;
+import com.dawn.zgstep.ui.activity.DemoLottieActivity;
 import com.ndk.nativelib.activities.NDKMainActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
@@ -80,6 +82,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.setData(Uri.parse(PROJECT_MAIN_URI));
         context.startActivity(intent);
+
     }
 
 
@@ -259,6 +262,9 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 break;
             case "ndk_main":
                 NDKMainActivity.jump(this);
+                break;
+            case "lottie":
+                DemoLottieActivity.jump(this);
                 break;
         }
     }

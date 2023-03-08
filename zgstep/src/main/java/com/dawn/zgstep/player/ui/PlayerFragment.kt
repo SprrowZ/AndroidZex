@@ -18,7 +18,7 @@ class PlayerFragment : BaseFragment() {
     private lateinit var mPlayerController: IPlayerController
 
     companion object {
-        private const val VIDEO_URL_ONE = "https://media.w3.org/2010/05/sintel/trailer.mp4" //50s
+        private const val VIDEO_URL_ONE = "https://1688living.alicdn.com/mediaplatform/90ed0fdb-6583-4892-a8e1-6dbc52b540e4.m3u8" //50s
         private const val VIDEO_URL_TWO =
             "https://www.w3school.com.cn/example/html5/mov_bbb.mp4" //10s
         private const val VIDEO_URL_THREE =

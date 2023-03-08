@@ -23,7 +23,7 @@ apply from:'../config/prac/practice1.gradle'
 //    wikiDir getRootDir().absolutePath
 //}
 android {
-    compileSdkVersion rootProject.compileSdkVer
+    compileSdkVersion 28
     buildToolsVersion rootProject.buildToolsVer
     defaultConfig {
         applicationId "com.rye.catcher.zzg"
@@ -260,4 +260,34 @@ dependencies {
 //    kapt project(':router_processor')
     //router 运行时代码
     implementation project(':router_runtime')
+}
+//列出所有包含有so文件的库信息
+tasks.whenTaskAdded { task ->
+    if (task.name=='mergeDebugNativeLibs') { //如果是有多个flavor，则用 mergeFlavorDebugNativeLibs的形式
+        task.doFirst {
+            println("------------------- find so files start -------------------")
+            println("------------------- find so files start -------------------")
+            println("------------------- find so files start -------------------")
+
+            it.inputs.files.each { file ->
+                printDir(new File(file.absolutePath))
+            }
+
+            println("------------------- find so files end -------------------")
+            println("------------------- find so files end -------------------")
+            println("------------------- find so files end -------------------")
+        }
+    }
+}
+
+def printDir(File file) {
+    if (file != null) {
+        if (file.isDirectory()) {
+            file.listFiles().each {
+                printDir(it)
+            }
+        } else if (file.absolutePath.endsWith(".so")) {
+            println "find so file: $file.absolutePath"
+        }
+    }
 }

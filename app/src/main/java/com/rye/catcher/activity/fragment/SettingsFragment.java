@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.dawn.zgstep.ui.activity.DemoActivity;
 import com.rye.base.BaseFragment;
@@ -33,6 +35,17 @@ public class SettingsFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.tab04;
+    }
+
+    @Override
+    public void beforeInflateView() {
+        super.beforeInflateView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //底部导航栏
+            //   getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
     }
 
     @Override

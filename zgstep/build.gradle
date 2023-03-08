@@ -10,13 +10,13 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion this.rootProject.compileSdkVer
+    compileSdkVersion 28
     buildToolsVersion this.rootProject.buildToolsVer
 
 
     defaultConfig {
         minSdkVersion this.rootProject.MiminSdkVer
-        targetSdkVersion this.rootProject.targetSdkVer
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -50,6 +50,7 @@ kapt { //给注解处理器传递参数 对应java defaultConfig 中的 javaComp
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.4.0'
     //单元测试
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
@@ -87,13 +88,16 @@ dependencies {
 
     api deps.kotlin_coroutines_android
 
+    implementation('com.airbnb.android:lottie:3.7.0@aar')
+
 
     //注解处理器
 //    implementation project(':router_annotation')
 //    kapt project(':router_processor')
 
     // implementation project(':router_api')
-
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.15.1'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.15.1'
 
 }
 repositories {

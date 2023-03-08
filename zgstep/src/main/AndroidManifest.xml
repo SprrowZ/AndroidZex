@@ -3,14 +3,15 @@
     package="com.dawn.zgstep">
 
     <application>
-        <activity android:name=".player.ui.PlayerDetailActivity"></activity>
+        <activity android:name=".player.ui.PlayerDetailActivity" />
         <activity android:name=".ui.activity.CoroutineDemoActivity" />
         <activity android:name=".ui.activity.ProxyActivity" />
         <activity android:name=".ui.activity.DemoActivity" />
         <activity android:name=".ui.activity.ZStepMainActivity" />
         <activity android:name=".others.bolts.BoltsMainJava" />
-        <activity android:name=".player.demos.DemoMediaActivity"/>
-        <activity android:name=".player.ui.codec.MediaCodecActivity"/>
+        <activity android:name=".player.demos.DemoMediaActivity" />
+        <activity android:name=".player.ui.codec.MediaCodecActivity" />
+        <activity android:name=".ui.activity.DemoLottieActivity"/>
     </application>
 
 </manifest>

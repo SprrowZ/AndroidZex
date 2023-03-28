@@ -29,6 +29,11 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  * Use the {@link StackViewFragment#newInstance} factory method to
  * create an instance of this fragment.
+ * 参考文章：
+ * https://www.jianshu.com/p/4c474ca6c098
+ * https://blog.51cto.com/u_14397532/5765178
+ * https://juejin.cn/post/6955684084240613384
+ *https://github.com/AlpsDog/Banner
  */
 public class StackViewFragment extends Fragment {
     private TextView  mStartLoop;

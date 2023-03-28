@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.StackViewFragment"
+    tools:ignore="MissingDefaultResource">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/loop_view"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:background="@color/red"
+        />
+    <TextView
+        android:id="@+id/start_loop"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="开启轮播"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        />
+
+</FrameLayout>

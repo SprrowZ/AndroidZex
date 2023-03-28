@@ -10,6 +10,7 @@ import com.dawn.zgstep.R
 import com.dawn.zgstep.others.life.ZLifeObserver
 import com.dawn.zgstep.ui.activity.adapters.SeniorUiAdapter
 import com.dawn.zgstep.ui.fragment.ClassLoaderFragment
+import com.dawn.zgstep.ui.fragment.StackViewFragment
 import com.dawn.zgstep.ui.fragment.ViewModelFragment
 import com.dawn.zgstep.ui.fragment.XfermodeFragment
 import com.rye.base.BaseFragmentActivity
@@ -27,7 +28,7 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
     private var mXfer: TextView? = null
     private var mViewModel: TextView? = null
     private var mClassLoader: TextView? = null
-
+    private var mStackView :TextView?= null
     companion object {
         @JvmStatic
         fun start(context: Context) {
@@ -46,12 +47,15 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
         mXfer = findViewById(R.id.tv_xf)
         mViewModel = findViewById(R.id.tv_viewModel)
         mClassLoader = findViewById(R.id.class_loader)
+        mStackView = findViewById(R.id.stack_view)
     }
 
     override fun initEvent() {
         val viewModelFragment = ViewModelFragment()
         val xfermodeFragment = XfermodeFragment()
-        var classLoaderFragment = ClassLoaderFragment.create()
+        val classLoaderFragment = ClassLoaderFragment.create()
+        val stackFragment = StackViewFragment.newInstance()
+
         mXfer?.setOnClickListener {
             mRecycler?.visibility = View.GONE
             replaceFragment(xfermodeFragment)
@@ -71,6 +75,10 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
 
         mClassLoader?.setOnClickListener {
             replaceFragment(classLoaderFragment)
+        }
+
+        mStackView?.setOnClickListener {
+            replaceFragment(stackFragment)
         }
 
         //生命周期监听

@@ -17,6 +17,7 @@
         android:paddingBottom="@dimen/len_6"
         android:text="XferMode"
         android:textColor="@color/black"
+        android:layout_marginTop="30dp"
         android:textSize="@dimen/font_16" />
 
     <TextView
@@ -38,6 +39,17 @@
         android:paddingTop="@dimen/len_6"
         android:paddingBottom="@dimen/len_6"
         android:text="插件化原理"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_16" />
+
+    <TextView
+        android:id="@+id/stack_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/len_6"
+        android:paddingBottom="@dimen/len_6"
+        android:text="StackView轮播特效"
         android:textColor="@color/black"
         android:textSize="@dimen/font_16" />
 

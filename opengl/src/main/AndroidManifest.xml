@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".course_y.yuv.YUVPlayActivity"
+            android:exported="false" />
+        <activity
             android:name=".course_y.oes.VideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true" />

@@ -43,6 +43,7 @@ import com.rye.opengl.course_y.oes.TestOESActivity;
 import com.rye.opengl.course_y.oes.VideoActivity;
 import com.rye.opengl.course_y.other.TestCustomSurfaceViewActivity;
 import com.rye.opengl.course_y.other.TestTextureViewActivity;
+import com.rye.opengl.course_y.yuv.YUVPlayActivity;
 import com.rye.router.runtime.Router;
 //import com.rye.router_annotation.Route;
 import com.yanzhenjie.permission.Permission;
@@ -259,7 +260,8 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 //TestCustomSurfaceViewActivity.start(this);//测试自定义GLSurfaceView
                // TestTextureViewActivity.start(this);//测试纹理
                 //TestOESActivity.start(this);//测试摄像头预览
-                VideoActivity.start(this); //测试视频录制
+                //VideoActivity.start(this); //测试视频录制
+                YUVPlayActivity.jump(this);
                 break;
             case "mediaCodec":
                 MediaCodecActivity.jump(this,MediaCodecActivity.TYPE_LIVE);

@@ -33,6 +33,7 @@
         <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
         <entry key="opengl/src/main/res/layout/activity_test_custom_surface_view.xml" value="0.12512613521695257" />
         <entry key="opengl/src/main/res/layout/activity_test_texture_view.xml" value="0.10092592592592593" />
+        <entry key="opengl/src/main/res/layout/activity_yuvplay.xml" value="0.13677536231884058" />
         <entry key="opengl/src/main/res/layout/recycler_item_shape.xml" value="0.2921875" />
         <entry key="zgstep/src/main/res/drawable/player_progress_shape.xml" value="0.26197916666666665" />
         <entry key="zgstep/src/main/res/drawable/shape_dot.xml" value="0.1" />

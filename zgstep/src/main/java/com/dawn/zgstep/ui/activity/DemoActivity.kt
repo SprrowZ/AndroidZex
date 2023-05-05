@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dawn.zgstep.R
 import com.dawn.zgstep.others.life.ZLifeObserver
 import com.dawn.zgstep.ui.activity.adapters.SeniorUiAdapter
-import com.dawn.zgstep.ui.fragment.ClassLoaderFragment
-import com.dawn.zgstep.ui.fragment.StackViewFragment
-import com.dawn.zgstep.ui.fragment.ViewModelFragment
-import com.dawn.zgstep.ui.fragment.XfermodeFragment
+import com.dawn.zgstep.ui.fragment.*
 import com.rye.base.BaseFragmentActivity
 import com.rye.base.widget.OnItemClickListener
 //import com.rye.router_annotation.Route
@@ -29,6 +26,7 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
     private var mViewModel: TextView? = null
     private var mClassLoader: TextView? = null
     private var mStackView :TextView?= null
+    private var mBannerView:TextView?=null
     companion object {
         @JvmStatic
         fun start(context: Context) {
@@ -48,6 +46,7 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
         mViewModel = findViewById(R.id.tv_viewModel)
         mClassLoader = findViewById(R.id.class_loader)
         mStackView = findViewById(R.id.stack_view)
+        mBannerView = findViewById(R.id.loop_view)
     }
 
     override fun initEvent() {
@@ -55,6 +54,7 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
         val xfermodeFragment = XfermodeFragment()
         val classLoaderFragment = ClassLoaderFragment.create()
         val stackFragment = StackViewFragment.newInstance()
+        val bannerViewFragment = BannerViewFragment.newInstance()
 
         mXfer?.setOnClickListener {
             mRecycler?.visibility = View.GONE
@@ -79,6 +79,10 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
 
         mStackView?.setOnClickListener {
             replaceFragment(stackFragment)
+        }
+
+        mBannerView?.setOnClickListener {
+            replaceFragment(bannerViewFragment)
         }
 
         //生命周期监听

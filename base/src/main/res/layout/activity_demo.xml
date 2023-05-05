@@ -49,7 +49,18 @@
         android:layout_gravity="center_horizontal"
         android:paddingTop="@dimen/len_6"
         android:paddingBottom="@dimen/len_6"
-        android:text="StackView轮播特效"
+        android:text="重叠轮播特效"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_16" />
+
+    <TextView
+        android:id="@+id/loop_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/len_6"
+        android:paddingBottom="@dimen/len_6"
+        android:text="banner特效"
         android:textColor="@color/black"
         android:textSize="@dimen/font_16" />
 

@@ -3,6 +3,7 @@ package com.rye.opengl.course_y.yuv;
 import android.content.Context;
 import android.opengl.GLES10;
 import android.opengl.GLES20;
+import android.opengl.Matrix;
 import android.util.Log;
 
 import com.rye.opengl.R;
@@ -60,9 +61,14 @@ public class YuvRender implements CustomEglSurfaceView.CustomGLRender {
     Buffer u;
     Buffer v;
 
+    private YUVFboRender fboRender;
+
+    private float[] matrix = new float[16];
+    private int uMatrix;
+
     public YuvRender(Context context) {
         this.context = context;
-
+        fboRender = new YUVFboRender(context);
         vertexBuffer = ByteBuffer.allocateDirect(vertexData.length * 4)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer()
@@ -74,11 +80,13 @@ public class YuvRender implements CustomEglSurfaceView.CustomGLRender {
                 .asFloatBuffer()
                 .put(textureData);
         textureBuffer.position(0);
+        Matrix.setIdentityM(matrix,0);
     }
 
     @Override
     public void onSurfaceCreated() {
         checkError("00");
+        fboRender.onCreate();
         String vertexSource = TextureResourceReader.readTextFileFromResource(context, R.raw.vertex_shader_yuv);
         String fragmentSource = TextureResourceReader.readTextFileFromResource(context, R.raw.fragment_shader_yuv);
         program = ShaderHelper.buildProgram(vertexSource, fragmentSource);
@@ -88,6 +96,7 @@ public class YuvRender implements CustomEglSurfaceView.CustomGLRender {
         samplerY = GLES20.glGetUniformLocation(program, "sampler_y");
         samplerU = GLES20.glGetUniformLocation(program, "sampler_u");
         samplerV = GLES20.glGetUniformLocation(program, "sampler_v");
+        uMatrix = GLES20.glGetUniformLocation(program,"u_Matrix");
         checkError("11");
 
         texture_yuv = new int[3];
@@ -151,19 +160,22 @@ public class YuvRender implements CustomEglSurfaceView.CustomGLRender {
 
     @Override
     public void onSurfaceChanged(int width, int height) {
+        Matrix.rotateM(matrix,0,180f,1,0,0);
         GLES20.glViewport(0, 0, width, height);
+        fboRender.onChange(width,height);
+
     }
 
     @Override
     public void onDrawFrame() {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         GLES20.glClearColor(1f, 0f, 0f, 1f);
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0); //改为0则直接绘制在窗口上
+        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId); //改为0则直接绘制在窗口上,改fbo则绘制在fbo上
         checkError("66");
 
         if (w > 0 && h > 0 && y != null && u != null && v != null) {
             GLES20.glUseProgram(program);
-
+            GLES20.glUniformMatrix4fv(uMatrix,1,false,matrix,0);//使用矩阵翻转
             GLES20.glEnableVertexAttribArray(vPosition);
             GLES20.glVertexAttribPointer(vPosition, 2, GLES20.GL_FLOAT, false, 8, vertexBuffer);
 
@@ -201,6 +213,8 @@ public class YuvRender implements CustomEglSurfaceView.CustomGLRender {
             GLES20.glBindTexture(GLES20.GL_TEXTURE_2D,0);
             GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER,0);
             checkError("99");
+
+            fboRender.onDraw(textureId);
 
         }
 

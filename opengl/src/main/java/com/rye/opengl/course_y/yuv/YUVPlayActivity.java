@@ -57,6 +57,8 @@ public class YUVPlayActivity extends AppCompatActivity {
                            mYuvView.setFrameData(w,h,y,u,v);
                            Thread.sleep(40);
                         } else {
+                            fis.close();
+                            fis = null;
                             Log.e("RRye","渲染完成");
                             break;
                         }

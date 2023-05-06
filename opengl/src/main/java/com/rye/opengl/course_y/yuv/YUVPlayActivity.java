@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 
@@ -41,9 +42,9 @@ public class YUVPlayActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    int w =640;
-                    int h = 300;
-                    fis = new FileInputStream(new File(SDHelper.getAppExternal(),"test.yuv"));//本地要存储此视频
+                    int w =640; //一定要跟原视频对应上！！！！
+                    int h = 360;//同！
+                    fis = new FileInputStream(new File(Environment.getExternalStorageDirectory()+"/sintel_640_360.yuv"));//本地要存储此视频
                     byte[] y = new byte[w*h];
                     byte[] u = new byte[w*h/4];
                     byte[] v = new byte[w*h/4];
@@ -57,6 +58,7 @@ public class YUVPlayActivity extends AppCompatActivity {
                            Thread.sleep(40);
                         } else {
                             Log.e("RRye","渲染完成");
+                            break;
                         }
                     }
 

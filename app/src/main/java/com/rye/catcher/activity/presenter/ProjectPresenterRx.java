@@ -42,11 +42,16 @@ public class ProjectPresenterRx extends RxBasePresenter {
         String desPath = SDHelper.getAppExternal();
         FileUtils.copyAssetToSDCard(manager, "plist.json", desPath + "plist.json");
         File jsonFile = new File(desPath + "plist.json");
+        Reader reader = null;
         try {
-            Reader reader = new FileReader(jsonFile);
-            return GsonUtils.toList(reader, ProjectBean[].class);
+            reader = new FileReader(jsonFile);
+            List<ProjectBean> list = GsonUtils.toList(reader, ProjectBean[].class);
+            reader.close();
+            return list;
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+
         }
 
         return null;

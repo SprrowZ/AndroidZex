@@ -18,8 +18,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-        //安装申请权限
-        authority();
+
     }
 
     private void authority() {
@@ -34,6 +33,10 @@ public class SplashActivity extends BaseActivity {
         }, Permission.WRITE_EXTERNAL_STORAGE,Permission.ACCESS_COARSE_LOCATION);
     }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //安装申请权限
+        authority();
+    }
 }

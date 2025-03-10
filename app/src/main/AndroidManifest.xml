@@ -46,6 +46,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base"
         tools:ignore="GoogleAppIndexingWarning"
+         android:largeHeap="true"
         tools:replace="android:label">
         <activity android:name=".project.media.CameraMainActivity"></activity>
         <activity android:name=".activity.KtCoroutineActivity" />

@@ -1,56 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ASMIdeaPluginConfiguration">
-    <asm skipDebug="false" skipFrames="false" skipCode="false" expandFrames="false" />
-    <groovy codeStyle="LEGACY" />
-  </component>
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/zResources/zAndroid/AndroidZex/app/src/main/res/layout/fragment_camera2.xml" value="0.22291666666666668" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/nativelib/src/main/res/layout/activity_ndkmain.xml" value="0.264" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_first_opengl.xml" value="0.23697916666666666" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_oescamera.xml" value="0.1" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_test_oesactivity.xml" value="0.1" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_triangle.xml" value="0.1" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/activity_video.xml" value="0.1" />
-        <entry key="..\:/zResources/zAndroid/AndroidZex/opengl/src/main/res/layout/recycler_item_shape.xml" value="0.240625" />
-        <entry key="app/src/main/res/drawable/rotate_bk.xml" value="0.11296296296296296" />
-        <entry key="app/src/main/res/layout/activity_camera_main.xml" value="0.14076690211907164" />
-        <entry key="app/src/main/res/layout/activity_main_exx.xml" value="0.21197916666666666" />
-        <entry key="app/src/main/res/layout/activity_take_photo.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_camera2.xml" value="0.161231884057971" />
-        <entry key="app/src/main/res/layout/fragment_media_recorder.xml" value="0.1279011099899092" />
-        <entry key="app/src/main/res/layout/review_asynctask.xml" value="0.2644927536231884" />
-        <entry key="app/src/main/res/layout/service_main.xml" value="0.21197916666666666" />
-        <entry key="app/src/main/res/layout/tab04.xml" value="0.17447916666666666" />
-        <entry key="base/src/main/res/layout/activity_demo.xml" value="0.25" />
-        <entry key="nativelib/src/main/res/layout/activity_ndkmain.xml" value="0.13645833333333332" />
-        <entry key="opengl/src/main/res/layout/activity_course1_demo.xml" value="0.25905797101449274" />
-        <entry key="opengl/src/main/res/layout/activity_shape.xml" value="0.2726449275362319" />
-        <entry key="opengl/src/main/res/layout/activity_test_custom_surface_view.xml" value="0.12512613521695257" />
-        <entry key="opengl/src/main/res/layout/activity_test_texture_view.xml" value="0.10092592592592593" />
-        <entry key="opengl/src/main/res/layout/recycler_item_shape.xml" value="0.2921875" />
-        <entry key="zgstep/src/main/res/drawable/player_progress_shape.xml" value="0.26197916666666665" />
-        <entry key="zgstep/src/main/res/drawable/video_item_bottom_gradient.xml" value="0.18518518518518517" />
-        <entry key="zgstep/src/main/res/layout/activity_demo_activity.xml" value="0.13647830474268416" />
-        <entry key="zgstep/src/main/res/layout/activity_demo_lottie.xml" value="0.1" />
-        <entry key="zgstep/src/main/res/layout/activity_mediacodec.xml" value="0.1" />
-        <entry key="zgstep/src/main/res/layout/activity_player.xml" value="0.2630208333333333" />
-        <entry key="zgstep/src/main/res/layout/activity_take_photo.xml" value="0.13799192734611504" />
-        <entry key="zgstep/src/main/res/layout/fragment_codec_live.xml" value="0.1475782038345106" />
-        <entry key="zgstep/src/main/res/layout/fragment_demo_exo.xml" value="0.2921195652173913" />
-        <entry key="zgstep/src/main/res/layout/fragment_demo_player.xml" value="0.245018115942029" />
-        <entry key="zgstep/src/main/res/layout/fragment_local_media.xml" value="0.14945652173913043" />
-        <entry key="zgstep/src/main/res/layout/fragment_local_video.xml" value="0.1" />
-        <entry key="zgstep/src/main/res/layout/fragment_loop_item.xml" value="0.1" />
-        <entry key="zgstep/src/main/res/layout/fragment_player.xml" value="0.335" />
-        <entry key="zgstep/src/main/res/layout/fragment_stack_view.xml" value="0.1" />
-        <entry key="zgstep/src/main/res/layout/fragment_video_codec.xml" value="0.17074275362318841" />
-        <entry key="zgstep/src/main/res/layout/pager_item_loop.xml" value="0.1" />
-        <entry key="zgstep/src/main/res/layout/player_control_layer.xml" value="0.335" />
-        <entry key="zgstep/src/main/res/layout/recycler_item_local_video.xml" value="0.1793478260869565" />
-        <entry key="zgstep/src/main/res/layout/test_lottie.xml" value="0.23324275362318841" />
+        <entry key="zgstep/src/main/res/layout/activity_ai_loading.xml" value="0.14581231079717458" />
+        <entry key="zgstep/src/main/res/layout/activity_bottom_sheet.xml" value="0.1460645812310797" />
+        <entry key="zgstep/src/main/res/layout/activity_float.xml" value="0.14628623188405798" />
+        <entry key="zgstep/src/main/res/layout/activity_gesture.xml" value="0.2368659420289855" />
+        <entry key="zgstep/src/main/res/layout/activity_share_element_aactivity.xml" value="0.18795289855072464" />
+        <entry key="zgstep/src/main/res/layout/activity_shared_bactivity.xml" value="0.23596014492753623" />
+        <entry key="zgstep/src/main/res/layout/floating_window.xml" value="0.25" />
+        <entry key="zgstep/src/main/res/layout/gusture_dialog_fragment.xml" value="0.20199275362318841" />
       </map>
     </option>
   </component>
@@ -59,7 +18,7 @@
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
     <option name="myNullables">
       <value>
-        <list size="15">
+        <list size="14">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
           <item index="2" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
@@ -70,17 +29,16 @@
           <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.Nullable" />
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
           <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
-          <item index="10" class="java.lang.String" itemvalue="android.annotation.Nullable" />
+          <item index="10" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.Nullable" />
           <item index="11" class="java.lang.String" itemvalue="com.android.annotations.Nullable" />
-          <item index="12" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.Nullable" />
-          <item index="13" class="java.lang.String" itemvalue="io.reactivex.annotations.Nullable" />
-          <item index="14" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.Nullable" />
+          <item index="12" class="java.lang.String" itemvalue="org.jspecify.annotations.Nullable" />
+          <item index="13" class="java.lang.String" itemvalue="jakarta.annotation.Nullable" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="15">
+        <list size="13">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
           <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
@@ -90,12 +48,10 @@
           <item index="6" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.NonNull" />
           <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
-          <item index="9" class="java.lang.String" itemvalue="android.annotation.NonNull" />
-          <item index="10" class="java.lang.String" itemvalue="com.android.annotations.NonNull" />
-          <item index="11" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.NonNull" />
-          <item index="12" class="java.lang.String" itemvalue="io.reactivex.annotations.NonNull" />
-          <item index="13" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.NonNull" />
-          <item index="14" class="java.lang.String" itemvalue="lombok.NonNull" />
+          <item index="9" class="java.lang.String" itemvalue="com.android.annotations.NonNull" />
+          <item index="10" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.NonNull" />
+          <item index="11" class="java.lang.String" itemvalue="org.jspecify.annotations.NonNull" />
+          <item index="12" class="java.lang.String" itemvalue="jakarta.annotation.Nonnull" />
         </list>
       </value>
     </option>

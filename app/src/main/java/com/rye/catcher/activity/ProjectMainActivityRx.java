@@ -5,8 +5,8 @@ import android.content.Intent;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import android.media.AudioTrack;
 import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
@@ -16,7 +16,11 @@ import android.widget.Toast;
 
 import com.dawn.zgstep.player.ui.codec.MediaCodecActivity;
 import com.dawn.zgstep.player.ui.PlayerDetailActivity;
+import com.dawn.zgstep.ui.activity.AILoadingActivity;
 import com.dawn.zgstep.ui.activity.DemoLottieActivity;
+import com.dawn.zgstep.ui.activity.FloatActivity;
+import com.dawn.zgstep.ui.activity.MVVMActivity;
+import com.dawn.zgstep.ui.activity.ShareElementAActivity;
 import com.ndk.nativelib.activities.NDKMainActivity;
 import com.rye.appupdater.UpdateActivityRx;
 import com.rye.base.rxmvp.RxBaseActivity;
@@ -39,10 +43,7 @@ import com.rye.catcher.project.sqlite.DBActivity;
 import com.rye.base.utils.SDHelper;
 import com.rye.catcher.utils.SharedPreManager;
 import com.rye.catcher.utils.permission.PermissionUtils;
-import com.rye.opengl.course_y.oes.TestOESActivity;
 import com.rye.opengl.course_y.oes.VideoActivity;
-import com.rye.opengl.course_y.other.TestCustomSurfaceViewActivity;
-import com.rye.opengl.course_y.other.TestTextureViewActivity;
 import com.rye.router.runtime.Router;
 //import com.rye.router_annotation.Route;
 import com.yanzhenjie.permission.Permission;
@@ -91,7 +92,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
     @Override
     public void initEvent() {
         ButterKnife.bind(this);
-        recycleView.setLayoutManager(new LinearLayoutManager(this));
+        recycleView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
         //Mvp的目前操作，这个地方可以修改
         dataList = getPresenter(ProjectPresenterRx.class).getDataList(this);
         ProjectListAdapter adapter = new ProjectListAdapter(this, dataList);
@@ -269,6 +270,18 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 break;
             case "lottie":
                 DemoLottieActivity.jump(this);
+                break;
+            case "floating":
+                FloatActivity.jump(this);
+                break;
+            case "shareElement" :
+                ShareElementAActivity.jumpTarget(this);
+                 break;
+            case "loading":
+                AILoadingActivity.jumpTarget(this);
+                break;
+            case "mvvm":
+                MVVMActivity.jump(this);
                 break;
         }
     }

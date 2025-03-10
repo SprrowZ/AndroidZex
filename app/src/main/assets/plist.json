@@ -106,5 +106,21 @@
   {
     "name": "Lottie",
     "action": "lottie"
+  },
+  {
+    "name": "全局悬浮窗",
+    "action": "floating"
+  },
+  {
+    "name": "共享元素",
+    "action": "shareElement"
+  },
+  {
+    "name": "loading动画",
+    "action": "loading"
+  },
+  {
+    "name": "MVVM",
+    "action": "mvvm"
   }
 ]

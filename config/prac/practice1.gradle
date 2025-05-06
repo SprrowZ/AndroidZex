@@ -39,7 +39,7 @@ c3("i", 'am', 'ok')
  */
 
 def myAndroid = {
-    compileVersion 27
+    compileVersion 34
     defaultConfig {
         versionName "1.0"
     }

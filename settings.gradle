@@ -24,6 +24,5 @@ gradle.taskGraph.beforeTask {task->
 }
 include ':opengl'
 
-include ':nativelib'
 
-include ':nativelib'
+

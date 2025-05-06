@@ -23,7 +23,7 @@ apply from:'../config/prac/practice1.gradle'
 //    wikiDir getRootDir().absolutePath
 //}
 android {
-    compileSdkVersion 28
+    compileSdkVersion 34
     buildToolsVersion rootProject.buildToolsVer
     defaultConfig {
         applicationId "com.rye.catcher.zzg"
@@ -35,12 +35,16 @@ android {
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', "x86"
         }
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+       // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     dexOptions {
         preDexLibraries = false
         javaMaxHeapSize "4g"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -89,31 +93,31 @@ android {
 
     //多渠道暂时关闭
 //    flavorDimensions("money", "channel")
-    flavorDimensions("channel")
-    productFlavors {
-//        vip {
-//            dimension "money"
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vip"]
-//            buildConfigField("boolean", "IS_VIP_VERSION", "true")
-//            minSdkVersion 19
-//        }
-//        free {
-//            dimension "money"
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "free"]
-//            buildConfigField("boolean", "IS_VIP_VERSION", "false")
-//            minSdkVersion 19
-//        }
-
-        MI {
-            manifestPlaceholders = [CHANNEL: "xiaomi"]
-            dimension "channel"
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-            manifestPlaceholders.put("Screen_Width_Size", "392")
-            buildConfigField("boolean", "IS_baidu_VERSION", "false")
-            minSdkVersion MiminSdkVer
-        }
-
-    }
+//    flavorDimensions("channel")
+//    productFlavors {
+////        vip {
+////            dimension "money"
+////            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vip"]
+////            buildConfigField("boolean", "IS_VIP_VERSION", "true")
+////            minSdkVersion 19
+////        }
+////        free {
+////            dimension "money"
+////            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "free"]
+////            buildConfigField("boolean", "IS_VIP_VERSION", "false")
+////            minSdkVersion 19
+////        }
+//
+////        MI {
+////            manifestPlaceholders = [CHANNEL: "xiaomi"]
+////            dimension "channel"
+////            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+////            manifestPlaceholders.put("Screen_Width_Size", "392")
+////            buildConfigField("boolean", "IS_baidu_VERSION", "false")
+////            minSdkVersion MiminSdkVer
+////        }
+//
+//    }
 
 //    greendao {
 //        schemaVersion 1
@@ -129,8 +133,8 @@ android {
 
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 //    packagingOptions {//加上这些代码
 //        pickFirst 'lib/arm64-v8a/libnativelib.so'
@@ -147,42 +151,42 @@ repositories {
  * application变体
  */
 this.afterEvaluate {
-    android.applicationVariants.all { variant ->
-      //  println("--variantName:${variant.name}, varinantBaseName:${variant.baseName}")
-
-        def task = variant.checkManifest
-        //println('-------' + task.name)
-
-        variant.outputs.all { output ->
-            if (variant.buildType.name == "debug"
-                    || variant.buildType.name == "preview") {
-
-                resValue "string", "app_name", "寻梦测"
-                resValue "string", "SCREENSHOT_ENANBLE", "1"
-                buildConfigField "String", "ip", "\"www.bilibili.com\""
-                if (variant.buildType.name == "preview") {
-                    outputFileName = "${rootProject.name}-${variant.buildType.name}" +
-                            "-${variant.versionName}.apk"
-                    variant.getPackageApplicationProvider().get().outputDirectory = new File("./../apk")
-                }
-
-            } else {
-
-                resValue "string", "app_name", "寻梦"
-                resValue "string", "SCREENSHOT_ENANBLE", "0"
-                buildConfigField "String", "ip", "\"www.bilibili.com\""
-                //release 包直接保存到当前项目的outputs文件夹下
-                def outputFile = output.outputFile
-               // println "zzg---------${outputFile.name}"
-                if (outputFile != null && outputFile.name.endsWith("release.apk")) {
-                   // println 'zzg------2'
-                    variant.getPackageApplicationProvider().get().outputDirectory = new File(rootDir.absolutePath + '/outputs/')
-                    outputFileName = "${rootProject.name}-${variant.buildType.name}-release.apk"
-                }
-
-            }
-        }
-    }
+//    android.applicationVariants.all { variant ->
+//      //  println("--variantName:${variant.name}, varinantBaseName:${variant.baseName}")
+//
+//        def task = variant.checkManifest
+//        //println('-------' + task.name)
+//
+//        variant.outputs.all { output ->
+//            if (variant.buildType.name == "debug"
+//                    || variant.buildType.name == "preview") {
+//
+//                resValue "string", "app_name", "寻梦测"
+//                resValue "string", "SCREENSHOT_ENANBLE", "1"
+//                buildConfigField "String", "ip", "\"www.bilibili.com\""
+//                if (variant.buildType.name == "preview") {
+//                    outputFileName = "${rootProject.name}-${variant.buildType.name}" +
+//                            "-${variant.versionName}.apk"
+//                    variant.getPackageApplicationProvider().get().outputDirectory = new File("./../apk")
+//                }
+//
+//            } else {
+//
+//                resValue "string", "app_name", "寻梦"
+//                resValue "string", "SCREENSHOT_ENANBLE", "0"
+//                buildConfigField "String", "ip", "\"www.bilibili.com\""
+//                //release 包直接保存到当前项目的outputs文件夹下
+//                def outputFile = output.outputFile
+//               // println "zzg---------${outputFile.name}"
+//                if (outputFile != null && outputFile.name.endsWith("release.apk")) {
+//                   // println 'zzg------2'
+//                    variant.getPackageApplicationProvider().get().outputDirectory = new File(rootDir.absolutePath + '/outputs/')
+//                    outputFileName = "${rootProject.name}-${variant.buildType.name}-release.apk"
+//                }
+//
+//            }
+//        }
+//    }
 }
 
 
@@ -193,13 +197,13 @@ dependencies {
     implementation deps.support
 
     //单元测试
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    //espresso
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test:rules:1.1.0'
+   // testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+//    androidTestImplementation 'androidx.test:runner:1.1.1'
+//    //espresso
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+//    androidTestImplementation 'androidx.test:runner:1.1.0'
+//    androidTestImplementation 'androidx.test:rules:1.1.0'
 
 
     //组件化开发
@@ -219,8 +223,8 @@ dependencies {
     implementation deps.glide.core
     kapt deps.glide.compiler
 
-    implementation deps.bugly.core
-    implementation deps.bugly.native
+//    implementation deps.bugly.core
+//    implementation deps.bugly.native
     implementation deps.butter.core
     kapt deps.butter.compiler
 
@@ -231,7 +235,7 @@ dependencies {
     implementation deps.fastjson
     implementation deps.location
 
-    implementation deps.loading
+//    implementation deps.loading
     //LeakCanery暂时屏蔽，使用BlockCanery
 //    debugImplementation deps.leak.debug
 //    majiaImplementation deps.leak.debug
@@ -248,11 +252,10 @@ dependencies {
 
 
     //今日头条适配
-    implementation deps.autosize
+//    implementation deps.autosize
 
     //kotlin 协程
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
     //注解处理器

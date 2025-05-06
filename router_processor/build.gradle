@@ -5,8 +5,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
@@ -15,7 +15,6 @@ tasks.withType(JavaCompile) {
 apply from : '../config/maven-publish.gradle'
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
 //    implementation project(':router_annotation')
     implementation "com.squareup:javapoet:1.13.0"
 

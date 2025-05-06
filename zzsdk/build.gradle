@@ -25,13 +25,17 @@ android {
 
             }
 
-            preview {
-                minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-
-            }
+//            preview {
+//                minifyEnabled false
+//                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//
+//
+//            }
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
 }
@@ -47,10 +51,7 @@ dependencies {
 
     implementation deps.okhttp.core
     implementation deps.okhttp.interceptor
-    implementation deps.kotlin_jdk7
     implementation deps.gson
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
 }
 repositories {
     mavenCentral()

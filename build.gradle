@@ -1,22 +1,25 @@
 buildscript {
-    ext.kotlin_version = '1.4.21'
+    ext.kotlin_version = '1.9.20'
     apply from: '/Users/zhaozhenguo/Desktop/sourceCode/AndroidZex/config/versions.gradle'
 
     repositories {
         google()
-        maven { url 'http://maven.aliyun.com/repository/jcenter' }
         jcenter()
         mavenCentral()
-        //UMeng
         maven {
-            url 'https://dl.bintray.com/umsdk/release'
+            url = uri("https://storage.googleapis.com/r8-releases/raw")
         }
+
 
     }
     dependencies {
-       // classpath deps.greendao_plugin
-
-        classpath deps.kotlin_plugin
+        // classpath deps.greendao_plugin
+        classpath('com.android.tools.build:gradle') {
+            version {
+                strictly '8.2.2'
+            }
+        }
+//        classpath("com.android.tools:r8:8.9.35")
 
         //classpath deps.realm_plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -26,11 +29,11 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven { url 'http://maven.aliyun.com/repository/jcenter' }
-        maven { url "https://jitpack.io" }
-        maven { url "http://search.maven.org/#search%7Cga%7C1%7Cio.sentry" }
-        jcenter()
         mavenCentral()
+        //  maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url "https://jitpack.io" }
+//        maven { url "https://search.maven.org/#search%7Cga%7C1%7Cio.sentry" }
+        jcenter()
     }
 }
 
@@ -40,9 +43,9 @@ task clean(type: Delete) {
 }
 
 ext {//全局配置变量
-    compileSdkVer = 30
-    buildToolsVer = '30.0.1'
-    minSdkVer = 23
-    targetSdkVer = 30
-    MiminSdkVer = 19
+    compileSdkVer = 34
+    buildToolsVer = '34.0.0'
+    minSdkVer = 26
+    targetSdkVer = 34
+    MiminSdkVer = 26
 }

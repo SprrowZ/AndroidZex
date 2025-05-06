@@ -3,13 +3,14 @@ apply plugin: 'groovy'
 
 //声明仓库的地址
 repositories {
-    jcenter()
+//    jcenter()
     google() //Transform所在仓库
+    mavenCentral()
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 
@@ -17,24 +18,24 @@ java {
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation 'com.android.tools.build:gradle:3.5.0' //生成Transform引入
+    implementation 'com.android.tools.build:gradle:7.4.2' //生成Transform引入
 }
 
 //調用maven插件，用于发布
-apply plugin: 'maven'
+//apply plugin: 'maven'
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            //设置发布路径为 工程根目录下的repo文件夹（如果需要发布到远程仓库，替换uri即可）
-            repository(url: uri('../repo')) {
-                //设置groupId,通常为包名
-                pom.groupId = 'com.rye.router'
-                //设置artifactId，为当前插件的名称
-                pom.artifactId = 'router-gradle-plugin'
-                //设置 插件的版本号
-                pom.version = '1.0.0'
-            }
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //设置发布路径为 工程根目录下的repo文件夹（如果需要发布到远程仓库，替换uri即可）
+//            repository(url: uri('../repo')) {
+//                //设置groupId,通常为包名
+//                pom.groupId = 'com.rye.router'
+//                //设置artifactId，为当前插件的名称
+//                pom.artifactId = 'router-gradle-plugin'
+//                //设置 插件的版本号
+//                pom.version = '1.0.0'
+//            }
+//        }
+//    }
+//}

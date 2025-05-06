@@ -122,5 +122,9 @@
   {
     "name": "MVVM",
     "action": "mvvm"
+  },
+  {
+    "name": "NestedScroll",
+    "action": "nested"
   }
 ]

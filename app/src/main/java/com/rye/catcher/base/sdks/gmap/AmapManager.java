@@ -42,7 +42,11 @@ public class AmapManager {
     public  AmapResult initLocation(Context context) {
 //        mapHandler=handler;
         amapResult=new AmapResult();
-        locationClient = new AMapLocationClient(context);
+        try {
+            locationClient = new AMapLocationClient(context);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         locationOption=getDefaultOption();
         //设置定位参数
         locationClient.setLocationOption(locationOption);

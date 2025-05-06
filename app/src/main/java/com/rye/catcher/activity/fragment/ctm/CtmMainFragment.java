@@ -8,10 +8,7 @@ import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dawn.zgstep.ui.ctm.fragments.CtmDropDownFragment;
-import com.dawn.zgstep.ui.ctm.fragments.CtmScanFragment;
-import com.dawn.zgstep.ui.ctm.fragments.CtmValueAnimatorFragment;
-import com.dawn.zgstep.ui.ctm.fragments.TestCanvasFragment;
+
 import com.rye.base.BaseFragment;
 import com.rye.base.interfaces.OnItemClickListener;
 import com.rye.catcher.R;
@@ -102,7 +99,7 @@ public class CtmMainFragment extends BaseFragment implements OnItemClickListener
                 addView(R.layout.bcustom_viewgroupex);
                 break;
             case 5://ValueAnimator 属性动画
-                CtmFragmentActivity.start(getContext(), CtmValueAnimatorFragment.class.getName());
+              //  CtmFragmentActivity.start(getContext(), CtmValueAnimatorFragment.class.getName());
                 break;
             case 6:
                 CtmWaterFallActivity.start(getContext());
@@ -114,16 +111,16 @@ public class CtmMainFragment extends BaseFragment implements OnItemClickListener
                 CtmFragmentActivity.start(getContext(), ProgressFragment.class.getName());
                 break;
             case 9://下滑菜单
-                CtmPTRActivity.start(getContext());
+              //  CtmPTRActivity.start(getContext());
                 break;
             case 10:
-               CtmFragmentActivity.start(getContext(), CtmDropDownFragment.class.getName());
+             //  CtmFragmentActivity.start(getContext(), CtmDropDownFragment.class.getName());
                 break;
             case 11:
-                CtmFragmentActivity.start(getContext(), CtmScanFragment.class.getName());
+            //    CtmFragmentActivity.start(getContext(), CtmScanFragment.class.getName());
                 break;
             case 12:
-                CtmFragmentActivity.start(getContext(), TestCanvasFragment.class.getName());
+               // CtmFragmentActivity.start(getContext(), TestCanvasFragment.class.getName());
                 break;
 
         }

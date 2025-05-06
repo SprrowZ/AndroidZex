@@ -1,6 +1,7 @@
 package com.rye.base.rxmvp
 
 
+import android.util.Log
 import com.rye.base.impl.HttpObserver
 
 import com.rye.base.network.ServiceGenerator
@@ -74,6 +75,10 @@ open class RxBasePresenter<T> {
 
                     override fun onFinish() {
                         viewRx?.onHttpFinish(action)
+                    }
+
+                    override fun onNext(t: T & Any) {
+                        Log.i("RRye","..")
                     }
                 })
 

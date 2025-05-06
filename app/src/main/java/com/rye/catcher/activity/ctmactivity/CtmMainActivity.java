@@ -6,7 +6,7 @@ import android.content.Intent;
 import com.dawn.zgstep.player.demos.DemoMediaActivity;
 import com.dawn.zgstep.ui.ctm.fragments.CtmColorMatrixFragment;
 import com.dawn.zgstep.ui.ctm.fragments.CtmFontViewFragment;
-import com.dawn.zgstep.ui.activity.DemoActivity;
+import com.dawn.zgstep.ui.activity.DemoFragmentActivity;
 import com.rye.base.BaseRecyclerActivity;
 import com.rye.base.beans.JsonBean;
 import com.rye.base.widget.BaseRecyclerAdapter;
@@ -68,7 +68,7 @@ public class CtmMainActivity extends BaseRecyclerActivity<JsonBean> {
                     startActivity(new Intent(context, DelMainActivity.class));
                     break;
                 case "testXferMode":
-                    DemoActivity.start(context);
+                    DemoFragmentActivity.start(context);
                     break;
                 case "testNext":
                     //startActivity(new Intent(context, CtmNextActivity.class));

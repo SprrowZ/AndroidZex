@@ -24,9 +24,9 @@ abstract class HttpObserver<T>:Observer<T> {
         onStart()
     }
 
-    override fun onNext(tResult: T) {
+    override fun onNext(t: T & Any) {
         onFinish()//网络请求只有一次，next直接结束了
-        onSuccess(tResult)
+        onSuccess(t)
     }
 
     override fun onError(throwable: Throwable) {

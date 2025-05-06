@@ -52,7 +52,26 @@
         android:text="StackView轮播特效"
         android:textColor="@color/black"
         android:textSize="@dimen/font_16" />
-
+    <TextView
+        android:id="@+id/view_drag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/len_6"
+        android:paddingBottom="@dimen/len_6"
+        android:text="ViewDragHelper示例"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_16" />
+    <TextView
+        android:id="@+id/view_nested"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/len_6"
+        android:paddingBottom="@dimen/len_6"
+        android:text="嵌套滑动示例"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_16" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

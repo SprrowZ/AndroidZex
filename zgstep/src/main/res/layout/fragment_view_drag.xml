@@ -1,0 +1,16 @@
+<com.dawn.zgstep.ui.ctm.views.ViewDragHelperView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/test1"
+        android:layout_width="@dimen/len_64"
+        android:layout_height="@dimen/len_64"
+        android:layout_gravity="center"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="Fling.." />
+
+</com.dawn.zgstep.ui.ctm.views.ViewDragHelperView>

@@ -20,6 +20,7 @@ import com.dawn.zgstep.ui.activity.AILoadingActivity;
 import com.dawn.zgstep.ui.activity.DemoLottieActivity;
 import com.dawn.zgstep.ui.activity.FloatActivity;
 import com.dawn.zgstep.ui.activity.MVVMActivity;
+import com.dawn.zgstep.ui.activity.NestedScrollActivity;
 import com.dawn.zgstep.ui.activity.ShareElementAActivity;
 import com.ndk.nativelib.activities.NDKMainActivity;
 import com.rye.appupdater.UpdateActivityRx;
@@ -92,7 +93,7 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
     @Override
     public void initEvent() {
         ButterKnife.bind(this);
-        recycleView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
+        recycleView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true));
         //Mvp的目前操作，这个地方可以修改
         dataList = getPresenter(ProjectPresenterRx.class).getDataList(this);
         ProjectListAdapter adapter = new ProjectListAdapter(this, dataList);
@@ -282,6 +283,9 @@ public class ProjectMainActivityRx extends RxBaseActivity implements
                 break;
             case "mvvm":
                 MVVMActivity.jump(this);
+                break;
+            case "nested":
+                NestedScrollActivity.jump(this);
                 break;
         }
     }

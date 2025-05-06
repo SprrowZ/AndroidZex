@@ -11,28 +11,32 @@ import com.dawn.zgstep.others.life.ZLifeObserver
 import com.dawn.zgstep.ui.activity.adapters.SeniorUiAdapter
 import com.dawn.zgstep.ui.fragment.ClassLoaderFragment
 import com.dawn.zgstep.ui.fragment.StackViewFragment
+import com.dawn.zgstep.ui.fragment.ViewDragFragment
 import com.dawn.zgstep.ui.fragment.ViewModelFragment
 import com.dawn.zgstep.ui.fragment.XfermodeFragment
 import com.rye.base.BaseFragmentActivity
 import com.rye.base.widget.OnItemClickListener
+
 //import com.rye.router_annotation.Route
 
 //@Route(
 //        value = "router://page-demo",
 //        description = "测试页面"
 //)
-class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
+class DemoFragmentActivity : BaseFragmentActivity(), OnItemClickListener {
     private var mRecycler: RecyclerView? = null
     private var mAdapter: SeniorUiAdapter? = null
 
     private var mXfer: TextView? = null
     private var mViewModel: TextView? = null
     private var mClassLoader: TextView? = null
-    private var mStackView :TextView?= null
+    private var mStackView: TextView? = null
+    private var mDragHelperView: TextView? = null
+    private var mNestedView:TextView?=null
     companion object {
         @JvmStatic
         fun start(context: Context) {
-            val intent = Intent(context, DemoActivity::class.java)
+            val intent = Intent(context, DemoFragmentActivity::class.java)
             context.startActivity(intent)
         }
     }
@@ -48,6 +52,8 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
         mViewModel = findViewById(R.id.tv_viewModel)
         mClassLoader = findViewById(R.id.class_loader)
         mStackView = findViewById(R.id.stack_view)
+        mDragHelperView = findViewById(R.id.view_drag)
+        mNestedView = findViewById(R.id.view_nested)
     }
 
     override fun initEvent() {
@@ -55,7 +61,7 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
         val xfermodeFragment = XfermodeFragment()
         val classLoaderFragment = ClassLoaderFragment.create()
         val stackFragment = StackViewFragment.newInstance()
-
+        val dragHelperFragment = ViewDragFragment.newInstance()
         mXfer?.setOnClickListener {
             mRecycler?.visibility = View.GONE
             replaceFragment(xfermodeFragment)
@@ -81,6 +87,10 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
             replaceFragment(stackFragment)
         }
 
+        mDragHelperView?.setOnClickListener {
+            replaceFragment(dragHelperFragment)
+        }
+
         //生命周期监听
         lifecycle.addObserver(ZLifeObserver())
 
@@ -90,7 +100,7 @@ class DemoActivity : BaseFragmentActivity(), OnItemClickListener {
     override fun onItemClick(position: Int) {
         if (currentFragment is XfermodeFragment) {
             val xferView = (currentFragment as XfermodeFragment)?.xferModeTwoView
-            xferView.refresh(position)
+            xferView?.refresh(position)
         }
     }
 

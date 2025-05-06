@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.rye.catcher.activity.ctmactivity.CtmPTRActivity"
     >
-<com.rye.catcher.project.ctmviews.zPullToRefreshView
-    android:background="@color/gray_backgroud"
-    android:id="@+id/pullToRefreshView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
-</com.rye.catcher.project.ctmviews.zPullToRefreshView>
+<!--<com.rye.catcher.project.ctmviews.zPullToRefreshView-->
+<!--    android:background="@color/gray_backgroud"-->
+<!--    android:id="@+id/pullToRefreshView"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
+<!--</com.rye.catcher.project.ctmviews.zPullToRefreshView>-->
 </LinearLayout>

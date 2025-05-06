@@ -57,12 +57,5 @@
             />
 
     </RelativeLayout>
-<com.zyao89.viewRx.zloading.ZLoadingView
-    android:id="@+id/loadingView"
-    android:visibility="gone"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:z_type="StarBuilder"
-    app:z_color="@color/fuckAlpha"
-    />
+
 </LinearLayout>

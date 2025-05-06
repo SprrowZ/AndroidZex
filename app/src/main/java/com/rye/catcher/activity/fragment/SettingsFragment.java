@@ -8,7 +8,7 @@ import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.dawn.zgstep.ui.activity.DemoActivity;
+import com.dawn.zgstep.ui.activity.DemoFragmentActivity;
 import com.rye.base.BaseFragment;
 import com.rye.catcher.R;
 import com.rye.catcher.RetrofitActivity;
@@ -82,7 +82,7 @@ public class SettingsFragment extends BaseFragment {
                 mContext.startActivity(intent7);
                 break;
             case R.id.fragments:
-                DemoActivity.start(mContext);
+                DemoFragmentActivity.start(mContext);
                 break;
             case R.id.custom:
                 Intent intent8 = new Intent(mContext, CtmMainActivity.class);

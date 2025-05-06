@@ -18,25 +18,27 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public void initEvent() {
-
+         authority();
     }
 
     private void authority() {
-        PermissionsUtil.INSTANCE.checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
-            @Override
-            public void passPermissons() {
-                MainActivity.start(SplashActivity.this);
-            }
+        MainActivity.start(SplashActivity.this);
 
-            @Override
-            public void forbitPermissons() {}
-        }, Permission.WRITE_EXTERNAL_STORAGE,Permission.ACCESS_COARSE_LOCATION);
+//        PermissionsUtil.INSTANCE.checkPermissions(this, new PermissionsUtil.IPermissionsResult() {
+//            @Override
+//            public void passPermissons() {
+//                MainActivity.start(SplashActivity.this);
+//            }
+//
+//            @Override
+//            public void forbitPermissons() {}
+//        }, Permission.WRITE_EXTERNAL_STORAGE,Permission.ACCESS_COARSE_LOCATION);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //安装申请权限
-        authority();
+     //   authority();
     }
 }

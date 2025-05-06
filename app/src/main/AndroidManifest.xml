@@ -51,21 +51,21 @@
         <activity android:name=".project.media.CameraMainActivity"></activity>
         <activity android:name=".activity.KtCoroutineActivity" />
 
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="09f608d1c15c69d760761fec208845ab" />
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="5cb3dc76570df3a6d200082e" /> <!-- value的值填写渠道名称，例如yingyongbao。这里设置动态渠道变量 -->
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}" /> <!-- 今日头条适配分案 -->
+<!--        <meta-data-->
+<!--            android:name="com.amap.api.v2.apikey"-->
+<!--            android:value="09f608d1c15c69d760761fec208845ab" />-->
+<!--        <meta-data-->
+<!--            android:name="UMENG_APPKEY"-->
+<!--            android:value="5cb3dc76570df3a6d200082e" /> &lt;!&ndash; value的值填写渠道名称，例如yingyongbao。这里设置动态渠道变量 &ndash;&gt;-->
+<!--        <meta-data-->
+<!--            android:name="UMENG_CHANNEL"-->
+<!--            android:value="${UMENG_CHANNEL_VALUE}" /> &lt;!&ndash; 今日头条适配分案 &ndash;&gt;-->
         <meta-data
             android:name="design_width_in_dp"
-            android:value="${Screen_Width_Size}" />
+            android:value="360" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="180" />
+            android:value="640" />
 
         <provider
             android:name=".base.MyFileProvider"
@@ -94,7 +94,7 @@
             android:name=".activity.splash.SplashActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
+            android:exported="true"
             android:theme="@style/SplashThemeImage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -110,13 +110,18 @@
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity android:name=".activity.ZTActivity">
+            android:exported="true"
+            >
+
+        </activity>
+
+        <activity android:name=".activity.ZTActivity" android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".RetrofitActivity">
+
+        <activity android:name=".RetrofitActivity" android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -165,6 +170,7 @@
         <activity
             android:name=".activity.ProjectMainActivityRx"
             android:configChanges="keyboard|orientation|screenSize"
+            android:exported="true"
             android:launchMode="singleTask">
             <!--过滤其一 常规action、category-->
             <intent-filter>
@@ -223,7 +229,7 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:launchMode="singleTask" />
 
-        <service android:name=".project.services.LocalService">
+        <service android:name=".project.services.LocalService" android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="project.services.LocalService" />
             </intent-filter>
@@ -340,6 +346,16 @@
 
 
         <activity android:name=".project.netdiagnosis.NetDiagnosisActivity" />
+
+        <activity
+            android:name="com.github.moduth.blockcanary.ui.DisplayActivity"
+            android:enabled="false"
+            android:icon="@drawable/block_canary_icon"
+            android:label="@string/block_canary_display_activity_label"
+            android:taskAffinity="com.github.moduth.blockcanary"
+            android:exported="true"
+            android:theme="@style/block_canary_BlockCanary.Base" >
+        </activity>
     </application>
 
 </manifest>

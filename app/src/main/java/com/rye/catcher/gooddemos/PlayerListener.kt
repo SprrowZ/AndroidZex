@@ -33,7 +33,7 @@ object PlayerV2EventManager {
         while (iterator.hasNext()) {
             val entry = iterator.next()
             val receivers = mReceiversMap[entry]
-            if (receivers?.isNotEmpty() == true && receivers?.contains(receiver)) {
+            if (receivers?.isNotEmpty() == true && receivers?.contains(receiver)==true) {
                 receivers.remove(receiver)
                 if (receivers.isEmpty()) {
                     iterator.remove()

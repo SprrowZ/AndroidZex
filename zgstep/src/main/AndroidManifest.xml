@@ -7,12 +7,15 @@
 
     <application>
         <activity
+            android:name=".ui.activity.NestedScrollActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.FloatActivity"
             android:exported="false" />
         <activity android:name=".player.ui.PlayerDetailActivity" />
         <activity android:name=".ui.activity.CoroutineDemoActivity" />
         <activity android:name=".ui.activity.ProxyActivity" />
-        <activity android:name=".ui.activity.DemoActivity" />
+        <activity android:name=".ui.activity.DemoFragmentActivity" />
         <activity android:name=".ui.activity.ZStepMainActivity" />
         <activity android:name=".others.bolts.BoltsMainJava" />
         <activity android:name=".player.demos.DemoMediaActivity" />
@@ -22,7 +25,8 @@
         <activity android:name=".ui.activity.ShareElementAActivity" />
         <activity android:name=".ui.activity.ShareElementBActivity" />
         <activity android:name=".ui.activity.AILoadingActivity" />
-        <activity android:name=".ui.activity.MVVMActivity"/>
+        <activity android:name=".ui.activity.MVVMActivity" />
+
         <service
             android:name=".ui.activity.FloatingWindowService"
             android:exported="false" />

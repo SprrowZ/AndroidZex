@@ -10,7 +10,7 @@ import com.github.moduth.blockcanary.BlockCanary;
 import com.rye.catcher.base.sdks.AppBlockCanaryContext;
 import com.rye.catcher.utils.CrashHandler;
 
-import com.tencent.bugly.crashreport.CrashReport;
+//import com.tencent.bugly.crashreport.CrashReport;
 //import com.umeng.commonsdk.UMConfigure;
 //import com.rye.catcher.GreenDaos.Base.DaoMaster;
 //import com.rye.catcher.GreenDaos.Base.DaoSession;
@@ -67,7 +67,7 @@ public class ThirdSdk {
 
     private void initOther(Application context) {
         //bugly
-        CrashReport.initCrashReport(context, "8fdd156f75", false);
+      //  CrashReport.initCrashReport(context, "8fdd156f75", false);
         //第三个参数为SDK调试模式开关，调试模式的行为特性如下：
 
         //输出详细的Bugly SDK的Log；

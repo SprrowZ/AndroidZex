@@ -17,7 +17,6 @@ import com.rye.base.BaseActivity;
 import com.rye.catcher.R;
 import com.rye.catcher.activity.adapter.PullToRefreshAdapter;
 import com.rye.catcher.agocode.beans.ImageBean;
-import com.rye.catcher.project.ctmviews.zPullToRefreshView;
 import com.rye.base.common.Constant;
 import com.rye.base.utils.FileUtils;
 import com.rye.catcher.utils.FileUtil;
@@ -37,133 +36,142 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class CtmPTRActivity extends BaseActivity {
-    private static final String TAG = "CtmPTRActivity";
-    private zPullToRefreshView pullToRefreshView;
-    private DataHandler zHandler = new DataHandler(this);
-    private RecyclerView recyclerView;
-    private PullToRefreshAdapter adapter;
-
-    private List<ImageBean> beanList;
-
-    public static void start(Context context) {
-        Intent intent = new Intent();
-        intent.setClass(context, CtmPTRActivity.class);
-        context.startActivity(intent);
-    }
-
-
     @Override
     public int getLayoutId() {
-        return R.layout.activity_ctm_ptr;
+        return 0;
     }
 
-    /**
-     *
-     */
     @Override
     public void initEvent() {
-        pullToRefreshView = findViewById(R.id.pullToRefreshView);
-        recyclerView = findViewById(R.id.recyclerView);
 
-        adapter = new PullToRefreshAdapter(this);
-        beanList = new ArrayList<>();
-        //设置布局
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                outRect.left = 10;
-                outRect.top = 20;
-            }
-
-            @Override
-            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                super.onDraw(c, parent, state);
-            }
-        });
-        recyclerView.setAdapter(adapter);
-        pullToRefreshView.setRefreshListener(() -> {
-            new Thread(() -> {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                zHandler.sendEmptyMessage(1);
-            }).start();
-        });
-        initDatas();
     }
-
-    private void initDatas() {
-        Observable<ImageBean> observable = Observable.create(new ObservableOnSubscribe<ImageBean>() {
-            @Override
-            public void subscribe(ObservableEmitter<ImageBean> emitter) throws Exception {
-                //
-                adapter.setDataList(addDatas());
-                //将图片存在本地
-                List<ImageBean> imageList = addDatas();
-                for (int i = 0; i < imageList.size(); i++) {
-                    if (FileUtils.getDirSize(SDHelper.getImageFolder()) < 20) {
-                        FileUtil.saveImage(imageList.get(i).getUrl(), Constant.IMAGE_PREFIX + i + ".png");
-                    }
-                }
-            }
-        });
-
-        Consumer consumer = new Consumer() {
-            @Override
-            public void accept(Object o) throws Exception {
-                Log.i(TAG, "accept: " + (ImageBean) o);
-            }
-        };
-        //提交
-        observable.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(consumer);
-    }
-
-
-    /**
-     * 防止内存泄露,静态内部类
-     */
-    private static class DataHandler extends Handler {
-        //弱引用
-        WeakReference<CtmPTRActivity> mActivity;
-
-        public DataHandler(CtmPTRActivity activity) {
-            mActivity = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            CtmPTRActivity ctmPTRActivity = mActivity.get();
-            switch (msg.what) {
-                case 1:
-                    //数据加载完毕
-                    ctmPTRActivity.addDatas();
-                    ctmPTRActivity.adapter.notifyDataSetChanged();
-                    ToastUtils.shortMsg("数据已更新！");
-                    ctmPTRActivity.pullToRefreshView.dataCompleated();
-                    break;
-            }
-            super.handleMessage(msg);
-        }
-    }
-
-    private List<ImageBean> addDatas() {
-
-        for (int i = 0; i < 20; i++) {
-            ImageBean bean = new ImageBean();
-            String url = "https://picsum.photos/300/300?image=" + (int) (Math.random() * 1048);
-            Log.i(TAG, "addDatas: " + url);
-            bean.setUrl(url);
-            bean.setDescription("-人生若只如初见-");
-            Log.i(TAG, "addDatas: " + url);
-            beanList.add(bean);
-        }
-        return beanList;
-    }
+//    private static final String TAG = "CtmPTRActivity";
+//    private zPullToRefreshView pullToRefreshView;
+//    private DataHandler zHandler = new DataHandler(this);
+//    private RecyclerView recyclerView;
+//    private PullToRefreshAdapter adapter;
+//
+//    private List<ImageBean> beanList;
+//
+//    public static void start(Context context) {
+//        Intent intent = new Intent();
+//        intent.setClass(context, CtmPTRActivity.class);
+//        context.startActivity(intent);
+//    }
+//
+//
+//    @Override
+//    public int getLayoutId() {
+//        return R.layout.activity_ctm_ptr;
+//    }
+//
+//    /**
+//     *
+//     */
+//    @Override
+//    public void initEvent() {
+//        pullToRefreshView = findViewById(R.id.pullToRefreshView);
+//        recyclerView = findViewById(R.id.recyclerView);
+//
+//        adapter = new PullToRefreshAdapter(this);
+//        beanList = new ArrayList<>();
+//        //设置布局
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+//        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+//            @Override
+//            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+//                outRect.left = 10;
+//                outRect.top = 20;
+//            }
+//
+//            @Override
+//            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+//                super.onDraw(c, parent, state);
+//            }
+//        });
+//        recyclerView.setAdapter(adapter);
+//        pullToRefreshView.setRefreshListener(() -> {
+//            new Thread(() -> {
+//                try {
+//                    Thread.sleep(3000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                zHandler.sendEmptyMessage(1);
+//            }).start();
+//        });
+//        initDatas();
+//    }
+//
+//    private void initDatas() {
+//        Observable<ImageBean> observable = Observable.create(new ObservableOnSubscribe<ImageBean>() {
+//            @Override
+//            public void subscribe(ObservableEmitter<ImageBean> emitter) throws Exception {
+//                //
+//                adapter.setDataList(addDatas());
+//                //将图片存在本地
+//                List<ImageBean> imageList = addDatas();
+//                for (int i = 0; i < imageList.size(); i++) {
+//                    if (FileUtils.getDirSize(SDHelper.getImageFolder()) < 20) {
+//                        FileUtil.saveImage(imageList.get(i).getUrl(), Constant.IMAGE_PREFIX + i + ".png");
+//                    }
+//                }
+//            }
+//        });
+//
+//        Consumer consumer = new Consumer() {
+//            @Override
+//            public void accept(Object o) throws Exception {
+//                Log.i(TAG, "accept: " + (ImageBean) o);
+//            }
+//        };
+//        //提交
+//        observable.observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.newThread())
+//                .subscribe(consumer);
+//    }
+//
+//
+//    /**
+//     * 防止内存泄露,静态内部类
+//     */
+//    private static class DataHandler extends Handler {
+//        //弱引用
+//        WeakReference<CtmPTRActivity> mActivity;
+//
+//        public DataHandler(CtmPTRActivity activity) {
+//            mActivity = new WeakReference<>(activity);
+//        }
+//
+//        @Override
+//        public void handleMessage(Message msg) {
+//            CtmPTRActivity ctmPTRActivity = mActivity.get();
+//            switch (msg.what) {
+//                case 1:
+//                    //数据加载完毕
+//                    ctmPTRActivity.addDatas();
+//                    ctmPTRActivity.adapter.notifyDataSetChanged();
+//                    ToastUtils.shortMsg("数据已更新！");
+//                    ctmPTRActivity.pullToRefreshView.dataCompleated();
+//                    break;
+//            }
+//            super.handleMessage(msg);
+//        }
+//    }
+//
+//    private List<ImageBean> addDatas() {
+//
+//        for (int i = 0; i < 20; i++) {
+//            ImageBean bean = new ImageBean();
+//            String url = "https://picsum.photos/300/300?image=" + (int) (Math.random() * 1048);
+//            Log.i(TAG, "addDatas: " + url);
+//            bean.setUrl(url);
+//            bean.setDescription("-人生若只如初见-");
+//            Log.i(TAG, "addDatas: " + url);
+//            beanList.add(bean);
+//        }
+//        return beanList;
+//    }
 
 }

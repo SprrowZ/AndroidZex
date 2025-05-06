@@ -23,8 +23,8 @@ public class IntentsActivity extends BaseActivity {
     private static boolean flag = true;
     private static final String TAG = "LivePreservationActivit";
     private static final String TAG2 = "LifeCycle-B";
-    @BindView(R.id.container)
-    LinearLayout container;
+//    @BindView(R.id.container)
+//    LinearLayout container;
     @BindView(R.id.callPhone)
     Button callPhone;
     @BindView(R.id.sendSMS)
